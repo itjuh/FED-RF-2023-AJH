@@ -35,7 +35,8 @@ HTML이란?
 
 젠코딩? 줄여쓰는 코딩 : 공유자료
 세팅이 필요함 단축키세팅
-    자동완성 주석 : C+/
+    line 주석 : C+/
+    중간주석 : A S +a
     개행 : C+enter
     line삭제 : Ct Sh + K
     line복제 적당히 드래그 Al Sh 방향키아래 (선택영역에 단축키 나와있음)
@@ -43,7 +44,8 @@ HTML이란?
     키워드선택 A 누르고 A S 방향키좌우
     자동완성 부르기 : Ct space
     유사유형자동선택 : Ct + D
-
+    자동완성 m > t > 취소는 shift tap
+    
 <개념정리>
 HTML이란? 하이퍼텍스트/마크업언어
     하이퍼텍스트 : 독자가 한 문서에서 다른 문서로 즉시 접근할 수 있는 텍스트:순서없는 텍스트를
@@ -54,4 +56,16 @@ HTML이란? 하이퍼텍스트/마크업언어
 IT->ICT가 됨
 1. 레이아웃용 태그 div : division
     header / main / footer / nav
-Material Icon Theme 설치
+
+Material Icon Theme 설치 : 아이콘변경
+Prettier 설치 : 줄바꿈 500\003에서 셋팅법 보기
+image preview : 이미지 미리보기
+
+<CSS방식>
+인터널방식
+익스터널방식
+
+마진(집과 집 사이 간격)
+보더(벽)
+패딩(안마당)
+컨텐트(집)
