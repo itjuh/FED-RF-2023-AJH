@@ -8,6 +8,20 @@
         <!-- css인터널 코딩영역 -->
         <style>
             /* CSS영역 내 주석문 */
+            /* 웹 폰트 CDN(Content Delevery Network) */
+            @import url('https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Gowun+Batang:wght@400;700&family=Nanum+Myeongjo&family=Song+Myung&display=swap');
+            /* 
+                웹폰트 font-familiy 이름
+                font-family: 'Black Han Sans', sans-serif;
+                font-family: 'Gowun Batang', serif;
+                font-family: 'Nanum Myeongjo', serif;
+                font-family: 'Song Myung', serif;
+            */
+            /* 
+                @import url(주소)
+                - 외부 CSS를 불러올때 사용하는 형식
+                - 외부 CSS 파일을 하나로 합칠 때 많이 사용함
+            */
             /* 
                 [ 모든 요소 공통 디자인요소 : 박스모델 ]
                 1. 크기 : width 가로, height 세로
@@ -36,6 +50,7 @@
                 width: 800px;
                 /* 외곽선 : bd 두께 종류 색상 */
                 border: 4px double darkgray;
+                border-radius: 10px;
                 /* 패딩 p20*/
                 padding: 20px;
                 /* 마진 마영오:중앙에 오는 박스 m0 > auto */
@@ -57,17 +72,96 @@
             }
             /* 1. 상단영역 */
             #top {
-                background-color: #b8e7b8;
+                background-color: #e2f0fd;
                 /* 글자색상 */
                 color: #004e00;
+            }
+            /* 타이틀 */
+            #top h1 {
+                color: #4341be;
+                font-size: 45px;
+                font-weight: normal; /* fwn 글자두께 기본 */
+                font-family: 'Song Myung';
+                /* 
+                    font-family : 글씨체
+                    값 - 콤마로 구분하여 우선순위 적용함
+                    (상위체가 없으면 하위체를 적용, 이도 없으면 브라우저 기본체를 표시)
+                */
+                text-shadow: 2px 2px 2px #0000007c;
+                /* 
+                    text-shadow: 글자그림자
+                    값 - x축 y축 블러(경계흐림) 색
+                    콤마로 다중 그림자 사용 가능!
+                */
+                margin: 15px 0;
+            }
+            #top:hover{
+                background-color: #cae2f8;
+
+            }
+            /* 메뉴링크 */
+            #gnb a{
+                color: #1916a3;
+                text-decoration: none; /* tdn */
+                font-size: 25px; /* fz */
+                font-family: 'Gowun Batang', serif; /* ff */
+                vertical-align: -6px; /* va-4 */
+                /* vertical-align: 인라인요소간 세로정렬(세로위치조정)
+                값 - top/bottom/middle/baseline/숫자
+                */
+            }
+            /* 가상클래스 :hover 마우스오버시 ,클래스를 준 것 같은 느낌*/
+            /* a+a 는 앞에 a요소가 있는 형제 a요소를 선택 */
+            /* 결과적으로 첫번째 a요소가 선택되지 않음 */
+            #gnb img:hover{
+                width: 40px;
+                transform: scale(1.1, 1.1);
+            }
+            #gnb a+a:hover{
+                color: #00c300;
+                text-decoration: overline;
+                text-decoration-style: wavy;
+                font-size: 26px;
+            }
+            /* 로고이미지 va-9 */
+            #gnb img{
+                vertical-align: -9px;
             }
             /* 2. 메인영역 */
             #cont {
                 margin: 20px auto;
             }
+            #cont img:hover {
+                width: 100%;
+                padding: 0;
+                margin: 0;
+                transform: scale(1.01, 1.01);
+            }
+            /* 3. 하단영역 */
             #info {
-                background-color: rgb(179, 179, 179);
-                color:rgb(255, 255, 255);
+                background-color: #bbb;
+            }
+            #info:hover{
+                background-color: #9e9e9e;
+            }
+            /* 회사주소 */
+            #info address{
+                font-size: 13px;
+                color: rgb(255, 255, 255);
+                font-style: normal; /* fsn */
+                font-family: 'Gowun Batang', serif;
+            }
+            /* 담담자 span */
+            span.utxt{
+                text-decoration: underline;
+                text-decoration-style: dotted;
+                text-decoration-color: olivedrab;
+            }
+            /* 종속선택자로 동일 클래스명 다른 디자인으로 세팅 */
+            b.utxt{
+                text-decoration: underline;
+                text-decoration-style: dotted;
+                text-decoration-color: midnightblue;
             }
         </style>
     </head>
@@ -82,33 +176,42 @@
             <nav id="gnb">
                 <a href="index.html">
                     <!-- 상대경로 -->
-                    <img src="./images/naver_logo.PNG" alt="네이버로고" style="width: 50px;">
+                    <img src="./images/naver_logo.PNG" alt="네이버로고" style="width: 40px" />
                     <!-- style속성으로 CSS를 셋팅하는 방법은 인라인방식이라고 함! -->
                     <!-- 절대상대경로 : 루트파일인 최상위폴더부터의 경로 (서버에 개발도구와 동일할 때만 사용,로컬을 맞췄을 때)-->
                     <!-- <img src="/001.HTML학습/01.Info_PJ/images/naver_logo.PNG" alt="네이버로고"> -->
                     <!-- 절대경로 : 이미지주소복사 -->
                     <!-- <img src="https://t1.daumcdn.net/daumtop_chanel/op/20200723055344399.png" alt="다음로고"> -->
                 </a>
-                <a href="sub1.html">정치</a>
-                <a href="sub2.html">경제</a>
-                <a href="sub3.html">사회</a>
-                <a href="sub4.html">IT/과학</a>
+                <a href="sub1.html">정치</a> |
+                <a href="sub2.html">경제</a> |
+                <a href="sub3.html">사회</a> |
+                <a href="sub4.html">IT/과학</a> |
                 <a href="sub5.html">TV/연예</a>
             </nav>
         </header>
         <!-- 2. 메인영역: 컨텐츠 -->
         <main id="cont" class="rbx">
-            <img class="fimg" src="./images/new_ill.png" alt="메인 뉴스이미지">
+            <img class="fimg" src="./images/new_ill.png" alt="메인 뉴스이미지" />
         </main>
         <!-- 3. 하단영역: 회사정보 -->
         <footer id="info" class="rbx">
             <address>
-                서울시 강남구 역삼동 그린컴퓨터아카데미<br>
-                담당자 : 안주현<br>
-                연락처 : 010.2144.9679
+                서울시 강남구 역삼동 그린컴퓨터아카데미<br />
+                담당자 : <span class="utxt">An Ju Hyun</span><br />
+                연락처 : <b class="utxt">010.2144.9679</b>
             </address>
         </footer>
         <!-- 
+        [ 웹 표준이란? ]
+        - 모든 브라우저에서 하나의 소스로 동일한 디스플레이 및 기능이 작동하도록 정한 웹 코딩의 표준안
+        [ 웹 접근성이란? ]
+        - 평등의 원칙. 즉, 장애인 차별금지법에 따라 이미지(alt속성), 동영상(자막) 등의 설명을 추가하여
+            정보제공의 차별이 없도록 함
+        [ img요소 : 이미지 연결요소 ]
+        - 필수속성
+        1) src(source) : 이미지 경로
+        2) alt(alternative text - 대체 텍스트) : 이미지 설명(웹 접근성)
         [ 레이아웃을 위한 블록요소 ] 
         태그는 개별적인 이름을 하나하나 지칭할 때 개별적인 요소명을 하나하나 모아서 만들 때
         요소는 공통적으로 묶어서 말할 때
