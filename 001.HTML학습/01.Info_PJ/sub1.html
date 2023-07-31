@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <!-- viewport는 모바일에서 실제픽셀로 변환함 -->
+        <title>네이버 요약뉴스 - 정치</title>
+        <!-- 서브용 외부 CSS 불러오기 -->
+        <link rel="stylesheet" href="./css/sub.css" />
+    </head>
+    <body>
+        <!-- 1. 상단영역: 제목, 메뉴 -->
+        <!-- div#top.rbx || #top.rbx : #아이디명.클래스명 -->
+        <header id="top" class="rbx">
+            <!-- 1-1.제목 -->
+            <h1>네이버 요약뉴스 - 정치</h1>
+            <!-- 1-2.GNB메뉴 -->
+            <!-- GNB(Global Navigation Bar) -->
+            <nav id="gnb">
+                <a href="index.html">
+                    <!-- 상대경로 -->
+                    <img src="./images/naver_logo.PNG" alt="네이버로고" style="width: 40px" />
+                    <!-- style속성으로 CSS를 셋팅하는 방법은 인라인방식이라고 함! -->
+                    <!-- 절대상대경로 : 루트파일인 최상위폴더부터의 경로 (서버에 개발도구와 동일할 때만 사용,로컬을 맞췄을 때)-->
+                    <!-- <img src="/001.HTML학습/01.Info_PJ/images/naver_logo.PNG" alt="네이버로고"> -->
+                    <!-- 절대경로 : 이미지주소복사 -->
+                    <!-- <img src="https://t1.daumcdn.net/daumtop_chanel/op/20200723055344399.png" alt="다음로고"> -->
+                </a>
+                <a href="sub1.html">정치</a> | 
+                <a href="sub2.html">경제</a> | 
+                <a href="sub3.html">사회</a> |
+                <a href="sub4.html">IT/과학</a> |
+                <a href="sub5.html">TV/연예</a>
+            </nav>
+        </header>
+        <!-- 2. 메인영역: 컨텐츠 -->
+        <main id="cont" class="rbx">
+            <!-- 2-1. 서브타이틀 -->
+            <h2 class="sub_tit">정치 뉴스</h2>
+            <!-- 2-2. 언론사로고 -->
+            <div class="prlogo">
+                <img
+                    src="https://mimgnews.pstatic.net/image/upload/office_logo/088/2020/09/15/logo_088_6_20200915182417.png"
+                    alt="매일신문로고"
+                />
+            </div>
+            <!-- 2-3. 기사제목 -->
+            <h3 class="art_tit">상반기 담배 판매량 0.6% 감소…전자담배 비중 16.5%</h3>
+            <!-- 2-4. 기사사진 -->
+            <figure class="art_fig">
+                <!-- 이미지 -->
+                <img
+                    src="https://imgnews.pstatic.net/image/088/2023/07/28/0000827727_001_20230728125101159.jpg?type=w647"
+                    alt="오른손으로 담배를 고르고 있다"
+                />
+                <!-- 이미지 설명 -->
+                <figcaption>오른손으로 담배를 고르고 있다[연합뉴스]</figcaption>
+            </figure>
+            <!-- 2-5. 기사내용 -->
+            <section class="art_cont">
+                <p>올해 상반기 전체 담배 판매량 중 궐련형 전자담배가 차지하는 비중이 16%를 넘어섰다.</p>
+
+                <p>
+                    기획재정부가 28일 발표한 '2023년 상반기 담배시장 동향'에 따르면 상반기 담배 판매량은 17억7천만갑으로 지난해
+                    상반기(17억8천만갑)와 비교해 0.6% 줄었다.
+                </p>
+
+                <p>
+                    궐련형 전자담배의 판매 비중은 지속적으로 증가하고 있다. 올해 상반기 전체 담배 판매량 중 궐련형 전자담배의 점유율은
+                    16.5%로, 지난해(14.8%)보다 1.7%포인트(p) 증가했다.
+                </p>
+
+                <p>
+                    궐련형 전자담배의 점유율은 지난 2017년 2.2%에서 2018년 9.6%, 2019년 10.5%, 2020년 10.6%, 2021년 12.4%로 매년 꾸준히
+                    상승하고 있다.
+                </p>
+
+                <p>담배 반출량은 작년 동기보다 0.3% 줄어든 17억5천만갑이었다.</p>
+
+                <p>
+                    담배 판매 시 부과되는 제세공과금은 담배 반출량이 감소(전년 대비 0.3% )하면서 0.4% 줄어든 5조7천억원이 지난 6월까지
+                    부과됐다.
+                </p>
+            </section>
+            <!-- 2-6. 기자정보 -->
+            <div class="report">이수현 기자 sontag@imaeil.com</div>
+            <!-- 2-7. 기사원문 -->
+            <h5>
+                <a href="https://n.news.naver.com/mnews/article/088/0000827727?sid=100">기사원문</a>
+            </h5>
+        </main>
+        <!-- 3. 하단영역: 회사정보 -->
+        <footer id="info" class="rbx">
+            <address>
+                서울시 강남구 역삼동 그린컴퓨터아카데미<br />
+                담당자 : <span class="utxt">An Ju Hyun</span><br />
+                연락처 : <b class="utxt">010.2144.9679</b>
+            </address>
+        </footer>
+    </body>
+</html>

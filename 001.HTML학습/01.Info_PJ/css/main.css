@@ -1,0 +1,15 @@
+@charset "utf-8";
+/* 메인페이지용 - main.css */
+/* 공통페이지용CSS 합치기 */
+@import url(./common.css);
+#cont img:hover {
+    width: 100%;
+    /* w100p
+    100%의 기준은 싸고 있는 블록박스의
+    content 영역을 말함!
+    (border/padding 제외 내부영역) 
+    */
+    padding: 0;
+    margin: 0;
+    transform: scale(1.01, 1.01);
+}

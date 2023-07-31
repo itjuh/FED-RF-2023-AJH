@@ -1,0 +1,14 @@
+@charset "utf-8";
+/* 서브페이지용CSS - sub.css */
+/* 공통페이지용CSS 합치기 */
+@import url(./common.css);
+
+/* 서브타이틀 */
+h2.sub_tit{
+    color: #1916a3;
+    font-size: 28px;
+    font-family: "Gowun Batang", serif;
+    font-weight: normal;
+    text-align: center;
+    text-shadow: 2px 2px 3px #0000007d;
+}

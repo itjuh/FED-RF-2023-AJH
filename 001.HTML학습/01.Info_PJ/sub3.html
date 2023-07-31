@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <!-- viewport는 모바일에서 실제픽셀로 변환함 -->
+        <title>네이버 요약뉴스 - 사회</title>
+        <!-- 서브용 외부 CSS 불러오기 -->
+        <link rel="stylesheet" href="./css/sub.css" />
+    </head>
+    <body>
+        <!-- 1. 상단영역: 제목, 메뉴 -->
+        <!-- div#top.rbx || #top.rbx : #아이디명.클래스명 -->
+        <header id="top" class="rbx">
+            <!-- 1-1.제목 -->
+            <h1>네이버 요약뉴스 - 사회</h1>
+            <!-- 1-2.GNB메뉴 -->
+            <!-- GNB(Global Navigation Bar) -->
+            <nav id="gnb">
+                <a href="index.html">
+                    <!-- 상대경로 -->
+                    <img src="./images/naver_logo.PNG" alt="네이버로고" style="width: 40px" />
+                    <!-- style속성으로 CSS를 셋팅하는 방법은 인라인방식이라고 함! -->
+                    <!-- 절대상대경로 : 루트파일인 최상위폴더부터의 경로 (서버에 개발도구와 동일할 때만 사용,로컬을 맞췄을 때)-->
+                    <!-- <img src="/001.HTML학습/01.Info_PJ/images/naver_logo.PNG" alt="네이버로고"> -->
+                    <!-- 절대경로 : 이미지주소복사 -->
+                    <!-- <img src="https://t1.daumcdn.net/daumtop_chanel/op/20200723055344399.png" alt="다음로고"> -->
+                </a>
+                <a href="sub1.html">정치</a> | <a href="sub2.html">경제</a> | <a href="sub3.html">사회</a> |
+                <a href="sub4.html">IT/과학</a> |
+                <a href="sub5.html">TV/연예</a>
+            </nav>
+        </header>
+        <!-- 2. 메인영역: 컨텐츠 -->
+        <main id="cont" class="rbx">
+            <!-- 2-1. 서브타이틀 -->
+            <h2 class="sub_tit">사회 뉴스</h2>
+            <!-- 2-2. 언론사로고 -->
+            <div class="prlogo">
+                <img
+                    src="https://mimgnews.pstatic.net/image/upload/office_logo/028/2020/09/15/logo_028_6_20200915190845.png"
+                    alt="한겨레로고"
+                />
+            </div>
+            <!-- 2-3. 기사제목 -->
+            <h3 class="art_tit">‘고시원 거주’ 가짜서류 꾸며 LH 전세자금 105억원 타낸 일당 검거</h3>
+            <!-- 2-4. 기사사진 -->
+            <figure class="art_fig">
+                <!-- 이미지 -->
+                <img
+                    src="https://imgnews.pstatic.net/image/028/2023/07/28/0002650106_001_20230728125106873.jpg?type=w647"
+                    alt="수갑이미지"
+                />
+                <!-- 이미지 설명 -->
+                <figcaption>수갑이미지[게티이미지뱅크]</figcaption>
+            </figure>
+            <!-- 2-5. 기사내용 -->
+            <section class="art_cont">
+                <p>
+                    고시원에 위장 전입해 ‘주거취약계층’ 요건을 갖춘 뒤 한국토지주택공사(LH)로부터 불법 대출을 받는
+                    수법으로 공사의 전세자금 지원금 105억5000만원을 빼돌린 일당이 검찰에 넘겨졌다.
+                </p>
+
+                <p>
+                    서울 강북경찰서는 28일 엘에이치 전세자금 불법 대출 범행에 가담한 129명을 사기 및 임대주택불법입주
+                    혐의 등으로 검찰에 송치했다고 밝혔다. 이번에 검거된 129명 중 3명은 총책, 9명은 부정입주자를 모집하는
+                    모집책과 허위 위장전입시키는 중간브로커, 117명은 위장전입자다.
+                </p>
+
+                <p>
+                    브로커들은 2017년 3월∼2023년 3월 임대주택 입주 희망자들에게 접근해 작업비 명목으로 건당
+                    100만∼500만원을 받고, 서울·경기·인천 소재 고시원에 허위 전입신고를 하도록 했다. 또는 퇴직 등 생계
+                    곤란 사정을 증명하는 허위 고용서류 등을 작성하도록 해, 입주 희망자들이 주거취약계층 요건을 갖추도록
+                    도왔다.
+                </p>
+                <figure class="art_fig">
+                    <img
+                        src="https://imgnews.pstatic.net/image/028/2023/07/28/0002650106_002_20230728125106901.jpg?type=w647"
+                        alt="'위장전입' LH전세 사기 조직 알선 브로커 사건 관계도"
+                    />
+                    <figcaption>'위장전입' LH전세 사기 조직 알선 브로커 사건 관계도[서울강북경찰서]</figcaption>
+                </figure>
+                <p>
+                    이렇게 엘에이치 전세임대 입주자격을 얻은 위장전입한 피의자들은 개인당 8000만∼1억3000만원 상당의
+                    불법대출을 받았다. 이렇게 불법대출을 받은 규모가 105억5000만원 상당이다.
+                </p>
+
+                <p>
+                    엘에이치의 주거취약계층 전세임대사업은 쪽방촌·고시원 등에서 3개월 이상 거주한 이들에게 저렴한
+                    임대주택을 지원하는 사업이다. 이 가운데 ‘기존주택 전세임대’ 유형은 엘에이치가 집주인과 전세계약을
+                    체결한 뒤 주거취약층에게 재임대하는 제도로, 최대 1억3000만원의 보증금을 지원한다.
+                </p>
+
+                <p>
+                    경찰은 “쉽게 집을 장만할 수 있다는 브로커의 유혹에 넘어가 대가를 지불하고, 위장 전입 및 허위
+                    고용서류를 만들어 지방자치단체 및 엘에이치를 속여 전세자금 대출받거나, 이처럼 공짜로 집을 얻을 수
+                    있다는 미끼로 현혹해 대상자들을 모집하는 범행에 대해 엄정 대응할 것”이라고 말했다.
+                </p>
+            </section>
+            <!-- 2-6. 기자정보 -->
+            <div class="report">심우삼 기자 wu32@hani.co.kr</div>
+            <!-- 2-7. 기사원문 -->
+            <h5>
+                <a href="https://n.news.naver.com/mnews/article/028/0002650106?sid=102">기사원문</a>
+            </h5>
+        </main>
+        <!-- 3. 하단영역: 회사정보 -->
+        <footer id="info" class="rbx">
+            <address>
+                서울시 강남구 역삼동 그린컴퓨터아카데미<br />
+                담당자 : <span class="utxt">An Ju Hyun</span><br />
+                연락처 : <b class="utxt">010.2144.9679</b>
+            </address>
+        </footer>
+    </body>
+</html>
