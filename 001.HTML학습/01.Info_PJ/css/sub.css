@@ -11,4 +11,55 @@ h2.sub_tit{
     font-weight: normal;
     text-align: center;
     text-shadow: 2px 2px 3px #0000007d;
+    border-radius: 10px;
+    padding: 40px;
+    /* 배경넣기 : 한번에 쓰기 */
+    /* background: url(../images/art_fig4.jpg) no-repeat center/cover; */
+    /* background: 색이반고윙/크; 배경색 이미지 반복 고정 위치/크기 */
+    
+    /* 배경넣기 : 속성별 쓰기 */
+    /* 배경이미지 : bgi */
+    /* 반복여부 : bgr */
+    background-repeat: no-repeat;
+    /* 배경위치 : pgp 가로 세로 */
+    /* 배경크기 : pgz 가로 세로 (cover : 박스채우기)*/
+    background-size: cover;
+}
+/* 부모 요소를 써주면 적용 우선순위가 올라감 */
+/* 정치 배경이미지 */
+#cont .sub1 {
+    background-image: url(https://imgnews.pstatic.net/image/088/2023/07/28/0000827727_001_20230728125101159.jpg?type=w647);
+    background-position-y: -25px;
+    color: white;
+    text-shadow: 2px 2px 4px #000;
+}
+/* 경제 배경이미지 */
+#cont .sub2 {
+    background-image: url(https://imgnews.pstatic.net/image/421/2023/07/27/0006956647_003_20230727154709479.jpg?type=w647);
+    background-position-y: -113px;
+    color: white;
+    text-shadow: 2px 2px 4px #000;
+}
+/* 사회 배경이미지 */
+#cont .sub3 {
+    background-image: url(https://imgnews.pstatic.net/image/028/2023/07/28/0002650106_001_20230728125106873.jpg?type=w647);
+    background-position-y: -340px;
+    color: white;
+    text-shadow: 2px 2px 4px #000;
+}
+/* IT/과학 배경이미지 */
+#cont .sub4 {
+    /* 배경이미지 : bgi */
+    background-image: url(../images/art_fig4.jpg);
+    /* 배경위치 : pgp 가로 세로 */
+    background-position-y: -40px;
+    color: white;
+    text-shadow: 2px 2px 4px #000;
+}
+/* TV/연예 배경이미지 */
+#cont .sub5 {
+    background-image: url(https://ssl.pstatic.net/mimgnews/image/437/2023/07/27/0000353051_001_20230727201710023.jpg?type=w540);
+    background-position-y: -20px;
+    color: white;
+    text-shadow: 2px 2px 4px #000;
 }
