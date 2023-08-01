@@ -125,10 +125,10 @@ html,body,h1,h2 {
     transform: scale(1.1, 1.1);
 }
 #gnb a + a:hover {
-    color: #00c300;
+    /* color: #00c300; */
     text-decoration: overline;
     text-decoration-style: wavy;
-    font-size: 26px;
+    font-weight: bold;
 }
 /* 로고이미지 va-9 */
 #gnb img {

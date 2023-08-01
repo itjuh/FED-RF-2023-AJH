@@ -2,6 +2,7 @@
 /* 메인페이지용 - main.css */
 /* 공통페이지용CSS 합치기 */
 @import url(./common.css);
+/* index의 메인영역 */
 #cont img:hover {
     width: 100%;
     /* w100p
