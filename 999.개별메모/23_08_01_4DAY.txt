@@ -16,6 +16,7 @@ a 스크롤 : 0.x단위 간격조정
 
 4일차 교육 정리
     [ HTML 서식관련 요소들 ]
+
     1. 두꺼운 글자
     <b>- 굵은 텍스트(Bold text - 단순 글자만 두꺼움)
     <strong>- 중요 텍스트(Important text - 중요함의 의미)
@@ -60,3 +61,59 @@ a 스크롤 : 0.x단위 간격조정
         1) 정보에 대한 의미있는 별도의 컨트롤이 가능함
         2) DB서버에서 데이터 수집 및 분석 시에 활용하여 더 정교한 데이터 검색이 되도록 함
             (DB 데이터 크롤링에 활용)
+    [ outline 요소 ]
+
+    box모델의 필수속성은 아니지만
+    박스의 외곽선을 표현해주며
+    박스 자체에 크기에 영향을 주지 않음!
+    outline : 두께 종류 색상
+    border-radius도 적용됨
+    -> 주로 사용되는 예는 input 입력창에 focus가 갈 때
+    외곽선표시가 됨
+
+    [ 배경넣기 : 한번에 쓰기 ]
+
+    background: url(../images/art_fig4.jpg) no-repeat center/cover;
+    background: 색이반고윙/크; 배경색 이미지 반복 고정 위치/크기
+
+    [ box-shadow 속성 ]
+
+        - 박스 외부/내부 그림자 설정속성
+        - 값 : 옵션 X축 Y축 blur(경계선) spread 색상
+        text-shadow와 달리 spread 속성이 있음
+        이것은 그림자를 커지게 함!
+        - 내부 그림자 옵션 : inset
+        - 그림자 다중설정 :  콤마로 연속 사용 가능
+    box-shadow:
+    inset 0 0 6px 5px #0000008c,
+    2px 2px 4px 0px #0000007a;
+
+    [ font의 여러가지 속성 ]
+    
+    font-size: 17px;
+    color: #303038;
+    /* 자간 ls */
+    letter-spacing: 1px;
+    /* 단어간격 ws */
+    word-spacing: 1.3px;
+    /* 양쪽정렬 */
+    text-align: justify;
+    /* 줄간격 lh */
+    line-height: 1.6;
+
+    글자 라인간 간격조정
+    숫자만 쓰면 글자 높이값에 대한 배수 조정
+    단위를 쓰면 단위에 맞게 줄간격 조정
+    줄간격의 응용
+    버튼 등의 글자를 세로 중앙에 오게 할 때
+    박스 높이 값 만큼 준다
+
+}
+    [ 동영상 박스 ]
+
+    height: 550px;
+
+    div와 같은 block요소는 width를 주지 않으면
+    width:auto로 자동 설정 됨.
+    이는 싸고 있는 박스 컨텐트 영역을 자동을 채운다.
+    (컨텐트영역:내부영역의 패딩을 제외한 내부 영역)
