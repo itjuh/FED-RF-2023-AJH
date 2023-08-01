@@ -3,13 +3,14 @@
 
 /* CSS영역 내 주석문 */
 /* 웹 폰트 CDN(Content Delevery Network) */
-@import url("https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Gowun+Batang:wght@400;700&family=Nanum+Myeongjo&family=Song+Myung&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Gowun+Batang:wght@400;700&family=Nanum+Myeongjo&family=Noto+Sans+KR&family=Song+Myung&display=swap");
 /* 
     웹폰트 font-familiy 이름
     font-family: 'Black Han Sans', sans-serif;
     font-family: 'Gowun Batang', serif;
     font-family: 'Nanum Myeongjo', serif;
-    font-family: 'Song Myung', serif;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-family: 'Song Myung', serif;   
 */
 /* 
     @import url(주소)
@@ -44,14 +45,17 @@
 */
 /* 요소의 초기화
     -기존의 기본 세팅값 중 마진/패딩 초기화 */
-html,body,h1,h2 {
+html,body,h1,h2,figure {
     margin: 0;
     padding: 0;
 }
 /* 레이아웃 박스 공통 디자인 */
 .rbx {
     /* 크기 : w800 -> 가로크기 */
-    width: 800px;
+    /* 최대 가로크기 : maw1000 작을경우 auto(부모박스 크기맞춤) */
+    max-width: 1000px;
+    /* 최소 가로크기 : mw300 최소 가로크기를 설정하면 그이상 작아지지 않음*/
+    min-width: 400px;
     /* 외곽선 : bd 두께 종류 색상 */
     border: 1px dashed darkgray;
     /* border: 4px double darkgray; */
