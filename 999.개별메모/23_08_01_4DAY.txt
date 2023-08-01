@@ -11,3 +11,52 @@ outline : 두 종 색 (박스크기에 영향을 미치지 않는다.)
 
 박스의 이미지 src 가져올때 선택 후 엔터 하면 src가 선택됨
 background : url(주소 0/50px)
+
+a 스크롤 : 0.x단위 간격조정
+
+4일차 교육 정리
+    [ HTML 서식관련 요소들 ]
+    1. 두꺼운 글자
+    <b>- 굵은 텍스트(Bold text - 단순 글자만 두꺼움)
+    <strong>- 중요 텍스트(Important text - 중요함의 의미)
+    
+    2. 이텔릭 글자 (용어, 외국어, 생각등)
+    <i>- 기울임꼴 텍스트(Italic text - 단순 글자만 이텔릭처리)
+    <em>- 강조된 텍스트(Emphasized text - 강조의 의미)
+    
+    3. 색상표시
+    <mark>- 표시된 텍스트(Marked text - 눈에 띄게 표시)
+    
+    4. 작은 글자
+    <small>- 더 작은 텍스트(smaller text)
+        - h5 요소의 글자크기와 같음
+        - 상속 된 글자 크기에 대한 상대적인 크기이므로 
+            브라우저에서 소수점으로 표시될 수 있음
+    
+    5. 삭제된 글자
+    <del>- 삭제된 텍스트(Deleted text)
+        - text-decoration: line-through
+
+    6. 삽입된 글자
+    <ins>- 삽입된 텍스트(Inserted text)
+        - text-decoration: underline
+    
+    7. 첨자 표시
+    <sub>- 아래 첨자 텍스트(Subscript text)
+        - 약간 아래쪽 작은 글자
+        - 병행표시글자(영문, 한문 등)
+    <sup>- 위첨자 텍스트(Superscript text)
+        - 약간 윗쪽 작은 글자
+        - 주석표시숫자(숫자와 설명을 연결)
+        ____________________
+
+        [ 시멘틱 태그란? ]
+        - sementic(의미론적인, 의미있는)
+        즉, 태그가 어떤 구분하는 의미가 있을 경우
+        이런 요소를 시멘틱 태그라고 부른다
+        예)strong, em, address, header, footer 등
+
+        - 시멘틱 태그를 쓸 때 장점은?
+        1) 정보에 대한 의미있는 별도의 컨트롤이 가능함
+        2) DB서버에서 데이터 수집 및 분석 시에 활용하여 더 정교한 데이터 검색이 되도록 함
+            (DB 데이터 크롤링에 활용)

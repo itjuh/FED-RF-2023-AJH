@@ -51,11 +51,11 @@ html,body,h1,h2,figure {
 }
 /* 레이아웃 박스 공통 디자인 */
 .rbx {
-    /* 크기 : w800 -> 가로크기 */
-    /* 최대 가로크기 : maw1000 작을경우 auto(부모박스 크기맞춤) */
-    max-width: 1000px;
+    /* 크기 : w900 -> 가로크기 */
+    /* 최대 가로크기 : maw900 작을경우 auto(부모박스 크기맞춤) */
+    max-width: 900px;
     /* 최소 가로크기 : mw300 최소 가로크기를 설정하면 그이상 작아지지 않음*/
-    min-width: 400px;
+    /* min-width: 400px; */
     /* 외곽선 : bd 두께 종류 색상 */
     border: 1px dashed darkgray;
     /* border: 4px double darkgray; */

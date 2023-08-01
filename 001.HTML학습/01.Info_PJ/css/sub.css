@@ -120,7 +120,16 @@ h2.sub5 {
     word-spacing: 1.3px;
     /* 양쪽정렬 */
     text-align: justify;
-    /* /// */
+    /* 줄간격 lh */
+    line-height: 1.6;
+    /* 
+    글자 라인간 간격조정
+    숫자만 쓰면 글자 높이값에 대한 배수 조정
+    단위를 쓰면 단위에 맞게 줄간격 조정
+        줄간격의 응용
+        버튼 등의 글자를 세로 중앙에 오게 할 때
+        박스 높이 값 만큼 준다
+     */
 }
 /* 유튜브 동영상 박스 */
 .mvbx {
@@ -142,9 +151,23 @@ h2.sub5 {
 }
 .art_link a {
     display: inline-block;
-    text-align: center;
+    /* 인라인요소를 블록에 담아서 인라인 형태로 조정 */
     width: 70px;
     height: 70px;
     border: 1px solid #dadada;
     border-radius: 50%;
+    /* 줄간격으로 세로 글자 중앙 */
+    line-height: 70px;
+    /* 가로정렬 */
+    text-align: center;
+    /* a태그 기본 요소 변경(색,밑줄) */
+    color: #303038;
+    text-decoration: none;/* tdn */
+    background-color: #dadada;
+    font-size: 18px;
+}
+.art_link a:hover {
+    box-shadow: 0px 0px 3px 5px #00000087;
+    background-color: #bbb;
+    color: #fff;
 }
