@@ -58,31 +58,31 @@ h2.sub_tit{
 /* 부모 요소를 써주면 적용 우선순위가 올라감 */
 /* 정치 배경이미지 */
 h2.sub1 {
-    background-image: url(https://imgnews.pstatic.net/image/088/2023/07/28/0000827727_001_20230728125101159.jpg?type=w647);
-    background-position-y: -25px;
+    background-image: url(../images/img_sub1_tit.jpg);
+    background-position-y: -20px;
     
 }
 /* 경제 배경이미지 */
 h2.sub2 {
-    background-image: url(https://imgnews.pstatic.net/image/421/2023/07/27/0006956647_003_20230727154709479.jpg?type=w647);
-    background-position-y: -113px;
+    background-image: url(../images/img_sub2_tit.jpg);
+    background-position-y: -20px;
 }
 /* 사회 배경이미지 */
 h2.sub3 {
-    background-image: url(https://imgnews.pstatic.net/image/028/2023/07/28/0002650106_001_20230728125106873.jpg?type=w647);
+    background-image: url(../images/img_sub3_tit.jpg);
     background-position-y: -146px;
 }
 /* IT/과학 배경이미지 */
 h2.sub4 {
     /* 배경이미지 : bgi */
-    background-image: url(../images/art_fig4.jpg);
+    background-image: url(../images/img_sub4_tit.jpg);
     /* 배경위치 : pgp 가로 세로 */
     background-position-y: -40px;
 }
 /* TV/연예 배경이미지 */
 h2.sub5 {
-    background-image: url(https://ssl.pstatic.net/mimgnews/image/437/2023/07/27/0000353051_001_20230727201710023.jpg?type=w540);
-    background-position-y: -20px;
+    background-image: url(../images/img_sub5_tit.jpg);
+    background-position-y: -80px;
 }
 /* 언론사 로고 h32 */
 .prlogo img {
@@ -116,13 +116,13 @@ h2.sub5 {
     font-size: 17px;
     color: #303038;
     /* 자간 ls */
-    letter-spacing: 1px;
+    letter-spacing: 1.1px;
     /* 단어간격 ws */
-    word-spacing: 1.3px;
+    word-spacing: 0.6px;
     /* 양쪽정렬 */
     text-align: justify;
     /* 줄간격 lh */
-    line-height: 1.6;
+    line-height: 1.5;
     /* 
     글자 라인간 간격조정
     숫자만 쓰면 글자 높이값에 대한 배수 조정

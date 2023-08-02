@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"> <!-- 2바이트 문자 인코딩 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>01.배경연습</title>
+    <!-- 인터널CSS -->
+    <style>
+        /* 초기화 */
+        html,body,h1,h2,h3,figure{
+            margin: 0;/* 밖 여백X */
+            padding: 0;/* 안 여백X */
+        }
+        html,body{
+            height: 100%;/* %는 부모값이 필요 */
+            /* 
+                보이는 화면만큼 높이값을 줄 때
+                100%의 의미는?
+                body는 html을 기준함
+                html은 무엇을 기준하는가?
+                보이는 화면을 기준함(window)
+                그래서 보이는 화면만큼 확장된다.
+            */
+        }
+        h1{
+            padding: 50px;
+            text-align: center;
+        }
+        /* body요소 안에 배경 넣기 */
+        body{
+            /* html에 배경을 넣지 말고 전체 배경은 body에 */
+
+            /* 1. 배경색 bgc */
+            background-color: #ddd;
+            /* 2. 배경이미지 bgi url(경로) 기본적으로 반복 됨*/
+            background-image: url(../002.CSS학습/imgs/bg_logo_a_01.png);
+            /* 3. 배경 반복여부 bgr 
+                repeat-x : x축 반복
+                repeat-y : y축 반복
+                repeat : 모든 축 반복(기본값)
+            */
+            background-repeat: no-repeat;
+
+            /* 4. 화면고정 bga 
+                배경고정값은 fixed
+                고정의 이미는 스크롤시 배경 고정
+            */
+            background-attachment: fixed;
+            /* 5. 배경위치 bgp
+                값 : 가로 세로
+                1. 가로방향 :left, center, right
+                2. 세로방향 : top, center, bottom
+                - 수치값 : px, %, em 등 여러단위 사용가능
+                위치값의 가로는 left, 세로는 center가 기본값
+                
+                방향 별 개별 속성은?
+                background-position-x: 값;
+                background-position-y: 값;
+            */
+            background-position: right bottom;
+            /* 6. 배경이미지 크기 bgz : 가로 세로 
+                정해진 값 : 
+                1) contain 이미지가 화면에 채워지나 모두보임
+                    안잘림
+                background-size: contain;
+                2) cover : 이미지를 박스에 모두 채움
+                    잘림
+                background-size: cover;
+                3) 수치값 : 가로 세로 
+                    하나만 주면 이미지가 비율 유지함
+                    둘 다 주면 찌그러짐
+                background-size: 400px auto;
+                background-size: 200px 200px;
+            */
+
+            /*
+                [ 배경 한번에 쓰기 ]
+                background : 배경색 이미지 반복 고정 위치 / 크기
+                bg : 색이반고윙/크
+                background: lightyellow url(./imgs/bg_mainvisual.jpg) no-repeat fixed center/cover;
+
+                **주의
+                만약 배경 한번에 쓰기를 개별세팅 아래에 놓으면
+                기존 세팅이 모두 지워짐
+                따라서 개별 세팅이 더 아래쪽에 코딩되어야 한다
+            */
+        }
+        /* body 아래 .wrap 박스 */
+        .wrap{
+            height: 100%;
+            /* 높이값을 body에 채움 */
+
+            /* 배경 한 번에 쓰기를 사용하면
+            여러개의 배경이미지를 넣을 수 있다 */
+            /* 위치나 크기의 특정값을 쓰지 않으면 기본값이 적용된다 */
+            /* 위치 값을 0을 쓰면 기본값이 적용 됨 */
+            /* 위치 값을 %로 쓰면 이미지 중심점에서 설정한 박스의 %위치로 이미지가 배치됨 */
+            background: 
+            /* 김신 이름-이미지 */
+            url(./imgs/d01.png) no-repeat center 60%/100px,
+            url(./imgs/dc1.png) no-repeat center/400px,
+            /* 지은탁 이름-이미지 */
+            url(./imgs/d02.png) no-repeat right 60%/100px,
+            url(./imgs/dc2.png) no-repeat right/auto 220px,
+            /* 저승사자 이름-이미지 */
+            url(./imgs/d03.png) no-repeat left bottom/100px,
+            url(./imgs/dc3.png) no-repeat left bottom/400px,
+            /* 써니 이름-이미지 */
+            url(./imgs/d04.png) no-repeat right 18%/100px,
+            url(./imgs/dc4.png) no-repeat right top/auto 200px,
+            /* 도깨비 이미지 */
+            url(./imgs/bg_mainvisual.jpg) no-repeat 0/30%,
+            /* 배경 꽃 */
+            url(./imgs/eachBG.jpg) no-repeat 50% bottom/30% 30%;
+            
+
+        }
+    </style>
+</head>
+<body>
+    <div class="wrap"><!-- .wrap>h1 -->
+        <h1>01.배경넣기 연습</h1>
+    </div>
+</body>
+</html>

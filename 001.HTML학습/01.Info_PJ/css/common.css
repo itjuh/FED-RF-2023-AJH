@@ -49,6 +49,7 @@ html,body,h1,h2,figure {
     margin: 0;
     padding: 0;
 }
+
 /* 레이아웃 박스 공통 디자인 */
 .rbx {
     /* 크기 : w900 -> 가로크기 */
