@@ -59,30 +59,29 @@ h2.sub_tit{
 /* 정치 배경이미지 */
 h2.sub1 {
     background-image: url(../images/img_sub1_tit.jpg);
-    background-position-y: -20px;
-    
+    background-position-y: 40%;
 }
 /* 경제 배경이미지 */
 h2.sub2 {
     background-image: url(../images/img_sub2_tit.jpg);
-    background-position-y: -20px;
+    background-position-y: 40%;
 }
 /* 사회 배경이미지 */
 h2.sub3 {
     background-image: url(../images/img_sub3_tit.jpg);
-    background-position-y: -146px;
+    background-position-y: 30%;
 }
 /* IT/과학 배경이미지 */
 h2.sub4 {
     /* 배경이미지 : bgi */
     background-image: url(../images/img_sub4_tit.jpg);
     /* 배경위치 : pgp 가로 세로 */
-    background-position-y: -40px;
+    background-position-y: 40%;
 }
 /* TV/연예 배경이미지 */
 h2.sub5 {
     background-image: url(../images/img_sub5_tit.jpg);
-    background-position-y: -80px;
+    background-position-y: 1%;
 }
 /* 언론사 로고 h32 */
 .prlogo img {
@@ -132,6 +131,34 @@ h2.sub5 {
         박스 높이 값 만큼 준다
      */
 }
+/* 강조 em요소 디자인 변경 */
+.art_cont p em {
+    /* 이텔릭 해제 */
+    font-style: normal;
+    /* 글자색 변경 */
+    color: #b5aee9;
+    /* 글자 두께 */
+    font-weight: bold;
+    /* 글자 그림자 */
+    text-shadow: 2px 2px 2px blue;
+}
+/* mark 디자인 변경 */
+.art_cont p mark {
+    display: block;
+    width: 60%;
+    border-top: 2px solid gray;
+    border-bottom: 2px solid gray;
+    margin: 15px auto;
+    padding: 20px 50px;
+    background-color: #b5aee9;
+    text-align: center;
+    font-size: 18px;
+    font-family: 'Song Myung', serif;
+    font-weight: bold;
+    color: #f1f1f1;
+    text-shadow: 2px 2px 2px #000;
+    box-shadow: inset 2px 2px 5px 2px #00000079;
+}
 /* 유튜브 동영상 박스 */
 .mvbx {
     height: 550px;
@@ -147,8 +174,40 @@ h2.sub5 {
     width: 100%;
     height: 100%;
 }
+/* blockquote_box 인용블록영역 */
+.blockquote_box {
+    padding: 20px 0;
+    margin: 20px 0;
+    border-top: 2px dashed #000;
+    border-bottom: 2px dashed #000;
+    font-size: 15px;
+}
+/* blockquote_box img 위치설정 */
+.blockquote_box img {
+    float:right;
+    border-radius:5px;
+    margin-left: 10px;
+}
+.blockquote_box blockquote {
+    padding: 10px 0;
+}
+/* article 제목 공통 art_box*/
+.art_box h5{
+    /* 배경색 */
+    background-color: #ededed;
+    /* 패딩 */
+    padding: 10px 20px;
+    display: inline-block;
+    border-radius: 20px;
+    box-shadow: inset 0 0 5px #000000d1;
+    font-size: 18px;
+    color: #333;
+    margin: 0px;
+}
+/* 기사원문 버튼 및 위로버튼 */
 .art_link {
     text-align: right;
+    margin-right: 20px;
 }
 .art_link a {
     display: inline-block;
@@ -171,4 +230,16 @@ h2.sub5 {
     box-shadow: 0px 0px 3px 5px #00000087;
     background-color: #bbb;
     color: #fff;
+}
+/* 주해박스 */
+.desc {
+    border-top: 2px dashed;
+    border-bottom: 2px dashed;
+    margin: 20px 0;
+    padding: 20px 0;
+}
+.desc div {
+    padding: 20px 0;
+    font-size: 15px;
+    line-height: 1.5;
 }

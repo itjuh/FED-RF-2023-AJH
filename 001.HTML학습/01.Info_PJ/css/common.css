@@ -45,11 +45,13 @@
 */
 /* 요소의 초기화
     -기존의 기본 세팅값 중 마진/패딩 초기화 */
-html,body,h1,h2,figure {
+html,body,h1,h2,h4,figure,blockquote {
     margin: 0;
     padding: 0;
 }
-
+body {
+    background: url(../images/bg_grey.PNG);
+}
 /* 레이아웃 박스 공통 디자인 */
 .rbx {
     /* 크기 : w900 -> 가로크기 */
@@ -142,6 +144,7 @@ html,body,h1,h2,figure {
 /* 2. 메인영역 */
 #cont {
     margin: 20px auto;
+    background-color: #ffffff;
 }
 /* 3. 하단영역 */
 #info {

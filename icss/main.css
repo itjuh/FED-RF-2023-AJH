@@ -1,0 +1,43 @@
+@charset "utf-8";
+/* 웹 폰트 CDN(Content Delevery Network) */
+@import url("https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Gowun+Batang:wght@400;700&family=Nanum+Myeongjo&family=Noto+Sans+KR&family=Song+Myung&display=swap");
+/* 
+    웹폰트 font-familiy 이름
+    font-family: 'Black Han Sans', sans-serif;
+    font-family: 'Gowun Batang', serif;
+    font-family: 'Nanum Myeongjo', serif;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-family: 'Song Myung', serif;   
+*/
+/* 아카이브 메인 CSS - main.css */
+
+/* 초기화 */
+html, body, h1, h2, h3, h4, h5, h6, ul, ol, figure{
+    margin: 0;
+    padding: 0;;
+}
+
+/* 전체 배경 이미지 */
+body {
+    background: url(../imgs/worksbg.jpg) no-repeat fixed center/cover;
+    /* 전체 글자체 */
+    font-family: 'Gowun Batang', serif;
+    /* 전체 글씨 크기 */
+    font-size: 17px;
+}
+
+/* 전체 박스 */
+.wrap {
+    background-color: hsla(0, 0%, 100%, 0.500);
+    height: 400px;
+    margin: 15% auto;
+    padding: 40px;
+}
+
+/* 메인타이틀 */
+.tit {
+    text-align: center;
+    color: #6c1594;
+    font-weight: bold;
+    text-shadow: 1px 1px 2px #ffffff;
+}
