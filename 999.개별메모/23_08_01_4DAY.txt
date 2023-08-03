@@ -117,3 +117,22 @@ a 스크롤 : 0.x단위 간격조정
     width:auto로 자동 설정 됨.
     이는 싸고 있는 박스 컨텐트 영역을 자동을 채운다.
     (컨텐트영역:내부영역의 패딩을 제외한 내부 영역)
+
+    <!-- 유튜브 동영상 박스 -->
+        <div class="mvbx">
+            <iframe 
+            src="https://www.youtube.com/embed/bVMlUarekuE" 
+            title="[지금은 기후위기] 찬란한 슬픔의 남·북극" 
+            frameborder="0" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+            allowfullscreen>
+            </iframe>
+        <!-- 
+            [ iframe 요소 ]
+                - inline frame
+                - 한 웹 페이지 안에 다른 시스템의 웹을 불러올 수 있는 요소
+                - 필수속성 : src - 시스템경로
+                **주의: CSS설정으로 디자인을 변경하자
+                ex)width height frameborder 속성 쓰지말자
+            -->
+        </div>

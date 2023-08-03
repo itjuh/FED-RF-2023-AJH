@@ -86,6 +86,7 @@ h2.sub5 {
 /* 언론사 로고 h32 */
 .prlogo img {
     height: 32px;
+    margin-top: 10px;/* 기사목록 h3 float 때문에 위치조정 */
     /* 
         이미지는 기본 비율을 가지고 있어서
         가로나 세로중 한쪽만 크기를 주면 나머지 방향은 자동으로 비율을 유지함
@@ -242,4 +243,124 @@ h2.sub5 {
     padding: 20px 0;
     font-size: 15px;
     line-height: 1.5;
+}
+/* 오늘의 작품 & 느낌 */
+.art_work {
+    text-align: center;
+    /* 그라데이션 넣기 : 이미지로! */
+    background-image: linear-gradient(51deg, #ffd1c5 10%, #b5d8ff, #fff3bf 94%);
+    /* 
+    [ 선형 그라데이션 : linear-gradient ]
+    
+    background-image: linear-gradient(방향, 색1, 색2);
+    background-image: linear-gradient(방향, 색1 몇%, 색2 몇%);
+    background-image: linear-gradient(각도, 색1 몇%, 색2 몇%);
+    - 옵션
+        1.방향 : to top, to bottom, to left, to right
+        2.각도 : 각도deg
+        3.콤마로 나열된 색상에 %를 뒤에 쓰면 비율조정 가능
+    */
+    /* border: 10px dotted yellow;
+    padding: 50px; */
+    background-clip: border-box;
+    /* 
+        배경 옵션 추가
+        background-clip : 배경이 적용되는 범위설정
+        1. border-box -> 보더까지 적용(기본값)
+        2. padding-box -> 패딩까지 적용
+        3. content-box -> 내용영역만 적용(패딩, 보더 빠짐)
+    */
+    box-shadow: 0 10px 16px hsla(0, 0%, 0%, 0.199);
+}
+/* 작품 타이틀 */
+.art_work h3 {
+    font-family: 'Nanum Myeongjo', serif;
+    font-weight: 600;
+    font-size: 36px;
+    text-shadow: 2px 2px 4px #000000;
+    color: #ffffff;
+    padding: 20px 0;
+}
+/* 작품이미지 */
+.art_work img {
+    border: 15px ridge goldenrod;
+    /* ridge는 액자틀 속성 */
+    box-shadow: 0 5px 10px hsla(0, 0%, 0%, 0.399);
+}
+/* 작품명 */
+.art_work figcaption {
+    font-family: 'Gowun Batang', serif;
+    font-size: 20px;
+    padding: 10px;
+    font-weight: bold;
+}
+/* 작품명 인용구 */
+.art_work figcaption cite {
+    font-style: normal;
+    color: darkred;
+}
+/* 기사하단 뉴스3종 공통 class */
+.news_box {
+    border-top: 2px dashed #ccc;
+    margin: 20px 0;
+    padding: 10px 0;
+    background-image: linear-gradient(to left, lightgrey, white);
+    box-shadow: 10px 5px 10px #00000044;
+}
+/* 기사하단 뉴스3종 타이틀 위치조정 */
+.news_box h3 {
+    padding: 15px 0 18px 15px;
+    width: 200px;
+    font-family: 'Nanum Myeongjo', serif;
+    font-weight: bold;
+    background-image: linear-gradient(270deg, lightyellow 20%, white);
+    box-shadow: 5px 5px 5px #00000033;
+}
+/* 기사하단 a요소 */
+.news_box a {
+    /* 글자크기 fz*/
+    font-size: 17px;
+    /* 줄간격 lh*/
+    line-height: 2.5;
+    /* 글자색 c */
+    color: #222;
+    /* 밑줄 없앰 */
+    text-decoration: none;
+}
+/* 기사하단 a요소 마우스오버 */
+.news_box a:hover {
+    color: rgb(255, 255, 255);
+    text-shadow: 2px 2px 7px #000;
+}
+/* 주요뉴스 ul */
+.cnews ul li::before{
+    content: '💜';
+}
+.cnews ul li::after{
+    content: '💛';
+}
+/* 
+    [ CSS 가상요소 : before, after ]
+    - 모든 요소는 맨 앞과 맨 뒤에 가상요소를 사용할 수 있다
+    - 맨 앞은 before, 맨 뒤는 after
+    - 필수속성 : content
+    - 글자는 '', 이미지는 url() 사용
+*/
+.section_news dt {
+    font-family: 'Gowun Batang', serif;
+    font-weight: bold;
+    font-size: 22px;
+    display: inline-block;
+    padding: 15px;
+    border-radius: 50%;
+    border: 2px dashed #ffd900;
+    margin-top: 5px;
+    box-shadow: inset 2px 2px 10px #ffd900;
+}
+.section_news dt:hover {
+    box-shadow: inset 2px 2px 10px #ffd900, 0 5px 10px #00000044;
+}
+/* dd앞에 가상요소로 블릿넣기 */
+.section_news dd::before {
+    content: '💛';
 }
