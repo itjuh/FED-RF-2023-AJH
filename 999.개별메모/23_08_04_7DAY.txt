@@ -47,3 +47,6 @@ table요소
 
 테이블은 display table
     border-collapse: separate; (기본적으로 칸칸이 떨어져있음)
+
+....오후수업......
+가상클래스 다시연습
