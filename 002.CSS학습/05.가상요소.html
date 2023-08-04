@@ -62,7 +62,7 @@
             /* 마진적용 */
             margin-right: 20px;
             /* 인라인요소간 세로정렬 */
-            vertical-align: center;
+            vertical-align: middle;
         }
         
 
@@ -72,13 +72,20 @@
             /* content를 쓰는 순간 span요소를 쓴 것 같고 
             display:block하면 div를 쓴 것 같다
             그외 다른 display로도 변경 가능하다*/
-            display: inline-block;
-            width: 50px;
-            height: 50px;
-            background-color: red;
+            display: inline-block;/* 한줄에 오고 디자인 먹힘 */
+            width: 40px;
+            height: 60px;
+            background: url(./imgs/bg_logo_a_01.png) no-repeat center/80%;
+            /* 가운데 정렬 가로기준 80%만 채우기(세로는오토) */
+            border: 2px solid gray;
+            border-radius: 10px;
+            box-shadow: 0 0 10px purple, 10px 10px 5px 2px rgba(0 0 0 / 40%);
+
+            /* 인라인 요소간 세로정렬 */
+            vertical-align: middle;
+            margin-left: 20px;
         }
         
-
 
         /* dl요소 디자인 */
         dl {
@@ -95,47 +102,71 @@
         }
 
         /* 반복되는 요소의 앞에 아이콘 가상요소로 넣기 */
+        dt::before {
+            content: "🎪★";
+            font-size: 30px;
+            vertical-align: 2px;
+            color: coral;
+        }
         
-        
+        /* dd전체와 before 적용하기 */
 
-        /* dd전체와 
-        dd.story>h3에 가상요소 before적용하기 */
+        /* dd.story>h3에 가상요소 before적용하기 */
+        dd::before {
+            content: "😍";
+        }
         
-        
-
-
         /* 출연배우의 dd부터 아이콘변경 */
-        
+        dt:nth-of-type(2) ~ dd::before {
+            content: "📺";
+        }
         
         /* 아티스트의 dd부터 아이콘변경 */
-        
+        dt:nth-of-type(3) ~ dd::before {
+            content: "🎤";
+        }
 
         /* 스토리의 dd는 가상요소 없애기 */
+        dt:last-of-type ~ dd::before {
+            display: none;
+        }
         
+        /* 스토리의 dd 아래 h3 이모지넣기 */
         
-        /* 스토리의 dd 아래 h3 이모지변경 */
-        
-        
+        dd h3::before {
+            content: "🎞";
+            margin-right: 2px;
+        }
 
         /* .story의 첫번째 p태그의 첫번째 글자 디자인 변경하기 */
-        
-        
-        
-        /* .story의 첫번째 p태그의 첫번째줄 디자인 변경하기 */
-        
-        
+        .story p:nth-of-type(1)::first-letter{
+            color: hotpink;
+            font-weight: bold;
+            font-size: 40px;
+        }
+        .story p:nth-of-type(1)::first-line{
+            color: blue;
+        }
 
+        /* .story의 첫번째 p태그의 첫번째줄 디자인 변경하기 */
 
 
         /* 두번째 p태그는 태그로 
         첫번째 글자(b태그), 첫번째 줄(span)변경 */
-        
-
-        
+        .story p:nth-of-type(2) b{
+            color: hotpink;
+            font-size: 40px;
+        }
+        .story p:nth-of-type(2) span{
+            color: blue;
+        }
 
         /* 기타 가상요소 ::selection */
         /* 드래그 선택시 글자색 배경색 설정변경! */
-        
+        p::selection {
+            color: lime;
+            background-color: rgb(21, 0, 139);
+        }
         
         /* ::selection만쓰면 전체가 다 적용됨! 
         특정선택자::selection 으로 쓰면 자식태그로 싸지 않은 글자만 적용됨!*/

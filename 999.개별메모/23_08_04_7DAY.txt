@@ -67,3 +67,16 @@ p:nth-child(n+7):nth-child(-n+10){
 
 위는 3번째초과인 4번째 요소부터 4번째 요소까지 선택됨
 아래는 7번째포함 10번째 요소까지 선택됨
+
+....6교시....
+가상요소와 가상클래스는 바로 붙여쓴다!!
+
+.story p:nth-of-type(1)::first-letter{
+            color: hotpink;
+            font-weight: bold;
+            font-size: 40px;
+        }
+        .story p:nth-of-type(1)::first-line{
+            color: blue;
+        }
+플러그인 쓸 때 바로 태그를 못 넣는 상황이 있다. 그럴때 가상요소 사용!!
