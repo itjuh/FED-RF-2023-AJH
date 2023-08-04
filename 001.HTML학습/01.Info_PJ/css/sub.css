@@ -96,6 +96,7 @@ h2.sub5 {
 .art_tit {
     font-size: 30px;
     font-family: 'Gowun Batang', serif;
+    margin-bottom: 10px;
 }
 /* 기사 이미지 박스*/
 .art_fig {
