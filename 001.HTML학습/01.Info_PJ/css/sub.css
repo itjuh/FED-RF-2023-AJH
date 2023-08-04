@@ -86,8 +86,6 @@ h2.sub5 {
 /* 언론사 로고 h32 */
 .prlogo img {
     height: 32px;
-    margin-top: 10px;/* 기사목록 h3 float 때문에 위치조정 */
-    margin-left: 2px;/* 기사목록 h3 float 때문에 위치조정 */
     /* 
         이미지는 기본 비율을 가지고 있어서
         가로나 세로중 한쪽만 크기를 주면 나머지 방향은 자동으로 비율을 유지함
@@ -308,6 +306,12 @@ h2.sub5 {
     background-image: linear-gradient(to left, lightgrey, white);
     box-shadow: 10px 5px 10px #00000044;
 }
+/* 기사하단 타이틀 로고 조정 */
+.news_box .prlogo {
+    float: left;
+    padding-right: 10px;
+    margin-top: -5px;
+}
 /* 기사하단 뉴스3종 타이틀 위치조정 */
 .news_box h3 {
     padding: 15px 0 18px 15px;
@@ -320,7 +324,7 @@ h2.sub5 {
     border-top: 1px solid #00000011;
 }
 /* 기사하단 뉴스3종 말줄임표 처리*/
-.news_box li, .news_box dd, .news_box td {
+.news_box li, .news_box dd {
     /* 1. 줄바꿈방지 wh*/
     white-space: nowrap;
     /* 2. 넘치는 컨텐츠 숨기기 oh */
@@ -424,4 +428,101 @@ h2.sub5 {
 /* dd앞에 가상요소로 블릿넣기 */
 .section_news dd::before {
     content: '💛';
+}
+/* 사진뉴스 박스 */
+/* 타이틀 */
+.photo_news h3 {
+    /* 배경그라데이션 없애기 */
+    background-image: none;
+    /* 중앙정렬 */
+    text-align: center;
+}
+/* 사진뉴스 타이틀박스 */
+.photo_news.news_box h3{
+    padding: 0px;
+    margin: 0px auto 15px auto;
+    width: 250px;
+    height: 55px;
+}
+/* 사진뉴스 타이틀 로고 */
+.photo_news .prlogo img {
+    padding: 20px 0px 20px 20px;
+}
+/* 가상요소로 사진이 아이콘 넣기 */
+.photo_news span {
+    vertical-align: -16px;
+}
+.photo_news span::after {
+    content: '📸';
+    vertical-align: 0px;
+    font-size: 20px;
+    margin-right: 5px;
+}
+/* 사진뉴스 테이블 */
+.photo_news table{
+    /* 테이블의 가로크기 지정 maw */
+    max-width: 500px;
+    /* 
+    테이블은 기본적으로 내용만큼의 가로크기를 가지며
+    부모박스의 크기가 작아질 경우 그 크기에 맞춰진다
+    */
+    /* 테이블 중앙 - 마영오 */
+    margin: 0 auto;
+    /* 테두리 */
+    border: 1px solid #000;
+    /* 테이블 기본 간격 삭제 : 기본값은 seperate */
+    border-collapse: collapse;
+}
+/* 
+    tr이나 td에 child선택자 사용가능 
+    왜? table tr td 정해짐! 같은종류만 오기 때문
+*/
+/* 첫번째 td 선택 - 숫자부분 */
+.photo_news td:first-child {
+    /* 가로크기 w */
+    width: 30px;
+    /* 세로크기 h */
+    height: 50px;
+    /* 글자 가운데 정렬 */
+    text-align: center;
+    /* 배경색 bgc */
+    background-color: #ccc;
+}
+/* 두번째 td - 내용부 */
+.photo_news td:nth-child(2) {
+    /* 배경색 bgc */
+    background-color: #e4e4e4;
+    /* 양쪽패딩 */
+    padding: 0 10px;
+    /* 줄간격 조절 */
+}
+/* 세번째 td */
+.photo_news td:last-child {
+    background-color: #e4e4e4;
+    /* 오른쪽패딩 */
+    padding-right: 7px;
+}
+/* 사진뉴스 이미지 */
+.photo_news img {
+    height: 70px;
+    width: 100px;
+    /* 인라인요소가 세로정렬 */
+    vertical-align: middle;
+}
+.photo_news td div {
+    /* 테이블 안쪽 말줄임표시(2줄처리) */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    /* 줄간격변경 */
+    line-height: 1.7;
+}
+
+/* 데이터가 있는 요소에 디자인을 준다
+    앞에 tr이 있는 tr만 하위 td에 디자인 */
+.photo_news tr+tr td {
+    /* 사이구분선 보더탑 bdt */
+    border-top: 2px solid #ccc;
 }

@@ -2,16 +2,30 @@
 https://mycolor.space/?hex=%23576252&sub=1
 
 참고사이트
+https://turtlehip.com/main/main.html?
+터틀힙 :
+    - 전체 구성요소 참고(케이크관련 사이트)
+    - 서브사이트 소개방법 참고
+
 https://www.pariscroissant.co.kr/
-    참고영역 : 메인하단 이미지 스크롤
+파리크라상 :
+    - 메인하단 이미지 스크롤되는 이미지 구성 참고
+        용도: 케이크 홍보이미지 스스로 넘어가게
 https://www.wjfood.co.kr/Main/Main.aspx#
-    참고영역 : 화면넘기는 방식
+웅진식품 :
+    - 오른쪽에서 화면 덮는 방식 참고
+        용도: 케이크 관련 주의사항 안내용도로 사용
+
 https://capellayangyang.co.kr/
-    메뉴 상단 선택 애니메이션
+    - 메뉴 상단 선택 애니메이션
+        용도: 메뉴 선택시 애니메이션 그대로 사용
+        
 https://www.yogerpresso.co.kr/main/main.html
     메뉴상단 영문->한글화 / 우측 네비게이션바
-https://turtlehip.com/main/main.html?
-    전체구성
+http://contexture.kr/kr/works/list.php
+    스크롤구성
+https://imecomall.co.kr/v2/
+    아이콘 및 구성
 
 상단에 메뉴바
 홈
