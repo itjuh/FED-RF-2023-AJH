@@ -12,7 +12,23 @@ html,body{
     margin: 0;
     padding: 0;
 }
-
+/* a태그 디자인 변경 */
+#drama a {
+    text-decoration: none;
+    color: #000;
+}
+/* 드라마명 a태그 오버 시 */
+#drama tbody a:hover {
+    color: darkcyan;
+    text-decoration: underline;
+    text-decoration-style: double;
+}
+/* 페이징 a태그 오버 시 */
+#drama tfoot a:hover {
+    color: hotpink;
+    text-decoration: underline;
+    text-decoration-style: wavy;
+}
 /* 
     [ 테이블 요소 기본 특성 ]
     1. 다른 요소가 옆에 못오는 block요소적 성질이 있음
@@ -31,6 +47,7 @@ html,body{
     /* 테이블간극제거 */
     border-collapse: collapse;
     /* 기본값 seperate */
+    text-align: center;
 }
 
 /* 드라마 테이블 */
@@ -66,4 +83,19 @@ td, th {
 /* tbody의 막줄 두껍게(tr의 td아랫줄)*/
 #drama tbody tr:last-child td{
     border-bottom: 2px solid #555;
+}
+/* tr안에 2번째 td를 제외하고 가운데정렬 */
+#drama td:nth-child(2), td:nth-child(4) {
+    text-align-last: left;
+    padding-left: 10px;
+}
+/* 짝수번째 tbody tr의 td에 배경색 넣기 */
+#drama tbody tr:nth-child(even) td{
+    background-color: #eee;
+}
+
+/* 하단 tfoot */
+#drama tfoot td {
+    /* text-align: center; */ /* 공통에서 줘서 생략 */
+    padding: 45px 0;
 }
