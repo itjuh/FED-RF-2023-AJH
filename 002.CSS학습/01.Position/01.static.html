@@ -17,24 +17,64 @@
 
         /* 첫번째 박스에 포지션 체크 */
         #s1{
+            position: static;
+            /* 위치 이동 속성 적용 안됨*/
+            top: 100px;
+            left: 100px;
+            margin-left: 50px;
+
+            /* ****************************
+                [ CSS Position ]
+            - 위치를 효과적으로 배치하기 위한
+                코딩법을 제공하는 속성
+
+                [ 1. static 포지션 ]
+                1. 기본값
+                2. 위치이동 속성이 적용되지 않음
+                (top, left, bottom, right 등)
+                @미디어쿼리에서 자리찾아올때 이동함
+                3. 위치이동은 margin 속성을 사용함
+                >특징 : 마진으로 이동하면 
+                    아래 또는 옆 다른 static요소에
+                    영향을 미쳐서 같이 이동됨
+                
+                [ 위치 이동 속성 ]
+                - 선택요소의 위치를 이동시켜주는 설정 속성
+                - 포지션에 따라서 다르게 적용됨
+                - 종류는 top, bottom, left, right
+
+            ******************************* */ 
 
             background-color: lightgreen;
         }
         #s2{
-            margin-top: -20px;
             background-color: lightcoral;
         }
         #s3{
-            margin-top: -10px;
-            margin-left: 20px;
             background-color: lightblue;
         }
 
     </style>
 </head>
 <body>
-    
+    <div class="bx" id="s1">s1</div>
+    <div class="bx" id="s2">s2</div>
+    <div class="bx" id="s3">s3</div>
 
+    <!-- 
+        [ 젠코딩(에밋코딩) ]
+        .bx#s${s$}*3
+        __________________
+        . : class
+        # : id
+        $ : 증가숫자
+        *n : 반복생성횟수
+        {} : 데이터출력
+        [] : 속성세팅값
+        > : 하위직계자식요소
+        + : 형제요소
+        () : 요소구분하기
+     -->
     
 </body>
 </html>

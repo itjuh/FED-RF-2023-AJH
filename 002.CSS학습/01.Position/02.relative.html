@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>02. relative 포지션</title>
+    <style>
+        .bx{
+            width: 100px;
+            height: 100px;
+            border: 2px solid blue;
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;/* fwb */
+            /* 글자세로중앙 */
+            line-height: 100px;
+        }
+
+        /* 첫번째 박스에 포지션 체크 */
+        #r1{
+            position: relative; /* por */
+            color: #ffffff81;
+            /* 위치이동값 */
+            top: 50px;/* t50 */
+            left: 50px;/* l50 */
+            /* ****************************
+                [ 2. relative 포지션 ]
+                -렐러티브!
+                1. 위치이동 속성이 적용된다
+                2. 위치이동의 기준은 원래 있던 위치
+                    (그래서 상대적인 위치)
+                3. 이동시 다른 요소에 영향이 없이 겹쳐질 수 있다.
+                4. 원래 있던 위치는 그대로 보존된다.
+                    (기존 위치가 보존되기 때문에 본래의 디자인이 망가지지 않는다.)
+                5. 위치값 설정시 2가지 기준으로만 셋팅한다
+                - 위, 아래 중 하나
+                - 좌, 우 중 하나
+                top, left / bottom, right
+                top, right / bottom, left
+                box기준으로 안쪽이 + 밖이 -
+
+                6. 마진은 그대로 적용된다!
+                (다른 static한 요소에 영향을 미친다)
+                -> 본래 위치에 마진이 적용 된 것이므로
+                상대적인 이동값도 변경 된 것으로 보인다!
+
+                7. relative는 위치 이동값을 사용하지 않으면
+                static과 똑같은 특징을 가진다
+
+                8. relative는 겹쳐질 수 있으므로
+                위 아래 관계가 성립됨(z index)
+                (1) static보다는 항상 위
+                (2) static이 아니면 나중에 그린게 위!
+                    (손바닥놓기)
+                (3) z-index 속성으로 숫자가 크면 위!
+
+                9. 부모자격
+                __________________________________
+                [ z-index란? ] -static이 아닌 포지션만 적용
+                - 겹치는 포지션을 준 경우 위치순서를 정하는 디스플레이를 정하는 속성
+                - z 는 화면방향의 층을 의미
+                - 기본값은 0 -> 같은 층에 있는 모든 요소는 0
+                
+                ->기본값은 0이므로 마이너스 값은 static요소보다 아래로 내려감
+                    (이건 body보다 내려가서 선택이 안됨)
+                **주의 : 
+                    z-index비교시에 형제레벨 먼저 비교 -> 하위자손 비교
+                    여러부분 z-index 주면 위아래 관계가 복잡해져서 정리가 어렵다
+
+                
+            ******************************* */ 
+            background: url(./images/ab5.jpg) no-repeat center/cover;
+            margin-top: 20px;
+            z-index: 1;
+            /* 먼저 그렸지만 z-index를 1만 줘도 위로 올라감 */
+        }
+        #r2{
+            background: url(./images/ab5.jpg) no-repeat center/cover;
+            position: relative;
+            bottom: 77px;
+            right: -120px;
+        }
+        #s1{
+            background-color: lightcoral;
+        }
+        #s2{
+            background-color: lightblue;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="bx" id="r1">r1</div>
+    <div class="bx" id="s1">s1</div>
+    <div class="bx" id="r2">r2</div>
+    <div class="bx" id="s2">s2</div>
+
+    <!-- 
+        [ 젠코딩(에밋코딩) ]
+        .bx#s${s$}*3
+        __________________
+        . : class
+        # : id
+        $ : 증가숫자
+        *n : 반복생성횟수
+        {} : 데이터출력
+        [] : 속성세팅값
+        > : 하위직계자식요소
+        + : 형제요소
+        () : 요소구분하기
+     -->
+    
+</body>
+</html>
