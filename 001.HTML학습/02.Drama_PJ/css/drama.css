@@ -1,0 +1,69 @@
+@charset "utf-8";
+/* 한국최신드라마 리스트 CSS - drama.css */
+
+/* 웹폰트 */
+@import url('https://fonts.googleapis.com/css2?family=Hahmlet&display=swap');
+/* 
+    font-family: 'Hahmlet', serif;
+*/
+
+/* 초기화 */
+html,body{
+    margin: 0;
+    padding: 0;
+}
+
+/* 
+    [ 테이블 요소 기본 특성 ]
+    1. 다른 요소가 옆에 못오는 block요소적 성질이 있음
+    2. 가로크기는 내용 만큼만 늘어남
+    3. 자신을 싸고 있는 박스가 내용보다 작아지면 
+        가로스크롤이 생기지 않도록 내용을 랩핑하여 
+        줄바꿈처리
+        (단, 이미지와같이 크기고정요소가 있으면 가로스크롤 생성)
+*/
+/* 테이블 공통 클래스 */
+.tb1 {
+    /* 글자체 */
+    font-family: 'Hahmlet', serif;
+    /* 글자색 */
+    color: #222;
+    /* 테이블간극제거 */
+    border-collapse: collapse;
+    /* 기본값 seperate */
+}
+
+/* 드라마 테이블 */
+#drama {
+    font-size: 24px;
+    margin: 0 auto;
+    /* 테이블은 가로크기설정 없으면 내용만큼 늘어남. max-width로 대비*/
+    min-width: 1000px;
+}
+
+/* 테이블 제목 */
+/* caption은 tac 기본값 */
+#drama caption{
+    font-size: 35px;
+    font-weight: bold;
+    letter-spacing: 5;
+    padding: 50px 0 20px; /* 위 양쪽 아래 */
+}
+/* td와 th패딩 */
+td, th {
+    padding: 6px 10px;
+}
+
+/* td에 밑줄넣기 */
+#drama tbody td {
+    border-bottom: 1px solid #ccc;
+}
+/* th 위아래 두꺼운 선 넣기 */
+#drama th {
+    border-top: 2px solid #555;
+    border-bottom: 2px solid #555;
+}
+/* tbody의 막줄 두껍게(tr의 td아랫줄)*/
+#drama tbody tr:last-child td{
+    border-bottom: 2px solid #555;
+}
