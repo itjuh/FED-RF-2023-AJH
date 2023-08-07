@@ -68,121 +68,121 @@
 
         참고) 탭키를 눌러서 a요소의 포커스를 이동시킬 수 있음
 
-        */
+    */
 
-        /* 타이틀 중앙정렬 : 그룹선택자(,) */
-        h1,
-        h2 {
-            text-align: center;
-        }
+            /* 타이틀 중앙정렬 : 그룹선택자(,) */
+            h1,
+            h2 {
+                text-align: center;
+            }
 
-        /* a 요소 가상클래스 주기 */
+            /* a 요소 가상클래스 주기 */
 
-        /* :link 링크 최초상태 */
-        h2 a:link {
-            /* 글자색 c */
-            color: green;
-            /* 밑줄없앰 : tdn */
-            text-decoration: none;
-        }
+            /* :link 링크 최초상태 */
+            h2 a:link {
+                /* 글자색 c */
+                color: green;
+                /* 밑줄없앰 : tdn */
+                text-decoration: none;
+            }
 
-        /* :hover 마우스 오버시 */
-        h2 a:hover {
-            /* 글자색 c */
-            color: lime;
-            /* 글자데코 - 윗줄 tdo */
-            text-decoration: overline;
-            /* 글자데코 스타일 tdst */
-            text-decoration-style: wavy;
-        }
+            /* :hover 마우스 오버시 */
+            h2 a:hover {
+                /* 글자색 c */
+                color: lime;
+                /* 글자데코 - 윗줄 tdo */
+                text-decoration: overline;
+                /* 글자데코 스타일 tdst */
+                text-decoration-style: wavy;
+            }
 
-        /* :visited 클릭후 (방문후) 상태 */
-        h2 a:visited {
-        /* 글자색 */
-        color: olive;
-        }
+            /* :visited 클릭후 (방문후) 상태 */
+            h2 a:visited {
+            /* 글자색 */
+            color: olive;
+            }
 
-        /* :active 클릭 왼쪽버튼을 누른상태 */
-        h2 a:active {
-            /* 글자색 c */
-            color: red;
-            /* 글자그림자 : ts */
-            text-shadow: 2px 2px 4px #000000ee;
-        }
+            /* :active 클릭 왼쪽버튼을 누른상태 */
+            h2 a:active {
+                /* 글자색 c */
+                color: red;
+                /* 글자그림자 : ts */
+                text-shadow: 2px 2px 4px #000000ee;
+            }
 
-        /* 요즘은 a요소에 바로 셋팅하고
+            /* 요즘은 a요소에 바로 셋팅하고
         :hover 정도만 변경해 준다! */
-        h2 a {
-            /* 글자색 c */
-            /* color: darkorange; */
-        }
+            h2 a {
+                /* 글자색 c */
+                /* color: darkorange; */
+            }
 
-        /* :focus 요소를 클릭/탭하여 초점이 올때 */
-        h2 a:focus {
-            outline: 2px dotted violet;
-            /* 외곽선 : outline -> ol
-        값: 두께 종류 색상 (boder와 유사)
-        -> 보더와 차이점은 주변에 영향을
-        주지 않는다.박스기본구성 속성아님
-        -> 입력창 포커스갈때 아웃라인표시 등 */
-            
-        }
+            /* :focus 요소를 클릭/탭하여 초점이 올때 */
+            h2 a:focus {
+                outline: 2px dotted violet;
+                /* 외곽선 : outline -> ol
+            값: 두께 종류 색상 (boder와 유사)
+            -> 보더와 차이점은 주변에 영향을
+            주지 않는다.박스기본구성 속성아님
+            -> 입력창 포커스갈때 아웃라인표시 등 */
+                
+            }
 
-        /* 시인이름 */
-        h3 {
-            /* 가로크기 */
-            width: 800px;
-            /* 부모박스보다 작은 크기를 가지는
-        블록요소에 적용된다 -> 마.영.오! */
-            margin: 0 auto;
-            /* 내부 인라인요소 오른쪽정렬 */
-            text-align: right;
+            /* 시인이름 */
+            h3 {
+                /* 가로크기 */
+                width: 800px;
+                /* 부모박스보다 작은 크기를 가지는
+            블록요소에 적용된다 -> 마.영.오! */
+                margin: 0 auto;
+                /* 내부 인라인요소 오른쪽정렬 */
+                text-align: right;
 
-            /* outline: 1px solid red; */
-            padding: 20px;
-            box-sizing: border-box;
-        }
+                /* outline: 1px solid red; */
+                padding: 20px;
+                box-sizing: border-box;
+            }
 
-        /* 
-        요소명.클래스명 / 요소명#아이디명
+            /* 
+            요소명.클래스명 / 요소명#아이디명
 
-        [ 종속 선택자를 쓰는 경우 ]
-        1. 개발자가 요소를 밝히고 싶을때
-        2. 같은 클래스를 다르게 셋팅할때
+            [ 종속 선택자를 쓰는 경우 ]
+            1. 개발자가 요소를 밝히고 싶을때
+            2. 같은 클래스를 다르게 셋팅할때
         */
 
-        /* ul / ol 요소 기본초기화! */
-        ul,
-        ol {
-            /* 3가지 없애기! 3無! */
-            margin: 0; /* m0 */
-            padding: 0; /* p0 */
-            list-style: none; /* lin */
-        }
+            /* ul / ol 요소 기본초기화! */
+            ul,
+            ol {
+                /* 3가지 없애기! 3無! */
+                margin: 0; /* m0 */
+                padding: 0; /* p0 */
+                list-style: none; /* lin */
+            }
 
-        /* 부모박스 셋팅 */
-        ul.part1, div.part2 {
-            width: 800px;
-            margin: 30px auto;
-            padding: 20px;
-            border: 2px solid #ccc;
-            /* 둥근모서리 */
-            border-radius: 20px;
-            /* 보더,패딩 설정크기 내부로
+            /* 부모박스 셋팅 */
+            ul.part1, div.part2 {
+                width: 800px;
+                margin: 30px auto;
+                padding: 20px;
+                border: 2px solid #ccc;
+                /* 둥근모서리 */
+                border-radius: 20px;
+                /* 보더,패딩 설정크기 내부로
             포함시키는 속성은? 
             box-sizing:border-box 
             bxb */
-            box-sizing: border-box;
-            /* 글자중앙 */
-            text-align: center;
-        }
+                box-sizing: border-box;
+                /* 글자중앙 */
+                text-align: center;
+            }
 
-        /* 
-        [ font 한번에 셋팅하기! ]
-        font : 스타일 두께 크기/줄간격 글자체
-        font : 스두크/줄체
-        ->>> font 한번에 쓰기에서 글자체는 필수!
-        ->>> 2개이상 셋팅필수
+            /* 
+            [ font 한번에 셋팅하기! ]
+            font : 스타일 두께 크기/줄간격 글자체
+            font : 스두크/줄체
+            ->>> font 한번에 쓰기에서 글자체는 필수!
+            ->>> 2개이상 셋팅필수
         */
         /* 모든 li에 오버서 손가락모양 */
         .part1 li{
@@ -190,157 +190,157 @@
             cursor: pointer;
         }
 
-        /* 1번 li */
-        .part1 li:first-child {
-            /* 글자크기 40px 
-            글자체 "궁서"
-            글자색 red */
-            font: 40px "궁서";
-            color: red;
-        }
+            /* 1번 li */
+            .part1 li:first-child {
+                /* 글자크기 40px 
+                글자체 "궁서"
+                글자색 red */
+                font: 40px "궁서";
+                color: red;
+            }
+                
+            .part1 li:first-child:hover{
+                /* 오버시 글자크기 50px 
+                글자색 blueviolet */
+                font-size: 50px;
+                color: blueviolet;;
+            }
+
+            /* 2번째 li*/
+            .part1 li:nth-child(2) {
+                /* font - bold 30px 굴림 
+                글자색 - lightcoral  */
+                font: bold 30px "굴림";
+                color: lightcoral;
+            }
             
-        .part1 li:first-child:hover{
-            /* 오버시 글자크기 50px 
-            글자색 blueviolet */
-            font-size: 50px;
-            color: blueviolet;;
-        }
+            .part1 li:nth-child(2):hover {
+                /* 오버시
+                글자색 skyblue */
+                color: skyblue;
+            }
+            
+            /* 3번째 li  */
+            .part1 li:nth-child(3) {
+                /* font - italic bold 24px 돋움
+                글자색 - brown */
+                font: italic bold 24px "돋움";
+                color: brown;;
+            }
+            .part1 li:nth-child(3):hover {
+                /* 오버시
+                글자 스타일 normal */
+                font-style: normal;
+            }
 
-        /* 2번째 li*/
-        .part1 li:nth-child(2) {
-            /* font - bold 30px 굴림 
-            글자색 - lightcoral  */
-            font: bold 30px "굴림";
-            color: lightcoral;
-        }
-        
-        .part1 li:nth-child(2):hover {
-            /* 오버시
-            글자색 skyblue */
-            color: skyblue;
-        }
-        
-        /* 3번째 li  */
-        .part1 li:nth-child(3) {
-            /* font - italic bold 24px 돋움
-            글자색 - brown */
-            font: italic bold 24px "돋움";
-            color: brown;;
-        }
-        .part1 li:nth-child(3):hover {
-            /* 오버시
-            글자 스타일 normal */
-            font-style: normal;
-        }
+            /* 4번째 li  */
+            .part1 li:nth-child(4) {
+                /* font - 50px "궁서" 
+                글자색 dodgerblue */
+                font: 50px "궁서";
+                color: dodgerblue;
+            }
+            
+            /* 한글(b태그) 처음에 안보이게 */
+            .part1 li b {
+                display: none;
+            }
+            /* 오버시 한글(b태그)보이기 */
+            .part1 li:nth-child(4):hover b{
+                display: inline;
+            }
+            /* 오버시 한자(span태그)숨기기 */
+            .part1 li:nth-child(4):hover span{
+                display: none;
+            }
+            /* 오버시 li에 노란배경색 넣기 */
+            .part1 li:nth-child(4):hover {
+                background-color: yellow;
+            }
 
-        /* 4번째 li  */
-        .part1 li:nth-child(4) {
-            /* font - 50px "궁서" 
-            글자색 dodgerblue */
-            font: 50px "궁서";
-            color: dodgerblue;
-        }
-        
-        /* 한글(b태그) 처음에 안보이게 */
-        .part1 li b {
-            display: none;
-        }
-        /* 오버시 한글(b태그)보이기 */
-        .part1 li:nth-child(4):hover b{
-            display: inline;
-        }
-        /* 오버시 한자(span태그)숨기기 */
-        .part1 li:nth-child(4):hover span{
-            display: none;
-        }
-        /* 오버시 li에 노란배경색 넣기 */
-        .part1 li:nth-child(4):hover {
-            background-color: yellow;
-        }
+            /* 4번 li 이후 모든 li를 전부 셋팅하기 */
+            /* 
+                틸드(~) 는 다중형제선택
+                선택요소~요소명
+                -> 선택요소 뒤에 있는
+                모든 형제 요소를 선택함!
+            */
+            .part1 li:nth-child(4)~li {
+                color: darkgoldenrod;
+            }
+            .part1 li:nth-child(4)~li:hover {
+                /* 오버시
+                font - 28px 
+                글자색 - blue*/    
+                font-size: 28px;
+                color: blue;
+            }
+            
+            /* 마지막 li 변경하기
+            font - 40px "맑은 고딕"
+            글자색 - coral */
+            body .part1 li:last-child {
+                font: 40px "맑은 고딕";
+                color: coral;
+            }
 
-        /* 4번 li 이후 모든 li를 전부 셋팅하기 */
-        /* 
-            틸드(~) 는 다중형제선택
-            선택요소~요소명
-            -> 선택요소 뒤에 있는
-            모든 형제 요소를 선택함!
-        */
-        .part1 li:nth-child(4)~li {
-            color: darkgoldenrod;
-        }
-        .part1 li:nth-child(4)~li:hover {
-            /* 오버시
-            font - 28px 
-            글자색 - blue*/    
-            font-size: 28px;
-            color: blue;
-        }
-        
-        /* 마지막 li 변경하기
-        font - 40px "맑은 고딕"
-        글자색 - coral */
-        body .part1 li:last-child {
-            font: 40px "맑은 고딕";
-            color: coral;
-        }
+            /* 
+                :last-child가 적용되지 않은 이유!
+                위에서 적용한 틸드(~)선택자가
+                한단계 더 선택했으므로 우선순위가
+                올라갔다!
+                이것의 우선순위를 쉽게 변경하려면
+                상위요소를 써주면 된다! 
+                (호가호위-여우뒤에 호랑이 효과!)
+                (!important는 되도록 쓰지말것!)
+            */
 
-        /* 
-            :last-child가 적용되지 않은 이유!
-            위에서 적용한 틸드(~)선택자가
-            한단계 더 선택했으므로 우선순위가
-            올라갔다!
-            이것의 우선순위를 쉽게 변경하려면
-            상위요소를 써주면 된다! 
-            (호가호위-여우뒤에 호랑이 효과!)
-            (!important는 되도록 쓰지말것!)
-        */
+            /* 두번째 파트 
+            -> 여러종류의 요소가 섞여 있으면
+            first-of-type
+            nth-of-type(n)
+            last-of-type 
+            */
+            /* **주의 : font 한 번에 쓰기는 반드시 글자체 있어야함 */
+            .part2 div:nth-of-type(2) {
+                /* 두번째 div
+                font - 30px 궁서
+                글자색 - blueviolet */
+                font: 30px "궁서";
+                color: blueviolet;
+            }
+            
+            .part2 i:first-of-type {
+                /* 첫번째 i 
+                font - bold 20px
+                글자색 - palevioletred */
+                font-weight: bold;
+                color: palevioletred;
+                font-size: 20px;
+            }
+            
+            .part2 div:nth-of-type(4)~div {
+                /* 3번째 div이후 div형제요소 모두
+                font - 궁서체, 글자색 - red */
+                font-family: "궁서체";
+                color: red;
+            }
+            
+            .part2 div:nth-of-type(4)~i {
+                /* 3번째 div이후 i형제요소 모두
+                font - 궁서체, 글자색 - red */
+                font-family: "궁서체";
+                color: dodgerblue;
+            }
 
-        /* 두번째 파트 
-        -> 여러종류의 요소가 섞여 있으면
-        first-of-type
-        nth-of-type(n)
-        last-of-type 
-        */
-        /* **주의 : font 한 번에 쓰기는 반드시 글자체 있어야함 */
-        .part2 div:nth-of-type(2) {
-            /* 두번째 div
-            font - 30px 궁서
-            글자색 - blueviolet */
-            font: 30px "궁서";
-            color: blueviolet;
-        }
-        
-        .part2 i:first-of-type {
-            /* 첫번째 i 
-            font - bold 20px
-            글자색 - palevioletred */
-            font-weight: bold;
-            color: palevioletred;
-            font-size: 20px;
-        }
-        
-        .part2 div:nth-of-type(4)~div {
-            /* 3번째 div이후 div형제요소 모두
-            font - 궁서체, 글자색 - red */
-            font-family: "궁서체";
-            color: red;
-        }
-        
-        .part2 div:nth-of-type(4)~i {
-            /* 3번째 div이후 i형제요소 모두
-            font - 궁서체, 글자색 - red */
-            font-family: "궁서체";
-            color: dodgerblue;
-        }
-
-        .part2 div:nth-of-type(4)~* {
-            /* 3번째 div이후 모든형제요소(*)
-            font - 궁서체, 글자색 - red */
-            font-family: "궁서체";
-            font-weight: bold;
-            color: coral;
-        }
-        
+            .part2 div:nth-of-type(4)~* {
+                /* 3번째 div이후 모든형제요소(*)
+                font - 궁서체, 글자색 - red */
+                font-family: "궁서체";
+                font-weight: bold;
+                color: coral;
+            }
+            
             
         /* 
         [ CSS 선택자 우선순위 ]
