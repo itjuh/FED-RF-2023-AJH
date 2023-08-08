@@ -56,7 +56,7 @@ html,body{
     margin: 0 auto;
     /* 테이블은 가로크기설정 없으면 내용만큼 늘어남. max-width로 대비*/
     width: 1000px;
-    /* max-width: 1000px */
+    /* max-width: 1000px; */
     /* 테이블은 max-width를 특정 px로 주면 table이 적용안됨! */
     max-width: 95%;
 }
@@ -145,19 +145,16 @@ table#gubun {
 .gubun tr+tr td {
     border-top: 5px dotted #ccc;
 }
-.tb1{
+#drama tbody tr td a{
     /* 드라마 테이블 말줄임 표시 */
-    /* 줄바꿈 방지 */
-    white-space: nowrap;
-    /* 넘치는 컨텐츠 숨기기 */
+    /* 디스플레이 변경 */
+    display: -webkit-box;
+    /* 넘치는건 스크롤바 금지 */
     overflow: hidden;
-    /* 넘치는 글자 말줄임표 처리 */
+    /* 텍스트 넘치면 말줄임 */
     text-overflow: ellipsis;
-}
-#drama tr td, th{
-    /* 드라마 테이블 말줄임 표시 */
-    /* 줄바꿈 방지 */
-    white-space: nowrap;
-    /* 넘치는 글자 말줄임표 처리 */
-    text-overflow: ellipsis;
+    /* 박스에 표시할 내용 1줄 */
+    -webkit-line-clamp: 1;
+    /* 박스 배열 세로 */
+    -webkit-box-orient: vertical;
 }
