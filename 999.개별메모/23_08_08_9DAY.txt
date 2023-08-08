@@ -1,0 +1,64 @@
+[ 오늘의 일정 ]
+8월8일(화)
+------------
+
+1. 도깨비 메인 설계도 - 모바일폼 추가
+
+2. 테이블 풀 팩키지 : 드라마 PJ - 구분박스추가
+
+3. CSS학습
+- 포지션 : absolute / fixed / sticky
+
+4. 포지션 연습 : 로봇PJ 1편
+
+5. 개인 프로젝트 작업 및 리뷰
+
+
+....1교시....
+도깨비 모바일설계도 그리기
+
+
+....2교시....
+코딩의 단계
+1. 정적코딩
+2. 동적코딩
+물론 설계도 동일하게 정적설계 후 동적설계 진행
+꼭꼭! 모바일설계 미리 하기
+
+table 마무리
+tr > td, th
+
+...3교시...
+table 추가
+
+max-width 적용은 컨텐르 생성시 가로스크롤이 생기지 않도록
+width px로 주고 maw 를 %로 주면 크기가 작아지면 적응함
+왜함? > table은 max-width만 1000px만 주면 테이블이 적용안됨
+
+싸고있는 박스가 클래스면 연관성을 주기위해(세트라는 느낌을 주려고)
+하나는 id 하나는 class명으로 줌
+
+복습하자 **
+/* 1. 줄바꿈방지 wh*/
+    white-space: nowrap;
+    /* 2. 넘치는 컨텐츠 숨기기 oh */
+    overflow: hidden;
+    /* 3. 넘치는 글자 말줄임표 처리 tv */
+    text-overflow: ellipsis;
+    /* 
+    참고) 여러줄 말줄임표
+
+    display: -webkit-box;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical; 
+
+    **주의 박스 높이값을 글자가 보일만큼 조절해야함
+    **주의 white-space: nowrap이 없음
+    
+    */
+...4교시/....
+앱솔루트
+
+자식이 앱솔루트만 있는 박스는 크기를 줘야함

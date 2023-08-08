@@ -55,7 +55,10 @@ html,body{
     font-size: 24px;
     margin: 0 auto;
     /* 테이블은 가로크기설정 없으면 내용만큼 늘어남. max-width로 대비*/
-    min-width: 1000px;
+    width: 1000px;
+    /* max-width: 1000px */
+    /* 테이블은 max-width를 특정 px로 주면 table이 적용안됨! */
+    max-width: 95%;
 }
 
 /* 테이블 제목 */
@@ -75,17 +78,18 @@ td, th {
 #drama tbody td {
     border-bottom: 1px solid #ccc;
 }
-/* th 위아래 두꺼운 선 넣기 */
+/* th 위아래 두꺼운 선 넣기+배경색 */
 #drama th {
     border-top: 2px solid #555;
     border-bottom: 2px solid #555;
+    background-color: #ccc;
 }
 /* tbody의 막줄 두껍게(tr의 td아랫줄)*/
 #drama tbody tr:last-child td{
     border-bottom: 2px solid #555;
 }
-/* tr안에 2번째 td를 제외하고 가운데정렬 */
-#drama td:nth-child(2), td:nth-child(4) {
+/* tr안에 2번째와 4번째 td를 제외하고 가운데정렬 */
+#drama tr td:nth-child(2), td:nth-child(4) {
     text-align-last: left;
     padding-left: 10px;
 }
@@ -98,4 +102,62 @@ td, th {
 #drama tfoot td {
     /* text-align: center; */ /* 공통에서 줘서 생략 */
     padding: 45px 0;
+}
+
+/* 구분 테이블 박스 */
+.gubun {
+    /* 가로크기 1000px */
+    width: 1000px;
+    /* 최대크기 95%란 싸고있는 박스의 95%를 유지함 */
+    max-width: 95%;
+    /* outline: 2px dashed red; */
+    margin: 0 auto;
+    margin-bottom: 200px;
+    /* 자식table float 감싸기 */
+    overflow: hidden;
+}
+
+/* 구분 테이블 */
+/* 종속선택자 요소명#아이디명 ****붙여쓰자!!! */
+table#gubun { 
+    font-size: 20px;
+    /* 테이블을 오른쪽 끝으로 보내기 */
+    float: right;
+    border: 1px solid #999;
+    /* td(테이블데이터) 사이간격 주기 */
+    border-collapse: separate;
+    border-spacing: 10px;
+    /* 
+        td 셀 사이 간격
+        border-spacing: 가로 세로;
+        border-spacing: 양방향
+    */
+}
+/* 구분테이블 td */
+.gubun td {
+    padding: 10px;
+}
+/* 구분테이블 첫번째 tr의 첫번째 td의 오른쪽 점선 넣기 */
+.gubun tr:first-child td:first-child {
+    border-right: 1px solid #999;
+}
+/* 구분테이블의 두번째 tr부터 끝까지 td의 위쪽에 점선넣기 */
+.gubun tr+tr td {
+    border-top: 5px dotted #ccc;
+}
+.tb1{
+    /* 드라마 테이블 말줄임 표시 */
+    /* 줄바꿈 방지 */
+    white-space: nowrap;
+    /* 넘치는 컨텐츠 숨기기 */
+    overflow: hidden;
+    /* 넘치는 글자 말줄임표 처리 */
+    text-overflow: ellipsis;
+}
+#drama tr td, th{
+    /* 드라마 테이블 말줄임 표시 */
+    /* 줄바꿈 방지 */
+    white-space: nowrap;
+    /* 넘치는 글자 말줄임표 처리 */
+    text-overflow: ellipsis;
 }
