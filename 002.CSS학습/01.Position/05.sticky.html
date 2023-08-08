@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>03. absolute 포지션</title>
+    <title>05. sticky 포지션</title>
     <style>
         .bx{
             width: 300px;
@@ -20,83 +20,7 @@
             position: absolute;/* poa */
             background: url(./images/ab1.jpg) no-repeat center/cover;
         }
-        /* ****************************
-            [ 3. absolute 포지션 ]
-            - 절대적인 부모를 기준하여 위치를 이동하는 포지션
-            - 부모자격을 따져서 기준을 삼는다
-            (단, 위치속성값을 쓴 경우에만!!!!!!)
-
-            1. absolute 포지션은 위치 이동값을 쓰기 전과 후로 나눌 수 있다.
-            1-1. 위치 이동값이 없는 경우
-                a) 본인보다 위에 있는 static한 요소를 존중하여 아래에 위치
-                    >>>>>젠틀 앱솔루트!!
-                b) 어떤 자식 요소로 있을 경우 앱솔루트이면
-                - 그 부모 박스에 부모자격이 없는 경우에도 그 부모박스 위치에
-                그대로 가만히 위치한다.
-                    >>>>>젠틀 앱솔루트!!
-                -> 앱솔루트 요소보다 아래쪽에 위치하고 있는 static한 요소는 
-                앱솔루트를 인식하지 못하여 같은 자리에 위치함
-                (즉, z-index처럼 위나 아래에 위치함)
-
-            1-2. 위치이동값을 사용한 경우
-                - 위치 이동값을 사용한 부분에 대해서만 앱솔루트가 위치를 잡을 때
-                     기준이 됨
-                - 부모는 static이 아닌 요소가 부모
-                    **static이 아닌 position이란?
-                    relative / absolute / fixed / sticky
-                - 위치 이동값을 쓰지 않는 부분에 대해서는
-                부모를 찾지 않는다.(젠틀함!)
-                >>>>>한쪽만 위치값을 주면 원래 포지션을 찾아감
-                - 부모자격이 있는 요소중 가장 가까운것이 부모다
-                - 만약 부모자격이 모두 없으면 보이는 화면(window)을 기준한다. 
-                (보이는 화면은 body가 아니다! 스크롤이 생셔도 스크롤 위쪽에 
-                보이는 화면을 기준한다.)
-                - 또한!
-                    width나 height 값을 %단위로 줄 경우 부모자격을 가진 요소를 
-                    기준으로 그 크기를 잡는다!
-                (일반적으로 %단위는 직계부모박스임.)
-
-            2. absolute의 가로세로 크기가 배정되지 않은 경우
-            일반적으로 block요소이므로 width:auto로써 부모박스 끝까지 차지하지만,
-            앱솔루트는 내용만큼만 그 크기를 가진다.
-            >>>>>앱솔루트 판타롱스타킹
-
-            3. 원래 block이 아닌 요소를 absolute를 줄 경우 자동으로 
-            display:block로 설정 됨. 이유는 자동크기를 설정할 경우 블록이 아니면
-             크기를 설정할 수 없기 때문이다.
-             -> 일반적으로 앱솔루트 포지션 요소는 블록이다!!
-
-            4. 앱솔루트 끼리는 서로 겹친다!
-            
-            5. 앱솔루트 자식요소는 부모 박스가 overflow:hidden으로 셋팅되어
-            있을 때 부모자격이 있어야만 숨겨진다.
-
-            6. 위치 설정값과 같은 방향의 마진만 적용됨!
-            예컨데 bottom으로 위치 이동하였으면 margin-bottom만 적용
-            (위치 이동값이 없는 앱솔루트의 마진은?
-            기본적으로 top,left를 기준하므로 같은 방향의 마진만 적용된다)
-
-            7. 위치이동값의 초기화
-            ex) top: 50px -> top: auto;
-            초기화는 언제 함?
-            기존에 셋팅 된 위치이동 값을 다른 기준으로 변경 할 경우
-            초기화를 사용한다.
-            ex) top: 30px;
-            bottom기준으로 변경 할 경우
-            top: auto;
-            bottom: 100px;
-
-            8. 위치 이동값을 전부 다 쓰는 경우도 있다
-            부모박스를 가득 채우거나 일정 위치를 잡고 크기가 유동적이여야 할 때
-            ex) 부모박스를 채우는 앱솔루트는?
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            (단, width, height값을 설정 하지 않음)
-
-        ******************************* */ 
+     
         #a2{
             position: absolute;
             background: url(./images/ab1.jpg) no-repeat center/cover;
@@ -125,14 +49,76 @@
         #r2{
             background: url(./images/ab4.jpg) no-repeat center/cover;
             position: relative;
-            bottom: 150px;
-            right: -70px;
+            /* bottom: 150px;
+            right: -70px; */
         }
         #s1{
             background-color: lightcoral;
         }
         #s2{
             background-color: lightblue;
+        }
+        /* sticky 박스 */
+        .stbx {
+            position: sticky;
+
+            /* **************************
+            
+                [ 5. sticky 포지션 ]
+
+                1. 위치값 top 설정에 따라 화면에 고정
+
+                2. 원리: 처음에는 relative하게 가만히 위치를 
+                점유하고 있음(left값이 적용됨) top값을 셋팅한 경우
+                그 top값은 보이는 화면 최상단으로부터 위치값이 됨! 
+                스크롤로 이동 시 sticky요소가 셋팅 된 값 위치를 
+                만나는 순간 fixed와 같이 화면에 고정된다.
+
+                3. sticky적용 구간
+                감싸고 있는 박스가 기준이 됨
+                **주의
+                1) 전체 스크롤에 적용 시 body바로 아래 자식요소에
+                위치해야 함
+                2) 부분 스크롤 적용 시 부모요소중
+                overflow: auto, hidden, scroll이 적용 된 경우 
+                스티키 작용 안함!
+                3) 부분 스크롤 적용 시 박스 내부에서만 보이는 
+                화면의 기준이므로 무조건 height값이 셋팅 되야함
+                height: auto 또는 height값이 없으면 작동 안함!!
+                (높이 값을 기준으로 작동하기 때문임)
+            
+            *********************** */
+
+            top: 200px;
+            width: 50%;
+            text-align: center;
+            font-size: 30px;
+            padding: 50px;
+            background-color: lightpink;
+            left: 50px;
+            z-index: 9991;
+        }
+
+
+        /* fixed 포지션 */
+        .fxbx {
+            position: fixed; /* pof */
+            background: url(./images/ab0.jpg) repeat-x 0/auto 100%;
+            background-color: blueviolet;
+            width: 100%;
+            height: 200px;
+            z-index: 100;
+            font-size: 35px;
+            line-height: 200px;
+            color: #fff;
+            font-weight: bold;
+            text-align: center;
+        }
+        /* 두번째 fixed박스 */
+        .f2 {
+            position: fixed;
+            background-color: lightblue;
+            top: 0;
         }
 
         /* 부모를 찾는 앱솔루트!!!!! */
@@ -251,14 +237,94 @@
             opacity: 1;
         }
 
+        /* 최하단 요소 fixed로 변경하기 */
+        .iamfixed {
+            position: fixed;
+            z-index: 9999;
+            top: 0;
+            right: 0;
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+        }
+
+        /* 고정 포스트 박스 */
+        .fixedPoster {
+            position: fixed;
+            top: 250px;
+            right: -130px;
+            z-index: 9999;
+            /* 트랜지션 : 상태값이 바뀔 때 애니메이션 */
+            transition: 0.3s;
+        }
+        /* 고정 포스트박스 오버시 right변경 */
+        .fixedPoster:hover {
+            right: 0;
+        }
+        
+        /* 글자span */
+        .fixedPoster span {
+            position: absolute;
+            top: 0;
+            left: -50px;
+            /* 부모는 fixedPoster*/
+            width: 50px;
+            height: 100%;
+            background-color: lightgreen;
+            border-radius: 15px 0 0 15px;
+            /* 왼쪽위 오른쪽위 오른쪽아래 왼쪽아래 */
+            /* 글자 진행 방향 wm*/
+            writing-mode: vertical-lr;
+            font-size: 25px;
+            text-align: center;
+            padding-left: 10px;
+            letter-spacing: 5px;
+        }
+        /* 포스터 이미지 */
+        .fixedPoster img {
+            height: 200px;
+            vertical-align: middle;
+        }
+
+        /* 구간적용 스티키 */
+        .stickyBox {
+            height: 1000px;
+            padding-top: 500px;
+            border: 5px dashed darkcyan;
+        }
+
+        /* 스티키 박스 */
+        .iambox {
+            position: sticky;
+            top: 500px;
+            width: 200px;
+            height: 200px;
+            border: 5px dotted red;
+        }
+
     </style>
 </head>
 <body>
     <div class="bx" id="r1">r1</div>
     <div class="bx" id="s1">s1</div>
+
+    <!-- sticky 포지션 박스 -->
+    <div class="stbx">
+        나는 sticky다! 사라지지 않아~
+    </div>
+    <div class="bx" id="s2">s2</div>
     <div class="bx" id="a1" title="나는 젠틀 앱솔루트다!">a1</div>
     <div class="bx" id="r2">r2</div>
-    <div class="bx" id="s2">s2</div>
+    <div class="fxbx f2">
+        나는 fixed다! 부모는 화면이다
+    </div>
+
+    <!-- 포스터 고정박스 -->
+    <div class="fixedPoster">
+        <img src="./images/ab0.jpg" alt="포스터">
+        <span>포스터보기</span>
+    </div>
+
     <div class="bx" id="a2" title="나는 보이는 화면이 기준이다 부모가 없어서..">a2</div>
     <!-- 앱솔루트 : 판타롱 스타킹!! -->
     <div class="a5" title="앱솔루트 판타롱 스타킹~">
@@ -272,6 +338,7 @@
         <img src="./images/ab4.jpg" alt="닥스">
     </div>
 
+
     <!-- 부모를 찾는 앱솔루트!!!! -->
     <div class="bx2 s5">s5
         <div class="bx2 s6">s6
@@ -279,12 +346,23 @@
                 <div class="bx2 s8">s8
                     <div class="abs a3" title="나는 젠틀 앱솔루트다!">a3</div>
                     <div class="abs a4" title="나는 부모찾아 올라간다">a4</div>
-                    <span class="spaabs" title="자동블록전환!!">
-                        나는 span 앱솔루트다!
+                    <span class="spaabs iamfixed" title="갑분픽!!">
+                        나는 span fixed다!
                     </span>
                 </div>
             </div>
         </div>
+    </div>
+
+    <!-- 스티키 구간 적용 박스! -->
+    <div class="stickyBox">
+        <div class="iambox"></div>
+    </div>
+    <div class="stickyBox">
+        <div class="iambox"></div>
+    </div>
+    <div class="stickyBox">
+        <div class="iambox"></div>
     </div>
     <!-- 
         [ 젠코딩(에밋코딩) ]
