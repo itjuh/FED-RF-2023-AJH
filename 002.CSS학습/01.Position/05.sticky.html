@@ -291,18 +291,29 @@
             height: 1000px;
             padding-top: 500px;
             border: 5px dashed darkcyan;
+            background-image: linear-gradient(to bottom, darkcyan, white 60%, lightgreen);
         }
 
         /* 스티키 박스 */
         .iambox {
             position: sticky;
-            top: 500px;
+            top: 340px;
             width: 200px;
             height: 200px;
             border: 5px dotted red;
+            /* relative한 성격이 있어서 블록박스에 m0au걸면 먹힘 */
+            margin: 0 auto;
         }
-
-    </style>
+        .i1 {
+            background: url(../images/img1.jpg) no-repeat center/cover;
+        }
+        .i2 {
+            background: url(../images/img2.jpg) no-repeat center/cover;
+        }
+        .i3 {
+            background: url(../images/img3.jpg) no-repeat center/cover;
+        }
+        </style>
 </head>
 <body>
     <div class="bx" id="r1">r1</div>
@@ -356,13 +367,13 @@
 
     <!-- 스티키 구간 적용 박스! -->
     <div class="stickyBox">
-        <div class="iambox"></div>
+        <div class="iambox i1"></div>
     </div>
     <div class="stickyBox">
-        <div class="iambox"></div>
+        <div class="iambox i2"></div>
     </div>
     <div class="stickyBox">
-        <div class="iambox"></div>
+        <div class="iambox i3"></div>
     </div>
     <!-- 
         [ 젠코딩(에밋코딩) ]
