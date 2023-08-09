@@ -1,0 +1,224 @@
+@charset "utf-8";
+
+/* Robot PJ 메인 CSS - robot.css */
+
+/* 웹폰트 CDN */
+@import url('https://fonts.googleapis.com/css2?family=Barlow&family=Black+Ops+One&family=Chakra+Petch&family=Orbitron:wght@500&display=swap');
+
+/* 
+    font-family: 'Barlow', sans-serif;
+    font-family: 'Black Ops One', cursive;
+    font-family: 'Chakra Petch', sans-serif;
+    font-family: 'Orbitron', sans-serif;
+*/
+
+/* 초기화 */
+html,body,h1,h2,h3,ul,ol {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    /* 전체배경 */
+    background: url(../images/bg.jpg) no-repeat fixed top/cover;
+}
+
+/* 공사중표시 */
+body *{
+    outline: 2px dashed yellow;
+}
+
+/* 공통클래스 */
+
+/* 메탈배경 클래스 */
+.metal1 {
+    background: url(../images/metal02.jpg) no-repeat center/cover;
+}
+.metal2 {
+    background: url(../images/metal01.jpg) no-repeat center/cover;
+}
+
+/*********************** 1. 상단영역 ***********************/
+/* 1-1. 로고 */
+/* 1-2. 링크타이틀 */
+/* 1-3. 탑이동버튼 */
+/*********************** 2. 메인영역 ***********************/
+.main-area {
+    overflow: hidden;
+    /* 
+    첫번째 자식요소 블록박스에 마진탑을 준 경우 그 마진값은 
+    부모요소 바깥쪽으로 나간다!(기본성질)
+    마진탑을 포함하려면 부모요소에 overflow:hidden을 설정해야함
+    +하단 마진도 부모 요소 밖으로 나감
+    */
+
+}
+/* 2-1. 로봇박스 */
+.box-robot {
+    padding: 200px 0 50px; /* 위 양쪽 아래 */
+    margin-top: 50px;
+}
+/* 2-1-1. 머리 */
+.head {
+    /* 하위요소absolute 자식들의 부모되기 */
+    position: relative;
+    /* 머리크기 */
+    width: 200px;
+    height: 250px;
+    /* 메탈배경 : 공통클래스로 적용 */
+    /* background: url(../images/metal01.jpg) no-repeat center/cover; */
+    /* 무대중앙! */
+    margin: 0 auto;
+    /* 얼굴모양 */
+    border-radius: 100px 100px 150px 150px;
+    /* .body보다 위 */
+    z-index: 1;
+}
+/* 가상요소로 머리에 가발 씌우기 */
+.head::after {
+    content: '';
+    display: block;
+    /* 마치 넣은 것 같다 div */
+    position: absolute;
+    /* 위치 */
+    top: -76px;
+    left: -107px;
+    /* 크기 */
+    width: 419px;
+    height: 277px;
+    /* 배경 */
+    background: url(../images/hair5.png) no-repeat 0/100% 100%;
+}
+/* 오버시 가상요소 변경 */
+.head:hover::after {
+    /* 위치 */
+    top: -113px;
+    left: -99px;
+    /* 크기 */
+    width: 400px;
+    height: 320px;
+    /* 배경 */
+    background: url(../images/hair4.png) no-repeat 0/100% 100%;
+}
+/* 머리 하위요소 공통 */
+.head>div,.body>div{
+    position: absolute;
+    /* 모든 직계 하위요소는 앱솔루트! */
+}
+/* 눈 공통 */
+.eye {
+    /* 눈 공통위치 */
+    top: 55px;
+    width: 50px;
+    height: 50px;
+    /* 눈 안경 */
+    border: 4px double #555; /* 최소 4px을 줘야 이중선이 나옴 */
+    border-radius: 50%;
+    /* 눈 배경 공통 */
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    background-color: #fff; /* 이미지 밖에 이중선 사이 깔끔하게 */
+}
+/* 왼눈 */
+.eyeleft {
+    /* 왼눈 위치 */
+    left: 25px;
+    background-image: url(../images/e1.jpg);
+}
+/* 오른눈 */
+.eyeright {
+    /* 오른눈 위치 */
+    right: 25px;
+    background-image: url(../images/e2.jpg);
+}
+/* 코 */
+.nose {
+    /* 위치 */
+    top: 75px;
+    left: calc(50% - 59px/2);
+    /* 크기 */
+    width: 59px;
+    height: 94px;
+    /* 배경 */
+    background: url(../images/nose.png) no-repeat center left/110% 100%;
+    /* 모양 */
+    border-radius: 40px 40px 25px 25px;
+}
+/* 입 */
+.mouth {
+    /* 위치 */
+    bottom: 35px;
+    left: calc(50% - 91px/2);
+    /* 크기 */
+    width: 91px;
+    height: 45px;
+    /* 배경 */
+    background: url(../images/mouth.png) no-repeat center/100% 90%;
+}
+/* 귀공통 */
+.ear {
+    /* 위치 */
+    top: 90px;
+    /* 크기 */
+    width: 50px;
+    height: 70px;
+    /* 배경 */
+    /* background: url(../images/metal02.jpg) no-repeat center/100%; */
+}
+/* 왼귀 */
+.earleft {
+    /* 위치 */
+    left: -50px;
+    /* 귀모양 */
+    border-radius: 30px 0 0 50px;
+}
+/* 오른귀 */
+.earright {
+    /* 위치 */
+    right: -50px;
+    /* 귀모양 */
+    border-radius: 0 30px 50px 0;
+}
+/* 얼굴점 */
+.facedot {
+    width: 10px;
+    height: 10px;
+}
+
+/* 2-1-2. 몸통 */
+.body {
+    /* 부모자격 */
+    position: relative;
+    /* 크기 */
+    width: 250px;
+    height: 350px;
+    /* 중앙 */
+    margin: 0 auto;
+    margin-top: 50px;
+}
+/* 목 */
+.neck {
+    /* 위치 */
+    top: -55px;
+    left: calc(50% - 55px/2);
+    /* 중앙보내기 */
+    /*
+    중앙 보내기 
+    부모박스의 50%보내고 자신의 절반 빼기
+    가로크기 left는 width
+     */
+    /* 크기 */
+    width: 60px;
+    height: 55px;
+}
+/* 왼팔 */
+/* 오른팔 */
+/* 왼다리 */
+/* 오른다리 */
+/* 왼어깨 */
+/* 오른어깨 */
+/* TV */
+
+/* 2-2. 로봇설명박스 */
+/*********************** 3. 하단영역 ***********************/
+/* 3-1. 회사정보 */
