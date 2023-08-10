@@ -55,7 +55,7 @@ body *{
 }
 /* 2-1. 로봇박스 */
 .box-robot {
-    padding: 200px 0 50px; /* 위 양쪽 아래 */
+    padding: 200px 0 550px; /* 위 양쪽 아래 */
     margin-top: 50px;
 }
 /* 2-1-1. 머리 */
@@ -190,11 +190,35 @@ body *{
     /* 부모자격 */
     position: relative;
     /* 크기 */
-    width: 250px;
+    width: 220px;
     height: 350px;
     /* 중앙 */
     margin: 0 auto;
     margin-top: 50px;
+    background-size: 80%;
+    border-radius: 20px;
+}
+/* 몸통 위 */
+.body::before {
+    content: '';
+    position: absolute;
+    top: 0px;
+    left: -15px;
+    width: 250px;
+    height: 180px;
+    background-image: linear-gradient(to top, #eee, blue);
+    border-radius: 30px;
+}
+/* 몸통 아래 */
+.body::after {
+    content: '';
+    position: absolute;
+    bottom: -20px;
+    left: -15px;
+    width: 250px;
+    height: 110px;
+    background-image: linear-gradient(to bottom, #eee, hotpink);
+    border-radius: 30px;
 }
 /* 목 */
 .neck {
@@ -211,12 +235,159 @@ body *{
     width: 60px;
     height: 55px;
 }
+/* 팔공통 */
+.arm {
+    width: 70px;
+    height: 220px;
+    border-radius: 20px;
+}
+/* 팔아래공통 */
+.arm span {
+    display: block;
+    position: absolute;
+    top: 100%;
+    left: 10%;
+    width: 80%;
+    height: 80%;
+    border-radius: 20px;
+}
+/* 팔 관절 */
+.arm::after{
+    content: '';
+    display: block;
+    position: absolute;
+    top: 90%;
+    left: -10%;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: url(../images/metal01.jpg) no-repeat center/cover;
+}
 /* 왼팔 */
+.armleft {
+    left: -100px;
+}
 /* 오른팔 */
+.armright {
+    right: -100px;
+}
+/* 왼팔아래 */
+.armleft span {
+    left: 10%;
+}
+/* 왼손 */
+.armleft span::after {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 100%;
+    left: calc(50% - 50px/2 - 10px);
+    width: 80px;
+    height: 120px;
+    background: url(../images/hand_left.png) no-repeat 0/100%;
+}
+/* 오른팔아래 */
+.armleft span {
+    left: 10%;
+}
+/* 오른손 */
+.armright span::after {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 100%;
+    right: calc(50% - 50px/2 - 10px);
+    width: 80px;
+    height: 120px;
+    background: url(../images/hand_right.png) no-repeat 0/100%;
+}
+/* 다리공통 */
+.leg {
+    top: 100%;
+    width: 80px;
+    height: 220px;
+    border-radius: 20px;
+}
+/* 다리아래공통 */
+.leg span {
+    display: block;
+    position: absolute;
+    top: 100%;
+    left: 10%;
+    width: 80%;
+    height: 80%;
+    border-radius: 20px;
+}
+/* 다리 관절 */
+.leg::after{
+    content: '';
+    display: block;
+    position: absolute;
+    top: 84%;
+    left: 0%;
+    width: 100%;
+    height: 80px;
+    border-radius: 50%;
+    background: url(../images/metal01.jpg) no-repeat center/cover;
+}
+/* 다리아래 가상요소로 부츠만들기 */
+.leg span::before {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 63%;
+    left: -9%;
+    width: 110%;
+    height: 50%;
+    background-image: linear-gradient(to right, #ccc, #393939);
+    border: 2px solid #000;
+}
+/* 다리아래 가상요소로 부츠하단 */
+.leg span::after {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 104%;
+    left: -12%;
+    width: 120%;
+    height: 30%;
+    background-image: linear-gradient(to left, #ccc, #393939);
+    border-radius: 25px 25px 0 0;
+    border: 2px solid #000;
+    box-sizing: content-box;
+}
+
 /* 왼다리 */
+.legleft {
+    left: 5%;
+}
 /* 오른다리 */
+.legright {
+    right: 5%;
+}
+/* 어깨 공통 */
+.shdr {
+    top: -10px;
+    width: 100px;
+    height: 100px;
+}
 /* 왼어깨 */
+.shdrleft {
+    left: -110px;
+    border-radius: 50% 0 0 50%;
+     /* 
+        [둥근모서리 값설정]
+        1. 1개 - 네방향
+        2. 2개 - 왼위 오른아래 / 오른위 왼아래
+        3. 3개 - 왼위 / 오른위 왼아래 / 오른아래
+        4. 4개 - 왼위 / 오른위 / 오른아래 / 왼아래
+    */
+}
 /* 오른어깨 */
+.shdrright {
+    right: -110px;
+    border-radius: 0 50% 50% 0;
+}
 /* TV */
 
 /* 2-2. 로봇설명박스 */
