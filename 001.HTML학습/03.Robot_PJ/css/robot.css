@@ -40,6 +40,41 @@ body *{
 
 /*********************** 1. 상단영역 ***********************/
 /* 1-1. 로고 */
+.logo {
+    /* 포지션 fixed */
+    position: fixed;
+    /* 화면 중앙이동 */
+    top: calc(50% - 200px/2);
+    left: calc(50% - 200px/2);
+    
+    width: 200px;
+    height: 200px;
+    
+    background: pink url(../images/robot_03.png) no-repeat center/160px;
+    
+    border-radius: 50%;
+    border: 2px solid #ccc;
+
+    /* 텍스트 */
+    text-align: center;
+    /* line-height: 200px; */ /* 아래에서 다시쓰면 먹힘 */
+    color: aquamarine;
+    font: 45px/200px 'Orbitron';
+    text-shadow: 2px 2px 5px #000;
+
+    /* 박스그림자 */
+    box-shadow:
+        inset 0 0 20px 5px #000,
+        0 0 20px 5px aquamarine;
+    /* 박스그림자에만 spread설정이 있음
+    x y blur spread color */
+    
+    /* 트랜스폼 크기조정 */
+    transform: scale(2.5);
+
+    z-index: 99;
+
+}
 /* 1-2. 링크타이틀 */
 /* 1-3. 탑이동버튼 */
 /*********************** 2. 메인영역 ***********************/
@@ -55,7 +90,7 @@ body *{
 }
 /* 2-1. 로봇박스 */
 .box-robot {
-    padding: 200px 0 550px; /* 위 양쪽 아래 */
+    padding: 200px 0 600px; /* 위 양쪽 아래 */
     margin-top: 50px;
 }
 /* 2-1-1. 머리 */
@@ -63,8 +98,8 @@ body *{
     /* 하위요소absolute 자식들의 부모되기 */
     position: relative;
     /* 머리크기 */
-    width: 200px;
-    height: 250px;
+    width: 190px;
+    height: 230px;
     /* 메탈배경 : 공통클래스로 적용 */
     /* background: url(../images/metal01.jpg) no-repeat center/cover; */
     /* 무대중앙! */
@@ -81,24 +116,24 @@ body *{
     /* 마치 넣은 것 같다 div */
     position: absolute;
     /* 위치 */
-    top: -76px;
-    left: -107px;
+    top: -99px;
+    left: -110px;
     /* 크기 */
-    width: 419px;
+    width: 400px;
     height: 277px;
     /* 배경 */
-    background: url(../images/hair5.png) no-repeat 0/100% 100%;
+    background: url(../images/hair4.png) no-repeat 0/100% 100%;
 }
 /* 오버시 가상요소 변경 */
 .head:hover::after {
     /* 위치 */
-    top: -113px;
-    left: -99px;
+    top: -90px;
+    left: -112px;
     /* 크기 */
-    width: 400px;
+    width: 415px;
     height: 320px;
     /* 배경 */
-    background: url(../images/hair4.png) no-repeat 0/100% 100%;
+    background: url(../images/hair5.png) no-repeat 0/100% 100%;
 }
 /* 머리 하위요소 공통 */
 .head>div,.body>div{
@@ -122,13 +157,13 @@ body *{
 /* 왼눈 */
 .eyeleft {
     /* 왼눈 위치 */
-    left: 25px;
+    left: 22px;
     background-image: url(../images/e1.jpg);
 }
 /* 오른눈 */
 .eyeright {
     /* 오른눈 위치 */
-    right: 25px;
+    right: 22px;
     background-image: url(../images/e2.jpg);
 }
 /* 코 */
@@ -138,7 +173,7 @@ body *{
     left: calc(50% - 59px/2);
     /* 크기 */
     width: 59px;
-    height: 94px;
+    height: 90px;
     /* 배경 */
     background: url(../images/nose.png) no-repeat center left/110% 100%;
     /* 모양 */
@@ -147,7 +182,7 @@ body *{
 /* 입 */
 .mouth {
     /* 위치 */
-    bottom: 35px;
+    bottom: 20px;
     left: calc(50% - 91px/2);
     /* 크기 */
     width: 91px;
@@ -191,7 +226,7 @@ body *{
     position: relative;
     /* 크기 */
     width: 220px;
-    height: 350px;
+    height: 360px;
     /* 중앙 */
     margin: 0 auto;
     margin-top: 50px;
@@ -202,21 +237,21 @@ body *{
 .body::before {
     content: '';
     position: absolute;
-    top: 0px;
+    top: -23px;
     left: -15px;
     width: 250px;
-    height: 180px;
-    background-image: linear-gradient(to top, #eee, blue);
+    height: 200px;
+    background-image: linear-gradient(45deg, #eee, lightyellow, darkcyan);
     border-radius: 30px;
 }
 /* 몸통 아래 */
 .body::after {
     content: '';
     position: absolute;
-    bottom: -20px;
+    bottom: -30px;
     left: -15px;
     width: 250px;
-    height: 110px;
+    height: 130px;
     background-image: linear-gradient(to bottom, #eee, hotpink);
     border-radius: 30px;
 }
@@ -224,7 +259,7 @@ body *{
 .neck {
     /* 위치 */
     top: -55px;
-    left: calc(50% - 55px/2);
+    left: calc(50% - 60px/2);
     /* 중앙보내기 */
     /*
     중앙 보내기 
@@ -233,12 +268,13 @@ body *{
      */
     /* 크기 */
     width: 60px;
-    height: 55px;
+    height: 45px;
 }
 /* 팔공통 */
 .arm {
-    width: 70px;
-    height: 220px;
+    top: 20px;
+    width: 60px;
+    height: 200px;
     border-radius: 20px;
 }
 /* 팔아래공통 */
@@ -248,7 +284,7 @@ body *{
     top: 100%;
     left: 10%;
     width: 80%;
-    height: 80%;
+    height: 90%;
     border-radius: 20px;
 }
 /* 팔 관절 */
@@ -256,20 +292,38 @@ body *{
     content: '';
     display: block;
     position: absolute;
-    top: 90%;
+    bottom: -15%;
     left: -10%;
-    width: 80px;
-    height: 80px;
+    width: 70px;
+    height: 70px;
     border-radius: 50%;
+    box-sizing: border-box;
+    border: 1px solid #000;
     background: url(../images/metal01.jpg) no-repeat center/cover;
 }
+/* 가상요소 관절 안쪽 나사 */
+.arm::before{
+    content: '';
+    display: block;
+    position: absolute;
+    bottom: -10%;
+    left: 7%;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    box-sizing: border-box;
+    border: 1px solid #fff;
+    background-image: linear-gradient(to right, #ccc, #383838);
+    z-index: 1;
+}
+
 /* 왼팔 */
 .armleft {
-    left: -100px;
+    left: -90px;
 }
 /* 오른팔 */
 .armright {
-    right: -100px;
+    right: -90px;
 }
 /* 왼팔아래 */
 .armleft span {
@@ -301,11 +355,18 @@ body *{
     height: 120px;
     background: url(../images/hand_right.png) no-repeat 0/100%;
 }
+/* *****동작요소***** */
+/* 오른팔 */
+.armright:hover{
+    transform: rotate(-90deg);
+}
+
+
 /* 다리공통 */
 .leg {
     top: 100%;
     width: 80px;
-    height: 220px;
+    height: 240px;
     border-radius: 20px;
 }
 /* 다리아래공통 */
@@ -315,7 +376,7 @@ body *{
     top: 100%;
     left: 10%;
     width: 80%;
-    height: 80%;
+    height: 90%;
     border-radius: 20px;
 }
 /* 다리 관절 */
@@ -323,37 +384,56 @@ body *{
     content: '';
     display: block;
     position: absolute;
-    top: 84%;
+    bottom: calc(-80px/2);
     left: 0%;
     width: 100%;
     height: 80px;
-    border-radius: 50%;
+    border-radius: 10%;
+    border: 1px solid #000;
+    background-image: linear-gradient(to right, #ccc, #383838);
+}
+/* 다리관절 안쪽 나사 */
+.leg::before{
+    content: '';
+    display: block;
+    position: absolute;
+    bottom: -30px;
+    left: 10%;
+    width: 80%;
+    height: 60px;
+    border-radius: 10%;
+    border: 1px solid #000;
     background: url(../images/metal01.jpg) no-repeat center/cover;
+    z-index: 1;
 }
 /* 다리아래 가상요소로 부츠만들기 */
 .leg span::before {
     content: '';
     display: block;
     position: absolute;
-    top: 63%;
-    left: -9%;
-    width: 110%;
-    height: 50%;
+    top: 47%;
+    left: -10%;
+    width: 120%;
+    height: 156px;
     background-image: linear-gradient(to right, #ccc, #393939);
-    border: 2px solid #000;
+    border-radius: 0 0 30% 30%;
+    border-top: 4px solid #000;
+
+
 }
 /* 다리아래 가상요소로 부츠하단 */
 .leg span::after {
     content: '';
     display: block;
     position: absolute;
-    top: 104%;
-    left: -12%;
-    width: 120%;
+    top: 114%;
+    left: -22%;
+    width: 140%;
     height: 30%;
-    background-image: linear-gradient(to left, #ccc, #393939);
-    border-radius: 25px 25px 0 0;
+    background-image: linear-gradient(to right, #ccc, #393939);
+    border-radius: 50% 50% 0 0;
     border: 2px solid #000;
+    border-bottom: 10px double #000;
     box-sizing: content-box;
 }
 
@@ -368,12 +448,12 @@ body *{
 /* 어깨 공통 */
 .shdr {
     top: -10px;
-    width: 100px;
+    width: 90px;
     height: 100px;
 }
 /* 왼어깨 */
 .shdrleft {
-    left: -110px;
+    left: -105px;
     border-radius: 50% 0 0 50%;
      /* 
         [둥근모서리 값설정]
@@ -385,11 +465,47 @@ body *{
 }
 /* 오른어깨 */
 .shdrright {
-    right: -110px;
+    right: -105px;
     border-radius: 0 50% 50% 0;
 }
 /* TV */
+.tv {
+    top: 10px;
+    left: 50%;
+    /* left방향 중앙이동 */
+    transform: translateX(-50%);
+    width: 180px;
+    height: 130px;
 
+    /* 배경이미지 */
+    background: url(../images/tv.jpg) no-repeat -5px -7px/111% 117%;
+    border-radius: 5px;
+    box-shadow: inset 1px 0 2px 5px #0000008d;
+}
+/* 스크린 */
+.screen {
+    position: absolute;
+    /* 부모는? : TV*/
+    top: 9px;
+    left: 5px;
+    width: 142px;
+    height: 107px;
+    border-radius: 10px;
+    background-image: linear-gradient(to right, #eee, #333);
+    box-shadow: inset 2px 0 5px 5px #000;
+    /* 자식 앱솔루트 요소 */
+    /* 넘치는 부분 숨기기 */
+    overflow: hidden;
+}
+/* 아이프레임 */
+#mv {
+    position: absolute;
+    /* 부모는? : 스크린 */
+    top: -18px;
+    left: -19px;
+    width: 186px;
+    height: 138px;
+}
 /* 2-2. 로봇설명박스 */
 /*********************** 3. 하단영역 ***********************/
 /* 3-1. 회사정보 */
