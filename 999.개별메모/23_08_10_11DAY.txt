@@ -45,5 +45,5 @@ height가 auto면 top값을 px로 써야함
 
 transform 
 
-...6교시...
+...6 7교시 로봇 이미지 넣고 크기조정...
 ctrl G 해당라인으로 이동
