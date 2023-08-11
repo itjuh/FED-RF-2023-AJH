@@ -103,7 +103,7 @@
 /* 로봇 위치/크기 변경 애니 */
 @keyframes robot-ani {
     to{
-        transform: translate(0px, 40%) scale(0.8);
+        transform: translate(0px, -20%) scale(0.6);
     }
 }
 
@@ -151,13 +151,6 @@
 .legright span{
     animation : walking-ani2 .3s ease-in-out 3.3s 17 alternate;
 }
-/* 하박(팔아래) 애니호출 */
-.armleft span {
-    animation : walking-ani1 .3s ease-in-out 3.3s 17 alternate;
-}
-.armright span{
-    animation : walking-ani1 .3s ease-in-out 3s 17 alternate;
-}
 
 /* 왼팔 애니1 키프레임 */
 @keyframes left-arm-ani-01 {
@@ -187,7 +180,9 @@
 /* 왼팔 애니2 호출 */
 .armleft span{
     transform-origin: top;
-    animation: left-arm-ani-02 .3s ease-in 8s forwards;
+    animation: 
+    walking-ani1 .3s ease-in-out 3.3s 17 alternate,
+    left-arm-ani-02 .3s ease-in 8s forwards;
 }
 /* 왼팔 애니2 호출 */
 .armleft span::after{
@@ -242,7 +237,7 @@
 /* 오른팔 애니3 호출 */
 .armright span{
     transform-origin: 28px top;
-    animation: 
+    animation: walking-ani1 .3s ease-in-out 3s 17 alternate,
     right-arm-ani-03 .3s ease-in-out 8.8s infinite alternate; /* 팔아래 흔들기 */
 }
 /* 오른손 애니4 호출 */
@@ -252,3 +247,13 @@
     right-arm-ani-04 .3s ease-in-out 8.8s infinite alternate; /* 손 흔들기 */
 }
 
+/* 말하기 애니 */
+@keyframes mouth-ani {
+    to{
+        transform: scaleY(0.5);
+    }
+}
+/* 입 애니 호출 */
+.mouth {
+    animation: mouth-ani .1s linear 8.8s infinite alternate;
+}

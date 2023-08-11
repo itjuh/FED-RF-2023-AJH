@@ -97,7 +97,7 @@ body *{
 
     width: 100%;
     /* 처음에 트랜스폼 변경설정 */
-    transform: translate(30%, 16%) scale(0.2); /* 크기를 먼저 넣으면 엄청 많이 움직여야함 */
+    transform: translate(40%, -20%) scale(0.2); /* 크기를 먼저 넣으면 엄청 많이 움직여야함 */
 }
 /* 2-1-1. 머리 */
 .head {
@@ -114,6 +114,7 @@ body *{
     border-radius: 100px 100px 150px 150px;
     /* .body보다 위 */
     z-index: 1;
+    box-shadow: 0 0 7px 7px cyan;
 }
 /* 가상요소로 머리에 가발 씌우기 */
 .head::after {
@@ -205,6 +206,7 @@ body *{
     height: 70px;
     /* 배경 */
     /* background: url(../images/metal02.jpg) no-repeat center/100%; */
+    box-shadow: 0 0 7px 7px cyan;
 }
 /* 왼귀 */
 .earleft {
@@ -284,6 +286,7 @@ body *{
     border-radius: 20px;
 /* 애니를 위한 트랜스폼 기준 축 변경 */
     transform-origin: left top;
+    box-shadow: 0 0 7px 7px cyan;
 }
 /* 팔아래공통 */
 .arm span {
@@ -294,6 +297,7 @@ body *{
     width: 80%;
     height: 90%;
     border-radius: 20px;
+    box-shadow: 0 0 7px 7px cyan;
 }
 /* 팔 관절 */
 .arm::after{
@@ -378,6 +382,7 @@ body *{
     border-radius: 20px;
 /* 애니를 위한 트랜스폼 기준 축 변경 */
     transform-origin: top;
+    box-shadow: 0 0 7px 7px cyan;
 }
 /* 다리아래공통 */
 .leg span {
@@ -388,6 +393,7 @@ body *{
     width: 80%;
     height: 90%;
     border-radius: 20px;
+    box-shadow: 0 0 7px 7px cyan;
 }
 /* 다리 관절 */
 .leg::after{
@@ -460,6 +466,7 @@ body *{
     top: -10px;
     width: 90px;
     height: 100px;
+    box-shadow: 0 0 7px 7px cyan;
 }
 /* 왼어깨 */
 .shdrleft {
@@ -484,13 +491,21 @@ body *{
     left: 50%;
     /* left방향 중앙이동 */
     transform: translateX(-50%);
-    width: 180px;
+    z-index: 100;
+    width: 191px;
     height: 130px;
 
     /* 배경이미지 */
-    background: url(../images/tv.jpg) no-repeat -5px -7px/111% 117%;
+    background: url(../images/tv.jpg) no-repeat -5px -7px/105% 117%;
     border-radius: 5px;
     box-shadow: inset 1px 0 2px 5px #0000008d;
+
+    /* 트랜지션 : 속시이지 */
+    transition: 1.2s ease-in-out;
+}
+/* TV 커지는 클래스 */
+.tv.on {
+    transform: translateX(-50%) scale(4);
 }
 /* 스크린 */
 .screen {
@@ -498,9 +513,9 @@ body *{
     /* 부모는? : TV*/
     top: 9px;
     left: 5px;
-    width: 142px;
-    height: 107px;
-    border-radius: 10px;
+    width: 144px;
+    height: 109px;
+    border-radius: 4px;
     background-image: linear-gradient(to right, #eee, #333);
     box-shadow: inset 2px 0 5px 5px #000;
     /* 자식 앱솔루트 요소 */
@@ -515,6 +530,20 @@ body *{
     left: -19px;
     width: 186px;
     height: 138px;
+    /* 아이프레임 기본보더 없앰 */
+    border: none;
+}
+/* 동영상 선택 버튼 */
+.box-btn {
+    position: absolute;
+    bottom: 25px;
+    right: 2px;
+    width: 34px;
+    height: 70px;
+}
+.box-btn button {
+    width: 100%;
+    text-align: center;
 }
 /* 2-2. 로봇설명박스 */
 /*********************** 3. 하단영역 ***********************/
