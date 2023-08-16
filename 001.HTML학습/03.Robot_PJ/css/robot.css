@@ -81,6 +81,9 @@ body *{
 /*********************** 2. 메인영역 ***********************/
 .main-area {
     overflow: hidden;
+    /* 자식요소인 .box-robot이 fixed포지션이 됨에 따라
+    상단부분이 없어졌으므로 패딩으로 로봇영역 채우기 */
+    padding: 860px;
     /* 
     첫번째 자식요소 블록박스에 마진탑을 준 경우 그 마진값은 
     부모요소 바깥쪽으로 나간다!(기본성질)
@@ -92,12 +95,16 @@ body *{
 /* 2-1. 로봇박스 */
 .box-robot {
     position: fixed;
-    padding: 200px 0 600px; /* 위 양쪽 아래 */
+    /* top값을 안주면 젠틀픽스드이므로 패딩static요소를 존중하므로
+    위치값을 줘서 화면을 기준한다 */
+    top: 0;
+
+    padding: 50px 0 300px; /* 위 양쪽 아래 */
     margin-top: 50px;
 
     width: 100%;
     /* 처음에 트랜스폼 변경설정 */
-    transform: translate(40%, -20%) scale(0.2); /* 크기를 먼저 넣으면 엄청 많이 움직여야함 */
+    transform: translate(30%, -5%) scale(0.2); /* 크기를 먼저 넣으면 엄청 많이 움직여야함 */
 }
 /* 2-1-1. 머리 */
 .head {
@@ -251,6 +258,8 @@ body *{
     height: 200px;
     background-image: linear-gradient(45deg, #eee, lightyellow, darkcyan);
     border-radius: 30px;
+    /* 클립패스 : 부분만 보이기 */
+    clip-path: polygon(-13% 0%, 113% 0%, 86% 100%, 14% 100%);
 }
 /* 몸통 아래 */
 .body::after {
@@ -262,6 +271,7 @@ body *{
     height: 130px;
     background-image: linear-gradient(to bottom, #eee, hotpink);
     border-radius: 30px;
+    clip-path: polygon(6% 25%,15% 3%,87% 0%,95% 25%,90% 74%,58% 95%,41% 95%,10% 75%);
 }
 /* 목 */
 .neck {
