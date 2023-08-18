@@ -27,6 +27,13 @@ https://investigation.rollingstone.com/dj-photo-war-crimes-bosnia/
 ->mousemove 이벤트 활용!
 (2) 글자 중앙에서 생성되어 등장하기!
 (이건 해보자)
+
+4. 에이전시 회사
+https://journey.zajno.com/collaborate
+(1) 각종 글자 등장 이벤트
+(2) 3D적용 글자와 사진 이동효과(원형으로 돌면서 뜨는 모양)
+    -> 스크롤이벤트 연결
+    -> 이거 해보자!
 _______________________________________
 
 1. 패션쇼 기획회사 포트폴리오 사이트
