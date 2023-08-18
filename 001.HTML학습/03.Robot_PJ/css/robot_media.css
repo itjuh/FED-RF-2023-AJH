@@ -1,3 +1,30 @@
 @charset "utf-8";
 
 /* Robot PJ 미디어쿼리 CSS - robot_media.css */
+
+/* 800px 이하 미디어쿼리 시작 */
+@media screen and (max-width: 800px) {
+    /* 내용단락 */
+    .desc {
+        /* 다중열 개수 */
+        column-count: 2;
+    }
+}
+/* 800px 이하 미디어쿼리 끝 */
+
+/* 500px 이하 미디어쿼리 시작 */
+@media screen and (max-width: 500px) {
+    /* 내용단락 */
+    .desc {
+        /* 다중열 개수 */
+        column-count: 1;
+    }
+    .top-btn {
+        width: 80px;
+        height: 80px;
+    }
+    .top-btn a {
+        font: 22px/70px "Black Ops One";
+    }
+}
+/* 500px 이하 미디어쿼리 끝 */

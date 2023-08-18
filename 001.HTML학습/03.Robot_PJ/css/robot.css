@@ -15,6 +15,9 @@
 html {
     font-size: 10px;
     /* 상대단위 rem 계산 편의를 위해 변경! */
+
+    /* 최상위 요소인 html에 부드러운 스크롤 적용 */
+    scroll-behavior: smooth;
 }
 /* 초기화 */
 html,body,h1,h2,h3,ul,ol {
@@ -77,6 +80,43 @@ body {
 
 /* 1-2. 링크타이틀 */
 /* 1-3. 탑이동버튼 */
+.top-btn{
+    position: fixed;
+    bottom: 50px;
+    right: 50px;
+
+    width: 100px;
+    height: 100px;
+
+    border-radius: 50%;
+    border: 5px outset #fff;
+    background-color: #ccc;
+    /* 위치 높이기 */
+    z-index: 10;
+}
+/* 버튼 a요소 */
+.top-btn a{
+    display: block;
+    /* 디자인 확장 */
+    width: 100%;
+    height: 100%;
+
+    text-decoration: none;
+    /* 글자셋팅 */
+    color: white;
+    font: 30px/90px 'Black Ops One';
+    /* 줄간격은 높이값 100px - 보더 10px */
+    text-shadow: 2px 2px 4px #000;
+}
+/* 버튼 마우스 오버시 */
+.top-btn:hover{
+    background-color: #ff0;
+    border-style: inset;
+}
+/* 버튼 오버시 글자색 */
+.top-btn:hover a{
+    color: #f00;
+}
 /*********************** 2. 메인영역 ***********************/
 .main-area {
     /* 자식요소인 .box-robot이 fixed포지션이 됨에 따라
@@ -98,8 +138,8 @@ body {
     위치값을 줘서 화면을 기준한다 */
     top: 0;
 
-    padding: 50px 0 300px; /* 위 양쪽 아래 */
-    margin-top: 50px;
+    padding: 220px 0 550px; /* 위 양쪽 아래 */
+    /* margin-top: 50px; */
 
     width: 100%;
     /* 처음에 트랜스폼 변경설정 */
@@ -554,6 +594,74 @@ body {
     width: 100%;
     text-align: center;
 }
+/* 2-1-1. 링크타이틀 : 말풍선 */
+.link-title{
+    /* 포지션 */
+    position: absolute;
+    top: 13px;
+    right: -60px;
+    font-size: 5vw;
+    background-color: orangered;
+    padding: 4vw 3vw;
+    border-radius: 50%;
+    border: 7px dashed orangered;
+    color: #fff;
+    text-decoration: none;
+    /* 처음에 투명 */
+    /* opacity: 0; */
+    /* 처음에 안보임 */
+    transform: scale(0);
+    /* 트랜스폼 축변경 : 가로 세로 */
+    transform-origin: left bottom;
+}
+.link-title::after{
+    content: '';
+    display: block;
+    position: absolute;
+    bottom: -3.3vw;
+    left: 0.9vw;
+    transform: rotate(35deg);
+    /* 삼각형만들기 필수
+    - 양쪽방향 보더를 투명으로 한쪽방향 보더에 색 */
+    width: 0;
+    height: 0;
+    border-left: 1.3vw solid transparent;
+    border-right: 1.3vw solid transparent;
+    border-top: 7vw solid orangered;
+}
+.link-title:hover{
+    background-image: radial-gradient(green, darkorange);
+    color: #fff;
+}
+/* [ 원형 그라데이션 ]
+
+    - 기본형, 영역지정형은 박스모양을 따라감!
+
+    1) 기본형: 중앙중심, 모양은 박스크기에 맞춤
+    background-image: 
+        radial-gradient(색1,색2,색3,...);
+    - 시작색으로부터 중앙에서 시작됨
+
+    2) 영역 지정형:
+    background-image: 
+        radial-gradient(색1 몇%,색2 몇%,색3 몇%,...);
+    - 색 뒤에 한칸 띄고 %수치로 영역지정함
+
+    3) 그라데이션 모양을 원형으로 사용할 경우:
+    background-image: 
+        radial-gradient(circle,색1,색2,색3,...);
+    - circle 키워드를 첫번째에 사용함
+
+    4) 영역옵션 지정형: 중심점 변경
+    background-image: 
+        radial-gradient(옵션 at 가로위치 세로위치,색1,색2,색3,...);
+    - 옵션4가지 : closest-side / farthest-side
+                closest-corner / farthest-corner
+                ___________________________________
+                - closest는 중심점으로 좀더 모아진것
+                - farthest는 중심점에서 멀리 퍼진것
+                - side와 corner는 경계선과 끝부분옵션임
+    - 가로위치, 세로위치 (중심점) - 단위는 px / % */
 /* 2-2. 로봇설명박스 */
 .box-text{
     /* 로봇보다 위 - 포지션 있어야 위에 옴 */
@@ -654,3 +762,32 @@ body {
 }
 /*********************** 3. 하단영역 ***********************/
 /* 3-1. 회사정보 */
+#bottom-area {
+    /* 포지션 : 순서상 위에 오도록 */
+    position: relative;
+    /* 글자색 흰색 */
+    color: white;
+    /* 글자크기 30px 글자체 'Black Ops One' */
+    font: 3rem 'Black Ops One';
+    /* 글자 그림자 2px 2px 2px #000 */
+    text-shadow: 2px 2px 2px rgba(0, 0, 0);
+    /* 배경색 검정색 반투명 0.5 */
+    background-color: rgba(0, 0, 0, 0.500);
+    /* 글자 중앙정렬 */
+    text-align: center;
+    /* 패딩 10vmin > 가로 세로 중 작은것 기준 7% */
+    padding: 7vmin;
+}
+/* 가상요소로 속박스 아이콘 모양 넣기 */
+.bottom-area::before{
+    content: '';
+    /* 디자인도 적용, 한줄에 오도록 */
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 2px solid #ccc;
+    background: pink url(../images/robot_03.png) no-repeat 40% -2%/55px;
+    /* 인라인 요소간 세로 정렬 */
+    vertical-align: top;
+}

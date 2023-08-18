@@ -45,4 +45,9 @@ document object model을 통해서 직접 들고옴(DOM)
 
 input 에 value 속성이 있음
 요소     속성
-js 자동형변환            
+js 자동형변환         
+
+...5교시...
+정적코딩 Robot PJ
+
+말풍선 어디에 넣을지?

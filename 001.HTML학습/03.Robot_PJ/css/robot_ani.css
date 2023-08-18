@@ -103,7 +103,7 @@
 /* 로봇 위치/크기 변경 애니 */
 @keyframes robot-ani {
     to{
-        transform: translate(0%,-7%) scale(.6);
+        transform: translate(0%,-20%) scale(.6);
     }
 }
 
@@ -256,4 +256,14 @@
 /* 입 애니 호출 */
 .mouth {
     animation: mouth-ani .1s linear 8.8s infinite alternate;
+}
+/* 말풍선 애니 */
+@keyframes tooltip-ani {
+    to{
+        transform: scale(1);
+    }
+}
+/* 말풍선 애니 호출 */
+.link-title {
+    animation: tooltip-ani .5s ease-in 8.8s forwards;
 }
