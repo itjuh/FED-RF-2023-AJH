@@ -1,19 +1,10 @@
 @charset "uft-8";
+/* CSS 불러오기 영역 */
+/* 리셋, 공통, 코어, 레이아웃 외부 CSS합치기(merging) */
 @import url(./layout.css);
-/* 초기화 */
-html, body, h1, h2, h3, h4, h5 {
-    margin: 0;
-    padding: 0;
-}
-a {
-    text-decoration: none;
-}
-/* ul,ol 초기화 : 3無 */
-ul,ol{
-    margin: 0;
-    padding: 0;
-    list-style: none;
-}
+@import url(./common.css);
+@import url(./core.css);
+@import url(./reset.css);
 /* IR 숨기기 class */
 .ir{
     display: block;
@@ -67,12 +58,10 @@ ul,ol{
 /* 1-6. 상하네비바 */
 /* 2. 메인영역 */
 #main{
-    background-color: rgb(252, 232, 206);
+    background-color: #fce8ce;
 }
 /* 2-1. 이벤트배너 */
-.main-banner .part-box{
-    height: 500px;
-}
+
 /* 2-2. 메인테마 */
 /* 2-3. 컨셉이미지 */
 /* 2-4. 인기상품 */
@@ -80,5 +69,9 @@ ul,ol{
 /* 2-6. 주문진행 */
 /* 2-7. 리뷰 */
 /* 3. 하단영역 */
-/* 3-1. 회사소개 */
-/* 3-2. SNS링크 */
+#footer{
+    background-color: #576252;
+}
+/* 3-1. 하단로고 */
+/* 3-2. 회사소개 */
+/* 3-3. SNS링크 */

@@ -1,6 +1,12 @@
 @charset "utf-8";
 /* 도깨비 PJ - 메인 CSS */
 
+/* CSS 불러오기 영역 */
+/* 리셋, 공통, 코어 외부 CSS합치기(merging) */
+@import url(./reset.css);
+@import url(./core.css);
+@import url(./common.css);
+
 /* 공사중 표시 */
 body * {
     outline: 2px dashed #ccc;
@@ -8,95 +14,13 @@ body * {
 body > div > * {
     outline-color: red;
 }
-/* 기본초기화 */
-html,
-body,
-h1,
-h2,
-h3,
-h4 {
-    margin: 0;
-    padding: 0;
-}
-/* 공통레이아웃 클래스*/
-/* 속박스 */
-.inbox {
-    max-width: 1200px;
-    margin: 0 auto;
-}
-/* 클리서설정 가상요소 
-        float에 의한 망가짐 방지 */
-.inbox::after,
-.group-part::after {
-    content: "";
-    display: block;
-    clear: both;
-}
-/* 파티션박스 */
-.partbox {
-    /* 옆으로 흐르게(100%주면 안흐름) */
-    float: left;
-    /* 보더패딩 포함박스 */
-    box-sizing: border-box; /* bxb */
-    /* 내부패딩 */
-    padding: 15px;
-    /* 임시로 보이게 */
-    border: 2px dotted blue;
-    /* 높이값이 속 박스에 있을 경우 채우기 셋팅
-            높이값이 파티션박스에 있으면 안씀! */
-    height: 100%;
-}
-/* 12그리드 클래스 : 한줄의 합이 12컬럼이 되도록 셋팅! */
-.col-1 {
-    width: 8.33%;
-}
-.col-2 {
-    width: 16.66%;
-}
-.col-3 {
-    width: 25%;
-}
-.col-4 {
-    width: 33.33%;
-}
-.col-5 {
-    width: 41.66%;
-}
-.col-6 {
-    width: 50%;
-}
-.col-7 {
-    width: 58.33%;
-}
-.col-8 {
-    width: 66.66%;
-}
-.col-9 {
-    width: 75%;
-}
-.col-10 {
-    width: 83.33%;
-}
-.col-11 {
-    width: 91.66%;
-}
-.col-12 {
-    width: 100%;
-}
-/* 참고: https://www.w3schools.com/css/css_rwd_grid.asp */
 
 /* 개별영역 박스 -> 확장형박스로 만들기
-        -> 개별영역 중앙 속 박스의 높이값을 주면
-        파트박스가 늘어날 경우 높이값에 제한을 받게 됨
-        확장형은 반드시 파티박스에 높이값을 설정한다! 
-        */
-/******** 1. 상단영역 ***********/
-#header {
-    background-color: lightblue;
-}
-.header .partbox {
-    height: 120px;
-}
+-> 개별영역 중앙 속 박스의 높이값을 주면
+파트박스가 늘어날 경우 높이값에 제한을 받게 됨
+확장형은 반드시 파티박스에 높이값을 설정한다! 
+*/
+
 /******** 2. 캐릭터소개영역 ***********/
 #banner {
     background-color: lightgreen;
@@ -128,10 +52,4 @@ h4 {
 .main .group-part-05 .partbox {
     height: 376px;
 }
-/******** 4. 하단영역 ***********/
-#footer {
-    background-color: lightcoral;
-}
-.footer .partbox {
-    height: 100px;
-}
+

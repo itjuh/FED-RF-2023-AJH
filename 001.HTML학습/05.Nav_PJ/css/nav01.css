@@ -22,6 +22,11 @@ ul,ol{
     padding: 0;
     list-style: none;
 }
+/* a공통 */
+a{
+    color: #fff;
+    text-decoration: none;
+}
 /* float에 의한 망가짐방지
 클리어설정 가상요소 clb */
 ul::after,ol::after,.clb::after{
@@ -33,7 +38,7 @@ ul::after,ol::after,.clb::after{
 .inbox{
     max-width: 1650px;
     margin: 0 auto;
-    outline: 2px dashed lime;
+    /* outline: 2px dashed lime; */
 }
 /* 상단영역 파트박스 */
 .part-box{
@@ -43,7 +48,7 @@ ul::after,ol::after,.clb::after{
 /* 네비게이션 박스 */
 .gnb{
     /* padding: 0 min(70px, 7vw); */
-    outline: 2px dotted yellow;
+    /* outline: 2px dotted yellow; */
     max-width: 1000px;
     margin: 0 auto;
 }
@@ -70,13 +75,8 @@ ul::after,ol::after,.clb::after{
     padding: 29px 0;
     /* line-height로 밀던것을 패딩으로 밀어줌 */
 }
-/* 네비게이션 링크 a공통 */
-.gnb a{
-    color: #fff;
-    text-decoration: none;
-}
 /* 네비게이션 링크 상위a*/
-.gnb > ul > li > a{
+.gnb>ul>li>a{
     display: block; 
     /* 박스형만들기
     (padding안쪽에 컨텐츠가 들어옴) 
@@ -191,13 +191,21 @@ ul::after,ol::after,.clb::after{
 /* 탑메뉴 */
 .top-menu li{
     float: left;
+    padding: 26px 0;
 }
 .top-menu li a{
     display: block;
     font-size: min(17px,1.7vw);
-    padding: 0 min(32px, 1.5vw);
+    padding: 0px min(9px, 0.6vw);
 }
-
+/* 탑메뉴 마지막요소 위치 맞추기 */
+.top-menu li:last-child a{
+    padding: 2px min(17px, 1vw);
+}
+/* 탑메뉴 마지막요소 밑줄 지우기 */
+.top-menu li:last-child a::after{
+    display: none;
+}
 /* 메인영역 */
 .main-area{
     max-width: 1000px;
