@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>switch문 연습</title>
+        <!-- 웹폰트 CDN -->
+        <link href="https://fonts.googleapis.com/css?family=Audiowide&amp;display=swap" rel="stylesheet" />
+        <style>
+            /* 타이틀 */
+            .tit {
+                text-align: center;
+                font: bold 72px/100px "Audiowide";
+            }
+
+            /* 스틸컷장면박스 */
+            .photo {
+                text-align: center;
+                /* 인라인요소 가로중앙정렬 */
+                background-color: skyblue;
+                padding: 20px;
+                margin-bottom: 50px;
+            }
+
+            /* 메인이미지 */
+            #scene {
+                height: 290px;
+                /* width는 비율에 맞게 자동임! */
+            }
+
+            /* 선택버튼박스 */
+            .btnbx {
+                text-align: center;
+                /* 버튼요소는 인라인블록이지만 
+            인라인특성이 있으므로 글자중앙정렬적용됨! */
+            }
+
+            /* 버튼공통 */
+            .btns {
+                font-size: 42px;
+            }
+        </style>
+        <!-- JS 코드구역 -->
+        <script>
+            // 이벤트까지 JS에서 걸어주면
+            // 코드가 분리된다!
+            /***********************************************
+            html요소를 선택할 경우 실행순서가 중요함
+            html본문 요소를 모두 로딩 후에 수집선택해야 함
+
+                [ 로딩 후 수집방법 ]
+
+            1. script 코드를 body 태그 하단에 쓰기
+            2. 로딩구역을 만들어준다.
+            window.addEventListener('load',함수);
+            -> 대상 : 전체 브라우저 window객체
+            -> 이벤트 : 
+                (1) load : 전체요소가 모두 로딩 후 발생(이미지, 비디오 등)
+                (2) DOMContentLoaded : HTML요소만 다 그려지면 발생!(패키지요소 빼고)
+                -> 위의 두가지는 실행 시점이 다르다
+                -> 실행속도는 2번이 더 빠름
+                
+                [ 이벤트 함수 연결 내장함수 ]
+
+            대상요소.addEventListener(이벤트명, 함수);
+                -> 이벤트 발생 시 함수와 연결하는 기능을 가진 JS 내장함수
+            ***********************************************/
+
+            // 로딩구역 만들기!!
+            // 선택요소.addEventListener(이벤트,함수);
+            // window의 이벤트 load(로드될 때), 
+            // 전달값이 없으면 함수명 뒤에 소괄호 안써도됨
+            // window.addEventListener('load',loadFn);
+            window.addEventListener('DOMContentLoaded',loadFn);
+            // window.addEventListener('click',loadFn); /* 클릭하면 실행 */
+
+            function loadFn(){
+                // 1. 호출확인
+                console.log('로딩완료!');
+                // 2. 버튼요소 선택
+                var btns = document.querySelectorAll('.btns');
+                console.log(btns);
+                // 3. 이벤트 설정하기
+                btns[0].onclick = changeImg;
+                btns[1].onclick = changeImg;
+                btns[2].onclick = changeImg;
+                btns[3].onclick = changeImg;
+                
+                // -> 함수명만 써야 함수 내부코드가 이벤트 속성의 값으로 할당됨
+
+                // 이퀄 오른쪽 함수에 소괄호를 하면 바로실행함
+                // 이벤트 속성에 함수명령어가 아닌 리턴값이 담김
+                // btns[0].onclick = changeImg();
+
+                // 소괄호가 있는 함수호출은 함수호출 명령어를 사용하는 것임!
+                // 그래서 요소에 직접 이벤트 속성으로 따옴표 안에 값을 쓰는
+                // 것은 아래와 같이 익명함수 안에 코드를 쓰는 것과 같아서
+                // 소괄호 명령어가 필요하다.
+                // btns[0].onclick = function(){
+                //    changeImg();
+                //}
+                // button class='btns' onclick="changeImg()"
+            } //////loadFn 함수 ////////
+
+
+            /**********************************************
+                함수명 : changeImg
+                기능 : 메인이미지 src 변경하기
+            **********************************************/
+            function changeImg(){
+                // 1. 호출확인
+                // console.log('변경!!!',this.innerText);
+                // 2. 대상확인 : 클릭버튼 텍스트 읽기
+                var btnTxt = this.innerText;
+                /*  
+                this키워드 : 함수를 호출 한 요소 자신
+                this를 사용하면 요소 내부의 속성, 데이터를
+                사용할 수 있음
+                */
+                // 3. 대상선정 : 변경할 이미지 
+                // img#scene -> scene
+                var scene = document.querySelector('#scene');
+                // 4. 이미지 src속성값 만들기
+                var imgSrc;
+                // 5. 조건에 맞춰서 변경하기(switch문 분기)
+                switch(btnTxt.trim()){
+                    case '포스터':
+                        imgSrc = './images/ala1.jpg';
+                        break;
+                    case '장면1':
+                        imgSrc = './images/ala2.jpg';
+                        break;
+                    case '장면2':
+                        imgSrc = './images/ala3.jpg';
+                        break;
+                    case '장면3':
+                        imgSrc = './images/ala4.jpg';
+                        break;
+                }
+                console.log(' imgSrc  :', imgSrc);
+                // 6. 이미지 src 속성 변경하기
+                /*
+                    [ 요소 속성 값 넣기 ]
+                    
+                    1. 선택요소.속성명 = 값;            :할당식
+                    2. 선택요소.setAttribute('속성명',값) :JS내장객체
+                    참고) 선택요소.getAttribute('속성명')  : 속성 값 읽기
+
+                */
+                // scene.src = imgSrc;
+                scene.setAttribute('src',imgSrc);
+            } ///////////changeImg 함수///////////////////
+        </script>
+    </head>
+
+    <body>
+        <!-- 전체 타이틀 -->
+        <h1 class="tit">All New Aladin</h1>
+
+        <!-- 스틸컷장면박스 -->
+        <div class="photo">
+            <img id="scene" src="./images/ala1.jpg" alt="알라딘스틸컷" />
+        </div>
+
+        <!-- 선택버튼박스 -->
+        <div class="btnbx">
+            <button class="btns">포스터</button>
+            <button class="btns">장면1</button>
+            <button class="btns">장면2</button>
+            <button class="btns">장면3</button>
+        </div>
+    </body>
+</html>

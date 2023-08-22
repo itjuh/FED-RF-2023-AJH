@@ -265,6 +265,17 @@
                 default:
                     message = "esc";
             } ///////// switch case ///////
+
+            // 5. 메시지 만들기 //////////
+            // message 변수에 최종 출력내용을 다시 담아준다!
+            if(message == 'esc'){
+                message = '등록되지 않은 지역입니다!';
+            } /////// if /////
+            else{
+                message = 
+                `${txt}의 지역번호는 ${message}입니다!`;
+            } ////// else //////
+
             // 6. 화면출력
             // 출력대상: #info -> info
             info.innerText = message;
