@@ -1,8 +1,8 @@
 @charset "uft-8";
 /* 공통레이아웃 */
 
-/* float에 의한 망가짐 방지 */
-.inbox::after,ul::after,ol::after{
+/* float에 의한 망가짐 방지, clb */
+.inbox::after,ul::after,ol::after,.clb{
     content: '';
     display: block;
     clear: both;
@@ -31,6 +31,10 @@
 .col-12 {width: 100%;}
 
 /* 1. 상단영역 */
+.header.inbox{
+    max-width: 1650px;
+    margin: 0 auto;
+}
 /* 1-1. 로그인,회원가입 */
 .header .sign-group .partbox{
     height: 30px;
@@ -60,7 +64,10 @@
     background-color: black;
 }
 /* 2. 메인영역 */
-
+.main.inbox{
+    max-width: 1650px;
+    margin: 0 auto;
+}
 /* 2-1. 이벤트배너 */
 .main .main-banner .partbox{
     height: 800px;
@@ -78,8 +85,21 @@
     height: 400px;
 }
 /* 2-5. 추천검색 */
+.main .main-key-search .partbox{
+    height: 400px;
+}
 /* 2-6. 주문진행 */
+.main .main-order-process .partbox{
+    height: 300px;
+}
 /* 2-7. 리뷰 */
+.main .main-review .partbox{
+    height: 300px;
+}
 /* 3. 하단영역 */
+.footer.inbox{
+    max-width: 1650px;
+    margin: 0 auto;
+}
 /* 3-1. 회사소개 */
 /* 3-2. SNS링크 */

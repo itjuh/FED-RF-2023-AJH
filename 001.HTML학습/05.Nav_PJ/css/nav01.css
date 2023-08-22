@@ -1,0 +1,211 @@
+@charset "utf-8";
+/* 네비게이션 유형 1 CSS - nav01.css */
+
+
+html,body,h1{
+    margin: 0;
+    padding: 0;
+}
+h1.tit{
+    padding: 20px;
+    text-align: center;
+}
+body{
+    color:#fff;
+    background: #06104b url(../images/nav1bg.png) no-repeat fixed center/cover;
+}
+/* 공통 클래스 */
+
+/* ul,ol 초기화 : 3無 */
+ul,ol{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+/* float에 의한 망가짐방지
+클리어설정 가상요소 clb */
+ul::after,ol::after,.clb::after{
+    content: '';
+    display: block;
+    clear: both;
+}
+/* 속박스 */
+.inbox{
+    max-width: 1650px;
+    margin: 0 auto;
+    outline: 2px dashed lime;
+}
+/* 상단영역 파트박스 */
+.part-box{
+    float: left;
+    box-sizing: border-box;
+}
+/* 네비게이션 박스 */
+.gnb{
+    /* padding: 0 min(70px, 7vw); */
+    outline: 2px dotted yellow;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+/* 12그리드 클래스 */
+.col-1 {width: 8.33%;}
+.col-2 {width: 16.66%;}
+.col-3 {width: 25%;}
+.col-4 {width: 33.33%;}
+.col-5 {width: 41.66%;}
+.col-6 {width: 50%;}
+.col-7 {width: 58.33%;}
+.col-8 {width: 66.66%;}
+.col-9 {width: 75%;}
+.col-10 {width: 83.33%;}
+.col-11 {width: 91.66%;}
+.col-12 {width: 100%;}
+
+/* 네비게이션 박스 안쪽 요소*/
+.gnb>ul>li{
+    position: relative;
+    /* 부모자격 - .sub-menu */
+    float: left;
+    /* 나는 왼쪽 너는 오른쪽 */
+    padding: 29px 0;
+    /* line-height로 밀던것을 패딩으로 밀어줌 */
+}
+/* 네비게이션 링크 a공통 */
+.gnb a{
+    color: #fff;
+    text-decoration: none;
+}
+/* 네비게이션 링크 상위a*/
+.gnb > ul > li > a{
+    display: block; 
+    /* 박스형만들기
+    (padding안쪽에 컨텐츠가 들어옴) 
+    가상요소가 글자위치로 옮
+    */
+    font-size: min(17px,1.7vw);
+    padding: 0 min(32px, 1.5vw);
+    /* line-height: 80px; */
+}
+/* 메인메뉴: 가상요소로 밑줄만들기 */
+/* 공통 클래스로 독립 */
+.line-ani > li > a::after{
+    content: '';
+    display: block;
+    /* 변경요소 */
+    width: 0%;
+    margin-left: 100%;
+    /* 글자와의 간격 */
+    margin-top: 3px;
+    height: 2px;
+    background-color: #fff;
+    /* 트랜지션 */
+    transition: .4s;
+}
+/* 상위 오버시 밑줄 */
+.line-ani > li:hover > a::after{
+    width: 100%;
+    margin-left: 0%;
+    /* 트랜지션 */
+    /* 오버시에 왼쪽 마진값은 애니 없애기!
+    안그러면 움직임 */
+    transition: width .4s;
+}
+.logo{
+    line-height: 80px;
+    /* padding: 0 3vw; */
+}
+.logo img{
+    width: min(173px,13vw);
+}
+/* 서브메뉴 
+- 높이값 0으로 숨길 때 숨길 박스에 보더나 패딩이 있으면 완전히 숨길 수 없다
+따라서, 보더 패딩은 없어야 함*/
+.sub-menu{
+    position: absolute;
+    /* 가로방향 메뉴 정중앙 이동 */
+    /* top은 현재 젠틀하다!
+    top을 주면 부모부터 수치를 크게 조정해야하므로
+    마진탑으로 세부조정한다 */
+    margin-top: 25px;
+    /* 엄마요소크기 절반이동! */
+    left: 50%;
+    /* 자식크기의 절반 반대로 이동! */
+    transform: translateX(-50%);
+    width: min(200px,16vw);
+    border-radius: 15px;
+    background-color: rgba(0, 0, 128, 0.507);
+    /* 박스 글로우 효과 */
+    box-shadow: inset 0 0 5px lightblue;
+    /* 숨기기 높이값0 */
+    height: 0;
+    /* 투명하게 op0 */
+    opacity: 0;
+    /* 넘치는 요소 숨기기 */
+    overflow: hidden;
+    
+    /* 트랜지션 */
+    transition: .5s ease-in-out;
+}
+/* 상위메뉴 li에 마우스오버시 서브메뉴 보이기 애니 공통*/
+.gnb>ul>li:hover .sub-menu{
+    /* 투명도 복구 */
+    opacity: 1;
+}
+/* 서브메뉴별 높이값 차등설정 */
+.gnb>ul>li.m5:hover .sub-menu{
+    /* 자동높이값은 애니메이션이 불가! */
+    height: calc(50px*5);
+}
+.gnb>ul>li.m3:hover .sub-menu{
+    /* 자동높이값은 애니메이션이 불가! */
+    height: calc(50px*3);
+}
+.gnb>ul>li.m1:hover .sub-menu{
+    /* 자동높이값은 애니메이션이 불가! */
+    height: 50px;
+}
+/* 서브메뉴 li */
+.sub-menu li{
+    /* width: 100%; */ /* 공통li 설정이 float:left가 아니므로 */
+    /* float설정이 있어도 한줄에 하나 씩 옮! */
+    text-align: center;
+}
+/* 서브메뉴 a */
+.sub-menu a{
+    display: block;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    line-height: 50px;
+    font-size: min(16px, 1.3vw);
+    font-weight: bold;
+    /* 반투명 */
+    opacity: 0.8;
+    transition: .2s;
+}
+/* 서브 a 오버시 효과 */
+.sub-menu a:hover{
+    opacity: 1;
+    transform: scale(1.05);
+}
+/* 탑메뉴 */
+.top-menu li{
+    float: left;
+}
+.top-menu li a{
+    display: block;
+    font-size: min(17px,1.7vw);
+    padding: 0 min(32px, 1.5vw);
+}
+
+/* 메인영역 */
+.main-area{
+    max-width: 1000px;
+    min-height: 600px;
+    line-height: 600px;
+    text-align: center;
+    font-size: 2.5vw;
+    border: 10px dashed lightgreen;
+    margin: 100px auto;
+}
+
