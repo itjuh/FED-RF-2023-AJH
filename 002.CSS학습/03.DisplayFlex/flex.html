@@ -322,6 +322,7 @@
             }
 
             /* 타이틀 t6 */
+            /* 줄바꿈박스 */
             .t6{
                 top: 550px;
                 height: 250px;
@@ -329,11 +330,69 @@
                 display: flex;
                 /* 플렉스 랩핑박스 : fxww */
                 flex-wrap: wrap; 
+                /* 진행방향정렬 중앙 jcc */
+                justify-content: center;
+                /* 수직방향(여러줄) : ac */
+                align-content: space-evenly;
+                /* 
+                [ align-content 속성 ]
+
+                - 진행방향의 수직으로 정렬
+                - 진행방향의 수직으로 여러줄이므로 content!
+
+                1) flex-start : 처음위치(기본값)
+                2) flex-end : 끝위치
+                3) center : 중앙
+                4) space-between : 
+                    아이템요소 양쪽끝에 붙고 사이간격 일정
+                5) space-around : 
+                    아이템요소 양쪽간격 일정
+                6) space-evenly : 
+                    아이템요소 양쪽과 사이간격 일정
+                7) stretch :
+                    높이값이 auto인 경우 등분할 늘려주기!
+                */
             }
             /* shrink해제 */
             .t6 li{
                 flex-shrink: 0;
-                margin: 0px 22px;
+                margin: 0px 15px;
+            }
+            /* 타이틀 t7 */
+            /* 마진없이 플렉스 랩핑박스 줄바꿈하기 */
+            .t7{
+                top: 25px;
+                /* 오른쪽 정렬을 위해 기존left해제 */
+                left: auto;
+                /* right기준 새로운 세팅 */
+                right: 60px;
+                /* transform해제(가운데정렬) */
+                transform: none;
+                width: 350px;
+                height: 250px;
+                /* 플렉스박스 */
+                display: flex;
+                /* 플렉스 랩핑박스 : fxww */
+                flex-wrap: wrap; 
+                /* 
+                flex-wrap: wrap;
+                자식요소에 flex-shrink:0; 
+                준 것처럼 자동으로 변경된다.
+                */
+                /* 진행방향정렬 중앙 jcc */
+                justify-content: space-evenly;
+                /* 수직방향(여러줄) : ac */
+                align-content: center;
+            }
+            /* 줄바꿈요소 세팅 */
+            .t7 li.brk{
+                /* width: 100%; */
+                flex-basis: 100%;
+                /* flex-basis는 width와 동일하지만 flex에서만
+                사용 가능한 가로크기 속성 */
+                height: 0;
+                border: none;
+                margin-top: 53px;
             }
         </style>
     </head>
@@ -342,11 +401,11 @@
         <div class="wrap">
             <!-- 파티션박스 -->
             <ul class="flex-box">
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
+                <li style="order:2;"></li>
+                <li style="order:1;"></li>
+                <li style="order:4;"></li>
+                <li style="order:5;"></li>
+                <li style="order:3;"></li>
             </ul>
 
             <!-- 타이틀박스 -->
@@ -408,6 +467,21 @@
                 <li>T</li>
                 <li>T</li>
                 <li>E</li>
+            </ol>
+            <!-- 타이틀박스7 -->
+            <ol class="tit t7">
+                <li>L</li>
+                <li>O</li>
+                <li>T</li>
+                <li>T</li>
+                <li>E</li>
+                <!-- 줄바꿈용 요소 li.brk 추가 -->
+                <li class="brk"></li>
+                <li>W</li>
+                <li>O</li>
+                <li>R</li>
+                <li>L</li>
+                <li>D</li>
             </ol>
         </div>
     </body>
