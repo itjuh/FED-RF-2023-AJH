@@ -1,0 +1,73 @@
+[ 오늘의 일정 : 8월23일(수) ]
+------------------------------
+
+1. JS학습
+      1) 제어문 : for문 / while문
+      2) 제어문 연습 : for문 연습
+
+2. CSS학습
+      - Display Flex
+
+3. 쉐도잉 프로젝트 : 도깨비 PJ
+      - 메인페이지 상세구현 : 상단영역
+
+4. 프로젝트 구현 및 리뷰 시간
+
+------------
+...1교시...
+일정확인
+벤치마킹
+for문 제어문
+
+...2교시...
+제어문 이어서~
+
+외부에 함수를 만들고 이름만 써서 함수를 연결 한 것은
+    내부에 직접 익명함수 코드를 작성한 것과 같음
+window.addEventListener('load',하하);
+window.addEventListener('load',function(){console.log('나야나!');});
+function 하하(){
+    console.log('나야나!');
+}
+
+()가 있으면 함수
+내가 안 만들었으면 내장함수
+
+[ ; 쓸지말지 구분법 ]
+명령문 쓰고
+선언적함수나 제어문은 안쓰고
+
+Ajax로 데이터 비동기로 보낼때는 필요없지만
+post방식으로 데이터 가져갈때는 select박스안에 쓸때 name안에 값을 가져감
+
+요소를 바꿀때 어떤 요소를 어떻게 바꿀지에대해 명확하게 정해야함
+
+this키워드 - 나 자신! -> 할당 된 요소자신(select)
+
+    document.querySelector('#sel').onchange = showGugu;
+    document.querySelector('#sel').onchange 
+    = function(){console.log(this.value);};
+    -> 함수를 할당
+        (계속해서 실행 됨/익명함수를 넣은것과 동일
+        /나 자신을 담은 것과 같으므로 this.value로 쓸 수 있음)
+    -> this가 먹힘 할당시킨상태라서 (연관성을 만듦)
+    document.querySelector('#sel').onchange = showGugu();
+    -> 함수를 실행 끝!
+    document.querySelector('#sel').onchange 
+    = function(){ 함수명(); };
+    -> 다른함수를 부른 것. this가 안먹힘. 값을 주려면 매개변수 넣어야함
+
+
+
+
+[ select 요소 ]
+1. 보통 정해진 선택값을 나열하여 선택입력을 하는 입력요소
+2. form요소 내부에 주로 사용되고 데이터를 DB에 전송하는 목적
+으로 많이 이용 됨!
+3. id를 설정할 때 name속성을 같이 셋팅할 경우가 많은데 이는 
+post방식 데이터 전송 시 서버서이드에서 name으로 데이터를 읽어
+가기 때문에 일반적으로 사용!
+4. 필수 하위 요소 : option
+    -> 속성으로 value를 쓰고 사용하면 JS등 프로그래밍에서
+    이 값을 읽어감
+    -> value속성을 셋팅하지 않으면 option의 데이터를 읽어감

@@ -73,5 +73,10 @@
     background-color: #576252;
 }
 /* 3-1. 하단로고 */
+.footer .logo{
+    height: 70px;
+    background: url(../images/logo_en_wt.png) no-repeat 3%/auto min(2.8vw,35px);
+}
 /* 3-2. 회사소개 */
+
 /* 3-3. SNS링크 */

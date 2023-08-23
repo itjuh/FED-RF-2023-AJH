@@ -122,9 +122,9 @@
     max-width: 1650px;
     margin: 0 auto;
 }
-/* 3-1. 하단로고 */
-.footer .footer-company-desc {
+.footer .footer-company-desc .partbox{
     height: 300px;
 }
+/* 3-1. 하단로고 */
 /* 3-2. 회사소개 */
 /* 3-3. SNS링크 */
