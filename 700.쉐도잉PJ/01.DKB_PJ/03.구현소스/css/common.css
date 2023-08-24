@@ -5,10 +5,62 @@
 
 /******** 1. 상단영역 ***********/
 #header {
-    background-color: lightblue;
+    /* background-color: lightblue; */
 }
 .header .partbox {
     height: 120px;
+}
+/* 1-1.로고박스 */
+.header__logo img{
+    margin-top: 40px;
+    width: 126px;
+}
+/* 1-2-1. 탑메뉴 */
+.top-menu ul{
+    /* 플렉스박스 */
+    display: flex;
+    /* 진행방향 정렬 */
+    justify-content: flex-end;
+    /* 패딩 */
+    padding: 14px 16px 7px 0px;
+}
+/* 1-2-2. GNB메뉴 */
+.gnb ul{
+    /* 플렉스박스 */
+    display: flex;
+    /* 진행방향 정렬 */
+    justify-content: flex-end;
+}
+/* li사이간격주기 */
+.top-menu li+li{
+    margin-left: 12px;
+}
+/* 탑메뉴 a */
+.top-menu a{
+    font-size: 1.3rem;
+    /* 줄바꿈방지! */
+    white-space: nowrap;
+}
+/* GNB메뉴 a */
+.gnb ul>li>a{
+    display: block;
+    font-size: 1.6rem;
+    padding: 23px 13px;
+    font-weight: 500;
+    /* 줄바꿈방지! */
+    white-space: nowrap;
+}
+/* 4번째 li~ 6번째 li하위메뉴 표시하기 */
+.gnb ul>li:nth-child(3) ~ li:nth-child(-n+6)>a::after{
+    content: '∨';
+    display: inline-block;
+    transform: scale(.6, .4);
+    /* font-size는 줄맞춤 해야함 */
+    margin-left: 2px;
+}
+/* GMB메뉴 li오버시(a에 하면 서브메뉴 들어갈때 꺼짐) */
+.gnb ul>li:hover>a{
+    color: red;
 }
 /******** 2. 메인영역 ***********/
 #main {

@@ -8,10 +8,54 @@
     <script src="./js/for_ex2.js" defer></script>
     <!-- CSS -->
     <style>
+    /********************************************
+                [ CSS에서 변수 사용하기! ]
+            1. 정의 : 같은 값을 사용하는 속성에 
+            변수를 사용하여 반복작업을 줄여주기 위한
+            CSS 에서만 사용되는 변수
+
+            2. 사용법 :
+            (1) 변수 선언부 : 선언 및 세팅구역
+            :root{
+                --변수명:값;
+                --변수명:값;
+                --변수명:값;
+            }
+            (2) 호출
+                - 사용하고자 하는 속성값에 
+                변수를 아래처럼 호출
+                var(--변수명)
+            (3) 예시
+            :root{
+                --my-color:red;
+                --my-num:5;
+            }
+            #my{
+                width: calc(1000px/var(--my-num));
+            }
+            h1{
+                color: var(--my-color);
+            }
+            .mymy{
+                background-color: var(--my-color);
+            }
+
+    ********************************************/
+        /* 변수구역 */
+        :root{
+            /* 1. 분할수 */
+            --sp-num: 5;
+            /* 2. 보더색 */
+            --bd-color: gray;
+        }
         /* 초기화구역 */
         html,body{
             margin: 0;
             padding: 0;
+        }
+        body * {
+            outline: 1px dashed var(--bd-color);
+            /* 공사중표시 */
         }
         ul, ol{
             margin: 0;
@@ -26,38 +70,109 @@
         .list-box{
             max-width: 1400px;
             margin: 0 auto;
+            padding: 10px;
         }
         /* 플렉스 박스 */
         .list-box ul{
+            /* 플렉스박스 */
             display: flex;
+            /* 플랙스 래핑 */
+            flex-wrap: wrap;
+            /* 래핑하면 자식박스 flex-shrink : 0; 
+            자동으로 적용됨, 작아질래? 아니! */
+            /* 
+                [ 사이간격 주기 속성 : gap ]
+                gap : 위아래 양쪽;
+                gap : 한번에 모든 방향;
+
+                간격단위는 여러가지 사용 가능!
+            */
+            gap: 3vw 2vw;
+            
         }
         .list-box li{
-            flex-basis: 50%;
+            /* 부모자격 : item-info */
+            position: relative;
+            /* 얼마나 차지할래? width 25% */
+            /* flex-basis: calc(100%/4); */
+            /* 등분할 비율을 %로 줄 때 calc로 분할하자 */
+            /* 갭이 있는 경우 계산식 수정 */
+            /* calc((100% - 가로갭*(분할수 - 1))/분할수) */
+            /* 가로갭*(분할수 - 1) : 사이간격 */
+            flex-basis: 
+            calc((100% - 2vw*(var(--sp-num) - 1))/var(--sp-num));
         }
-    </style>
+        /* 이미지 채우기 */
+        .list-box img{
+            width: 100%;
+            /* 등불할 된 박스의 가로를 채우기
+            세로는 비율유지 */
+        }
+        /* 상품정보 박스 */
+        .item-info {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            text-align: center;
+            color: #fff;
+            background-color: #00000080;
+        }
+        #select-sp{
+            width: 100px;
+            height: 30px;
+            font-size: 1rem;
+            text-align: center;
+        }
+        /* 미디어 쿼리 */
+        /* 1250px 이하 미디어쿼리 시작 */
+        @media screen and (max-width:1250px) {
+            :root{
+                /* 분할수 조정 */
+                --sp-num:4;
+                --bd-color: hotpink;
+            }
+        }
+        /* 1250px 이하 미디어쿼리 종료 */
+        /* 1050px 이하 미디어쿼리 시작 */
+        @media screen and (max-width:1050px) {
+            :root{
+                /* 분할수 조정 */
+                --sp-num:3;
+                --bd-color: lime;
+            }
+        }
+        /* 1050px 이하 미디어쿼리 종료 */
+        /* 700px 이하 미디어쿼리 시작 */
+        @media screen and (max-width:700px) {
+            :root{
+                /* 분할수 조정 */
+                --sp-num:2;
+                --bd-color: coral;
+            }
+        }
+        /* 700px 이하 미디어쿼리 종료 */
+        /* 500px 이하 미디어쿼리 시작 */
+        @media screen and (max-width:500px) {
+            :root{
+                /* 분할수 조정 */
+                --sp-num:1;
+                --bd-color: red;
+            }
+        }
+        /* 500px 이하 미디어쿼리 종료 */
+        </style>
 </head>
 <body>
     <!-- 타이틀 -->
     <h1 class="tit">JS3-4.for문 연습2 - 쇼핑몰 상품 리스트</h1>
+    <!-- 리스트 여러개보기 select박스 -->
+    <select name="s-sp" id="s-sp">
+        <option value="1">1개씩 보기</option>
+        <option value="2">2개씩 보기</option>
+        <option value="5">5개씩 보기</option>
+        <option value="10">10개씩 보기</option>
+    </select>
     <!-- 쇼핑몰 리스트박스 -->
-    <section class="list-box">
-        <ul>
-            <li>
-                <img src="./images/dress/1.jpg" alt="dress">
-                <h3>상품명</h3>
-                <h4>가격</h4>
-            </li>
-            <li>
-                <img src="./images/dress/1.jpg" alt="dress">
-                <h3>상품명</h3>
-                <h4>가격</h4>
-            </li>
-            <li>
-                <img src="./images/dress/1.jpg" alt="dress">
-                <h3>상품명</h3>
-                <h4>가격</h4>
-            </li>
-        </ul>
-    </section>
+    <section class="list-box"></section>
 </body>
 </html>
