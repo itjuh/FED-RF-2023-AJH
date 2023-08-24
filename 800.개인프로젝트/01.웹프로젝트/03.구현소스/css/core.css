@@ -24,12 +24,5 @@ html{
 body{
     font-family: 'Nanum Gothic', sans-serif;
 }
-.partbox {
-    float: left;
-    box-sizing: border-box;
-    outline: 1px dotted gray;
-}
-.inbox {
-    outline: 1px dashed red;
-}
+
 

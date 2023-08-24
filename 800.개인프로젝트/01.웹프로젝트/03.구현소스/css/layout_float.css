@@ -1,6 +1,6 @@
 @charset "uft-8";
 
-/* 온고롱 PJ : 레이아웃 CSS - layout.css */
+/* 온고롱 PJ : 레이아웃 CSS - layout_float.css */
 /* 공통레이아웃 */
 
 /* 12그리드 클래스 */
@@ -17,6 +17,16 @@
 .col-11 {width: 91.66%;}
 .col-12 {width: 100%;}
 
+/* 파트박스 float:left */
+.partbox {
+    float: left;
+    box-sizing: border-box;
+    outline: 1px dotted gray;
+}
+/* 메인박스  */
+.inbox {
+    outline: 1px dashed red;
+}
 /* 가상요소 클리어 */
 .clb::after{
     content: '';
