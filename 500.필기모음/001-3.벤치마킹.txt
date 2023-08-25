@@ -56,6 +56,12 @@ https://dezea.digital/showcase
 7. 투굿
 https://twogood.com.au/
 (1) 마우스가 제품위에서 뒤쪽에 위치한 것 처럼 보여짐
+
+8. le fruit studio
+https://lefruitstudio.fr/en/works/basement-labs
+(1) 글자위 오버시 글자는 굵어지고
+이미지 따라다니기
+    -> JS실험실에서 해보자!
 _______________________________________
 
 1. 패션쇼 기획회사 포트폴리오 사이트
