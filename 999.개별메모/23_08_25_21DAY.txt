@@ -64,3 +64,22 @@ const arr2 = [];
 arr2.length = 3; : arr2배열의 크기를 3으로 한다.
 arr2.push('값'); : arr2 배열의 크기가 4가 된다.([0][1][2]는 값이 없음 [3] 값이 들어감)
 
+...5교시... 3D애니메이션
+
+#900(나무색)
+부모박스
+perspective: 480px; /* 소실점까지의 거리 */
+animation-play-state: running ->작동
+
+...6교시... 엘사움직이기
+3D이미지는 캔버스코딩!
+perpective-origin : 가로 세로;
+
+세로 커짐(바닥에서 보기) 작아짐(공중에서 보기)
+
+https://matthewlein.com/tools/ceaser (배지어곡선 테스트사이트)
+
+...7교시... 솔라시스템
+
+
+
