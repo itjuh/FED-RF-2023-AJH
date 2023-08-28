@@ -1,7 +1,7 @@
 @charset "uft-8";
 /* CSS 불러오기 영역 */
 /* 리셋, 공통, 코어, 레이아웃 외부 CSS합치기(merging) */
-@import url(./layout.css);
+@import url(./layout_copy.css);
 @import url(./common.css);
 @import url(./core.css);
 @import url(./reset.css);
