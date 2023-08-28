@@ -5,6 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>JS4-1. 배열변수와 객체</title>
         <style>
+            /* 동영상 주변 암전효과 박스 */
             body::before {
                 content: "";
                 display: none;
@@ -15,6 +16,7 @@
                 height: 100vh;
                 background-color: rgba(0, 0, 0, 0.592);
             }
+            /* body에 클래스 on설정 시 보임 */
             body.on::before {
                 display: block;
             }
@@ -33,10 +35,29 @@
                 margin: 5px auto;
                 font-size: 24px;
             }
+            /* 버튼박스인 choice 디자인 */
+            .choice{
+                line-height: 20px;
+            }
         </style>
+        <!-- 객체 JS불러오기 -->
+        <script src="./js/JS4-1.object.js"></script>
         <!-- JS코드구역 -->
         <script>
-        /********************************************************
+            // 로딩구역//////////////////////////////
+            window.addEventListener('DOMContentLoaded',loadFn);
+            // DOMContentLoaded 이벤트 : html DOM 로딩 후 발생
+            /*******************************************
+             * 함수명 : loadFn
+             * 기  능 : 로딩 후 실행함수(html이 아래에 있어서)
+            *******************************************/
+            function loadFn(){
+                // 1. 호출확인
+                console.log("로딩완료");
+                // 2. 출력대상 : .cont
+                let target = document.querySelectorAll('.cont');
+                console.log("target:",target);
+            /********************************************************
                 [ 배열(Array) 변수란? ]
 
             - 여러개의 데이터를 묶음으로 변수하나에 저장함
@@ -60,19 +81,6 @@
             독립된 별도의 기능이 있어야하고 명사적특징과
             동사적 특징이 모두 있어야 객체다! 
         ********************************************************/
-            // 로딩구역//////////////////////////////
-            window.addEventListener('DOMContentLoaded',loadFn);
-            // DOMContentLoaded 이벤트 : html DOM 로딩 후 발생
-            /*******************************************
-             * 함수명 : loadFn
-             * 기  능 : 로딩 후 실행함수(html이 아래에 있어서)
-            *******************************************/
-            function loadFn(){
-                // 1. 호출확인
-                console.log("로딩완료");
-                // 2. 출력대상 : .cont
-                let target = document.querySelectorAll('.cont');
-                console.log("target:",target);
                 // 3. 내용출력하기
                 // 3-1. new키워드가 함께 배열 선언, 할당하기
                 const arr1 = new Array(
@@ -182,8 +190,408 @@
                 arr4.push('헤헤');
                 console.log(arr4);
 
+
+                /******************************************** 
+                        [ 객체(Object) 란? ]
+
+                - 일반적으로 JS에서 객체란 속성과 메서드를
+                가지는 프로그램 단위체
+                - 속성은 명사적 특징, 메서드는 동사적 특징
+                객체예)
+                https://www.w3schools.com/js/js_objects.asp
+                - 자동차의 명사적특징: 핸들, 백미러, 트렁크, 바퀴 등
+                - 자동차의 동사적특징: 운전하다, 멈추다, 주차하다 등
+
+                (참고: 브라우저에 이미 만들어져 있는 객체들)
+                -> 내장객체라고함!
+                -> 브라우저 내장객체-> 봄(BOM:Browser Object Model)
+                -> https://www.w3schools.com/js/js_window.asp
+
+                window : 윈도우(브라우저화면) 표시 관련객체
+                document : 문서구조에 관련된 객체
+                Array : 배열객체
+                Object : 객체를 만들기 위한 객체
+                Date : 날짜객체
+                Math : 수학객체
+                ___________________________________
+
+                ->>> 내장객체 중 객체를 만들기위한 객체인 Object를
+                사용하여 객체를 만들어보자!
+
+                [ 객체의 선언의 2가지 방식 ]
+                1. new 키워드 선언방식
+                - new Object()
+
+                2. 리터럴 선언방식(객체리터럴)
+                - 변수 = {}
+
+                [ 객체의 할당 ]
+                - 중괄호{}를 사용하여 할당코딩을 함
+                - {속성명:값,속성명:값,...}
+                - 여러값을 셋팅할때 콤마로 구분한다
+                - 배열과 비교해서 이해하기 쉽고 호출하기 쉽다!
+                - 객체 스타일로 데이터 구조를 만들고
+                이런 파일로 DB와 데이터 통신을 한다!
+                이 파일의 이름은? 제이슨(JSON:확장자.json)
+
+                [ 객체의 호출 ]
+                - 객체명[속성명]
+                또는
+                - 객체명.속성명
+
+            ********************************************/
+
+            // 객체를 선언하여 생성해보자!
+            // new Object()를 사용하여 생성
+            // 배열과 마찬가지로 객체는 형식이 변경되지 않도록
+            // let보다는 const로 많이 씀
+
+            const SSG = new Object({
+                "너의 이름은?":"손석구",/* 속성명을 자유롭게 쓸땐 ""감싸주면 됨 */
+                생일:"1983년 2월 7일",
+                키:"178cm",
+                몸무게:"80kg",
+                혈액형:"C형",
+                성별:"남성",
+                대표작:"나의 해방일지,범죄도시2",
+                소속사:"셋별당엔터",
+                비밀번호:7777,
+                팬레터:function(){
+                    // 변경대상.style
+                    let mycss = target[3].style;
+                    // 1. 메세지 띄우기
+                    alert("상남자 오빠! 지금뭐해?");
+                    // 2. 배경이미지 넣기
+                    mycss.background = 'url(https://file.mk.co.kr/meet/neds/2022/05/image_readtop_2022_456627_16533579475052374.jpeg) repeat-x top/auto 100%'
+                    // 3. 글자색
+                    mycss.color = '#fff';
+                    // 4. 글자그림자
+                    mycss.textShadow = '0px 0px 5px #000';
+                    // 5. 글자내용 변경
+                    target[3].innerText = '손석구 최고 멋쟁이! 승승장구! 화이팅!!!'
+                    // 6. 줄간격
+                    mycss.lineHeight = '84px';
+                    // 7. 박스크기
+                    mycss.transform = 'scale(1.2)';
+                    // 8. 트랜지션
+                    mycss.transition = '1s ease-out 1s';
+                } //// 팬레터 함수//////
+            });
+            // 객체 확인
+            console.log('석구개체:',SSG);
+            // 객체 출력하기
+            // 출력대상 : target[3]
+            target[3].innerHTML = `
+                당신이 좋아하는 남자 배우는? 
+                ${SSG["너의 이름은?"]} / 몸무게를 아세요? ${SSG.몸무게}<br>
+                생년월일은? ${SSG.생일} / 대표작은? ${SSG["대표작"]}
+            `;
+            // 2줄이니까 줄간격 조정
+            target[3].style.lineHeight = '40px';
+            // 객체에 셋팅된 함수를 보통 메서드라고 부른다.
+            // 이 메서드를 호출해보자
+
+            target[3].onclick = SSG["팬레터"];
+            // title 속성 넣기
+            target[3].title = `
+            여기를 클릭하여 ${SSG["너의 이름은?"]}의 팬레터를 확인하세요!
+            `;/* 툴팁과 얼럿은 엔터가 먹힘;; /n도 먹힘 */
+
+            // 손가락표시
+            target[3].style.cursor = 'pointer';
+            /*************************************** 
+                [ new 키워드 없이 바로 객체 생성하기 ] 
+                -> 객체 리터럴 (추천방식!)
+
+                - 방법: 변수 선언 후 이퀄 뒤에 바로 중괄호 사용!
+                예) let obj = {속성명:값,속성명:값,...};
+
+                [ 객체의 속성 셋팅시 문자형 또는 변수형 사용하기 ]
+                
+                1. 문자형 속성 - 따옴표로 싸는 방법
+
+                예) let obj = {"나는나":"호호호","너는너":"하하하"}
+                -> 문자형 속성의 객체 호출시
+                객체명[문자형속성명]
+                예) obj["나는나"]
+
+                2. 변수형 속성 - 따옴표로 안싸는 방법
+                예) let obj = {name:"김수현",tall:"186cm"};
+                -> 변수형 속성의 객체 호출시
+                객체명.속성명
+                예) obj.name
+
+                또는
+
+                객체명["속성명"]
+                예) obj["name"]
+                -> 반드시 변수형 속성명을 따옴표로 싸서
+                문자형으로 표시해야함!
+                obj[name] -> 에러남!
+
+                -> 만약 문자형으로 설정된 경우에도
+                변수형으로 사용될 수 있는 문자면 변수형호출가능!
+                예) var obj = {"하하하":"나나나"}
+                    obj["하하하"] 또는 obj.하하하
+
+            ***************************************/
+            // 객체 생성하기 - 객체 리터럴
+            const GU = {
+                name: '공유',
+                tall: '184cm',
+                weight: '74kg',
+                com: '매니지먼트 숲',
+                work: '도깨비, 부산행',
+                msgFn: function(txt){
+                    // 변경대상.style
+                    let mycss = target[4].style;
+                    // 1.메세지 띄우기 : txt(메세지 내용)
+                    console.log(txt);
+                    // alert에 ,사용 불가 +만 가능
+                    alert('팬레터:'+txt);
+                    // 2. 배경이미지 넣기
+                    mycss.background = 'url(https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/Gong_Yoo_%28Sep_2016%29.png/250px-Gong_Yoo_%28Sep_2016%29.png) repeat-x top/auto 100%'
+                    // 3. 글자색
+                    mycss.color = '#fff';
+                    // 4. 글자그림자
+                    mycss.textShadow = '0px 0px 5px #000';
+                    // 5. 줄간격
+                    mycss.lineHeight = '24px';
+                    // 6. 박스 높이값 변경
+                    mycss.height = '100px';
+                    // 7. 글자 패딩
+                    mycss.paddingTop = '100px';
+                    // 8. 트랜지션
+                    mycss.transition = '1s ease-out 1s';
+                } //////// msgFn 함수 ///////////
+            // 객체확인
+            }; /////////// GU객체 /////////////////
+            console.log('GU객체 :',GU);
+            // 출력대상 : target[4]
+            // 줄간격 조정
+            target[4].style.lineHeight = '24px';
+            // 내용출력
+            target[4].innerHTML = `
+                저는 ${GU.name}입니다. 몸무게는 비밀인데요, 그래도 말씀드리자면
+                ${GU.weight}입니다. ㅎㅎㅎ<br> 제 대표작은 ${GU.work}입니다.<br>
+                제 소속사는 모르시는 분들이 많은데 ${GU.com}입니다. 빠이빠이~!
+            `;
+            // title 속성 넣기
+            target[4].title = `
+            여기를 클릭하여 ${GU["name"]}의 팬레터를 확인하세요!
+            `;/* 툴팁과 얼럿은 엔터가 먹힘;; /n도 먹힘 */
+
+            // 손가락표시
+            target[4].style.cursor = 'pointer';
+        
+            // 공유박스 클릭 시 GU객체 메서드 호출하기
+            target[4].onclick = function(){
+                // 실행코드구역에서 객체 메서드를 호출
+                // 전달값도 여기서 보내준다!
+                GU.msgFn("\n공유오빠 화이팅!!\n오징어게임도 재미있었어요.");
+            };
+            /******************************************************
+                [ 미션 : 내가 만든 객체 활용하기 ]
+                1. 주제 : 영화정보
+                2. 조건 : 객체의 변수명으로 자신만의 이름으로 작성
+                    -> 단, 속성명은 똑같이
+                3. 객체를 쌤과 모두에게 공유하기(톡업!)
+            ******************************************************/
+            // 자신만의 오브젝트!
+            let an_obj = {};
+            // 오브젝트 형과 할당만 하고 속성 및 값은 아래에서
+            // 1. 영화제목 : title
+            an_obj.title = '리바운드';
+            // 2. 감독 : director
+            an_obj.director = '장항준';
+            // 3. 배우
+            an_obj.actor = '안재홍, 이신영, 정진운, 김택, 정건주, 김민, 안지호 外';
+            // 4. 장르
+            an_obj.genre = '스포츠, 농구, 성장, 코미디';
+            // 5. 상영등급
+            an_obj.ratings = '12세';
+            // 6. 예고편
+            an_obj.trailer = function(){
+                console.log('예고편','D2RAJe0ZL1Q');
+                // 플레이어 함수 호출!
+                playMovie('D2RAJe0ZL1Q');
+            } /////////// trailer함수 ////////////
+
+            // 객체확인
+            console.log('나의 객체: ',an_obj);
+            // 줄간격 조정
+            target[5].style.lineHeight = '36px';
+            // 손가락모양
+            target[5].style.cursor = 'pointer';
+            // 글자크기
+            target[5].style.fontSize = '14px';
+            
+            
+            // 화면에 정보를 보여주는 함수
+            const showMovieInfo = function(){
+                // 함수호출 확인
+                console.log('영화정보!!');
+                // 1. 대상선정 : target[5]
+                // 2. 내용넣기
+                target[5].innerHTML = `
+                    ♣ 영화명 : ${an_obj.title} 
+                    ♣ 감독 : ${an_obj.director} <br>
+                    ♣ 배우 : ${an_obj.actor} 
+                    ♣ 장르 : ${an_obj.genre} 
+                    ♣ 등급 : ${an_obj.ratings} 
+                `;
+                // 툴팁보이기
+                target[5].title = `클릭하시면 ${an_obj.title} 예고편을 보실 수 있습니다!`;
+                // 예고편메서드 호출
+                target[5].onclick = an_obj.trailer;
+
+            }; ////////// showMovieInfo 함수 //////////
+                        
+            // 최초호출!
+            showMovieInfo();
+
+            // 초이스버튼 링크 걸기
+            // 대상선정 : .choice button
+            let choice = document.querySelectorAll('.choice button');
+            console.log('초이스 : ',choice);
+
+            // 초이스 개수
+            let choice_cnt = choice.length;
+            console.log('zoe_obj',zoe_obj);
+
+            // for문으로 버튼들을 click이벤트 설정함!!
+                for(let i = 0; i < choice_cnt; i++){
+                    choice[i].onclick = function(){
+                        // 1. 버튼 텍스트
+                        let btxt = this.innerText;
+                        console.log('난누구?',btxt);
+                        // 할당 전 이전 영화객체
+                        console.log('an_obj',an_obj);
+
+                        // 2. 버튼 텍스트에 해당하는 객체를
+                        // 기존객체에 덮어쓰기
+                        switch(btxt){
+                            case "박석호초이스":
+                                an_obj = tom_obj;
+                                break;
+                            case "이조은초이스":
+                                an_obj = zoe_obj;
+                                break;
+                            case "이동엽초이스":
+                                an_obj = nick_obj;
+                                break;
+                            case "신용진초이스":
+                                an_obj = shin_Obj;
+                                break;
+                            case "최수진초이스":
+                                an_obj = csj_obj;
+                                break;
+                            case "유혜경초이스":
+                                an_obj = hg_obj;
+                                break;
+                            case "박서진초이스":
+                                an_obj = seo_obj;
+                                break;
+                            case "박정현초이스":
+                                an_obj = jh_obj;
+                                break;
+                            case "김민정초이스":
+                                an_obj = kmj_obj;
+                                break;
+                            case "임경은초이스":
+                                an_obj = lke_obj;
+                                break;
+                            case "김윤민초이스":
+                                an_obj = kimyoonmin_obj;
+                                break;
+                            case "최지민초이스":
+                                an_obj = cake_obj;
+                                break;
+                            case "문승준초이스":
+                                an_obj = Moon_Obj;
+                                break;
+                            case "최진구초이스":
+                                an_obj = tonyFilm;
+                                break;
+                            case "유승환초이스":
+                                an_obj = yu_obj;
+                                break;
+                            case "김내우초이스":
+                                an_obj = naewoo_Obj;
+                                break;
+                        }
+                        console.log(an_obj);
+                        // 3. 객체 세팅함수 호출!!
+                        showMovieInfo();
+                    }; /////////// click 이벤트 함수 ////////
+                } 
             }////////////loadFn함수///////////////////
             //////////////////////////////////////////
+
+            /********************************************
+                함수명 : playMovie
+                기능 : 영화예고편 화면 띄우기
+            ********************************************/
+            function playMovie(mcode){ /* mcode - 영화아이디 */
+                // 함수호출 및 전달값 확인
+                console.log('난 진짜야~',mcode);
+                // 1. 동영상 박스 대상 선정: #mvbox
+                let mvbox = document.querySelector('#mvbox');
+                console.log('mvbox:',mvbox);
+                // 2. 영화박스에 아이프레임 넣기
+                mvbox.innerHTML = `
+                <div id='mv'>
+                    <!-- 유튜브 아이프레임 -->
+                    <iframe width="100%" height="100%" src="https://www.youtube.com/embed/${mcode}?autoplay=1" allow="autoplay"></iframe>
+                    <!--닫기버튼-->
+                        <button class="cbtn">×</button>
+                </div>
+                `;
+                // 3. 삽입 된 동영상 박스 CSS 설정
+                let mv = document.querySelector('#mv');
+                let css = mv.style;
+                css.position = 'fixed';
+                css.top = '50%';
+                css.left = '50%';
+                css.transform = 'translate(-50%, -50%)';
+                css.width = '700px';
+                css.height = '450px';
+                css.backgroundColor = 'black';
+
+                // 4. 닫기버튼 CSS 세팅하기
+                let cbtn = document.querySelector('.cbtn');
+                console.log('cbtn:',cbtn);
+                // cbtn.style.cssText는 직접 속성값으로 넣음
+                cbtn.style.cssText = `
+                    position: absolute;
+                    top: 0;
+                    right: -70px;
+                    width: 50px;
+                    height: 50px;
+                    border: none;
+                    color: #fff;
+                    background-color: blue;
+                    font-size: 40px;
+                    font-weight: bold;
+                    border-radius: 50%;
+                    cursor: pointer;
+                    line-height: 50px;
+                `;
+
+                // 아이프레임 보더 없앰
+                mv.querySelector('iframe').style.border = 'none';
+                // 5. 닫기버튼 클릭 시 #mv 제거하기
+                cbtn.onclick = function(){
+                    mv.remove();
+                    document.body.classList.remove('on');
+                }; ////////// click이벤트 함수 //////////
+
+                // 6. body요소에 클래스 on 주기
+                // 동영상 주변 배경 암전효과
+                document.body.classList.add('on');
+
+            } /////// playMovie 함수 ///////
+            ///////////////////////////////
         </script>
     </head>
 
@@ -196,6 +604,26 @@
         <div class="cont"></div>
         <div class="cont"></div>
         <div class="cont"></div>
-       
+        <div class="cont choice">
+            <!-- 영화초이스 버튼박스 -->
+            <button>박석호초이스</button>
+            <button>이조은초이스</button>
+            <button>이동엽초이스</button>
+            <button>신용진초이스</button>
+            <button>최수진초이스</button>
+            <button>유혜경초이스</button><br>
+            <button>박서진초이스</button>
+            <button>박정현초이스</button>
+            <button>김민정초이스</button>
+            <button>임경은초이스</button>
+            <button>김윤민초이스</button>
+            <button>최지민초이스</button><br>
+            <button>문승준초이스</button>
+            <button>최진구초이스</button>
+            <button>유승환초이스</button>
+            <button>김내우초이스</button>
+        </div>
+        <!-- 영화 예고편 동영상용 박스 -->
+        <aside id="mvbox"></aside>
     </body>
 </html>

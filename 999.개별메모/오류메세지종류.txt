@@ -12,3 +12,6 @@ Uncaught ReferenceError: Cannot access 'dog' before initialization
 이미 선언 된 전역변수 let변수를 아래에서 var로 재선언 할 수 없음
 Uncaught SyntaxError: Identifier 'sport' has already been declared 
 
+객체가 정의되지 않음
+같은 이름의 객체가 JS파일에 존재하여 오류가 생겨 js파일 전체를 읽어오지 못함
+Uncaught ReferenceError: zoe_obj is not defined
