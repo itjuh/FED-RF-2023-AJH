@@ -361,4 +361,23 @@ naewoo_Obj.trailer = function () {
     // 플레이어함수 호출!
     playMovie('Jb1eMxccojs');
 }; // trailer 함수 /////////////////
+// 내 오브젝트!
+let anj_obj = {};
+// 오브젝트 형과 할당만 하고 속성 및 값은 아래에서
+// 1. 영화제목 : title
+anj_obj.title = '리바운드';
+// 2. 감독 : director
+anj_obj.director = '장항준';
+// 3. 배우
+anj_obj.actor = '안재홍, 이신영, 정진운, 김택, 정건주, 김민, 안지호 外';
+// 4. 장르
+anj_obj.genre = '스포츠, 농구, 성장, 코미디';
+// 5. 상영등급
+anj_obj.ratings = '12세';
+// 6. 예고편
+anj_obj.trailer = function(){
+    console.log('예고편','D2RAJe0ZL1Q');
+    // 플레이어 함수 호출!
+    playMovie('D2RAJe0ZL1Q');
+} /////////// trailer함수 ////////////
 

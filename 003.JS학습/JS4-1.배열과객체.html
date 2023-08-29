@@ -39,6 +39,16 @@
             .choice{
                 line-height: 20px;
             }
+            /* choice버튼 클래스 on */
+            .choice button.on{
+                border: 3px solid #FFC107;
+                border-radius: 5px;
+                background-color: #FF9800;
+                box-shadow: 1px 1px 3px 1px #ccc;
+                color: white;
+                font-weight: bold;
+                transform: scale(1.2);
+            }
         </style>
         <!-- 객체 JS불러오기 -->
         <script src="./js/JS4-1.object.js"></script>
@@ -462,6 +472,7 @@
             // for문으로 버튼들을 click이벤트 설정함!!
                 for(let i = 0; i < choice_cnt; i++){
                     choice[i].onclick = function(){
+                        // this -> 클릭 된 버튼자신
                         // 1. 버튼 텍스트
                         let btxt = this.innerText;
                         console.log('난누구?',btxt);
@@ -519,10 +530,25 @@
                             case "김내우초이스":
                                 an_obj = naewoo_Obj;
                                 break;
+                            case "안주현초이스":
+                                an_obj = anj_obj;
+                                break;
                         }
                         console.log(an_obj);
                         // 3. 객체 세팅함수 호출!!
                         showMovieInfo();
+
+                        // 4. 모든버튼 클래스 on빼기
+                        choice.forEach(function(ele){ //ele-자신
+                            // forEach(function(자신,순번,전체){})
+                            // console.log('forEach:',a,b,c);
+                            ele.classList.remove('on');
+                        }); //////////// forEach ///////////
+
+                        // 5. 클릭된 버튼에 클래스 on주기
+                        this.classList.add('on');
+
+                        
                     }; /////////// click 이벤트 함수 ////////
                 } 
             }////////////loadFn함수///////////////////
@@ -592,6 +618,53 @@
 
             } /////// playMovie 함수 ///////
             ///////////////////////////////
+        /********************************************** 
+            ※ 정리 :
+            ________________________________
+
+            배열값 설정
+            const 변수명 = [값1,값2,...];
+            또는
+            변수명[순번] = 값;
+            _________________________________
+
+            배열값 호출
+            변수명[순번] -> 순번은 0부터
+            _________________________________
+
+            객체값 설정
+            const 변수명 = {속성:값,속성:값,...};
+            변수명["속성명"] = 값;
+            변수명.속성명 = 값;
+            ___________________________________
+
+            객체값 호출
+
+            변수명["속성명"]
+            -> 속성명을 따옴표로 싼 문자형임
+            (만약 변수형 속성명이어도 이렇게 부를땐
+            따옴표로 반드시 싸야한다!)
+
+            또는
+
+            변수명.속성명
+            -> 속성명이 반드시 변수형 이어야함!
+            -> 속성명이 문자형이어도 변수형에 적합하면 이와같이 사용가능
+
+            ____________________________________
+
+            참고) 내장객체를 new키워드 없이 바로 할당하는
+            방식을 리터럴방식이라고 부른다! 이 방식 추천함!
+            예) let str = ""
+                let arr = []
+                let obj = {}
+
+            비교) let str = new String();
+                  let arr = new Array();
+                  let obj = new Object();
+
+        **********************************************/
+
         </script>
     </head>
 
@@ -622,6 +695,7 @@
             <button>최진구초이스</button>
             <button>유승환초이스</button>
             <button>김내우초이스</button>
+            <button class="on">안주현초이스</button>
         </div>
         <!-- 영화 예고편 동영상용 박스 -->
         <aside id="mvbox"></aside>

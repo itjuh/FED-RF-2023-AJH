@@ -77,10 +77,10 @@ const 객체 = new Object({
 });
 // alert에 ,사용 불가 +만 가능
 
-...5교시...
+...5,6교시...
 const showMovieInfo = function(){};
 호이스팅 안됨! const!!
 
 body에 값을 넣었다 뻈다하면
 클릭링크가 사라져서 새로 box 만들어서 진행함
-
+document.body.classList.remove('on');

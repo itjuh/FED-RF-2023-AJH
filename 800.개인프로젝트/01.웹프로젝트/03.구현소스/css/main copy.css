@@ -19,7 +19,7 @@
 /* 상단 공통요소 */
 .header .partbox a{
     color: white;
-    font-size: min(16px,1.6vw);
+    font-size: min(16px,1.8vw);
 }
 .header li {
     float: left;
@@ -38,6 +38,8 @@
 /* 1-2. 메뉴구성 */
 /* 1-3. 상단로고 */
 .header .logo{
+    width: 200px;
+    height: 50px;
     background: url(../images/logo_en_wt.png) no-repeat center/auto min(3.8vw,37px);
 }
 /* 1-4. 검색 */
