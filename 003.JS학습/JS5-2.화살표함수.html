@@ -62,29 +62,84 @@
         ****************************************************/
 
         // 일반적인 할당형 함수 /////
+        let x = function(a,b){
+            return a*b
+        }; /////////////x함수/////////
+        // 함수호출하기
+        console.log('x(100,20)의 함수호출: ',x(100,20));
         
-
-
         // 축약형 화살표함수 /////
+        let y = (a,b)=>{
+            return a*b
+        }; /////////////y함수/////////
+        // 함수호출하기
+        console.log('y(300,20)의 함수호출: ',y(300,20));
         
-
         // 축약형 화살표함수 좀 더 축약! /////
-        
+        let z = (a,b)=>a*b; /////////////z함수/////////
+        // 함수호출하기
+        console.log('z(400,20)의 함수호출: ',z(400,20));
+
 
         // 일반적인 함수 할당
-        
+        const my = function(x){
+            return `나는 ${x}다`;
+        }; //////// my함수//////// 
 
         // 함수호출하기
+        console.log(my('프론트엔드 개발자'));
         
-
-
         // 완전축약형!
-        
+        const we = x => `우리는 ${x}다`;
         /////////// we함수 ///////
-
-        // 함수호출하기
         
+        // 함수호출하기
+        console.log(we('프론트엔드 개발자'));
 
+        // querySelector함수 짧게 만들기
+        const qs = x=>document.querySelector(x); /* x값을 받아서 넣고 선택하기 */
+        const qsa = x=>document.querySelectorAll(x);
+        
+        // 로드구역 /////////////////////////
+        window.addEventListener('DOMContentLoaded',
+        ()=>{
+            // 1. 대상선정 .btn
+            let btn = qsa('.btn');
+            console.log('버튼들 : ',btn);
+
+            // 버튼요소 클릭 시 글자바꾸기 /////
+            // 기존 익명함수 사용 : btn[0]
+            btn[0].onclick = function(){
+                console.log('익명함수에서 this : ',this);
+                // 글자변경 this키워드로 하기
+                this.innerText = '올드익명함수다!';
+            }; ///////click이벤트 함수/////////
+            // 화살표함수 사용 : btn[1]
+            btn[1].onclick = ()=>{ 
+                console.log('화살표함수에서 this : ',this); //window가 찍힘
+                console.log('화살표함수에서 currentTarget: ',event.currentTarget);
+                // 직접 만져진 대상
+                // currentTarget을 사용하여 글자 변경하기
+                event.currentTarget.innerText = '화살표함수다!';
+                /************************************ 
+                화살표함수를 사용할때
+                this 키워드의 의미는 다르다!!!
+
+                화살표함수에서 this는 window객체를 의미!
+                (자신을 생성한 객체를 가리킨다!
+                즉, 여기서는 window로딩구역안에 생성되어서
+                window객체를 가리키고 만약 이것이 어떤
+                Object안에 메서드라면 그 Object를 가리킴!)
+                -> JS this키워드를 자세히 알아볼것임!!!
+
+                this 키워드 대신
+                event.currentTarget 을 사용하여
+                현재요소 자신을 의미하도록
+                코딩해야함!
+
+                ************************************/
+            }; ///////click이벤트 함수/////////
+        }); //////////로드구역 ///////////////////////
 </script>
 
 </head>

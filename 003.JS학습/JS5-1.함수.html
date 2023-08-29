@@ -409,8 +409,18 @@
             ///////////////////////////////////////////
             
             // 함수에 전달변수가 없어도 보내는 전달값이 있으면 
-            // 함수에 arguments라는 전달변수를 담는 배열객체에 
+            // 함수에 arguments라는 전달변수 유사 배열객체에 
             // 값을 자동으로 담는다
+            // [유사배열객체란? 
+            // - 배열형식으로 생겼으나 배열이 아님
+            // 배열 메서드를 직접 사용할 수 없다.]
+
+            // (1)배열 검사 : Array.isArray(변수||"값");
+            //  -결과 : true, false
+            // typeof 객체명은 객체인지 배열객체인지 모름~
+            // (2)유사배열을 배열로 변경
+            // ->Array.from(유사배열객체)
+            // (3)유사배열 : arguments, html컬렉션(NodeList)
 
             /************************************************ 
                 함수명: myFn
@@ -423,9 +433,17 @@
             // function myFn(){
                 // 호출확인
                 console.log('내 함수 myFn', arguments, typeof arguments, typeof scene);
-                // 1. 대상선정 body
+                console.log('arguments는 배열인가?', Array.isArray(arguments));
+                console.log('scene는 배열인가?', Array.isArray(scene));
+                //배열로 변경
+                console.log('arguments를 배열로 변경', Array.isArray(Array.from(arguments)));
+                // 1. 대상선정 .letters
+                let letters = document.querySelector('.letters');
+                // body에 대상을 직접 추가하면 전체 DOM구조에 영향을 주므로
+                // 기존에 셋팅 한 코드가 끊어질 수 있다!!
+                // 따라서 변경 요소를 넣을 박스를 구분하는 것이 좋음
                 for(let i = 0; i < arguments.length; i++){
-                    document.body.innerHTML += `
+                    letters.innerHTML += `
                     <h2>${arguments[i]}</h2>
                     `;//기존 body에 추가
                 } /////////////for/////////////////////
@@ -441,6 +459,7 @@
     </head>
 
     <body>
+        
         <!-- 배경이미지 박스 -->
         <div class="bgbox">
         </div>
@@ -454,5 +473,8 @@
             3. 소괄호 안에서 바깥으로
             4. 함수바깥부터실행 호출시 함수실행
         -->
+        <!-- 애국가 가사 타이틀 넣기 박스 -->
+        <!-- 변경용 고정박스 만들기 -->
+        <div class="letters"></div>
     </body>
 </html>
