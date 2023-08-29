@@ -25,16 +25,16 @@
     height: 700px;
 }
 .main .main-banner .partbox{
-    flex-basis: 10%;
+    flex-basis: 7%;
 }
 .main .main-banner .partbox:nth-of-type(2),.main .main-banner .partbox:nth-of-type(3){
-    flex-basis: 40%;
+    flex-basis: 43%;
 }
 /* 이벤트 배너 이미지박스 */
 .main-banner section.banner-img{
-    max-width: 550px;
-    max-height: 550px;
-    margin: 100px auto;
+    max-width: 660px;
+    max-height: 660px;
+    margin: 50px auto;
 }
 section.banner-img img{
     width: 100%;
@@ -45,7 +45,7 @@ section.banner-img img{
 .main-banner section.banner-desc{
     max-width: 500px;
     height: 300px;
-    margin: 200px auto;
+    margin: 150px auto;
 }
 /* 2-2. 메인테마 */
 .main .main-thema{
