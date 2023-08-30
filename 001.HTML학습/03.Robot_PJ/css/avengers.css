@@ -34,7 +34,7 @@ body{
 }
 /* 공사중표시 */
 body *{
-    outline: 2px dashed yellow;
+    /* outline: 2px dashed yellow; */
 }
 /* 공통클래스 */
 /* 페이지 공통 */
@@ -63,6 +63,7 @@ body *{
     inset 0 0 30px lightgreen;
     /* 배경이미지 */
     background: url(../ab_img/ab0.jpg) no-repeat center/cover;
+    transform: scale(1);
 }
 
 /* 캐릭터박스 공통 */
@@ -72,6 +73,7 @@ body *{
     /* 부모박스 정중앙 세팅 */
     top: calc(50% - 150px/2);
     left: calc(50% - 150px/2);
+
     width: 150px;
     height: 150px;
 }
@@ -80,6 +82,8 @@ body *{
     height: 100%;
     object-fit: cover;
     border-radius: 50%;
+    /* 박스글로우 */
+    box-shadow: 0px 0px 30px 10px lightgreen;
     /* 
         [ object-fit 속성 ]
         -> 이미지나 동영상을 박스에 맞출때
@@ -90,4 +94,60 @@ body *{
             -> 빈틈없이 채우며 배경cover와
             유사한 효과를 준다! 
     */
+}
+/* 어벤져스 설명박스 */
+.txt {
+    position: absolute;
+    width: 350px;
+    top: 50%;
+    right: 105%;
+    transform: translateY(25%);
+    /* transform: translateY(-50%); */
+    font-size: 1.4rem;
+    line-height: 1.6;
+    background-color: #ffffff70;
+    border-radius: 15px;
+    text-shadow: 1px 1px 1px #000;
+    /* 숨기기 설정 */
+    height: 0;
+    overflow: hidden;
+
+    /* 트랜지션 */
+    transition: .4s ease-in-out;
+}
+/* 상위박스에 마우스오버 시 설명박스 보이기 */
+.hero:hover .txt{
+    height: 200px;
+    transform: translateY(-50%);
+}
+/* 패딩과 보더는 하위박스에 주고 완전히 숨기기 */
+.txt>div{
+    padding: 1.5rem;
+}
+/* 설명박스 위치변경 위치 오른쪽 클래스 */
+.txt.right{
+    right: auto;
+    left: 105%;
+}
+/* 설명박스 타이틀 */
+.txt h3{
+    font-size: 2.5rem;
+    text-align: center;
+    color: cyan;
+}
+/* .hero 순서별 위치값 */
+.hero:nth-child(1){
+    transform: translate(-170%,-110%);
+}
+.hero:nth-child(2){
+    transform: translate(-170%, 90%);
+}
+.hero:nth-child(3){
+    transform: translate(0, 220%);
+}
+.hero:nth-child(4){
+    transform: translate(170%, 90%);
+}
+.hero:nth-child(5){
+    transform: translate(170%, -110%);
 }

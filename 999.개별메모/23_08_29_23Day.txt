@@ -49,6 +49,7 @@ function(){};
 
 ...4교시...timingFn 이어서
 const myFn = ()=>{}         :화살표함수 arguments 못가져온다!!!!
+
 const myFn = function(){};  :익명함수 arguments 가져온다!!!!
 function myFn(){}           :선언적함수 arguments 가져온다!!!!
 

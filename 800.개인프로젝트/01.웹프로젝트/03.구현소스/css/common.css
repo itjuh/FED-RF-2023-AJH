@@ -73,9 +73,9 @@
 }
 /* 1-1. 메뉴구성 */
 .header .partbox .gnb-menu{
-    height: 50px;
+    height: 45px;
     padding-left: min(1vw, 9px);
-    line-height: 50px;
+    line-height: 45px;
     font-size: min(14px,1.6vw);
 }
 /* 1-2. 상단로고 */
@@ -110,8 +110,21 @@
     border: 0px solid #000;
     box-shadow: 1px 1px 3px 0px #00000080;
 }
-
-/* 3. 하단영역 */
+/********* 2. 메인영역 **********/
+#main{
+    background-color: #fce8ce;
+}
+.main.inbox{
+    max-width: 1650px;
+    min-height: 600px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+}
+.main.inbox h2{
+    position: absolute;
+}
+/******** 3. 하단영역 **********/
 #footer{
     background-color: #576252;
 }

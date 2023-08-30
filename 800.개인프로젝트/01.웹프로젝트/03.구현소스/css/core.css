@@ -25,7 +25,6 @@ body{
     font-family: 'Nanum Gothic', sans-serif;
 }
 /* 공통 레이아웃 클래스 */
-
 /* 파트박스*/
 .partbox {
     float: left;
@@ -49,3 +48,11 @@ body{
     display: none;
 }
 
+/* top타이틀 */
+.top-title{
+    font-size: 1.6rem;
+}
+/* sub타이틀 */
+.sub-title{
+    font-size: 1.2rem;
+}

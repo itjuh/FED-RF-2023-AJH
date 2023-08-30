@@ -1,23 +1,11 @@
 @charset "uft-8";
+/* 온고롱 메인페이지 - main_copy.css */
 /* CSS 불러오기 영역 */
 /* 리셋, 공통, 코어 외부 CSS합치기(merging) */
 @import url(./common.css);
 @import url(./core.css);
 @import url(./reset.css);
 
-/* 2. 메인영역 */
-#main{
-    background-color: #fce8ce;
-}
-.main.inbox{
-    max-width: 1650px;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-}
-.main.inbox h2{
-    position: absolute;
-}
 /* 2-1. 이벤트배너 */
 .main .main-banner{
     display: flex;
