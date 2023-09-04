@@ -7,114 +7,171 @@
 @import url(./reset.css);
 
 /* 2-1. 이벤트배너 */
-.main .main-banner{
+.main-banner{
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     height: 700px;
 }
-.main .main-banner .partbox{
-    flex-basis: 7%;
-}
-.main .main-banner .partbox:nth-of-type(2),.main .main-banner .partbox:nth-of-type(3){
-    flex-basis: 43%;
+/* 2-1-2. 배너박스 */
+.main-banner .partbox{
+    display: flex;
 }
 /* 이벤트 배너 이미지박스 */
-.main-banner section.banner-img{
+.banner-img{
     max-width: 660px;
     max-height: 660px;
-    margin: 50px auto;
+    /* 배너박스 상하 중앙정렬 */
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
 }
-section.banner-img img{
+.banner-img img{
     width: 100%;
     height: 100%;
     object-fit: cover;
 }
 /* 이벤트 배너 설명박스 */
-.main-banner section.banner-desc{
-    max-width: 500px;
+.banner-desc{
+    min-width: 400px;
     height: 300px;
-    margin: 150px auto;
+    /* 설명박스 상하 중앙정렬 */
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+}
+/* 배너 설명박스 더보기 버튼 */
+.banner-desc>button{
+    position: absolute;
+    /* 부모는 section */
+    top: 120%;
+    left: 50%;
+    /* 중앙정렬 */
+    transform: translateX(-50%) scale(1.2);
 }
 /* 2-2. 메인테마 */
-.main .main-thema{
+.main-thema{
     display: flex;
     height: 400px;
 }
-.main .main-thema .partbox{
+.main-thema .partbox{
     flex-basis: 100%;
 }
 /* 2-3. 컨셉이미지 */
-.main .main-scroll-banner{
+.main-scroll-banner{
     display: flex;
     height: 600px;
 }
-.main .main-scroll-banner .partbox{
+.main-scroll-banner .partbox{
     flex-basis: 100%;
 }
 /* 2-4. 인기상품 */
-.main .main-hot-item{
+.main-hot-item{
     display: flex;
     flex-direction: column;
     min-height: 500px;
 }
 /* 2-4-1. 인기상품 타이틀 */
-.main .main-hot-item>.partbox:first-of-type{
+.main-hot-item>.partbox:first-of-type{
     height: 50px;
+}
+/* 인기상품 타이틀 테두리 */
+.main-hot-item h1.tit{
+    display: block;
+    position: relative;
+    top: 50%;
+    margin: 0 auto;
+    width: 100px;
+    height: 40px;
+    border-radius: 50%;
+    /* 글자세팅 */
+    font-size: var(--fz-top);
+    text-align: center;
+    line-height: 40px;
+    letter-spacing: 2px;
+    /* 중앙정렬 */
+    transform: translateY(-50%);
+    padding: 0 10px;
+    background-color: #fff;
+}
+/* 인기상품 타이틀 이미지 */
+.main-hot-item h1.tit::before{
+    content: '';
+    display: block;
+    position: absolute;
+    left: 0%;
+    width: 40px;
+    height: 40px;
+    transform: translateX(-100%);
+    background-image: url(../images/ho_logo.jpg);
 }
 /* 2-4-2. 인기상품 리스트 */
-.main .main-hot-item .hot-item-list{
+.main-hot-item .hot-item-list{
     display: flex;
-    flex-direction: auto;
     height: 400px;
 }
-.main .main-hot-item .hot-item-list .partbox{
+.main-hot-item .hot-item-list .partbox{
     flex-basis: 25%;
 }
+.img-box{
+    width: 250px;
+    height: 250px;
+    margin: 10px auto;
+}
+.img-box img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
 /* 2-4-3. 인기상품 더보기 */
-.main .main-hot-item>.partbox:last-of-type{
+.main-hot-item>.partbox:last-of-type{
+    position: relative;
     height: 50px;
 }
+.main-hot-item>.partbox:last-of-type button{
+    top: 50%;
+    transform: translate(-50%,-50%) scale(1.2);
+}
 /* 2-5. 추천검색 */
-.main .main-key-search{
+.main-key-search{
     display: flex;
     flex-direction: column;
     height: 500px;
 }
-.main .main-key-search .partbox:first-of-type{
+.main-key-search .partbox:first-of-type{
     flex-basis: 50%;
 }
-.main .main-key-search .partbox:last-of-type{
+.main-key-search .partbox:last-of-type{
     /* display: none; */
     flex-basis: 50%;
 }
 /* 2-6. 주문진행 */
-.main .main-order-process {
+.main-order-process {
     display: flex;
     height: 150px;
 }
-.main .main-order-process .partbox{
+.main-order-process .partbox{
     flex-basis: 100%;
 }
 /* 2-7. 리뷰 */
-.main .main-review{
+.main-review{
     display: flex;
     flex-direction: column;
     min-height: 500px;
 }
 /* 2-7-1. 리뷰 타이틀 */
-.main .main-review>.partbox:first-of-type{
+.main-review>.partbox:first-of-type{
     height: 50px;
 }
 /* 2-7-2. 리뷰 리스트 */
-.main .main-review .review-list{
+.main-review .review-list{
     display: flex;
     flex-direction: auto;
     height: 400px;
 }
-.main .main-review .review-list .partbox{
+.main-review .review-list .partbox{
     flex-basis: 25%;
 }
 /* 2-7-3. 리뷰 더보기 */
-.main .main-review>.partbox:last-of-type{
+.main-review>.partbox:last-of-type{
     height: 50px;
 }

@@ -1,5 +1,9 @@
 // 어벤져스 JS - avengers.js
 
+// 공통 DOM 선택함수
+const qs = x => document.querySelector(x);
+const qsa = x => document.querySelectorAll(x);
+
 window.addEventListener('wheel',(e)=>{
     // 기본기능 막기(휠, 우클릭 등등!)
     e.preventDefault();
@@ -13,7 +17,21 @@ window.addEventListener('wheel',(e)=>{
     // window.innerHeight*(e.wheelDelta<0?1:0)
     // 윈도우 높이값*음수면 1곱하기 양수면 0 곱함 (페이지가 늘면 페이지만큼 추가)
     // 아래방향은 윈도우 높이 / 윗 방향은 위치값 0
-},{passive:false})
+    
+},{passive:false});
+
+// 주의 : 유튜브 박스 내부는 다른 공간이라 휠막기가 안됨
+// 이벤트는 위로 전달 되므로 (이벤트 버블링) 이를 막아준다!
+// 막는 방법 : 그만해!stop! 전파를!propagation! event.stopPropagation() 메서드 활용
+
+qs('.trailer-box').addEventListener('wheel',(e)=>{
+    console.log('hehe');
+    let x = e.wheelDelta;
+    // 페이지 이동확인
+    window.scrollTo(0,window.innerHeight*(x<0?1:0));
+    e.stopPropagation();
+},{passive:false});
+
 // passive:false 설정값을 변경해야 window, document, body
 // 이 세가지 중요객체에 대하여
 // 막기설정을 할 수 있다.(모바일때문, passive:true로 기본값 바뀜)
@@ -31,9 +49,6 @@ window.addEventListener('wheel',(e)=>{
 
 // 초기 데이터 세팅
 // 데이터 : 어벤져스 데이터  - data.js > character
-// 공통 DOM 선택함수
-const qs = x => document.querySelector(x);
-const qsa = x => document.querySelectorAll(x);
 
 // 어벤져서 캐릭터 박스 세팅하기
 // 대상선정 : .avengers-box

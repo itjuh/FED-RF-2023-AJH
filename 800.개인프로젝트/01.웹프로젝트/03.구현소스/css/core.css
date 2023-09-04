@@ -38,7 +38,13 @@ body *{
     outline: 1px dashed red;
 } 
 */
-
+/* 기본값 설정 */
+:root{
+    --fz-top : 1.6rem;
+    --fz-sub : 1.2rem;
+    --fz-nav : min(14px,1.6vw);
+    --fz-sign : min(13px, 1.2vw);
+}
 /* IR 숨기기 class */
 .ir{
     display: block;
@@ -50,12 +56,28 @@ body *{
 .blind{
     display: none;
 }
-
 /* top타이틀 */
 .top-title{
-    font-size: 1.6rem;
+    font-size: var(--fz-top);
 }
 /* sub타이틀 */
 .sub-title{
-    font-size: 1.2rem;
+    font-size: var(--fz-sub);
+}
+/* 더보기 버튼 */
+.move-view-btn{
+    display: block;
+    position: absolute;
+    /* 부모는 더보기 안쪽 박스 */
+    left: 50%;
+    /* 중앙정렬 */
+    transform: translateX(-50%) scale(1.2);
+    /* 버튼디자인 */
+    width: 100px;
+    height: 30px;
+    border-radius: 20px;
+    background-color: #fff;
+    padding: 0 10px;
+    font-size: var(--fz-sub);
+    text-align: center;
 }
