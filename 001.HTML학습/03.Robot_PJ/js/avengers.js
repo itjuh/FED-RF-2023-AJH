@@ -1,5 +1,22 @@
 // 어벤져스 JS - avengers.js
 
+window.addEventListener('wheel',(e)=>{
+    // 기본기능 막기(휠, 우클릭 등등!)
+    e.preventDefault();
+    // 이벤트 호출 확인
+    console.log('휠~',e.wheelDelta);
+    // 휠 방향 분기
+    let x = e.wheelDelta;
+    // 페이지 이동확인
+    window.scrollTo(0,window.innerHeight*(x<0?1:0));
+    // window.scrollTo(x스크롤 위치값, y스크롤 위치값);
+    // window.innerHeight*(e.wheelDelta<0?1:0)
+    // 윈도우 높이값*음수면 1곱하기 양수면 0 곱함 (페이지가 늘면 페이지만큼 추가)
+    // 아래방향은 윈도우 높이 / 윗 방향은 위치값 0
+},{passive:false})
+// passive:false 설정값을 변경해야 window, document, body
+// 이 세가지 중요객체에 대하여
+// 막기설정을 할 수 있다.(모바일때문, passive:true로 기본값 바뀜)
 /*
 <div class="hero">
     <img src="./ab_img/ironman.png" alt="아이언맨">
@@ -70,3 +87,48 @@ console.log(hcode);
 
 // 3. 대상에 html 넣어 출력하기!!
 avengers.innerHTML = hcode;
+
+// 4. 로딩 후 1초 뒤 avengers-box에 클래스 넣기
+setTimeout(() => {
+    avengers.classList.add('on');
+}, 1000);
+
+// 5. 타이틀 애니 위해 한 글자씩 싸기
+// 대상: .t1
+let mytit = qs('.t1');
+let my_text = mytit.innerText;
+// 글자담기변수
+let tit_one = ''; //string형 선언
+// for of 문으로 한글자씩 순회하기
+for(let x of my_text){
+    tit_one += `<span>${x}</span>`
+}
+console.log(tit_one);
+
+// 다시 타이틀에 넣기
+mytit.innerHTML = tit_one;
+
+// 셋팅된 span요소
+let new_span = qsa('.t1 span');
+// 하나씩 transition-delay시간 주기
+new_span.forEach((ele,idx)=>{
+    if(idx%2 == 0){
+    ele.style.transitionDelay = (0.1*idx)+'s';
+    } else{
+        ele.style.transitionDelay = (0.15*idx)+'s';
+    }
+})
+// 어벤져스 박스 나올때까지 기다린 후(5초)
+// span의 transform 변경하기
+// + .hero 오버 시 설정 적용되도록 어벤져스 박스에
+// class active 넣기
+setTimeout(()=>{
+    // for(let x of new_span) x.style.transform = 'translateY(40%) scale(1)';
+    mytit.classList.add('on');
+    avengers.classList.add('active');
+}, 5000);
+
+// span 1번째 요소 회전
+setTimeout(()=>{
+    
+}, 6200);

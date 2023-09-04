@@ -188,7 +188,7 @@ function movePage(dir){ // dir -> direction
     console.log('pg_num : ',pg_num);
     // 3. 페이지 이동하기
     // offsetTop은 선택요소의 top위치값 리턴함!
-    // 위에서부터 top위치 값을 리턴해서 
+    // .page요소 전체의 몇번째 값의 top위치로 스크롤해라!
     window.scrollTo(0,ele_page[pg_num].offsetTop);
     console.log('여기야!',ele_page[pg_num].offsetTop);
 } ///////// movePage 함수 ////////////

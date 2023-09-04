@@ -3,6 +3,7 @@
     <head>
         <meta charset="UTF-8" />
         <title>어벤저스 캐릭터 소개</title>
+        <link rel="shortcut icon" href="./ab_img/favicon.ico">
         <!-- 외부 CSS -->
         <link rel="stylesheet" href="./css/avengers.css">
         <!-- 외부 JS -->
@@ -13,16 +14,21 @@
     <body>
         <!-- 캐릭터 소개 페이지-->
         <div>
-            <section class="page character">
-                <h2 class="tit">캐릭터소개페이지</h2>
+            <section id="top" class="page character">
+                <h2 class="tit t1">Avengers</h2>
                 <!-- 메인 캐릭터 박스 -->
                 <div class="avengers-box"></div>
+                <a href="#bottom" class="move view1">예고편보기👇</a>
             </section>
         </div>
         <!-- 예고편 트레일러 페이지 -->
         <div>
-            <section class="page trailer">
-                <h2 class="tit">예고편 페이지</h2>
+            <section id="bottom" class="page trailer">
+                <h2 class="tit t2">인피니티워 마블공식 예고편</h2>
+                <div class="trailer-box">
+                    <iframe src="https://www.youtube.com/embed/Ko2NWhXI9e8" title="[어벤져스: 엔드게임] 메인 예고편│마블 공식 예고편" allow="autoplay;"></iframe>
+                </div>
+                <a href="#top" class="move view2">캐릭터보기👆</a>
             </section>
         </div>
     </body>
