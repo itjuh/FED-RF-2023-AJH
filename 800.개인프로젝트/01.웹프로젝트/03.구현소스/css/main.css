@@ -210,8 +210,8 @@
 }
 .review-list .txt-box ul{
     display: flex;
+    height: 100%;
     flex-direction: column;
-    justify-content: space-evenly;
 }
 /* 이미지 */
 .review-list .img-box{
@@ -225,7 +225,13 @@
 }
 /* 리뷰내용 */
 .review-txt{
+    height: 100%;
     font-size: var(--fz-top);
+}
+/* 리뷰태그 */
+.review-list .prod-tag{
+    margin-bottom: 0;
+    margin-top:auto;
 }
 /* 2-5. 추천검색 */
 .main-key-search{
@@ -236,6 +242,8 @@
 .main-key-search .partbox:first-of-type{
     flex-basis: 50%;
 }
+/* 추천검색 검색창 */
+
 .main-key-search .partbox:last-of-type{
     /* display: none; */
     flex-basis: 50%;

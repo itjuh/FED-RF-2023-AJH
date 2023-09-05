@@ -96,7 +96,7 @@
     width: 200px;
     height: 50px;
     margin: 0 auto;
-    background: url(../images/logo_en_wt.png) no-repeat center/auto min(3.8vw,37px);
+    background: url(../images/logo_en_wt.png) no-repeat center/auto 37px;
 }
 /* 1-3. 로그인 검색 사이드그룹 */
 .header .side-group{
