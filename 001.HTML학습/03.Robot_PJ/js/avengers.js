@@ -4,19 +4,32 @@
 const qs = x => document.querySelector(x);
 const qsa = x => document.querySelectorAll(x);
 
+// 새로고침시 맨 위로 이동
+setTimeout(()=>{
+    window.scrollTo(0,0);
+},500);
+
 window.addEventListener('wheel',(e)=>{
     // 기본기능 막기(휠, 우클릭 등등!)
     e.preventDefault();
     // 이벤트 호출 확인
     console.log('휠~',e.wheelDelta);
     // 휠 방향 분기
-    let x = e.wheelDelta;
     // 페이지 이동확인
-    window.scrollTo(0,window.innerHeight*(x<0?1:0));
+    window.scrollTo(0,window.innerHeight*(e.wheelDelta<0?1:0));
     // window.scrollTo(x스크롤 위치값, y스크롤 위치값);
     // window.innerHeight*(e.wheelDelta<0?1:0)
     // 윈도우 높이값*음수면 1곱하기 양수면 0 곱함 (페이지가 늘면 페이지만큼 추가)
     // 아래방향은 윈도우 높이 / 윗 방향은 위치값 0
+
+    // 두번째 페이지일 때 동영상 플레이 하기
+    if(e.wheelDelta < 0){
+        // qs('.trailer-box iframe').setAttribute('src','https://www.youtube.com/embed/Ko2NWhXI9e8?autoplay=1');
+        qs('.trailer-box iframe').src = 'https://www.youtube.com/embed/Ko2NWhXI9e8?autoplay=1';
+    }else{
+        qs('.trailer-box iframe').src = 'https://www.youtube.com/embed/Ko2NWhXI9e8';
+        // qs('.trailer-box iframe').setAttribute('src','https://www.youtube.com/embed/Ko2NWhXI9e8');
+    } //////////////if/////////////////
     
 },{passive:false});
 

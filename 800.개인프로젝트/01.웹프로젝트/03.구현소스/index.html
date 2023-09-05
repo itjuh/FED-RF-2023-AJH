@@ -18,40 +18,43 @@
                     <button class="btn up"></button>
                     <button class="btn down"></button>
                 </div>
-                <!-- 1-1. 메뉴구성 -->
-                <div class="partbox">
-                    <nav class="gnb-menu">
-                        <ul>
-                            <li><a href="#">제품보기</a></li>
-                            <li><a href="#">고객센터</a></li>
-                            <li><a href="./sub_bmap.html">오시는길</a></li>
-                            <li><a href="./sub_ainfo.html">온고롱안내</a></li>
-                        </ul>
-                    </nav>
-                </div>
-                <!-- 1-2. 상단로고 -->
-                <div class="partbox">
-                    <h1 class="logo">
-                        <a href="./index.html">
-                            <span class="ir">온고롱 로고 이미지, 메인화면 바로가기</span>
-                        </a>
-                    </h1>
-                </div>
-                <div class="side-group">
-                    <!-- 1-3. 로그인,회원가입 -->
+                <!-- 상단 고정박스 -->
+                <div class="top-box">
+                    <!-- 1-1. 메뉴구성 -->
                     <div class="partbox">
-                        <nav class="gnb-sign">
+                        <nav class="gnb-menu">
                             <ul>
-                                <li><a href="#">로그인</a></li>
-                                <li><a href="#">회원가입</a></li>
+                                <li><a href="#">제품보기</a></li>
+                                <li><a href="#">고객센터</a></li>
+                                <li><a href="./sub_bmap.html">오시는길</a></li>
+                                <li><a href="./sub_ainfo.html">온고롱안내</a></li>
                             </ul>
                         </nav>
                     </div>
-                    <!-- 1-4. 검색 -->
+                    <!-- 1-2. 상단로고 -->
                     <div class="partbox">
-                        <div class="search-box">
-                            <label for="search"></label>
-                            <input type="text" id="search" placeholder="제품을 검색하세요!" onkeypress="if(event.keyCode===13) search()"/>
+                        <h1 class="logo">
+                            <a href="./index.html">
+                                <span class="ir">온고롱 로고 이미지, 메인화면 바로가기</span>
+                            </a>
+                        </h1>
+                    </div>
+                    <div class="side-group">
+                        <!-- 1-3. 로그인,회원가입 -->
+                        <div class="partbox">
+                            <nav class="gnb-sign">
+                                <ul>
+                                    <li><a href="#">로그인</a></li>
+                                    <li><a href="#">회원가입</a></li>
+                                </ul>
+                            </nav>
+                        </div>
+                        <!-- 1-4. 검색 -->
+                        <div class="partbox">
+                            <div class="search-box">
+                                <label for="search"></label>
+                                <input type="text" id="search" placeholder="제품을 검색하세요!" onkeypress="if(event.keyCode===13) search()"/>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -64,22 +67,24 @@
                 <h2>이벤트배너위치:|←|이미지|설명|→|</h2>
                 <div class="main-banner">
                     <!-- 왼쪽 배너로 이동 -->
-
                     <!-- 2-1-2. 배너박스 -->
-                    <div class="partbox">
-                        <!-- 배너이미지 -->
-                        <section class="banner-img">
-                            <img src="../01.자료수집/images/cup01.jpeg" alt="앙금컵케이크">
-                        </section>
-                        <!-- 배너설명 -->
-                        <section class="banner-desc">
-                            <h1>이벤트 타이틀</h1>
-                            <p>이번 이벤트는 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~</p>
-                            <button class="move-view-btn">더보기</button>
-                        </section>
-                    </div>
+                    <ul>
+                        <li>
+                            <div class="partbox banner">
+                                <!-- 배너이미지 -->
+                                <section class="banner-img">
+                                    <img src="../01.자료수집/images/cup01.jpeg" alt="앙금컵케이크">
+                                </section>
+                                <!-- 배너설명 -->
+                                <section class="banner-desc">
+                                    <h1>이벤트 타이틀</h1>
+                                    <p>이번 이벤트는 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~</p>
+                                    <button class="move-view-btn">더보기</button>
+                                </section>
+                            </div>
+                        </li>
+                    </ul>
                     <!-- 오른쪽 배너로 이동 -->
-
                 </div>
                 <!-- 2-2. 메인테마 -->
                 <div class="main-thema">
@@ -93,15 +98,26 @@
                     <div class="partbox"></div>
                 </div>
                 <!-- 2-4. 인기상품 -->
-                <div class="main-hot-item">
+                <div class="list-type main-hot-item">
                     <h2>인기상품:타이틀>이미지>더보기로구성</h2>
                     <!-- 인기상품 타이틀 -->
                     <div class="partbox">
                         <h1 class="tit">인기상품</h1>
                     </div>
                     <!-- 인기상품 리스트 -->
-                    <div class="hot-item-list">
-                        <div class="partbox"><div class="img-box"><img src="../01.자료수집/images/main01.jpg" alt="상품이미지1"></div></div>
+                    <div class="hot-item-list list">
+                        <div class="partbox">
+                            <div class="img-box">
+                                <img src="../01.자료수집/ongorong_prod/img_cake02.jpeg" alt="상품이미지1">
+                            </div>
+                            <div class="txt-box">
+                                <ul>
+                                    <li class="prod-name">작약케이크</li>
+                                    <li class="prod-price">30,000</li>
+                                    <li class="prod-tag">@떡케이크</li>
+                                </ul>
+                            </div>
+                        </div>
                         <div class="partbox"></div>
                         <div class="partbox"></div>
                         <div class="partbox"></div>
@@ -125,19 +141,36 @@
                     <div class="partbox"></div>
                 </div>
                 <!-- 2-7. 리뷰 -->
-                <div class="main-review">
+                <div class="list-type main-review">
                     <h2>리뷰:타이틀>이미지>더보기로구성</h2>
                     <!-- 리뷰 타이틀 -->
-                    <div class="partbox"></div>
+                    <div class="partbox">
+                        <h1 class="tit">후기</h1>
+                    </div>
                     <!-- 리뷰 리스트 -->
-                    <div class="review-list">
-                        <div class="partbox"></div>
+                    <div class="review-list list">
+                        <div class="partbox">
+                            <div class="txt-box">
+                                <ul>
+                                    <li class="reviewer">작성자</li>
+                                    <li class="review-txt">리뷰내용~~너무 맛있고 맛있고 맛있어요~ 최고에요</li>
+                                    <li class="prod-tag">@떡케이크</li>
+                                </ul>
+                            </div>
+                            <div class="img-box">
+                                <img src="../01.자료수집/ongorong_prod/img_cake02.jpeg" alt="상품이미지1">
+                            </div>
+                        </div>
                         <div class="partbox"></div>
                         <div class="partbox"></div>
                         <div class="partbox"></div>
                     </div>
                     <!-- 리뷰 더보기 -->
-                    <div class="partbox"></div>
+                    <div class="partbox">
+                        <div class="partbox">
+                            <button class="move-view-btn">더보기</button>
+                        </div>
+                    </div>
                 </div>
             </main>
         </div>

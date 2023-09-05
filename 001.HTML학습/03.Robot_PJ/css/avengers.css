@@ -51,7 +51,7 @@ body{
     z-index: 999;
     font-family: "Monoton", cursive;
     font-weight: normal;
-    font-size: 4.5vw;
+    font-size: 4vw;
 }
 /* 하위 span */
 .t1 span{
@@ -201,6 +201,17 @@ body{
     /* 비율설정 - 16:9 */
     aspect-ratio: 16/9;
     /* 높이를 주면 안됨 */
+}
+/* 가상요소로 아이프레임 가리기! */
+.trailer-box::after{
+    content: '';
+    position: absolute;
+    /* 사방에서 당겨주기 : 화면늘리기 */
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+
 }
 .trailer-box iframe{
     width: 100%;

@@ -40,6 +40,7 @@ body *{
 */
 /* 기본값 설정 */
 :root{
+    --fz-big : 1.8rem;
     --fz-top : 1.6rem;
     --fz-sub : 1.2rem;
     --fz-nav : min(14px,1.6vw);
@@ -80,4 +81,15 @@ body *{
     padding: 0 10px;
     font-size: var(--fz-sub);
     text-align: center;
+}
+.move-view-btn::after{
+    content: '';
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    width: 19px;
+    height: 19px;
+    background: url(../../01.자료수집/images/direc_icon.png) no-repeat;
+    background-size: 625px 375px;
+    background-position: -328px -272px;
 }

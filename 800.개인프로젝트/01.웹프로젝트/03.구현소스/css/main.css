@@ -10,20 +10,47 @@
 .main-banner{
     display: flex;
     justify-content: center;
-    height: 700px;
+    height: 800px;
 }
 /* 2-1-2. 배너박스 */
 .main-banner .partbox{
     display: flex;
+    position: relative;
 }
-/* 이벤트 배너 이미지박스 */
-.banner-img{
-    max-width: 660px;
-    max-height: 660px;
-    /* 배너박스 상하 중앙정렬 */
+/* 배너박스 넘기는 prev 버튼 */
+.main-banner .banner::before{
+    content: '';
+    position: absolute;
+    width: 45px;
+    height: 51px;
+    left: calc(-45px*2);
+    top: calc(50% - 100px/2);
+    background: url(../../01.자료수집/images/direc_icon.png) no-repeat;
+    background-size: 625px 375px;
+    background-position: -289px -179px;
+}
+/* 배너박스 넘기는 next 버튼 */
+.main-banner .banner::after{
+    content: '';
+    position: absolute;
+    width: 45px;
+    height: 51px;
+    right: calc(-45px*2);
+    top: calc(50% - 100px/2);
+    background: url(../../01.자료수집/images/direc_icon.png) no-repeat;
+    background-size: 625px 375px;
+    background-position: -393px -178px;
+}
+/* 배너 상하중앙 */
+.main-banner>ul>li {
     position: relative;
     top: 50%;
     transform: translateY(-50%);
+}
+/* 이벤트 배너 이미지박스 */
+.banner-img{
+    max-width: 750px;
+    max-height: 750px;
 }
 .banner-img img{
     width: 100%;
@@ -34,10 +61,18 @@
 .banner-desc{
     min-width: 400px;
     height: 300px;
-    /* 설명박스 상하 중앙정렬 */
     position: relative;
-    top: 50%;
-    transform: translateY(-50%);
+    /* 설명박스 상하 중앙정렬 */
+    margin-top: auto;
+    margin-bottom: auto;
+}
+/* 설명박스 타이틀 */
+.banner-desc h1{
+    font-size: var(--fz-big);
+}
+/* 설명박스 내용 */
+.banner-desc p{
+    font-size: var(--fz-top);
 }
 /* 배너 설명박스 더보기 버튼 */
 .banner-desc>button{
@@ -51,10 +86,11 @@
 /* 2-2. 메인테마 */
 .main-thema{
     display: flex;
-    height: 400px;
+    height: 300px;
 }
 .main-thema .partbox{
     flex-basis: 100%;
+    background: rgb(87, 98, 82) url(../../01.자료수집/images/main04.jpg) no-repeat left/100%;
 }
 /* 2-3. 컨셉이미지 */
 .main-scroll-banner{
@@ -64,18 +100,22 @@
 .main-scroll-banner .partbox{
     flex-basis: 100%;
 }
+/* 목록형 상자 공통 */
+/* 인기상품 및 리뷰 */
+/* 2-7. 리뷰 */
 /* 2-4. 인기상품 */
-.main-hot-item{
+.list-type{
     display: flex;
     flex-direction: column;
     min-height: 500px;
 }
+/* 2-7-1. 리뷰 타이틀 */
 /* 2-4-1. 인기상품 타이틀 */
-.main-hot-item>.partbox:first-of-type{
+.list-type>.partbox:first-of-type{
     height: 50px;
 }
 /* 인기상품 타이틀 테두리 */
-.main-hot-item h1.tit{
+.list-type h1.tit{
     display: block;
     position: relative;
     top: 50%;
@@ -94,7 +134,7 @@
     background-color: #fff;
 }
 /* 인기상품 타이틀 이미지 */
-.main-hot-item h1.tit::before{
+.list-type h1.tit::before{
     content: '';
     display: block;
     position: absolute;
@@ -104,32 +144,88 @@
     transform: translateX(-100%);
     background-image: url(../images/ho_logo.jpg);
 }
+/* 2-7-2. 리뷰 리스트 */
 /* 2-4-2. 인기상품 리스트 */
-.main-hot-item .hot-item-list{
+.list-type .list{
     display: flex;
     height: 400px;
+    width: 80%;
+    margin: 0 auto;
 }
-.main-hot-item .hot-item-list .partbox{
+.list-type .list .partbox{
     flex-basis: 25%;
 }
-.img-box{
-    width: 250px;
-    height: 250px;
-    margin: 10px auto;
-}
+/* 이미지 */
 .img-box img{
     width: 100%;
     height: 100%;
     object-fit: cover;
 }
+/* 상품태그 */
+.prod-tag{
+    font-size: var(--fz-sub);
+}
+/* 2-7-3. 리뷰 더보기 */
 /* 2-4-3. 인기상품 더보기 */
-.main-hot-item>.partbox:last-of-type{
+.list-type>.partbox:last-of-type{
     position: relative;
     height: 50px;
 }
-.main-hot-item>.partbox:last-of-type button{
+.list-type>.partbox:last-of-type button{
     top: 50%;
     transform: translate(-50%,-50%) scale(1.2);
+}
+/* 리스트관련 개별세팅 */
+/* 인기상품******** */
+/* 이미지 */
+.hot-item-list .img-box{
+    width: 300px;
+    height: 300px;
+    margin: 10px auto;
+}
+/* 정보박스 */
+.hot-item-list .txt-box{
+    width: 300px;
+    margin: 10px auto;
+}
+/* 상품정보 공통 */
+.txt-box li{
+    margin-bottom: 5px;
+}
+/* 상품명 */
+.prod-name{
+    font-size: var(--fz-big);
+    font-weight: bold;
+}
+/* 상품가 */
+.prod-price{
+    font-size: var(--fz-top);
+}
+/* 리뷰************ */
+/* 정보박스 */
+.review-list .txt-box{
+    width: 300px;
+    height: 140px;
+    margin: 20px auto;
+}
+.review-list .txt-box ul{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+/* 이미지 */
+.review-list .img-box{
+    width: 300px;
+    height: 200px;
+    margin: 10px auto 0px;
+}
+/* 작성자 */
+.reviewer{
+    font-size: var(--fz-sub);
+}
+/* 리뷰내용 */
+.review-txt{
+    font-size: var(--fz-top);
 }
 /* 2-5. 추천검색 */
 .main-key-search{
@@ -151,27 +247,4 @@
 }
 .main-order-process .partbox{
     flex-basis: 100%;
-}
-/* 2-7. 리뷰 */
-.main-review{
-    display: flex;
-    flex-direction: column;
-    min-height: 500px;
-}
-/* 2-7-1. 리뷰 타이틀 */
-.main-review>.partbox:first-of-type{
-    height: 50px;
-}
-/* 2-7-2. 리뷰 리스트 */
-.main-review .review-list{
-    display: flex;
-    flex-direction: auto;
-    height: 400px;
-}
-.main-review .review-list .partbox{
-    flex-basis: 25%;
-}
-/* 2-7-3. 리뷰 더보기 */
-.main-review>.partbox:last-of-type{
-    height: 50px;
 }
