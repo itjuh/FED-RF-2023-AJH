@@ -15,3 +15,10 @@ Uncaught SyntaxError: Identifier 'sport' has already been declared
 객체가 정의되지 않음
 같은 이름의 객체가 JS파일에 존재하여 오류가 생겨 js파일 전체를 읽어오지 못함
 Uncaught ReferenceError: zoe_obj is not defined
+
+배열 타입의 요소에 순서를 지정하지 않음 사용함
+main.js:10 Uncaught TypeError: ele.addEventListener is not a function
+    at addEvt (main.js:10:23)
+    at loadFn (main.js:61:5)
+addEvt @ main.js:10
+loadFn @ main.js:61

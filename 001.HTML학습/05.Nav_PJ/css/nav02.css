@@ -1,0 +1,153 @@
+@charset "utf-8";
+/* 네비게이션 유형 2 CSS - nav02.css */
+
+/* 웹폰트 : 나눔고딕 */
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap');
+/* font-family: 'Nanum Gothic', sans-serif; */
+
+html,body,h1{
+    margin: 0;
+    padding: 0;
+}
+h1.tit{
+    padding: 20px;
+    text-align: center;
+}
+body{
+    color:#181818;
+    background-color: rgb(149, 219, 192);
+    height: 200vh;
+}
+/* 공통 클래스 */
+
+/* ul,ol 초기화 : 3無 */
+ul,ol{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+/* a공통 */
+a{
+    color: #181818;
+    text-decoration: none;
+}
+
+/* 개별 세팅 */
+
+/* 메뉴박스 */
+.gnb{
+    position: sticky;
+    top: 0;
+    padding: 20px 0;
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    background-color: #fff;
+    /* 하단 컨텐츠보다 상위메뉴는 항상 위! */
+    z-index: 9999;
+}
+.gnb>ul{
+    display: flex;
+    justify-content: center;
+    font-family: 'Nanum Gothic', sans-serif;
+    /* 줄바꿈 방지 */
+    white-space: nowrap;
+}
+/* 상위메뉴 a */
+.gnb>ul>li>a{
+    position: relative;
+    /* 부모자격 */
+    padding: 20px;
+    font-size: 16px;
+    font-weight: bold;
+}
+/* 상위 li에 가상요소로 서브배경 만들기 */
+.gnb>ul>li::after{
+    content: '';
+    position: absolute;
+    /* 부모는 gnb(position:sticky) */
+    left: 0;
+    width: 100%;
+    height: 70px;
+    margin-top: 21px;
+    background-color: white;
+    /* 처음에 숨김 */
+    display: none;
+}
+/* 상위 li에 오버 시 서브배경 보이기 */
+.gnb>ul>li:hover::after{
+    display: block;
+    border-bottom: 4px solid darkcyan;
+}
+/* 상위 a오버 시 */
+.gnb>ul>li>a:hover{
+    color: darkcyan;
+}
+/* 상위 a 오버 시 가상요소 밑줄 */
+.gnb>ul>li:hover>a::after{
+    position: absolute;
+    /* 부모는 a */
+    content: '';
+    display: block;
+    top: 57px;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background-color: darkcyan;
+}
+
+/* 서브메뉴 */
+.smenu{
+    display: none;
+    position: absolute;
+    margin-top: 11px;
+    z-index: 1;
+}
+/* 메뉴별 서브메뉴 위치 변경하기 */
+.gnb>ul>li:nth-child(4) .smenu{
+    margin-left: -10%;
+}
+.gnb>ul>li:nth-child(5) .smenu{
+    margin-left: -10%;
+}
+.gnb>ul>li:nth-child(6) .smenu{
+    margin-left: -20%;
+}
+.gnb>ul>li:nth-child(7) .smenu{
+    margin-left: -45%;
+}
+.gnb>ul>li:nth-child(8) .smenu{
+    margin-left: -20%;
+}
+/* 상위 a오버 시 서브메뉴 보이기 */
+.gnb>ul>li:hover .smenu{
+    display: block;
+}
+/* 서브메뉴 ul */
+.smenu ul{
+    display: flex;
+}
+/* 서브메뉴 li */
+.smenu li{
+    padding: 15px;
+}
+/* 서브메뉴 a */
+.smenu a{
+    display: block;
+    font-size: 15px;
+    padding: 10px 5px;
+}
+/* 서브메뉴 오버시 a */
+.smenu a:hover{
+    background-color: darkcyan;
+    color: #fff;
+    font-weight: bold;
+}
+
+/* 컨텐츠박스 */
+.cont{
+    position: relative;
+    padding-top: 200px;
+    /* 비율적용박스 */
+    aspect-ratio: 16/9;
+    background: url(../images/img_gansam.jpg) no-repeat center/cover;
+}
