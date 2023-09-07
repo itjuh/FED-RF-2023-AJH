@@ -6,6 +6,10 @@
         <title>온고롱 메인페이지</title>
         <!-- 온고롱 메인페이지 CSS -->
         <link rel="stylesheet" href="./css/main.css" />
+        <!-- 온고롱 데이터JS -->
+        <script src="./js/data.js"></script>
+        <!-- 온고롱 메인JS -->
+        <script src="./js/main.js" defer></script>
     </head>
     <body>
         <!-- 1. 상단영역 -->
@@ -66,25 +70,15 @@
                 <!-- 2-1. 이벤트배너 -->
                 <h2>이벤트배너위치:|←|이미지|설명|→|</h2>
                 <div class="main-banner">
-                    <!-- 왼쪽 배너로 이동 -->
-                    <!-- 2-1-2. 배너박스 -->
-                    <ul>
-                        <li>
-                            <div class="partbox banner">
-                                <!-- 배너이미지 -->
-                                <section class="banner-img">
-                                    <img src="../01.자료수집/ongorong_prod/img_event01.jpeg" alt="">
-                                </section>
-                                <!-- 배너설명 -->
-                                <section class="banner-desc">
-                                    <h1>이벤트 타이틀</h1>
-                                    <p>이번 이벤트는 ~~~~~~~~~~</p>
-                                    <button class="move-view-btn">더보기</button>
-                                </section>
-                            </div>
-                        </li>
-                    </ul>
-                    <!-- 오른쪽 배너로 이동 -->
+                    <section class="banner-area">
+                        <!-- 2-1-2. 배너박스 -->
+                        <ul class="banner-ul">
+                        </ul>
+                        <!-- 왼쪽 배너로 이동 -->
+                        <button class="move-btn prev-btn"></button>
+                        <!-- 오른쪽 배너로 이동 -->
+                        <button class="move-btn next-btn"></button>
+                    </section>
                 </div>
                 <!-- 2-2. 메인테마 -->
                 <div class="main-thema">

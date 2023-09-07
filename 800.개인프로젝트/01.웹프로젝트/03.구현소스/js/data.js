@@ -21,20 +21,19 @@ const company_info = {
 };
 // 이벤트정보 
 // key이벤트명 src,소개,타이틀,내용으로 구성
-let event_info = {
-    "event01":{"src":"../01.자료수집/ongorong_prod/img_event01.jpeg","alt":"","tit":"","cont":""},
-    "event02":{"src":"../01.자료수집/ongorong_prod/img_event02.jpeg","alt":"","tit":"","cont":""},
-    "event03":{"src":"../01.자료수집/ongorong_prod/img_event03.jpeg","alt":"","tit":"","cont":""},
-    "event04":{"src":"../01.자료수집/ongorong_prod/img_event04.jpeg","alt":"","tit":"","cont":""},
-    "event05":{"src":"../01.자료수집/ongorong_prod/img_event05.jpeg","alt":"","tit":"","cont":""},
-    "event06":{"src":"../01.자료수집/ongorong_prod/img_event06.jpeg","alt":"","tit":"","cont":""},
-    "event07":{"src":"../01.자료수집/ongorong_prod/img_event07.jpeg","alt":"","tit":"","cont":""},
-    "event08":{"src":"../01.자료수집/ongorong_prod/img_event08.jpeg","alt":"","tit":"","cont":""},
-    "event09":{"src":"../01.자료수집/ongorong_prod/img_event09.jpeg","alt":"","tit":"","cont":""},
-    "event10":{"src":"../01.자료수집/ongorong_prod/img_event10.jpeg","alt":"","tit":"","cont":""},
+const event_info = {
+    "event01":{"src":"../01.자료수집/ongorong_prod/img_event01.jpeg","tit":"온고롱 2023 추석선물세트 출시","cont":"출시기념 이벤트로 9월 5일부터 9월 12일까지 주문예약 시 추석 선물세트를 5% 할인해드립니다."},
+    "event02":{"src":"../01.자료수집/ongorong_prod/img_event02.jpeg","tit":"선물세트 배송기간 안내","cont":"사전예약마감은 9월 12일 택배마감은 18일입니다. 택배발송은 20일과 21일에 진행되며 이후에는 픽업만 가능합니다."},
+    "event03":{"src":"../01.자료수집/ongorong_prod/img_event03.jpeg","tit":"앙금 모나카 8종 세트","cont":"앙금 모나카 8개입에 무료보자기포장까지! 모나카맛은 다채롭게 흑임자, 고구마, 쑥, 피넛, 팥, 앙버터, 유자, 딸기로 구성되어 있습니다."},
+    "event04":{"src":"../01.자료수집/ongorong_prod/img_event04.jpeg","tit":"모나카 견과칩 세트A","cont":"모나카 견과칩 24개를 한 번에 만나는 구성 A상품입니다. 맛은 현미씨앗, 검은깨, 피넛피칸칩으로 구성되어 있습니다."},
+    "event05":{"src":"../01.자료수집/ongorong_prod/img_event05.jpeg","tit":"모나카 견과칩 세트B","cont":"모나카 견과칩 36개를 푸짐하게 만나는 구성 B상품입니다. 맛은 현미씨앗, 검은깨, 피넛피칸칩으로 구성되어 있습니다."},
+    "event06":{"src":"../01.자료수집/ongorong_prod/img_event06.jpeg","tit":"모나카 종합 세트","cont":"앙금모나카와 모나카견과칩을 모두 드실 수 있는 구성입니다. 맛은 현미씨앗, 검은깨, 피넛피칸칩으로 구성되어 있습니다."},
+    "event07":{"src":"../01.자료수집/ongorong_prod/img_event07.jpeg","tit":"곶감 단지 세트","cont":"더욱 고급스러운 선물을 위한 곶감 단지 세트입니다. 무료 보자기포장으로 소중한 분께 더 고급스럽게 선물하실 수 있습니다."},
+    "event08":{"src":"../01.자료수집/ongorong_prod/img_event08.jpeg","tit":"곶감 단지 종합 세트","cont":"곶감단지와 견과스틱 호두정과 등 건강에도 좋고 고급스러운 수제간식을 종합적으로 구성한 상품입니다."},
+    "event09":{"src":"../01.자료수집/ongorong_prod/img_event09.jpeg","tit":"쌀 오란다 세트","cont":"국내산 쌀로 만든 바삭한 오란다가 12개 있는 상품입니다. 맛은 검은깨, 무화과, 땅콩씨앗으로 구성되어 있습니다."},
 };
 // 상품정보 
 // key상품번호 상품명,가격,태그,src로 구성
-let prod_info = {
+const prod_info = {
     "prod01":{"상품명":"","상품가격":"","상품태그":"","src":"../01.자료수집/ongorong_prod/img_cake01.jpeg"},
 };

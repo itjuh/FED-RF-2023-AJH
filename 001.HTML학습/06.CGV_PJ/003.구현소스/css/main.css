@@ -1,0 +1,117 @@
+@charset "utf-8";
+/* CGV PJ 메인 페이지 CSS - main.css */
+
+/* 외부 공통 CSS 합치기 */
+@import url(./reset.css);
+@import url(./core.css);
+
+
+/* 공사중 표시 */
+body * {
+    outline: 1px dashed ghostwhite;
+}
+
+/* 전체배경색 */
+body{
+    background-color: #000;
+}
+/* 로고 */
+.tit{
+    color: aqua;
+    font-size: 40px;
+    font-family: 'Jua', sans-serif;
+    text-align: center;
+    line-height: 80px;
+    /* 글자글로우 */
+    text-shadow: 0px 0px 3px aquamarine;
+    /* 애니메이션 호출 */
+    animation: tit-ani .7s ease-in infinite alternate;
+}
+/* 키프레임 */
+/* 타이틀애니 키프레임 */
+@keyframes tit-ani{
+    to{
+        text-shadow: 0px 0px 8px aquamarine;
+    }
+}
+/**************** 1.상단영역 ****************/
+.header{
+    height: 80px;
+    background: url(../images/curtain.jpg) repeat-x;
+}
+/**************** 2.메인영역 ****************/
+.main{
+    /* 부모자격 */
+    position: relative;
+    height: 788px;
+    background: url(../images/bg.jpg) no-repeat center;
+}
+/* 2-1. 스크린 */
+.screen{
+    position: absolute;
+    top: 136px;
+    left: 257px;
+    width: 701px;
+    height: 397px;
+    background-color: black;
+}
+/* 아이프레임 */
+.screen iframe{
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+/* 2-2.포스터메뉴 */
+.poster-menu{
+    position: absolute;
+    width: 700px;
+    left: 50%;
+    bottom: 5%;
+    transform:translate(-50%);
+}
+/* 포스터 메뉴 ul */
+.poster-menu ul{
+    display: flex;
+    gap: 0 10px;
+}
+/* 포스터 메뉴 li */
+.poster-menu>ul>li{
+    position: relative;
+    flex: 1;
+    overflow: hidden;
+}
+/* 포스터 메뉴 img */
+.poster-menu img{
+    width: 100%;
+}
+/* 영화정보 */
+.mv-info{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    /* 아래에 위치 */
+    top: 100%;
+    /* 부모는 싸고있는 li */
+    text-align: center;
+    background-color: rgb(0 0 0 / 49%);
+    /* 트랜지션 */
+    transition: top .3s ease-in;
+}
+/* 상위 li에 오버시 영화 정보박스 보이기 */
+.poster-menu>ul>li:hover .mv-info{
+    top: 0;
+}
+/* 영화정보 ol */
+.mv-info ol{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 20px 0;
+    font-size: 12px;
+    width: 100%;
+    height: 100%;
+}
+/**************** 3.하단영역 ****************/
+.footer{
+    height: 100px;
+}
