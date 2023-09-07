@@ -11,6 +11,7 @@
 .banner-area{
     height: 800px;
     position: relative;
+    overflow: hidden;
 }
 /* 왼쪽 배너로 이동 .prev-btn*/
 .prev-btn{
@@ -35,9 +36,10 @@
     background-size: 625px 375px;
     background-position: -393px -180px;
 }
-
+/* 배너영역 내용ul */
 .banner-area>ul{
     display: flex;
+    position: relative;
     width: 100%;
     height: 100%;
 }
@@ -66,6 +68,7 @@
     width: 400px;
     height: 300px;
 }
+/* 배너설명박스 전체 ol */
 .banner-desc ol{
     display: flex;
     flex-direction: column;
@@ -155,6 +158,7 @@
     height: 400px;
     width: 80%;
     margin: 0 auto;
+    gap: 0 10px;
 }
 .list-type .list .partbox{
     flex-basis: 25%;
@@ -183,14 +187,12 @@
 /* 인기상품******** */
 /* 이미지 */
 .hot-item-list .img-box{
-    width: 300px;
+    width: 100%;
     height: 300px;
-    margin: 10px auto;
 }
 /* 정보박스 */
 .hot-item-list .txt-box{
-    width: 300px;
-    margin: 10px auto;
+    width: 100%;
 }
 /* 상품정보 공통 */
 .txt-box li{
@@ -208,9 +210,8 @@
 /* 리뷰************ */
 /* 정보박스 */
 .review-list .txt-box{
-    width: 300px;
+    width: 100%;
     height: 140px;
-    margin: 20px auto;
 }
 .review-list .txt-box ul{
     display: flex;
@@ -219,9 +220,8 @@
 }
 /* 이미지 */
 .review-list .img-box{
-    width: 300px;
+    width: 100%;
     height: 200px;
-    margin: 10px auto 0px;
 }
 /* 작성자 */
 .reviewer{
@@ -240,15 +240,76 @@
 /* 2-5. 추천검색 */
 .main-key-search{
     display: flex;
+    /* 키워드박스 부모 */
+    position: relative;
     flex-direction: column;
     height: 500px;
 }
-.main-key-search .partbox:first-of-type{
+/* 추천검색 검색구역(검색부) */
+.main-key-search>.partbox:first-of-type{
     flex-basis: 50%;
 }
-/* 추천검색 검색창 */
+/* 검색창 */
+.key-search-box{
+    /* 위치 이동을 위한 relative */
+    position: relative;
+    top: 30%;
+    left: 50%;
+    line-height: 50px;
+    text-align: center;
+    transform: translate(-50%, -50%) scale(1.8);
+}
+/* 키워드 말풍선 공통 */
+.bubble-key{
+    position: absolute;
+    width: 100px;
+    height: 65px;
+    background-color: lightblue;
+    border-radius: 40px;
+    box-shadow: 1px 1px 10px 0px #00000080;
+    /* 글자세팅 */
+    padding-left: 20px;
+    font-size: var(--fz-top);
+    line-height: 65px;
+    font-family: 'GangwonEdu_OTFBoldA';
+}
+/* 말풍선 위치 개별 */
+.bubble-key.b1{
+    top: 10px;
+    left: 12vw;
+}
+.bubble-key.b2{
+    top: 120px;
+    left: 10vw;
+}
+.bubble-key.b3{
+    top: 150px;
+    left: 20vw;
+}
+.bubble-key.b4{
+    top: 50px;
+    right: 10vw;
+}
+.bubble-key.b5{
+    top: 133px;
+    right: 18vw;
+}
+/* 말풍선꼬리 */
+.bubble-key::after{
+    position: relative;
+    top: 0%;
+    left: 10%;
+    content: '';
+    display: block;
+    width: 50px;
+    height: 30px;
+    background-color: lightblue;
+    clip-path: polygon(54% 28%, 44% 14%, 27% 0, 85% 0, 94% 13%, 99% 29%, 97% 55%, 84% 80%, 61% 100%, 66% 78%, 67% 58%, 62% 41%);
+    box-shadow: 1px 1px 10px 0px #00000080;
+}
 
-.main-key-search .partbox:last-of-type{
+/* 추천검색 아래쪽구역(제품부) */
+.main-key-search>.partbox:last-of-type{
     /* display: none; */
     flex-basis: 50%;
 }

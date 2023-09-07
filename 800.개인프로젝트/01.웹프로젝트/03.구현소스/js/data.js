@@ -35,5 +35,8 @@ const event_info = {
 // 상품정보 
 // key상품번호 상품명,가격,태그,src로 구성
 const prod_info = {
-    "prod01":{"상품명":"","상품가격":"","상품태그":"","src":"../01.자료수집/ongorong_prod/img_cake01.jpeg"},
+    "prod01":{"상품명":"미니4종생일케이크","상품가격":"50000","상품태그":"@떡케이크","src":"../01.자료수집/ongorong_prod/img_cake01.jpeg"},
+    "prod02":{"상품명":"작약리스케이크","상품가격":"45000","상품태그":"@떡케이크","src":"../01.자료수집/ongorong_prod/img_cake02.jpeg"},
+    "prod03":{"상품명":"하단리스케이크","상품가격":"50000","상품태그":"@떡케이크","src":"../01.자료수집/ongorong_prod/img_cake03.jpeg"},
+    "prod04":{"상품명":"작약장미리스케이크","상품가격":"40000","상품태그":"@떡케이크","src":"../01.자료수집/ongorong_prod/img_cake04.jpeg"},
 };

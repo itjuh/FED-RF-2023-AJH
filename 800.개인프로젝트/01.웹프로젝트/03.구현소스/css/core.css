@@ -31,9 +31,9 @@ body{
     font-family: 'Nanum Gothic', sans-serif;
 }
 /* 공통 레이아웃 클래스 */
-body *{
+/* body *{
     outline: 1px solid coral;
-}
+} */
 /* 상단영역 폰트공통 */
 #header{
     font-family: 'GangwonEdu_OTFBoldA';
@@ -55,6 +55,9 @@ body *{
     --fz-sub : 1.4rem;
     --fz-nav : min(14px,1.6vw);
     --fz-sign : min(13px, 1.2vw);
+    --co-ongreen : rgb(87, 98, 82);
+    --co-onlightgreen: rgb(126, 136, 121);
+    --co-onbeige : rgb(252, 232, 206);
 }
 /* IR 숨기기 class */
 .ir{
@@ -88,7 +91,8 @@ body *{
     height: 30px;
     border-radius: 20px;
     background-color: #fff;
-    padding: 0 10px;
+    padding-top: 3px;
+    padding-right: 10px;
     font-size: var(--fz-sub);
     font-family: 'GangwonEdu_OTFBoldA';
     text-align: center;
@@ -97,7 +101,7 @@ body *{
     content: '';
     position: absolute;
     top: 5px;
-    right: 10px;
+    right: 13px;
     width: 19px;
     height: 19px;
     background: url(../../01.자료수집/images/direc_icon.png) no-repeat;

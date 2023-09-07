@@ -22,3 +22,5 @@ main.js:10 Uncaught TypeError: ele.addEventListener is not a function
     at loadFn (main.js:61:5)
 addEvt @ main.js:10
 loadFn @ main.js:61
+
+슬라이더 구역 ol은 포지션이 바뀌므로 position:static이 아닌 속성이 필요함!!!

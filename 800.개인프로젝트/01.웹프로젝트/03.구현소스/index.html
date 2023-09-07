@@ -126,7 +126,17 @@
                     <h2>추천검색:검색창>추천창(열리는형태)</h2>
                     <!-- 키워드검색창 -->
                     <div class="partbox">
-                        <div class="fig"></div>
+                        <!-- 검색 -->
+                        <div class="key-search-box">
+                            <label for="search"></label>
+                            <input type="text" id="search" placeholder="제품을 검색하세요!" onkeypress="if(event.keyCode===13) search()"/>
+                        </div>
+                        <!-- 키워드말풍선 -->
+                        <div class="bubble-key b1">@떡케이크</div>
+                        <div class="bubble-key b2">@숫자케이크</div>
+                        <div class="bubble-key b3">@답례품</div>
+                        <div class="bubble-key b4">@상차림떡</div>
+                        <div class="bubble-key b5">@쌀디저트</div>
                     </div>
                     <!-- 키워드 선택 시 열리는 추천창 -->
                     <div class="partbox"></div>
@@ -185,11 +195,39 @@
                     </div>
                     <!-- 3-2. 회사소개 -->
                     <div class="partbox">
+                        <ul>
+                            <li>상호 : 온고롱</li>
+                            <li>대표 : 김희진</li>
+                            <li>주소 : 서울 중랑구 동일로160길 8 1층 온고롱</li>
+                            <li>전화 : 0507-1358-0638</li>
+                            <li>메일 : ongorongcake@naver.com</li>
+                            <li>사업자번호 : 665-13-33017</li>
+                            <li>통신판매번호 : 신고면제 </li>
+                        </ul>
                     </div>
                 </div>
                 <!-- 3-3. SNS링크 -->
                 <div class="footer-sns">
-                    <div class="partbox"></div>
+                    <div class="partbox">
+                        <ol>
+                            <li>
+                                <div class="sns-img kakao"></div>
+                                <span>카카오채널</span>
+                            </li>
+                            <li>
+                                <div class="sns-img insta"></div>
+                                <span>인스타그램</span>
+                            </li>
+                            <li>
+                                <div class="sns-img naver"></div>
+                                <span>네이버블로그</span>
+                            </li>
+                            <li>
+                                <div class="sns-img dang"></div>
+                                <span>당근마켓</span>
+                            </li>
+                        </ol>
+                    </div>
                 </div>
             </footer>
         </div>

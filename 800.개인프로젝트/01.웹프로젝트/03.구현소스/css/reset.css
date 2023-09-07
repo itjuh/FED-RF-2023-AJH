@@ -46,3 +46,7 @@ h6 {
 button {
     border: none;
 }
+img {
+    /* 박스 이미지 하단공백 제거 */
+    vertical-align:middle;
+}

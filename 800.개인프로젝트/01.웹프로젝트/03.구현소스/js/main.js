@@ -6,11 +6,18 @@ const qsa = x => document.querySelectorAll(x);
 // 이벤트함수
 const addEvt = (ele,evt,fn) => ele.addEventListener(evt,fn);
 
+// 전역변수
+// 1. 광클금지 상태변수 : 0-허용, 1-불허용
+let clickSts = 0;
+// 2. 슬라이드 이동시간
+const TIME_SLIDE = 800;
+
 // 배너 데이터 뿌리기
 // 대상 main-banner>ul
 let banner = qs('.banner-ul');
 // 코드변수
 let hcode = ``;
+
 for(let x in event_info){
     // 데이터 넣기
     hcode += `
@@ -31,10 +38,11 @@ for(let x in event_info){
 }
 banner.innerHTML = hcode;
 
+///////////////////////////////////////
 // 배너 움직이기
 // 이벤트 대상 :.prev-btn/.next-btn
 // 변경대상 : .banner-area>ul>li
-
+/////////////////////////////////////////
 // 1. 대상선정
 // 1-1. 버튼들 .move-btn 수집
 const move_btns = qsa('.move-btn');
@@ -46,8 +54,20 @@ console.log(move_btns,event_banner);
 // move_btns[0].onclick = goSlide;
 move_btns.forEach(ele=>addEvt(ele,'click',goSlide));
 
+/***************************************
+    함수명 : goSlide
+    기능 : 
+    1. 방향버튼 클릭 시 배너를 이동
+    2. 광클을 막기위해 TIME_SLIDE = 800 줌(ms)
+***************************************/
 // 3. 함수생성
 function goSlide(){
+
+    // 광클금지
+    if(clickSts) return;//나가기
+    clickSts=1;//잠금
+    setTimeout(()=>clickSts=0,TIME_SLIDE);//해제!
+
     // 호출확인
     // 버튼종류 확인
     let isNext = this.classList.contains('next-btn');
@@ -59,7 +79,7 @@ function goSlide(){
         // (1)대상이동
         event_banner.style.left = '-100%';
         // (2)트랜지션
-        event_banner.style.transition = '1s ease-in-out';
+        event_banner.style.transition = TIME_SLIDE+'ms ease-in-out';
         // 이동시간 후 맨 앞 li 잘라서 맨 뒤로 이동하기
         // appendChild(요소);
         setTimeout(()=>{ //비동기처리
@@ -69,7 +89,7 @@ function goSlide(){
             event_banner.style.left = '0';
             // (5)트랜지션 없애기
             event_banner.style.transition = 'none';
-        },400);
+        },TIME_SLIDE);
     // 잘라내서 붙이기! 위치값-100%만들기! 움직이기!
     }else{
         // (1)맨뒤 li 맨 앞으로 이동
@@ -84,7 +104,7 @@ function goSlide(){
             // (4)left값 0으로 들어오기!
             event_banner.style.left = '0';
             // (5)트랜지션주기
-            event_banner.style.transition = '1s ease-in-out';
+            event_banner.style.transition = TIME_SLIDE+'ms ease-in-out';
         },0);
     } ///////////if else //////////
 } /////////goSlide /////////////////
