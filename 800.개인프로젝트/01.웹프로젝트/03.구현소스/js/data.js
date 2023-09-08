@@ -33,10 +33,18 @@ const event_info = {
     "event09":{"src":"../01.자료수집/ongorong_prod/img_event09.jpeg","tit":"쌀 오란다 세트","cont":"국내산 쌀로 만든 바삭한 오란다가 12개 있는 상품입니다. 맛은 검은깨, 무화과, 땅콩씨앗으로 구성되어 있습니다."},
 };
 // 상품정보 
-// key상품번호 상품명,가격,태그,src로 구성
+// key상품번호 prod-name,가격,태그,src로 구성
 const prod_info = {
-    "prod01":{"상품명":"미니4종생일케이크","상품가격":"50000","상품태그":"@떡케이크","src":"../01.자료수집/ongorong_prod/img_cake01.jpeg"},
-    "prod02":{"상품명":"작약리스케이크","상품가격":"45000","상품태그":"@떡케이크","src":"../01.자료수집/ongorong_prod/img_cake02.jpeg"},
-    "prod03":{"상품명":"하단리스케이크","상품가격":"50000","상품태그":"@떡케이크","src":"../01.자료수집/ongorong_prod/img_cake03.jpeg"},
-    "prod04":{"상품명":"작약장미리스케이크","상품가격":"40000","상품태그":"@떡케이크","src":"../01.자료수집/ongorong_prod/img_cake04.jpeg"},
+    "prod01":{"prod_name":"미니4종생일케이크","prod_price":"50000","prod_tag":"@떡케이크","src":"../01.자료수집/ongorong_prod/img_cake01.jpeg"},
+    "prod02":{"prod_name":"작약리스케이크","prod_price":"45000","prod_tag":"@떡케이크","src":"../01.자료수집/ongorong_prod/img_cake02.jpeg"},
+    "prod03":{"prod_name":"하단리스케이크","prod_price":"50000","prod_tag":"@떡케이크","src":"../01.자료수집/ongorong_prod/img_cake03.jpeg"},
+    "prod04":{"prod_name":"작약장미리스케이크","prod_price":"40000","prod_tag":"@떡케이크","src":"../01.자료수집/ongorong_prod/img_cake04.jpeg"},
+};
+
+// 리뷰정보
+const review_info = {
+    "review01":{"reviewer":"안주현1","review_txt":"리뷰내용~~너무 맛있고 맛있고 맛있어요~ 최고에요","review_tag":"@떡케이크","src":"../01.자료수집/ongorong_prod/img_cake01.jpeg"},
+    "review02":{"reviewer":"안주현2","review_txt":"리뷰내용~~너무 맛있고 맛있고 맛있어요~ 최고에요","review_tag":"@떡케이크","src":"../01.자료수집/ongorong_prod/img_cake02.jpeg"},
+    "review03":{"reviewer":"안주현3","review_txt":"리뷰내용~~너무 맛있고 맛있고 맛있어요~ 최고에요","review_tag":"@떡케이크","src":"../01.자료수집/ongorong_prod/img_cake03.jpeg"},
+    "review04":{"reviewer":"안주현4","review_txt":"리뷰내용~~너무 맛있고 맛있고 맛있어요~ 최고에요","review_tag":"@떡케이크","src":"../01.자료수집/ongorong_prod/img_cake04.jpeg"},
 };

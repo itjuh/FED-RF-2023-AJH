@@ -131,6 +131,7 @@
 /********* 2. 메인영역 **********/
 #main{
     background-color: #fce8ce;
+    font-family: 'GangwonEdu_OTFBoldA';
 }
 .main.inbox{
     max-width: 1650px;

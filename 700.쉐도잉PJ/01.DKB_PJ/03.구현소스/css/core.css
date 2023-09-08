@@ -41,6 +41,10 @@ body{
     display: block;
     clear: both;
 }
+/* 그룹파트박스 */
+.group-part{
+    padding: 60px 0;
+}
 /* 파트박스 */
 .partbox {
     /* 옆으로 흐르게(100%주면 안흐름) */
@@ -54,6 +58,11 @@ body{
     /* 높이값이 속 박스에 있을 경우 채우기 셋팅
             높이값이 파티션박스에 있으면 안씀! */
     height: 100%;
+}
+/* 공통 서브타이틀 */
+.stit{
+    padding-bottom: 32px;
+    font-size: 3.8rem;
 }
 /* 12그리드 클래스 : 한줄의 합이 12컬럼이 되도록 셋팅! */
 .col-1 {
