@@ -179,12 +179,12 @@ function goSlide(){
         bannerDescBox.style.transition = 'none';
         // 같은 left값을 동시에 변경하면 효과가 없음
         setTimeout(()=>{// 비동기처리해야함
-            // (4)left,top값 0으로 들어오기!
-            evtBannerImg.style.left = '0';
-            bannerDescBox.style.top = '0';
-            // (5)트랜지션주기
-            evtBannerImg.style.transition = TIME_SLIDE+'ms ease-in-out';
-            bannerDescBox.style.transition = TIME_SLIDE+'ms ease-in-out';
+        // (4)left,top값 0으로 들어오기!
+        evtBannerImg.style.left = '0';
+        bannerDescBox.style.top = '0';
+        // (5)트랜지션주기
+        evtBannerImg.style.transition = TIME_SLIDE+'ms ease-in-out';
+        bannerDescBox.style.transition = TIME_SLIDE+'ms ease-in-out';
         },0);
     } ///////////if else //////////
 } /////////goSlide /////////////////
