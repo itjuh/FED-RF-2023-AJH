@@ -168,11 +168,13 @@
     content: '';
     display: block;
     position: absolute;
-    left: 0%;
+    left: 4%;
     width: 40px;
     height: 40px;
     transform: translateX(-100%);
-    background-image: url(../images/ho_logo.jpg);
+    background-image: url(../../01.자료수집/images/info.png);
+    background-size: 700px 450px;
+    background-position: -664px -108px;
 }
 /* 2-7-2. 리뷰 리스트 */
 /* 2-4-2. 인기상품 리스트 */
@@ -200,6 +202,7 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
+    /* transform: translate(4px, 1px); */
 }
 /* 상품태그 */
 .prod-tag{
@@ -267,8 +270,13 @@
 }
 /* 리뷰내용 */
 .review-txt{
-    height: 100%;
+    height: 105px;
     font-size: var(--fz-top);
+    display: -webkit-box;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical; 
 }
 /* 리뷰태그 */
 .review-list .prod-tag{
@@ -307,7 +315,7 @@
     /* box-shadow: 1px 1px 10px 0px #00000080; */
     /* 글자세팅 */
     padding-left: 20px;
-    font-size: var(--fz-top);
+    font-size: var(--fz-sign);
     line-height: 65px;
     font-family: 'GangwonEdu_OTFBoldA';
     /* box-shadow대신 filter:drop-shadow를 써야 클립패쓰까지 그림자 적용됨!!! */

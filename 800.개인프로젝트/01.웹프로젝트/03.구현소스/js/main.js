@@ -189,12 +189,12 @@ function goSlide(){
     } ///////////if else //////////
 } /////////goSlide /////////////////
 
-
-//키워드 대상: .bubble-key
+// 말풍선 내부의 글자값 #search넣기
+// 키워드 대상: .bubble-key
 const bubbleKey = qsa('.bubble-key');
 // 검색 input
 const searchInput = qs('#search');
-console.log(bubbleKey,searchInput);
+// console.log(bubbleKey,searchInput);
 
 bubbleKey.forEach(ele=>{
     addEvt(ele,'click',()=>{
@@ -204,3 +204,12 @@ bubbleKey.forEach(ele=>{
         searchInput.value = txt;
     })
 })
+
+
+// 스크롤 이벤트 만들기
+// 대상: #search 위치 이동
+// 1. 스크롤 위치값 찍기 2360 2610이 getBoundingClientRect()top에서 0이 되면 원래자리로
+// 2. 특정 위치값에서 ~~까지 위치지정
+// 스크롤 벗어나면 제자리로
+// 위치값 알기위해 마우스 클릭지점 찍ㄱ
+// window.onclick = (e) => {console.log(e.pageY);}

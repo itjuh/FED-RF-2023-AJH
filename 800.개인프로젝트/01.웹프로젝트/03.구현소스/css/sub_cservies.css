@@ -1,0 +1,155 @@
+@charset "uft-8";
+/* 온고롱 서브B오시는길 - sub_bmap.css */
+/* CSS 불러오기 영역 */
+/* 리셋, 공통, 코어 외부 CSS합치기(merging) */
+@import url(./common.css);
+@import url(./core.css);
+@import url(./reset.css);
+
+/* 2-1.타이틀 */
+.main .top-title{
+    height: 80px;
+    border-bottom: 1px solid #000;
+    line-height: 120px;
+}
+.top-title h1{
+    width: 1400px;
+    height: 100%;
+    margin: 0 auto;
+    font-size: var(--fz-biger);
+}
+.main .partbox{
+    width: 1400px;
+    min-height: 800px;
+    margin: 0 auto;
+    padding: 30px;
+    box-sizing: border-box;
+}
+/* 2-1. 고객센터 타이틀 */
+/* 2-2. 자주묻는 질문 */
+.faq-box{
+    position: relative;
+    /* speech-icon부모용 */
+    min-height: 540px;
+    border-radius: 30px;
+    font-size: var(--fz-top);
+    border: 1px solid #ccc;
+    padding: 30px;
+    background: #fff;
+}
+/* 2-2-1. 서브타이틀 */
+.main div .sub-title span{
+    display: block;
+    padding-left: 80px;
+    font-size: var(--fz-big);
+    height: 20%;
+    line-height: 80px;
+    border-bottom: 1px solid #ccc;
+}
+/* 말풍선 아이콘 */
+.speech-icon{
+    position: absolute;
+    /* 부모님은 faq-box */
+    top: 41px;
+    left: 43px;
+    width: 55px;
+    height: 48px;
+    background: url(../../01.자료수집/images/info.png) no-repeat;
+    background-position: -128px -62px;
+    background-size: 785px 534px;
+}
+.speech-talk{
+    position: absolute;
+    top: 14px;
+    left: 15px;
+    width: 23px;
+    height: 16px;
+    background: url(../../01.자료수집/images/info.png) no-repeat;
+    background-position: -15px -72px;
+    background-size: 785px 534px;
+    
+    /* 트랜지션 */
+    transition: .2s ease-in;
+    /* 애니메이션 */
+    animation: talk-ani .s ease-in-out infinite alternate;
+}
+/* 말하는 효과 */
+@keyframes talk-ani {
+    to{
+        width: 8px;
+    }
+}
+/* 2-2-2. 카테고리 */
+.faq-sub-cate ol{
+    display: flex;
+    justify-content: flex-start;
+    height: 100px;
+    align-items: center;
+    gap: 20px 90px;
+    padding-left: 20px;
+}
+/* 카테고리 세부 공통 */
+.faq-sub-cate li{
+    position: relative;
+    /* 아이콘용 부모자격 */
+    width: 140px;
+    height: 50px;
+    border: 1px solid #000;
+    border-radius: 20px;
+    line-height: 52px;
+    text-align: right;
+    padding-right: 30px;
+}
+/* 첫번째 글자요소 위치 */
+.faq-sub-cate li:first-child{
+    padding-left: 15px;
+}
+/* 카테고리 세부 아이콘 */
+.faq-sub-cate li::before{
+    content: '';
+    position: absolute;
+    /* 부모는 li */
+    left: 13px;
+    width: 50px;
+    height: 50px;
+    background: url(../../01.자료수집/images/info.png) no-repeat;
+    background-position: -53px 3px;
+    background-size: 707px 418px;
+
+}
+/* 아이콘 개별 */
+.faq-sub-cate li:nth-child(1)::before{
+    background-position: -53px 5px;
+}
+.faq-sub-cate li:nth-child(2)::before{
+    background-position: -169px 4px;
+}
+.faq-sub-cate li:nth-child(3)::before{
+    background-position: -110px 4px;
+}
+.faq-sub-cate li:nth-child(4)::before{
+    background-position: 5px 3px;
+}
+/* 마우스 클릭 시 on클래스 주기 */
+.faq-sub-cate li.on {
+    border: 3px solid #000;
+    text-shadow: 1px 0px 0px;
+    border-radius: 20px 20px 0px 20px;
+    /* box-shadow: 0px 0px 5px 1px #6d6d6d; */
+    background-color: var(--co-onlightgreen);
+    color:var(--co-onbeige);
+}
+.faq-sub-cate li:nth-child(1).on::before{
+    background-position: -57px -211px;
+}
+.faq-sub-cate li:nth-child(2).on::before{
+    background-position: -169px -211px;
+}
+.faq-sub-cate li:nth-child(3).on::before{
+    background-position: -110px -211px;
+}
+.faq-sub-cate li:nth-child(4).on::before{
+    background-position: 3px -212px;
+}
+/* 2-2-3. 서브 내용 */
+/* 2-3. 더 궁금하신 사항 */

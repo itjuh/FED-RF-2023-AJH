@@ -45,47 +45,49 @@
 .main div .contact{
     flex-basis: 65%;
 }
-/* 2-3-1-1. 오시는법 타이틀 */
-
+/* 2-3-1-1. 오시는법 타이틀 아이콘 */
+.contact.sub-title::before{
+    content: '';
+    display:inline-block;
+    width: 40px;
+    height: 40px;
+    background: url(../../01.자료수집/images/info.png) no-repeat;
+    background-position: -217px -3px;
+    background-size: 523px 356px;
+    transform: translateY(30%);
+}
 /* 2-3-1-2. 오시는법 */
 .contact-info{
     font-size: var(--fz-big);
     height: 80%;
 }
+/* 지하철, 버스, 차량 카테고리 */
 .contact-info ul{
     padding-left:40px;
     display: flex;
 }
-/* 오시는법 설명박스 */
+/* 오시는법 상세 설명박스 */
 .contact-way{
     position: relative;
     width: 120px;
-    height: 35px;
+    height: 50px;
     background: #fff;
     text-align: center;
-    line-height: 35px;
+    line-height: 52px;
 }
-.last{
-    position: relative;
-    width: 0px;
-    height: 35px;
-    background: inherit;
-    text-align: center;
-    line-height: 35px;
-}
-.contact-way:hover{
+.contact-way.on{
     background: #eee;
     z-index: 1;
 }
 .contact-way::after{
     content: '';
     position: absolute;
-    top: 35px;
+    top: 50px;
     left: 40px;
     width: 700px;
     height: 220px;
     background: #eee;
-    padding: 30px;
+    padding: 20px 30px;
     box-sizing: border-box;
 }
 .subway::after{
@@ -103,19 +105,58 @@
     left: -240px;
     text-align: left;
 }
-.last::after{
-    content: '';
-    left: -360px;
-    text-align: left;
-}
 /* 2-3-2. 이용안내 */
-.main div .use{
+.use{
     flex-basis: 35%;
 }
-/* 2-3-1-1. 이용안내 타이틀 */
-
+/* 2-3-1-1. 이용안내 타이틀 아이콘*/
+.use.sub-title::before{
+    content: '';
+    display:inline-block;
+    width: 40px;
+    height: 40px;
+    background: url(../../01.자료수집/images/info.png) no-repeat;
+    background-position: -176px -0px;
+    background-size: 523px 356px;
+    transform: translateY(30%);
+}
 /* 2-3-1-2. 이용안내 */
-main div .use-info{
+.use-info{
+    height: 280px;
+    padding: 30px 200px 30px 30px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: auto;
+    grid-column-gap: 60px;
+    grid-row-gap: 30px;
+    box-sizing: border-box;
     font-size: min(14px,1.6vw);
-    height: 80%;
+}
+/* 이용안내 문구 */
+.use-info dl{
+    width: 100%;
+    text-align: center;
+    font-size: var(--fz-top);
+}
+/* 이용안내 아이콘 공통 */
+.use-info-icon{
+    width: 100%;
+    height: calc(100% - 20px);
+    background: url(../../01.자료수집/images/info.png) no-repeat;
+    background-position: 0px 0px;
+    background-size: 1046px 711px;
+    overflow: hidden;
+}
+/* 이용안내 아이콘 개별 */
+.use-info dl:nth-child(1)>dt{
+    background-position: 17px 3px;
+}
+.use-info dl:nth-child(2)>dt{
+    background-position: -70px 3px;
+}
+.use-info dl:nth-child(3)>dt{
+    background-position: -155px 3px;
+}
+.use-info dl:nth-child(4)>dt{
+    background-position: -240px 3px;
 }
