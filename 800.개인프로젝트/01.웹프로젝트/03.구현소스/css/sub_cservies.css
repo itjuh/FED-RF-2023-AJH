@@ -177,7 +177,7 @@
     border-radius: 3px;
     line-height: 62px;
 }
-.faq-content>ul>li::after{
+.faq-content>ul>li::before{
     content: '';
     position: absolute;
     width: 25px;
@@ -187,16 +187,25 @@
     background-position: -240px -81px;
     background-size: 378px 202px;
     
-    /* 트랜지션 */
-    transition: .2s ease-in;
 }
 /* li에 마우스오버 시 */
 .faq-content>ul>li:hover{
     background-color: #c9ccc7;
 }
-.faq-content>ul>li:hover::after{
-    background-position: -234px -81px;
+/* .faq-content>ul>li:hover .faq-content>ul{
+    grid-template-columns: repeat(1, 2fr);
+} */
+.faq-content>ul>li:hover::before{
+    /* 애니메이션 */
+    animation: arrow-ani .3s ease-in alternate infinite;
 }
+@keyframes arrow-ani {
+    to{
+        background-position: -234px -81px;
+    }    
+}
+/* li클릭 시 asked-box */
+
 /* 2-3. 더 궁금하신 사항 */
 .qna-link{
     position: relative;
