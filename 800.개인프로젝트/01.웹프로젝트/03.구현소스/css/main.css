@@ -73,7 +73,7 @@
     flex-basis: 20%;
     background-color: var(--co-ondarkblue);
     /* 타이틀 글자 */
-    font-size: var(--fz-biger);
+    font-size: var(--fz-big);
     text-align: center;
     line-height: 60px;
 }
@@ -81,7 +81,7 @@
 .banner-desc .txt{
     display: block;
     flex-basis: 80%;
-    font-size: var(--fz-big);
+    font-size: var(--fz-top);
     background-color: var(--co-ondarkgreen);
     padding: 10px 30px;
     line-height: 1.5;
@@ -152,11 +152,12 @@
     margin: 0 auto;
     width: 100px;
     height: 40px;
-    border-radius: 50%;
+    border-radius: 45%;
+    box-shadow: 1px 1px 3px #00000080;
     /* 글자세팅 */
     font-size: var(--fz-top);
     text-align: center;
-    line-height: 40px;
+    line-height: 42px;
     letter-spacing: 2px;
     /* 중앙정렬 */
     transform: translateY(-50%);
@@ -175,6 +176,7 @@
     background-image: url(../../01.자료수집/images/info.png);
     background-size: 700px 450px;
     background-position: -664px -108px;
+    filter: drop-shadow(-1px 2px 2px #00000080);
 }
 /* 2-7-2. 리뷰 리스트 */
 /* 2-4-2. 인기상품 리스트 */

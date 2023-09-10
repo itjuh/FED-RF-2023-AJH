@@ -74,6 +74,7 @@
     background: #fff;
     text-align: center;
     line-height: 52px;
+    box-shadow: 6px 0px 5px 0 rgb(11 58 22 / 19%);
 }
 .contact-way.on{
     background: #eee;
@@ -89,6 +90,7 @@
     background: #eee;
     padding: 20px 30px;
     box-sizing: border-box;
+    box-shadow: 6px 8px 8px 0 rgb(11 58 22 / 10%);
 }
 .subway::after{
     content: '7호선 먹골역 2번출구 일룸건물 뒤 골목 안쪽';
