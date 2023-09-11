@@ -15,7 +15,16 @@ body * {
 body{
     background-color: #000;
 }
-/* 로고 */
+/**************** 1.상단영역 ****************/
+.header{
+    position: relative;
+    /* .gnb 부모자격 */
+    height: 80px;
+    background: url(../images/curtain.jpg) repeat-x;
+    /* 상단 영역박스 가장 위 */
+    z-index: 999;
+}
+/* 1-1. 로고 */
 .tit{
     color: aqua;
     font-size: 40px;
@@ -34,10 +43,160 @@ body{
         text-shadow: 0px 0px 8px aquamarine;
     }
 }
-/**************** 1.상단영역 ****************/
-.header{
-    height: 80px;
-    background: url(../images/curtain.jpg) repeat-x;
+/* 1-2.네비게이션 */
+.gnb{
+    position: absolute;
+    /* 부모는 .header */
+    bottom: 0px;
+    right: 10px;
+}
+.gnb ul{
+    /* z-index용 */
+    position: relative;
+    z-index: 1;
+    /* 플렉스 박스 */
+    display: flex;
+    /* 사이간격 */
+    gap: 0px 20px;
+    font-family: 'Jua';
+}
+/* gnb 상위메뉴 li */
+.gnb ul>li{
+    position: relative;
+    /* .smenu 부모자격 */
+}
+/* 상위메뉴a */
+.gnb ul>li>a{
+    display: inline-block;
+    /* 트랜스폼 적용하기위해 inline-block으로 변경 */
+    font-size: 2rem;
+    /* 하단과의 간격 : 젠틀한 .smenu 밀어주기
+    li에 연결 된 상태 유지(a로 인해 li커짐)*/
+    padding-bottom: 10px;
+    /* 트랜지션 */
+    transition: .3s;
+}
+/* 상위메뉴a 오버 시 */
+.gnb ul>li:hover>a{
+    color: aqua;
+    /* 오버 시 커지게 */
+    transform: scale(1.1);
+    text-shadow: 0px 0px 3px aquamarine;
+    /* 애니메이션 호출 */
+    animation: tit-ani .7s ease-in infinite alternate;
+}
+/* gnb서브메뉴 */
+.smenu{
+    position: absolute;
+    /* 부모는 .gnb ul>li */
+    /* 가로방향 중앙정렬 */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 140px;
+    padding: 3px;
+    border-radius: 5px;
+    background: url(../images/bg_smenu.png) no-repeat center/cover;
+    /* 필터를 이용한 그림자로 글로우 주기 */
+    /* ->box-shadow를 적용하면 본 작스만 효과가 적용 됨,
+    가상요소까지 고려하려면 fliter를 사용 */
+    filter: drop-shadow(0 0 5px #fff);
+    /* 처음에 숨기기 */
+    display: none;
+}
+/* 상위메뉴li 오버 시 smenu보이기 */
+.gnb ul>li:hover .smenu{
+    display: block;
+}
+/* 서브메뉴 가상요소로 삼각형 만들기 */
+.smenu::before{
+    content: '';
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: -15px;
+    width: 20px;
+    height: 15px;
+    background: url(../images/bg_smenu.png) no-repeat center/cover;
+    clip-path: polygon(0% 100%, 50% 0%, 100% 100%);
+}
+/* 서브메뉴 ol */
+.smenu ol{
+    border: 1px solid #ccc;
+    padding: 10px;
+}
+/* 서브메뉴 a */
+.smenu a{
+    font-size: 1.6rem;
+    line-height: 1.7;
+}
+/* 서브메뉴 a 오버 시 */
+.smenu li:hover a{
+    color: orangered;
+}
+/* 서브메뉴 li오버 시 가상요소로 이모지 */
+.smenu li:hover a::after{
+    content: '🎬';
+    float:right;
+}
+/* 서브메뉴 li별 이미지 변경하기  */
+.gnb ul>li:nth-child(2) .smenu li:hover a::after{
+    content: '🎫';
+}
+.gnb ul>li:nth-child(3) .smenu li:hover a::after{
+    content: '🎪';
+}
+.gnb ul>li:nth-child(4) .smenu li:hover a::after{
+    content: '🎃';
+}
+/* 개별 구분 보더넣기 클래스 */
+.bd-top{
+    border-top: 1px solid #ccc;
+}
+/* 영사기 박스 */
+.cam{
+    position: absolute;
+    /* 부모는 .gnb */
+    right: -56px;
+    top: -10px;
+}
+.cam>img{
+    position: relative;
+    z-index: 1;
+    width: 50px;
+    transform: rotate(11deg);
+    /* 트랜지션 : 빔 회수하고 돌기*/
+    transition: transform .3s .2s;
+}
+/* .gnb오버 시 영사기 돌기 */
+.gnb:hover .cam>img{
+    transform: rotate(0deg);
+    /* 바로 돌기 */
+    transition-delay: 0s;
+}
+/* 빔박스 */
+.beam{
+    position: absolute;
+    top: -8px;
+    right: 3px;
+    width: 0px;
+    height: 75px;
+    background: url(../images/bim.png) no-repeat right 194%/auto 110%;
+    /* 트랜지션 : 먼저 빔 회수 */
+    transition: width .2s linear;
+}
+/* .gnb오버 시 beam쏘기 */
+.gnb:hover .beam{
+    width: 200px;
+    /* 트랜지션 : 영사기 도는 동안 .3s 기다리기 */
+    transition-delay: .3s;
+    /* 빔 떨림 애니 */
+    animation: beam-ani .03s linear infinite alternate;
+}
+/* 빔떨림 애니 키프레임 */
+@keyframes beam-ani {
+    to{
+        opacity: 0.5;
+    }
 }
 /**************** 2.메인영역 ****************/
 .main{

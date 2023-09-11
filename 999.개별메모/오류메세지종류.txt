@@ -24,3 +24,6 @@ addEvt @ main.js:10
 loadFn @ main.js:61
 
 슬라이더 구역 ol은 포지션이 바뀌므로 position:static이 아닌 속성이 필요함!!!
+
+transform을 줬는데 적용이 안되는 경우
+1. 인라인요소일때..!!!!!!

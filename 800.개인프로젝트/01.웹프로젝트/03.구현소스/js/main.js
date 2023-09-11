@@ -78,10 +78,6 @@ let review = qs('.review-list>ol');
 let reviewCode = '';
 // console.log(review);
 for(let x = 1; x < 5; x++){
-    // console.log(review_info["review0"+x]["src"]);
-    // console.log(review_info["review0"+x]["reviewer"]);
-    // console.log(review_info["review0"+x]["review_txt"]);
-    // console.log(review_info["review0"+x]["review_tag"]);
     // 데이터 넣기
     reviewCode += `
     <li>
