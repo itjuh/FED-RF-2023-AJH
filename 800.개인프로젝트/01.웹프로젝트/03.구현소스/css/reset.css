@@ -18,7 +18,8 @@ dd,
 p,
 figure,
 figcaption,
-button {
+button,
+mark {
     margin: 0;
     padding: 0;
 }
@@ -28,7 +29,7 @@ a {
     text-decoration: none;
 }
 /* ul,ol 순번,불릿 */
-ul,ol{
+ul,ol,mark{
     list-style: none;
 }
 /* heading 요소 글자크기 */
@@ -37,7 +38,8 @@ h2,
 h3,
 h4,
 h5,
-h6 {
+h6,
+mark, {
     font-size: 100%;
     /* 박스 디자인 시 글자크기로 인한
     영향을 없애기 위한 초기화 */

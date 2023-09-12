@@ -7,9 +7,9 @@
 
 
 /* 공사중 표시 */
-body * {
+/* body * {
     outline: 1px dashed ghostwhite;
-}
+} */
 
 /* 전체배경색 */
 body{
@@ -47,7 +47,7 @@ body{
 .gnb{
     position: absolute;
     /* 부모는 .header */
-    bottom: 0px;
+    bottom: 12px;
     right: 10px;
 }
 .gnb ul{
@@ -215,8 +215,8 @@ body{
     height: 397px; */
     top: 17.2%;
     left: 21.4%;
-    width: 58.4%;
-    height: 50.4%;
+    width: 58.5%;
+    height: 50.5%;
     /* 비율박스 부모 기준 크기값, 위치값 %설정 */
     background-color: black;
 }
@@ -309,4 +309,45 @@ body{
 /**************** 3.하단영역 ****************/
 .footer{
     height: 100px;
+    display: flex;
+    gap: 0 20px;
+    align-items: center;
+    padding: 0 15px;
+}
+/* 3-1. 로고박스 */
+
+/* 3-2. 회사주소 */
+address{
+    color:white;
+    font-style: normal;
+    font-family: 'cute font';
+    font-size: 1.7rem;
+}
+/* 3-3.sns박스 */
+.sns-box{
+    margin-left: auto;
+}
+.sns-box ol{
+    display: flex;
+    gap: 0 15px;
+}
+.sns-box a{
+    font-size: 4rem;
+}
+/* sns이미지 오버 시 색변화 */
+.fa-square-facebook:hover{
+    color: cornflowerblue;
+    background-color: white;
+}
+.fa-square-twitter:hover{
+    color: lightseagreen;
+    background-color: white;
+}
+.fa-square-instagram:hover{
+    color: lightcoral;
+    background-color: white;
+}
+.fa-square-youtube:hover{
+    color: orangered;
+    background-color: white;
 }
