@@ -7,6 +7,16 @@
 @import url(./reset.css);
 
 /* 2. 메인영역 */
+/* 각 타이틀 공통 */
+.top-title{
+    display: flex;
+    width: 1400px;
+}
+/* 각 박스 공통 */
+main .partbox{
+    width: 1400px;
+    margin: 0 auto;
+}
 /* 2-1. 온고롱소개 */
 .intro-brand{
     /* 브랜드 소개 타이틀용 부모역할 */
@@ -14,11 +24,9 @@
     height: 100vh;
 }
 /* 2-1-1. 브랜드소개타이틀 */
-.top-title{
-    display: flex;
+/* 타이틀 배치관련 */
+.revers-type{
     height: 400px;
-    width: 1400px;
-    margin: 0 auto;
     flex-direction: row-reverse;
     align-items: end;
 }
@@ -50,9 +58,10 @@
     width: 100%;
     height: 100%;
     transform: translateY(-100%);
+    opacity: 0;
     line-height: 80px;
     /* 트랜지션 */
-    transition: .4s ease-in 1s;
+    transition: .4s ease-in;
 }
 /* 2-1-2. 안내타이틀 */
 .info-box{
@@ -60,16 +69,21 @@
     position: relative;
     justify-content: flex-start;
     flex-direction: row;
+    height: 400px;
     gap: 100px;
+    align-items: end;
 }
 /* 안내 타이틀 후방 배경박스 */
 .background-box{
     position: absolute;
     /* 부모는 info-box */
-    right:-7.3vw;
+    left: 0px;
     width: 100vw;
     height: 400px;
     background-color: #45454580;
+    transform: translateX(120%);
+    /* 트랜지션 */
+    transition: .9s ease-out;
 }
 /* 안내타이틀 사이드 */
 .info-box aside{
@@ -77,6 +91,9 @@
     /* 안내타이틀 후방박스 앞쪽위치 */
     height: 300px;
     width: 600px;
+    opacity: 0;
+    /* 트랜지션 */
+    transition : 3s ease-in
 }
 .info-box h1{
     margin: 20px 0;
@@ -88,27 +105,35 @@
     margin-top: 30px;
 }
 /* 2-1-3. 온고롱재료소개 */
-.intro-grad{
-    position: absolute;
-    /* 부모는 info-box */
+.grad-list{
+    position: relative;
+    /* 위치이동을 위해 */
     top: 100px;
     width: 650px;
+    overflow: hidden;
+}
+/* 재료박스 ul */
+.intro-grad{
+    position: relative;
+    /* 위치이동을 위해 */
+    left: 0;
     overflow: hidden;
     display: flex;
     justify-content: flex-start;
     gap: 10px 50px;
+    transform: translateX(150%);
+    /* 트랜지션 */
+    transition: 1s;
 }
-/* 재료 박스 */
+/* 재료 박스 li*/
 .grad-box{
     /* span태그 부모자격 */
     position: relative;
     flex-shrink: 0;
     width: 300px;
     height: 400px;
-    overflow: hidden;
-    transform: translateX(230%);
     /* 트랜지션 */
-    transition: .4s;
+    transition: 1s;
 }
 /* 재료박스 이미지 */
 .grad-box img{
@@ -132,11 +157,102 @@
     color: white;
 }
 /* 2-2. 제품소개 */
+.intro-prod{
+    height: 700px;
+}
+.intro-prod section{
+    padding-bottom: 50px;
+}
 /* 2-2-1. 소개타이틀 */
 /* 2-2-2. 제품소개 */
+.prod-info ol{
+    height: 500px;
+    display: flex;
+    /* gap: 0 30px; */
+    justify-content: center;
+    align-items: center;
+}
+.product{
+    flex-shrink: 0;
+    width: 300px;
+    height: 400px;
+    background: rgba(244, 165, 96, 0.575);
+    border: 1px solid #ffffff;
+    border-radius: 10px;
+}
+/* 제품소개 중 클릭한 대상 */
+.product.prev{
+    transform: scale(1.1);
+    z-index: 1;
+}
 /* 2-3. 주문절차 */
 /* 2-3-1. 절차타이틀 */
+.intro-process .top-title{
+    padding-bottom: 40px;
+}
 /* 2-3-2. 주문절차 */
+/* 주문절차 불릿 */
+.bullet-box{
+    width: 1200px;
+    height: 80px;
+    margin: 0 auto;
+    background: url(../../01.자료수집/images/long_arrow_icon.png) no-repeat 0px 30px/1306px 276px;
+}
+/* 주문절차 불릿ul */
+.bullet-box ul{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content:space-around;
+}
+/* 주문절차 불릿 안내문구 */
+.bullet-box em{
+    font-size: var(--fz-top);
+    color: #666;
+}
+/* 주문절차 불릿 클릭 시 안내문구*/
+.bullet-box li.on em{
+    color: #000;
+}
+/* 주문절차 불릿 도형 */
+.bullet-box .circle{
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    margin: 0 auto;
+    /* 트랜지션 */
+    transition: .3s ease-in;
+}
+/* 주문절차 불릿 클릭 도형 */
+.bullet-box li.on .circle{
+    background-color: lightcoral;
+}
+/* 주문절차 카드 */
+.process-info ol{
+    height: 450px;
+    display: flex;
+    justify-content: center;
+}
+.process{
+    flex-shrink: 0;
+    margin: 0 -60px;
+    width: 300px;
+    height: 400px;
+    background: rgba(244, 165, 96, 0.575);
+    border: 1px solid #ffffff;
+    border-radius: 10px;
+    /* 트랜지션 */
+    transition: .3s ease-in;
+}
+/* 제품소개 중 클릭한 대상 */
+.process.on{
+    margin: 0 10px;
+    background: rgba(244, 165, 96);
+    z-index: 1;
+}
 /* 2-4. 주의사항 */
 /* 2-4-1. 주의사항타이틀 */
 /* 2-4-2. 주의사항 */
@@ -146,15 +262,7 @@
 /*  */
 /* <div id="main"> */
 /* <main class="main inbox"> */
-    /* <!-- 2-1. 온고롱소개 --> */
-    /* <div class="partbox intro-brand"> */
-        /* <!-- 2-1-1. 브랜드소개타이틀 --> */
-        /* <section class="top-title"></section> */
-        /* <!-- 2-1-2. 안내타이틀 --> */
-        /* <section class="top-title"></section> */
-        /* <!-- 2-1-3. 온고롱재료소개 --> */
-        /* <section class="intro-grad"></section> */
-    /* </div> */
+    
     /* <!-- 2-2. 제품소개 --> */
     /* <div class="partbox intro-prod"> */
         /* <!-- 2-2-1. 소개타이틀 --> */

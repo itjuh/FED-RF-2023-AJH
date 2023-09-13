@@ -18,3 +18,32 @@ const domFn = {
 // 2. 대상선정 .gnb
 const gnbBox = domFn.qs('.gnb');
 console.log('대상 gnb',gnbBox);
+
+// 3. 객체 데이터로 html코드만들기
+
+let hcode = '';
+for(let x in mdata){
+    console.log('속성명 : ',x);
+    hcode +=`
+    <ul>
+        <li>
+            <a href="">${x}</a>
+            <div class="smenu">
+                <aside class="smbx">
+                    <h2>
+                        <div class="stit">2차</div>
+                        <a href="">전체보기</a>
+                        <div class="swrap">
+                            <dl>
+                                <dt></dt>
+                                <dd><a href="">요기</a></dd>
+                            </dl>
+                        </div>
+                    </h2>
+                </aside>
+            </div>
+        </li>
+    </ul>
+    `
+} ////////////for in //////////////////
+console.log(hcode);

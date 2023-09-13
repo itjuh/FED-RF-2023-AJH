@@ -39,7 +39,8 @@ h3,
 h4,
 h5,
 h6,
-mark, {
+mark,
+em {
     font-size: 100%;
     /* 박스 디자인 시 글자크기로 인한
     영향을 없애기 위한 초기화 */
@@ -51,4 +52,8 @@ button {
 img {
     /* 박스 이미지 하단공백 제거 */
     vertical-align:middle;
+}
+/* em, i요소 글자 이탤릭 제거 */
+em,i{
+    font-style: normal;
 }
