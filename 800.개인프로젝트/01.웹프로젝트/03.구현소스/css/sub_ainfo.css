@@ -20,7 +20,7 @@ main .partbox{
 /* 2-1. 온고롱소개 */
 .intro-brand{
     /* 브랜드 소개 타이틀용 부모역할 */
-    position: relative;
+    /* position: relative; */
     height: 100vh;
 }
 /* 2-1-1. 브랜드소개타이틀 */
@@ -66,7 +66,7 @@ main .partbox{
 /* 2-1-2. 안내타이틀 */
 .info-box{
     /* 재료소개용 부모자격 */
-    position: relative;
+    /* position: relative; */
     justify-content: flex-start;
     flex-direction: row;
     height: 400px;
@@ -117,14 +117,22 @@ main .partbox{
     position: relative;
     /* 위치이동을 위해 */
     left: 0;
-    overflow: hidden;
+    /* overflow: hidden; */
     display: flex;
     justify-content: flex-start;
     gap: 10px 50px;
     transform: translateX(150%);
     /* 트랜지션 */
-    transition: 1s;
+    /* transition: 1s; */
+    animation: grad-ani 20s linear 1s infinite;
 }
+
+@keyframes grad-ani {
+    to{
+        left: calc(-350px*6);
+    }
+}
+
 /* 재료 박스 li*/
 .grad-box{
     /* span태그 부모자격 */
@@ -255,7 +263,69 @@ main .partbox{
 }
 /* 2-4. 주의사항 */
 /* 2-4-1. 주의사항타이틀 */
-/* 2-4-2. 주의사항 */
+.intro-cautions .top-title{
+    height: 100px;
+    width: 800px;
+    margin: 0 auto;
+}
+.intro-cautions h3{
+    height: 100%;
+    width: 280px;
+}
+/* 2-4-2. 주의사항 박스 */
+.cautions-info{
+    /* .caution-box 부모자격 */
+    position: relative;
+}
+/* 주의사항 ol */
+.cautions-info ol{
+    width: 800px;
+    margin: 0 auto;
+}
+/* 주의사항 li박스 */
+.caution-box{
+    /* 위치이동을 위한 */
+    position: relative;
+    width: 300px;
+    /* height: 400px; */
+    background: rgba(244, 165, 96, 0.575);
+    border: 1px solid #ffffff;
+    border-radius: 10px;
+    /* 초기: 아래위치, 투명하게 */
+    transform: translateY(30%);
+    opacity: 0;
+    /* 트랜지션 */
+    transition: .3s ease-in;
+}
+/* 박스 타이틀 */
+.caution-box h3{
+    width: calc(100% - 40px);
+    height: auto;
+    padding: 30px 20px 20px 20px;
+}
+/* 박스 컨텐츠 */
+.cont {
+    font-size: var(--fz-sign);
+    width: 100%;
+    margin: 0 auto;
+    line-height: 1.6;
+    padding: 20px;
+    box-sizing: border-box;
+}
+/* 주의사항 오른쪽 li박스 */
+.caution-box:nth-child(odd){
+    left: calc(100% - 300px);
+    top: -100px;
+}
+/* 주의사항 왼쪽 li박스 */
+.caution-box:nth-child(even){
+    top: -100px;
+}
+/* 주의사항 박스 스크롤이동 시 */
+.caution-box.on{
+    transform: translateY(0);
+    opacity: 1;
+}
 /* 2-5. 주문바로가기 */
 /* 2-5-1. 바로가기타이틀 */
 /* 2-5-2. 바로가기 */
