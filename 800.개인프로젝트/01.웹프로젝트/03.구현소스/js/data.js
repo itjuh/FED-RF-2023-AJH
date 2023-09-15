@@ -155,4 +155,16 @@ const caution_data = {
    "픽업방법":"온고롱 케이크는 직접 픽업 (도보 , 차량)을 원칙으로 하고있습니다. 퀵 문의시 업체를 추천해드리며, 픽업날짜와 시간에 맞춰 매장으로 보내주시면 됩니다!^^",
    "환불규정":"픽업 3일전 100% 환불 픽업 2일전 50% 환불 픽업 1일전~당일 환불불가",
    "실시간 문의가능":"주문관련 문의, 픽업관련 문의, 제품관련 문의는 언제나 가능해요. 01:00~07:00 (자동상담시간)",
-}
+};
+
+// 메인스크롤 이미지
+
+const banner_img = [
+   {"alt":"꽃다발케이크","src":"../01.자료수집/ongorong_prod/banner0.png"},
+   {"alt":"파운드쌀빵","src":"../01.자료수집/ongorong_prod/banner1.png"},
+   {"alt":"컵케이크","src":"../01.자료수집/ongorong_prod/banner2.png"},
+   {"alt":"토끼설기","src":"../01.자료수집/ongorong_prod/banner3.png"},
+   {"alt":"백일떡","src":"../01.자료수집/ongorong_prod/banner4.png"},
+   {"alt":"앙금케이크","src":"../01.자료수집/ongorong_prod/banner5.png"},
+   {"alt":"휘낭시에","src":"../01.자료수집/ongorong_prod/banner6.png"},
+];

@@ -34,10 +34,12 @@ function input_cate_all(){
         let seqNum = ele.seq % 10 + 1;
         // console.log(seqNum);
         hcode += `
-        <li data-seq=${ele.seq}>${ele.질문}
+        <li data-seq=${ele.seq}>
+            <div class="quest-box"> ${ele.질문}  
             <!-- ${ele.카테고리} 질문${seqNum} 답변박스 -->
-            <div class="asked-box">
-                <span>${ele.응답}</span>
+                <div class="asked-box">
+                    <span>${ele.응답}</span>
+                </div>
             </div>
         </li>
         `;
@@ -151,6 +153,9 @@ function open_evt(){
             let n = Math.floor(idx/2 + 1);
             ele.style.gridRow = `${n}/${n+1}`;
             ele.style.marginBottom = '70px';
+            // 클릭한 요소 번호보다 큰 홀수번의 
+            //quest-box float:right 짝수번은 float:left
+
         });
     }); ////////faqContLi forEach ////////////
 }

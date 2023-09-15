@@ -4,6 +4,8 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>온고롱 메인페이지</title>
+        <!-- 아이콘 -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
         <!-- 온고롱 메인페이지 CSS -->
         <link rel="stylesheet" href="./css/main.css" />
         <!-- 온고롱 데이터JS -->
@@ -57,6 +59,7 @@
                         <div class="partbox">
                             <div class="search-box">
                                 <label for="search"></label>
+                                <i class="fa-solid fa-magnifying-glass"></i>
                                 <input type="text" id="search" placeholder="제품을 검색하세요!" onkeypress="if(event.keyCode===13) search()"/>
                             </div>
                         </div>
@@ -70,22 +73,15 @@
                 <!-- 2-1. 이벤트배너 -->
                 <h2>이벤트배너위치:|←|이미지|설명|→|</h2>
                 <!-- 2-1-2. 배너박스 -->
-                <div class="main-banner">
+                <div class="main-banner group-box">
                     <section class="banner-area">
                         <!-- 배너이미지 -->
                         <ul class="banner-ul">
-                            <!-- <li>
-                                <img src="../01.자료수집/ongorong_prod/img_event01.jpeg" alt="event">
-                            </li> -->
                         </ul>
                     </section>
                     <!-- 배너설명 -->
                     <div class="banner-desc">
                         <ol>
-                            <!-- <li>
-                                <h1 class="tit">온고롱 2023 추석선물세트 출시</h1>
-                                <p class="txt">출시기념 이벤트로 9월 5일부터 9월 12일까지 주문예약 시 추석 선물세트를 5% 할인해드립니다.</p>
-                            </li> -->
                         </ol>
                         <!-- 더보기버튼 -->
                         <button class="move-view-btn">더보기</button>
@@ -96,18 +92,25 @@
                     <button class="move-btn next-btn"></button>
                 </div>
                 <!-- 2-2. 메인테마 -->
-                <div class="main-thema">
+                <div class="main-thema group-box">
                     <h2>메인테마위치</h2>
                     <div class="partbox"></div>
                 </div>
                 <!-- 2-3. 컨셉이미지 -->
                 <!-- 스크롤 배너형태 -->
-                <div class="main-scroll-banner">
+                <div class="main-scroll-banner group-box">
                     <h2>스크롤배너위치</h2>
-                    <div class="partbox"></div>
+                    <div class="partbox">
+                        <div class="scroll-banner-box">
+                            <ul>
+                            </ul>
+                            <div class="white-box"></div>
+                            <div class="white-box"></div>
+                        </div>
+                    </div>
                 </div>
                 <!-- 2-4. 인기상품 -->
-                <div class="list-type main-hot-item">
+                <div class="list-type main-hot-item group-box">
                     <h2>인기상품:타이틀>이미지>더보기로구성</h2>
                     <!-- 인기상품 타이틀 -->
                     <div class="partbox">
@@ -116,20 +119,6 @@
                     <!-- 인기상품 리스트 -->
                     <div class="hot-item-list list">
                         <ol>
-                            <!-- <li>
-                                <div class="partbox">
-                                    <div class="img-box">
-                                        <img src="../01.자료수집/ongorong_prod/img_cake02.jpeg" alt="상품이미지1">
-                                    </div>
-                                    <div class="txt-box">
-                                        <ul>
-                                            <li class="prod-name">작약케이크</li>
-                                            <li class="prod-price">30,000</li>
-                                            <li class="prod-tag">@떡케이크</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </li> -->
                         </ol>
                     </div>
                     <!-- 인기상품 더보기 -->
@@ -138,7 +127,7 @@
                     </div>
                 </div>
                 <!-- 2-5. 추천검색 -->
-                <div class="main-key-search">
+                <div class="main-key-search group-box">
                     <h2>추천검색:검색창>추천창(열리는형태)</h2>
                     <!-- 키워드검색창 -->
                     <div class="partbox">
@@ -146,26 +135,24 @@
                         <div class="key-search-box">
                             <!-- 타이틀 -->
                             <h1>지금 나에게 필요한 온고롱의 다양한 상품을 검색하세요</h1>
-                            <label for="search"></label>
-                            <!-- <input type="text" id="search" placeholder="제품을 검색하세요!" onkeypress="if(event.keyCode===13) search()"/> -->
                         </div>
                         <!-- 키워드말풍선 -->
-                        <div class="bubble-key b1">@떡케이크</div>
-                        <div class="bubble-key b2">@숫자케이크</div>
-                        <div class="bubble-key b3">@답례품</div>
-                        <div class="bubble-key b4">@상차림떡</div>
-                        <div class="bubble-key b5">@쌀디저트</div>
+                        <div class="bubble-key b1">#떡케이크</div>
+                        <div class="bubble-key b2">#숫자케이크</div>
+                        <div class="bubble-key b3">#답례품</div>
+                        <div class="bubble-key b4">#상차림떡</div>
+                        <div class="bubble-key b5">#쌀디저트</div>
                     </div>
                     <!-- 키워드 선택 시 열리는 추천창 -->
                     <div class="partbox"></div>
                 </div>
                 <!-- 2-6. 주문진행 -->
-                <div class="main-order-process">
+                <div class="main-order-process group-box">
                     <h2>주문진행:모식도절차</h2>
                     <div class="partbox"></div>
                 </div>
                 <!-- 2-7. 리뷰 -->
-                <div class="list-type main-review">
+                <div class="list-type main-review group-box">
                     <h2>리뷰:타이틀>이미지>더보기로구성</h2>
                     <!-- 리뷰 타이틀 -->
                     <div class="partbox">
@@ -174,20 +161,6 @@
                     <!-- 리뷰 리스트 -->
                     <div class="review-list list">
                         <ol>
-                            <!-- <li>
-                                <div class="partbox">
-                                    <div class="txt-box">
-                                        <ul>
-                                            <li class="reviewer">작성자</li>
-                                            <li class="review-txt">리뷰내용~~너무 맛있고 맛있고 맛있어요~ 최고에요</li>
-                                            <li class="prod-tag">@떡케이크</li>
-                                        </ul>
-                                    </div>
-                                    <div class="img-box">
-                                        <img src="../01.자료수집/ongorong_prod/img_cake02.jpeg" alt="상품이미지1">
-                                    </div>
-                                </div>
-                            </li> -->
                         </ol>
                     </div>
                     <!-- 리뷰 더보기 -->
@@ -222,6 +195,7 @@
                             <li>메일 : ongorongcake@naver.com</li>
                             <li>사업자번호 : 665-13-33017</li>
                             <li>통신판매번호 : 신고면제 </li>
+                            <!-- <i class="fa-solid fa-magnifying-glass"></i> -->
                         </ul>
                     </div>
                 </div>

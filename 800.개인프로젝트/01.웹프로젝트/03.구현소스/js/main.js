@@ -1,10 +1,21 @@
 // 온고롱 메인js - main.js
 
-// DOM함수
-const qs = x => document.querySelector(x);
-const qsa = x => document.querySelectorAll(x);
-// 이벤트함수
-const addEvt = (ele,evt,fn) => ele.addEventListener(evt,fn);
+const domFn = {
+    // 요소선택함수 ////////
+    qs: (x) => document.querySelector(x),
+    qsEl: (el, x) => el.querySelector(x),
+    qsa: (x) => document.querySelectorAll(x),
+    qsaEl: (el, x) => el.querySelectorAll(x),
+  
+    // 이벤트셋팅함수
+    addEvt: (ele, evt, fn) => ele.addEventListener(evt, fn),
+
+    // 바운딩 위치값 함수
+    getBCR: (ele) => ele.getBoundingClientRect().top,
+    // 옵셋 탑 반환 함수
+    getOT: ele => ele.offsetTop,
+
+}; /////// domFn 객체 /////////////
 
 // 전역변수
 // 1. 광클금지 상태변수 : 0-허용, 1-불허용
@@ -14,9 +25,9 @@ const TIME_SLIDE = 800;
 
 // 배너 데이터 이미지와 설명 뿌리기
 // 대상 banner-ul
-let evtBannerImg = qs('.banner-ul');
+let evtBannerImg = domFn.qs('.banner-ul');
 // 대상 banner-desc>ol
-let bannerDescBox = qs('.banner-desc>ol');
+let bannerDescBox = domFn.qs('.banner-desc>ol');
 // 코드변수 이미지용 설명용
 // let bannerCode = ``;
 let bannerUl = ``;
@@ -44,7 +55,7 @@ bannerDescBox.innerHTML = bannerDesc;
 
 // 상품 데이터 뿌리기
 // 대상: .hot-item-list>ol
-let hotItem = qs('.hot-item-list>ol');
+let hotItem = domFn.qs('.hot-item-list>ol');
 // 코드변수
 let hotItemCode = '';
 // console.log(hotItem);
@@ -73,7 +84,7 @@ for(let x = 1; x < 5; x++){
 hotItem.innerHTML = hotItemCode;
 // 리뷰 데이터 뿌리기
 // 대상: .review-list>ol
-let review = qs('.review-list>ol');
+let review = domFn.qs('.review-list>ol');
 // 코드변수
 let reviewCode = '';
 // console.log(review);
@@ -100,6 +111,23 @@ for(let x = 1; x < 5; x++){
 
 review.innerHTML = reviewCode;
 
+// 스크롤배너 데이터 뿌리기
+// 대상: .scroll-banner-box>ul
+const banner = domFn.qs('.scroll-banner-box>ul');
+let hcode = '';
+//<li><img src="" alt=""></li>
+for(let x = 0; x<2; x++){
+    banner_img.forEach(ele=>{
+        // console.log(ele);
+        hcode += `
+        <li><img src="${ele.src}" alt="${ele.alt}"></li>
+        `;
+    });
+}////////////for문////////////////////
+// console.log(hcode);
+// 데이터 넣기
+banner.innerHTML = hcode;
+
 
 ///////////////////////////////////////
 // 배너 움직이기
@@ -109,14 +137,14 @@ review.innerHTML = reviewCode;
 /////////////////////////////////////////
 // 1. 대상선정
 // 1-1. 버튼들 .move-btn 수집
-const moveBtn = qsa('.move-btn');
+const moveBtn = domFn.qsa('.move-btn');
 // 1-2. 변경대상 수집 : 이미 되어있음
 
 // 수집확인
 // console.log(moveBtn,evtBannerImg,bannerDescBox);
 // 2. 이벤트 지정
 // moveBtn[0].onclick = goSlide;
-moveBtn.forEach(ele=>addEvt(ele,'click',goSlide));
+moveBtn.forEach(ele=>domFn.addEvt(ele,'click',goSlide));
 
 /***************************************
     함수명 : goSlide
@@ -137,8 +165,10 @@ function goSlide(){
     let isNext = this.classList.contains('next-btn');
     console.log(isNext);
     // 배너 새로 읽기
-    let bannerImgArr = evtBannerImg.querySelectorAll('li');
-    let bannerDescArr = bannerDescBox.querySelectorAll('li');
+    // let bannerImgArr = evtBannerImg.querySelectorAll('li');
+    // let bannerDescArr = bannerDescBox.querySelectorAll('li');
+    let bannerImgArr = domFn.qsaEl(evtBannerImg,'li');
+    let bannerDescArr = domFn.qsaEl(bannerDescBox,'li');
     // console.log(bannerImgArr);
     // console.log(bannerDescArr);
     if(isNext){ //오른쪽 버튼
@@ -187,14 +217,14 @@ function goSlide(){
 
 // 말풍선 내부의 글자값 #search넣기
 // 키워드 대상: .bubble-key
-const bubbleKey = qsa('.bubble-key');
+const bubbleKey = domFn.qsa('.bubble-key');
 // 검색 input
-const searchInput = qs('#search');
+const searchInput = domFn.qs('#search');
 // console.log(bubbleKey,searchInput);
 
 bubbleKey.forEach(ele=>{
-    addEvt(ele,'click',()=>{
-        let txt = ele.innerText.replace('@','');
+    domFn.addEvt(ele,'click',()=>{
+        let txt = ele.innerText.replace('#','');
         console.log(txt);
 
         searchInput.value = txt;
@@ -206,11 +236,41 @@ bubbleKey.forEach(ele=>{
 // 대상: #search 위치 이동
 // 1. 스크롤 위치값 찍기 2360 2610이 getBoundingClientRect()top에서 0이 되면 원래자리로
 // 2. 특정 위치값에서 ~~까지 위치지정
-// 스크롤 벗어나면 제자리로
-// 위치값 알기위해 마우스 클릭지점 찍ㄱ
-// window.onclick = (e) => {console.log(e.pageY);}
+
+// 1-1. 위치대상
+let keyBox = domFn.qs('.main-key-search');
+// 1-2. 움직일 대상 : .search-box
+let sBox = domFn.qs('.search-box');
+// 2. 위치대상의 높이 값 읽기
+let eleH = keyBox.clientHeight;
+// 이벤트 설정하기
+domFn.addEvt(window,'scroll',leaveOutOn);
+// 윈도우 높이
+let winH = window.innerHeight;
+
+function leaveOutOn(){ //추후에 확인할 요소값 받기
+    // .main-key-search 위치를 지나가면 위치이동 on을 준다
+    // 2. 위치대상의 바운딩값
+    let bTop = domFn.getBCR(keyBox);
+    // 종료지점은 상단부에 붙는 순간
+    let endPoint = 0;
+    // console.log('bTop:',bTop,winH);
+    // 시작지점 : bTop >= winH 박스내려오자
+    if(bTop < winH && bTop >= endPoint){
+        sBox.style.top = bTop + 'px';
+        sBox.style.transition = '0s';
+        sBox.style.left = '-125%';
+        sBox.style.transform = 'scale(2)';
+        // console.log('들어왔다',bTop);
+    }else{
+        sBox.style.top = 0;
+        sBox.style.left = 0;
+        sBox.style.transition = '.5s';
+        sBox.style.transform = 'scale(1)';
+        // console.log('나갔다',bTop);
+    }
+}
 
 
 // footer영역 
 // footer_sns span태그 길이만큼 영역확장
-// 대상:

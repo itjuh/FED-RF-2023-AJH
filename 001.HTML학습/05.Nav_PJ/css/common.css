@@ -1,6 +1,8 @@
 @charset "utf-8";
 /* 네비게이션 유형 6 시코르 상단공통 CSS - common.css */
-
+/* 웹폰트 CDN */
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Brush+Script&family=Noto+Sans+KR&display=swap');
+/* font-family: 'Noto Sans KR', sans-serif; */
 /* 속박스 */
 .ibx{
     max-width: 1200px;
@@ -9,16 +11,18 @@
 body{
     background-image: linear-gradient(to bottom, lightcoral, lightyellow, lightgreen);
     height: 100vh;
+    font-family: 'Noto Sans KR', sans-serif;
 }
 /* 상단영역 */
 #top-area{
     background-color: #000;
 }
 /* 상단 속박스 */
-.top-area{
-    /* position: relative; */
-    /* smenu 부모자격 */
-}
+/* .top-area{
+    position: relative;
+    smenu 부모자격
+} 
+*/
 /* 로고박스 */
 .logo-box{
     text-align: center;

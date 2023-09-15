@@ -124,23 +124,67 @@
 }
 /* 2-3. 컨셉이미지 */
 .main-scroll-banner{
-    display: flex;
     height: 600px;
 }
-.main-scroll-banner .partbox{
-    flex-basis: 100%;
+.scroll-banner-box{
+    position: relative;
+    /* .white-box부모자격 */
+    overflow: hidden;
+}
+/* 스크롤 무한배너 ul */
+.scroll-banner-box ul{
+    position: relative;
+    left: 0;
+    display: flex;
+    gap: 0 20px;
+    animation: scroll-ani 20s linear 1s infinite;
+}
+@keyframes scroll-ani {
+    to{
+        left: calc(-250px*7 + (-50px*6));
+    }
+}
+/* 왼쪽 흐릿박스 */
+.white-box{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 150px;
+    height: 100%;
+    background-image: linear-gradient(to right, var(--co-onbeige), rgba(255, 255, 255, 0));
+}
+/* 오른쪽 흐릿박스 */
+.white-box:last-child{
+    position: absolute;
+    top: 0;
+    left: auto;
+    right: 0;
+    width: 150px;
+    height: 100%;
+    background-image: linear-gradient(to left, var(--co-onbeige), rgba(255, 255, 255, 0));
+}
+.scroll-banner-box li{
+    flex-shrink: 0;
+    flex-basis: 250px;
+    height: 600px;
+    overflow: hidden;
+}
+.scroll-banner-box img{
+    position: relative;
+    height: 100%;
+    left: -50px;
 }
 /* 목록형 상자 공통 */
 /* 인기상품 및 리뷰 */
-/* 2-7. 리뷰 */
 /* 2-4. 인기상품 */
+/* 2-7. 리뷰 */
 .list-type{
     display: flex;
     flex-direction: column;
     min-height: 500px;
 }
-/* 2-7-1. 리뷰 타이틀 */
 /* 2-4-1. 인기상품 타이틀 */
+/* 2-7-1. 리뷰 타이틀 */
 .list-type>.partbox:first-of-type{
     height: 80px;
 }
@@ -178,8 +222,8 @@
     background-position: -664px -108px;
     filter: drop-shadow(-1px 2px 2px #00000080);
 }
-/* 2-7-2. 리뷰 리스트 */
 /* 2-4-2. 인기상품 리스트 */
+/* 2-7-2. 리뷰 리스트 */
 .list-type .list{
     height: 400px;
     width: 1200px;
@@ -287,26 +331,13 @@
 }
 /* 2-5. 추천검색 */
 .main-key-search{
-    display: flex;
-    /* 키워드박스 부모 */
     position: relative;
-    flex-direction: column;
     height: 500px;
 }
 /* 추천검색 검색구역(검색부) */
-.main-key-search>.partbox:first-of-type{
-    flex-basis: 50%;
-}
+
 /* 검색창 */
-.key-search-box{
-    /* 위치 이동을 위한 relative */
-    position: relative;
-    top: 40%;
-    left: 50%;
-    line-height: 50px;
-    text-align: center;
-    transform: translate(-50%, -50%) scale(1.8);
-}
+
 /* 키워드 말풍선 공통 */
 .bubble-key{
     position: absolute;

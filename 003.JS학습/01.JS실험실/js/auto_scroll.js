@@ -1,5 +1,17 @@
 // 자동스크롤 JS - auto_scroll.js
 
+// DOM 함수 객체 //////////////
+const domFn = {
+    // 요소선택함수 ////////
+    qs: (x) => document.querySelector(x),
+    qsEl: (el, x) => el.querySelector(x),
+    qsa: (x) => document.querySelectorAll(x),
+    qsaEl: (el, x) => el.querySelectorAll(x),
+  
+    // 이벤트셋팅함수
+    addEvt: (ele, evt, fn) => ele.addEventListener(evt, fn),
+}; /////// domFn 객체 /////////////
+
 /********************************************** 
     [ 자동스크롤 기능정의 ]
     1. 스크롤바가 없는 상태에서 마우스 휠 작동시
@@ -31,14 +43,10 @@ setTimeout(()=>{window.scrollTo(0,0)},500);
 
 // 2. 이벤트 등록하기 /////////////////
 // 대상: window
-window.addEventListener('wheel',wheelFn);
-window.addEventListener('DOMContentLoaded',loadFn);
+domFn.addEvt(window,'wheel',wheelFn);
+domFn.addEvt(window,'DOMContentLoaded',loadFn);
 
 // 3. 이벤트 연결함수 /////////////////
-
-// DOM선택함수 ///////
-const qs = x => document.querySelector(x);
-const qsa = x => document.querySelectorAll(x);
 
 /*************************************** 
     함수명 : loadFn
@@ -46,13 +54,13 @@ const qsa = x => document.querySelectorAll(x);
 ***************************************/
 function loadFn(){
     // 호출확인
-    console.log('로딩완료');
+    //console.log('로딩완료');
 
     // .page 요소 담기
-    ele_page = qsa('.page');
+    ele_page = domFn.qsa('.page');
     // 전체페이지수 할당
     total_pg = ele_page.length;
-    console.log('전체페이지수:',total_pg);
+    //console.log('전체페이지수:',total_pg);
 
 } ///////// loadFn 함수 ////////////////
 /////////////////////////////////////////
@@ -63,7 +71,7 @@ function loadFn(){
 ***************************************/
 function wheelFn(e){ // 이벤트전달변수(자동)
     // 함수호출확인!
-    console.log('휠~~~!');
+    //console.log('휠~~~!');
     
     // 0. 광휠금지설정 //////
     if(sts_wheel) return; // 여기서나감!
@@ -72,12 +80,12 @@ function wheelFn(e){ // 이벤트전달변수(자동)
     // 0.8초후 잠금 해제!
 
     // 함수호출확인!
-    console.log('휠작동~~~!');
+    //console.log('휠작동~~~!');
 
     // 1. 휠방향에 따른 페이지변수 변경하기
     // 휠방향은 wheelDelta 로 알아냄!
     let delta = e.wheelDelta;
-    console.log('휠델타:',delta);
+    //console.log('휠델타:',delta);
     
     // 음수(-)는 아랫방향, 양수(+)는 윗방향
     if(delta<0) pg_num++;
@@ -88,7 +96,7 @@ function wheelFn(e){ // 이벤트전달변수(자동)
     if(pg_num==total_pg) pg_num = total_pg-1;
 
     // 전체 페이지번호 확인
-    console.log('페이지번호:',pg_num);
+    //console.log('페이지번호:',pg_num);
 
     // 2. 페이지이동하기
     // scrollTo(x축위치,y축위치)
@@ -98,11 +106,60 @@ function wheelFn(e){ // 이벤트전달변수(자동)
     // window.innerHeight -> window 높이값 구해온다!
 
     window.scrollTo(0,window.innerHeight*pg_num);
+    
+    // 3. 메뉴변경 함수 호출 : 페이지변수 변경 후!
+    chgMenu();
 
 } /////////// wheelFn 함수 ////////////////
 ///////////////////////////////////////////
 
+/*************************************** 
+    함수명: chgMenu
+    기능 : 마우스휠 작동/메뉴클릭 시 메뉴변경
+***************************************/
+// 메뉴변경 대상 : .gnb li
+const gnbList = domFn.qsa('.gnb li');
+const indicList = domFn.qsa('.indic li');
+// 메뉴처리 대상요소 배열로 묶어주기
+const menuGrp = [gnbList,indicList];
 
+function chgMenu(){
+    // 호출확인
+    console.log('바꿔!', pg_num);
+    // 메뉴를 순화하며 on넣기
+    // 나머지는 on 빼기
+
+    // 1. 내부함수 만들기 ////
+    const comFn = (target) =>{ //타겟은 순회할 대상
+        target.forEach((ele,idx)=>{
+            if(idx == pg_num)
+                ele.classList.add('on');
+            else
+                ele.classList.remove('on');
+        });
+    }; ////////익명 함수//////////////
+    // 순차적으로 생성
+
+    // 2. 처리할 요소 배열 불러오기
+    menuGrp.forEach(val=>comFn(val));
+    // forEach()가 gnbList와 indicList를 각각 comFn()에 전달함!
+
+} ////////////////chgMenu함수////////////////////
+
+// GNB li를 클릭 시 메뉴 변경하기
+// ->pg_num을 업데이트 후 chgMenu를 호출한다
+// 메뉴그룹 배열만큼 클릭 기능 만들기
+// for of문 사용
+for (let x of menuGrp){ //x는 gnbList와 indicList를 순회!
+    x.forEach((ele,idx)=>{
+        domFn.addEvt(ele,'click',()=>{
+            //전역 페이지 변수 pg_num업데이트
+            pg_num = idx;
+            // 메뉴변경함수 호출
+            chgMenu();
+        });
+    }) /////////forEach///////////
+} ///////////for of///////////////////
 
 
 /********************************************************************

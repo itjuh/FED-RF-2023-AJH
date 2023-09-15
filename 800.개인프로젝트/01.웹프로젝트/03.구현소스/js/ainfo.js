@@ -93,11 +93,9 @@ function loadFn(){
     setTimeout(()=>{
         // 1. 대상선정 : 재료박스 .intro-grad
         const gradBox = domFn.qs('.intro-grad');
-        // 2. 변경내용 
         // 2-1. 위치이동(1회성)
         gradBox.style.transform = 'translateX(0)';
         // 2-2. li 안쪽에서 계속 흐르기
-        
     }, 8000);
 
     // 원리 : ul을 이동, li의 2번째와 ul왼쪽이 만나면 
@@ -106,7 +104,7 @@ function loadFn(){
     // 움직일 대상 .grad-list>ul이 왼쪽으로 움직임
     // appendClide 사용할 예정
     // 1. 대상 : .grad-list>ul
-    let listUl = domFn.qs('.intro-grad');
+    // let listUl = domFn.qs('.intro-grad');
     // console.log(listUl);
     // 2. 이벤트 선정 ( 시간에 따른 이벤트 )
     // setTimeout(()=>{
