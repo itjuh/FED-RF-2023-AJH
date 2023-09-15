@@ -84,6 +84,11 @@ https://springsummer.dk/
 https://justinesoulie.fr/
 (1) 스크롤 이벤트
 
+13. 체인GPT사이트
+https://www.chaingpt.org/#solutions
+(1) 메뉴바 글자 변경 이벤트
+(2) 무한배너
+
 _______________________________________
 
 1. 패션쇼 기획회사 포트폴리오 사이트

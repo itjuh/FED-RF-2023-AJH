@@ -1,2 +1,7 @@
 @charset "uft-8";
+
+/* 외부 CSS합치기 */
+@import url(./reset.css);
+@import url(./common.css);
+
 /* 네비게이션 유형 6 CSS - nav06.css */

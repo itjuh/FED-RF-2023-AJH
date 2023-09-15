@@ -22,9 +22,14 @@
 /* 2-2.맵링크 */
 /* 맵링크 박스 */
 .main .map{
-    width: 1400px;
+    width: 1300px;
     height: 500px;
     margin: 0 auto;
+    padding: 50px;
+}
+.map iframe{
+    box-shadow: 3px 4px 5px rgba(11, 58, 22, 0.322);
+    border-radius: 10px;
 }
 /* 2-3.정보 */
 /* 2-3. 정보그룹 */

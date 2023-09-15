@@ -1,0 +1,121 @@
+[ 배열데이터를 변경하여 다시 배열로 만들기 : map()] : 9/14
+    
+  배열변수.map((배열값,순번,전체배열)=>{변경코드})
+  -> 결과로 변경 된 배열이 리턴 됨
+
+  ex) const arr = ['두현','대희','민희'];
+  let arr2 = aa.map(val => val+'씨');
+  -> 결과: ['두현씨','대희씨','민희씨'];
+  ____________________________________________
+  Array.isArray(배열); 
+  -> 결과로 true / false가 리턴됨
+  ____________________________________________
+  -> 새로 만들어진 배열 데이터를 현재 자리에 그대로 출력할 때
+  배열메서드 .join(구분자)를 이용하여 배열을 하나의 문자형
+  데이터로 만들어 주면 편리하다.
+  ex) const aa = ['하하','호호'];
+  `<div>${aa.map(val => `<h2>${val}</h2>`).join('')}</div>`
+  -> 결과: <div><h2>하하</h2><h2>호호</h2></div>
+  -> 구분자가 없는 태그로만 구성 된 최종데이터를 그 자리에 출력 함
+  ->>>>잊지말자 맵 조인
+
+[ 배열값 사이에 결합값 넣어서 출력하기 : arr.join(''); ] : 9/14
+배열값 출력할 때 배열.join('') 쓰면 연결값이 ''안의 값으로 들어감
+
+
+[ 젠코딩 ] : 9/14
+ul>li>a[href='#']{1차}+.smenu>aside.smbx>h2>(.stit{1차}+a[href='#']{전체보기})+.swrap>dl>dt{2차}+dd>a[href='#']{3차}
+
+-> 결과: <ul>
+            <li>
+                <a href="#">1차</a>
+                <div class="smenu">
+                    <aside class="smbx">
+                        <h2>
+                            <div class="stit">1차</div>
+                            <a href="#">전체보기</a>
+                            <div class="swrap">
+                                <dl>
+                                    <dt>2차</dt>
+                                    <dd><a href="#">3차</a></dd>
+                                </dl>
+                            </div>
+                        </h2>
+                    </aside>
+                </div>
+            </li>
+        </ul>
+
+
+[[ JavaScript에서 요소의 위치 구하기]]
+
+[ offsetTop / offsetLeft] 
+-> 부모자격요소를 기준한 위치값
+-> 제이쿼리 position()과 같음
+
+[ getBoundingClientRect() > top / left ] 
+-> 스크롤위치를 뺀 화면 기준
+-> 제이쿼리의 offset() 과 같은 절대값을 구하려면
+스크롤위치값을 본 값에 더해야함!
+-> 주로 세로 스크롤을 사용하므로 top값에 스크롤값을 더함
+예) 요소.getBoundingClientRect().top + window.scrollY
+
+※ 참고: 바운딩 값은 소수점 아래 많은 자릿수까지 표시하므로
+    이것을 소수점자리 제한하여 사용할 수 있다!
+    -> toFiexd(자릿수) : 자릿수에 0을 넣으면 소수점 아래버림
+
+    [[ JavaScript에서 요소의 크기 구하기 ]]★
+
+-> 한눈에 보기:
+http://jsfiddle.net/y8Y32/25/
+
+[ 가로크기 ]
+- clientWidth : 패딩점퍼를 입고 있는 클라이언트님!
+    padding을 포함한 폭
+- scrollWidth :  가로스크롤내용이 들어가니까 scroll!
+    padding을 포함한 화면 상에 표시되지 않은 콘텐츠를 포함한 폭
+- offsetWidth : 보더,패딩,세로스크롤바 트랙이 다 들어가니 옵셋!
+    border, padding, 세로스크롤바 트랙을 포함한 폭
+
+[ 세로크기 ]
+- clientHeight : 패딩점퍼를 입고 있는 클라이언트님!
+    padding을 포함한 높이
+- scrollHeight :  세로스크롤내용이 들어가니까 scroll!
+    padding을 포함한 화면 상에 표시되지 않은 콘텐츠를 포함한 높이
+- offsetHeight : 보더,패딩,가로스크롤바 트랙이 다 들어가니 옵셋!
+    border, padding, 가로스크롤바 트랙을 포함한 높이
+
+[[ 윈도우 사이즈 가져오기 ]]
+window.innerWidth :  스크롤 바를 포함하지 않는 창 너비
+window.innerHeight : 스크롤 바를 포함하지 않은 창 높이
+window.outerWidth : 스크롤 바를 포함, 창의 너비
+window.outerHeight :  스크롤 바를 포함한  창의 높이
+
+[[ 현재 스크롤바 위치값 가져오기 ]]
+1. window.scrollY (IE6~11지원안함)
+2. document.scrollingElement.scrollTop
+3. document.documentElement.scrollTop
+4. document.querySelector('html').scrollTop
+
+_____________________________________________________________
+
+[[ 이벤트발생시 위치값 ]]
+1. clientX, clientY
+    -> 현재 보이는 브라우저 화면이 기준
+
+2. offsetX, offsetY
+    -> 이벤트 대상이 기준
+
+3. pageX, pageY
+    -> 전체 문서를 기준(스크롤 화면을 포함)
+
+4. screenX, screenY
+    -> 모니터 화면을 기준
+_____________________________________________________________
+[ 가로방향 이동 ]
+ul의 부모박스는 세로스크롤 적용해야하니 100vh + 컨텐츠양만큼
+컨텐츠ul 가로스크롤 해서 이동시키는건 100vw + 컨텐츠양만큼
+li는 등분할
+[ 메뉴에 오버 시 움직이는 배경 ]
+js실험실 중간스크롤 가로이동
+

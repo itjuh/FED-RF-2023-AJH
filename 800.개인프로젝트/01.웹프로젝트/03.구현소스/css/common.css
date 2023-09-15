@@ -218,7 +218,6 @@
 .footer-sns span{
     display: inline-block;
     height: 100%;
-    width: calc(100% - 45px - 5px);
     /* 글자세팅 */
     color: var(--co-onlightgreen);
     font-size: var(--fz-top);

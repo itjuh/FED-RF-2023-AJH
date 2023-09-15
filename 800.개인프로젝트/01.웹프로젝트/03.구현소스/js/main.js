@@ -209,3 +209,8 @@ bubbleKey.forEach(ele=>{
 // 스크롤 벗어나면 제자리로
 // 위치값 알기위해 마우스 클릭지점 찍ㄱ
 // window.onclick = (e) => {console.log(e.pageY);}
+
+
+// footer영역 
+// footer_sns span태그 길이만큼 영역확장
+// 대상:

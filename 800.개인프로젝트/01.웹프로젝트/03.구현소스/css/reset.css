@@ -50,8 +50,10 @@ button {
     border: none;
 }
 img {
+    /* 이미지 링크시 서버에서 볼때 파란색 자동보더 없애기 */
+    border: none;
     /* 박스 이미지 하단공백 제거 */
-    vertical-align:middle;
+    vertical-align: bottom;
 }
 /* em, i요소 글자 이탤릭 제거 */
 em,i{
