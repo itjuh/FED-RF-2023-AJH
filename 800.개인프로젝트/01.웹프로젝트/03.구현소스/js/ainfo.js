@@ -24,15 +24,18 @@ function loadFn(){
     // html 코드저장 함수
     let hcode = '';
     // 코드 저장하기
-    grad_info.forEach(ele=>{
-        // console.log(ele, introGrad);
-        hcode+=`
-        <li class="grad-box">
-            <img src="${ele.src}" alt="${ele.alt}">
-            <mark>${ele.재료명}</mark>
-        </li>
-        `;
-    });
+    for(let i=0;i<2;i++){
+        grad_info.forEach(ele=>{
+            // console.log(ele, introGrad);
+            hcode+=`
+            <li class="grad-box">
+                <img src="${ele.src}" alt="${ele.alt}">
+                <mark>${ele.재료명}</mark>
+            </li>
+            `;
+        });
+
+    }
     console.log(hcode);
     // 코드 뿌리기
     introGrad.innerHTML = hcode;
@@ -106,30 +109,33 @@ function loadFn(){
     let listUl = domFn.qs('.intro-grad');
     // console.log(listUl);
     // 2. 이벤트 선정 ( 시간에 따른 이벤트 )
-    setTimeout(()=>{
-        // setInterval(() => {
-        //     scrollGrad();
-        // }, 1000);
-    },8000);
-    // 재료이미지 자동스크롤 함수
-    function scrollGrad(){
-        // 이미지 li 새로읽기
-        let list = domFn.qsaEl(listUl,'.grad-box');
-        // 2. 이미지 이동
-        listUl.style.left = '-100%';
-        // 1. 트랜지션 주기
-        listUl.style.transition='1s';
-        // -------
-        setTimeout(() => {
-            // 4. 이미지 뒤로 붙이기
-            listUl.appendChild(list[0]);
-            // 5. 위치값 원래대로
-            listUl.style.left = "0";
-            // -------
-            // 3. 트랜지션삭제
-            listUl.style.transition = 'none';
-        }, 0);
-    } ////////scrollGrad///////////
+    // setTimeout(()=>{
+        // const myFn = ()=> setInterval(scrollGrad, 3000);
+
+        // setTimeout(myFn,9000);
+    // },8000);
+
+
+    // let sldNum = 0;
+    // // listUl.style.transition='.02s linear';
+
+    // // 재료이미지 자동스크롤 함수
+    // function scrollGrad(){
+    //     sldNum--;
+    //     listUl.style.left = sldNum+'px';
+    //     // 1. 트랜지션 주기
+    //     // -------
+    //     if(sldNum==-450) {
+    //         let newli = listUl.querySelectorAll('li');
+    //         listUl.appendChild(newli[0]);
+    //         listUl.style.left = '0';
+    //         sldNum = 0;
+    //     }
+    //     console.log(sldNum);
+    //     setTimeout(scrollGrad, 20);
+    // } ////////scrollGrad///////////
+
+    // setTimeout(scrollGrad,9000);
 
     //////////////////////////////////////////////////////
     ////////////////주문절차 on 넣고빼기 //////////////////
