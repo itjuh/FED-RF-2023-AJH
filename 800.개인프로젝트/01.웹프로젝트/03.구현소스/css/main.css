@@ -55,8 +55,7 @@
 .banner-desc ol{
     display: flex;
     position: relative;
-    flex-direction: column;
-    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
 }
@@ -64,6 +63,7 @@
 .banner-desc ol>li{
     display: flex;
     flex-direction: column;
+    width: 100%;
     height: 100%;
     flex-shrink: 0;
 }

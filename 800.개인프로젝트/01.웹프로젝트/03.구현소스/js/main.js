@@ -174,7 +174,7 @@ function goSlide(){
     if(isNext){ //오른쪽 버튼
         // (1)대상이동 : 이미지 가로이동, 텍스트 세로이동
         evtBannerImg.style.left = '-100%';
-        bannerDescBox.style.top = '-100%';
+        bannerDescBox.style.left = '-100%';
         // (2)트랜지션
         evtBannerImg.style.transition = TIME_SLIDE+'ms ease-in-out';
         bannerDescBox.style.transition = TIME_SLIDE+'ms ease-in-out';
@@ -184,9 +184,9 @@ function goSlide(){
             // (3)맨 앞 li 맨 뒤로 이동
             evtBannerImg.appendChild(bannerImgArr[0]);
             bannerDescBox.appendChild(bannerDescArr[0]);
-            // (4)슬라이드 left값 초기화, top
+            // (4)슬라이드 left값 초기화, left
             evtBannerImg.style.left = '0';
-            bannerDescBox.style.top = '0';
+            bannerDescBox.style.left = '0';
             // (5)트랜지션 없애기
             evtBannerImg.style.transition = 'none';
             bannerDescBox.style.transition = 'none';
@@ -197,17 +197,17 @@ function goSlide(){
         // 놈놈놈 ->insertBefore(넣을놈, 넣을놈전놈);
         evtBannerImg.insertBefore(bannerImgArr[bannerImgArr.length-1],bannerImgArr[0]);
         bannerDescBox.insertBefore(bannerDescArr[bannerDescArr.length-1],bannerDescArr[0]);
-        // (2)left,top값 -100%만들기(밖으로 나가서 안보이게) : 입장준비
+        // (2)left,left값 -100%만들기(밖으로 나가서 안보이게) : 입장준비
         evtBannerImg.style.left = '-100%'
-        bannerDescBox.style.top = '-100%'
+        bannerDescBox.style.left = '-100%'
         // (3)트랜지션 없애기
         evtBannerImg.style.transition = 'none';
         bannerDescBox.style.transition = 'none';
         // 같은 left값을 동시에 변경하면 효과가 없음
         setTimeout(()=>{// 비동기처리해야함
-        // (4)left,top값 0으로 들어오기!
+        // (4)left,left값 0으로 들어오기!
         evtBannerImg.style.left = '0';
-        bannerDescBox.style.top = '0';
+        bannerDescBox.style.left = '0';
         // (5)트랜지션주기
         evtBannerImg.style.transition = TIME_SLIDE+'ms ease-in-out';
         bannerDescBox.style.transition = TIME_SLIDE+'ms ease-in-out';

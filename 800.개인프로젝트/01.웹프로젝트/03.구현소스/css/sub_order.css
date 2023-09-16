@@ -1,0 +1,21 @@
+@charset "uft-8";
+/* 온고롱 서브 주문하기 - sub_order.css */
+/* CSS 불러오기 영역 */
+/* 리셋, 공통, 코어 외부 CSS합치기(merging) */
+@import url(./common.css);
+@import url(./core.css);
+@import url(./reset.css);
+
+/* 2. 메인영역 */
+/* 2-1.타이틀 */
+.main .top-title{
+    height: 80px;
+    border-bottom: 1px solid #000;
+    line-height: 120px;
+}
+.top-title h1{
+    width: 1400px;
+    height: 100%;
+    margin: 0 auto;
+    font-size: var(--fz-biger);
+}
