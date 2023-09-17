@@ -34,9 +34,9 @@ body{
     font-family: 'Noto Sans KR', sans-serif;
 }
 /* 공통 레이아웃 클래스 */
-body *{
-    /* outline: 1px solid coral; */
-}
+/* body *{
+    outline: 1px solid coral;
+} */
 /* 상단영역 폰트공통 */
 #header{
     font-family: 'GangwonEdu_OTFBoldA';
@@ -118,4 +118,4 @@ body *{
 }
 .move-view-btn:hover::after{
     transform: translate(1px,-1px) scale(1.1)
-} 
+}

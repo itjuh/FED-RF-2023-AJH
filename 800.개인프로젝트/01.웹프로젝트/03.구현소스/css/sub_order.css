@@ -7,6 +7,9 @@
 @import url(./reset.css);
 
 /* 2. 메인영역 */
+/* body *{
+    outline: 1px solid coral;
+} */
 /* 2-1.타이틀 */
 .main .top-title{
     height: 80px;
@@ -18,4 +21,306 @@
     height: 100%;
     margin: 0 auto;
     font-size: var(--fz-biger);
+}
+/* 2-2. 주문창 */
+.order-box{
+    display: flex;
+    align-items: center;
+    gap: 0 100px;
+}
+/* 2-3. 주문신청서 */
+.form-box{
+    position: relative;
+    height: 600px;
+    flex-basis: 60%;
+    border-radius: 20px 20px 10px 10px;
+    border: 1px solid #ccc;
+    padding: 30px 100px;
+    background-color: #fff;
+    box-sizing: border-box;
+    box-shadow: 2px 8px 16px 0 rgb(11 58 22 / 19%);
+}
+/* 신청서 타이틀 */
+.form-title{
+    font-size: var(--fz-tit);
+    margin: 40px 0;
+}
+/* 신청서 타이틀 아이콘 */
+.form-title i{
+    float: left;
+    margin-right: 10px;
+}
+/* 신청서 내용 */
+.form-content{
+    font-size: var(--fz-top);
+    color: #aaa;
+    width: 800px;
+    margin: 0 auto;
+}
+/* 신청서 내용 dl */
+.form-content dl{
+    display: flex;
+    flex-wrap: wrap;
+}
+/* 신청서 내용 dt */
+.form-content dt{
+    width: 200px;
+    margin: 10px 0;
+}
+/* 신청서 내용 dd */
+.form-content dd{
+    width: 600px;
+    margin: 10px 0;
+}
+/* 2-4. 주문진행 */
+.proceed-box{
+    min-height: 800px;
+    flex-basis: 30%;
+    border-left: 1px solid #ccc;
+    background-color: rgba(240, 128, 128, 0.144);
+}
+/* 진행절차 */
+.proceed-nav{
+    width: 450px;
+    height: 90px;
+    color: #555;
+    margin: 20px;
+    font-size: var(--fz-top);
+}
+/* 진행절차 ol */
+.proceed-nav ol{
+    position: relative;
+    /* point-box부모 */
+    display: flex;
+    height: 100%;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-content: space-between;
+}
+/* 진행절차 li */
+.proceed-nav li{
+    position: relative;
+    /* point-box 상단위치(인덱스) */
+    flex-shrink: 0;
+    width: 120px;
+    height: 40px;
+    line-height: 42px;
+}
+.proceed-nav li.on{
+    color: #000;
+}
+/* 진행절차 li에 배경박스*/
+.point-box{
+    position: absolute;
+    /* 부모는 proceed-nav ol */
+    left: 33%; /* 0%, 33%, 66% */
+    top: 0; /* 60% */
+    width: 110px;
+    height: 40px;
+    background-color: white;
+    clip-path: polygon(0% 0%, 70% 0%, 100% 50%, 70% 100%, 0% 100%);
+}
+/* 진행절차 타이틀 */
+.proceed-title{
+    width: 100%;
+    letter-spacing: 2px;
+}
+.proceed-title h2{
+    font-size: var(--fz-tit);
+    padding: 20px 30px 20px;
+}
+/* 절차내용 겉박스 */
+.proceed-content{
+    width: 500px;
+    height: 100%;
+    overflow: hidden;
+}
+/* 절차내용 ol */
+.proceed-content ol{
+    display: flex;
+    width: 2500px;
+}
+/* 절차내용 ol>li */
+.proceed-list{
+    width: 550px;
+    height: 100%;
+    border-right: 1px dashed red;
+    transform: translateX(-100%);
+}
+/* 절차 내용 ul*/
+.proceed-content ul{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0 30px;
+    padding-left: 30px;
+    box-sizing: border-box;
+    font-size: var(--fz-big);
+}
+/* 절차 내용(1. 목적) li */
+.proceed-content ul>li{
+    width: 200px;
+    height: 80px;
+    border-radius: 20px;
+    line-height: 3;
+    text-align: center;
+    color: #555
+}
+/* 절차 내용(1. 목적) li 마우스오버*/
+.proceed-content ul>li.on,
+.proceed-content ul>li:hover{
+    background-color: var(--co-ongreen);
+    color:white;
+}
+/* 절차 내용(2 일정) */
+/* input달력보기 박스 설정 */
+.proceed-list .day-time{
+    width: 400px;
+    height: 60px;
+    border-radius: 10px;
+    margin-left:20px;
+    padding: 0px 30px;
+    background-color: #eee;
+    font-size: var(--fz-big);
+    font-family: 'GangwonEdu_OTFBoldA';
+}
+/* input 플레이스홀더 글자색상 */
+.proceed-list .day-time::placeholder{
+    color: var(--co-ondarkgreen);
+}
+/* 달력보기 박스 오버시 */
+.proceed-list .day-time:focus,
+.proceed-list .day-time:hover{
+    outline: 1px solid var(--co-ongreen);
+    box-shadow: 2px 8px 16px 0 rgb(11 58 22 / 19%);
+}
+/* 달력보기 박스 클릭 시 */
+.popup-box{
+    position: absolute;
+    /* 박스 화면 맨 위로 */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 350px;
+    height: 520px;
+    padding: 30px 20px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    box-shadow: 2px 8px 16px 0 rgb(11 58 22 / 19%);
+    background-color: #fff;
+    padding-left: 30px;
+    font-size: var(--fz-top);
+}
+.calendar-box{
+    /* 기본 숨기기 */
+    display: none;
+}
+/* 달력 타이틀 */
+.pop-head{
+    text-align: center;
+    margin-bottom: 30px;
+}
+/* 달력 월 선택 */
+.month{
+    position: relative;
+    /* 가상요소 버튼부모 */
+    text-align: center;
+    padding-bottom: 30px;
+}
+/* 이전 월 버튼 */
+.month::before{
+    content: '\f0d9';
+    position: absolute;
+    left: 20%;
+    top: -2px;
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    font-size: var(--fz-big);
+    color: #555;
+}
+/* 이후 월 버튼 */
+.month::after{
+    content: '\f0da';
+    position: absolute;
+    right: 20%;
+    top: -2px;
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    font-size: var(--fz-big);
+    color: #555;
+}
+/* 달력 table */
+.calendar tr{
+    width:45px;
+    height:45px;
+    border: 1px solid #ccc;
+}
+.calendar th, td{
+    width:45px;
+    height:45px;
+    text-align: center;
+    border: 1px solid #ccc;
+}
+/* 달력 일요일 */
+th:first-child, td:first-child{
+    color: orangered;
+}
+/* 달력 토요일 */
+th:last-child, td:last-child{
+    color:blue;
+}
+/* 달력 날짜선택 */
+th.check, td.check{
+    border-radius: 50%;
+    background-color: #555;
+    color: #fff;
+}
+/* 절차 버튼 박스*/
+.proceed-btn-box{
+    display: flex;
+    width: 100%;
+    height: 100px;
+    padding-left: 30px;
+    gap: 50px;
+    margin-top: 20px;
+    align-items: center;
+    box-sizing: border-box;
+}
+/* 버튼 공통 클래스 */
+.btn {
+    width: 180px;
+    height: 50px;
+    border-radius: 30px;
+    box-shadow: 0px 0px 5px 2px var(--co-onlightgreen);
+    /* 글자세팅 */
+    font-size: var(--fz-nav);
+    font-family: 'GangwonEdu_OTFBoldA';
+    color: var(--co-onlightgreen);
+    text-align: center;
+    letter-spacing: 4px;
+    line-height: 2.2px;
+}
+/* 팝업용 버튼 박스 */
+.pop-btn{
+    gap: 30px;
+}
+/* 팝업용 버튼 */
+.pop-btn .btn{
+    width: 130px;
+    height: 40px;
+    border-radius: 20px;
+    letter-spacing: 2px;
+}
+/* 버튼 화살표 아이콘 */
+.btn i{
+    color: var(--co-onlightgreen);
+    font-size: var(--fz-nav);
+}
+/* 버튼 오버시 */
+.btn:hover {
+    background-color: var(--co-onlightgreen);
+    color: white;
+}
+.btn:hover i{
+    background-color: var(--co-onlightgreen);
+    color: white;
 }

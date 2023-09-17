@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>온고롱 주문하기 페이지</title>
+    <!-- 아이콘 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
     <!-- 온고롱 서브 주문하기 CSS -->
     <link rel="stylesheet" href="./css/sub_order.css" />
     <!-- 외부 JS연결 -->
@@ -67,9 +69,188 @@
         <main class="main inbox">
             <!-- 2-1.타이틀 -->
             <div class="partbox top-title">
-                <h1>온고롱 주문하기</h1>
+                <h1>상품 주문하기</h1>
             </div>
-            
+            <!-- 2-2. 주문 -->
+            <div class="partbox order-box">
+                <!-- 2-3. 주문신청서 -->
+                <section class="form-box">
+                    <!-- 신청서 타이틀 -->
+                    <div class="form-title">
+                        <i class="fa-regular fa-file-lines"></i>
+                        <h1>주문 신청서</h1>
+                    </div>
+                    <!-- 신청서 내용 -->
+                    <div class="form-content">
+                        <dl>
+                            <dt>목적</dt>
+                            <dd>주문하시는 용도를 선택해주세요</dd>
+                            <dt>일정</dt>
+                            <dd>필요하신 날짜와 시간을 입력해주세요</dd>
+                            <dt>픽업</dt>
+                            <dd>어떤 분이 픽업하시나요?</dd>
+                            <dt>주문자</dt>
+                            <dd>주문하시는 분 성함을 알려주세요</dd>
+                            <dt>연락처</dt>
+                            <dd>010-0000-0000</dd>
+                            <dt>상품</dt>
+                            <dd>필요하신 상품을 선택해주세요</dd>
+                            <dt>옵션</dt>
+                            <dd>세부 옵션을 선택해주세요</dd>
+                            <dt>추가</dt>
+                            <dd>더 필요하신 상품은 없으신가요?</dd>
+                        </dl>
+                    </div>
+                </section>
+                <!-- 2-4. 주문진행 -->
+                <section class="proceed-box">
+                    <!-- 진행절차 -->
+                    <div class="proceed-nav">
+                        <ol>
+                            <div class="point-box"></div>
+                            <li>1.목적</li>
+                            <li class="on">2.일정</li>
+                            <li>3.상품</li>
+                            <li>4.옵션</li>
+                            <li>5.추가</li>
+                            <li>6.주문</li>
+                        </ol>
+                    </div>
+                    <!-- 절차 타이틀 -->
+                    <div class="proceed-title">
+                        <h2>언제 필요하세요?</h2>
+                    </div>
+                    <!-- 절차 내용 -->
+                    <div class="proceed-content">
+                        <ol>
+                            <li class="proceed-list">
+                                <ul>
+                                    <li>환갑/칠순</li>
+                                    <li>생일케이크</li>
+                                    <li>돌잔치</li>
+                                    <li>답례품</li>
+                                    <li>쌀디저트</li>
+                                </ul>
+                            </li>
+                            <li class="proceed-list open">
+                                <input class="day-time" type="text" placeholder="찾아가실 날짜와 시간" readonly>
+                                
+                            </li>
+                        </ol>
+                    </div>
+                    <!-- 숨김박스들 -->
+                    <div class="hide-box">
+                        <!-- 날짜선택(달력) -->
+                        <div class="calendar-box popup-box">
+                            <!-- 달력 타이틀 -->
+                            <div class="pop-head">찾아가실 날짜</div>
+                            <!-- 달력 -->
+                            <div class="pop-body">
+                                <div class="month">9월</div>
+                                <table class="calendar">
+                                    <tr>
+                                        <th>일</th>
+                                        <th>월</th>
+                                        <th>화</th>
+                                        <th>수</th>
+                                        <th>목</th>
+                                        <th>금</th>
+                                        <th>토</th>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td>1</td>
+                                        <td>2</td>
+                                    </tr>
+                                    <tr>
+                                        <td>3</td>
+                                        <td>4</td>
+                                        <td>5</td>
+                                        <td>6</td>
+                                        <td>7</td>
+                                        <td>8</td>
+                                        <td>9</td>
+                                    </tr>
+                                    <tr>
+                                        <td>10</td>
+                                        <td>11</td>
+                                        <td>12</td>
+                                        <td>13</td>
+                                        <td>14</td>
+                                        <td>15</td>
+                                        <td class="check">16</td>
+                                    </tr>
+                                    <tr>
+                                        <td>17</td>
+                                        <td>18</td>
+                                        <td>19</td>
+                                        <td>20</td>
+                                        <td>21</td>
+                                        <td>22</td>
+                                        <td>23</td>
+                                    </tr>
+                                    <tr>
+                                        <td>24</td>
+                                        <td>25</td>
+                                        <td>26</td>
+                                        <td>27</td>
+                                        <td>28</td>
+                                        <td>29</td>
+                                        <td>30</td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <!-- 취소/다음버튼 -->
+                            <div class="pop-footer">
+                                <div class="proceed-btn-box pop-btn">
+                                    <button class="btn prev">
+                                        <i class="fa-solid fa-circle-play fa-rotate-180"></i>
+                                        &nbsp;취소
+                                    </button>
+                                    <button class="btn next">다음&nbsp;
+                                        <i class="fa-solid fa-circle-play"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- 시간선택 -->
+                        <div class="timer popup-box">
+                            <!-- 시간 타이틀 -->
+                            <div class="pop-head">찾아가실 시간</div>
+                            <!-- 시간 선택 -->
+                            <div class="pop-body">
+                                
+                            </div>
+                            <!-- 취소/다음버튼 -->
+                            <div class="pop-footer">
+                                <div class="proceed-btn-box pop-btn">
+                                    <button class="btn prev">
+                                        <i class="fa-solid fa-circle-play fa-rotate-180"></i>
+                                        &nbsp;취소
+                                    </button>
+                                    <button class="btn next">다음&nbsp;
+                                        <i class="fa-solid fa-circle-play"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 절차버튼 -->
+                    <div class="proceed-btn-box">
+                        <button class="btn prev">
+                            <i class="fa-solid fa-circle-play fa-rotate-180"></i>
+                            &nbsp;이전
+                        </button>
+                        <button class="btn next">다음&nbsp;
+                            <i class="fa-solid fa-circle-play"></i>
+                        </button>
+                    </div>
+                </section>
+            </div>
     </main>
     </div>
     <!-- 3. 하단영역 -->
