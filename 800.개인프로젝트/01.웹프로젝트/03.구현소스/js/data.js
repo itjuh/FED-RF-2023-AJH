@@ -35,10 +35,24 @@ const event_info = {
 // 상품정보 
 // key상품번호 prod-name,가격,태그,src로 구성
 const prod_info = {
-    "prod01":{"prod_name":"미니4종생일케이크","prod_price":"50000","prod_tag":"@떡케이크","src":"../01.자료수집/ongorong_prod/img_cake01.jpeg"},
-    "prod02":{"prod_name":"작약리스케이크","prod_price":"45000","prod_tag":"@떡케이크","src":"../01.자료수집/ongorong_prod/img_cake02.jpeg"},
-    "prod03":{"prod_name":"하단리스케이크","prod_price":"50000","prod_tag":"@떡케이크","src":"../01.자료수집/ongorong_prod/img_cake03.jpeg"},
-    "prod04":{"prod_name":"작약장미리스케이크","prod_price":"40000","prod_tag":"@떡케이크","src":"../01.자료수집/ongorong_prod/img_cake04.jpeg"},
+    "prod01":{"prod_name":"미니4종생일케이크","prod_price":"50000","prod_tag":["@떡케이크","@1단케이크"],"src":"../01.자료수집/ongorong_prod/img_cake01.jpeg"},
+    "prod02":{"prod_name":"작약리스케이크","prod_price":"45000","prod_tag":["@떡케이크","@1단케이크"],"src":"../01.자료수집/ongorong_prod/img_cake02.jpeg"},
+    "prod03":{"prod_name":"하단리스케이크","prod_price":"50000","prod_tag":["@떡케이크","@1단케이크"],"src":"../01.자료수집/ongorong_prod/img_cake03.jpeg"},
+    "prod04":{"prod_name":"작약장미리스케이크","prod_price":"40000","prod_tag":["@떡케이크","@1단케이크"],"src":"../01.자료수집/ongorong_prod/img_cake04.jpeg"},
+    "prod05":{"prod_name":"칠순케이크(핑크)","prod_price":"60000","prod_tag":["@떡케이크","@숫자케이크"],"src":"../01.자료수집/ongorong_prod/img_cake47.jpeg"},
+    "prod06":{"prod_name":"5살생일케이크","prod_price":"55000","prod_tag":["@떡케이크","@숫자케이크"],"src":"../01.자료수집/ongorong_prod/img_cake46.jpeg"},
+    "prod07":{"prod_name":"환갑케이크(블루)","prod_price":"60000","prod_tag":["@떡케이크","@숫자케이크"],"src":"../01.자료수집/ongorong_prod/img_cake50.jpeg"},
+    "prod08":{"prod_name":"환갑케이크(핑크)","prod_price":"60000","prod_tag":["@떡케이크","@숫자케이크"],"src":"../01.자료수집/ongorong_prod/img_cake51.jpeg"},
+    "prod09":{"prod_name":"장미컵케이크2종","prod_price":"16000","prod_tag":["@떡케이크","@컵케이크"],"src":"../01.자료수집/ongorong_prod/img_cake70.jpeg"},
+    "prod010":{"prod_name":"카네이션컵케이크2종","prod_price":"16000","prod_tag":["@떡케이크","@컵케이크"],"src":"../01.자료수집/ongorong_prod/img_cake71.jpeg"},
+    "prod011":{"prod_name":"카네이션컵케이크6종","prod_price":"48000","prod_tag":["@떡케이크","@컵케이크"],"src":"../01.자료수집/ongorong_prod/img_cake72.jpeg"},
+    "prod012":{"prod_name":"종합컵케이크","prod_price":"32000","prod_tag":["@떡케이크","@컵케이크"],"src":"../01.자료수집/ongorong_prod/img_cake74.jpeg"},
+    "prod013":{"prod_name":"상차림떡 세트","prod_price":"100000","prod_tag":["@상차림떡"],"src":"../01.자료수집/ongorong_prod/img_dduk2.jpeg"},
+    "prod014":{"prod_name":"수수팥떡","prod_price":"45000","prod_tag":["@상차림떡","@쌀디저트"],"src":"../01.자료수집/ongorong_prod/img_dduk3.jpeg"},
+    "prod015":{"prod_name":"오색송편","prod_price":"43000","prod_tag":["@상차림떡"],"src":"../01.자료수집/ongorong_prod/img_dduk5.jpeg"},
+    "prod016":{"prod_name":"구움찰떡","prod_price":"20000","prod_tag":["@답례품","@쌀디저트"],"src":"../01.자료수집/ongorong_prod/img_prod4.jpeg"},
+    "prod017":{"prod_name":"호두정과","prod_price":"30000","prod_tag":["@답례품","@건강디저트"],"src":"../01.자료수집/ongorong_prod/img_prod1.jpeg"},
+    "prod018":{"prod_name":"종합견과바","prod_price":"35000","prod_tag":["@답례품","@쌀디저트"],"src":"../01.자료수집/ongorong_prod/img_prod5.jpeg"},
 };
 
 // 리뷰정보
@@ -109,7 +123,7 @@ const review_info = {
 // 카테고리 별 질문 응답
 // seq, 카테고리, 질문, 응답으로 구성되어 있음
 const faq_cont = [
-   {"seq":1000,"카테고리":"예약&변경","질문":"비회원도 상품을 구매할 수 있나요?","응답":"비회원도 상품을 구매할 수 있나요?"},
+   {"seq":1000,"카테고리":"예약&변경","질문":"비회원도 상품을 구매할 수 있나요?","응답":"네, 비회원으로 상품구매를 진행하시면 됩니다."},
    {"seq":1001,"카테고리":"예약&변경","질문":"구매 영수증은 어떻게 발급 받나요?","응답":"구매 영수증은 어떻게 발급 받나요?"},
    {"seq":1002,"카테고리":"예약&변경","질문":"예약없이 구매가 가능한가요?","응답":"예약없이 구매가 가능한가요?"},
    {"seq":1003,"카테고리":"예약&변경","질문":"전화로 주문 할 수 있나요?","응답":"전화로 주문 할 수 있나요?"},
@@ -168,3 +182,22 @@ const banner_img = [
    {"alt":"앙금케이크","src":"../01.자료수집/ongorong_prod/banner5.png"},
    {"alt":"휘낭시에","src":"../01.자료수집/ongorong_prod/banner6.png"},
 ];
+
+// 주문하기 페이지 옵션
+
+const option_list = {
+   "기본구성품 안내":"케이크박스 | 케이크칼 | 기본초 | 리본장식",
+   "보관 안내":"실온보관(10~25도)하고 5시간 내에 섭취하세요. 남은 케이크는 떡은 냉동보관, 앙금은 냉장보관 하세요. 드실 때는 떡은 다시 데워서 드세요.",
+   "맛 선택":[
+      {"name":"꿀설기","price":0,"img":"../01.자료수집/images/fla1.png","alt":"기본 꿀설기"},
+      {"name":"단호박","price":5000,"img":"../01.자료수집/images/fla2.png","alt":"단호박 맛"},
+      {"name":"무화과","price":5000,"img":"../01.자료수집/images/fla4.png","alt":"무화과 맛"},
+   ],
+   "사이즈":[
+      {"name":"1호(15cm)","price":0},
+      {"name":"2호(18cm)","price":15000},
+      {"name":"3호(21cm)","price":30000},
+   ],
+   "문구":"문구는 15자까지 가능합니다.",
+   "요청사항":"옵션과 요청사항이 다른 경우 옵션선택사항을 우선으로 제작합니다.",
+};

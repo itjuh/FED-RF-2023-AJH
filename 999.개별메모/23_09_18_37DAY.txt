@@ -1,0 +1,45 @@
+18~21일 평일동안
+(필수)
+안내페이지 제작 1,2,3,4 
+-> 데이터 넣기 남음
+
+로그인 회원가입 제작
+주문페이지 시작
+
+20일 가이드문서 작성
+
+[ 오늘의 일정 : 9월18일(월) ]
+------------------------------
+1. 코드업데이트
+2. 프로젝트 구현 및 리뷰 시간
+
+...1교시...
+radial-gradient(closest-corner at 30px 15px, #fff, blue)
+점위치를 흰색으로하고 파란색으로 퍼저나가는 스타일
+
+nav07 
+
+nav08 숨김네비
+
+cgv index
+
+...2,3교시...
+index 이어서
+동영상넣기 플레이버튼
+안드로이드는 인라인상태로 자동으로 돌아감
+ios는 playsinline이 있어야함
+
+이미지 object-position : right bottom 도 가능함
+
+어둡게 처리함 filter: brightness(50%); or brightness(0.5)
+동영상 재생중 발생 이벤트
+myvid.addEventListener('timeupdate',()=>{}
+
+비디오요소.paused => 멈추면 true
+location.href = 'main.html';
+페이지 이동js
+
+지도넣기
+화면 가리기
+...4교시...
+tvn 도깨비

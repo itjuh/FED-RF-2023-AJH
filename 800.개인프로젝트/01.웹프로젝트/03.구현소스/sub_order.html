@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
     <!-- 온고롱 서브 주문하기 CSS -->
     <link rel="stylesheet" href="./css/sub_order.css" />
+    <!-- 온고롱 데이터JS -->
+    <script src="./js/data.js"></script>
     <!-- 외부 JS연결 -->
     <script src="./js/order.js" defer></script>
 </head>
@@ -73,33 +75,75 @@
             </div>
             <!-- 2-2. 주문 -->
             <div class="partbox order-box">
-                <!-- 2-3. 주문신청서 -->
-                <section class="form-box">
-                    <!-- 신청서 타이틀 -->
-                    <div class="form-title">
-                        <i class="fa-regular fa-file-lines"></i>
-                        <h1>주문 신청서</h1>
+                <section class="form-area">
+                    <!-- 2-3. 주문신청서 -->
+                    <div class="form-box">
+                        <!-- 신청서 타이틀 -->
+                        <div class="form-title">
+                            <i class="fa-regular fa-file-lines"></i>
+                            <h1>주문 신청서</h1>
+                        </div>
+                        <!-- 신청서 내용 -->
+                        <div class="form-content">
+                            <dl>
+                                <dt>목적</dt>
+                                <dd>주문하시는 용도를 선택해주세요</dd>
+                                <dt>일정</dt>
+                                <dd>필요하신 날짜와 시간을 입력해주세요</dd>
+                                <dt>픽업</dt>
+                                <dd>어떤 분이 픽업하시나요?</dd>
+                                <dt>주문자</dt>
+                                <dd>주문하시는 분 성함을 알려주세요</dd>
+                                <dt>연락처</dt>
+                                <dd>010-0000-0000</dd>
+                                <dt>상품</dt>
+                                <dd>필요하신 상품을 선택해주세요</dd>
+                                <dt>옵션</dt>
+                                <dd>세부 옵션을 선택해주세요</dd>
+                                <dt>추가</dt>
+                                <dd>더 필요하신 상품은 없으신가요?</dd>
+                            </dl>
+                        </div>
                     </div>
-                    <!-- 신청서 내용 -->
-                    <div class="form-content">
-                        <dl>
-                            <dt>목적</dt>
-                            <dd>주문하시는 용도를 선택해주세요</dd>
-                            <dt>일정</dt>
-                            <dd>필요하신 날짜와 시간을 입력해주세요</dd>
-                            <dt>픽업</dt>
-                            <dd>어떤 분이 픽업하시나요?</dd>
-                            <dt>주문자</dt>
-                            <dd>주문하시는 분 성함을 알려주세요</dd>
-                            <dt>연락처</dt>
-                            <dd>010-0000-0000</dd>
-                            <dt>상품</dt>
-                            <dd>필요하신 상품을 선택해주세요</dd>
-                            <dt>옵션</dt>
-                            <dd>세부 옵션을 선택해주세요</dd>
-                            <dt>추가</dt>
-                            <dd>더 필요하신 상품은 없으신가요?</dd>
-                        </dl>
+                    <!-- 제품고르기 박스 -->
+                    <div class="prod-box">
+                        <div class="list-type">
+                            <!-- 타이틀 -->
+                            <div class="partbox">
+                                <h1 class="tit">숫자케이크</h1>
+                            </div>
+                            <!-- 리스트 -->
+                            <div class="list">
+                                <ol>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 제품옵션 박스 (절차내용 4.옵션)-->
+                    <div class="prod-option">
+                        <div class="option-box">
+                            <!-- 고정옵션 왼쪽 -->
+                            <div class="option-basic">
+                                <div class="prod"></div>
+                                <dl></dl>
+                            </div>
+                            <!-- 선택옵션 오른쪽 -->
+                            <aside class="option-select">
+                                <dl></dl>
+                                <dl></dl>
+                                <dl></dl>
+                                <dl></dl>
+                                <div class="proceed-btn-box aside-btn">
+                                    <button class="btn prev">
+                                        <i class="fa-solid fa-circle-play fa-rotate-180"></i>
+                                        &nbsp;취소
+                                    </button>
+                                    <button class="btn next">다음&nbsp;
+                                        <i class="fa-solid fa-circle-play"></i>
+                                    </button>
+                                </div>
+                            </aside>
+                        </div>
                     </div>
                 </section>
                 <!-- 2-4. 주문진행 -->
@@ -118,11 +162,12 @@
                     </div>
                     <!-- 절차 타이틀 -->
                     <div class="proceed-title">
-                        <h2>언제 필요하세요?</h2>
+                        <h2>상품을 선택해주세요</h2>
                     </div>
                     <!-- 절차 내용 -->
                     <div class="proceed-content">
                         <ol>
+                            <!-- 절차 내용(1. 목적) li -->
                             <li class="proceed-list">
                                 <ul>
                                     <li>환갑/칠순</li>
@@ -132,9 +177,36 @@
                                     <li>쌀디저트</li>
                                 </ul>
                             </li>
+                            <!-- 절차 내용(2. 일정) li -->
                             <li class="proceed-list open">
                                 <input class="day-time" type="text" placeholder="찾아가실 날짜와 시간" readonly>
-                                
+                                <!-- 픽업박스 -->
+                                <div class="pick-up">
+                                    <h3>어느 분이 찾으러 오시나요?</h3>
+                                    <ul>
+                                        <li>주문자 본인</li>
+                                        <li>대리인 수령</li>
+                                        <li>퀵 기사</li>
+                                    </ul>
+                                    <input class="name" type="text" placeholder="성함">
+                                    <input class="number" type="text" placeholder="연락처">
+                                </div>
+                            </li>
+                            <!-- 절차 내용(3. 상품) li -->
+                            <li class="proceed-list step-3 open">
+                                <ul class="">
+                                    <li class="on">떡케이크
+                                        <div class="sub">
+                                            <div class="sub-menu">
+                                                <span class="open">숫자케이크</span>
+                                                <span>1단케이크</span>
+                                                <span>컵케이크</span>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>상차림떡</li>
+                                    <li>쌀디저트</li>
+                                </ul>
                             </li>
                         </ol>
                     </div>
@@ -223,7 +295,41 @@
                             <div class="pop-head">찾아가실 시간</div>
                             <!-- 시간 선택 -->
                             <div class="pop-body">
-                                
+                                <aside class="up-btn thr-btn-box">
+                                    <i class="fa-solid fa-caret-up"></i>
+                                    <i class="fa-solid fa-caret-up"></i>
+                                    <i class="fa-solid fa-caret-up"></i>
+                                </aside>
+                                <div class="select-box"></div>
+                                <div class="time-box">
+                                    <ul class="time-part">
+                                        <li>오전</li>
+                                        <li>오후</li>
+                                    </ul>
+                                    <ul class="time-h">
+                                        <li>9</li>
+                                        <li>10</li>
+                                        <li>11</li>
+                                        <li>12</li>
+                                        <li>1</li>
+                                        <li>2</li>
+                                        <li>3</li>
+                                        <li>4</li>
+                                    </ul>
+                                    <ul class="time-m">
+                                        <li>0</li>
+                                        <li>5</li>
+                                        <li>10</li>
+                                        <li>15</li>
+                                    </ul>
+                                </div>
+                                <div class="white-box wbox1"></div>
+                                <div class="white-box wbox2"></div>
+                                <aside class="down-btn thr-btn-box">
+                                    <i class="fa-solid fa-caret-up fa-rotate-180"></i>
+                                    <i class="fa-solid fa-caret-up fa-rotate-180"></i>
+                                    <i class="fa-solid fa-caret-up fa-rotate-180"></i>
+                                </aside>
                             </div>
                             <!-- 취소/다음버튼 -->
                             <div class="pop-footer">

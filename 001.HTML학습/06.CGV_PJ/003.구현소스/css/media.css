@@ -42,8 +42,12 @@
 /************* 850px 이하 사이즈 시작 *************/
 @media screen and (max-width: 850px) {
   /* 상단영역 */
-  .tit{
-    font-size: min(5vw,20rem);
+  .tit {
+    font-size: min(5vw, 20rem);
+  }
+  /* 찾아오시는 길 */
+  .btn-map{
+    display: none;
   }
   /* 메인영역 */
   .main {
@@ -73,6 +77,14 @@
     flex-basis: calc(100% / 3 - 20px);
     /* X축 회전 */
     transform: rotateX(31deg);
+  }
+  /* 영화정보박스 */
+  .mv-info {
+    font-size: 3.2vw;
+  }
+  /* 영화정보박스 제목만 변경 */
+  .mv-info li:first-child {
+    font-size: 3.5vw;
   }
   /* 하단영역 */
   .footer {
