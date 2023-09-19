@@ -226,12 +226,12 @@
 /* 2-7-2. 리뷰 리스트 */
 .list-type .list{
     height: 400px;
-    width: 1200px;
+    width: 1400px;
     margin: 0 auto;
 }
 .list-type ol{
     display: flex;
-    gap: 0px 20px;
+    gap: 0px 50px;
     height: 100%;
 }
 .list-type ol>li{
@@ -334,6 +334,17 @@
     position: relative;
     height: 500px;
 }
+/* 추천검색 파트박스 */
+.main-key-search .partbox{
+    height: 250px;
+}
+/* 추천검색창 타이틀 */
+.main-key-search h1{
+    font-size: var(--fz-tit);
+    text-align: center;
+    margin: 50px;
+    height: 100%;
+}
 /* 추천검색 검색구역(검색부) */
 
 /* 검색창 */
@@ -341,14 +352,14 @@
 /* 키워드 말풍선 공통 */
 .bubble-key{
     position: absolute;
-    width: 100px;
     height: 65px;
-    background-color: lightblue;
-    border-radius: 40px;
+    background-color: var(--co-onlightgreen);
+    border-radius: 22px;
     /* box-shadow: 1px 1px 10px 0px #00000080; */
     /* 글자세팅 */
-    padding-left: 20px;
+    padding: 0 20px;
     font-size: var(--fz-sign);
+    color:white;
     line-height: 65px;
     font-family: 'GangwonEdu_OTFBoldA';
     /* box-shadow대신 filter:drop-shadow를 써야 클립패쓰까지 그림자 적용됨!!! */
@@ -363,17 +374,17 @@
     top: 120px;
     left: 10vw;
 }
-.bubble-key.b3{
-    top: 150px;
-    left: 20vw;
+.bubble-key.b3 {
+    top: 198px;
+    left: 19vw;
 }
 .bubble-key.b4{
-    top: 50px;
-    right: 10vw;
+    top: 77px;
+    right: 11vw;
 }
 .bubble-key.b5{
-    top: 133px;
-    right: 18vw;
+    top: 0px;
+    right: 15vw;
 }
 /* 말풍선꼬리 공통 */
 .bubble-key::after{
@@ -384,11 +395,20 @@
     display: block;
     width: 50px;
     height: 30px;
-    background-color: lightblue;
+    background-color: var(--co-onlightgreen);
 }
 /* 말풍선꼬리 왼쪽 */
-.bubble-key.b1::after, .bubble-key.b2::after, .bubble-key.b3::after{
+.bubble-key.b1::after, .bubble-key.b2::after{
     clip-path: polygon(14% 33%, 19% 15%, 27% 0, 82% 0, 68% 20%, 61% 44%, 61% 64%, 65% 80%, 75% 100%, 49% 87%, 31% 73%, 18% 55%);
+    top: -17%;
+    left: 52%;
+    transform: rotateY(315deg);
+}
+.bubble-key.b3::after{
+    clip-path: polygon(14% 33%, 19% 15%, 27% 0, 82% 0, 68% 20%, 61% 44%, 61% 64%, 65% 80%, 75% 100%, 49% 87%, 31% 73%, 18% 55%);
+    top: -136%;
+    left: -35%;
+    transform: rotateY(315deg) rotateX(180deg);
 }
 /* 말풍선꼬리 오른쪽 */
 .bubble-key.b4::after, .bubble-key.b5::after{

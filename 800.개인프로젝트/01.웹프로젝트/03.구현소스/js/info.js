@@ -1,15 +1,11 @@
-// 온고롱 서브A 안내페이지 js - ainfo.js
+// 온고롱 서브 안내페이지 js - info.js
 
-//domFn객체
-const domFn = {
-    // 요소선택 함수 ////////////
-    qs : (x) => document.querySelector(x),
-    qsEl : (el,x) => el.querySelector(x),
-    qsa : (x) => document.querySelectorAll(x),
-    qsaEl : (el,x) => el.querySelectorAll(x),
-    // 이벤트 세팅함수 //////////
-    addEvt : (ele,evt,fn) => ele.addEventListener(evt,fn),
-}; /////////////////domFn////////////////
+// footer영역 가져오기
+import startFooterFn from "./footer.js";
+// dom 가져오기
+import domFn from "./dom.js";
+// footer영역 실행
+startFooterFn();
 
 
 // 로드함수

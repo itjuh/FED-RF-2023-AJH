@@ -27,3 +27,11 @@ loadFn @ main.js:61
 
 transform을 줬는데 적용이 안되는 경우
 1. 인라인요소일때..!!!!!!
+
+/////////////////// import 모듈화 관련 /////////////////////////////
+default로 export 한 경우 import 시 {변수} 형태로 받거나 as를 쓰면 안됨!
+Uncaught SyntaxError: The requested module './msg_format.js' does not provide an export named 'message'
+
+모듈문법을 사용한 파일을 서버기동없이 직접 열었을 때
+Access to script at 'file:///D:/GitHub_itjuh/FED-RF-2023-AJH/003.JS%ED%95%99%EC%8A%B5/03.JS%EB%AA%A8%EB%93%88/module/main.js' 
+from origin 'null' has been blocked by CORS policy: Cross origin requests are only supported for protocol schemes: http, data, isolated-app, chrome-extension, chrome, https, chrome-untrusted.

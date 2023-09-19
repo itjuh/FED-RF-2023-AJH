@@ -1,5 +1,5 @@
 @charset "uft-8";
-/* 온고롱 서브B오시는길 - sub_bmap.css */
+/* 온고롱 서브_오시는길 - sub_map.css */
 /* CSS 불러오기 영역 */
 /* 리셋, 공통, 코어 외부 CSS합치기(merging) */
 @import url(./common.css);
@@ -10,13 +10,14 @@
 /* 2-1.타이틀 */
 .main .top-title{
     height: 80px;
-    border-bottom: 1px solid #000;
     line-height: 120px;
 }
 .top-title h1{
     width: 1400px;
     height: 100%;
     margin: 0 auto;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #000;
     font-size: var(--fz-biger);
 }
 /* 2-2.맵링크 */

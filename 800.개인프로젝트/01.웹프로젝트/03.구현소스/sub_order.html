@@ -11,14 +11,14 @@
     <!-- 온고롱 데이터JS -->
     <script src="./js/data.js"></script>
     <!-- 외부 JS연결 -->
-    <script src="./js/order.js" defer></script>
+    <script type="module" src="./js/order.js"></script>
 </head>
 <body>
     <!-- 1. 상단영역 -->
     <div id="header">
         <header class="header inbox">
-            <!-- 0-1. 첫주문안내 -->
-            <div class="partbox first_info"></div>
+            <!-- 0-1. 첫주문안내
+            <div class="partbox first_info"></div> -->
             <!-- 0-2. 상하네비바 -->
             <div class="partbox top_bottom">
                 <button class="btn up"></button>
@@ -30,10 +30,10 @@
                 <div class="partbox">
                     <nav class="gnb-menu">
                         <ul>
-                            <li><a href="#">주문하기</a></li>
-                            <li><a href="./sub_cservies.html">고객센터</a></li>
-                            <li><a href="./sub_bmap.html">오시는길</a></li>
-                            <li><a href="./sub_ainfo.html">온고롱안내</a></li>
+                            <li><a href="./sub_order.html">주문하기</a></li>
+                            <li><a href="./sub_servies.html">고객센터</a></li>
+                            <li><a href="./sub_map.html">오시는길</a></li>
+                            <li><a href="./sub_info.html">온고롱안내</a></li>
                         </ul>
                     </nav>
                 </div>
@@ -59,6 +59,7 @@
                     <div class="partbox">
                         <div class="search-box">
                             <label for="search"></label>
+                            <i class="fa-solid fa-magnifying-glass"></i>
                             <input type="text" id="search" placeholder="제품을 검색하세요!" onkeypress="if(event.keyCode===13) search()"/>
                         </div>
                     </div>
@@ -162,13 +163,13 @@
                     </div>
                     <!-- 절차 타이틀 -->
                     <div class="proceed-title">
-                        <h2>상품을 선택해주세요</h2>
+                        <h2>어떤 목적으로 주문하세요?</h2>
                     </div>
                     <!-- 절차 내용 -->
                     <div class="proceed-content">
                         <ol>
                             <!-- 절차 내용(1. 목적) li -->
-                            <li class="proceed-list">
+                            <li class="proceed-list step-0">
                                 <ul>
                                     <li>환갑/칠순</li>
                                     <li>생일케이크</li>
@@ -178,8 +179,8 @@
                                 </ul>
                             </li>
                             <!-- 절차 내용(2. 일정) li -->
-                            <li class="proceed-list open">
-                                <input class="day-time" type="text" placeholder="찾아가실 날짜와 시간" readonly>
+                            <li class="proceed-list step-1">
+                                <input class="day-time" type="text" value="찾아가실 날짜와 시간" readonly>
                                 <!-- 픽업박스 -->
                                 <div class="pick-up">
                                     <h3>어느 분이 찾으러 오시나요?</h3>
@@ -193,7 +194,7 @@
                                 </div>
                             </li>
                             <!-- 절차 내용(3. 상품) li -->
-                            <li class="proceed-list step-3 open">
+                            <li class="proceed-list step-2">
                                 <ul class="">
                                     <li class="on">떡케이크
                                         <div class="sub">
@@ -278,7 +279,7 @@
                             </div>
                             <!-- 취소/다음버튼 -->
                             <div class="pop-footer">
-                                <div class="proceed-btn-box pop-btn">
+                                <div class="proceed-btn-box pop-btn cal-btn">
                                     <button class="btn prev">
                                         <i class="fa-solid fa-circle-play fa-rotate-180"></i>
                                         &nbsp;취소
@@ -333,12 +334,12 @@
                             </div>
                             <!-- 취소/다음버튼 -->
                             <div class="pop-footer">
-                                <div class="proceed-btn-box pop-btn">
+                                <div class="proceed-btn-box pop-btn time-btn">
                                     <button class="btn prev">
                                         <i class="fa-solid fa-circle-play fa-rotate-180"></i>
                                         &nbsp;취소
                                     </button>
-                                    <button class="btn next">다음&nbsp;
+                                    <button class="btn next">완료&nbsp;
                                         <i class="fa-solid fa-circle-play"></i>
                                     </button>
                                 </div>
@@ -346,7 +347,7 @@
                         </div>
                     </div>
                     <!-- 절차버튼 -->
-                    <div class="proceed-btn-box">
+                    <div class="proceed-btn-box main-btn">
                         <button class="btn prev">
                             <i class="fa-solid fa-circle-play fa-rotate-180"></i>
                             &nbsp;이전
@@ -363,7 +364,6 @@
     <div id="footer">
         <footer class="footer inbox">
             <div class="footer-company-desc">
-                <h2>하단:로고>회사소개|SNS링크</h2>
                 <!-- 3-1. 하단로고 -->
                 <div class="partbox">
                     <h1 class="logo">
@@ -382,6 +382,7 @@
                         <li>메일 : ongorongcake@naver.com</li>
                         <li>사업자번호 : 665-13-33017</li>
                         <li>통신판매번호 : 신고면제 </li>
+                        <!-- <i class="fa-solid fa-magnifying-glass"></i> -->
                     </ul>
                 </div>
             </div>

@@ -11,14 +11,14 @@
         <!-- 온고롱 데이터JS -->
         <script src="./js/data.js"></script>
         <!-- 온고롱 메인JS -->
-        <script src="./js/main.js" defer></script>
+        <script type="module" src="./js/main.js"></script>
     </head>
     <body>
         <!-- 1. 상단영역 -->
         <div id="header">
             <header class="header inbox">
-                <!-- 0-1. 첫주문안내 -->
-                <div class="partbox first_info"></div>
+                <!-- 0-1. 첫주문안내
+                <div class="partbox first_info"></div> -->
                 <!-- 0-2. 상하네비바 -->
                 <div class="partbox top_bottom">
                     <button class="btn up"></button>
@@ -31,9 +31,9 @@
                         <nav class="gnb-menu">
                             <ul>
                                 <li><a href="./sub_order.html">주문하기</a></li>
-                                <li><a href="./sub_cservies.html">고객센터</a></li>
-                                <li><a href="./sub_bmap.html">오시는길</a></li>
-                                <li><a href="./sub_ainfo.html">온고롱안내</a></li>
+                                <li><a href="./sub_servies.html">고객센터</a></li>
+                                <li><a href="./sub_map.html">오시는길</a></li>
+                                <li><a href="./sub_info.html">온고롱안내</a></li>
                             </ul>
                         </nav>
                     </div>
@@ -71,7 +71,6 @@
         <div id="main">
             <main class="main inbox">
                 <!-- 2-1. 이벤트배너 -->
-                <h2>이벤트배너위치:|←|이미지|설명|→|</h2>
                 <!-- 2-1-2. 배너박스 -->
                 <div class="main-banner group-box">
                     <section class="banner-area">
@@ -93,13 +92,11 @@
                 </div>
                 <!-- 2-2. 메인테마 -->
                 <div class="main-thema group-box">
-                    <h2>메인테마위치</h2>
                     <div class="partbox"></div>
                 </div>
                 <!-- 2-3. 컨셉이미지 -->
                 <!-- 스크롤 배너형태 -->
                 <div class="main-scroll-banner group-box">
-                    <h2>스크롤배너위치</h2>
                     <div class="partbox">
                         <div class="scroll-banner-box">
                             <ul>
@@ -111,7 +108,6 @@
                 </div>
                 <!-- 2-4. 인기상품 -->
                 <div class="list-type main-hot-item group-box">
-                    <h2>인기상품:타이틀>이미지>더보기로구성</h2>
                     <!-- 인기상품 타이틀 -->
                     <div class="partbox">
                         <h1 class="tit">인기상품</h1>
@@ -128,7 +124,6 @@
                 </div>
                 <!-- 2-5. 추천검색 -->
                 <div class="main-key-search group-box">
-                    <h2>추천검색:검색창>추천창(열리는형태)</h2>
                     <!-- 키워드검색창 -->
                     <div class="partbox">
                         <!-- 검색 -->
@@ -148,12 +143,10 @@
                 </div>
                 <!-- 2-6. 주문진행 -->
                 <div class="main-order-process group-box">
-                    <h2>주문진행:모식도절차</h2>
                     <div class="partbox"></div>
                 </div>
                 <!-- 2-7. 리뷰 -->
                 <div class="list-type main-review group-box">
-                    <h2>리뷰:타이틀>이미지>더보기로구성</h2>
                     <!-- 리뷰 타이틀 -->
                     <div class="partbox">
                         <h1 class="tit">후기</h1>
@@ -176,7 +169,6 @@
         <div id="footer">
             <footer class="footer inbox">
                 <div class="footer-company-desc">
-                    <h2>하단:로고>회사소개|SNS링크</h2>
                     <!-- 3-1. 하단로고 -->
                     <div class="partbox">
                         <h1 class="logo">

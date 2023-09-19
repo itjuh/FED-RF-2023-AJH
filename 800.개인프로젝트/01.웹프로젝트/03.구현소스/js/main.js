@@ -1,21 +1,10 @@
 // 온고롱 메인js - main.js
-
-const domFn = {
-    // 요소선택함수 ////////
-    qs: (x) => document.querySelector(x),
-    qsEl: (el, x) => el.querySelector(x),
-    qsa: (x) => document.querySelectorAll(x),
-    qsaEl: (el, x) => el.querySelectorAll(x),
-  
-    // 이벤트셋팅함수
-    addEvt: (ele, evt, fn) => ele.addEventListener(evt, fn),
-
-    // 바운딩 위치값 함수
-    getBCR: (ele) => ele.getBoundingClientRect().top,
-    // 옵셋 탑 반환 함수
-    getOT: ele => ele.offsetTop,
-
-}; /////// domFn 객체 /////////////
+// footer영역 가져오기
+import startFooterFn from "./footer.js";
+// dom 가져오기
+import domFn from "./dom.js";
+// footer영역 실행
+startFooterFn();
 
 // 전역변수
 // 1. 광클금지 상태변수 : 0-허용, 1-불허용
@@ -251,9 +240,9 @@ let winH = window.innerHeight;
 function leaveOutOn(){ //추후에 확인할 요소값 받기
     // .main-key-search 위치를 지나가면 위치이동 on을 준다
     // 2. 위치대상의 바운딩값
-    let bTop = domFn.getBCR(keyBox);
+    let bTop = domFn.getBCR(keyBox) + 50;
     // 종료지점은 상단부에 붙는 순간
-    let endPoint = 0;
+    let endPoint = 50;
     // console.log('bTop:',bTop,winH);
     // 시작지점 : bTop >= winH 박스내려오자
     if(bTop < winH && bTop >= endPoint){
@@ -270,7 +259,3 @@ function leaveOutOn(){ //추후에 확인할 요소값 받기
         // console.log('나갔다',bTop);
     }
 }
-
-
-// footer영역 
-// footer_sns span태그 길이만큼 영역확장
