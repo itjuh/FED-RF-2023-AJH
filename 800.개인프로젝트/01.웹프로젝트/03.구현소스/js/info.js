@@ -90,8 +90,9 @@ function loadFn(){
         // 1. 대상선정 : 재료박스 .intro-grad
         const gradBox = domFn.qs('.intro-grad');
         // 2-1. 위치이동(1회성)
-        gradBox.style.transform = 'translateX(0)';
-        // 2-2. li 안쪽에서 계속 흐르기
+        // gradBox.style.transform = 'translateX(0)';
+        gradBox.style.opacity = '1';
+        setTimeout(()=>{gradBox.style.transition = '0s';}, 500);
     }, 8000);
 
     // 원리 : ul을 이동, li의 2번째와 ul왼쪽이 만나면 

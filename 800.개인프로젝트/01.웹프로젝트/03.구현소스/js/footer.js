@@ -21,10 +21,10 @@ function footerFn(){
 // 함수만들기
 function openSns(){
     let txtCnt = domFn.qsEl(this,'span').innerText.length;
-    this.style.width = `${txtCnt*20 + 45}px`;
+    this.style.width = `${txtCnt*20 + 38}px`;
 } //////// sns열기함수//////////////
 function closeSns(){
-    this.style.width = 0;
+    this.style.width = '38px';
 } //////// sns닫기함수 /////////////
 
 function startFooterFn(){

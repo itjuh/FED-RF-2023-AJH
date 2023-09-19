@@ -152,12 +152,12 @@ const faq_cont = [
 // 원재료정보
 // 재료명, src, alt로 구성
 const grad_info = [
-   {"재료명":"국내산 쌀","src":"../01.자료수집/images/grad01.jpg","alt":"벼"},
-   {"재료명":"유기농 계란","src":"../01.자료수집/images/grad02.jpg","alt":"계란"},
-   {"재료명":"무염버터","src":"../01.자료수집/images/grad03.jpg","alt":"버터"},
-   {"재료명":"견과류","src":"../01.자료수집/images/grad04.jpg","alt":"혼합견과류"},
-   {"재료명":"국산호두","src":"../01.자료수집/images/grad05.jpg","alt":"호두"},
-   {"재료명":"검은깨","src":"../01.자료수집/images/grad06.jpg","alt":"검은깨"},
+   {"재료명":"국내산 쌀","src":"../01.자료수집/images/grad01.png","alt":"벼"},
+   {"재료명":"유기농 계란","src":"../01.자료수집/images/grad02.png","alt":"계란"},
+   {"재료명":"무염버터","src":"../01.자료수집/images/grad03.png","alt":"버터"},
+   {"재료명":"견과류","src":"../01.자료수집/images/grad04.png","alt":"혼합견과류"},
+   {"재료명":"국산호두","src":"../01.자료수집/images/grad05.png","alt":"호두"},
+   {"재료명":"검은깨","src":"../01.자료수집/images/grad06.png","alt":"검은깨"},
 ];
 
 // 주의사항

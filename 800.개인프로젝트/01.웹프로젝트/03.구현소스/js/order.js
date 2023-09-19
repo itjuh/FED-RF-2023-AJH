@@ -20,6 +20,8 @@ let pageNum = 0;
 let rowNum = 0;
 // col값 변수
 let colNum = 0;
+// 이름저장, 번호저장 변수
+let nameTxt = "", numberTxt ="";
 // 단계이동 시 주문서창도 변경
 // 대상선정
 const formDt = domFn.qsa('.form-content dt');
@@ -70,10 +72,14 @@ function stepFn(){
     // 데이터 업데이트하기
     switch(pageNum){
         case 1 :
-            updateData(0);
+            updateData(0,stepBox1);
             break;
         case 2 : 
-
+            updateData(2,pickUpLi);
+            nameTxt = inputName.value;
+            numberTxt = inputNumber.value;
+            if(!nameTxt == '') updateData2(3,nameTxt);
+            if(!numberTxt == '') updateData2(4,numberTxt);
             break;
     }/////////switch case ///////////
     }
@@ -98,26 +104,32 @@ function stepFn(){
 // 대상선정
 const stepBox1 = domFn.qsa('.step-0 li');
 
+// on 넣기 함수
+function inputOnFn(ele){
+    if(ele.classList.contains('on')){ //on 이미 있으면
+        ele.classList.remove('on');
+    }else{ //on 없으면
+        stepBox1.forEach(ele=>{
+            ele.classList.remove('on');
+        });
+        ele.classList.add('on');
+    }///////////if else//////////////
+} ///////inputOnFn/////////////
+
 // 클릭이벤트 주기
 stepBox1.forEach(ele=>{
     domFn.addEvt(ele,'click',()=>{
-        if(ele.classList.contains('on')){ //on 이미 있으면
-            ele.classList.remove('on');
-        }else{ //on 없으면
-            stepBox1.forEach(ele=>{
-                ele.classList.remove('on');
-            });
-            ele.classList.add('on');
-        }///////////if else//////////////
+        inputOnFn(ele);
     });
 });/////////step-01 click이벤트 설정////////
 
 // on상태로 다음 누르면 데이터 업데이트
-function updateData(num){
+function updateData(num,coll){
     //매개변수
-    //area : 업데이트 위치
+    //num : 업데이트 위치
+    //coll : on검증할 collection
     // 업데이트 검증
-    let bool = verifFn();
+    let bool = verifFn(coll);
     if(bool[0]){ //on이 있는 상태로 넘어온 경우
         console.log(upArea[num]);
         // 주문서 타이틀 업데이트
@@ -127,10 +139,11 @@ function updateData(num){
         upArea[num][1].innerText = bool[1];  
     }
 }
+
 // on 검증 함수
-function verifFn(){
+function verifFn(coll){
     let bool = [false,''];
-    stepBox1.forEach(ele=>{
+    coll.forEach(ele=>{
         if(ele.classList.contains('on')){
             bool[0] = true;
             bool[1] = ele.innerText;
@@ -186,10 +199,58 @@ function popOpen(){
             break;
         case '완료' :
             hideBox.style.display = 'none';
-            timeBox.style.display = 'block';
+            timeBox.style.display = 'none';
+            updateData2(1,'2023년 10월 1일 14시 30분');
+            break;
+        case '닫기' :
+            hideBox.style.display = 'none';
+            calBox.style.display = 'none';
+            break;
+        case '이전' :
+            calBox.style.display = 'block';
+            timeBox.style.display = 'none';
             break;
     }
 }
+// 데이터 보내기 함수
+function updateData2(num,txt){
+    //매개변수
+    // area : 업데이트 위치
+    // 주문서 타이틀 업데이트
+    console.log(txt);
+    upArea[num][0].style.color = '#000';
+    // 주문서 내용 업데이트
+    upArea[num][1].style.color = '#000';
+    upArea[num][1].innerText = txt;  
+}
+
+///////////////픽업관련///////////////////
+// 픽업대상 누르면 데이터 업데이트
+// 성함 연락처 입력하고 다음 누르면 업데이트
+// 1. 대상선정
+// 1-1. 이벤트 대상 : .pick-up li, .name, .number
+// 1-2. 변경대상 upArea[3] upArea[4] upArea[5]
+// 2. 이벤트 종류 : click
+//////////////////////////////////////////////
+// 1. 대상선정
+const pickUpLi = domFn.qsa('.pick-up li');
+const inputName = domFn.qs('.pick-up .name');
+const inputNumber = domFn.qs('.pick-up .number');
+// console.log(pickUpLi,inputName,inputNumber);
+
+// 2. 클릭이벤트 주기
+pickUpLi.forEach(ele=>{
+    domFn.addEvt(ele,'click',()=>{
+        if(ele.classList.contains('on')){ //on 이미 있으면
+            ele.classList.remove('on');
+        }else{ //on 없으면
+            pickUpLi.forEach(ele=>{
+                ele.classList.remove('on');
+            });
+            ele.classList.add('on');
+        }///////////if else//////////////
+    });
+});/////////pickUpLi click이벤트 설정////////
 //////////////////추가선택/////////////////////////
 
 //////////////////주문하기/////////////////////////
@@ -198,12 +259,12 @@ function popOpen(){
 /////////////////상품선택 , 옵션선택//////////////////////
 // 클릭데이터 가져와서 상품 뿌리기
 // 클릭대상 : proceed-list li, .sub-menu span
-const category = domFn.qsa('.step-3>ul>li');
+const category = domFn.qsa('.step-2>ul>li');
 const subcate = domFn.qsa('.sub-menu span');
 // 바꿀대상 : .step-3>ul>li, .step-3>ul :open,on
 // 바꿀대상 : .form-box, prod-box :view
 // 바꿀대상 : .prod-option :view제거
-const categoryParent = domFn.qs('.step-3>ul');
+const categoryParent = domFn.qs('.step-2>ul');
 const formBox = domFn.qs('.form-box');
 const prodBox = domFn.qs('.prod-box');
 const prodOptionBox = domFn.qs('.prod-option');
@@ -417,8 +478,7 @@ for(let x in option_list){
             `
             <dt>${x}(0/100)</dt>
             <dd>
-                <textarea id="request" cols="30" rows="5" placeholder="${option_list[x]}">
-                </textarea>
+                <textarea id="request" cols="30" rows="5" placeholder="${option_list[x]}"></textarea>
             </dd>
             `;
             break;
@@ -464,3 +524,22 @@ function sendInfo(){
     prodOptionBox.classList.add('view');
 }
 
+////////////////옵션박스 닫기/////////////////////
+// 1. 대상 : prodOptionBox  .aside-btn btn
+// 2. 이벤트 : click
+// 3. 변경사항 : view 제거
+const asideBtn = domFn.qsa('.aside-btn .btn');
+asideBtn.forEach(ele=>{
+    domFn.addEvt(ele,'click',optionClose);
+});
+function optionClose(){
+    if(this.classList.contains('prev')){
+        //이전버튼 -> 바로 닫히기
+        console.log(this,'이전버튼누름');
+    }else{
+        //다음버튼 ->
+        console.log(this,'다음버튼 누름');
+        //
+    }
+    prodOptionBox.classList.remove('view');
+}

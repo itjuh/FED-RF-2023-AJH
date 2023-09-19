@@ -253,6 +253,8 @@
     display: block;
     height: 100%;
     /* 글자세팅 */
+    padding-left: 7px;
+    margin-left: 7px;
     color: var(--co-onlightgreen);
     font-size: var(--fz-top);
     font-family: 'GangwonEdu_OTFBoldA';

@@ -169,7 +169,10 @@
     border-radius: 20px;
     line-height: 3;
     text-align: center;
-    color: #555
+    color: #555;
+    background-color: #fff;
+    border: 1px solid var(--co-onlightgreen);
+    box-shadow: 0px 0px 5px 2px var(--co-onlightgreen);
 }
 /* 절차 내용(1. 목적) li 마우스오버*/
 .proceed-content ul>li.on,
@@ -377,7 +380,7 @@ th.check, td.check{
     width: 350px;
     height: 40px;
     border-radius: 15px;
-    margin: 10px 30px;
+    margin: 20px 30px;
     padding: 0 10px;
     border: none;
     box-shadow: 1px 3px 5px 0 rgb(11 58 22 / 19%);
