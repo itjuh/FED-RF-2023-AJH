@@ -156,7 +156,7 @@
     display: flex;
     flex-wrap: wrap;
     gap: 30px;
-    padding-left: 30px;
+    padding: 10px 30px;
     box-sizing: border-box;
     font-size: var(--fz-big);
 }
@@ -172,13 +172,13 @@
     color: #555;
     background-color: #fff;
     border: 1px solid var(--co-onlightgreen);
-    box-shadow: 0px 0px 5px 2px var(--co-onlightgreen);
+    box-shadow: 0px 0px 4px 1px var(--co-ondgop);
 }
 /* 절차 내용(1. 목적) li 마우스오버*/
 .proceed-content ul>li.on,
 .proceed-content ul>li:hover{
     background-color: var(--co-ongreen);
-    box-shadow: 0px 0px 5px 2px var(--co-onlightgreen);
+    box-shadow: 0px 0px 4px 1px var(--co-ondgop);
     color:white;
 }
 /********* 절차 내용(2. 일정) li *********/

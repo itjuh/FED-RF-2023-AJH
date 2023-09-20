@@ -3,8 +3,24 @@
 import startFooterFn from "./footer.js";
 // dom 가져오기
 import domFn from "./dom.js";
+// 부드러운 스크롤 
+import { startSS, setPos } from "./smoothscroll20.js";
+// 부드러운 스크롤 적용
+startSS();
 // footer영역 실행
 startFooterFn();
+
+// 0-1. 새로고치면 스크롤바 위치 캐싱 후 맨 위로 이동
+setTimeout(() => {
+  // 윈도우 스크롤 맨 위로!
+  window.scrollTo(0,0);
+  // 부드러운 스크롤 위치값 반영!(전 위치로 이동해버림)
+  setPos(0);
+  // 안하면 스크롤 바를 내리고 새로고침하면 원래 위치로 강제이동함
+}, 500);
+// 0-2. 스크롤바 트랙을 잡고 위치 이동 시 위치값 반영
+domFn.addEvt(window,'mouseup',()=>setPos(window.scrollY)); ///////// mouseup ////////////////////////
+// 0-3. 키보드 방향키 이동 시 위치값 반영
 
 // 전역변수
 // 1. 광클금지 상태변수 : 0-허용, 1-불허용
@@ -302,6 +318,7 @@ function sameTag(arr,txt){
 let keyBox = domFn.qs('.main-key-search');
 // 1-2. 움직일 대상 : .search-box
 let sBox = domFn.qs('.search-box');
+let glass = domFn.qs('.search-box i');
 // 2. 위치대상의 높이 값 읽기
 let eleH = keyBox.clientHeight;
 // 이벤트 설정하기
@@ -312,22 +329,32 @@ let winH = window.innerHeight;
 function leaveOutOn(){ //추후에 확인할 요소값 받기
     // .main-key-search 위치를 지나가면 위치이동 on을 준다
     // 2. 위치대상의 바운딩값
-    let bTop = domFn.getBCR(keyBox) + 50;
+    let bTop = domFn.getBCR(keyBox) + 70;
     // 종료지점은 상단부에 붙는 순간
-    let endPoint = 50;
+    let endPoint = 70;
     // console.log('bTop:',bTop,winH);
     // 시작지점 : bTop >= winH 박스내려오자
     if(bTop < winH && bTop >= endPoint){
+        // 검색박스 위치이동
         sBox.style.top = bTop + 'px';
         sBox.style.transition = '0s';
-        sBox.style.left = '-125%';
-        sBox.style.transform = 'scale(2)';
+        sBox.style.paddingRight = '0';
+        sBox.style.textAlign = 'center';
+        sBox.style.left = '-74%';
+        sBox.style.transform = 'scale(1.9)';
+        // 돋보기 위치이동
+        glass.style.right = '150px';
         // console.log('들어왔다',bTop);
     }else{
+        // 검색박스 위치 복구
         sBox.style.top = 0;
-        sBox.style.left = 0;
         sBox.style.transition = '.5s';
+        sBox.style.paddingRight = '1.5vw';
+        sBox.style.textAlign = 'right';
+        sBox.style.left = 0;
         sBox.style.transform = 'scale(1)';
+        // 돋보기 위치 복구
+        glass.style.right = '6%';
         // console.log('나갔다',bTop);
     }
 }

@@ -200,7 +200,7 @@ function popOpen(){
         case '완료' :
             hideBox.style.display = 'none';
             timeBox.style.display = 'none';
-            updateData2(1,'2023년 10월 1일 14시 30분');
+            updateData2(1,'2023년 9월 30일 오후 1시 30분');
             break;
         case '닫기' :
             hideBox.style.display = 'none';

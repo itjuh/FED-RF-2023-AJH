@@ -40,8 +40,8 @@ setTimeout(() => {
 // 0-2. 스크롤바 트랙을 잡고 위치 이동 시 위치값 반영
 domFn.addEvt(window,'mouseup',()=>setPos(window.scrollY)); ///////// mouseup ////////////////////////
 // 0-3. 키보드 방향키 이동 시 위치값 반영
-domFn.addEvt(window,'keyup',()=>setPos(window.scrollY)); ///////// keyup ////////////////////////
 
+domFn.addEvt(window,'keyup',()=>setPos(window.scrollY)); ///////// keyup ////////////////////////
 // 1. 대상선정
 // 1-1. 글자박스
 const txtBox = domFn.qsa('.txt');

@@ -6,6 +6,15 @@
 @import url(./core.css);
 @import url(./reset.css);
 
+/* 메인페이지 배경 */
+#main{
+    background-color: #ffffff00;
+    background-image: linear-gradient(to bottom, var(--co-ondarkgreen) 50%, var(--co-ongreen) 70%, var(--co-onlightgreen));
+}
+/* 메인페이지 구분박스 첫박스 */
+.main .group-box:first-child{
+    padding-top: 50px;
+}
 /* 2-1. 이벤트배너 banner-area*/
 /* 2-1-2. 배너박스 */
 .main-banner{
@@ -13,10 +22,10 @@
     /* 배너 설명박스용 부모 */
 }
 .banner-area{
-    height: 800px;
-    width: 800px;
+    width: min(50vw,900px);
+    aspect-ratio: 1/1;
     overflow: hidden;
-    margin-left: 200px;
+    margin-left: min(6vw, 200px);
 }
 /* 배너 이미지영역 */
 .banner-ul{
@@ -25,7 +34,7 @@
     display: flex;
     left: 0;
     aspect-ratio: 1/1;
-    height: 800px;
+    height: 100%;
 }
 /* 배너이미지 ul>li>img*/
 .banner-area img{
@@ -41,15 +50,13 @@
     /* 부모는 ul>li박스 */
     top: 50%;
     /* 이미지크기 800 */
-    left: 1050px;
+    right: min(8vw, 200px);
     transform: translateY(-50%);
-    width: 400px;
-    height: 300px;
+    max-width: 400px;
+    aspect-ratio: 4/3;
     overflow: hidden;
     color: #fff;
     border-radius: 10px;
-    box-shadow: 0px 0px 10px 3px #00000080;
-
 }
 /* 배너설명박스 전체 ol */
 .banner-desc ol{
@@ -82,7 +89,7 @@
     display: block;
     flex-basis: 80%;
     font-size: var(--fz-top);
-    background-color: var(--co-ondarkgreen);
+    background-color: var(--co-ondgop);
     padding: 10px 30px;
     line-height: 1.5;
 }
@@ -90,28 +97,35 @@
 .banner-desc .move-view-btn{
     top:80%;
 }
-/* 왼쪽 배너로 이동 .prev-btn*/
-.prev-btn{
+/* 배너이동 버튼.move-btn 공통설정 */
+.move-btn{
     position: absolute;
     width: 45px;
     height: 51px;
-    left: min(2vw, 100px);
     top: calc(50% - 51px/2);
     background: url(../../01.자료수집/images/direc_icon.png) no-repeat;
+}
+/* 왼쪽 배너로 이동 .prev-btn*/
+.prev-btn{
+    left: min(2vw, 100px);
     background-size: 625px 375px;
     background-position: -289px -179px;
+    filter: drop-shadow(2px 0px 1px #fff);
+}
+/* 왼쪽 배너로 이동 오버시*/
+.prev-btn:hover{
+    filter: drop-shadow(2px 0px 3px #fff);
 }
 /* 오른쪽 배너로 이동  next-btn*/
 .next-btn{
-    content: '';
-    position: absolute;
-    width: 45px;
-    height: 51px;
     right: min(2vw, 100px);
-    top: calc(50% - 51px/2);
-    background: url(../../01.자료수집/images/direc_icon.png) no-repeat;
     background-size: 625px 375px;
     background-position: -393px -180px;
+    filter: drop-shadow(-1px 0px 1px #fff);
+}
+/* 오른쪽 배너로 이동 오버시*/
+.next-btn:hover{
+    filter: drop-shadow(-1px 0px 3px #fff);
 }
 /* 2-2. 메인테마 */
 .main-thema{
@@ -120,7 +134,7 @@
 }
 .main-thema .partbox{
     flex-basis: 100%;
-    background: rgb(87, 98, 82) url(../../01.자료수집/images/main04.jpg) no-repeat left/100%;
+    background: url(../../01.자료수집/images/main04.jpg) no-repeat center/1650px;
 }
 /* 2-3. 컨셉이미지 */
 .main-scroll-banner{
@@ -150,9 +164,9 @@
     position: absolute;
     top: 0;
     left: 0;
-    width: 150px;
+    width: 200px;
     height: 100%;
-    background-image: linear-gradient(to right, var(--co-onbeige), rgba(255, 255, 255, 0));
+    background-image: linear-gradient(to right, var(--co-ondarkgreen), rgba(255, 255, 255, 0));
 }
 /* 오른쪽 흐릿박스 */
 .white-box:last-child{
@@ -160,9 +174,9 @@
     top: 0;
     left: auto;
     right: 0;
-    width: 150px;
+    width: 200px;
     height: 100%;
-    background-image: linear-gradient(to left, var(--co-onbeige), rgba(255, 255, 255, 0));
+    background-image: linear-gradient(to left, var(--co-ondarkgreen), rgba(255, 255, 255, 0));
 }
 .scroll-banner-box li{
     flex-shrink: 0;
@@ -187,7 +201,7 @@
 /* 2-4-1. 인기상품 타이틀 */
 /* 2-7-1. 리뷰 타이틀 */
 .list-type>.partbox:first-of-type{
-    height: 80px;
+    height: 120px;
 }
 /* 인기상품 타이틀 테두리 */
 .list-type h1.tit{
@@ -216,7 +230,7 @@
     display: block;
     left: -25px;
     line-height: 37px;
-    color: var(--co-ongreen);
+    color: rgba(243,243,243);
     font-family: "Font Awesome 5 Free";
     font-weight: 900;
     text-shadow: -1px 2px 2px #00000080;
@@ -224,8 +238,7 @@
 /* 2-4-2. 인기상품 리스트 */
 /* 2-7-2. 리뷰 리스트 */
 .list-type .list{
-    height: 400px;
-    width: 1400px;
+    max-width: 1400px;
     margin: 0 auto;
 }
 .list-type ol{
@@ -241,6 +254,14 @@
 .list-type ol>li>.partbox{
     height: 100%;
     box-shadow: 1px 1px 6px #00000080;
+    background-color: rgba(243,243,243);
+}
+/* 리스트 박스 마우스오버시 */
+.list-type ol>li>:hover{
+    border-radius: 15px;
+    overflow: hidden;
+    /* 트랜지션 */
+    transition: .3s;
 }
 /* 이미지 */
 .img-box img{
@@ -257,7 +278,7 @@
 /* 2-4-3. 인기상품 더보기 */
 .list-type>.partbox:last-of-type{
     position: relative;
-    height: 80px;
+    height: 120px;
 }
 .list-type>.partbox:last-of-type button{
     top: 50%;
@@ -268,13 +289,13 @@
 /* 이미지 */
 .hot-item-list .img-box{
     width: 100%;
-    height: 300px;
+    aspect-ratio: 1/1;
 }
 /* 정보박스 */
 .hot-item-list .txt-box{
     box-sizing: border-box;
     width: 100%;
-    height: calc(100% - 300px);
+    aspect-ratio: 3/1;
     padding: 10px;
 }
 /* 상품정보 공통 */
@@ -331,7 +352,7 @@
 /* 2-5. 추천검색 */
 .main-key-search{
     position: relative;
-    height: 500px;
+    min-height: 300px;
 }
 /* 추천검색 파트박스 */
 .main-key-search .partbox{
@@ -341,8 +362,9 @@
 .main-key-search h1{
     font-size: var(--fz-tit);
     text-align: center;
-    margin: 50px;
     height: 100%;
+    color: rgba(243,243,243);
+    text-shadow: 0px 0px 3px #000;
 }
 /* 추천검색 검색구역(검색부) */
 
@@ -389,11 +411,12 @@
 .bubble-key::after{
     position: relative;
     top: -10%;
-    left: 10%;
+    left: -33%;
     content: '';
     display: block;
     width: 50px;
     height: 30px;
+    transform: rotate3d(5, -7, 1, 38deg);
     background-color: var(--co-onlightgreen);
 }
 /* 말풍선꼬리 왼쪽 */
@@ -458,7 +481,7 @@
 }
 /* 상품 타이틀 손가락 공통 */
 
-/* 상품 리스트박스 */
+/* 키워드 상품 리스트박스 */
 .key-prod-box .list-type .list{
     height: 350px;
     width: 100%;
@@ -524,4 +547,11 @@
 }
 .main-order-process .partbox{
     flex-basis: 100%;
+}
+
+/*****************미디어쿼리*****************/
+/* 1450px 이하 미디어쿼리 시작 */
+@media screen and (max-width: 1450px) {
+    
+
 }
