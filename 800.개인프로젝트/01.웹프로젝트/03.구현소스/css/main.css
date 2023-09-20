@@ -552,6 +552,49 @@
 /*****************미디어쿼리*****************/
 /* 1450px 이하 미디어쿼리 시작 */
 @media screen and (max-width: 1450px) {
-    
+    /*배너 설명타이틀*/
+    .banner-desc .tit {
+        font-size: var(--fz-top);
+    }
+    /*배너 설명박스*/
+    .banner-desc .txt {
+    font-size: var(--fz-nav);
+    }
+    /*상품리스트 부모박스*/
+    .list-type .list{
+        padding: 0 30px;
+    }
+    /*상품 리스트 ol*/
+    .list-type ol {
+        gap: 0px 30px
+    }
+    /* 키워드 검색창 타이틀 */
+    .main-key-search h1 {
+        font-size: var(--fz-big);
+    }
+    /* 말풍선 위치 */
+    .bubble-key.b1{
+        top: 10px;
+        left: 8vw;
+    }
+    .bubble-key.b2{
+        top: 120px;
+        left: 2vw;
+    }
+    .bubble-key.b3 {
+        top: 198px;
+        left: 13vw;
+    }
+    .bubble-key.b4{
+        top: 77px;
+        right: 2vw;
+    }
+    .bubble-key.b5{
+        top: 0px;
+        right: 8vw;
+    }
+}/* 1450px이하 미디어쿼리 종료 */
+/* 1150px 이하 미디어쿼리 시작 */
+@media screen and (max-width: 1150px) {
 
-}
+}/* 1150px이하 미디어쿼리 종료 */

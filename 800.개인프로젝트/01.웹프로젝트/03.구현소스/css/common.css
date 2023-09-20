@@ -113,6 +113,7 @@
 /* 1-3. 로그인 검색 사이드그룹 */
 .header .side-group{
     display: flex;
+    padding-top: 10px;
     flex-direction: column;
 }
 /* 1-3-1. 로그인,회원가입 */

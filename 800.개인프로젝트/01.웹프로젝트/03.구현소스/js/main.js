@@ -4,7 +4,7 @@ import startFooterFn from "./footer.js";
 // dom 가져오기
 import domFn from "./dom.js";
 // 부드러운 스크롤 
-import { startSS, setPos } from "./smoothscroll20.js";
+import { startSS, setPos } from "./smoothScroll20.js";
 // 부드러운 스크롤 적용
 startSS();
 // footer영역 실행
@@ -331,6 +331,9 @@ function leaveOutOn(){ //추후에 확인할 요소값 받기
     // 2. 위치대상의 바운딩값
     let bTop = domFn.getBCR(keyBox) + 70;
     // 종료지점은 상단부에 붙는 순간
+    // 3. 미디어쿼리용 윈도우 넓이 읽기
+    let winW = window.innerWidth;
+    // console.log(winW);
     let endPoint = 70;
     // console.log('bTop:',bTop,winH);
     // 시작지점 : bTop >= winH 박스내려오자
@@ -341,10 +344,15 @@ function leaveOutOn(){ //추후에 확인할 요소값 받기
         sBox.style.paddingRight = '0';
         sBox.style.textAlign = 'center';
         sBox.style.left = '-74%';
-        sBox.style.transform = 'scale(1.9)';
-        // 돋보기 위치이동
-        glass.style.right = '150px';
+        // 돋보기 위치이동(화면이 작을수록 작아짐)
+
         // console.log('들어왔다',bTop);
+        if(winW > 1450){
+            sBox.style.transform = 'scale(1.9)';
+
+        }else if(winW <= 1450){ // 미디어쿼리 시작지점
+            sBox.style.transform = 'scale(1.7)';
+        }
     }else{
         // 검색박스 위치 복구
         sBox.style.top = 0;
@@ -357,4 +365,5 @@ function leaveOutOn(){ //추후에 확인할 요소값 받기
         glass.style.right = '6%';
         // console.log('나갔다',bTop);
     }
+
 }
