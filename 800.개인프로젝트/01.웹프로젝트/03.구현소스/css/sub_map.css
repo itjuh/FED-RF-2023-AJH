@@ -13,7 +13,7 @@
     line-height: 120px;
 }
 .top-title h1{
-    width: 1400px;
+    max-width: 1400px;
     height: 100%;
     margin: 0 auto;
     padding-bottom: 10px;
@@ -23,10 +23,29 @@
 /* 2-2.맵링크 */
 /* 맵링크 박스 */
 .main .map{
-    width: 1300px;
+    position: relative;
+    /* .map-box부모 */
+    max-width: 1400px;
     height: 500px;
-    margin: 0 auto;
-    padding: 50px;
+    margin: 40px auto;
+}
+.map .map-box{
+    position: absolute;
+    /* 부모는 .map */
+    top: 0px;
+    left: 1px;
+    width: 700px;
+    height: 500px;
+    background: url(../../01.자료수집/images/map.png) no-repeat center/cover;
+    border-radius: 10px;
+    /* 애니메이션 불러오기 */
+    animation: map-box-hide-ani 2s linear 1s forwards;
+}
+@keyframes map-box-hide-ani {
+    to{
+        opacity: 0;
+        z-index: -1;
+    }
 }
 .map iframe{
     box-shadow: 3px 4px 5px rgba(11, 58, 22, 0.322);
@@ -37,39 +56,64 @@
 .main .info-group{
     display: flex;
     height: 350px;
-    width: 1400px;
+    max-width: 1400px;
     margin: 0 auto;
+    padding-bottom: 50px;
+}
+/* 정보그룹 타이틀 박스*/
+.sub-title{
+    /* 타이틀 밑줄 아이콘 부모 */
+    position: relative;
 }
 /* 정보그룹 타이틀공통 */
-.main div .sub-title{
-    padding: 0 40px;
+.main div .sub-title span{
+    display: block;
+    position: relative;
+    /* 밑줄 위에 두기위해서 */
     font-size: var(--fz-big);
     height: 20%;
     line-height: 80px;
+    text-indent: 40px;
+}
+/* 타이틀 아이콘 공통 */
+.sub-title::after{
+    content: '';
+    position: absolute;
+    top: 50%;
+    width: 40px;
+    height: 40px;
+    background: url(../../01.자료수집/images/info.png) no-repeat;
+    transform: translateY(-50%);
 }
 /* 2-3-1. 오시는법 */
 .main div .contact{
     flex-basis: 65%;
 }
 /* 2-3-1-1. 오시는법 타이틀 아이콘 */
-.contact.sub-title::before{
-    content: '';
-    display:inline-block;
-    width: 40px;
-    height: 40px;
-    background: url(../../01.자료수집/images/info.png) no-repeat;
+.contact.sub-title::after{
     background-position: -217px -3px;
     background-size: 523px 356px;
-    transform: translateY(30%);
+}
+/* 2-3-1. 오시는법 타이틀 밑줄 */
+.contact.sub-title::before{
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100px;
+    height: 10px;
+    background-color: lightyellow;
+    transform: translateY(-50%);
 }
 /* 2-3-1-2. 오시는법 */
 .contact-info{
+    /* 타이틀 밑줄 아이콘 부모 */
+    position: relative;
     font-size: var(--fz-big);
     height: 80%;
 }
 /* 지하철, 버스, 차량 카테고리 */
 .contact-info ul{
-    padding-left:40px;
     display: flex;
 }
 /* 오시는법 상세 설명박스 */
@@ -113,35 +157,28 @@
     text-align: left;
 }
 /* 2-3-2. 이용안내 */
-.use{
-    flex-basis: 35%;
-}
 /* 2-3-1-1. 이용안내 타이틀 아이콘*/
-.use.sub-title::before{
-    content: '';
-    display:inline-block;
-    width: 40px;
-    height: 40px;
-    background: url(../../01.자료수집/images/info.png) no-repeat;
+.use.sub-title::after{
     background-position: -176px -0px;
     background-size: 523px 356px;
-    transform: translateY(30%);
 }
 /* 2-3-1-2. 이용안내 */
 .use-info{
-    height: 280px;
-    padding: 30px 200px 30px 30px;
+    width: 250px;
+    /* height: 280px; */
+    /* padding: 30px 200px 30px 30px; */
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: auto;
-    grid-column-gap: 60px;
+    grid-column-gap: 30px;
     grid-row-gap: 30px;
     box-sizing: border-box;
     font-size: min(14px,1.6vw);
 }
 /* 이용안내 문구 */
 .use-info dl{
-    width: 100%;
+    width: 100px;
+    aspect-ratio: 1/1;
     text-align: center;
     font-size: var(--fz-top);
 }

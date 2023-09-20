@@ -121,3 +121,18 @@ body *{
 .move-view-btn:hover::after{
     transform: translate(1px,-1px) scale(1.1)
 }
+
+/*****************미디어쿼리*****************/
+/* 1450px 이하 미디어쿼리 시작 */
+@media screen and (max-width: 1450px) {
+    html{
+        font-size: 9px;
+    }
+}/* 1450px이하 미디어쿼리 종료 */
+
+/* 1150px 이하 미디어쿼리 시작 */
+@media screen and (max-width: 1150px) {
+    html{
+        font-size: 8.5px;
+    }
+}/* 1150px이하 미디어쿼리 종료 */

@@ -344,9 +344,9 @@ function leaveOutOn(){ //추후에 확인할 요소값 받기
         sBox.style.paddingRight = '0';
         sBox.style.textAlign = 'center';
         sBox.style.left = '-74%';
-        // 돋보기 위치이동(화면이 작을수록 작아짐)
-
         // console.log('들어왔다',bTop);
+        // 돋보기 위치 이동
+        glass.style.transform = 'translate(calc(-50% + min(16vw,174px)),66%)';
         if(winW > 1450){
             sBox.style.transform = 'scale(1.9)';
 
@@ -359,10 +359,10 @@ function leaveOutOn(){ //추후에 확인할 요소값 받기
         sBox.style.transition = '.5s';
         sBox.style.paddingRight = '1.5vw';
         sBox.style.textAlign = 'right';
-        sBox.style.left = 0;
+        sBox.style.left = '0';
         sBox.style.transform = 'scale(1)';
         // 돋보기 위치 복구
-        glass.style.right = '6%';
+        glass.style.transform = 'translate(calc(-50% + min(15vw,249px)),66%)';
         // console.log('나갔다',bTop);
     }
 

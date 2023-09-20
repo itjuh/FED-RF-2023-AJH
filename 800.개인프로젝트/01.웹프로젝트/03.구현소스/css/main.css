@@ -10,10 +10,11 @@
 #main{
     background-color: #ffffff00;
     background-image: linear-gradient(to bottom, var(--co-ondarkgreen) 50%, var(--co-ongreen) 70%, var(--co-onlightgreen));
+    overflow: hidden;
 }
 /* 메인페이지 구분박스 첫박스 */
 .main .group-box:first-child{
-    padding-top: 50px;
+    padding-top: min(3vw,50px);
 }
 /* 2-1. 이벤트배너 banner-area*/
 /* 2-1-2. 배너박스 */
@@ -22,7 +23,7 @@
     /* 배너 설명박스용 부모 */
 }
 .banner-area{
-    width: min(50vw,900px);
+    width: min(55vw,900px);
     aspect-ratio: 1/1;
     overflow: hidden;
     margin-left: min(6vw, 200px);
@@ -56,7 +57,7 @@
     aspect-ratio: 4/3;
     overflow: hidden;
     color: #fff;
-    border-radius: 10px;
+    box-shadow: 1px 1px 3px #000;
 }
 /* 배너설명박스 전체 ol */
 .banner-desc ol{
@@ -130,11 +131,15 @@
 /* 2-2. 메인테마 */
 .main-thema{
     display: flex;
-    height: 300px;
 }
 .main-thema .partbox{
     flex-basis: 100%;
-    background: url(../../01.자료수집/images/main04.jpg) no-repeat center/1650px;
+}
+.main-thema img{
+    position: relative;
+    left: 50%;
+    height: min(30vw,300px);
+    transform: translateX(-60%);
 }
 /* 2-3. 컨셉이미지 */
 .main-scroll-banner{
@@ -181,13 +186,14 @@
 .scroll-banner-box li{
     flex-shrink: 0;
     flex-basis: 250px;
-    height: 600px;
+    aspect-ratio: 25/60;
     overflow: hidden;
 }
 .scroll-banner-box img{
     position: relative;
+    width: 100%;
     height: 100%;
-    aspect-ratio: 25/60;
+    object-fit: cover;
 }
 /* 목록형 상자 공통 */
 /* 인기상품 및 리뷰 */
@@ -552,13 +558,40 @@
 /*****************미디어쿼리*****************/
 /* 1450px 이하 미디어쿼리 시작 */
 @media screen and (max-width: 1450px) {
-    /*배너 설명타이틀*/
-    .banner-desc .tit {
-        font-size: var(--fz-top);
+    /*배너 설명박스 위치 */
+    .banner-desc {
+        position: absolute;
+        top: 50%;
+        right: min(6vw, 200px);
+        width: 30vw;
     }
+    /*배너 설명타이틀*/
+    /* .banner-desc .tit {
+        font-size: min(2.1vw,2.9rem);
+    } */
+    /* 글자크기를 바꾸면 될 듯? */
     /*배너 설명박스*/
     .banner-desc .txt {
-    font-size: var(--fz-nav);
+        padding: 10px 25px;
+        /* font-size: var(--fz-nav); */
+    }
+    /* 무한스크롤 배너 높이 */
+    .main-scroll-banner {
+        height: 528px;
+    }
+    /* 무한스크롤 배너 */
+    .scroll-banner-box li{
+        flex-basis: 220px;
+    }
+    /* 스크롤 무한배너 ul */
+    .scroll-banner-box ul{
+        gap: 0 15px;
+    }
+    /* 스크롤 배너 애니메이션 */
+    @keyframes scroll-ani {
+        to{
+            left: calc((-220px*7) + (-15px*7));
+        }
     }
     /*상품리스트 부모박스*/
     .list-type .list{
@@ -570,7 +603,8 @@
     }
     /* 키워드 검색창 타이틀 */
     .main-key-search h1 {
-        font-size: var(--fz-big);
+        line-height: 60px;
+        /* font-size: var(--fz-big); */
     }
     /* 말풍선 위치 */
     .bubble-key.b1{
@@ -593,8 +627,30 @@
         top: 0px;
         right: 8vw;
     }
+    /* 리뷰 텍스트창 */
+    .review-txt {
+        height: 99px;
+    }
 }/* 1450px이하 미디어쿼리 종료 */
+
 /* 1150px 이하 미디어쿼리 시작 */
 @media screen and (max-width: 1150px) {
-
+    /* 배너 이미지박스 */
+    .banner-area {
+        width: 650px;
+        margin: 0 auto;
+    }
+    /* 배너 설명박스 숨기기 */
+    .banner-desc {
+        display: none;
+    }
+    /* 리뷰 텍스트창 */
+    .review-txt {
+        height: 85px;
+    }
 }/* 1150px이하 미디어쿼리 종료 */
+
+/* 700px 이하 미디어쿼리 시작 */
+@media screen and (max-width: 700px) {
+
+}
