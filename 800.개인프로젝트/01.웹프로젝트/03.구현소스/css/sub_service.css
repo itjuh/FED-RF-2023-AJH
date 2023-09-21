@@ -20,7 +20,7 @@
     font-size: var(--fz-biger);
 }
 .main .partbox{
-    width: 1400px;
+    max-width: 1400px;
     min-height: 300px;
     margin: 0 auto;
     padding: 30px;
@@ -92,7 +92,7 @@
     justify-content: flex-start;
     height: 100px;
     align-items: center;
-    gap: 20px 60px;
+    gap: 20px 3vw;
     padding-left: 20px;
 }
 /* 카테고리 세부 공통 */
@@ -199,7 +199,7 @@
 /* 질문 div박스 */
 .faq-content .quest-box{
     background-color: #ddd;
-    width: 609px;
+    max-width: 609px;
     /* 트랜지션 */
     transition: width 1s ease-out;
 }
@@ -343,3 +343,17 @@
 .qna-link-two>ul>li:hover::after{
     transform: rotateY(20deg);
 }
+
+/*****************미디어쿼리*****************/
+/* 1450px 이하 미디어쿼리 시작 */
+@media screen and (max-width: 1450px) {
+} /* 1450px이하 미디어쿼리 종료 */
+/* 1050px 이하 미디어쿼리 시작 */
+@media screen and (max-width: 1050px) {
+} /* 1050px이하 미디어쿼리 종료 */
+/* 750px 이하 미디어쿼리 시작 */
+@media screen and (max-width: 750px) {
+} /* 750px이하 미디어쿼리 종료 */
+/* 500px 이하 미디어쿼리 시작 */
+@media screen and (max-width: 500px) {
+} /* 500px이하 미디어쿼리 종료 */

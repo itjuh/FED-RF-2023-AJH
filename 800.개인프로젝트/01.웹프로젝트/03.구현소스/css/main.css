@@ -762,6 +762,11 @@
         top: 0px;
         right: 10vw;
     }
+    /* 리뷰 텍스트 상자 */
+    .review-txt {
+        font-size: var(--fz-sign);
+        height: 80px;
+    }
 }
 /* 500px 이하 미디어쿼리 시작 */
 @media screen and (max-width: 500px) {
@@ -769,9 +774,52 @@
     .banner-area {
         width: 100vw;
     }
-    /* 상품리스트 ol>li */
+    /* 무한스크롤 배너 높이 */
+    .main-scroll-banner {
+        height: 360px;
+    }
+    /* 무한스크롤 배너 */
+    .scroll-banner-box li {
+        flex-basis: 150px;
+    }
+    /* 스크롤 무한배너 ul */
+    .scroll-banner-box ul {
+        gap: 0 10px;
+    }
+    /* 스크롤 배너 애니메이션 */
+    @keyframes scroll-ani {
+        to {
+            left: calc((-150px * 7) + (-10px * 7));
+        }
+    }
+    /* 상품리스트 txt*/
+    .hot-item-list .txt-box {
+        position: absolute;
+        height: 25px;
+        bottom: 0px;
+        background-color: #ffffff80;
+        padding: 1.2vw;
+    }
+    /* 상품리스트 */
     .list-type ol > li {
-        flex-basis: 90%;
+        /* 리스트txt박스 부모역할 */
+        position: relative;
+    }
+    /* 상품리스트 박스 */
+    .list-type .list {
+        padding: 0 5px;
+    }
+    /* 상품명 */
+    li.prod-name {
+        font-size: var(--fz-nav);
+    }
+    /* 상품가 */
+    li.prod-price {
+        display: none;
+    }
+    /* 상품태그 */
+    li.prod-tag {
+        display: none;
     }
     /* 상품리스트 ol */
     .list-type ol {
@@ -799,7 +847,15 @@
         right: 3vw;
     }
     /* 리뷰 텍스트상자 */
-    .review-txt {
-        height: 72px;
+    li.review-txt {
+        margin-bottom: 1px;
+        height: 57px;
+        -webkit-line-clamp: 3;
+    }
+    .review-list .txt-box {
+        padding: 5px;
+    }
+    .review-list .img-box {
+        height: 140px;
     }
 }

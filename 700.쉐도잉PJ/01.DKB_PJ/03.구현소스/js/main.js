@@ -6,7 +6,7 @@ import domFn from "./dom.js";
 // 부드러운 스크롤 ////////////
 import { startSS, setPos } from "./smoothscroll23.js";
 // 데이터 모듈
-import { gridData, gnbData } from "./data_drama.js";
+import { gridData, gnbData, previewData } from "./data_drama.js";
 // 부드러운 스크롤 적용
 startSS();
 
@@ -149,3 +149,65 @@ function outFn() {
   // 3. 서브메뉴 박스 높이값 0 만들기
   domFn.qsEl(this, ".smenu").style.height = "0px";
 } //////////outFn//////////////////
+
+/////////////////////////////////////////////////
+// 인트로 동영상 클릭 시 플레이 하기
+// 대상 : .intro-mv-img
+// 이벤트 : click
+// -> 가상요소 플레이버튼 클릭 시 이벤트 버블링으로
+// 본 박스가 반응함!
+
+// 1. 대상선정
+const mvBox = domFn.qs('.intro-mv-img');
+
+// 2. 이벤트 설정하기
+domFn.addEvt(mvBox,'click',showMv);
+
+// 클릭상태 변수
+let stsShowMv = 0;
+
+// 3. 함수만들기
+function showMv(){
+  if(stsShowMv) return;
+  console.log('보여줘');
+  // 이벤트 등록 지우기 위해서 두번 째 클릭 시 함수연결 끊기
+  stsShowMv = 1; //한 번만 실행
+  // 동영상 넣기
+  // 대상 : 나 자신
+  this.innerHTML = `
+    <video src='./images/intro_mv.mp4' autoplay controls></video>
+  `;
+  // 가상요소 플레이버튼 없애기 위해 .off 지우기
+  this.classList.remove('off');
+
+  
+}///////////showMv///////////////////
+
+// 원본데이터 sort하여 데이터 오름차순 -> 내림차순으로 바꾸기(원본데이터도 변경됨)
+let preNewData = previewData.sort((x,y)=>{
+  //x,y는 배열값 앞 뒤를 계속 가지고 들어옴
+  //배열값 중 idx속성값을 가져와서 숫자형변환 후 사용
+  let a = Number(x.idx);
+  let b = Number(y.idx);
+
+  // 배열 순서 변경 메서드인 sort() 내부에 return값을 
+  // 사용하여 순서를 변경 한 새로운 배열을 만들어 준다.
+  return a == b ? 0 : a > b ? -1:1;
+  // if(a==b) 0 else{if(a>b) -1 else 1}
+});
+console.log(preNewData);
+
+// 2. 대상선정: .preview-box>div
+const preBox = domFn.qsa('.preview-box>div');
+console.log(preBox);
+
+// 3. 대상을 순회하여 태그 만들어 넣기
+// 데이터 : 역순정렬을 한 미리보기 데이터 넣기
+preBox.forEach((ele,idx)=>{
+  ele.innerHTML = `
+    <div>
+      <h3>${preNewData[idx].title}</h3>
+      <p>${preNewData[idx].story}</p>
+    <div>
+  `;
+}); /////////forEach////////////////

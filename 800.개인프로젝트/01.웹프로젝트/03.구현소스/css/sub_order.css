@@ -804,3 +804,17 @@ th.check, td.check{
     background-color: var(--co-onlightgreen);
     color: white;
 }
+
+/*****************미디어쿼리*****************/
+/* 1450px 이하 미디어쿼리 시작 */
+@media screen and (max-width: 1450px) {
+} /* 1450px이하 미디어쿼리 종료 */
+/* 1050px 이하 미디어쿼리 시작 */
+@media screen and (max-width: 1050px) {
+} /* 1050px이하 미디어쿼리 종료 */
+/* 750px 이하 미디어쿼리 시작 */
+@media screen and (max-width: 750px) {
+} /* 750px이하 미디어쿼리 종료 */
+/* 500px 이하 미디어쿼리 시작 */
+@media screen and (max-width: 500px) {
+} /* 500px이하 미디어쿼리 종료 */
