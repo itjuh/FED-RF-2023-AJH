@@ -125,15 +125,15 @@
   height: 40px;
   line-height: 42px;
 }
-.proceed-nav span{
-    position: relative;
+.proceed-nav span {
+  position: relative;
 }
 .proceed-nav li.on {
   color: #000;
 }
-.proceed-nav li.on::before{
-content: '';
-position: absolute;
+.proceed-nav li.on::before {
+  content: "";
+  position: absolute;
   /* 부모는 proceed-nav li */
   left: -12px;
   top: 0;
@@ -157,7 +157,7 @@ position: absolute;
 }
 /* 절차내용 겉박스: 단계별 절차 */
 .proceed-content {
-  width: 500px;
+  width: 100%;
   height: 100%;
   overflow: hidden;
 }
@@ -169,7 +169,7 @@ position: absolute;
 }
 /* 절차내용 ol>li: 단계별 절차*/
 .proceed-list {
-  width: 550px;
+  width: 16.67%;
   height: 100%;
   border-right: 1px dashed red;
 }
@@ -771,7 +771,7 @@ td.check {
   display: flex;
   width: 100%;
   height: 100px;
-  padding-left: 30px;
+  padding: 1vw;
   gap: 50px;
   margin-top: 20px;
   align-items: center;
@@ -834,36 +834,61 @@ td.check {
 /*****************미디어쿼리*****************/
 /* 1450px 이하 미디어쿼리 시작 */
 @media screen and (max-width: 1450px) {
-    /* 메인영역 partbox */
-    main .partbox {
-        padding: 0 10px;
-    }
-    /* 주문하기 겉박스 */
-    .order-box {
-        gap: 0 10px;
-    }
-    /* 주문절차 박스 */
-    .proceed-box {
-        min-height: 860px;
-        width: 35vw;
-    }
-    /* 주문절차 안쪽박스 */
-    .proceed-nav {
-        width: auto;
-        margin: 17px;
-    }
-    /* 주문절차 li */
-    .proceed-nav li {
+  /* 메인영역 partbox */
+  main .partbox {
+    padding: 0 10px;
+  }
+  /* 주문하기 겉박스 */
+  .order-box {
+    gap: 0 10px;
+  }
+  /* 주문절차 박스 */
+  .proceed-box {
+    min-height: 860px;
+    width: 35vw;
+  }
+  /* 주문절차 안쪽박스 */
+  .proceed-nav {
+    width: auto;
+    margin: 17px;
+  }
+  /* 주문절차 li */
+  .proceed-nav li {
     width: 10.3vw;
+  }
+  /* 주문절차 서브타이틀 */
+  .proceed-title h2 {
+    font-size: var(--fz-big);
+    padding: 1vw 1.5vw;
+  }
+
+      /* 주문절차 ul */
+  .proceed-content ul {
+    gap: 1.5vw;
+    padding: 1vw 1.5vw;
+  }
+  .proceed-content ul > li {
+    width: 40%;
+    height: 70px;
+    line-height: 2.5;
+  }
+    /* 절차내용 ol: 전 단계*/
+.proceed-content ol {
+    width: 600%;
     }
-    .proceed-title h2 {
-        font-size: var(--fz-big);
-        padding: 1vw 1.5vw;
+    /* 절차내용 ol>li: 단계별 절차*/
+    .proceed-list {
+      width: 16.67%;
     }
-    .proceed-content ul {
-        gap: 1.5vw;
-        padding: 10px 10px;
-    }
+    /* 주문절차 2 찾아가실 시간 */
+  .proceed-list .day-time {
+    width: 72%;
+  }
+  /* 주문절차 1. input박스 */
+  .pick-up input {
+    width: 83%;
+    margin: 1vw 1.5vw;
+  }
 } /* 1450px이하 미디어쿼리 종료 */
 /* 1050px 이하 미디어쿼리 시작 */
 @media screen and (max-width: 1050px) {
