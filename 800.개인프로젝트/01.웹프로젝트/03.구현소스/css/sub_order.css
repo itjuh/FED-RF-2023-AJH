@@ -51,8 +51,8 @@
 .form-area .form-box {
   transform: translateY(100px);
   overflow-y: scroll;
-  height: 600px;
-  padding: 30px 50px;
+  height: 34vw;
+  padding: 3vw 2vw;
 }
 /* 신청서 박스 스크롤 */
 .form-box::-webkit-scrollbar {
@@ -499,11 +499,12 @@ td.check {
   height: 500px;
 }
 /* 제품고르기 박스 */
-.prod-box .list-type {
+.list-type {
   width: 100%;
   height: 100%;
   box-sizing: border-box;
   margin-bottom: 50px;
+  padding: 30px 10px;
   display: flex;
   flex-direction: column;
   min-height: 400px;
@@ -546,20 +547,18 @@ td.check {
 }
 /* 상품 리스트박스 */
 .list-type .list {
-  /* height: 350px; */
+  height: 350px;
   width: 100%;
   margin: 0 auto;
 }
 /* 리스트박스 ol */
 .list-type ol {
   display: flex;
-  gap: 0px 20px;
+  gap: 0px 0.5vw;
   height: 100%;
-  justify-content: center;
 }
 /* 리스트박스 li */
 .list-type ol > li {
-  width: 30%;
   flex-shrink: 1;
 }
 /* 리스트 박스 li 오버 시 */
@@ -574,8 +573,8 @@ td.check {
 }
 /* 이미지 바깥쪽 박스 */
 .img-box {
-  width: 100%;
-  aspect-ratio: 1/1;
+  width: 280px;
+  height: 280px;
 }
 /* 이미지 */
 .img-box img {
@@ -610,7 +609,7 @@ td.check {
   position: absolute;
   /* 박스위에 덮기 */
   bottom: 0;
-  width: 1048px;
+  width: 45.8vw;
   /* height: 750px; */
   /* 초기박스 높이값 0 */
   overflow: hidden;
@@ -629,9 +628,9 @@ td.check {
   width: 100%;
   height: 100%;
   box-sizing: border-box;
-  padding: 30px 50px;
+  padding: 0.5vw 0.5vw;
   margin-bottom: 50px;
-  gap: 0 100px;
+  gap: 0 2.5vw;
 }
 /* 왼쪽파트 */
 .option-basic {
