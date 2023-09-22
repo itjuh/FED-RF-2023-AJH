@@ -850,7 +850,7 @@
     /* 리뷰 텍스트상자 */
     li.review-txt {
         margin-bottom: 1px;
-        height: 57px;
+        height: 52px;
         -webkit-line-clamp: 3;
     }
     .review-list .txt-box {

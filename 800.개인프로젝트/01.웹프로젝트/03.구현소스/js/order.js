@@ -77,7 +77,7 @@ function stepFn(){
     }/////////switch case ///////////
     }
     // 변수설정
-    let trX = pageNum * 16.67;
+    let trX = pageNum * 16.7;
     // 값 고치기
     proceedList.style.transform = `translateX(-${trX}%)`;
     proceedTitle.innerText = step_title[pageNum];
