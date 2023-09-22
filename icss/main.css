@@ -42,3 +42,80 @@ body {
     font-weight: bold;
     text-shadow: 1px 1px 2px #ffffff;
 }
+/* 라디오 파트 */
+.radio-part{
+  display: flex;
+  height: 300px;
+  width: 700px;
+}
+/* 라디오버튼 */
+[type=radio] {
+  appearance: none;
+}
+label{
+  position: relative;
+  width: 300px;
+  height: 200px;
+  font-size: 20px;
+  border: 1px solid #000;
+}
+/* 버튼 라벨 */
+
+input[type="radio"]:checked + label .details::after{
+  transform : scale(1.5);
+  content: '\f00c';
+  position: absolute;
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  width: 50px;
+  height: 50px;
+  right: 0;
+  top: 0;
+}
+input[type="radio"]:checked + label {
+  font-size: 30px;
+}
+/* 맛선택 박스 */
+.details{
+  background-color: red;
+    position: relative;
+    /* select박스 부모 */
+  }
+  /* 맛선택 이미지 겉박스 */
+  .details .img-box {
+    width: 100px;
+    height: 100px;
+    margin: 0 auto;
+    border-radius: 50%;
+    box-shadow: 0px 0px 6px #00000080;
+  }
+  /* 이미지 */
+  .details .img-box img {
+    width: 100%;
+    aspect-ratio: 1/1;
+    object-fit: cover;
+    opacity: 0.85;
+  }
+  /* 이미지 마우스오버 시 */
+  .details .img-box:hover img {
+    opacity: 1;
+  }
+  /* 선택사항 선택 가상요소이미지 */
+  .details.select::after{
+    content: '\f00c';
+    position: absolute;
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    width: 50px;
+    height: 50px;
+    right: 0;
+    top: 0;
+  }
+  /* 글자 */
+  .details .txt-box {
+    text-align: center;
+  }
+  .details .txt-box {
+    font-size: var(--fz-sign);
+  }
+  
