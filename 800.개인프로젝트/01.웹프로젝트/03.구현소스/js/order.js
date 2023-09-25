@@ -16,10 +16,6 @@ startFooterFn();
 // 이벤트 대상 : .main-btn button.next .main-btn button.prev
 // 단계변수 : pageNum
 let pageNum = 0;
-// row값 변수
-let rowNum = 0;
-// col값 변수
-let colNum = 0;
 // 이름저장, 번호저장 변수
 let nameTxt = "", numberTxt ="";
 // 단계이동 시 주문서창도 변경
@@ -44,23 +40,26 @@ domFn.addEvt(mainNxBtn,'click',stepFn);
 domFn.addEvt(mainPvBtn,'click',stepFn);
 
 // 함수만들기
-// 단계이동 함수
+///////// 단계이동 함수////////////////////
+// 기능1. 눌린 버튼에 따라서 페이지번호를 변화시킨다. stepFn()
+// 기능2. 눌린 단계에 따라서 페이지번호를 변화시킨다. navStepFn()
+// 기능3. 버튼외에 눌리는 요소에 따라서 페이지 번호를 변화시킨다. 
 function stepFn(){
     console.log(this);
-    if(this.classList.contains('prev')){ //이전버튼
+    if(!this){
+        pageNum = 3;
+    }else if(this.classList.contains('prev')){ //이전버튼
         pageNum--;
-        colNum--;
         if(pageNum < 0){ //1단계 일때
             pageNum = 0;
         }
         console.log('이전클릭;',pageNum);
     }else if(this.classList.contains('next')){ //다음버튼
         pageNum++;
-        colNum++;
         if(pageNum == 6){ //6단계 일때
             pageNum = 5;
         }
-        console.log('다음클릭;',pageNum,colNum);
+        console.log('다음클릭;',pageNum);
     // 데이터 업데이트하기
     switch(pageNum){
         case 1 : //목적선택완료
@@ -74,29 +73,57 @@ function stepFn(){
             if(!numberTxt == '') updateData2(4,numberTxt);
             break;
         case 3 : //상품선택완료
-
             break;
-        case 4 :
-            
+        case 4 : //옵션선택 완료
+            //////////////////옵션선택 가져오기///////////////
+            // 1. 대상 : 
+            // 1-1. 맛 input[name="flavor"]:checked value
+            // 1-2. 크기 input[name="size"]:checked value
+            // 1-3. 문구 input[id="message"]
+            // 1-4. 요청사항 textarea[id="request"]
+            // 이벤트 대상 : .aside-btn btn 의 다음버튼
+            // 변경대상 : upArea[6][0], upArea[6][1]
+            // 이벤트 종류 click이벤트
+            const flaVal = domFn.qs('input[name="flavor"]:checked').value;
+            const sizeVal = domFn.qs('input[name="size"]:checked').value;
+            const msgVal = domFn.qs('input[id="message"]').value;
+            const reqVal = domFn.qs('textarea[id="request"]').value;
+            // console.log(flaVal,sizeVal,msgVal==""?"문구 없음":msgVal,reqVal==""?"요청사항 없음":reqVal);
+            let optionTxt = `${flaVal} ${sizeVal}, 문구: ${msgVal==""?"문구 없음":msgVal}, 요청사항: ${reqVal==""?"요청사항 없음":reqVal}`;
+            // console.log(optionTxt);
+            // 2. 주문서 업데이트
+            updateData2(6,optionTxt);
+            // 3. 단계 업데이트
+
+            // 4. 주문서 박스 크기바꾸기, 제품선택 박스 끄기
+            formBox.classList.remove("view");
+            prodBox.classList.remove("view");
+            // 5. 옵션선택 박스 끄기
+            prodOptionBox.classList.remove('view');
             break;
         case 5 :
             break;
         case 6 :
             break;
-    }/////////switch case ///////////
+        }/////////switch case ///////////
     }
+    stepchg(pageNum);
+} ///////////step 함수 /////////////////////
+
+// stepchg함수//////////////////////////////
+function stepchg(num){
     // 변수설정
-    let trX = pageNum * 16.7;
+    let trX = num * 16.7;
     // 값 고치기
     proceedList.style.transform = `translateX(-${trX}%)`;
-    proceedTitle.innerText = step_title[pageNum];
+    proceedTitle.innerText = step_title[num];
     proNav.forEach((ele,idx)=>{
         ele.classList.remove('on');
-        if(idx == pageNum){
+        if(idx == num){
             ele.classList.add('on');
         }
     }); 
-} ///////////stepChg 함수 /////////////////////
+}
 
 //////////////////목적선택/////////////////////////
 // 클릭한 li on주고 on 상태로 다음 누르면 데이터 왼쪽에 업데이트
@@ -403,8 +430,6 @@ function prodCodeMake(atxt){
         domFn.addEvt(ele,'click',sendInfo); 
         // upArea 업데이트
         domFn.addEvt(ele,'click',updateData2(5,domFn.qsEl(ele,'.prod-name').innerText));
-        // 단계 업데이트
-
     });
 }/////////제품코드 만들기 함수
 // console.log(hCode);
@@ -491,9 +516,11 @@ for(let x in option_list){
     }////////switch case문///////////////
 } /////////for in//////////////////
 // console.log(selCode);
+// 선택옵션 오른쪽 뿌리기
 option.forEach((ele,idx) =>{
     ele.innerHTML = selCode[idx];
 });
+// 고정옵션 왼쪽 뿌리기
 // console.log(hCode);
 basic.innerHTML = hCode;
 
@@ -521,6 +548,7 @@ function depth2(list){
         `;
         radioNum++;
     } ////////for in문///////////
+
     // console.log('depCode',depCode);
     return depCode;
 } //////depth2함수////////////////
@@ -533,8 +561,8 @@ function sendInfo(){
     // console.log(cCode);
     // 옵션박스 크기 늘리기
     prodOptionBox.classList.add('view');
-    // 2. 주문서 업데이트
-    // 3. 단계 업데이트
+    // 2. 주문서, 단계, pageNum 업데이트
+    stepFn();
 }
 
 ////////////////옵션박스 닫기/////////////////////
@@ -543,39 +571,12 @@ function sendInfo(){
 // 3. 변경사항 : view 제거
 const asideBtn = domFn.qsa('.aside-btn .btn');
 asideBtn.forEach(ele=>{
+    // 열고 닫기 함수
     domFn.addEvt(ele,'click',optionClose);
+    // 단계변화 함수
+    domFn.addEvt(ele,'click',stepFn);
 });
 function optionClose(){
-    if(this.classList.contains('prev')){
-        //이전버튼 -> 바로 닫히기
-        console.log(this,'이전버튼누름');
-    }else{
-        //다음버튼 ->
-        console.log(this,'다음버튼 누름');
-        //////////////////옵션선택 가져오기///////////////
-        // 1. 대상 : 
-        // 1-1. 맛 input[name="flavor"]:checked value
-        // 1-2. 크기 input[name="size"]:checked value
-        // 1-3. 문구 input[id="message"]
-        // 1-4. 요청사항 textarea[id="request"]
-        // 이벤트 대상 : .aside-btn btn 의 다음버튼
-        // 변경대상 : upArea[6][0], upArea[6][1]
-        // 이벤트 종류 click이벤트
-        const flaVal = domFn.qs('input[name="flavor"]:checked').value;
-        const sizeVal = domFn.qs('input[name="size"]:checked').value;
-        const msgVal = domFn.qs('input[id="message"]').value;
-        const reqVal = domFn.qs('textarea[id="request"]').value;
-        // console.log(flaVal,sizeVal,msgVal==""?"문구 없음":msgVal,reqVal==""?"요청사항 없음":reqVal);
-        let optionTxt = `${flaVal} ${sizeVal}, 문구: ${msgVal==""?"문구 없음":msgVal}, 요청사항: ${reqVal==""?"요청사항 없음":reqVal}`;
-        // console.log(optionTxt);
-        // 2. 주문서 업데이트
-        updateData2(6,optionTxt);
-        // 3. 단계 업데이트
-
-        // 4. 주문서 박스 크기바꾸기, 제품선택 박스 끄기
-        formBox.classList.remove("view");
-        prodBox.classList.remove("view");
-    }
     prodOptionBox.classList.remove('view');
 }
 
