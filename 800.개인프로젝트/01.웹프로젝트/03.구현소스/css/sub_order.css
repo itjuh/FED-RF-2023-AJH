@@ -55,7 +55,7 @@
 /* 2-3. 주문신청서 */
 /* 신청서 박스 개별 */
 .form-area .form-box {
-  transform: translateY(30px);
+  transform: translateY(100px);
   overflow-y: scroll;
   padding: 3vw 2vw;
 }
@@ -993,10 +993,10 @@ input[type="radio"] {
     justify-content: space-around;
   }
   .prod-box.view {
-    width: 95vw;
+    width: auto;
   }
   .list-type > .partbox:first-of-type {
-    margin: 10px;
+    margin: 10px 0;
   }
   /* 상품 리스트박스 */
   .list-type .list {
