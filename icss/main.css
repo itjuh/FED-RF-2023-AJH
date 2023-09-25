@@ -49,7 +49,7 @@ body {
   width: 700px;
 }
 /* 라디오버튼 */
-[type=radio] {
+[type="radio"] {
   appearance: none;
 }
 label{
