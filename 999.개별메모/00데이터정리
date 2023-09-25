@@ -376,3 +376,26 @@ let preNewData = previewData.sort((x,y)=>{
   // if(a==b) 0 else{if(a>b) -1 else 1}
 });
 console.log(preNewData);
+
+[ 제이슨파일 불러오기 ]
+import langCode from './data_lang.json' assert{type:'json'};
+제이슨 import 맨 뒤에 assert(주장하다! 제이슨임을 주장해준다)
+assert{type:'json'}; => 어서써 타입 제이슨!
+원래 제이슨파일과 같은 데이터 파일을 불러올 때는 데이터 파일을
+다 불러온 후에 그 데이터를 이용하는 코드가 실행될 수 있도록 하는
+비동기 코딩 방식인 Promise를 사용하는 것이 원칙이다.
+
+_____________________________________________________________
+
+[ 구조화방식의 변수할당 ]
+새로운 구조화방식
+    const home = ['의자','TV','노트북'];
+변수를 한번에 선언하여 배열값을 각각 할당
+    let [chair,tv,notebook] = home;
+    console.log('구조화 방식으로 배열변수 할당:',chair,tv,notebook);
+
+[ 스프레드 연산자 ]
+객체 또는 배열 합치기
+... (점3개로 표시 -> 배열/객체값 순서표시)
+const addNumber2 = [...number1,...number2];
+const myNewCars = {...car,...newCar};

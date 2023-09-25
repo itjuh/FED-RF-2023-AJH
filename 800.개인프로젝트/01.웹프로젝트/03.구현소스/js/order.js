@@ -11,7 +11,7 @@ startFooterFn();
 ////////////////////단계이동//////////////////////
 // 변경대상 : .proceed-list
 // 변경 : transform: translateX(pageNum * -100%);
-// 변경대상 : .point-box .proceed-nav li
+// 변경대상 : .proceed-nav li
 // 변경 : left: pageNum * 33%; top: pageNum>2?0:60%; 
 // 이벤트 대상 : .main-btn button.next .main-btn button.prev
 // 단계변수 : pageNum
@@ -34,12 +34,11 @@ for(let i = 0; i < formDt.length; i++){
 // console.log(upArea);
 // 대상선정
 const proceedList = domFn.qs('.proceed-content>ol');
-const pointBox = domFn.qs('.point-box');
 const mainNxBtn = domFn.qs('.main-btn button.next');
 const mainPvBtn = domFn.qs('.main-btn button.prev');
 const proceedTitle = domFn.qs('.proceed-title h2');
 const proNav = domFn.qsa('.proceed-nav li');
-// console.log("proceedList",proceedList,"pointBox",pointBox,"mainNxBtn",mainNxBtn,"mainPvBtn",mainPvBtn)
+// console.log("proceedList",proceedList,"mainNxBtn",mainNxBtn,"mainPvBtn",mainPvBtn)
 // 이벤트 등록
 domFn.addEvt(mainNxBtn,'click',stepFn);
 domFn.addEvt(mainPvBtn,'click',stepFn);
@@ -55,7 +54,7 @@ function stepFn(){
             pageNum = 0;
         }
         console.log('이전클릭;',pageNum);
-    }else{ //다음버튼
+    }else if(this.classList.contains('next')){ //다음버튼
         pageNum++;
         colNum++;
         if(pageNum == 6){ //6단계 일때
@@ -64,15 +63,25 @@ function stepFn(){
         console.log('다음클릭;',pageNum,colNum);
     // 데이터 업데이트하기
     switch(pageNum){
-        case 1 :
+        case 1 : //목적선택완료
             updateData(0,stepBox1);
             break;
-        case 2 : 
+        case 2 : //픽업선택완료
             updateData(2,pickUpLi);
             nameTxt = inputName.value;
             numberTxt = inputNumber.value;
             if(!nameTxt == '') updateData2(3,nameTxt);
             if(!numberTxt == '') updateData2(4,numberTxt);
+            break;
+        case 3 : //상품선택완료
+
+            break;
+        case 4 :
+            
+            break;
+        case 5 :
+            break;
+        case 6 :
             break;
     }/////////switch case ///////////
     }
@@ -126,7 +135,7 @@ function updateData(num,coll){
     // 업데이트 검증
     let bool = verifFn(coll);
     if(bool[0]){ //on이 있는 상태로 넘어온 경우
-        console.log(upArea[num]);
+        // console.log(upArea[num]);
         // 주문서 타이틀 업데이트
         upArea[num][0].style.color = '#000';
         // 주문서 내용 업데이트
@@ -178,7 +187,7 @@ timeBtn.forEach(ele=>{
 // 3. 함수만들기
 // 팝업창 열고 닫기 함수
 function popOpen(){
-    console.log('입장!',this.value,this.innerText);
+    // console.log('입장!',this.value,this.innerText);
     let txt = '';
     if(this.value==''){
         txt = this.innerText.trim();
@@ -246,10 +255,6 @@ pickUpLi.forEach(ele=>{
         }///////////if else//////////////
     });
 });/////////pickUpLi click이벤트 설정////////
-//////////////////추가선택/////////////////////////
-
-//////////////////주문하기/////////////////////////
-
 
 /////////////////상품선택 , 옵션선택//////////////////////
 // 클릭데이터 가져와서 상품 뿌리기
@@ -311,6 +316,7 @@ function cataOpen(){
         prodCodeMake(atxt);
     }
 } ////////cateOpen함수//////////////
+
 // 4. 누른 서브메뉴 읽기 함수
 function subOpen(){
     let clickCode = this.innerText;
@@ -333,7 +339,6 @@ function subOpen(){
     // 코드 만들어서 뿌리기
     prodCodeMake(atxt);
 } ////////subOpen함수//////////////
-
 
 // 상품 데이터 뿌리기
 // 대상: .list>ol
@@ -391,9 +396,15 @@ function prodCodeMake(atxt){
     itemList = domFn.qsa('.list>ol>li');
 
     // 상품 누르면 옵션창에 보내기 함수
+    // 상품 누르면 단계 업데이트, upArea업데이트 함수
     // 이벤트 설정
     itemList.forEach(ele=>{
+        // 옵션창 보내기 함수
         domFn.addEvt(ele,'click',sendInfo); 
+        // upArea 업데이트
+        domFn.addEvt(ele,'click',updateData2(5,domFn.qsEl(ele,'.prod-name').innerText));
+        // 단계 업데이트
+
     });
 }/////////제품코드 만들기 함수
 // console.log(hCode);
@@ -406,6 +417,7 @@ function sameTag(arr,txt){
     }
 } //////태그 검증 함수 sameTag///////////
 
+//////////////////추가선택/////////////////////////
 
 // 옵션 데이터 뿌리기
 
@@ -417,7 +429,6 @@ const basic = domFn.qs('.option-basic>dl');
 // 선택옵션
 const option = domFn.qsa('.option-select>dl');
 // 이벤트 대상 (추후에 리스트에 넣음)
-
 
 // 코드 저장변수
 let selCode = [];
@@ -464,7 +475,7 @@ for(let x in option_list){
             `
             <dt>${x}(0/15)</dt>
             <dd>
-                <input id="message"type="text" placeholder="${option_list[x]}">
+                <input id="message" type="text" placeholder="${option_list[x]}">
             </dd>
             `;
             break;
@@ -499,7 +510,7 @@ function depth2(list){
         <div class="details ${list[x].img?'flavor':'size-box'}">
         <label for="${list[x].img?'flavor':'size'}${radioNum}">
                 <div class="${list[x].img?'img-box':'container'}">
-                    ${list[x].img?`<img src="${list[x].img}" alt="${list[x].alt}">`:`<div class="container"><div class="cylinder"></div></div>`}
+                    ${list[x].img?`<img src="${list[x].img}" alt="${list[x].alt}">`:`<div class="cylinder"></div>`}
                 </div>
                 <div class="txt-box">
                     <span>${list[x].name}</span>
@@ -510,7 +521,7 @@ function depth2(list){
         `;
         radioNum++;
     } ////////for in문///////////
-    console.log('depCode',depCode);
+    // console.log('depCode',depCode);
     return depCode;
 } //////depth2함수////////////////
 
@@ -519,10 +530,11 @@ function sendInfo(){
     let cCode = this.innerHTML;
     // 누른 코드 적용
     optionImg.innerHTML = cCode;
-    console.log(cCode);
+    // console.log(cCode);
     // 옵션박스 크기 늘리기
-
     prodOptionBox.classList.add('view');
+    // 2. 주문서 업데이트
+    // 3. 단계 업데이트
 }
 
 ////////////////옵션박스 닫기/////////////////////
@@ -540,7 +552,36 @@ function optionClose(){
     }else{
         //다음버튼 ->
         console.log(this,'다음버튼 누름');
-        //
+        //////////////////옵션선택 가져오기///////////////
+        // 1. 대상 : 
+        // 1-1. 맛 input[name="flavor"]:checked value
+        // 1-2. 크기 input[name="size"]:checked value
+        // 1-3. 문구 input[id="message"]
+        // 1-4. 요청사항 textarea[id="request"]
+        // 이벤트 대상 : .aside-btn btn 의 다음버튼
+        // 변경대상 : upArea[6][0], upArea[6][1]
+        // 이벤트 종류 click이벤트
+        const flaVal = domFn.qs('input[name="flavor"]:checked').value;
+        const sizeVal = domFn.qs('input[name="size"]:checked').value;
+        const msgVal = domFn.qs('input[id="message"]').value;
+        const reqVal = domFn.qs('textarea[id="request"]').value;
+        // console.log(flaVal,sizeVal,msgVal==""?"문구 없음":msgVal,reqVal==""?"요청사항 없음":reqVal);
+        let optionTxt = `${flaVal} ${sizeVal}, 문구: ${msgVal==""?"문구 없음":msgVal}, 요청사항: ${reqVal==""?"요청사항 없음":reqVal}`;
+        // console.log(optionTxt);
+        // 2. 주문서 업데이트
+        updateData2(6,optionTxt);
+        // 3. 단계 업데이트
+
+        // 4. 주문서 박스 크기바꾸기, 제품선택 박스 끄기
+        formBox.classList.remove("view");
+        prodBox.classList.remove("view");
     }
     prodOptionBox.classList.remove('view');
 }
+
+
+
+
+
+
+//////////////////주문하기/////////////////////////

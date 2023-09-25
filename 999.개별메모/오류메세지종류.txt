@@ -35,3 +35,7 @@ Uncaught SyntaxError: The requested module './msg_format.js' does not provide an
 모듈문법을 사용한 파일을 서버기동없이 직접 열었을 때
 Access to script at 'file:///D:/GitHub_itjuh/FED-RF-2023-AJH/003.JS%ED%95%99%EC%8A%B5/03.JS%EB%AA%A8%EB%93%88/module/main.js' 
 from origin 'null' has been blocked by CORS policy: Cross origin requests are only supported for protocol schemes: http, data, isolated-app, chrome-extension, chrome, https, chrome-untrusted.
+
+////////////////// JSON 관련 ////////////////////////////////////
+js에서 json형식 불러올 때 json형식을 알려주지 않으면 생김 import langCode from './data_lang.json'     @@@@@assert{type:'json'};@@@@@ 뒤에 이부분을 넣어야함
+Failed to load module script: Expected a JavaScript module script but the server responded with a MIME type of "application/json". Strict MIME type checking is enforced for module scripts per HTML spec.
