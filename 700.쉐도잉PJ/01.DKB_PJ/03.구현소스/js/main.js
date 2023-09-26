@@ -6,7 +6,7 @@ import domFn from "./dom.js";
 // 부드러운 스크롤 ////////////
 import { startSS, setPos } from "./smoothscroll23.js";
 // 데이터 모듈
-import { gridData, gnbData, previewData } from "./data_drama.js";
+import { gridData, gnbData, previewData, clipData } from "./data_drama.js";
 // 부드러운 스크롤 적용
 startSS();
 
@@ -21,11 +21,12 @@ setTimeout(() => {
 // 0-2. 스크롤바 트랙을 잡고 위치 이동 시 위치값 반영
 domFn.addEvt(window,'mouseup',()=>setPos(window.scrollY)); ///////// mouseup ////////////////////////
 // 0-3. 키보드 방향키 이동 시 위치값 반영
-
+domFn.addEvt(window, "keyup", () => setPos(window.scrollY));
+//////// mouseup /////////////
 
 // 대상: .desc-box
 let desc_box = document.querySelectorAll(".desc-box");
-console.log(desc_box);
+//console.log(desc_box);
 
 // 모든 캐릭터 설명박스는 이벤트 버블링 막기!!!
 // -> 여기서 마우스휠 됨!!!
@@ -41,7 +42,7 @@ desc_box.forEach((ele) => {
 
 // 1.대상선정 : .grid-box(.live-box / .poster-box)
 const gridBox = domFn.qsa(".grid-box");
-console.log('대상: ',gridBox);
+//console.log('대상: ',gridBox);
 
 // 2. 대상 코드넣기 함수 호출 설정하기/////////
 gridBox.forEach((ele,idx)=>makeGrid(ele,idx));
@@ -78,7 +79,7 @@ function makeGrid(ele,idx){// 요소,순번
 // 서브메뉴 구분하기 : li는 하위a요소의 텍스트가 gnbData 속성명
 // 1차 메뉴와 일치하는 경우 하위메뉴를 넣어준다.
 const gnbList = domFn.qsa(".gnb>ul>li");
-console.log("메뉴 :", gnbList, "/데이터:", gnbData);
+//console.log("메뉴 :", gnbList, "/데이터:", gnbData);
 // 3. 대상에 하위메뉴 태그 만들기
 gnbList.forEach((ele) => {
   // li밑에 a에 있는 텍스트 읽기
@@ -91,7 +92,7 @@ gnbList.forEach((ele) => {
   // 배열값은 태그를 만들어 그 자리에 출력: 배열.map().join('');
   if (gData) {
     //데이터 없으면 undefined
-    console.log("만들어", atxt);
+    //console.log("만들어", atxt);
     ele.innerHTML += `
         <div class="smenu">
           <aside class="smbx">
@@ -124,7 +125,7 @@ const gnb = domFn.qsa(".gnb>ul>li");
 // 1-2. 변경대상
 const smenu = domFn.qsa(".smenu");
 
-console.log("대상 :", gnb);
+//console.log("대상 :", gnb);
 // 2. 이벤트 설정하기
 // 이벤트 종류 : mouseover / mouseout
 gnb.forEach((ele) => {
@@ -140,7 +141,7 @@ function overFn() {
   // console.log('over this:',this);
   // 1. 하위 .smbx 높이값 알아오기
   let hv = domFn.qsEl(this, ".smbx").clientHeight;
-  console.log("높이:", hv);
+  //console.log("높이:", hv);
   // 2. 하위 서브메뉴박스만큼 .smenu 높이값 주기
   domFn.qsEl(this, ".smenu").style.height = hv + "px";
 } //////////overFn//////////////////
@@ -169,7 +170,7 @@ let stsShowMv = 0;
 // 3. 함수만들기
 function showMv(){
   if(stsShowMv) return;
-  console.log('보여줘');
+  //console.log('보여줘');
   // 이벤트 등록 지우기 위해서 두번 째 클릭 시 함수연결 끊기
   stsShowMv = 1; //한 번만 실행
   // 동영상 넣기
@@ -195,11 +196,11 @@ let preNewData = previewData.sort((x,y)=>{
   return a == b ? 0 : a > b ? -1:1;
   // if(a==b) 0 else{if(a>b) -1 else 1}
 });
-console.log(preNewData);
+//console.log(preNewData);
 
 // 2. 대상선정: .preview-box>div
 const preBox = domFn.qsa('.preview-box>div');
-console.log(preBox);
+//console.log(preBox);
 
 // 3. 대상을 순회하여 태그 만들어 넣기
 // 데이터 : 역순정렬을 한 미리보기 데이터 넣기
@@ -211,3 +212,26 @@ preBox.forEach((ele,idx)=>{
     <div>
   `;
 }); /////////forEach////////////////
+
+
+///////////////////////////////////////////////////
+///////////최신동영상 영역 데이터 뿌리기/////////////
+// 대상: .clip-box
+const clipBox = domFn.qs('.clip-box');
+console.log(clipBox);
+// 생성 데이터 코드변수
+let clipCode = '';
+
+// 데이터 매칭하여 태그만들기
+clipData.forEach(val=>{
+  clipCode += `
+    <li>
+    <iframe src="https://www.youtube.com/embed/${val.mvid}" title="${val.subtit}"></iframe>
+    <h4>${val.subtit}</h4>
+    <h3>${val.title}</h3>
+    </li>
+  `;
+});
+
+// 코드넣기
+clipBox.innerHTML = `<ul>${clipCode}</ul>`;

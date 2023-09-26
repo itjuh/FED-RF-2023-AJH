@@ -196,8 +196,8 @@
   text-align: center;
   color: #555;
   background-color: #fff;
-  border: 1px solid var(--co-onlightgreen);
   box-shadow: 0px 0px 4px 1px var(--co-ondgop);
+  cursor: pointer;
 }
 /* 절차 내용(1. 목적) li 마우스오버*/
 .proceed-content ul > li.on,
@@ -210,13 +210,15 @@
 /* input달력보기 박스 설정 */
 .proceed-list .day-time {
   width: 400px;
-  height: 60px;
-  border-radius: 10px;
+  height: 50px;
+  border: none;
+  border-radius: 20px;
   margin-left: 20px;
-  padding: 0px 30px;
+  padding: 7px 30px 0px;
   background-color: #eee;
   font-size: var(--fz-big);
   font-family: "GangwonEdu_OTFBoldA";
+  cursor: pointer;
 }
 /* input 플레이스홀더 글자색상 */
 .proceed-list .day-time::placeholder {
@@ -225,8 +227,9 @@
 /* 달력보기 박스 오버시 */
 .proceed-list .day-time:focus,
 .proceed-list .day-time:hover {
-  outline: 1px solid var(--co-ongreen);
-  box-shadow: 2px 8px 16px 0 rgb(11 58 22 / 19%);
+  background-color: var(--co-onlightgreen);
+  color: white;
+  box-shadow: 2px 8px 16px 0 rgb(11 58 22 / 32%);
 }
 /* 숨김박스들 공통 */
 .hide-box {
@@ -414,7 +417,7 @@ td.check {
   height: 40px;
   border-radius: 15px;
   margin: 20px 30px;
-  padding: 0 10px;
+  padding: 7px 10px 0;
   border: none;
   box-shadow: 1px 3px 5px 0 rgb(11 58 22 / 19%);
   background-color: #eee;
@@ -574,6 +577,7 @@ td.check {
 }
 /* 리스트 박스 li안쪽 박스 */
 .list-type .partbox {
+  padding: 0;
   height: 100%;
   box-shadow: 1px 1px 6px #00000080;
 }
@@ -649,7 +653,7 @@ td.check {
   margin: 0 auto;
 }
 /* 왼쪽파트 불러온 이미지 박스 */
-.option-basic .img-box{
+.option-basic .img-box {
   width: 100%;
 }
 /* 왼쪽파트 안내부 */
@@ -694,7 +698,7 @@ td.check {
   flex: 1;
 }
 /* 맛선택 박스 */
-.details{
+.details {
   position: relative;
   /* select박스 부모 */
 }
@@ -728,8 +732,8 @@ input[type="radio"] {
   opacity: 1;
 }
 /* 선택사항 선택 가상요소이미지 */
-.option-select [type="radio"]:checked + .details::after{
-  content: '\f00c';
+.option-select [type="radio"]:checked + .details::after {
+  content: "\f00c";
   position: absolute;
   font-family: "Font Awesome 5 Free";
   font-weight: 900;
@@ -889,7 +893,7 @@ input[type="radio"] {
   }
   /* 주문절차 박스 */
   .proceed-box {
-    min-height: 70vw;
+    min-height: auto;
     width: 35vw;
   }
   /* 주문절차 안쪽박스 */
@@ -973,6 +977,9 @@ input[type="radio"] {
   .order-box {
     flex-direction: column;
     gap: 20px 10px;
+  }
+  .form-area {
+    min-height: auto;
   }
   .form-area .form-box {
     transform: translateY(18px);
