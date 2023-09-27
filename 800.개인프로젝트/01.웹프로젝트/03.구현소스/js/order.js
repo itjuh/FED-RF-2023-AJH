@@ -551,6 +551,7 @@ for (let x in option_list) {
   } ////////switch case문///////////////
 } /////////for in//////////////////
 // console.log(selCode);
+
 // 선택옵션 오른쪽 뿌리기
 option.forEach((ele, idx) => {
   ele.innerHTML = selCode[idx];
@@ -646,5 +647,25 @@ function optionClose() {
 } //////// 옵션닫기 함수/////////////////
 
 //////////////////추가선택/////////////////////////
-
+///////// 추가선택 데이터 뿌리기/////////////////
+// 1. 대상 : .step-5 ul
+// 2. 이벤트 : load
+// 3. 변경사항 : 코드입력
+const addOptionBox = domFn.qs('.step-5 ul');
+// 2. 이벤트 설정
+domFn.addEvt(window,'load',()=>{
+  // add_option 객체를 배열로 만들어서 뿌리기
+  // 1. add_option 객체 만들기
+  const addOptionName = Object.keys(add_option);
+  const addOptionPrice = Object.keys(add_option).map(val=>add_option[val]);
+  // 2. 맵핑해서 뿌리기
+  addOptionBox.innerHTML += `
+    ${addOptionName.map((val,idx)=>`
+    <li>
+      <span>${val}</span>
+      <em>+${addOptionPrice[idx].toLocaleString()}</em>
+    </li>
+    `).join('')}
+  `;
+});///////////윈도우 로드 이벤트/////////////////
 //////////////////주문하기/////////////////////////

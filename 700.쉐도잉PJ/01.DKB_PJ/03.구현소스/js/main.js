@@ -226,7 +226,9 @@ let clipCode = '';
 clipData.forEach(val=>{
   clipCode += `
     <li>
-    <iframe src="https://www.youtube.com/embed/${val.mvid}" title="${val.subtit}"></iframe>
+    <div class="clip-mv-box">
+      <img src="./images/clip_img/${val.idx}.jpg" alt="${val.subtit}">
+    </div>
     <h4>${val.subtit}</h4>
     <h3>${val.title}</h3>
     </li>
@@ -235,3 +237,66 @@ clipData.forEach(val=>{
 
 // 코드넣기
 clipBox.innerHTML = `<ul>${clipCode}</ul>`;
+
+///////////////최신동영상 넘기기////////////////////
+// 1. 요구사항 : 
+// -> 버튼 한 번에 한 영상씩 이동
+// -> 양쪽 끝에서 이동 중단 및 해당방향 버튼 사라짐
+// 2. 대상선정 : 
+// 2-1. 이벤트 대상 : .btn-box button
+// 2-2. 변경 대상 : .clip-box ul (25.4%)
+const btnClip = domFn.qsa('.btn-box button');
+const clipList = domFn.qs('.clip-box ul');
+// 3. 변수세팅
+// 3-1. 리스트 개수
+const CNT_LIST = domFn.qsaEl(clipList,'li').length;
+// 3-2. 화면당 노출 개수
+const LIMIT_LIST = 4;
+// 3-3. 이동 한계 수
+const LIMIT_MOVE = CNT_LIST-LIMIT_LIST;
+// 3-4. 이동 단위 수 : 간격 이동을 고려 한 이동할 -25.4%
+const BLOCK_NUM = 25.5;
+// 3-5. 이동횟수 : 슬라이드 순번
+let mvNum = 0;
+// console.log(btnClip, clipList, CNT_LIST,LIMIT_LIST);
+
+// 3. 이벤트 설정
+btnClip.forEach(ele=>{
+  domFn.addEvt(ele,'click',moveClip);
+}); /////////forEach/////////////////
+
+// 4. 함수만들기
+function moveClip(){
+  // 1. 오른쪽 버튼여부
+  let isR = this.classList.contains('fa-chevron-right');
+  console.log(this,'나야나',isR);
+  // 2. 버튼별 이동 분기
+  if(isR){
+    // 이동한계수를 체크하여 이동수를 증가시킴
+    mvNum++;
+    // 처음 버튼 보이기
+    btnClip[0].style.display = 'block';
+    // 마지막 한계수를 넘어가면 마지막 수에 고정
+    if(mvNum>LIMIT_MOVE){
+      // 마지막 수 고정
+      mvNum = LIMIT_MOVE;
+      // 마지막 버튼 숨기기
+      btnClip[1].style.display = 'none';
+    };
+  } ////////////if/////////////
+  else{
+    // 이동한계수 감소하기
+    mvNum--;
+    // 마지막 버튼 보이기
+    btnClip[1].style.display = 'block';
+    // 0번에서 누르면 수 고정
+    if(mvNum<0){
+      // 처음 수 고정
+      mvNum = 0;
+      // 처음 버튼 숨기기
+      btnClip[0].style.display = 'none';
+    };
+  }
+  // 3. 이동 반영하기 : - 단위수 * 이동수
+  clipList.style.left = '-'+BLOCK_NUM*mvNum+'%';
+}////////////moveClip///////////////////////

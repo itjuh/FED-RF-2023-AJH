@@ -919,6 +919,7 @@ input[type="radio"] {
   .proceed-content ul > li {
     width: 100%;
     height: 70px;
+    line-height: 2.6;
   }
   /* 절차내용 ol: 전 단계*/
   .proceed-content ol {
@@ -978,9 +979,11 @@ input[type="radio"] {
     flex-direction: column;
     gap: 20px 10px;
   }
+  /* 주문신청서 겉박스 */
   .form-area {
     min-height: auto;
   }
+  /* 주문신청서 및 왼쪽 박스공통 */
   .form-area .form-box {
     transform: translateY(18px);
     overflow-y: scroll;
@@ -999,6 +1002,10 @@ input[type="radio"] {
     margin-top: 0px;
     justify-content: space-around;
   }
+    /* 주문단계 공통 li */
+    .proceed-content ul > li {
+      line-height: 3;
+    }
   .prod-box.view {
     width: auto;
   }
@@ -1082,7 +1089,7 @@ input[type="radio"] {
   .proceed-content ul > li {
     width: 96%;
     height: 15vw;
-    line-height: 2.7;
+    line-height: 15vw;
   }
   /* 픽업 입력칸 */
   .pick-up input {
