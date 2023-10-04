@@ -1,0 +1,323 @@
+@charset "utf-8";
+/* 움직이는 폰 + 무한글자이동 CSS - iphone.css */
+/* 웹폰트 */
+@import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
+
+/* font-family: 'Anton', sans-serif; */
+
+/* 변수설정 */
+:root{
+    /* 아이폰 가로크기 */
+    --phone-width: 200px;
+    /* 아이폰 세로크기 */
+    --phone-height: 400px;
+    /* 폰 두께 */
+    --phone-side: 20px;
+    /* 회전각도 */
+    --rotate-deg: 90deg;
+}
+
+html,body{
+    margin: 0;
+    padding: 0;
+}
+body{
+    background-image: 
+    linear-gradient(to bottom, #fff 20%,skyblue 40%,#fff);
+    
+    /* 보이는 화면 높이값 채우기 */
+    height: 100vh;
+    /* 넘치는 자식요소 숨기기 */
+    overflow: hidden;
+}
+
+/* 폰박스 */
+.iphone{
+    /* 위치중앙: 50% 이동 후 크기절반 */
+    position: absolute;
+    top: calc(50% - var(--phone-height)/2);
+    left: calc(50% - var(--phone-width)/2);
+
+    width: var(--phone-width);
+    height: var(--phone-height);
+
+    /* outline: 2px solid blue; */
+    
+    /* 3D 입체설정 */
+    transform-style: preserve-3d;
+    /* 입체를 잘 보이게 약간 회전 */
+    transform: rotateX(10deg) rotateY(-30deg);
+}
+
+/* 폰 단면 공통 */
+.iphone span{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+
+    /* 배경공통속성 */
+    /* background-color: #fff; */
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    background-color: #fff;
+    /* outline: 1px dashed red; */
+}
+
+/* 앞면 */
+.iphone span:nth-child(1){
+    background-image: url(../images/ip01.png);
+    /* z축 밀기 */
+    transform: translateZ(calc(var(--phone-side)/2));
+}
+/* 앞면 화면 박스 */
+.screen{
+    position: absolute;
+    top: 45.3px;
+    left: 11.2px;
+    width: 176px;
+    height: 307px;
+    /* 배경 설정 */
+    background-repeat: no-repeat;
+    background-size: auto 80%;
+    background-position: center;
+}
+/* 오른쪽면 */
+.iphone span:nth-child(2){
+    background-image: url(../images/ip03.png);
+    width: var(--phone-side);
+    right: calc(var(--phone-side)/2 * -1);
+    
+    /* y축 회전 */
+    transform: rotateY(var(--rotate-deg));
+}
+/* 왼쪽면 */
+.iphone span:nth-child(3){
+    background-image: url(../images/ip04.png);
+    width: var(--phone-side);
+    left: calc(var(--phone-side)/2 * -1);
+    
+    /* y축 회전 */
+    transform: rotateY(calc(var(--rotate-deg)*-1));
+}
+/* 윗면 */
+.iphone span:nth-child(4){
+    background-image: url(../images/ip06.png);
+    height: var(--phone-side);
+    top: calc(var(--phone-side)/2 * -1);
+
+    /* y축 회전 */
+    transform: rotateX(var(--rotate-deg));
+}
+/* 아랫면 */
+.iphone span:nth-child(5){
+    background-image: url(../images/ip05.png);
+    height: var(--phone-side);
+    bottom: calc(var(--phone-side)/2 * -1);
+    
+    /* y축 회전 */
+    transform: rotate(180deg) rotateX(var(--rotate-deg));
+}
+/* 뒷면 */
+.iphone span:nth-child(6){
+    background-image: url(../images/ip02.png);
+    /* z축 밀기 */
+    transform: translateZ(calc(var(--phone-side)/2 * -1)) rotateY(calc(var(--rotate-deg)*2));
+}
+/* 아이폰 회전 클래스 */
+.ip-ani{
+    /* 애니메이션 */
+    animation: iphone-ani 1.5s ease-in-out 1s 2 alternate;
+}
+
+/* 아이폰 회전 키프레임 */
+@keyframes iphone-ani {
+    to{
+        /* 기존 x:10deg y:-30deg 고려해서 회전 */
+        transform: rotateX(370deg) rotateY(-330deg);
+    }
+}
+
+/* 흘러가는 글자박스(부모) */
+.fbx{
+    position: absolute;
+    width: 100vw;
+}
+/* 흘러가는 내부박스(자식) - 움직일 박스 */
+.tbx{
+    position: relative;
+    left: 0;
+
+    /* 크기는 부모박스의 2배수 */
+    width: 200vw;
+
+    display: flex;
+    /* 하위 ul박스 옆으로 흐름 */
+}
+/* tbx ul */
+.tbx ul{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
+    display: flex;
+    /* 하위 li 옆으로 흐름 */
+    flex: 1;
+    /* .tbx의 자식인 ul등분할 */
+}
+/* tbx li */
+.tbx li{
+    flex: 1;
+    /* 글자를 담고 있는 li 등분할 */
+
+    /* 글자설정 */
+    text-align: center;
+    font-family: 'Anton', sans-serif;
+    font-size: 4vw;
+    color: #a0a0a0;
+    text-shadow: 2px 2px 1px rgb(0 0 0/ .6);
+
+    /* outline: 2px dotted red; */
+}
+/* 흘러가는 텍스트 애니 클래스(왼쪽이동) */
+.txt-ani1{
+    animation: txt-ani1 15s linear infinite;
+}
+/* 흘러가는 글자 키프레임(왼쪽이동) */
+@keyframes txt-ani1 {
+    to{
+        left: -100%;
+    }
+}
+
+/* 반대방향 글자박스(부모) */
+.f2{
+    bottom: 0;
+}
+
+/* 오른쪽으로 흐르는 박스(자식) */
+.f2 .tbx{
+    left: -100%;
+}
+/* 흘러가는 텍스트 애니 클래스(오른쪽이동) */
+.txt-ani2{
+    animation: txt-ani2 15s linear infinite;
+}
+/* 흘러가는 글자 키프레임(오른쪽이동) */
+@keyframes txt-ani2 {
+    to{
+        left: 0%;
+    }
+}
+
+/* 내용이 긴 경우 글자 흘러가기 */
+/* 글자박스 부모 */
+.f3{
+    top: 7vw;
+}
+/* 글자박스 자식 */
+.f3 .tbx{
+    width: 570vw;
+}
+.f3 span{
+    display: block;
+    flex: 1;
+    /* 글자설정 */
+    text-align: center;
+    font-family: 'Anton', sans-serif;
+    font-size: 3vw;
+    color: orangered;
+    text-shadow: 2px 2px 1px lightcoral;
+}
+
+/* 흘러가는 텍스트 애니 클래스(왼쪽이동) */
+.txt-ani3{
+    animation: txt-ani3 25s linear infinite;
+}
+/* 흘러가는 글자 키프레임(왼쪽이동) */
+@keyframes txt-ani3 {
+    to{
+        left: -285%;
+    }
+}
+
+/* 아이폰 따라보기 이벤트 박스 */
+.evt-box{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100vh;
+
+    z-index: 999;
+    /* 플렉스 박스 */
+    display: flex;
+    /* 랩핑박스 */
+    flex-wrap: wrap;
+}
+/* 이벤트 하위박스 */
+.evt-box div{
+    width: 20%;
+    height: 33.3%;
+    /* outline: 1px dashed green; */
+}
+/* 마우스커서 */
+.pointer{
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: lightseagreen;
+    display: none;
+    /* 
+    [ 커서 이미지로 보이기 ]
+    cursor: url(이미지경로) x위치 y위치,auto 
+    -> 사이즈등의 이슈로 안나올 수 있으므로 auto/pointer등 대체항복을 뒤에 콤마하고 써야함
+    -> 이미지 커서의 위치는 맨위 왼쪽 끝이다.
+    -> 위치변경 옵션 x, y 위치는 단위없으면 자동 px, 이미지 크기보다 크면 처리안됨
+    */
+    /* cursor: url(../images/door.png), auto; */
+    /* cursor: url(../images/door.png)200 50, auto; */
+    /* 가로 200px 세로 50px위치에서 나옴 */
+}
+
+/* 미디어쿼리 */
+@media screen and (max-width:900px) {
+    /* 흘러가는 글자박스(부모) */
+    .fbx{
+        width: 200vw;
+    }
+    .tbx{
+        width: 400vw;
+    }
+    .tbx li{
+        font-size: 8vw;
+    }
+    /* 왼쪽이동 */
+    .txt-ani1{
+        animation: txt-ani1 10s linear infinite;
+    }
+    /* 오른쪽 이동 */
+    .txt-ani2{
+        animation: txt-ani2 10s linear infinite;
+    }
+    /* 긴 글자 */
+    .f3{
+        top: 12vw;
+    }
+    .f3 .tbx{
+        width: 7606px;
+    }
+    .f3 span{
+        font-size: 40px;
+    }
+    .txt-ani3{
+        animation: txt-ani3 40s linear infinite;
+    }
+    @keyframes txt-ani3 {
+        to{
+            left: -3803px;
+        }
+    }
+}

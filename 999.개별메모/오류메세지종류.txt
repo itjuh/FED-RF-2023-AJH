@@ -45,7 +45,10 @@ Failed to load module script: Expected a JavaScript module script but the server
 Uncaught ReferenceError: obj is not defined at JS5-4.this키워드1.html:71:17
 
 return값이 undefined나는 경우
-return 엔터 후 값을 넣으면 undefined난다. 꼭 한줄에 넣도록!
+return 엔터 후 값을 넣으면 undefined난다. return()시작 소괄호는 반드시 return문 뒤에 쓸 것! 엔터금지!!
 
 객체를 forEach로 돌리는 경우 생기는 에러, 
 Uncaught TypeError: frObj.forEach is not a function at js4-3.array_method.js:51:7 -> for_in 제어문으로 수정하도록 한다
+
+Uncaught TypeError: Cannot read properties of null (reading 'innerHTML')
+

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>02.HTML출력</title>
+
+        <!-- 1.리액트 기본 라이브러리 -->
+        <script
+            src="https://unpkg.com/react@18/umd/react.production.min.js"
+            crossorigin
+        ></script>
+        <!-- 2.리액트 가상돔 라이브러리 -->
+        <script
+            src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"
+            crossorigin
+        ></script>
+        <!-- 3.리액트 바벨 라이브러리 -->
+        <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+        <!-- 나의 JSX -->
+        <script src="./js/02.HTML출력.jsx" type="text/babel"></script>
+        <!-- <script src="./js/02.HTML출력.js" type="text/babel"></script> -->
+        <!-- 확장자가 js여도 상관없이 잘 됨! -->
+        <script>
+            // JS순수 문법으로 비교하여 찍기
+            // map.join('') 으로 찍어야 콤마 없앰!
+            // 태그를 백틱으로 싸고 ${}로 변수 삽입한다.
+
+            // 리액트와 비교!
+            // map은 join() 없이도 태그로만 출력 됨!(리액트 자체변환)
+            // 이 map은 순수 JS map 이 아닌 리액트용 map 메서드임!
+            // 태그를 그대로 사용할 수 있고, 변수 삽입 시 중괄호만 씀
+            // 참고)JS파일 확장자가 .jsx인데 그냥 .js로 써도 .jsx문법 사용 됨!
+            // -> 결론: 리액트 JS확장자는 .js/.jsx모두 OK!
+
+            // 배열 데이터 생성하기
+            const data2 = [
+                {이름:"김소영",전화번호:"010-222-3333",생일:"20.01.20"},
+                {이름:"전우치",전화번호:"010-555-8888",생일:"18.05.20"},
+                {이름:"강감찬",전화번호:"010-666-5555",생일:"21.02.03"},
+                {이름:"공유",전화번호:"010-999-5555",생일:"79.08.20"},
+                {이름:"김마리",전화번호:"010-888-4578",생일:"00.01.02"},
+            ];
+
+            // 다시 재 구성한 배열을 만드는 map을 사용해 보자
+            const listCode2 = data2.map(val=>
+                `<tr>
+                    <td>${val.이름}</td>
+                    <td>${val.전화번호}</td>
+                    <td>${val.생일}</td>
+                </tr>`
+            ); // 맵으로 데이터 변경하여 새로운 배열 만듦
+            console.log(listCode2);
+
+            // 전체 테이블 코드 //////////
+            // html 태그 내부에 변수 등 JS문법을 사용 할 때는 중괄호{}를 사용
+            const tableCode2 = `
+                <div>
+                    <h1>💚나의 친구 리스트JS로 찍기💚</h1>
+                    <table>
+                        <tr>
+                            <th>이름</th>
+                            <th>전화번호</th>
+                            <th>생년월일</th>
+                        </tr>
+                        ${listCode2.join('')}
+                    </table>
+                </div>
+                `;
+            //출력하기
+            document.body.innerHTML += tableCode2;
+        </script>
+        <style>
+            h1{
+                text-align: center;
+            }
+            table{
+                font-size: 24px;
+                margin: 0 auto;
+                border: 4px double blue;
+                padding: 15px;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="root"></div>
+    </body>
+</html>
