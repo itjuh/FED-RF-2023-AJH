@@ -107,7 +107,8 @@ function stepFn() {
         // 5. 옵션선택 박스 끄기
         prodOptionBox.classList.remove("view");
         break;
-      case 5:
+      case 5: //추가 선택완료
+      updateData(7, stepBox5);
         break;
       case 6:
         break;
@@ -653,7 +654,7 @@ function optionClose() {
 // 3. 변경사항 : 코드입력
 const addOptionBox = domFn.qs('.step-5 ul');
 // 2. 이벤트 설정
-domFn.addEvt(window,'load',()=>{
+
   // add_option 객체를 배열로 만들어서 뿌리기
   // 1. add_option 객체 만들기
   const addOptionName = Object.keys(add_option);
@@ -667,5 +668,23 @@ domFn.addEvt(window,'load',()=>{
     </li>
     `).join('')}
   `;
-});///////////윈도우 로드 이벤트/////////////////
-//////////////////주문하기/////////////////////////
+  // 대상선정
+  const stepBox5 = domFn.qsa(".step-5 li");
+  console.log(stepBox5);
+  // 클릭이벤트 주기
+  stepBox5.forEach((ele) => {
+    domFn.addEvt(ele, "click", () => {
+      if (ele.classList.contains("on")) {
+        //on 이미 있으면
+        ele.classList.remove("on");
+      } else {
+        //on 없으면
+        stepBox5.forEach((ele) => {
+          ele.classList.remove("on");
+        });
+        ele.classList.add("on");
+      } ///////////if else//////////////
+    });
+  }); /////////stepBox5 click이벤트 설정////////
+
+

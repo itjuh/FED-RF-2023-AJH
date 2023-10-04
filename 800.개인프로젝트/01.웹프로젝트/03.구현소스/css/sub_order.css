@@ -807,6 +807,18 @@ input[type="radio"] {
   font-size: var(--fz-top);
   font-family: "GangwonEdu_OTFBoldA";
 }
+/* *********절차5.추가******** */
+.proceed-content span {
+  display: block;
+  height: 50%;
+  line-height: 2;
+}
+.proceed-content em {
+  display: block;
+  height: 50%;
+  line-height: 2;
+  font-size: 2.2rem;
+}
 /* 사이즈 박스 */
 /******** 버튼들 *******/
 /* 절차 버튼 박스*/
