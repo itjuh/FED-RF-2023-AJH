@@ -22,6 +22,20 @@
         <script src="./js/02.HTML출력.jsx" type="text/babel"></script>
         <!-- <script src="./js/02.HTML출력.js" type="text/babel"></script> -->
         <!-- 확장자가 js여도 상관없이 잘 됨! -->
+        <style>
+            h1{
+                text-align: center;
+            }
+            table{
+                font-size: 24px;
+                margin: 0 auto;
+                border: 4px double blue;
+                padding: 15px;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="root"></div>
         <script>
             // JS순수 문법으로 비교하여 찍기
             // map.join('') 으로 찍어야 콤마 없앰!
@@ -69,21 +83,8 @@
                 </div>
                 `;
             //출력하기
+            console.log(document.body);
             document.body.innerHTML += tableCode2;
         </script>
-        <style>
-            h1{
-                text-align: center;
-            }
-            table{
-                font-size: 24px;
-                margin: 0 auto;
-                border: 4px double blue;
-                padding: 15px;
-            }
-        </style>
-    </head>
-    <body>
-        <div id="root"></div>
     </body>
 </html>

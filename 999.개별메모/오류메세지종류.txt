@@ -51,4 +51,5 @@ return 엔터 후 값을 넣으면 undefined난다. return()시작 소괄호는 
 Uncaught TypeError: frObj.forEach is not a function at js4-3.array_method.js:51:7 -> for_in 제어문으로 수정하도록 한다
 
 Uncaught TypeError: Cannot read properties of null (reading 'innerHTML')
-
+html script 구역을 head에 넣었을 때 document.body 가 null값이 뜨면서 발생한 오류
+스크립트 구역을 body안에 넣어서 해결 됨

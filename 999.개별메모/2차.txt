@@ -2,8 +2,17 @@
 2차
 
 각 키보드 단추에 따른 설명창 전달
-q->질문
-p->제품소개
+p->제품소개 (product)
 n->신상소개
-r->브랜드 소개
-???
+a->브랜드 소개 (about us)
+k->키 종류 key type
+s->sign-in sign-out
+q->질문 (qna)
+c->contact
+
+기본코딩 개별적으로 하기
+
+https://www.youtube.com/watch?v=Zq2kwbYjMv0
+https://www.cherrymx.de/en/cherry-mx/mx-original/mx-red.html
+https://www.cherry.kr/about-cherry/our-technologies
+https://leopold.co.kr/brand.html
