@@ -30,6 +30,10 @@
 ...1,2교시...
 어워즈~
 SVG학습
+--원형svg 라인빼기 : SVG학습 circle.html
+낼름낼름 원리
+1) 
+
 
 ...3교시...
 도깨비
@@ -39,3 +43,27 @@ white-space: nowrap;
 ...4교시...
 optgroup
 데이터바인딩
+<option selected disabled hidden>선택하세요~</option>
+//처음에 선택되어있고, 값이선택안되고, 목록에서 숨김
+<optgroup label="대분류">
+//선택되지 않음
+    <option value="1">값1</option>
+    <option value="2">값2</option>
+    <option value="3">값3</option>
+</optgroup>
+
+...5교시...
+배열의 정렬 및 검색JS학습
+sort
+select창에 선택안되는 옵션 만들기
+selected(초기에 선택되어 나옴) 
+disabled(선택되지 않음)->데이터처리에 필요함
+hidden(목록에 뜨지 않음)
+<option value="0" selected disabled hidden>정렬선택</option>
+
+...6교시...
+sort
+참고자료
+https://velog.io/@bcl0206/%EC%9B%90%EB%A6%AC%EB%A5%BC-%EC%A0%9C%EB%8C%80%EB%A1%9C-%EC%95%84%EB%8A%94-%EC%82%AC%EB%9E%8C%EC%9D%B4-%EC%A0%81%EC%9D%80-Sort%EB%A9%94%EC%84%9C%EB%93%9C
+...7교시...
+react

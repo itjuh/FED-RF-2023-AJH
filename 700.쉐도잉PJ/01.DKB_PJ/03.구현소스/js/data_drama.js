@@ -443,7 +443,6 @@ const clipData = [
 // 6. 링크정보 ///////////////////
 const linkData = {
   brand: [
-    "브랜드 바로가기",
     "MNET",
     "MWAVE",
     "tvN",

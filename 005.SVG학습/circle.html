@@ -72,16 +72,19 @@
 
         /* circle 설정 */
         .c1 {
-            /* 채우기 색 - 기본색 검정 
-                투명 - transparent(안쪽이 안만져짐)
-                없음 - none(원이 뚫려있는 효과)
+            /* 채우기 fill:색상
+                기본값 : 검정 
+                투명 : transparent(안쪽이 안만져짐)
+                없음 : none(원이 뚫려있는 효과)
             */
             /* fill: red; */
             /* fill: transparent; */
             fill: none;
-            /* 선 색 - 기본 : 없음 */
+            /* 선 색 stroke:색상
+                기본값 : 없음 */
             stroke: red;
-            /* 선 두께 - 기본 : 1px 
+            /* 선 두께 stroke-width:숫자값
+                기본값 : 1px 
                 단위를 안쓰면 px이 기본값
                 선 두께는 선의 중심선으로부터 생김
             */
@@ -227,9 +230,9 @@
     <!-- 
         [ SVG란? ]
         SVG - Scalable Vector Graphic
-        -> 이미지를 확대해도 깨지지 않는 백처방식의 그래픽요소
+        -> 이미지를 확대해도 깨지지 않는 벡터방식의 그래픽요소
         -> 이미지가 코드로 되어있음
-        -> 백터 그래픽: 일러스트레이터 같은 툴에서 제작함
+        -> 벡터 그래픽: 일러스트레이터 같은 툴에서 제작함
         -> https://www.w3schools.com/graphics/svg_intro.asp
 
         비교) 포토샵에서 픽셀로 만드는 이미지는? -> 비트맵 이미지!

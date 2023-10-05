@@ -315,7 +315,7 @@ const corpBox = domFn.qs('#corp');
 // 4-1. 브랜드 바로가기 콤보박스 brandBox : 단순 바인딩(option)
 // 데이터 대상 : linkData.brand
 // 내부데이터 초기화
-brandBox.innerHTML ='';
+brandBox.innerHTML ='<option selected disabled hidden>브랜드 바로가기</option>';
 // 데이터 바인딩
 linkData.brand.forEach(val=>{
   brandBox.innerHTML += `<option value="${val}">${val}</option>`;
@@ -326,7 +326,7 @@ linkData.brand.forEach(val=>{
 const corpData = Object.keys(linkData.corp);
 // console.log(corpData);
 // 내부데이터 초기화
-corpBox.innerHTML ='';
+corpBox.innerHTML ='<option selected disabled hidden>계열사 바로가기</option>';
 /* <option value="${}">${}</option> */
 
 corpData.forEach(val=>{
