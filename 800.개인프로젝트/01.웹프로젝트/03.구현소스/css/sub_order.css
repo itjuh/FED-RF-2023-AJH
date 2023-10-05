@@ -905,7 +905,6 @@ input[type="radio"] {
   }
   /* 주문절차 박스 */
   .proceed-box {
-    min-height: auto;
     width: 35vw;
   }
   /* 주문절차 안쪽박스 */
@@ -970,6 +969,7 @@ input[type="radio"] {
   /* 진행절차 박스 */
   .proceed-box {
     min-width: 380px;
+    min-height: auto;
   }
   /* 주문신청서 박스 */
   .form-area .form-box {
@@ -1014,10 +1014,10 @@ input[type="radio"] {
     margin-top: 0px;
     justify-content: space-around;
   }
-    /* 주문단계 공통 li */
-    .proceed-content ul > li {
-      line-height: 3;
-    }
+  /* 주문단계 공통 li */
+  .proceed-content ul > li {
+    line-height: 3;
+  }
   .prod-box.view {
     width: auto;
   }
@@ -1049,6 +1049,27 @@ input[type="radio"] {
   .list-type .partbox {
     padding: 0px;
     width: 100%;
+  }
+  /* 제품리스트 파트박스 */
+  .list-type .partbox {
+    position: relative;
+  }
+  /* 제품리스트 상품 설명박스*/
+  .txt-box {
+    display: none;
+    position: absolute;
+    bottom: 0;
+    background-color: #00000080;
+    color: #fff;
+  }
+  /* 제품리스트 상품설명창li */
+  .txt-box li {
+    margin-bottom: 1px;
+  }
+  /* 제품리스트 상품 li에 오버시 */
+  .list-type ol > li:focus .txt-box,
+  .list-type ol > li:hover .txt-box {
+    display: block;
   }
   /* 이미지 바깥쪽 박스 */
   .img-box {
@@ -1135,25 +1156,23 @@ input[type="radio"] {
   .list-type {
     padding: 10px;
   }
-  /* 제품리스트 파트박스 */
-  .list-type .partbox {
-    position: relative;
+  /* 제품리스트 선택 시 옵션 창 겉박스 */
+  .form-area .option-box {
+    flex-direction: column;
   }
-  /* 제품리스트 상품 설명박스*/
-  .txt-box {
-    display: none;
-    position: absolute;
-    bottom: 0;
-    background-color: #00000080;
-    color: #fff;
+  /* 제품리스트 선택 시 옵션 창 */
+  .prod-option.view {
+    height: auto;
+    bottom: auto;
+    top: 150px;
+    z-index: 2;
   }
-  /* 제품리스트 상품설명창li */
-  .txt-box li {
-    margin-bottom: 1px;
+  /* 선택옵션 안쪽 버튼 */
+  .prod-option .proceed-btn-box {
+    width: 100%;
   }
-  /* 제품리스트 상품 li에 오버시 */
-  .list-type ol > li:focus .txt-box,
-  .list-type ol > li:hover .txt-box {
-    display: block;
+  /* 제품선택 옵션이미지 */
+  .prod .partbox {
+    margin: 10px auto;
   }
 } /* 500px이하 미디어쿼리 종료 */

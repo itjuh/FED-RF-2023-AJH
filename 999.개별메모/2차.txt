@@ -12,7 +12,14 @@ c->contact
 
 기본코딩 개별적으로 하기
 
+
+참고사이트
+가운데 키보드 배치 및 메뉴전환
+https://codewarsbcn.hpcloud.hp.com/
+유튜브 자료영상
 https://www.youtube.com/watch?v=Zq2kwbYjMv0
+체리키 사이트
 https://www.cherrymx.de/en/cherry-mx/mx-original/mx-red.html
 https://www.cherry.kr/about-cherry/our-technologies
+레오폴드 사이트
 https://leopold.co.kr/brand.html
