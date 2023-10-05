@@ -6,7 +6,7 @@ import domFn from "./dom.js";
 // 부드러운 스크롤 ////////////
 import { startSS, setPos } from "./smoothscroll23.js";
 // 데이터 모듈
-import { gridData, gnbData, previewData, clipData } from "./data_drama.js";
+import { gridData, gnbData, previewData, clipData, linkData } from "./data_drama.js";
 // 부드러운 스크롤 적용
 startSS();
 
@@ -218,7 +218,7 @@ preBox.forEach((ele,idx)=>{
 ///////////최신동영상 영역 데이터 뿌리기/////////////
 // 대상: .clip-box
 const clipBox = domFn.qs('.clip-box');
-console.log(clipBox);
+// console.log(clipBox);
 // 생성 데이터 코드변수
 let clipCode = '';
 
@@ -300,3 +300,45 @@ function moveClip(){
   // 3. 이동 반영하기 : - 단위수 * 이동수
   clipList.style.left = '-'+BLOCK_NUM*mvNum+'%';
 }////////////moveClip///////////////////////
+
+///////////////////////////////////////////////
+/////////하단링크 콤보박스 바인딩하기////////////
+//////////////////////////////////////////////
+// 1. 요구사항 - 콤보박스에 맞는 데이터를 바인딩
+// 2. 데이터 - linkData
+// 3. 대상선정 : 바인딩 할 콤보박스 #brand #corp
+const brandBox = domFn.qs('#brand');
+const corpBox = domFn.qs('#corp');
+// console.log(linkData,brandBox,corpBox);
+
+// 4. 데이터 바인딩하기
+// 4-1. 브랜드 바로가기 콤보박스 brandBox : 단순 바인딩(option)
+// 데이터 대상 : linkData.brand
+// 내부데이터 초기화
+brandBox.innerHTML ='';
+// 데이터 바인딩
+linkData.brand.forEach(val=>{
+  brandBox.innerHTML += `<option value="${val}">${val}</option>`;
+}); //////////forEach/////////////////////////
+
+// 4-2. 계열사 바로가기 콤보박스 corpBox : 복합 바인딩(optgroup>option)
+// 데이터는 객체형이므로 속성만 모아 배열로 변환하여 forEach를 사용한다!
+const corpData = Object.keys(linkData.corp);
+// console.log(corpData);
+// 내부데이터 초기화
+corpBox.innerHTML ='';
+/* <option value="${}">${}</option> */
+
+corpData.forEach(val=>{
+  corpBox.innerHTML += `
+  <optgroup label="${val}">
+    ${linkData.corp[val].map(v=>`<option value="${v}">${v}</option>`).join('')}
+  </optgroup>
+  `;
+}); //////////forEach/////////////////////////
+
+//내부의 option요소는 배열데이터 .map().join('')을 사용
+//map()은 배열을 재 구성하고 같은자리에 리턴하여 새로운 배열을 변수에 담거나
+//그 자리에 리턴한다. 이때, 배열값을 문자열 값으로 변환하는 join()을 사용하여
+//연결자를 빈값으로 처리하면 배열의 구분자 콤마가 없는 태그로만 연결 된 순수한
+//태그결과 문자열이 만들어 진다!

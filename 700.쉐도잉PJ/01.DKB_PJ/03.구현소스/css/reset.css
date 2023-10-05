@@ -47,3 +47,8 @@ h6 {
     /* 박스 디자인 시 글자크기로 인한
     영향을 없애기 위한 초기화 */
 }
+
+/* address 리셋 */
+address{
+    font-style: normal;
+}

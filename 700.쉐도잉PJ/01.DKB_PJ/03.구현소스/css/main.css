@@ -7,13 +7,6 @@
 @import url(./core.css);
 @import url(./common.css);
 
-/* 공사중 표시 */
-body * {
-  outline: 2px dashed #ccc;
-}
-body > div > * {
-  outline-color: red;
-}
 
 /* 개별영역 박스 -> 확장형박스로 만들기
 -> 개별영역 중앙 속 박스의 높이값을 주면
@@ -124,7 +117,7 @@ body > div > * {
   border: 1px solid #000;
   border-radius: 50%;
   text-align: center;
-  line-height: 32px;
+  line-height: 31px;
   font-size: 1.7rem;
 }
 /* 설명박스 */

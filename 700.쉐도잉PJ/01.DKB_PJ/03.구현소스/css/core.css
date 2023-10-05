@@ -54,7 +54,7 @@ body{
     /* 내부패딩 */
     padding: 0px;
     /* 임시로 보이게 */
-    border: 2px dotted blue;
+    /* border: 2px dotted blue; */
     /* 높이값이 속 박스에 있을 경우 채우기 셋팅
             높이값이 파티션박스에 있으면 안씀! */
     height: 100%;

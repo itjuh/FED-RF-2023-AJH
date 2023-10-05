@@ -3,6 +3,14 @@
 /* 도깨비 PJ : 공통 모듈 CSS - common.css*/
 /* 공유기능요소 셋팅을 위한 클래스 */
 
+/* 공사중 표시 */
+/* body * {
+    outline: 1px dashed #ccc;
+  }
+  body > div > * {
+    outline-color: red;
+  } */
+
 /******** 1. 상단영역 ***********/
 #header {
     /* background-color: lightblue; */
@@ -84,7 +92,7 @@
 aside.smbx {
     max-width: 1000px;
     margin: 0 auto;
-    outline: 4px solid #4600ff;
+    /* outline: 4px solid #4600ff; */
 }
 /* 서브메뉴 왼쪽타이틀 */
 .smbx h2 {
@@ -115,8 +123,77 @@ aside.smbx {
 }
 /******** 3. 하단영역 ***********/
 #footer {
-    background-color: lightcoral;
+    /* background-color: lightcoral; */
+    border-top: 1px solid #0000000d;
+    padding-top: 15px;
+    padding-bottom: 80px;
+    background: url(../images/footer_bg_tvn-pc.png) no-repeat center top/cover;
 }
-.footer .partbox {
+#footer::before {
+    content: '';
+    display: block;
+    position: relative;
+    top: 50px;
+    width: 100vw;
+    height: 1px;
+    background-color: #0000000d;
+}
+/* .footer .partbox {
+    강제 높이 설정 - 초기세팅용
     height: 100px;
+} */
+/* 하단링크박스 */
+.info-link ul {
+    display: flex;
+    gap: 0 20px;
+}
+.info-link a{
+    font-size: 1.3rem;
+    white-space: nowrap;
+    /* 줄바꿈 방지 */
+    line-height: 2.5;
+    /* 양쪽 밀기 */
+    color: #444;
+}
+/* 바로가기 콤보박스 영역 */
+.combo-area select{
+    float: right;
+    width: 170px;
+    height: 30px;
+    border-radius: 5px;
+    border: none;
+    background-color: rgb(0, 0, 0, 0.05);
+    font-size: 1.2rem;
+    margin-left: 10px;
+    padding: 5px 10px;
+}
+/* 하단로고박스 */
+.footer__logo{
+    padding: 20px 0;
+}
+/* 회사주소박스 */
+.corp-info {
+    font-size: 1.3rem;
+    line-height: 2;
+    color: #aaa;
+}
+.corp-info b {
+    color: #000;
+    font-weight: normal;
+}    
+/* SNS박스 */
+.sns-box ul{
+    display: flex;
+    gap: 0 10px;
+    justify-content: flex-end;
+}
+.sns-box li{
+    width: 40px;
+    height: 40px;
+    line-height: 44px;
+    font-size: 2.2rem;
+    text-align: center;
+    border-radius: 50%;
+    background-color:  rgb(0, 0, 0, 0.05);
+
 }
