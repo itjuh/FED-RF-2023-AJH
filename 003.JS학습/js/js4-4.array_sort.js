@@ -179,3 +179,118 @@ dFn.addEvt(selBox2,'change',function(){
     // 화면출력 -> 원본 배열의 정렬이 변경 됨
     showScreen2();
 }); ///////change이벤트 함수//////////////
+
+/////////////////////////////////////////////////
+// 3. 객체 데이터 배열의 정렬 ////////////////////
+
+// 1) 객체데이터
+const list1 = [
+    {
+        idx: 8,
+        tit: "나는 구누?",
+        cont: "공동구매) 슬로건 공구 (계좌와 네이버폼)",
+    },
+    {
+        idx: 4,
+        tit: "여기는 어디?",
+        cont: "총공 공지] 오늘부터 일 2회, 총공 진행합니다",
+    },
+    {
+        idx: 1,
+        tit: "나야나",
+        cont: "연합 갈라 서포트 계좌오픈",
+    },
+    {
+        idx: 15,
+        tit: "이제 얼마나 남은거니?",
+        cont: "음악프로그램에 출연 요청글도 써볼까요?",
+    },
+]; /////////////// list1 /////////////
+
+// 2) html 코드 생성하여 출력하는 함수 만들기
+const upCode = () => {
+    // 반복코드 만들기
+    // 대상코드 : 위에있는 list1 배열
+    let hcode = list1.map(val=>`
+        <tr>
+            <td>${val.idx}</td>
+            <td>${val.tit}</td>
+            <td>${val.cont}</td>
+        </tr>
+    `).join('');
+    console.log(hcode);
+    // 테이블 생성코드 넣기
+    showList3.innerHTML = `
+        <table>
+            <thead>
+                <tr>
+                    <th>번호</th>
+                    <th>제목</th>
+                    <th>내용</th>
+                </tr>
+            </thead>
+            <tbody>
+                ${hcode}
+            </tbody>
+        </table>
+    `;
+}; /////////upCode함수/////////////////
+
+// 3) 요소에 데이터 코드 넣기
+// 대상 : .showList3
+const showList3 = dFn.qs('.showList3');
+// 기본 테이블 모양 넣기
+upCode();
+
+// 4) 정렬변경 이벤트 발생 시 실제 정렬 변경하기
+// 이벤트 대상: .sel3(정렬옵션) .cta3(정렬기준)
+const sel3 = dFn.qs('.sel3');
+const cta3 = dFn.qs('.cta3');
+
+// 이벤트 등록
+dFn.addEvt(sel3,'change',sortingFn);
+dFn.addEvt(cta3,'change',sortingFn);
+
+// 정렬변경 함수 만들기
+function sortingFn(){
+    // 1. 선택값 담기
+    let optVal = this.value;
+    // console.log(this,'바꿔',isNaN(this.value),sel3.value);
+    // 2. 분기하기
+    if(isNaN(optVal) && sel3.value!=0){ // 정렬이 선택 된 상태에서 옵션 변경
+        // 정렬 기준 읽기
+        let otherOpt = sel3.value;
+        // 정렬 기준으로 분기
+        if(otherOpt==1){ //오름차순
+            list1.sort((a,b)=>{
+                // a,b는 모두 객체데이터 
+                // 따라서 내부 속성을 구체적으로 비교필요
+                // 정렬옵션이 optVal에 담기므로 해당으로 데이터 읽어오기
+                return a[optVal]==b[optVal]?0:a[optVal]>b[optVal]?1:-1;
+            });
+        }else{ // 내림차순
+            list1.sort((a,b)=>{
+                return a[optVal]==b[optVal]?0:a[optVal]>b[optVal]?-1:1;
+            });
+        }
+    }else if(!isNaN(optVal)){ // 정렬변경
+        // 정렬옵션 읽기
+        let otherOpt = cta3.value;
+        // 정렬 기준으로 분기(optVal)
+        if(optVal==1){ //오름차순
+            list1.sort((a,b)=>{
+                // a,b는 모두 객체데이터 
+                // 따라서 내부 속성을 구체적으로 비교필요
+                // 정렬옵션이 otherOpt에 담기므로 해당값으로 데이터 읽어오기
+                return a[otherOpt]==b[otherOpt]?0:a[otherOpt]>b[otherOpt]?1:-1;
+            });
+        }else{ // 내림차순
+            list1.sort((a,b)=>{
+                return a[otherOpt]==b[otherOpt]?0:a[otherOpt]>b[otherOpt]?-1:1;
+            });
+        }
+    }else{ // 정렬이 선택 되지 않은 상태에서 옵션 변경
+        alert('정렬을 선택해주세요!!');
+    }
+    upCode();
+} //////////////sortingFn함수////////////
