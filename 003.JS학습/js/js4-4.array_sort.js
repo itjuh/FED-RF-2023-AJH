@@ -260,7 +260,7 @@ function sortingFn(){
     if(isNaN(optVal) && sel3.value!=0){ // 정렬이 선택 된 상태에서 옵션 변경
         // 정렬 기준 읽기
         let otherOpt = sel3.value;
-        // 정렬 기준으로 분기
+        // 정렬 기준으로 분기(otherOpt)
         if(otherOpt==1){ //오름차순
             list1.sort((a,b)=>{
                 // a,b는 모두 객체데이터 
