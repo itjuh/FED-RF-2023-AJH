@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>키보드 배열 테스트용</title>
+    <style>
+        /* 키보드 구역 박스 */
+        .key-view-box{
+            width: 100vw;
+            height: 100vh;
+            outline: 1px dashed rgb(204, 204, 204);
+        }
+        /* 개별키 공통세팅 */
+        .key-basic{
+            /* 상단부 부모용 */
+            position: relative;
+            width: 56px;
+            height: 56px;
+            border: 1px solid #000;
+            background-color: rgb(204, 204, 204);
+            border-radius: 4px;
+        }
+        /* 개별키 상단 */
+        .key-top{
+            position: absolute;
+            top: 4px;
+            left: 7px;
+            width: 40px;
+            height: 40px;
+            border: 1px solid #bbb;
+            background-color: #fff;
+            border-radius: 3px;
+        }
+        /* .key-long1{
+
+        } */
+    </style>
+</head>
+<body>
+    <div class="key-view-box">
+        <div class="key-basic">
+            <div class="key-top"></div>
+        </div>
+    </div>
+</body>
+</html>

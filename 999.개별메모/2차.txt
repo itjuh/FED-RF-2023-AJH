@@ -29,3 +29,17 @@ https://www.i-boss.co.kr/ab-6141-60320
     https://xpressengine.github.io/XEIcon/library-2.3.3.html
     2)무료
     https://phosphoricons.com/
+키보드 배열레이아웃 에디터
+http://www.keyboard-layout-editor.com/#/samples/apple-wireless.json
+참고용https://m.cafe.daum.net/3bulsik/6CY8/325
+
+
+키보드 판매업체로 추구하고 싶은 내용
+    1) 기능적인 우수성 
+        - 체리스위치 사용
+        - 유무선 지원
+        - 흡음패드
+        - 자체개발 PBT 이중사출 키캡
+    2) 감각적인 색상
+    3) 키보드 배열
+

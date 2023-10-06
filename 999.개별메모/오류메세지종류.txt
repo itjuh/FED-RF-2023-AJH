@@ -53,3 +53,13 @@ Uncaught TypeError: frObj.forEach is not a function at js4-3.array_method.js:51:
 Uncaught TypeError: Cannot read properties of null (reading 'innerHTML')
 html script 구역을 head에 넣었을 때 document.body 가 null값이 뜨면서 발생한 오류
 스크립트 구역을 body안에 넣어서 해결 됨
+
+Minified React error #31;
+컴포넌트를 불러오는 과정에서 props의 값을 전달변수의 객체로 할당해 주지 않는 경우 발생
+컴포넌트에서 각 전달변수를 객체화 시키면 해결됨
+
+Uncaught Error: Minified React error #130;
+설치형이 아닌 CDN방식의 바벨은 호출셋업의 시차로 바로 모듈을 호출하면 에러가 발생한다!
+따라서 모듈을 사용할 파일을 아래와 같은 형식으로 메인 html 상단에 호출해 줘야만 한다!!!
+import로 호출한 JSX는 HTML에 등록한다(CDN에서만!!)
+<script src="모듈화한js" data-plugins="transform-es2015-modules-umd" type="text/babel"></script>

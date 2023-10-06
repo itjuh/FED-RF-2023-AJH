@@ -171,3 +171,8 @@ const myEle9 =(
 );
 // 아홉번째에 출력하기
 ReactDOM.render(myEle9,document.querySelectorAll('#root>div')[8]);
+// for(let i=2; i<10; i++){
+//     let x = 'myEle'+i;
+//     let y = document.querySelectorAll('#root>div')[i-1];
+//     ReactDOM.render(x,y);
+// }
