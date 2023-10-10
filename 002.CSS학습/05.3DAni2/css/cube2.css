@@ -208,6 +208,6 @@ body{
 /* 큐브회전 키프레임 */
 @keyframes cube-ani {
     to{
-        transform: rotateY(-360deg);
+        /* transform: rotateY(-360deg); */
     }
 }

@@ -36,7 +36,7 @@ body.on::after {
     left: 0;
     width: 120px;
     height: 80px;
-    outline: 2px dashed yellow;
+    /* outline: 2px dashed yellow; */
     /* 나간배경 숨기기 */
     overflow: hidden;
 }
@@ -59,6 +59,32 @@ body.on::after {
         left: -100%;
     }
 }
+/* 3-1.걷는존 */
+.spani1{
+    position: relative;
+    width: 36.8px;
+    aspect-ratio: 100/176;
+    margin: 0 auto;
+    margin-top: 10px;
+
+    background: url(../images/spAni03.png) no-repeat;
+    background-size: auto 100%;
+
+    /* 애니메이션: 이시이지반방마 */
+    animation: spani1 .9s steps(8) infinite;
+    /* outline: 5px solid red; */
+}
+
+/* 걷는존 키프레임 */
+@keyframes spani1 {
+    to{
+       background-position-x: -294.4px;
+    }
+    /* 배경이미지 x축 이동일 경우
+    줄였을때 이미지 전체 가로크기를
+    마이너스 값으로 써주면된다! */
+}
+
 
 /* 구글맵 지도박스 */
 .gmap{

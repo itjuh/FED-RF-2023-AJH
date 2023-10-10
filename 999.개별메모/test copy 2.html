@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>키보드 배열 테스트용</title>
+    <script></script>
+    <style>
+       /* 변수설정 */
+ :root {
+    /* 가로크기 */
+    --key-width: 56px;
+    /* 세로크기 */
+    --key-height: 56px;
+    /* 두께 */
+    --key-side: 37px;
+    /* 회전각도 */
+    --rotate-deg: 90deg;
+  }
+  .wrap {
+    /* 1. 화면고정필수(fixed) */
+    position: fixed;
+    /* 2. 화면과 같은 크기설정 */
+    width: 100vw;
+    height: 100vh;
+    /* 3. 스크롤 셋팅 */
+    overflow: auto;
+    /* 4. 원근설정 */
+    /* perspective: -151px; */
+  }
+  /* 겉박스 */
+  .test-box {
+    width: 100vw;
+    height: 50vh;
+    /* 3D 입체설정 */
+    transform-style: preserve-3d;
+    /* perspective: 59vh; */
+  }
+  /* 폰박스 */
+  .iphone {
+    /* 위치중앙: 50% 이동 후 크기절반 */
+    position: relative;
+    top: calc(50% - var(--key-height) / 2);
+    left: calc(50% - var(--key-width) / 2);
+    width: var(--key-width);
+    height: var(--key-height);
+    /* outline: 2px solid blue; */
+
+    /* 3D 입체설정 */
+    transform-style: preserve-3d;
+    /* 입체를 잘 보이게 약간 회전 */
+    /* transform-origin: 30px; */
+    transform: rotateX(348deg) rotateY(80deg);
+    /* 위에서보는거 */
+    /* transform: rotateX(360deg) rotateZ(0deg); */
+  }
+
+  /* 폰 단면 공통 */
+  .iphone span {
+    /* display: block; */
+    position: absolute;
+    width: 100%;
+    height: 100%;
+  }
+
+  /* 앞면 */
+  /* .iphone span:nth-child(1) {
+    background-color: red;
+    opacity: 0.5;
+    width: 72.5%;
+    height: 72.5%;
+    left: 14%;
+    top: 14%;
+    transform: translateZ(17px);
+  } */
+  .iphone span:nth-child(1) {
+    background-color: red;
+    opacity: 0.5;
+    width: 72.5%;
+    height: 72.5%;
+    top: calc((var(--key-height) - var(--key-height)*0.725)/2);
+    left: calc((var(--key-height) - var(--key-height)*0.725)/2);
+    
+    /* z축 밀기 */
+    transform:
+    translateZ(36px);
+  }
+  /* 오른쪽면 */
+  .iphone span:nth-child(2) {
+    background-color: blue;
+    opacity: 0.5;
+    width: var(--key-side);
+    right: calc(var(--key-side) / 2 * -1);
+    /* y축 회전 */
+    transform-origin: top;
+    transform: rotateY(78.3deg) translateX(-18.4px);
+    clip-path: polygon(100% 0%, 100% 100%, 0% 86.6%,0% 13.4%);
+  }
+  /* 왼쪽면 */
+  .iphone span:nth-child(3) {
+    background-color: blue;
+    opacity: 0.5;
+    width: var(--key-side);
+    left: calc(var(--key-side) / 2 * -1);
+    clip-path: polygon(100% 13.4%, 100% 86.6%, 0% 100%, 0% 0%);
+
+    /* y축 회전 */
+    transform: rotateY(-78.3deg) translateX(18.4px);
+    /* display: none; */
+  }
+  /* 윗면 */
+  .iphone span:nth-child(4) {
+    background-color: blue;
+    opacity: 0.5;
+    height: var(--key-side);
+    top: calc(var(--key-side) / 2 * -1);
+    clip-path: polygon(100% 0%, 86.6% 100%, 13.4% 100%,0% 0%);
+
+    /* y축 회전 */
+    transform: rotateX(78.3deg) translateY(18.4px);
+    /* display: none; */
+  }
+  /* 아랫면 */
+  .iphone span:nth-child(5) {
+    background-color: blue;
+    opacity: 0.5;
+    height: var(--key-side);
+    bottom: calc(var(--key-side) / 2 * -1);
+    clip-path: polygon(86.6% 0%, 100% 100%, 0% 100% ,13.4% 0%);
+    /* y축 회전 */
+    transform: rotateX(-78.3deg) translateY(-18.4px);
+    /* display: none; */
+  }
+  /* 뒷면 */
+  .iphone span:nth-child(6) {
+    background-color: gray;
+    opacity: 0.5;
+    /* z축 밀기 */
+    /* transform: translateZ(-19px); */
+  }
+    </style>
+  </head>
+  <body>
+        <div class="wrap">
+        <span></span>
+      <div class="test-box">
+        <!-- 폰박스 -->
+        <div class="iphone ip-ani">
+          <span class="span1">앞</span>
+          <span class="span2">옆1</span>
+          <span class="span3">옆2</span>
+          <span class="span4">옆3</span>
+          <span class="span5">옆4</span>
+          <span class="span6">뒤</span>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
