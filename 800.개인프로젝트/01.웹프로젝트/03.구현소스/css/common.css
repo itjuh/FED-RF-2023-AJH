@@ -193,6 +193,7 @@
     margin: 0 auto;
     margin-top: 100px;
 }
+/* 메인영역 이미지 오버 클래스 */
 .img-hover{
     transform:scale(1.2);
 }

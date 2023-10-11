@@ -48,4 +48,12 @@ touchend
 touchmove
 e.touches[0].screenX
 e.touches[0].screenY
-...5교시...
+...5,6교시...
+리액트 이벤트
+onMouseOver={()=>{}} : 리액트의 jsx문법을 작성하는 구간에서 작성하는것임
+html에 작성하는 것이 아님!
+
+...7교시...
+일반함수 : return없음
+컴포넌트 :return무조건!
+보그PJ

@@ -50,6 +50,11 @@
         /* 3D 입체설정 */
         transform-style: preserve-3d;
       }
+      /* 키 클릭 시 */
+      .key.on {
+        transition: .2s;
+        transform: translateZ(-20px);
+      }
       /* 키 단면 공통 */
       .key span {
         position: absolute;
@@ -150,6 +155,7 @@
     </style>
   </head>
   <body>
+    
     <div class="wrap">
       <div class="test-box">
         <!-- 키박스 -->
