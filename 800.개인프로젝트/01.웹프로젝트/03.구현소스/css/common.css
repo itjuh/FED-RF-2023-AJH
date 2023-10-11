@@ -193,6 +193,9 @@
     margin: 0 auto;
     margin-top: 100px;
 }
+.img-hover{
+    transform:scale(1.2);
+}
 /* .main.inbox h2{
     position: absolute;
 } */

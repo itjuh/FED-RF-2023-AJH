@@ -109,122 +109,10 @@
       .ctrl {
         width: 72px;
       }
-      .wrap {
-        /* 1. 화면고정필수(fixed) */
-        position: fixed;
-        /* 2. 화면과 같은 크기설정 */
-        width: 100vw;
-        height: 100vh;
-        /* 3. 스크롤 셋팅 */
-        overflow: auto;
-        /* 4. 원근설정 */
-        perspective: -151px;
-      }
-      /* 겉박스 */
-      .test-box {
-        width: 100vw;
-        height: 50vh;
-        /* 3D 입체설정 */
-        transform-style: preserve-3d;
-        /* perspective: 59vh; */
-      }
-      /* 폰박스 */
-      .iphone {
-        /* 위치중앙: 50% 이동 후 크기절반 */
-        position: absolute;
-        top: calc(50% - var(--key-height) / 2);
-        left: calc(50% - var(--key-width) / 2);
-        width: var(--key-width);
-        height: var(--key-height);
-        /* outline: 2px solid blue; */
-
-        /* 3D 입체설정 */
-        transform-style: preserve-3d;
-        /* 입체를 잘 보이게 약간 회전 */
-        /* transform-origin: 30px; */
-        transform: rotateX(348deg) rotateY(80deg);
-      }
-
-      /* 폰 단면 공통 */
-      .iphone span {
-        position: absolute;
-        width: 100%;
-        height: 100%;
-      }
-
-      /* 앞면 */
-      /* .iphone span:nth-child(1) {
-        background-color: red;
-        opacity: 0.5;
-        width: 72.5%;
-        height: 72.5%;
-        left: 14%;
-        top: 14%;
-        transform: translateZ(17px);
-      } */
-      .iphone span:nth-child(1) {
-        background-color: red;
-        opacity: 0.5;
-        width: 72.5%;
-        height: 72.5%;
-        left: 14%;
-        top: 14%;
-        /* z축 밀기 */
-        transform: translateZ(17px);
-      }
-      /* 오른쪽면 */
-      .iphone span:nth-child(2) {
-        background-color: blue;
-        opacity: 0.5;
-        width: var(--key-side);
-        right: calc(var(--key-side) / 2 * -1);
-        /* y축 회전 */
-        transform-origin: top;
-        transform: rotateY(78deg) translateZ(-4px);
-        clip-path: polygon(100% 0%, 100% 100%, 0% 86%,0% 14%);
-      }
-      /* 왼쪽면 */
-      .iphone span:nth-child(3) {
-        background-color: blue;
-        opacity: 0.5;
-        width: var(--key-side);
-        left: calc(var(--key-side) / 2 * -1);
-
-        /* y축 회전 */
-        transform: rotateY(-78deg) translateZ(-4px);
-      }
-      /* 윗면 */
-      .iphone span:nth-child(4) {
-        background-color: blue;
-        opacity: 0.5;
-        height: var(--key-side);
-        top: calc(var(--key-side) / 2 * -1);
-
-        /* y축 회전 */
-        transform: rotateX(78deg) translateZ(-4px);
-      }
-      /* 아랫면 */
-      .iphone span:nth-child(5) {
-        background-color: blue;
-        opacity: 0.5;
-        height: var(--key-side);
-        bottom: calc(var(--key-side) / 2 * -1);
-
-        /* y축 회전 */
-        transform: rotateX(-78deg) translateZ(-4px);
-      }
-      /* 뒷면 */
-      .iphone span:nth-child(6) {
-        background-color: gray;
-        opacity: 0.5;
-        /* z축 밀기 */
-        transform: translateZ(-19px);
-      }
     </style>
   </head>
   <body>
     <div class="key-view-box">
-        <div class="test"></div>
       <div class="key-part">
         <div class="key-top">
           <aside class="part1">Esc</aside>
@@ -234,20 +122,6 @@
         <div></div>
         <div></div>
         <div></div>
-      </div>
-    </div>
-    <div class="wrap">
-        <span></span>
-      <div class="test-box">
-        <!-- 폰박스 -->
-        <div class="iphone ip-ani">
-          <span></span>
-          <span></span>
-          <span></span>
-          <span></span>
-          <span></span>
-          <span></span>
-        </div>
       </div>
     </div>
   </body>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>07.드래그기본</title>
+    <!-- 드래그 JS -->
+    <script type="module" src="./js/drag.js"></script>
+    <style>
+        body{
+            height: 100vh;
+            background: url(../images/dragbg.jpg) center top/auto 100%;
+        }
+        .dtg{
+            position: relative;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background-color: #f00;
+        }
+        .dtg1{
+            background: url(../images/drag1.jpg) no-repeat center top/cover;
+            cursor: grab;
+        }
+        .dtg2{
+            background: url(../images/drag2.jpg) no-repeat center center/cover;
+            cursor: grab;
+        }
+        .dtg3{
+            background: url(../images/drag3.jpg) no-repeat center center/cover;
+            cursor: grab;
+        }
+        @media screen and (max-width:500px) {
+            .dtg{
+                transform: scale(0.7);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="dtg dtg1"></div>
+    <div class="dtg dtg2"></div>
+    <div class="dtg dtg3"></div>
+</body>
+</html>
