@@ -9,6 +9,11 @@ import targetAddEvt from "./drag.js";
 // footer영역 실행
 startFooterFn();
 
+// 달력 가져오기
+import makeCalendar from "./calendar.js";
+// 달력 만들기
+makeCalendar();
+
 ////////////////////단계이동//////////////////////
 // 변경대상 : .proceed-list
 // 변경 : transform: translateX(pageNum * -100%);

@@ -64,6 +64,8 @@ body *{
     --co-ongreen : rgb(87, 98, 82);
     --co-onlightgreen: rgb(126, 136, 121);
     --co-onbeige : rgb(252, 232, 206);
+    --sat-color: #eafc86;/*토요일 배경색*/
+    --sun-color: #d6eaff;/*일요일 배경색*/
 }
 /* IR 숨기기 class */
 .ir{
