@@ -1,6 +1,12 @@
 @charset "utf-8";
 /* 제이쿼리 기본 CSS - main.css */
 
+/* 웹폰트 CDN */
+@import url('https://fonts.googleapis.com/css2?family=Gugi&family=Noto+Sans+KR:wght@400;500&display=swap');
+/* 
+    font-family: 'Noto Sans KR', sans-serif;
+    font-family: 'Gugi', cursive;
+*/
 html,
 body {
     margin: 0;
@@ -13,6 +19,13 @@ body {
     background: url(../images/bg2.jpg) no-repeat center/cover;
 }
 
+span, h1, li{
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+button {
+    font-family: 'Gugi', cursive;
+}
 /* 타이틀 */
 .tit {
     position: absolute;
@@ -138,7 +151,7 @@ body {
         transform: rotate(10deg);
     }
 }
-
+/* 좀비 */
 .mz {
     position: absolute;
     bottom: 0;
@@ -146,7 +159,6 @@ body {
     height: 100%;
     animation: runMi .1s infinite alternate;
 }
-
 .inj{
     position: absolute;
     bottom: 0;
@@ -166,9 +178,11 @@ body {
 
 .btns>button {
     padding: 20px;
-    background-color: rgb(255, 182, 239);
+    background-color: cornflowerblue;
+    border: 1px solid blue;
+    border-radius: 30px;
     font-size: 3vh;
-    border-radius: 50px;
+    color: white;
     cursor: pointer;
 }
 

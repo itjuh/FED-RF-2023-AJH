@@ -4,6 +4,8 @@
 import startFooterFn from "./footer.js";
 // dom 가져오기
 import domFn from "./dom.js";
+// drag 가져오기
+import targetAddEvt from "./drag.js";
 // footer영역 실행
 startFooterFn();
 
@@ -213,10 +215,13 @@ const calBox = domFn.qs(".calendar-box");
 const timeBox = domFn.qs(".timer");
 
 // 2. 이벤트 설정하기
+// 2-1. 달력열기
 domFn.addEvt(dayTime, "click", popOpen);
+// 2-2. 시간열기
 calBtn.forEach((ele) => {
   domFn.addEvt(ele, "click", popOpen);
 });
+// 2-3. 시간닫기
 timeBtn.forEach((ele) => {
   domFn.addEvt(ele, "click", popOpen);
 });

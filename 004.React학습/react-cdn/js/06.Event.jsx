@@ -98,7 +98,7 @@ function EventShow(){
         // 1. 페라리구역 선택
         let ferrari = document.querySelector('#ferrari');
         // 2. 페라리 넣기
-        ReactDOM.render(<MakeImg isrc='https://www.pngplay.com/wp-content/uploads/13/Ferrari-458-Transparent-PNG.png'
+        ReactDOM.render(<MakeImg isrc='./images/ferrari.png'
          ialt='페라리레드' info='true' idnm='car' tit='클릭하면 시운전해요!'/>, ferrari);
         
         // 3. 페라리 시운전 이벤트주기
