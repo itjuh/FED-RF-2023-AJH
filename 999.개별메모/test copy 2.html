@@ -9,8 +9,24 @@
       :root {
         /* 가로크기 */
         --key-width: 56px;
+        /* 가로 size0 : tap,\*/
+        --key-width0: 112px;
+        /* 가로 size1 : tap,\*/
+        --key-width1: 86px;
+        /* 가로 size2 : caps */
+        --key-width2: 100px;
+        /* 가로 size3 : L-shift,enter */
+        --key-width3: 130px;
+        /* 가로 size4 : R-shift */
+        --key-width4: 154px;
+        /* 가로 size5 : fn */
+        --key-width5: 72px;
+        /* 가로 size6 : space */
+        --key-width6: 358px;
         /* 세로크기 */
         --key-height: 56px;
+        /* 키상단 갭 */
+        --key-top-gap: 7.25px;
         /* 두께 */
         --key-side: 37px;
         /* 회전각도 */
@@ -50,6 +66,37 @@
         /* 3D 입체설정 */
         transform-style: preserve-3d;
       }
+      /* 공백키 */
+      .key.blank{
+        position: relative;
+        top: calc(50% - var(--key-height) / 2);
+        left: calc(50% - var(--key-width) / 2);
+        width: calc(var(--key-width)/2);
+        height: var(--key-height);
+      }
+      /* 개별키 */
+      /* 사이즈1 */
+      .key.size0 {
+        width: var(--key-width0);
+      }
+      .key.size1 {
+        width: var(--key-width1);
+      }
+      .key.size2 {
+        width: var(--key-width2);
+      }
+      .key.size3 {
+        width: var(--key-width3);
+      }
+      .key.size4 {
+        width: var(--key-width4);
+      }
+      .key.size5 {
+        width: var(--key-width5);
+      }
+      .key.size6 {
+        width: var(--key-width6);
+      }
       /* 키 클릭 시 */
       .key.on {
         transition: .2s;
@@ -65,10 +112,11 @@
       .key span:nth-child(1) {
         background-color: #ccc;
         opacity: 0.9;
-        width: 73.5%;
-        height: 73.5%;
-        top: calc((var(--key-height) - var(--key-height) * 0.735) / 2);
-        left: calc((var(--key-height) - var(--key-height) * 0.735) / 2);
+        width: calc(100% - var(--key-top-gap)*2);
+        height: calc(var(--key-height) - var(--key-top-gap)*2);
+        top: var(--key-top-gap);
+        left: var(--key-top-gap);
+        /* left: calc((var(--key-height) - var(--key-height) * 0.735) / 2); */
         border-radius: 1px;
 
         /* z축 밀기 */
@@ -83,7 +131,7 @@
         /* y축 회전 */
         transform-origin: top;
         transform: rotateY(78.3deg) translateX(-18.4px);
-        clip-path: polygon(100% 0%, 100% 100%, 0% 86.6%, 0% 13.4%);
+        clip-path: polygon(100% 0%, 100% 100%, 0% calc(100% - var(--key-top-gap)), 0% var(--key-top-gap));
       }
       /* 왼쪽면 */
       .key span:nth-child(3) {
@@ -91,7 +139,7 @@
         opacity: 0.5;
         width: var(--key-side);
         left: calc(var(--key-side) / 2 * -1);
-        clip-path: polygon(100% 13.4%, 100% 86.6%, 0% 100%, 0% 0%);
+        clip-path: polygon(100% var(--key-top-gap), 100% calc(100% - var(--key-top-gap)), 0% 100%, 0% 0%);
 
         /* y축 회전 */
         transform: rotateY(-78.3deg) translateX(18.4px);
@@ -103,7 +151,7 @@
         opacity: 0.5;
         height: var(--key-side);
         top: calc(var(--key-side) / 2 * -1);
-        clip-path: polygon(100% 0%, 86.6% 100%, 13.4% 100%, 0% 0%);
+        clip-path: polygon(100% 0%, calc(100% - var(--key-top-gap)) 100%, var(--key-top-gap) 100%, 0% 0%);
 
         /* y축 회전 */
         transform: rotateX(78.3deg) translateY(18.4px);
@@ -115,7 +163,7 @@
         opacity: 0.5;
         height: var(--key-side);
         bottom: calc(var(--key-side) / 2 * -1);
-        clip-path: polygon(86.6% 0%, 100% 100%, 0% 100%, 13.4% 0%);
+        clip-path: polygon(calc(100% - var(--key-top-gap)) 0%, 100% 100%, 0% 100%, var(--key-top-gap) 0%);
         /* y축 회전 */
         transform: rotateX(-78.3deg) translateY(-18.4px);
       }
@@ -179,8 +227,11 @@
           <!-- 키 맨뒷면 -->
           <span class="span6"></span>
         </div>
+        <!-- 키빈칸 -->
+        <div class="key blank">
+        </div>
         <!-- 키박스 -->
-        <div class="key">
+        <div class="key size1">
           <!-- 키 윗면 -->
           <span class="span1 key-part">
             <!-- 키 윗면 글자부분 -->
@@ -200,12 +251,12 @@
           <span class="span6"></span>
         </div>
         <!-- 키박스 -->
-        <div class="key">
+        <div class="key size6">
           <!-- 키 윗면 -->
           <span class="span1 key-part">
             <!-- 키 윗면 글자부분 -->
             <div class="key-top">
-              <aside class="part1">Esc</aside>
+              <aside class="part1"></aside>
             </div>
           </span>
           <!-- left -->

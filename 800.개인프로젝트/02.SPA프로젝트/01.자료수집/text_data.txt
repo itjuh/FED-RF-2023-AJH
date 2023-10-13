@@ -30,230 +30,132 @@ E-MAILwebmaster@leopold.co.kr
 입금계좌국민은행 477401-01-100878
 예금주레오폴드(주)
 
+FC900RBT PD 코랄 블루	,	178,000원	,	keyboard1
+FC750RBT PD 코랄 블루	,	175,000원	,	keyboard2
+FC900RBT PD 밀크 터쿼이즈	,	178,000원	,	keyboard3
+FC750RBT PD 밀크 터쿼이즈	,	175,000원	,	keyboard4
+FC900RBT PD 그레이 블루	,	178,000원	,	keyboard5
+FC750RBT PD 그레이 블루	,	175,000원	,	keyboard6
+FC900RBT PD 화이트 투톤	,	178,000원	,	keyboard7
+FC750RBT PD 화이트 투톤	,	175,000원	,	keyboard8
+FC900RBT PD 그레이 퍼플	,	178,000원	,	keyboard9
+FC750RBT PD 그레이 퍼플	,	175,000원	,	keyboard10
+FC900RBT PD 라이트 핑크	,	178,000원	,	keyboard11
+FC750RBT PD 라이트 핑크	,	175,000원	,	keyboard12
+FC900RBT PD 화이트 민트	,	178,000원	,	keyboard13
+FC750RBT PD 화이트 민트	,	175,000원	,	keyboard14
+FC900RBT PD 화이트 그레이	,	178,000원	,	keyboard15
+FC750RBT PD 화이트 그레이	,	175,000원	,	keyboard16
+FC900RBT PD 다크 블루	,	178,000원	,	keyboard17
+FC750RBT PD 다크 블루	,	175,000원	,	keyboard18
+FC900RBT PD 차콜 블루	,	178,000원	,	keyboard19
+FC750RBT PD 차콜 블루	,	175,000원	,	keyboard20
+FC900RBT PD 애쉬 옐로우	,	178,000원	,	keyboard21
+FC750RBT PD 애쉬 옐로우	,	175,000원	,	keyboard22
+FC900RBT PD 화이트 블루스타	,	178,000원	,	keyboard23
+FC750RBT PD 화이트 블루스타	,	175,000원	,	keyboard24
+FC900RBT PD 블랙	,	178,000원	,	keyboard25
+FC750RBT PD 블랙	,	175,000원	,	keyboard26
+FC900RBT PD 스웨디시 화이트	,	178,000원	,	keyboard27
+FC750RBT PD 스웨디시 화이트	,	175,000원	,	keyboard28
+NP900RBT PD 화이트 투톤	,	178,000원	,	keyboard29
+NP900RBT PD 차콜 블루	,	178,000원	,	keyboard30
+NP900RBT PD 그레이 블루	,	178,000원	,	keyboard31
+NP750RBT PD 그레이 블루	,	175,000원	,	keyboard32
+FC980MBT PD 화이트 투톤	,	182,500원	,	keyboard33
+FC980MBT PD 화이트 블루스타	,	182,500원	,	keyboard34
+FC980MBT PD 애쉬 옐로우	,	182,500원	,	keyboard35
+FC980MBT PD 그레이 블루	,	182,500원	,	keyboard36
+FC980M PD 화이트 투톤	,	155,000원	,	keyboard37
+FC980M PD 화이트 블루스타	,	155,000원	,	keyboard38
+FC980M PD 애쉬 옐로우	,	155,000원	,	keyboard39
+FC980M PD 블랙	,	155,000원	,	keyboard40
+FC980M PD 그레이 블루	,	155,000원	,	keyboard41
+FC980C 화이트	,	265,000원	,	keyboard42
+FC900R PD 화이트 투톤	,	149,500원	,	keyboard43
+FC900R PD 화이트 그레이	,	149,500원	,	keyboard44
+FC900R PD 블랙	,	149,500원	,	keyboard45
+FC900R PD 다크 블루	,	149,500원	,	keyboard46
+FC900R PD 그레이 블루	,	149,500원	,	keyboard47
+FC900R OE 블랙 퍼플	,	149,500원	,	keyboard48
+
+"" ,"part1" , "Esc"
+"blank" ,"" , ""
+"blank" ,"" , ""
+"" ,"part1" , "F1"
+"" ,"part1" , "F2"
+"" ,"part1" , "F3"
+"" ,"part1" , "F4"
+"blank" ,"" , ""
+"" ,"part1" , "F5"
+"" ,"part1" , "F6"
+"" ,"part1" , "F7"
+"" ,"part1" , "F8"
+"blank" ,"" , ""
+"" ,"part1" , "F9"
+"" ,"part1" , "F10"
+"" ,"part1" , "F11"
+"" ,"part1" , "F12"
+
+"" , "part2" , [~,`]
+"" , "part2" , [!,1]
+"" , "part2" , [@,2]
+"" , "part2" , [#,3]
+"" , "part2" , [$,4]
+"" , "part2" , [%,5]
+"" , "part2" , [^,6]
+"" , "part2" , [&,7]
+"" , "part2" , [*,8]
+"" , "part2" , [(,9]
+"" , "part2" , [),0]
+"" , "part2" , [-,_]
+"" , "part2" , [+,=]
+"size0" , "part1" , "Backspace"
+"size1" , "part1" , "Tab"
+"" , "part1" , "Q"
+"" , "part1" , "W"
+"" , "part1" , "E"
+"" , "part1" , "R"
+"" , "part1" , "T"
+"" , "part1" , "Y"
+"" , "part1" , "U"
+"" , "part1" , "I"
+"" , "part1" , "O"
+"" , "part1" , "P"
+"" , "part2" , [{,[]
+"" , "part2" , [},]}
+"size1" , "part2" , [|,\]
+"size2" , "part1" , "CapsLock"
+"" , "part1" , "A"
+"" , "part1" , "S"
+"" , "part1" , "D"
+"" , "part1" , "F"
+"" , "part1" , "G"
+"" , "part1" , "H"
+"" , "part1" , "J"
+"" , "part1" , "K"
+"" , "part1" , "L"
+"" , "part2" , [:,;]
+"" , "part2" , [",']
+"size3" , "part1" , "Enter"
+"size3" , "part1" , "Shift"
+"" , "part1" , "Z"
+"" , "part1" , "X"
+"" , "part1" , "C"
+"" , "part1" , "V"
+"" , "part1" , "B"
+"" , "part1" , "N"
+"" , "part1" , "M"
+"" , "part2" , [<,,]
+"" , "part2" , [>,.]
+"" , "part2" , [?,/]
+"size4" , "part1" , "Shift"
+"size5" , "part1" , "Ctrl"
+"size5" , "part1" , "Win"
+"size5" , "part1" , "Alt"
+"size6"	,   ""    , "SpaceBar"
+"size5" , "part1" , "Alt"
+"size5" , "part1" , "Fn"
+"size5" , "part1" , "Win"
+"size5" , "part1" , "Ctrl"
 
-
-
-FC900RBT PD 코랄 블루
-178,000원
-
-FC750RBT PD 코랄 블루
-175,000원
-
-FC900RBT PD 밀크 터쿼이즈
-178,000원
-
-FC750RBT PD 밀크 터쿼이즈
-175,000원
-
-FC900RBT PD 그레이 블루
-178,000원
-
-FC750RBT PD 그레이 블루
-175,000원
-
-FC900RBT PD 화이트 투톤
-178,000원
-
-FC750RBT PD 화이트 투톤
-175,000원
-
-FC900RBT PD 그레이 퍼플
-178,000원
-
-FC750RBT PD 그레이 퍼플
-175,000원
-
-FC900RBT PD 라이트 핑크
-178,000원
-
-FC750RBT PD 라이트 핑크
-175,000원
-
-FC900RBT PD 화이트 민트
-178,000원
-
-FC750RBT PD 화이트 민트
-175,000원
-
-FC900RBT PD 화이트 그레이
-178,000원
-
-FC750RBT PD 화이트 그레이
-175,000원
-
-FC900RBT PD 다크 블루
-178,000원
-
-FC750RBT PD 다크 블루
-175,000원
-
-FC900RBT PD 차콜 블루
-178,000원
-
-FC750RBT PD 차콜 블루
-175,000원
-
-FC900RBT PD 애쉬 옐로우
-178,000원
-
-FC750RBT PD 애쉬 옐로우
-175,000원
-
-FC900RBT PD 화이트 블루스타
-178,000원
-
-FC750RBT PD 화이트 블루스타
-175,000원
-
-FC900RBT PD 블랙
-178,000원
-
-FC750RBT PD 블랙
-175,000원
-
-FC900RBT PD 스웨디시 화이트
-178,000원
-
-FC750RBT PD 스웨디시 화이트
-175,000원
-
-NP900RBT PD 화이트 투톤
-178,000원
-
-NP900RBT PD 차콜 블루
-178,000원
-
-NP900RBT PD 그레이 블루
-178,000원
-
-NP750RBT PD 그레이 블루
-175,000원
-
-FC980M PD 화이트 투톤
-155,000원
-
-FC980M PD 화이트 블루스타
-155,000원
-
-FC980M PD 애쉬 옐로우
-155,000원
-
-FC980M PD 블랙
-155,000원
-
-FC980M PD 그레이 블루
-155,000원
-
-FC980C 화이트
-265,000원
-
-FC900R PD 화이트 투톤
-149,500원
-
-FC900R PD 화이트 그레이
-149,500원
-
-FC900R PD 블랙
-149,500원
-
-FC900R PD 다크 블루
-149,500원
-
-FC900R PD 그레이 퍼플
-149,500원
-
-FC900R PD 그레이 블루
-149,500원
-
-FC900R OE 블랙 퍼플
-149,500원
-
-FC900R OE 그레이 블루
-149,500원
-
-FC750R PD 화이트 블루스타
-147,500원
-
-FC750R PD 그레이 퍼플
-147,500원
-
-FC750R PD 그레이 블루
-147,500원
-
-FC750R OE 블랙 퍼플
-147,500원
-
-FC750R OE 그레이 블루
-147,500원
-
-FC660MBT PD 화이트 투톤
-146,000원
-
-FC660MBT PD 화이트 그레이
-146,000원
-
-FC660MBT PD 코랄 블루
-146,000원
-
-FC660MBT PD 애쉬 옐로우
-146,000원
-
-FC660MBT PD 스웨디시 화이트
-146,000원
-
-FC660MBT PD 라이트 핑크
-146,000원
-
-FC660MBT PD 그레이 블루
-146,000원
-
-FC660M PD 화이트 투톤
-125,000원
-
-FC660M PD 화이트 블루스타
-125,000원
-
-FC660M PD 애쉬 옐로우
-125,000원
-
-FC660M PD 스웨디시 화이트
-125,000원
-
-FC660M PD 블랙
-125,000원
-
-FC660M PD 라이트 핑크
-125,000원
-
-FC660M PD 그레이 블루
-125,000원
-
-FC660M OE 라이트 핑크
-125,000원
-
-FC650MDSBT PD 그레이 블루
-154,000원
-
-FC650MDS PD 화이트 블루스타
-134,000원
-
-FC650MDS PD 패럿
-134,000원
-
-FC650MDS PD 라이트 핑크
-134,000원
-
-FC650MDS PD 그레이 블루
-134,000원
-
-FC210TP PD 블랙
-50,000원
-
-FC650MDS PD 라이트 핑크
-134,000원
-
-FC650MDS PD 그레이 블루
-134,000원
-
-FC210TP PD 블랙
-50,000원

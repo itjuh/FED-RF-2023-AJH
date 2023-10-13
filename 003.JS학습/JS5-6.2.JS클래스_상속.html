@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JS5-5.6.2 JS클래스 상속 + 겟터,셋터</title>
+    <style>
+      ol,li {
+        list-style: none;
+      }
+    </style>
+    <script>
+      /********************************************** 
+        [ JS 클래스 상속 ]
+        1. 클래스 상속은 extends 키워드 사용
+        2. 클래스 상속으로 생성 된 자식 클래스는 
+        부모 클래스의 모든 속성과 메서드를 상속한다!
+        3. 상속은 코드를 재사용하는 대표적인 방법이다!
+
+        [ super() 메서드 ]
+        1. 부모 클래스를 참조한다.
+        2. 부모 생성자 메서드를 호출한다.
+        3. 부모 클래스의 속성과 메서드에 접근 가능하다.
+        4. 부모 클래스의 메서드를 선별적으로 가져올 수 있다.
+        -> super.부모메서드()
+        -> 부모 메서드 호출시엔 super키워드만 사용함!
+
+      ___________________________________________________
+
+        [ 겟터와 셋터 ]
+        1. 클래스의 특정속성에 대하여 겟터와 셋터를 설정할 수 있다.
+        2. 겟터(Getter) : 값을 리턴함
+            get 겟터명(){
+              return this.속성변수
+            }
+        3. 셋터(Setter) : 값을 셋팅함
+            set 셋터명(전달변수){
+              this.속성변수 = 전달변수
+            }
+        4. 값의 호출 : 겟터명을 변수호출함
+        5. 값의 셋팅 : 셋터변수에 할당함
+
+        (주의사항)
+        -> 겟터명과 셋터명은 동일함
+        -> 사용시 변수처럼 사용함(소괄호없음)
+        -> 호출시엔 본래 클래스 맴버 속성을 사용할 수 있음
+        -> 값셋팅은 셋터를 사용함(원본에 할당도 가능함)
+        -> 겟터,셋터 사용목적은 값에 대한 유효성 검사임!
+      _______________________________________________
+
+        [ 상속 모델 시나리오 ]
+        1. 영화진흥위원회에서 전체 영화정보에 대한 기준을 
+        마련하여 클래스로 공개를 했다.
+        2. 각 영화상영관 사이트에서 이 기준을 따르기로 하고
+        클래스를 상속한다!
+        3. 각 상영관은 자신에 맞는 별도의 속성과 메서드를
+        구현하여 사용한다!
+      
+      **********************************************/
+
+      /***************************************
+       ** 영화진흥위원회 부모클래스 *************
+       ***************************************/
+      class MovieInfo {
+        // 생성자 메서드 : 주로 속성만 세팅
+        constructor(pos, tit, sum, dir, act, des) {
+          // 전달값 변수가 왼쪽의 생성자가 됨
+          // 속성 6가지 세팅
+          this.포스터 = pos;
+          this.제목 = tit;
+          this.개요 = sum;
+          this.감독 = dir;
+          this.출연 = act;
+          this.문구 = des;
+        } //////// 생성자 메서드 //////////
+
+        // 공통적으로 사용하는 메서드
+        공통메서드(txt) {
+          // txt 전달변수는 응원 메세지 받기
+          return `
+                <br>영화 ${this.제목}의 
+                ${this.감독}감독님<br>
+                ${txt}~~.
+            `;
+        } /////// 공통메서드 메서드 //////////
+      } //////// MovieInfo class ///////////
+
+      ////////// CGV영화 상영관클래스 //////////
+      class CGV extends MovieInfo {
+        // 속성세팅 생성자 메서드는 필수!
+        // 기본적으로 부모 생성자 메서드 전달변수 사용
+        constructor(pos, tit, sum, dir, act, des, msg, num) {
+          // msg, num전달변수는 CGV전용!
+          // super() 메서드 : 부모생성자 메서드 호출
+          super(pos, tit, sum, dir, act, des);
+          // CGV만의 개별적인 속성 만들기
+          this.극장안내 = msg;
+          this.수용인원 = num;
+        } ///////////생성자 메서드/////////
+
+        // CGV만의 메서드 만들기 ///////////
+        showCGV(txt) {
+          // 전달변수를 부모 메서드에 전달
+          return super.공통메서드(txt) + `<br>` + this.극장안내;
+        } ////// showCGV 메서드 ///////////
+
+        // 게터, 세터 만들기///////////////
+        // 목적 : 수용인원 속성값에 대한 유효성검사 및 캡슐화
+        get people() {
+          return this.수용인원;
+        } //// getter ///
+        set people(num) {
+          //수용인원 숫자 데이터
+          // 전달 값 유효성 검사하기
+          if (isNaN(num)) {
+            // 숫자가 아닌 값이면
+            console.log("데이터가 업데이트 되지 않았습니다.");
+            return;
+          } //// if /////
+          this.수용인원 = num;
+          console.log("데이터가 업데이트 되었습니다.");
+        } /// setter ///
+      } //////////CGV영화 상영관 클래스 ////////
+
+      //////// MegaBox영화 상영관클래스 ////////
+      class MegaBox extends MovieInfo {
+        // 속성셋팅 생성자 메서드는 필수!
+        // 기본적으로 부모 생성자 메서드 전달변수사용!
+        constructor(pos, tit, sum, dir, act, des, msg, num) {
+          // super() 메서드 : 부모 생성자,메서드호출!
+          super(pos, tit, sum, dir, act, des);
+
+          // MegaBox만의 개별 속성만들기
+          this.팝콘소식 = msg;
+          this.상영관수 = num;
+        } ////// 생성자 메서드 /////
+
+        /// MegaBox만의 메서드 만들기
+        // this.메서드() 는 부모클래스의 메서드임!(접근가능!)
+        // super.부모메서드 -> 이방법으로 부모메서드 가져오기!
+        show(mm) {
+          // mm 부모메서드에 전달값변수
+          return super.공통메서드(mm) + `<br>MegaBox 팝콘소식 : ` + this.팝콘소식;
+        } //////////// show 메서드 //////
+
+        //// 겟터 셋터 셋팅하기 //////////
+        // 목적: 상영관수 속성값에 대한 유효성검사 //
+        get hallNum() {
+          return this.상영관수;
+        }
+        set hallNum(n) {
+          // n - 셋팅값
+          // 숫자가 아니면 걸러주기!
+          if (isNaN(n)) {
+            console.log("데이터가 업데이트 되지 않았습니다!");
+            return;
+          }
+          // 값 셋팅코드
+          this.상영관수 = n;
+          console.log("데이터가 업데이트 되었습니다.");
+        }
+      } //////////MegaBox영화 상영관 클래스 ////////
+
+      ////////////////////////////////////////////
+      //////클래스로 객체 생성하고 화면 출력하기////
+
+      // 1. CGV 클래스 활용하기
+      const cgvInfo = new CGV(
+        // 부모클래스용 전달값
+        "https://movie-phinf.pstatic.net/20201116_276/1605491658399poUOC_JPEG/movie_image.jpg?type=m99_141_2",
+        "조제",
+        "멜로/로맨스, 드라마",
+        "김종관",
+        "한지민, 남주혁",
+        "조제 보러 오세요",
+        // 자식클래스용 전달값(극장안내,수용인원)
+        "CGV는 항상 영화팬들과 함께합니다~!💜",
+        300
+      ); /////////cgvInfo 객체생성 ////////////
+
+      // 이미지 태그 리턴함수
+      const makeImg = (x) => `<img src='${x}' alt='영화포스터'>`;
+
+      // 2. MegaBox 클래스 활용하기
+      const megaInfo = new MegaBox(
+        // 부모클래스용 전달값
+        "https://movie-phinf.pstatic.net/20221213_158/1670910727328mpqYu_JPEG/movie_image.jpg?type=m203_290_2",
+        "영웅",
+        "드라마, 뮤지컬",
+        "윤제균",
+        "정성화, 김고은",
+        "누가 죄인인가",
+        // 자식클래스용 전달값(팝콘소식, 상영관수)
+        "MegaBox 새로운 맛 팝콘이 출시되었습니다.🍫🍠🍿",
+        30,
+      ); /////////megaInfo 객체생성 ////////////
+
+      // cgvInfo객체 화면출력
+      // <div class="cgv-info"><ol><li>...</li></ol></div>
+      window.addEventListener("load", () => {
+        let hcode = `<div class="cgv-info"><h2>✨💖💜CGV상영관 영화안내💜💖✨</h2><h3><ol>`;
+        // 객체를 배열화하여 forEach사용!
+        // Object.keys(객체) -> 속성만 배열화
+        Object.keys(cgvInfo).forEach((ele) => {
+          hcode += `<li>${ele} : ${ele == "포스터" ? makeImg(cgvInfo[ele]) : cgvInfo[ele]} </li>`;
+        });
+        // CGV객체 메서드 호출하기!
+        // : 상속 된 부모 메서드와 함께 구현 됨!
+        hcode += `<li>
+            🎃CGV 메세지 : ${cgvInfo.showCGV("CGV는 항상 훌륭합니다!💖")}
+          </li>`;
+
+        // 극장 수용인원을 Getter/Setter로 사용하여 업데이트
+        // CGV 극장 수용인원 보고
+        hcode += `<li>
+            👨‍👧‍👦👩‍👩‍👧‍👧👨‍👧‍👧 CGV 극장 수용인원 보고 👨‍👧‍👦👩‍👩‍👧‍👧👨‍👧‍👧
+          </li>
+          <li>
+            &nbsp&nbsp&nbsp👱‍♀️2022년도 수용인원 ${cgvInfo.people}명 입니다.
+          </li>`;
+
+        // 수용인원 업데이트 : setter에서 유효성 검사하여 숫자일때만 업데이트 됨
+        cgvInfo.people = 500;
+        cgvInfo.people = "멍멍";
+        // cgvInfo.수용인원 -> cgvInfo.people
+        // 원본속성은 은닉하고 겟터를 통해 읽어옴
+
+        // CGV 극장 수용인원 변경보고
+        hcode += `<li>
+          &nbsp&nbsp&nbsp&nbsp👩‍🦰2023년도 수용인원 ${cgvInfo.people}명 입니다.
+          </li>`;
+        hcode += "</ol></h3></div>";
+        //body에 직접 출력하기
+        document.body.innerHTML = hcode;
+
+        // megaInfo객체 화면출력
+        hcode = `<div class="mega-info"><h2>✨💖💜MegaBox상영관 영화안내💜💖✨</h2><h3><ol>`;
+        // 객체를 배열화하여 forEach사용!
+        // Object.keys(객체) -> 속성만 배열화
+        Object.keys(megaInfo).forEach((ele) => {
+          hcode += `<li>${ele} : ${ele == "포스터" ? makeImg(megaInfo[ele]) : megaInfo[ele]} </li>`;
+        });
+        // MegaBox객체 메서드 호출하기!
+        // : 상속 된 부모 메서드와 함께 구현 됨!
+        hcode += `<li>
+            🎃MegaBox 메세지 : ${megaInfo.show("MegaBox는 항상 훌륭합니다!💖")}
+          </li>`;
+
+        // 극장 상영관수를 Getter/Setter로 사용하여 업데이트
+        // MegaBox 극장 상영관수 보고
+        hcode += `<li>
+            🎪🎢🎪 MegaBox 극장 상영관수 보고 🎪🎢🎪
+          </li>
+          <li>
+            &nbsp&nbsp&nbsp🎁2022년도 상영관수는 ${megaInfo.hallNum}개 입니다.
+          </li>`;
+
+        // 상영관수 업데이트 : setter에서 유효성 검사하여 숫자일때만 업데이트 됨
+        megaInfo.hallNum = 100;
+        megaInfo.hallNum = "멍멍";
+        // megaInfo.상영관수 -> megaInfo.hallNum
+        // 원본속성은 은닉하고 겟터를 통해 읽어옴
+
+        // mega 극장 상영관수 변경보고
+        hcode += `<li>
+          &nbsp&nbsp&nbsp&nbsp🧧2023년도 상영관수는 ${megaInfo.hallNum}개 입니다.
+          </li>`;
+        hcode += "</ol></h3></div>";
+        //body에 추가 출력하기
+        document.body.innerHTML += hcode;
+
+      }); /////////////load구역/////////////////
+    </script>
+  </head>
+  <body></body>
+</html>

@@ -159,13 +159,22 @@ button {
     height: 100%;
     animation: runMi .1s infinite alternate;
 }
+/* 주사기 */
 .inj{
     position: absolute;
     bottom: 0;
     right: 0;
     height: 100%;
 }
-
+@keyframes inj-ani {
+    0%{
+        transform: rotate(30deg);
+    }50%{
+        transform: rotate(45deg) scale(0.5) translate(-120px, 20px);
+    }100%{
+        transform: rotate(30deg) scale(0.5) translate(-100px, 20px);
+    }
+}
 
 .btns {
     position: absolute;

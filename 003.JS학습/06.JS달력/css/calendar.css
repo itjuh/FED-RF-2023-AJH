@@ -86,6 +86,7 @@
     width: var(--cwidth);
 }
 .date, .day{
+    position: relative;
       /*width가 100/7을 가지기 때문에 한 줄에 7개의 날짜와 요일이 정렬됩니다.*/
     text-align: center;
     width: calc(100%/7);
@@ -107,8 +108,26 @@
     background-color: var(--sun-color);
     color: red;
 }
-.today {
+.date.today::after {
+    content: '';
+    position: absolute;
+    left: 25%;
+    top: -5%;
+    aspect-ratio: 1/1;
+    height: 90%;
       /*오늘 날짜에 테두리를 줍니다. !important로 border의 우선순위를 1순위로 만들 수 있습니다.*/
     outline: 2px solid var(--today-color);
     border-radius: 50%;
+}
+.dates .date.check::before {
+    content: '';
+    position: absolute;
+    left: 23%;
+    top: 20%;
+    aspect-ratio: 2/1;
+    height: 50%;
+      /*오늘 날짜에 테두리를 줍니다. !important로 border의 우선순위를 1순위로 만들 수 있습니다.*/
+    background-color: #6495ed66;
+    color: white;
+    border-radius: 33%;
 }
