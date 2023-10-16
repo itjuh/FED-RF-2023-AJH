@@ -166,15 +166,6 @@ button {
     right: 0;
     height: 100%;
 }
-@keyframes inj-ani {
-    0%{
-        transform: rotate(30deg);
-    }50%{
-        transform: rotate(45deg) scale(0.5) translate(-120px, 20px);
-    }100%{
-        transform: rotate(30deg) scale(0.5) translate(-100px, 20px);
-    }
-}
 
 .btns {
     position: absolute;
@@ -213,5 +204,4 @@ button {
     left: -50%;
     z-index: 9999999;
     width: 30%;
-
 }

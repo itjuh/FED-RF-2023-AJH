@@ -4,25 +4,26 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>키보드 배열 테스트용</title>
+    <script type="module" src="./test.js"></script>
     <style>
       /* 변수설정 */
       :root {
         /* 가로크기 */
         --key-width: 56px;
         /* 가로 size0 : tap,\*/
-        --key-width0: 112px;
+        --key-width0: 116px;
         /* 가로 size1 : tap,\*/
         --key-width1: 86px;
         /* 가로 size2 : caps */
         --key-width2: 100px;
         /* 가로 size3 : L-shift,enter */
-        --key-width3: 130px;
+        --key-width3: 128px;
         /* 가로 size4 : R-shift */
-        --key-width4: 154px;
+        --key-width4: 156px;
         /* 가로 size5 : fn */
-        --key-width5: 72px;
+        --key-width5: 70px;
         /* 가로 size6 : space */
-        --key-width6: 358px;
+        --key-width6: 354px;
         /* 세로크기 */
         --key-height: 56px;
         /* 키상단 갭 */
@@ -42,14 +43,15 @@
         overflow: auto;
       }
       /* 겉박스 */
-      .test-box {
+      .key-box {
         display: flex;
-        width: 100vw;
-        height: 50vh;
+        flex-wrap: wrap;
+        width: calc(var(--key-width)*15 + 10px);
+        height: auto;
         /* 3D 입체설정 */
         transform-style: preserve-3d;
         /* 입체를 잘 보이게 약간 회전 */
-        transform: rotateX(27deg) rotateY(341deg);
+        transform: translateY(50%) rotateX(27deg) rotateY(341deg);
                 
         /* 위에서보는거 */
         /* transform: rotateX(360deg) rotateZ(0deg); */
@@ -58,8 +60,10 @@
       .key {
         /* 위치중앙: 50% 이동 후 크기절반 */
         position: relative;
-        top: calc(50% - var(--key-height) / 2);
-        left: calc(50% - var(--key-width) / 2);
+        top: 0;
+        left: 0;
+        /* top: calc(50% - var(--key-height) / 2);
+        left: calc(50% - var(--key-width) / 2); */
         width: var(--key-width);
         height: var(--key-height);
 
@@ -191,13 +195,11 @@
         height: 50%;
         /* 기본 문자열 두줄 */
         /* outline: 1px solid red; */
-        padding-top: 1%;
         padding-left: 4%;
         box-sizing: border-box;
       }
       /* 문자열 한줄 */
       aside.part1 {
-        line-height: 2.5;
         height: 100%;
       }
     </style>
@@ -205,7 +207,7 @@
   <body>
     
     <div class="wrap">
-      <div class="test-box">
+      <div class="key-box">
         <!-- 키박스 -->
         <div class="key">
           <!-- 키 윗면 -->
