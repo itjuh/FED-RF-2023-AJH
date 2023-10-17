@@ -46,19 +46,21 @@
       .key-box {
         display: flex;
         flex-wrap: wrap;
+        position: relative;
         width: calc(var(--key-width)*15 + 10px);
         height: auto;
+        top: 100%;
+        left: 50%;
         /* 3D 입체설정 */
         transform-style: preserve-3d;
         /* 입체를 잘 보이게 약간 회전 */
-        transform: translateY(50%) rotateX(27deg) rotateY(341deg);
-                
+        transform: translate(-50%, -100%) rotateX(45deg) rotateY(0deg) rotateY(0deg);
+        transition: rotateX .2s ease-in;
         /* 위에서보는거 */
         /* transform: rotateX(360deg) rotateZ(0deg); */
       }
-      /* 키박스 */
+      /* 단일키 */
       .key {
-        /* 위치중앙: 50% 이동 후 크기절반 */
         position: relative;
         top: 0;
         left: 0;
@@ -69,6 +71,8 @@
 
         /* 3D 입체설정 */
         transform-style: preserve-3d;
+        /* 트랜지션 */
+        transition: .1s ease-in-out;
       }
       /* 공백키 */
       .key.blank{
@@ -101,11 +105,7 @@
       .key.size6 {
         width: var(--key-width6);
       }
-      /* 키 클릭 시 */
-      .key.on {
-        transition: .2s;
-        transform: translateZ(-20px);
-      }
+
       /* 키 단면 공통 */
       .key span {
         position: absolute;
@@ -188,6 +188,13 @@
         border-radius: 3px;
         display: flex;
         flex-wrap: wrap;
+        cursor: pointer;
+        /* 드래그 방지 */
+        user-select: none;
+      }
+      /* 키 마우스오버 */
+      .key-top:hover {
+        background-color: #888;
       }
       /* 개별키 상단 문자열칸 공통 */
       .key-top aside {

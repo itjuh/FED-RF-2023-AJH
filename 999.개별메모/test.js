@@ -40,7 +40,7 @@ const keyData = [
 ["" , "P"],
 ["" , ["{","["]],
 ["" , ["}","]"]],
-["size1" , ["|","\ "]],
+["size1" , ["|","￦"]],
 ["size2" , "CapsLock"],
 ["" , "A"],
 ["" , "S"],
@@ -125,6 +125,24 @@ function insertTop(ele){
 // 키 뿌리기
 keyBox.innerHTML = hcode;
 
+// 키 마우스 오버 이벤트
+const keyList = dFn.qsa('.key');
+keyList.forEach(ele=>{dFn.addEvt(ele,'mousedown',keyhoverFn)});
+
+
+// 키 오버 함수
+function keyhoverFn(){
+    // console.log(this);
+    this.style.transform = 'translateY(10px)';
+    // 마우스 놓을 때
+    dFn.addEvt(this,'mouseup',()=>{
+        this.style.transform = 'translateY(0px)';
+    });
+    // 마우스 떠날 때
+    dFn.addEvt(this,'mouseleave',()=>{
+        this.style.transform = 'translateY(0px)';
+    });
+} ////////// keyhoverFn ////////////
 /*  
     <div class="key">
         <!-- 키 윗면 -->
