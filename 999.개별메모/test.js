@@ -9,7 +9,7 @@ const dFn = {
 
   // 이벤트셋팅함수
   addEvt: (ele, evt, fn) => ele.addEventListener(evt, fn),
-}
+};
 // 키보드 데이터 
 // ['키 길이','글자개수 클래스', '키보드 자판글자']
 const keyData = [
@@ -74,7 +74,7 @@ const keyData = [
 ["size5" , "Fn"],
 ["size5" , "Win"],
 ["size5" , "Ctrl"],
-]
+];
 
 ////////////////////////////////////////////
 // 대상에 키보드 배열 뿌리기
@@ -125,7 +125,7 @@ function insertTop(ele){
 // 키 뿌리기
 keyBox.innerHTML = hcode;
 
-// 키 마우스 오버 이벤트
+// 키 마우스 클릭 이벤트
 const keyList = dFn.qsa('.key');
 keyList.forEach(ele=>{dFn.addEvt(ele,'mousedown',keyhoverFn)});
 
@@ -143,6 +143,8 @@ function keyhoverFn(){
         this.style.transform = 'translateY(0px)';
     });
 } ////////// keyhoverFn ////////////
+
+
 /*  
     <div class="key">
         <!-- 키 윗면 -->
