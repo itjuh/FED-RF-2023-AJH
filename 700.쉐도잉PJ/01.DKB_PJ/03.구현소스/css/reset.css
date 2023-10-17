@@ -52,3 +52,9 @@ h6 {
 address{
     font-style: normal;
 }
+
+/* 버튼모양 리셋 */
+button{
+    border: none;
+    background: none;
+}

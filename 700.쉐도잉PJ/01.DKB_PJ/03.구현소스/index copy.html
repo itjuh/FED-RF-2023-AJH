@@ -12,6 +12,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" />
     <!-- 메인 CSS 연결 -->
     <link rel="stylesheet" href="./css/main.css" />
+    <!-- 제이쿼리 라이브러리 -->
+    <script src="./js/jquery-3.7.1.min.js"></script>
+    <script src="./js/jquery-ui.min.js"></script>
     <!-- 메인JS -->
     <script src="./js/main.js" type="module"></script>
     <title>쓸쓸하고 찬란하神</title>
@@ -146,7 +149,7 @@
           <h2 class="stit">미리보기파트</h2>
           <!-- 미리보기파트: .preview-box -->
           <!-- 파티션박스 8개 -->
-          <section class="preview-box">
+          <section class="preview-box sub-view-box">
             <div class="partbox col-3"></div>
             <div class="partbox col-3"></div>
             <div class="partbox col-3"></div>
@@ -160,17 +163,17 @@
         <!-- 파트 3그룹 -->
         <div class="group-part group-part-03 live-photo-area">
           <h2 class="stit">현장포토파트</h2>
-          <div class="grid-box live-box part-box col-12"></div>
+          <div class="grid-box live-box part-box col-12 sub-view-box"></div>
         </div>
         <!-- 대표이미지 박스영역 -->
         <div class="group-part group-part-04 poster-area">
           <h2 class="stit">대표이미지</h2>
-          <div class="grid-box poster-box part-box col-12"></div>
+          <div class="grid-box poster-box part-box col-12 sub-view-box"></div>
         </div>
         <!-- 파트 5그룹 -->
         <div class="group-part group-part-05 clip-area">
           <h2 class="stit">최신동영상</h2>
-          <div class="clip-box part-box col-12"></div>
+          <div class="clip-box part-box col-12 sub-view-box"></div>
           <!-- 버튼 이동 박스 -->
           <div class="btn-box">
             <button class="fa-solid fa-chevron-left"></button>
@@ -247,5 +250,7 @@
         </div>
       </footer>
     </div>
+    <!-- 서브 컨텐츠 박스 -->
+    <section class="sub-cont"></section>
   </body>
 </html>

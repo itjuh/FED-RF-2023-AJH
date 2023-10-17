@@ -342,3 +342,38 @@ corpData.forEach(val=>{
 //그 자리에 리턴한다. 이때, 배열값을 문자열 값으로 변환하는 join()을 사용하여
 //연결자를 빈값으로 처리하면 배열의 구분자 콤마가 없는 태그로만 연결 된 순수한
 //태그결과 문자열이 만들어 진다!
+
+////////////////////////////////////////////////////////
+////////////제이쿼리로 기능 구현하기 /////////////////////
+// 1. 서브페이지 서브 컨텐츠 보이기 기능 구현 /////////////
+// (1) 대상선정
+// (1-1) 이벤트 대상 : .sub-view-box 하위 .partbox 또는 li
+const subViewBox = $('.sub-view-box .partbox,.sub-view-box li');
+// (1-2) 변경 대상 : .sub-cont
+const subContBox = $('.sub-cont');
+// console.log(subViewBox);
+
+// (2) 이벤트 함수 만들기
+subViewBox.click(function(){
+  console.log('나야나',this);
+  // (2-1) 제목 읽어오기
+  let subTit = $(this).parents('.sub-view-box').prev().text();
+  // (2-2) 내용 읽어오기
+  let subItem = $(this).text();
+
+  // (2-3) 서브박스 컨텐츠 뿌리기
+  subContBox.html(`
+    <button class='cbtn'>×</button>
+    <div class='sub-inbox inbox'>
+      <h1>${subTit}</h1>
+      <div class='sub-item'>${subItem}</div>
+    </div>
+  `);
+  // (2-4) 닫기버튼 이벤트 설정
+  $('.cbtn').click(()=>{
+    subContBox.hide();
+  }); ////////click///////////
+  // (2-5) 서브박스 보이기
+  subContBox.show();
+
+}); //////////click//////////////

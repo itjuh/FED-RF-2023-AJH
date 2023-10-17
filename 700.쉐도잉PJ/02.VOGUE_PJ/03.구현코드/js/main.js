@@ -49,7 +49,7 @@ $(window).scroll(()=>{
     // console.log('스크롤!!!!' , scTop);
 
     // 1. 스크롤 위치값이 100을 초과하면 슬림상단 클래스 on넣기
-    if(scTop>100) topArea.addClass('on');
+    if(scTop>150) topArea.addClass('on');
     else topArea.removeClass('on');
     
     // 2. 스크롤 위치값이 300을 초과하면 나오기

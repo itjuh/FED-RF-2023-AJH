@@ -320,3 +320,46 @@
 .btn-box .fa-chevron-right {
   right: -30px;
 }
+
+/* 서브 컨텐츠 박스 */
+.sub-cont{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #000;
+  color: #fff;
+  z-index: 99999;
+  overflow: hidden;
+  display: none;
+}
+.sub-cont a{
+  color: #fff;
+}
+/* 닫기버튼 */
+.cbtn{
+  position: absolute;
+  top: 5%;
+  right: 5%;
+  font-size: 80px;
+  color: #fff;
+  cursor: pointer;;
+}
+.cbtn:hover{
+  color: #ccc;
+}
+/* 서브 내부박스 */
+.sub-inbox{
+  outline: 1px dashed yellow;
+  min-height: 100vh;
+}
+/* 제목박스 */
+.sub-inbox h1{
+  font-size: 4rem;
+  text-align: center;
+}
+/* 내용박스 */
+.sub-item{
+  font-size: 3rem;
+}
