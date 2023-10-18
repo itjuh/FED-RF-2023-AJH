@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS Date 객체 사용 테스트</title>
+    <script>
+        // 콘솔찍기 함수
+        const cg = x => console.log(x);
+        // 날짜 찍기 형식변경 함수(yyyy-mm-dd 요일)
+        const fm = x => `${x.getFullYear()}-${(x.getMonth()+1)>=10?(x.getMonth()+1):'0'+(x.getMonth()+1)}-${x.getDate()>=10?x.getDate():'0'+x.getDate()} ${week[x.getDay()]}요일`;
+
+        // 달력 객체 생성(인스턴스 생성!)
+        // 최종변경 날짜객체
+        const myDate = new Date();
+        // 변경 할 날짜 객체
+        const tempDate = new Date();
+        // 요일정보 배열
+        const week = ['일','월','화','수','목','금','토'];
+
+        // 기본출력
+        cg('1.기본출력 :',myDate, tempDate);
+
+        // 달력구성에 필요한 정보들
+        // 1. 전달 끝 날짜
+        // 2. 전달 끝 날짜의 요일 
+        // 3. 현달 첫 날짜의 요일
+        // 4. 현달 끝 날짜
+
+        // -> 전달 끝 날짜, 첫 날짜 알아오기 
+        // new Date(년도,월,0-끝날짜||1-끝날짜 +1일)
+
+        let test = new Date(2023,10,0);
+        // 1. 올해 10월 끝 날짜
+        cg('2023년 10월 마지막일:'+fm(test));
+        // 2. 전달 끝 날짜 : 월 정보를 숫자로 가져오면 지난 달이 됨
+        test = new Date(tempDate.getFullYear(),tempDate.getMonth(),0);
+        cg('2023년 9월 마지막일: '+fm(test)); //Sat Sep 30 2023 00:00:00 GMT+0900 (한국 표준시)
+
+        // 3. 전달 끝 날짜의 요일 
+        // getDay() 0부터시작(일)~7까지(토)
+        cg('전달 끝 날짜의 요일: '+week[test.getDay()]);
+
+        // 4. 현재달 첫 날짜
+        test = new Date(tempDate.getFullYear(),tempDate.getMonth(),1);
+        cg('2023년 10월 첫날짜:'+fm(test));
+        // 5. 현재달 끝 날짜
+        test = new Date(tempDate.getFullYear(),tempDate.getMonth()+1,0);
+        cg('2023년 10월 끝날짜:'+fm(test));
+        cg('2023년 10월 끝날짜:'+fm(test));
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

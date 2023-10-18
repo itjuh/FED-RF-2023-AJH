@@ -17,7 +17,7 @@ const dFn = {
 
 // 타이핑 데이터
 const typingData = {
-    'main':'LEOPOLD',
+    'main':'LEOPOLDLEOPOLDLEOPOLDLEOPOLDLEOPOLDLEOPOLD',
 }
 // 1) 대상선정: 이벤트 .message-box span //
 let typingArr = typingData['main'].split('');
