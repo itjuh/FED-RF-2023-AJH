@@ -334,6 +334,8 @@
 /* 달력 주간, 일간 공통 */
 .date,
 .day {
+    position: relative;
+    /* 가상요소용 부모 */
     /*한 줄 7개씩 정렬*/
     text-align: center;
     width: calc(100% / 7);
@@ -379,12 +381,31 @@
 .date:nth-child(42){
   border-radius: 0 0 8px 8px;
 }
-/* 달력 날짜선택 */
-th.check,
-td.check {
+/* 달력 오늘날짜 가상요소 */
+.date.today::after {
+    content: '';
+    position: absolute;
+    left: 12%;
+    top: 6%;
+    aspect-ratio: 1/1;
+    height: 90%;
+      /*오늘 날짜에 테두리를 줍니다. !important로 border의 우선순위를 1순위로 만들 수 있습니다.*/
+    outline: 2px solid var(--co-onlightgreen);
     border-radius: 50%;
-    background-color: #555;
-    color: #fff;
+}
+/* 달력 선택날짜 */
+.dates .date.check::before {
+    content: '';
+    position: absolute;
+    left: 5%;
+    top: 0%;
+    aspect-ratio: 1/1;
+    height: 100%;
+    background-color: var(--co-onlightgreen);
+    opacity: .4;
+    color: white;
+    border-radius: 50%;
+    /* z-index: -1; */
 }
 /* 팝업창 이전다음 버튼 */
 .proceed-btn-box.pop-btn {
