@@ -10,6 +10,8 @@
         <script src="./js/mdata.js"></script>
         <!-- 메인JS -->
         <script src="./js/nav06.js" defer></script>
+        <!-- 드래그배너 -->
+        <script src="./js/drag_banner.js" type="module"></script>
 </head>
     <body>
         <!-- 1. 상단영역 -->
@@ -50,6 +52,23 @@
             <!-- <div class="bgbx"></div> -->
         </div>
         <!-- 2. 컨텐츠 영역 -->
-        <main class="cont"></main>
+        <main class="cont">
+            <section class="banbx">
+                <!--슬라이드-->
+                <ul class="slide dtg">
+                    <li></li>
+                </ul>
+                <!--이동버튼-->
+                <a href="#" class="abtn ab1">
+                    <span class="ir">왼쪽버튼</span>
+                </a>
+                <a href="#" class="abtn ab2">
+                    <span class="ir">오른쪽버튼</span>
+                </a>
+                <!--블릿버튼-->
+                <ol class="indic">
+                </ol>
+            </section>
+        </main>
     </body>
 </html>

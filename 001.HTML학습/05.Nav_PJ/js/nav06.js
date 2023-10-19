@@ -124,7 +124,7 @@ gnb.forEach(ele=>{
 function overFn(){
     // console.log('over this:',this);
     // 1. 하위 .smbx 높이값 알아오기
-    // let hv = domFn.qsEl(this,'.smbx').clientHeight;
+    let hv = domFn.qsEl(this,'.smbx').clientHeight;
     console.log('높이:',hv);
     // 2. 하위 서브메뉴박스만큼 .smenu 높이값 주기
     domFn.qsEl(this,'.smenu').style.height = hv + 'px';
@@ -134,3 +134,4 @@ function outFn(){
     // 3. 서브메뉴 박스 높이값 0 만들기
     domFn.qsEl(this,'.smenu').style.height = '0px';
 } //////////outFn//////////////////
+

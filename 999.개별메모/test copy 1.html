@@ -1,61 +1,85 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>키보드 배치 구상</title>
     <script type="module" src="./test1.js"></script>
     <style>
-        html,body{
-            margin: 0;
-            padding: 0;
-        }
-        .prod-box{
-            display: flex;
-            flex-wrap: wrap;
-        }
-        .prod-item{
-            position: relative;
-            width: calc(100%/5);
-            aspect-ratio: 2/1;
-            overflow: hidden;
-            /* 트랜지션 */
-            transition: .2s ease-in-out;
-        }
-        .prod-item::after{
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 30px;
-            background-image: linear-gradient(to top, #cccccc8e, transparent);
-        }
-        img{
-            width: 100%;
-            aspect-ratio: 2/1;
-            object-fit: cover;
-            /* 트랜지션 */
-            transition: .2s ease-in-out;
-        }
-        img:hover{
-            transform: scale(1.1);
-        }
-        span{
-            position: absolute;
-            left: 50%;
-            bottom: 10px;
-            font-weight: bold;
-            transform:translateX(-50%);
-            /* color: #000; */
-        }
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+      }
+      .prod-box {
+        position: absolute;
+        /* 부모는? .page */
+        /* 세로중앙! */
+        display: flex;
+        flex-wrap: wrap;
+        aspect-ratio: 1300/960;
+      }
+      .box1 {
+        width: 1300px;
+        outline: 1px solid red;
+      }
+      .box2 {
+        width: 1800px;
+        left: 0;
+        top: 0;
+        background-color: rgba(142, 190, 142, 0.178);
+      }
+      .prod-item {
+        position: absolute;
+        width: 200px;
+        aspect-ratio: 400/130;
+        /* overflow: hidden; */
+        /* 트랜지션 */
+        transition: 0.2s ease-in-out;
+      }
+      /* .prod-item::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 30px;
+        background-image: linear-gradient(to top, #cccccc8e, transparent);
+      } */
+      img {
+        width: 150px;
+        /* height: 60px; */
+        /* aspect-ratio: 2/1; */
+        /* object-fit: cover; */
+        /* 트랜지션 */
+        transition: 0.2s ease-in-out;
+      }
+      img:hover {
+        transform: scale(1.1);
+      }
+      span {
+        position: absolute;
+        left: 50%;
+        bottom: 10px;
+        font-weight: bold;
+        transform: translateX(-50%);
+        /* color: #000; */
+      }
+      .test-box {
+        width: 200px;
+        height: 100px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        transform: translate(-50%, -50%);
+        outline: 1px solid red;
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <div class="prod-area">
-        <section class="prod-box">
-            
-        </section>
+      <section class="prod-box box1"></section>
+      <section class="prod-box box2"></section>
     </div>
-</body>
+  </body>
 </html>

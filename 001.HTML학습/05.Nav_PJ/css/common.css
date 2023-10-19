@@ -9,7 +9,8 @@
     margin: 0 auto;
 }
 body{
-    background-image: linear-gradient(to bottom, lightcoral, lightyellow, lightgreen);
+    /* background-image: linear-gradient(to bottom, lightcoral, lightyellow, lightgreen); */
+    background-image: linear-gradient(to bottom, black 60%, white 51%);
     height: 100vh;
     font-family: 'Noto Sans KR', sans-serif;
 }
@@ -25,6 +26,7 @@ body{
 */
 /* 로고박스 */
 .logo-box{
+    padding: 20px 0 10px 0;
     text-align: center;
 }
 
@@ -54,6 +56,7 @@ body{
 
     /* 트랜지션 */
     transition: .5s;
+    z-index: 99;
 }
 /* 동적높이값은JS로 함 + 이벤트 */
 /* 임시 첫번째 */

@@ -61,93 +61,108 @@ const prodData = [
   ["FC900RPD", "그레이 블루", "149500", "keyboard47"],
   ["FC900ROE", "블랙 퍼플", "149500", "keyboard48"],
 ];
+const colorName = [
+"Aqua",
+"Black",
+"Blue",
+"Fuchsia",
+"Gray",
+"Green",
+"Lime",
+"Maroon",
+"Navy",
+"Olive",
+"Purple",
+"Red",
+"Silver",
+"Teal",
+"White",
+"Yellow",
+]
 
-///////////////////////////////////////
-// 키보드 데이터 뿌리기
-
+/////////////////////////////////////////////////
+///////// 원형으로 이미지 데이터 뿌리기 ///////////
+/////////////////////////////////////////////////
+// [1] 요구사항 
+// 1. 데이터 개수의 1/5개는 안쪽 원에 뿌리기
+// 2. 데이터 개수의 4/5개는 바깥쪽 원에 뿌리기
+// 3. 이미지는 중심으로부터 이동
 // 대상 :.prod-box
-const prodBox = dFn.qs(".prod-box");
+const prodBox1 = dFn.qs(".box1");
+const prodBox2 = dFn.qs(".box2");
+
+// [2] 데이터 나누기
+let dataArr1 = []; // 안쪽원
+let dataArr2 = []; // 바깥쪽 원
+// dataArr1 에 데이터 넣기 (1/5개)
+let arr = [];
+let x = 0;
+let y = 0;
+for(let i = 0; i < prodData.length; i++){
+  let a = prodData[i][0];
+  a = a.substr(2,3);
+  if(a == 900){
+    dataArr1[x] = prodData[i];
+    x++;
+  }else if(a == 750){
+    dataArr2[y] = prodData[i];
+    y++; 
+  }
+} /////////////for//////////////////
+// dataArr2 에 데이터 넣기 (2/3개)
+// for(let i = 0; i < prodData.length*2/5; i++){
+//   let seq = dataArr1.length + i;
+//   dataArr2[i] = prodData[seq];
+// }
+// console.log(dataArr1, dataArr2, dataArr1.length,dataArr2.length,prodData.length);
+console.log(dataArr1,dataArr2);
+
 let hcode = "";
 
-function makeFn() {
-  prodData.forEach((ele) => {
+/////////////////////////////////////////////////////////
+///해당 영역에 원형 뿌리기 함수 ///////////////////////////
+// 1. 기능 : 대상area와 대상데이터를 받아와서 원형배치한다.
+////////////////////////////////////////////////////////// 
+function makeFn(area,data,Radius) {
+  hcode = '';
+  data.forEach((ele,idx) => {
+
+    // let Radius = 400;
+    let degVal = ((2*Math.PI)*idx)/data.length;
+    let degRotate = 180 + (360/data.length)*idx;
+    let wid = window.innerWidth;
+    // console.log(wid);
+    let high = window.innerHeight;
+    let topVal = (high/2 - 65/2) + Radius*Math.sin(degVal);
+    let leftVal = (wid/2 - 200/2) + Radius*Math.cos(degVal);
+      // console.log(topVal,leftVal);
+
+  // 16개 기준
+  // 회전각도 :  90deg += 360/data.length * data.index (오른쪽 가운데부터 정렬)
+  // let x = (2*3.14)/15 하나씩 더해줌 원주율을 나눠주는 작업
+  // 위치이동값 top (박스/2 - 너비/2 +(박스/2 - 너비/2)*math.cos(x))
+  // 위치이동값 left (박스/2 - 높이/2 + (박스/2 - 높이/2)*math.sin(x))
+  // let degVal = ((2*Math.PI)/data.length*idx);
+  // let degRotate = 180 + (360/data.length)*idx;
+  // let wid = area.clientWidth;
+  // let high = area.clientHeight;
+  // let radius = area.hcode/2;
+  // let topVal = Math.round(high/2 - 130/2 + (radius)*Math.sin(degVal));
+  // let leftVal = Math.round(wid/2 - 260/2 + (radius)*Math.cos(degVal));
+    console.log(topVal,leftVal);
     hcode += `
-            <div class='prod-item'>
-                <img src='./image_prod/${ele[3]}.jpg' alt='${ele[1]} 이미지'>
-                <span>${ele[0]}</span>
+            <div class='prod-item' style='left: ${leftVal}px; top: ${topVal}px;'>
+                <img src='./image_prod2/${ele[3]}.png' alt='${ele[1]} 이미지' style='transform: rotate(${degRotate}deg);'>
+                <!-- <span>${ele[0]}</span> -->
             </div>
         `;
   }); /////////forEach //////////
 
-  prodBox.innerHTML = hcode;
+  // transform: rotate(${degVal}deg); 회전시킬 경우 style에 적용시키면 됨
+  area.innerHTML = hcode;
+  // console.log(hcode);
 } /////////makeFn 함수 /////////////
 
-makeFn();
+makeFn(prodBox1,dataArr1,800);
+makeFn(prodBox2,dataArr2,500);
 
-// 키보드 회전시키기
-// 대상: prod-item
-// var o = t.className,
-//   e = t.images,
-//   f = t.distance,
-//   y = t.isIntro,
-//   C = void 0 !== y && y,
-//   p = t.animationDelay,
-//   b = t.scaleAmount,
-//   g = t.productClassName,
-//   v = void 0 === g ? "" : g,
-//   h = t.handleLoad,
-//   m = void 0 === h ? null : h,
-//   _ = t.exitIntro,
-//   k = void 0 !== _ && _,
-//   D = (0, r.useState)(!1),
-//   B = D[0],
-//   w = D[1],
-//   x = (0, r.useState)({}),
-//   A = x[0],
-//   P = x[1],
-//   S = (0, r.useState)(0),
-//   O = S[0],
-//   L = S[1],
-//   E = (0, r.useRef)([]),
-//   T = (0, r.useRef)(),
-//   j = (0, i._)();
-// (0, u.Z)(function () {
-//   var t = T.current.getBoundingClientRect();
-//   P(t);
-// }, []);
-
-// function rotateProd() {
-// // 15개 기준
-// // 회전각도 :  270deg += 360/data.length * data.index (오른쪽 가운데부터 정렬)
-// // let x = (2*3.14)/15 하나씩 더해줌 원주율을 나눠주는 작업
-// // 위치이동값 top (너비/2 + (너비/2 - 박스/2)*math.cos(x) - 박스/2)
-// // 위치이동값 left (높이/2 + (높이/2 - 박스/2)*math.sin(x) - 박스/2)
-//   for (var t = (2 * Math.PI) / E.current.length, o = 0, e = A.width, n = A.height, r = 0; r < E.current.length; r++) {
-//     var i = E.current[r],
-//       a = Math.round(e / 2 + (e / 2 - O / 2) * Math.cos(o) - O / 2),
-//       u = Math.round(n / 2 + (e / 2 - O / 2) * Math.sin(o) - O / 2);
-//     if (
-//       (i.style.setProperty("--rotate", f ? "".concat(270 + r * f, "deg") : 0),
-//       i.style.setProperty("--top", "".concat(u, "px")),
-//       i.style.setProperty("--left", "".concat(a, "px")),
-//       r >= E.current.length - 1)
-//     ) {
-//       if ((m && m(), !C || B)) return;
-//       w(!0),
-//         j.set({
-//           scale: b,
-//           opacity: 0,
-//         }),
-//         j.start({
-//           scale: 1,
-//           opacity: 1,
-//           transition: {
-//             duration: 1.5,
-//             ease: [0.25, 0.46, 0.45, 0.94],
-//             delay: p,
-//           },
-//         });
-//     }
-//     o += t;
-//   }
-// }
