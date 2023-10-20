@@ -61,24 +61,6 @@ const prodData = [
   ["FC900RPD", "그레이 블루", "149500", "keyboard47"],
   ["FC900ROE", "블랙 퍼플", "149500", "keyboard48"],
 ];
-const colorName = [
-"Aqua",
-"Black",
-"Blue",
-"Fuchsia",
-"Gray",
-"Green",
-"Lime",
-"Maroon",
-"Navy",
-"Olive",
-"Purple",
-"Red",
-"Silver",
-"Teal",
-"White",
-"Yellow",
-]
 
 /////////////////////////////////////////////////
 ///////// 원형으로 이미지 데이터 뿌리기 ///////////
