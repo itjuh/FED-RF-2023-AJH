@@ -1,7 +1,10 @@
 @charset "utf-8";
 
 /* 공유신발 CSS */
-
+body {
+    overflow-y: scroll;
+    /* 스크롤 트랙 미리 생성: 튐방지 */
+}
 /* 대상박스 */
 #root {
     width: 700px;
