@@ -14,3 +14,16 @@
 
 
 바벨은 무조건 CDN방식으로 html에서 부르기
+
+linear-gradient(#01d6ff, #0f24f9)
+linear-gradient(#f9d924, #ff2c24)
+.center-box {
+    left: 50%;
+    transform: translateX(-50%);
+    width: 350px;
+    height: 250px;
+    border-radius: 45px;
+    z-index: 1;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(0,0,0,0.1);
+}

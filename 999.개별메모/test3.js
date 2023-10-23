@@ -124,8 +124,8 @@ function makeFn(area,data,radiusVal) {
       let leftVal = (wid/2 - 200/2) + radius*Math.cos(degVal);
       // console.log(topVal,leftVal);
       hcode += `
-      <div class='prod-item' style='left: ${leftVal}px; top: ${topVal}px;'>
-      <img src='./image_prod2/${ele2[3]}.png' alt='${ele2[1]} 이미지' style='transform: rotate(${degRotate}deg);'>
+      <div class='prod-item' style='left: ${leftVal}px; top: ${topVal}px; transform: rotate(${degRotate}deg);'>
+      <img src='./image_prod2/${ele2[3]}.png' alt='${ele2[1]} 이미지'>
             <!-- <span>${ele2[0]}</span> -->
             <!-- <span>${ele2[2]}</span> -->
         </div>
