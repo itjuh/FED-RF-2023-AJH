@@ -49,6 +49,8 @@ _________________________
 
 ☑️ useState
 상태를 관리한다.
+리액트 버츄얼돔의 컴포넌트에서 사용되는 변수
+구성 요소에 상태 변수를 추가할 수 있는 React Hook
 [state이름, setter이름] 순으로 반환 받아서 사용
 
 const [변수, set변수] = useState(초기값);
@@ -57,6 +59,7 @@ const [변수, set변수] = useState(초기값);
 
 ☑️ useEffect
 화면에 렌더링이 완료된 후에 실행됨!
+구성 요소를 외부 시스템과 동기화할 수 있는 React Hook
 
 componentDidMount와 componentDidUpdate, 
 componentWillUnmount가 통합된 것!

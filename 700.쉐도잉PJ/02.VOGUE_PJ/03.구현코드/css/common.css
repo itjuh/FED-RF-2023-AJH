@@ -48,7 +48,7 @@
 }
 /* a요소 마우스 오버시 */
 .sns a:hover{
-    opacity: 0.8;
+    opacity: 0.6;
 }
 /* 트위터 크기조정 */
 .sns a.fi-twitter{
@@ -158,8 +158,10 @@ https://www.w3schools.com/cssref/tryit.php?filename=trycss_cursor */
 .gnb li:last-child {
     padding: 0;
 }
-.gnb li:last-child a {
+/* GNB i요소(돋보기) */
+.gnb i{
     font-weight: bold;
+    cursor: pointer;
     padding-top: 2px;
 }
 
@@ -169,9 +171,10 @@ https://www.w3schools.com/cssref/tryit.php?filename=trycss_cursor */
     transition: color .2s linear;
 }
 /* 오버시 a요소 */
-.gnb a:hover{
+.gnb a:hover, .gnb i:hover{
     color: red;
 }
+
 
 /********************************************* 
     #top-area.on 인 경우 슬림디자인 상단영역적용!

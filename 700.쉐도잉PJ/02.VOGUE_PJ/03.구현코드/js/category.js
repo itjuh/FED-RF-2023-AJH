@@ -1,77 +1,70 @@
 // 보그PJ 서브페이지 category.js
 
-// DOM객체
-import dFn from './dom.js';
 // 부드러운 스크롤 모듈
 import { startSS, setPos } from './smoothscroll23.js';
-// [1] 부드러운 스크롤 적용 ////////////
+// json데이터 읽어오기
+import catagoryData from './data/category_data.json' assert{type:'json'};
+// console.log(catagoryData);
+// 부드러운 스크롤 적용 ////////////
 startSS();
+////////////////////////////////////////////////////////
+// 카테고리페이지 기능 구현하기 //////////////////////////
+// 요구사항 : url로 전달 된 키값을 읽어서 페이지 셋업하기//
+////////////////////////////////////////////////////////
 
-// [1] 메인페이지 등장액션 클래스 넣기
-// 대상선정: .main-area section
-// const hideBox = dFn.qsa('.main-area section');
-const hideBox = $('.main-area section');
+// 1. url 전체 읽기
+let parameter = location.href;
 
-// 클래스 넣기 - JS code
-// hideBox.forEach((ele,idx)=>{
-//     // 0번째 빼고 숨김클래스 넣기
-//     if(idx!=0){
-//         ele.classList.add('scAct');
-//     } ///////if문///////////
-// }); /////////forEach/////////////
+// 값 처리하기 함수 호출
+setValue();
 
-// 클래스 넣기 JQuery
-hideBox.each((idx,ele)=>{
-    if(idx!=0) $(ele).addClass('scAct');
-}); /////////forEach/////////////
-
-
-////////////////////////////////////////////
-// 제이쿼리 라이브러리를 사용하여 구현 ////////
-// 1. 스크롤 등장 액션 구현하기 //////////////
-// (1) 대상선정 : window
-// (2) 이벤트 : scroll
-// (3) 기준값 : getBoundingClientRect() -> dFn.getBCR()
-// 등장액션 대상: .main-area section
-
-// 기준값 윈도우 높이값의 3/4 지점
-let winH = $(window).height() * 3/4;
-
-// 스크롤 메뉴 적용대상 : .top-area
-const topArea = $('#top-area');
-
-// 탑버튼 : .tbtn
-const tBtn = $('.tbtn'); 
-
-// 스크롤 이벤트
-$(window).scroll(()=>{
-    let scTop = $(window).scrollTop();
-    // console.log('스크롤!!!!' , scTop);
-
-    // 1. 스크롤 위치값이 100을 초과하면 슬림상단 클래스 on넣기
-    if(scTop>150) topArea.addClass('on');
-    else topArea.removeClass('on');
+// 값 셋팅하기 함수!!////////////
+function setValue(){
+    // 2. url 키값 분리하기(?있는지 확인)
+    // ?는 Get방식의 시그널이므로 이것의 존재 여부로 문자자르기
+    try{
+        if(parameter.indexOf('?') == -1 ||
+            parameter.indexOf('=') == -1){
+            throw '잘못 된 접근입니다.';
+        } 
+    }catch(err){ // throw의 값을 err로 받음 
+        // 에러 메세지 띄우기
+        alert(err);
+        // 메인으로 보내기
+        location.href = 'index.html';
+    } ////////try catch///////////
+    // 3. 값 추출하기
+    parameter = parameter.split('?')[1].split('=')[1];
+    // 특수문자 변환하기 : time & gem때문
+    parameter = decodeURIComponent(parameter);
     
-    // 2. 스크롤 위치값이 300을 초과하면 나오기
-    if(scTop>300) tBtn.addClass('on');
-    else tBtn.removeClass('on');
+    // 4. 카테고리 데이터 매칭하기
+    // json파일 객체데이터 속성으로 선택함
+    const selData = catagoryData[parameter];
+    console.log(selData);
 
-    // 3. 윈도우 높이값의 3/4 지점에서 .main-area section에 on 넣기
-    hideBox.each((idx,ele)=>{
-        let val = dFn.getBCR(ele);
-        if(idx!=0 && val < winH){
-            // console.log(`${idx}번째 대상의 getBCR top값 :`,dFn.getBCR(ele));
-            $(ele).addClass('on');
-        } ///////////////if///////////////////////
+    // 5. 데이터 바인딩하기
+    // 5-1. 배경 이미지를 위한 클래스 주기
+    // ' & '를 '-'로 변경하기 : time-gem
+    $('.main-area').addClass(parameter.replace(' & ','-'));
+    // 5-2. 제목 바인딩
+    $('.cat-tit').text(selData['제목']);
+    // 5-3. 메뉴 변경하기
+    // 1) 대상 : .lnb
+    let lnb = $('.lnb');
+    // 2) 메뉴데이터 : selData.메뉴
+    let mData = selData.메뉴;
+    // 3) 메뉴리턴함수
+    const retMenu = () => mData.map(v=>`<li><a href="#">${v}</a></li>`).join('');
+    // 4) 메뉴데이터 분기하기
+    if(mData == '없음'){
+        lnb.remove();
+    } else{
+        lnb.html(`<ul>${retMenu()}</ul>`);
+    } ////////if else //////////////
+    // 5-4. 서브타이틀 바인딩 $(선택자).each((순번,요소)=>{구현부});
+    $(selData['타이틀']).each((i,v)=>{
+        $('.cat-cont-area h2').eq(i).html(v);
     });
-}); ///////////scroll ///////////
+} ////////////////setValue함수/////////////////
 
-// 2. 상단이동버튼 클릭 시 맨 위로 가기//
-// 부드러운 스크롤 함수 업데이트
-tBtn.click((e)=>{
-    // 기본 a태그 기능(#-맨위이동) 막기
-    e.preventDefault();
-    // 부드러운 스크롤 위치값 변경
-    setPos(0);
-    console.log('나클릭');
-}); ///////////click//////////
