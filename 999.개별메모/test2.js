@@ -144,7 +144,7 @@ function keyhoverFn(){
     });
 } ////////// keyhoverFn ////////////
 
-typingKey('leopold');
+typingKey('LEOPOLD');
 // 타이핑 텍스트 키 매칭함수
 function typingKey(txt){
     // 타이핑 텍스트 나누기
@@ -154,26 +154,28 @@ function typingKey(txt){
     let sameKeyList = [];
     for(let i=0; i<eachTxt.length; i++){
         dFn.qsa('.key-top').forEach(ele=>{
-            if(ele.innerText.toLowerCase() == eachTxt[i]){
+            if(ele.innerText.toLowerCase() == eachTxt[i].toLowerCase()){
                 //조부모찾아서 담기(스타일 대상)
                 sameKeyList[i] = ele.parentNode.parentNode;
-                console.log(sameKeyList);
             } /////// if 일치하면 담기//////////
         }); /////////// key-top forEach /////////////
-    }
+        console.log(sameKeyList);
+    } ///////// for ////////////////
 
     // 스타일 적용
     sameKeyList.forEach((ele,idx)=>{
         setTimeout(()=>{
             ele.style.transform = 'translateY(10px)';
-            typingShow(ele,idx);
-        },500*idx);
+            dFn.qsEl(ele,'.key-top').style.backgroundColor = 'cornflowerblue';
+            typingShow(ele);
+        },3000 + (idx*600));
     });
 } ////////// typingKey 함수 //////////
 
 // 스타일 초기화 함수
-function typingShow(ele,idx){
+function typingShow(ele){
     setTimeout(()=>{
         ele.style.transform = 'translateY(0px)';
-    },100*idx+1);
+        dFn.qsEl(ele,'.key-top').style.backgroundColor = '#fff';
+    },200);
 } ////////// typingShow 함수 //////////

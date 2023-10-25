@@ -17,7 +17,7 @@ const dFn = {
 
 // 타이핑 데이터
 const typingData = {
-    'main':'LEOPOLDLEOPOLDLEOPOLDLEOPOLDLEOPOLDLEOPOLD',
+    'main':'LEOPOLD',
 }
 // 1) 대상선정: 이벤트 .message-box span //
 let typingArr = typingData['main'].split('');
@@ -43,5 +43,7 @@ function insertText(){
 window.addEventListener('DOMContentLoaded',()=>{
     msgBoxSpan.innerText = '';
     //  인터발함수 호출
-    insertText();
+    setTimeout(()=>{
+        insertText();
+    },2800);
 }); /////////////로드이벤트/////////////////////
