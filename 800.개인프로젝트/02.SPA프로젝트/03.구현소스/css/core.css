@@ -2,6 +2,28 @@
 
 /* 레오폴드 PJ : 공통요소 CSS - core.css */
 
+/* 공통레이아웃 클래스*/
+/* 공사중표시 */
+body *{
+    outline: 1px dashed coral;
+    background: #eee;
+    width: 100vw;
+    height: 100vh;
+}
+/* 속박스 */
+.in-box {
+    max-width: 1280px;
+    padding: 0 20px;
+    margin: 0 auto;
+    box-sizing: border-box;
+}
+
+/* 플렉스 박스 클래스 */
+.flex-box{
+    display: flex;
+    flex-wrap: wrap;
+}
+
 /* IR 숨기기 class */
 .ir{
     display: block;
@@ -62,4 +84,53 @@
 }
 .col-16 {
     width: 100%;
+}
+/* 16 그리드 클래스 : 페이지 가로가 16줄이 되도록 셋팅! */
+.row-1 {
+    height: 6.25%;
+}
+.row-2 {
+    height: 12.5%;
+}
+.row-3 {
+    height: 18.75%;
+}
+.row-4 {
+    height: 25%;
+}
+.row-5 {
+    height: 31.25%;
+}
+.row-6 {
+    height: 37.5%;
+}
+.row-7 {
+    height: 43.75%;
+}
+.row-8 {
+    height: 50%;
+}
+.row-9 {
+    height: 56.25%;
+}
+.row-10 {
+    height: 62.5%;
+}
+.row-11 {
+    height: 68.75%;
+}
+.row-12 {
+    height: 75%;
+}
+.row-13 {
+    height: 81.25%;
+}
+.row-14 {
+    height: 87.5%;
+}
+.row-15 {
+    height: 93.75%;
+}
+.row-16 {
+    height: 100%;
 }

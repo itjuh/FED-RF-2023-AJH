@@ -1,0 +1,7 @@
+@charset "utf-8";
+
+/* 레오폴드 PJ : 메인 CSS - main.css */
+/* 리셋, 공통, 코어 외부 CSS합치기(merging) */
+@import url(./reset.css);
+@import url(./core.css);
+@import url(./common.css);
