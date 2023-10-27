@@ -312,7 +312,7 @@
     width: 45px;
     height: 45px;
     border-radius: 45px;
-    background: var(--co-onbeige) url(../../01.자료수집/images/sns_icon.png) no-repeat;
+    background: var(--co-onbeige) url(../images/images/sns_icon.png) no-repeat;
 }
 /* 이미지 별도 위치조정*/
 .kakao{

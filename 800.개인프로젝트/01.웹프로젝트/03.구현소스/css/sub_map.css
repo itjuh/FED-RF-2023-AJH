@@ -47,7 +47,7 @@
   left: 1px;
   width: 650px;
   aspect-ratio: 7/5;
-  background: url(../../01.자료수집/images/map.png) no-repeat center/cover;
+  background: url(../images/images/map.png) no-repeat center/cover;
   border-radius: 10px;
   /* 애니메이션 불러오기 */
   animation: map-box-hide-ani 2s linear 1s forwards;
@@ -207,7 +207,7 @@
   content: "\f059";
   width: 100%;
   height: calc(100% - 20px);
-  background: url(../../01.자료수집/images/info.png) no-repeat;
+  background: url(../images/images/info.png) no-repeat;
   background-position: 0px 0px;
   background-size: 1046px 711px;
   overflow: hidden;

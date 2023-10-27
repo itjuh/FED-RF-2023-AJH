@@ -397,6 +397,8 @@ https://www.w3schools.com/cssref/tryit.php?filename=trycss_cursor */
     padding-bottom: 30px;
     background-color: #fff;
     display: none;/* 처음에 안보임 */
+    height: calc(100vh - 57px);
+    overflow-y: auto;
 }
 /* 1.5-1.모바일 GNb */
 .mognb{

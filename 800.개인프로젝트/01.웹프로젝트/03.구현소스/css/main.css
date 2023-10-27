@@ -104,7 +104,7 @@
     width: 45px;
     height: 51px;
     top: calc(50% - 51px / 2);
-    background: url(../../01.자료수집/images/direc_icon.png) no-repeat;
+    background: url(../images/images/direc_icon.png) no-repeat;
 }
 /* 왼쪽 배너로 이동 .prev-btn*/
 .prev-btn {

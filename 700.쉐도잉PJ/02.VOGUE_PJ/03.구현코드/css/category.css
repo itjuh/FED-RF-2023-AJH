@@ -1,5 +1,5 @@
 @charset "utf-8";
-/* 보그 PJ 서브페이지 CSS - category.css */
+/* 보그 PJ 카테고리 페이지 CSS - category.css */
 
 /* 공통 외부 CSS */
 @import url(./reset.css);
@@ -27,6 +27,8 @@
     justify-content: center;
     /* 사이간격 */
     gap: 0 20px;
+    /* 모바일용 */
+    flex-wrap: wrap;
 }
 .lnb a{
     font-family: nbg;

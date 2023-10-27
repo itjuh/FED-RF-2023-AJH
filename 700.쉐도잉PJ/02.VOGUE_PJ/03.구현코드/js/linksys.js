@@ -7,7 +7,7 @@ $(()=>{
     // 요구사항 : 각 네비게이션 클릭 시 페이지 이동
     // 1. 대상선정
     // 1-1. GNB메뉴
-    const gnb = $('.gnb a');
+    const gnb = $('.gnb a, .mognb a');
     // 1-2. 로고이미지
     const logo = $('.logo a');
     // console.log(gnb,logo);
@@ -34,7 +34,7 @@ $(()=>{
     // $('.sns a:last').after(`<ㅋ></ㅋ>`);
 
     // 아이콘 넣기
-    $('.sns a:last').before(`
+    $('.sns a:last, .mosns a:last').before(`
         <a href="#" class="fi fi-laptop">
             <span class="ir">로그인</span>
         </a>
@@ -49,7 +49,7 @@ $(()=>{
     // 새로 추가 된 a요소까지 다시 선택하여 
     // each()메서드로 돌면서 글자를 읽어와서
     // title속성으로 넣기 attr('title',값)
-    $('.sns a').each((idx,ele)=>{
+    $('.sns a, .mosns a').each((idx,ele)=>{
         $(ele).attr('title',$(ele).text().trim());
     }) /////////each///////////////
     // 위에서 이어서 a요소에 링크 설정하기
@@ -97,4 +97,7 @@ $(()=>{
             window.open(url);
         }
     }); /////////click이벤트 설정/////////
+
+    // 모바일 메뉴박스의 sns링크 4번째에서 줄바꿈 태그 넣기
+    $('.mosns a').eq(3).after('<br>');
 }); //////////////JQB/////////////////////

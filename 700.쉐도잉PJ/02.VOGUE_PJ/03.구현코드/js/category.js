@@ -1,12 +1,9 @@
-// 보그PJ 서브페이지 category.js
+// 보그PJ 카테고리 페이지 category.js
 
-// 부드러운 스크롤 모듈
-import { startSS, setPos } from './smoothscroll23.js';
 // json데이터 읽어오기
 import catagoryData from './data/category_data.json' assert{type:'json'};
 // console.log(catagoryData);
-// 부드러운 스크롤 적용 ////////////
-startSS();
+
 ////////////////////////////////////////////////////////
 // 카테고리페이지 기능 구현하기 //////////////////////////
 // 요구사항 : url로 전달 된 키값을 읽어서 페이지 셋업하기//
@@ -66,5 +63,10 @@ function setValue(){
     $(selData['타이틀']).each((i,v)=>{
         $('.cat-cont-area h2').eq(i).html(v);
     });
+    // 5-5. 탭 메뉴 타이틀 바인딩
+    // 형식: 카테고리명 | 보그 코리아 (Vogue Korea) 2023
+    // 제이쿼리 prepend() 메서드 사용 -> 자식요소 또는 내용의 맨 앞에 넣기
+    $('title').prepend(parameter.toUpperCase()+' | ');
+    
 } ////////////////setValue함수/////////////////
 

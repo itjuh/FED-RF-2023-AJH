@@ -25,7 +25,7 @@
     transform: translateX(-5%);
     width: 130vw;
     height: 100vh;
-    background: var(--co-onlightgreen) url(../../01.자료수집/images/info_main.jpg) no-repeat left top/100vw;
+    background: var(--co-onlightgreen) url(../images/images/info_main.jpg) no-repeat left top/100vw;
 }
 .main-img::after{
     content: '';
@@ -242,7 +242,7 @@ main .partbox{
     width: 1200px;
     height: 80px;
     margin: 0 auto;
-    background: url(../../01.자료수집/images/long_arrow_icon.png) no-repeat 0px 30px/1306px 276px;
+    background: url(../images/images/long_arrow_icon.png) no-repeat 0px 30px/1306px 276px;
 }
 /* 주문절차 불릿ul */
 .bullet-box ul{

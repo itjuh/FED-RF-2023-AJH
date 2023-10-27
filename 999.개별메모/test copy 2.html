@@ -71,11 +71,14 @@
       }
       /* 겉박스 */
       .key-box {
-        display: flex;
-        justify-content: space-between;
+        /* display: flex; */
+        /* justify-content: space-between; */
+        display: grid;
+        grid-template-columns: repeat(2, 2fr);
+        width: calc(var(--key-width) * 2);
         flex-wrap: wrap;
         position: relative;
-        width: calc(var(--key-width) * 15 + 10px);
+        /* width: calc(var(--key-width) * 15 + 10px); */
         height: auto;
         top: 85%;
         left: 50%;
@@ -241,6 +244,50 @@
       /* 메뉴 구역 */
       .gnb-area {
         height: 80px;
+      }
+      /* 2*2키 */
+      .key:nth-child(1) .key-top{
+        background-color: rgb(255, 204, 185);
+        border: 0.5px solid coral;
+      }
+      .key:nth-child(1) span{
+        background-color: coral;
+      }
+      .key:nth-child(1) span:nth-child(6){
+        background-color: rgb(211, 101, 61);
+      }
+
+      .key:nth-child(2) .key-top{
+        background-color: rgb(185, 204, 255);
+        border: 0.5px solid rgb(80, 141, 255);
+      }
+      .key:nth-child(2) span{
+        background-color: rgb(80, 162, 255);
+      }
+      .key:nth-child(2) span:nth-child(6){
+        background-color: rgb(61, 83, 211);
+      }
+
+      .key:nth-child(3) .key-top{
+        background-color: rgb(255, 242, 223);
+        border: 0.5px solid rgb(255, 221, 146);
+      }
+      .key:nth-child(3) span{
+        background-color: rgb(255, 221, 169);
+      }
+      .key:nth-child(3) span:nth-child(6){
+        background-color: rgb(231, 203, 170);
+      }
+
+      .key:nth-child(4) .key-top{
+        background-color: rgb(255, 204, 185);
+        border: 0.5px solid coral;
+      }
+      .key:nth-child(4) span{
+        background-color: coral;
+      }
+      .key:nth-child(4) span:nth-child(6){
+        background-color: rgb(211, 101, 61);
       }
     </style>
   </head>
