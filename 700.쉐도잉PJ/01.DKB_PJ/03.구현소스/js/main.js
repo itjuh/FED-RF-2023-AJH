@@ -9,6 +9,61 @@ import { startSS, setPos } from "./smoothscroll23.js";
 import { gridData, gnbData, previewData, clipData, linkData } from "./data_drama.js";
 // 부드러운 스크롤 적용
 startSS();
+// 모바일적용 여부코드 ////////////////////////////
+let mob=0; // 0-DT 1-MB
+const chkMob = () =>{ 
+  if($(window).width()<=1024) mob=1;
+  else mob=0;
+  console.log(mob,'모바일여부');
+  // 부가기능: 모바일일때 서브메뉴 기본 스타일 지우기
+  if(mob) $('.smenu').attr('style',''); //인라인요소인 스타일시트 없애기
+} ////////////모바일검사 함수 ///////////
+chkMob();
+//화면 리사이즈 시 모바일 검사함수 호출
+$(window).resize(chkMob);
+///////////////////////////////////////////////
+
+/////////////////////////////////////////////////
+////////// 모바일 시 기능구현 /////////////////////
+// 1. 햄버거버튼 클릭 시 메뉴 보이기 숨기기
+// 대상 : .ham
+const hEle = $('.header');
+$('.ham').click(()=>{
+  hEle.toggleClass('on');
+  // 요소.is(요소2)메서드 요소가 요소2를 가지고 있는 지 확인
+  console.log(hEle.is('.on'));
+  //만약 .header.on이면 body에 스크롤바 숨기기
+  if(hEle.is('.on')) $('html, body').css({overflow:'hidden'});
+  //아니면 넣은 인라인스타일 지우기
+  else $('html, body').attr('style','');
+});
+// 2. 메뉴 클릭 시 하위메뉴 보이기
+// 대상 : .gnb>li
+$('.gnb li').click(function(){
+  if(!mob) return; // 모바일이 아니면 기능안함
+  console.log('클릭함');
+  // 서브메뉴 슬라이드 애니로 보이기/숨기기
+  // 대상: .smenu
+  $(this).find('.smenu')
+  .slideToggle(300,'easeInOutQuad')
+  .parent() // 부모로 가서 나머지 형제들은 닫기
+  .siblings().find('.smenu')
+  .slideUp(300,'easeInOutQuad');
+}); //////////////click이벤트 //////////////////
+
+// 3. 스티키 메뉴 박스 드래그하여 움직여보기
+// 대상: #dokebi-menu ul
+$('#dokebi-menu ul').draggable({
+  // x축 고정
+  axis:'x',
+  // 부모박스보다 작을때 사용
+  // containment:'parent',
+});
+
+
+
+
+
 
 // 0-1. 새로고치면 스크롤바 위치 캐싱 후 맨 위로 이동
 setTimeout(() => {
@@ -96,18 +151,17 @@ gnbList.forEach((ele) => {
     ele.innerHTML += `
         <div class="smenu">
           <aside class="smbx">
-            <h2> ${atxt}
-              <ol>
-                ${gData
-                  .map(
-                    (val) =>
-                      `<li>
-                    <a href="#">${val}</a>
-                  </li>`
-                  )
-                  .join("")}
-              </ol>
-            </h2>
+            <h2> ${atxt} </h2>
+            <ol>
+              ${gData
+                .map(
+                  (val) =>
+                    `<li>
+                  <a href="#">${val}</a>
+                </li>`
+                )
+                .join("")}
+            </ol>
           </aside>
         </div>
      `;
@@ -138,6 +192,7 @@ gnb.forEach((ele) => {
 });
 // 3. 함수만들기
 function overFn() {
+  if(mob) return; // 모바일이면 안함~
   // console.log('over this:',this);
   // 1. 하위 .smbx 높이값 알아오기
   let hv = domFn.qsEl(this, ".smbx").clientHeight;
@@ -146,6 +201,7 @@ function overFn() {
   domFn.qsEl(this, ".smenu").style.height = hv + "px";
 } //////////overFn//////////////////
 function outFn() {
+  if(mob) return; // 모바일이면 안함~
   // console.log('out this:',this);
   // 3. 서브메뉴 박스 높이값 0 만들기
   domFn.qsEl(this, ".smenu").style.height = "0px";

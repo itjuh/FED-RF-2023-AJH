@@ -13,130 +13,154 @@
 
 /******** 1. 상단영역 ***********/
 #header {
-    /* background-color: lightblue; */
-    position: relative;
-    /* 상단 맨위 */
-    z-index: 999;
+  /* background-color: lightblue; */
+  position: relative;
+  /* 상단 맨위 */
+  z-index: 999;
 }
 .header .partbox {
-    height: 120px;
+  height: 120px;
 }
 /* 1-1.로고박스 */
-.header__logo img{
-    margin-top: 40px;
-    width: 126px;
+.header__logo img {
+  margin-top: 40px;
+  width: 126px;
 }
 /* 1-2-1. 탑메뉴 */
-.top-menu ul{
-    /* 플렉스박스 */
-    display: flex;
-    /* 진행방향 정렬 */
-    justify-content: flex-end;
-    /* 패딩 */
-    padding: 14px 16px 7px 0px;
+.top-menu ul {
+  /* 플렉스박스 */
+  display: flex;
+  /* 진행방향 정렬 */
+  justify-content: flex-end;
+  /* 패딩 */
+  padding: 14px 16px 7px 0px;
 }
 /* 1-2-2. GNB메뉴 */
-.gnb ul{
-    /* 플렉스박스 */
-    display: flex;
-    /* 진행방향 정렬 */
-    justify-content: flex-end;
+.gnb ul {
+  /* 플렉스박스 */
+  display: flex;
+  /* 진행방향 정렬 */
+  justify-content: flex-end;
 }
 /* li사이간격주기 */
-.top-menu li+li{
-    margin-left: 12px;
+.top-menu li + li {
+  margin-left: 12px;
 }
 /* 탑메뉴 a */
-.top-menu a{
-    font-size: 1.3rem;
-    /* 줄바꿈방지! */
-    white-space: nowrap;
+.top-menu a {
+  font-size: 1.3rem;
+  /* 줄바꿈방지! */
+  white-space: nowrap;
 }
 /* GNB메뉴 a */
-.gnb ul>li>a{
-    display: block;
-    font-size: 1.6rem;
-    padding: 23px 13px;
-    font-weight: 500;
-    /* 줄바꿈방지! */
-    white-space: nowrap;
+.gnb ul > li > a {
+  display: block;
+  font-size: 1.6rem;
+  padding: 23px 13px;
+  font-weight: 500;
+  /* 줄바꿈방지! */
+  white-space: nowrap;
 }
 /* 4번째 li~ 6번째 li하위메뉴 표시하기 */
-.gnb ul>li:nth-child(3) ~ li:nth-child(-n+6)>a::after{
-    content: '∨';
-    display: inline-block;
-    transform: scale(.6, .4);
-    /* font-size는 줄맞춤 해야함 */
-    margin-left: 2px;
+.gnb ul > li:nth-child(3) ~ li:nth-child(-n + 6) > a::after {
+  content: "∨";
+  display: inline-block;
+  transform: scale(0.6, 0.4);
+  /* font-size는 줄맞춤 해야함 */
+  margin-left: 2px;
 }
 /* GMB메뉴 li오버시(a에 하면 서브메뉴 들어갈때 꺼짐) */
-.gnb ul>li:hover>a{
-    color: red;
+.gnb ul > li:hover > a {
+  color: red;
 }
 /* 서브메뉴 */
 .smenu {
-    position: absolute;
-    width: 100%;
-    left: 0;
-    background-color: #fff;
-    line-height: 2;
-    /* 메뉴숨기기 */
-    overflow: hidden;
-    height: 0;
-    /* 트랜지션 */
-    transition: .4s ease-in-out;
+  position: absolute;
+  width: 100%;
+  left: 0;
+  background-color: #fff;
+  line-height: 2;
+  /* 메뉴숨기기 */
+  overflow: hidden;
+  height: 0;
+  /* 트랜지션 */
+  transition: 0.4s ease-in-out;
 }
-/* 상위메뉴 오버시 서브메뉴 오버 하위메뉴 보이기*/
+/* 모바일 메뉴에서 트랜지션 없애기 */
+.header.on .smenu{
+    /* 제이쿼리 충돌방지 */
+    transition: none;
+}
 
+/* 상위메뉴 오버시 서브메뉴 오버 하위메뉴 보이기*/
 /* 서브메뉴 속박스 */
 aside.smbx {
-    max-width: 1000px;
-    margin: 0 auto;
-    /* outline: 4px solid #4600ff; */
+  max-width: 1000px;
+  margin: 0 auto;
+  /* outline: 4px solid #4600ff; */
 }
 /* 서브메뉴 왼쪽타이틀 */
 .smbx h2 {
-    font-size: 3.6rem;
+  font-size: 3.6rem;
 }
 /* 서브메뉴 ol */
 .smbx ol {
-    font-size: 1.6rem;
-    display: flex;
-    /* 랩핑박스 */
-    flex-wrap: wrap;
-    line-height: 3;
-    padding-bottom:20px;
+  font-size: 1.6rem;
+  display: flex;
+  /* 랩핑박스 */
+  flex-wrap: wrap;
+  line-height: 3;
+  padding-bottom: 20px;
 }
 /* 서브메뉴 ul */
-.smbx li{
-    flex-basis: 25%;
-    /* 글자 말줄임 세팅 */
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
+.smbx li {
+  flex-basis: 25%;
+  /* 글자 말줄임 세팅 */
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
-
+/* 모바일 햄버거 버튼 */
+.ham {
+  position: absolute;
+  top: 5px;
+  right: 10px;
+  width: 50px;
+  height: 50px;
+  background-color: transparent;
+  border: none;
+  font-size: 40px;
+  transform: scaleX(1.5);
+  color: #555;
+  cursor: pointer;
+  /* 처음에 숨기기 */
+  display: none;
+}
+/* 햄버거모양 가상요소넣기 */
+.ham::before {
+  content: "≡";
+}
 /******** 2. 메인영역 ***********/
 #main {
-    /* 본문영역 최소 높이 셋팅 */
-    min-height: 700px;
+  /* 본문영역 최소 높이 셋팅 */
+  min-height: 700px;
 }
 /******** 3. 하단영역 ***********/
 #footer {
-    /* background-color: lightcoral; */
-    border-top: 1px solid #0000000d;
-    padding-top: 15px;
-    padding-bottom: 80px;
-    background: url(../images/footer_bg_tvn-pc.png) no-repeat center top/cover;
+  /* background-color: lightcoral; */
+  border-top: 1px solid #0000000d;
+  padding-top: 20px;
+  padding-bottom: 80px;
+  background: url(../images/footer_bg_tvn-pc.png) no-repeat center top/cover;
 }
 #footer::before {
-    content: '';
-    display: block;
-    position: relative;
-    top: 50px;
-    width: 100vw;
-    height: 1px;
-    background-color: #0000000d;
+  content: "";
+  display: block;
+  position: relative;
+  top: 50px;
+  width: 100vw;
+  height: 1px;
+  background-color: #0000000d;
 }
 /* .footer .partbox {
     강제 높이 설정 - 초기세팅용
@@ -144,56 +168,60 @@ aside.smbx {
 } */
 /* 하단링크박스 */
 .info-link ul {
-    display: flex;
-    gap: 0 20px;
+  display: flex;
+  gap: 0 20px;
+  flex-wrap: wrap;
 }
-.info-link a{
-    font-size: 1.3rem;
-    white-space: nowrap;
-    /* 줄바꿈 방지 */
-    line-height: 2.5;
-    /* 양쪽 밀기 */
-    color: #444;
+.info-link a {
+  font-size: 1.3rem;
+  white-space: nowrap;
+  /* 줄바꿈 방지 */
+  line-height: 2.5;
+  /* 양쪽 밀기 */
+  color: #444;
 }
 /* 바로가기 콤보박스 영역 */
-.combo-area select{
-    float: right;
-    width: 170px;
-    height: 30px;
-    border-radius: 5px;
-    border: none;
-    background-color: rgb(0, 0, 0, 0.05);
-    font-size: 1.2rem;
-    margin-left: 10px;
-    padding: 5px 10px;
+.combo-area {
+  text-align: right;
+}
+.combo-area select {
+  width: 170px;
+  height: 30px;
+  border-radius: 5px;
+  border: none;
+  background-color: rgb(0, 0, 0, 0.05);
+  font-size: 1.2rem;
+  margin-left: 10px;
+  padding: 5px 10px;
+  margin-bottom: 10px;
 }
 /* 하단로고박스 */
-.footer__logo{
-    padding: 20px 0;
+.footer__logo {
+  padding: 20px 0;
 }
 /* 회사주소박스 */
 .corp-info {
-    font-size: 1.3rem;
-    line-height: 2;
-    color: #aaa;
+  font-size: 1.3rem;
+  line-height: 2;
+  color: #aaa;
 }
 .corp-info b {
-    color: #000;
-    font-weight: normal;
-}    
-/* SNS박스 */
-.sns-box ul{
-    display: flex;
-    gap: 0 10px;
-    justify-content: flex-end;
+  color: #000;
+  font-weight: normal;
 }
-.sns-box li{
-    width: 40px;
-    height: 40px;
-    line-height: 44px;
-    font-size: 2.2rem;
-    text-align: center;
-    border-radius: 50%;
-    background-color:  rgb(0, 0, 0, 0.05);
-
+/* SNS박스 */
+.sns-box ul {
+  display: flex;
+  gap: 0 10px;
+  justify-content: flex-end;
+}
+.sns-box li {
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  line-height: 44px;
+  font-size: 2.2rem;
+  text-align: center;
+  border-radius: 50%;
+  background-color: rgb(0, 0, 0, 0.05);
 }

@@ -33,7 +33,9 @@
 .dokebi-menu > ul {
   /* 플렉스박스 */
   display: flex;
+  width: fit-content;
   padding: 12px 0;
+  transition: .3s ease-in;
 }
 /*.도깨비 메뉴 a */
 .dokebi-menu > ul > li > a {
@@ -90,6 +92,7 @@
 /********** 방송편성소개파트:.intro-part****************/
 .main .intro-part .partbox {
   height: 455px;
+  padding: 10px;
 }
 /* 서브타이틀 */
 .intro-part .stit {
@@ -98,6 +101,7 @@
 /* 하위제목+아이콘 박스 */
 .intro-desc {
   display: flex;
+  flex-wrap: wrap;
   font-size: 2.5rem;
 }
 /* 하위제목 */
