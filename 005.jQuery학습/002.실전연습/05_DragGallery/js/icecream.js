@@ -11,11 +11,12 @@ $(()=>{
     // 데스트탑하고 모바일이 좀 달라야 자연스러움
     // 이징에 in이 들어가면 처음에 답답함
     const TRS_TIME_DT = '.8s ease-out';                
-    const TRS_TIME_MOB = '.3s ease-out'; 
+    const TRS_TIME_MOB = '.2s ease-out'; 
     // 2) 화면크기 업데이트 함수
     const updateWin = () => $(window).width();
     // 3) 최초 화면크기 윈도우 가로크기 업데이트
     let winW = updateWin();
+    // console.log('최초 화면 가로크기 :',winW);
 
     // 1. 대상선정 : #move
     // 아이스크림 리스트를 모두 담고있는 박스
@@ -34,9 +35,7 @@ $(()=>{
     }); //////////// css //////////////////
 
     // 2-2. 이동 한계 값 설정하기
-    
-    // console.log('최초 화면 가로크기 :',winW);
-    // 화면크기 변경 시
+    // 화면크기 변경 시 업데이트 
     $(window).resize(()=>{
         // 1) 가로크기 업데이트
         winW = updateWin();
@@ -85,5 +84,5 @@ $(()=>{
         else if(tgPos < lastPoint*-1){
             target.css({left: -lastPoint + 'px'});
         }
-    });
+    }); ///////이벤트 설정 //////////////
 }); ///////////////////JQB////////////////////////

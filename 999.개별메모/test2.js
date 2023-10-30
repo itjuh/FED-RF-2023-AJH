@@ -101,7 +101,7 @@ const keyBox = dFn.qs('.key-box');
 
 let hcode = '';
 
-keyData33.forEach(ele=>{
+keyData.forEach(ele=>{
     hcode += `
     <div class="key ${ele[0]}">
         <!-- 키 윗면 -->
@@ -163,36 +163,36 @@ function keyhoverFn(){
 
 typingKey('LEOPOLD');
 // 타이핑 텍스트 키 매칭함수
-// function typingKey(txt){
-//     // 타이핑 텍스트 나누기
-//     let eachTxt = txt.split('');
-//     console.log(eachTxt);
-//     // 타이핑 효과 줄 키 저장 변수
-//     let sameKeyList = [];
-//     for(let i=0; i<eachTxt.length; i++){
-//         dFn.qsa('.key-top').forEach(ele=>{
-//             if(ele.innerText.toLowerCase() == eachTxt[i].toLowerCase()){
-//                 //조부모찾아서 담기(스타일 대상)
-//                 sameKeyList[i] = ele.parentNode.parentNode;
-//             } /////// if 일치하면 담기//////////
-//         }); /////////// key-top forEach /////////////
-//         console.log(sameKeyList);
-//     } ///////// for ////////////////
+function typingKey(txt){
+    // 타이핑 텍스트 나누기
+    let eachTxt = txt.split('');
+    console.log(eachTxt);
+    // 타이핑 효과 줄 키 저장 변수
+    let sameKeyList = [];
+    for(let i=0; i<eachTxt.length; i++){
+        dFn.qsa('.key-top').forEach(ele=>{
+            if(ele.innerText.toLowerCase() == eachTxt[i].toLowerCase()){
+                //조부모찾아서 담기(스타일 대상)
+                sameKeyList[i] = ele.parentNode.parentNode;
+            } /////// if 일치하면 담기//////////
+        }); /////////// key-top forEach /////////////
+        console.log(sameKeyList);
+    } ///////// for ////////////////
 
-//     // 스타일 적용
-//     sameKeyList.forEach((ele,idx)=>{
-//         setTimeout(()=>{
-//             ele.style.transform = 'translateY(10px)';
-//             dFn.qsEl(ele,'.key-top').style.backgroundColor = 'cornflowerblue';
-//             typingShow(ele);
-//         },3000 + (idx*600));
-//     });
-// } ////////// typingKey 함수 //////////
+    // 스타일 적용
+    sameKeyList.forEach((ele,idx)=>{
+        setTimeout(()=>{
+            ele.style.transform = 'translateY(10px)';
+            dFn.qsEl(ele,'.key-top').style.backgroundColor = 'cornflowerblue';
+            typingShow(ele);
+        },3000 + (idx*600));
+    });
+} ////////// typingKey 함수 //////////
 
-// // 스타일 초기화 함수
-// function typingShow(ele){
-//     setTimeout(()=>{
-//         ele.style.transform = 'translateY(0px)';
-//         dFn.qsEl(ele,'.key-top').style.backgroundColor = '#fff';
-//     },200);
-// } ////////// typingShow 함수 //////////
+// 스타일 초기화 함수
+function typingShow(ele){
+    setTimeout(()=>{
+        ele.style.transform = 'translateY(0px)';
+        dFn.qsEl(ele,'.key-top').style.backgroundColor = '#fff';
+    },200);
+} ////////// typingShow 함수 //////////
