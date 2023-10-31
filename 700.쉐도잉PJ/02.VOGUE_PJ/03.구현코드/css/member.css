@@ -7,9 +7,9 @@
 @import url(./common.css);
 
 /* 컨텐츠 영역 속박스 */
-.main-area {
-  min-height: 900px;
-  /* 튐방지로 900까지 늘림 */
+#main-area {
+  min-height: 700px;
+  /* 튐방지로 700까지 늘림 */
   padding: 15px;
   padding-bottom: 100px;
 }
@@ -27,7 +27,7 @@
 .scont {
   /* 처음에 회원가입 박스안보임 
     -> 대신 동의박스가 보임 */
-  /* display: none; */
+  display: none;
   max-width: 700px;
   min-height: 275px;
   margin: 0 auto;
@@ -175,7 +175,7 @@ select:focus {
   background-color: #fff;
   padding: 15px;
   margin: 0 auto;
-  display: none;
+  /* display: none; */
 }
 
 /* 동의/비동의 버튼박스 */
