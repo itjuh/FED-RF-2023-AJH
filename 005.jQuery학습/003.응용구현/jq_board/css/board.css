@@ -27,6 +27,7 @@
 .dtbl a {
     text-decoration: none;
     color: #666;
+    cursor: pointer;
 }
 
 .btngrp td {

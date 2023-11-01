@@ -63,3 +63,10 @@ Uncaught Error: Minified React error #130;
 따라서 모듈을 사용할 파일을 아래와 같은 형식으로 메인 html 상단에 호출해 줘야만 한다!!!
 import로 호출한 JSX는 HTML에 등록한다(CDN에서만!!)
 <script src="모듈화한js" data-plugins="transform-es2015-modules-umd" type="text/babel"></script>
+
+Minified React error #200;
+Element type is invalid: expected a string (for built-in components) or a class/function (for composite components) but got: undefined.
+오류원인 : <누구냐.provider value={{myVal,changeMyVal,myData}}></누구냐.provider>
+해결방안 : <누구냐.Provider value={{myVal,changeMyVal,myData}}></누구냐.Provider> 
+.Provider는 대문자로 시작합니다! 리액트 컴포넌트 규칙과 같음!!!!!!!!!!!
+
