@@ -10,7 +10,6 @@ const dFn = {
 
 // 제품 데이터
 // ['제품코드','색상명','가격','이미지']로 구성
-const prodData2 = [["FC900RBTPD", "코랄 블루", "178000", "keyboard1"]];
 const prodData = [
   ["FC900RBTPD", "코랄 블루", "178000", "keyboard1"],
   ["FC750RBTPD", "코랄 블루", "175000", "keyboard2"],
@@ -65,112 +64,77 @@ const prodData = [
 /////////////////////////////////////////////////
 ///////// 원형으로 이미지 데이터 뿌리기 ///////////
 /////////////////////////////////////////////////
-// [1] 요구사항 
+// [1] 요구사항
 // 1. 데이터 개수를 분류하여 뿌리기
 // 2. 이미지는 화면 중심으로부터 이동
-// 대상 :.prod-box
-const prodBox1 = dFn.qs(".box1");
+// 3. 화면사이즈를 가져와서 이미지 크기를 조정한다.
+
+// 대상 :.box1, .box2
+const prodInBox = dFn.qs(".inner-box");
+const prodOutBox = dFn.qs(".outer-box");
 
 // [2] 데이터 나누기
-let dataArr1 = []; // 안쪽원
-let dataArr2 = []; // 바깥쪽 원
-// dataArr1 에 데이터 넣기 (1/5개)
-let arr = [];
-let x = 0;
-let y = 0;
-for(let i = 0; i < prodData.length; i++){
+let data750arr = []; // 안쪽 원
+let data900arr = []; // 밖 원
+let dataOther = []; // 나머지
+
+let x = 0; // 900분류용
+let y = 0; // 750분류용
+let z = 0; // 나머지분류용
+for (let i = 0; i < prodData.length; i++) {
   let a = prodData[i][0];
-  a = a.substr(2,3);
-  if(a == 900){
-    dataArr1[x] = prodData[i];
+  a = a.substr(2, 3);
+  if (a == 900) {
+    data900arr[x] = prodData[i];
     x++;
-  }else if(a == 750){
-    dataArr2[y] = prodData[i];
-    y++; 
+  } else if (a == 750) {
+    data750arr[y] = prodData[i];
+    y++;
+  } else {
+    dataOther[z] = prodData[i];
+    z++;
   }
 } /////////////for//////////////////
-arr = [dataArr2,dataArr1];
 
-// dataArr2 에 데이터 넣기 (2/3개)
-// for(let i = 0; i < prodData.length*2/5; i++){
-//   let seq = dataArr1.length + i;
-//   dataArr2[i] = prodData[seq];
-// }
-// console.log(dataArr1, dataArr2, dataArr1.length,dataArr2.length,prodData.length);
-console.log(arr);
-let hcode = "";
+console.log(data750arr, data900arr, dataOther);
+let hcode;
 
 /////////////////////////////////////////////////////////
 ///해당 영역에 원형 뿌리기 함수 ///////////////////////////
 // 1. 기능 : 대상area와 대상데이터를 받아와서 원형배치한다.
-////////////////////////////////////////////////////////// 
-function makeFn(area,data,radiusVal) {
-  hcode = '';
-  let arrSeq = 0;
-  // 안쪽반지름 설정
-  let radius = radiusVal;
+//////////////////////////////////////////////////////////
+function makeFn(area, data, radius, imgSize) {
+
+  hcode = "";
   // 윈도우 중앙기준
   let wid = window.innerWidth;
   let high = window.innerHeight;
-  data.forEach((ele,idx)=>{
-    arrSeq = idx;
-    if(arrSeq > 0) radius = radiusVal + 300;
-    ele.forEach((ele2,idx2)=>{
-      // 삼각함수 각도값
-      let degVal = ((2*Math.PI)*idx2)/data[arrSeq].length;
-      let degRotate = 0 + (360/data[arrSeq].length)*idx2;
-      // 위치이동값 박스크기/2 - 이미지크기/2 + sin(각도)*원반지름 - 내위치값;
-      let topVal = (high/2 - 65/2) + radius*Math.sin(degVal);
-      let leftVal = (wid/2 - 200/2) + radius*Math.cos(degVal);
-      // console.log(topVal,leftVal);
-      hcode += `
+  data.forEach((ele, idx) => {
+    // 삼각함수 각도값
+    let degVal = (2 * Math.PI * idx) / data.length;
+    let degRotate = 0 + (360 / data.length) * idx;
+    // 위치이동값 박스크기/2 - 이미지크기/2 + sin(각도)*원반지름 - 내위치값;
+    let topVal = high / 2 - imgSize[0] / 2 + radius * Math.sin(degVal);
+    let leftVal = wid / 2 - imgSize[1] / 2 + radius * Math.cos(degVal);
+    // console.log(topVal,leftVal);
+    hcode += `
       <div class='prod-item' style='left: ${leftVal}px; top: ${topVal}px;'>
-      <img src='./image_prod2/${ele2[3]}.png' alt='${ele2[1]} 이미지' style='transform: rotate(${degRotate}deg);'>
-            <!-- <span>${ele2[0]}</span> -->
-            <!-- <span>${ele2[2]}</span> -->
+      <img src='./image_prod2/${ele[3]}.png' alt='${ele[1]} 이미지' style='transform: rotate(${degRotate}deg);'>
+            <!-- <span>${ele[0]}</span> -->
+            <!-- <span>${ele[2]}</span> -->
         </div>
       `;
-    });
   }); /////////forEach //////////
   // transform: rotate(${degVal}deg); 회전시킬 경우 style에 적용시키면 됨
   area.innerHTML = hcode;
-  // console.log(hcode);
 } /////////makeFn 함수 /////////////
+let initImg = [65,200]; //초기 이미지 사이즈
+makeFn(prodInBox, data750arr, 500, initImg);
+makeFn(prodOutBox, data900arr, 800, initImg);
 
-makeFn(prodBox1,arr,500);
-
-function chgPosition(ele){
-  // 포지션 강제변경
-    ele.style.position = 'relative';
-    ele.style.top = '0';
-    ele.style.left = '0';
-} //////// chgPosition ////////////
-////////////////////////////////////////////////
-// 리셋버튼
-// 보정값 변수
-const posX = []; //left보정값
-const posY = []; //top보정값
-const btn = dFn.qs('button');
-dFn.addEvt(btn,'click',function(){
-  const prodItem = dFn.qsa('.prod-item');
-  const prodItemImg = dFn.qsa('.prod-item img');
-  const prodArea = dFn.qs('.prod-area');
-  prodItem.forEach((ele,idx)=>{
-    // 위치값 구하기
-    posY[idx] = ele.offsetTop;
-    posX[idx] = ele.offsetLeft;
-    // 포지션 강제변경
-    chgPosition(ele);
-  });
-  console.log(posX,posY);
-  // 회전제어
-  prodItemImg.forEach(ele=>{
-    ele.style.transform = 'rotate(0deg)';
-  });
-  // 제품구역 위치 변경
-  prodArea.style.margin = '0 auto';
-  prodArea.style.width = '1400px';
-  // 제품박스
-  prodBox1.style.animation = 'none';
-  this.style.display = 'none';
+window.addEventListener('resize',()=>{
+  // 1920/1080 일대 200/65
+  
+  makeFn(prodInBox, data750arr, 500, initImg);
+  makeFn(prodOutBox, data900arr, 800, initImg);
 });

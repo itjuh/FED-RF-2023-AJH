@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>키보드 원형회전</title>
+    <script type="module" src="./test1.js"></script>
+    <style>
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+      }
+      .prod-area{
+        width: 100%;
+        aspect-ratio: 1920/1080;
+        transition: 0.5s ease-in-out;
+        /* overflow: hidden; */
+      }
+      .prod-box {
+        /* position: relative; */
+        position: absolute;
+        /* display: flex;
+        flex-wrap: wrap; */
+        gap: 5vw 10vw;
+        transform-origin: 50vw 50vh;
+      }
+      .inner-box{
+        /* 애니메이션 */
+        animation: rotate-right-ani 150s linear infinite;
+      }
+      .outer-box{
+        /* 애니메이션 */
+        animation: rotate-left-ani 200s linear infinite;
+      }
+      .prod-item {
+        position: absolute;
+        width: 200px;
+        aspect-ratio: 200/65;
+        /* overflow: hidden; */
+        /* 트랜지션 */
+        transition: 0.5s ease-out;
+      }
+      img {
+        width: 100%;
+        object-fit: cover;
+        /* 트랜지션 */
+        transition: 0.3s ease-in-out;
+        border: 1px solid rgba(0,0,0,0.1);
+      }
+      .prod-item:hover {
+        transform: scale(1.2);
+      }
+      /* prod-item 회전 */
+      @keyframes rotate-right-ani {
+        to{
+          transform: rotate(360deg);
+        }        
+      }
+      /* prod-item 회전 */
+      @keyframes rotate-left-ani {
+        to{
+          transform: rotate(-360deg);
+        }        
+      }
+    </style>
+  </head>
+  <body>
+    <div class="prod-area">
+      <section class="prod-box inner-box"></section>
+      <section class="prod-box outer-box"></section>
+    </div>
+  </body>
+</html>
