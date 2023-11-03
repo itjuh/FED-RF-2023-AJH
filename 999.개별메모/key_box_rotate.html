@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>키보드 원형회전</title>
-    <script type="module" src="./test1.js"></script>
+    <script type="module" src="./key_box_rotate.js"></script>
     <style>
       html,
       body {
@@ -12,28 +12,31 @@
         padding: 0;
         overflow: hidden;
       }
+      /* 키보드 구역 */
       .prod-area{
+        position: relative;
         width: 100%;
-        aspect-ratio: 1920/1080;
+        height: 100vh;
+        /* aspect-ratio: 1920/1080; */
         transition: 0.5s ease-in-out;
         /* overflow: hidden; */
       }
+      /* 키보드 개별 박스 공통 */
       .prod-box {
-        /* position: relative; */
         position: absolute;
-        /* display: flex;
-        flex-wrap: wrap; */
-        gap: 5vw 10vw;
         transform-origin: 50vw 50vh;
       }
+      /* 안쪽박스 */
       .inner-box{
         /* 애니메이션 */
         animation: rotate-right-ani 150s linear infinite;
       }
+      /* 바깥박스 */
       .outer-box{
         /* 애니메이션 */
         animation: rotate-left-ani 200s linear infinite;
       }
+      /* 각 제품 */
       .prod-item {
         position: absolute;
         width: 200px;
@@ -42,7 +45,8 @@
         /* 트랜지션 */
         transition: 0.5s ease-out;
       }
-      img {
+      /* 제품 이미지 */
+      .prod-item img {
         width: 100%;
         object-fit: cover;
         /* 트랜지션 */

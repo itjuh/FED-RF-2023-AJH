@@ -96,19 +96,43 @@ for (let i = 0; i < prodData.length; i++) {
   }
 } /////////////for//////////////////
 
-console.log(data750arr, data900arr, dataOther);
-let hcode;
+// console.log(data750arr, data900arr, dataOther);
+
 
 /////////////////////////////////////////////////////////
 ///해당 영역에 원형 뿌리기 함수 ///////////////////////////
-// 1. 기능 : 대상area와 대상데이터를 받아와서 원형배치한다.
+// 1. 기능 : 대상area배열과 대상데이터배열을 받아와서 원형배치한다.
 //////////////////////////////////////////////////////////
-function makeFn(area, data, radius, imgSize) {
+// 코드저장 변수
+let hcode;
+// 스케일 적용변수
+let scaleVal;
+// 초기 이미지 사이즈
+let initImg = [65,200];
 
+function makeFn(area, data, radius, imgSize) {
   hcode = "";
+
+  scaleVal = (window.innerWidth/1920);
+  // 윈도우 크기에 따른 스케일 세팅(1920에서 100%)
+  if(scaleVal < .7){
+    scaleVal = 0.7;
+  }else if(scaleVal < .5){
+    scaleVal = 0.5;
+  }else if(scaleVal < .3){
+    scaleVal = 0.3;
+  }
+  // 각도, 이미지크기 스케일 적용
+  radius = Math.floor(scaleVal * radius);
+  initImg[1] = Math.floor(scaleVal * 200);
+  initImg[0] = Math.floor(initImg[1] * (65/200));
   // 윈도우 중앙기준
   let wid = window.innerWidth;
   let high = window.innerHeight;
+  // 500px사이즈 이하에서 각도 세부조정
+  if(wid < 500){
+    radius *= 0.85;
+  }
   data.forEach((ele, idx) => {
     // 삼각함수 각도값
     let degVal = (2 * Math.PI * idx) / data.length;
@@ -118,23 +142,22 @@ function makeFn(area, data, radius, imgSize) {
     let leftVal = wid / 2 - imgSize[1] / 2 + radius * Math.cos(degVal);
     // console.log(topVal,leftVal);
     hcode += `
-      <div class='prod-item' style='left: ${leftVal}px; top: ${topVal}px;'>
+      <div class='prod-item' style='left: ${leftVal}px; top: ${topVal}px;  width:${imgSize[1]}px;'>
       <img src='./image_prod2/${ele[3]}.png' alt='${ele[1]} 이미지' style='transform: rotate(${degRotate}deg);'>
             <!-- <span>${ele[0]}</span> -->
             <!-- <span>${ele[2]}</span> -->
         </div>
       `;
   }); /////////forEach //////////
-  // transform: rotate(${degVal}deg); 회전시킬 경우 style에 적용시키면 됨
   area.innerHTML = hcode;
 } /////////makeFn 함수 /////////////
-let initImg = [65,200]; //초기 이미지 사이즈
+
+// 초기makeFn호출
 makeFn(prodInBox, data750arr, 500, initImg);
 makeFn(prodOutBox, data900arr, 800, initImg);
 
 window.addEventListener('resize',()=>{
-  // 1920/1080 일대 200/65
-  
+  // 반지름 크기 1920/1080 일 때 500/800
   makeFn(prodInBox, data750arr, 500, initImg);
   makeFn(prodOutBox, data900arr, 800, initImg);
 });

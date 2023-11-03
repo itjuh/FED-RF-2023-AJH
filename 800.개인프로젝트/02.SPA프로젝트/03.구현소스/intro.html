@@ -1,26 +1,36 @@
 <!DOCTYPE html>
 <html lang="ko">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>레오폴드</title>
     <!-- 아이콘 -->
-    <link rel="shortcut icon" href="./images/short_icon.png">
+    <link rel="shortcut icon" href="./images/short_icon.png" />
     <!-- CSS연결 -->
-    <link rel="stylesheet" href="./css/main.css">
-</head>
-<body>
-    <!-- 1. 상단영역 -->
-    <div id="header">
-        <header class="in-box"></header>
+    <link rel="stylesheet" href="./css/intro.css" />
+    <!-- 키보드 원형회전 js -->
+    <script type="module" src="./js/key_box_rotate.js"></script>
+    <!-- 키보드 자판배치 js -->
+    <script type="module" src="./js/keyboard.js"></script>
+    <!-- 키보드 타이핑효과 js -->
+    <script type="module" src="./js/typing.js"></script>
+  </head>
+  <body>
+    <!-- 키보드 구역 -->
+    <div class="prod-area">
+      <section class="prod-box inner-box"></section>
+      <section class="prod-box outer-box"></section>
     </div>
-    <!-- 2. 메인영역 -->
-    <div id="main">
-        <main class="in-box"></main>
+    <!-- 메세지 구역 -->
+    <div class="message-area">
+      <section class="message-box">
+        <span>LEOPOLD</span>
+        <div class="text-cursor"></div>
+      </section>
     </div>
-    <!-- 3. 하단영역 -->
-    <div id="footer">
-        <footer class="in-box"></footer>
+    <!-- 키보드 구역 -->
+    <div class="wrap">
+      <div class="key-box"></div>
     </div>
-</body>
+  </body>
 </html>
