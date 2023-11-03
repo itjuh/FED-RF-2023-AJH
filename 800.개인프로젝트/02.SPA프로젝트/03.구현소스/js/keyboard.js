@@ -1,15 +1,9 @@
 //keyboard.js 키보드 구현 js
 // 키보드 배열 구성하기
 
-const dFn = {
-  qs: (x) => document.querySelector(x),
-  qsEl: (el, x) => el.querySelector(x),
-  qsa: (x) => document.querySelectorAll(x),
-  qsaEl: (el, x) => el.querySelectorAll(x),
+//돔 객체 호출
+import dFn from './dom.js';
 
-  // 이벤트셋팅함수
-  addEvt: (ele, evt, fn) => ele.addEventListener(evt, fn),
-};
 // 키보드 데이터 
 // ['키 길이','키보드 자판글자']
 const keyData = [
@@ -75,23 +69,6 @@ const keyData = [
 ["size5" , "Win"],
 ["size5" , "Ctrl"],
 ];
-// 키보드 데이터 
-// ['키 길이','키보드 자판글자']
-const keyData22 = [
-["" , "M"],
-["" , "E"],
-["" , "N"],
-["" , "U"],
-// ["size3" , "Enter"],
-];
-// ['키 길이','키보드 자판글자']
-const keyData33 = [
-["" , "5"],
-["" , "5"],
-["" , "0"],
-["" , "🤍"],
-// ["size3" , "Enter"],
-];
 
 ////////////////////////////////////////////
 // 대상에 키보드 배열 뿌리기
@@ -142,57 +119,4 @@ function insertTop(ele){
 // 키 뿌리기
 keyBox.innerHTML = hcode;
 
-// 키 마우스 클릭 이벤트
-const keyList = dFn.qsa('.key');
-keyList.forEach(ele=>{dFn.addEvt(ele,'mousedown',keyhoverFn)});
 
-
-// 키 오버 함수
-function keyhoverFn(){
-    // console.log(this);
-    this.style.transform = 'translateY(10px)';
-    // 마우스 놓을 때
-    dFn.addEvt(this,'mouseup',()=>{
-        this.style.transform = 'translateY(0px)';
-    });
-    // 마우스 떠날 때
-    dFn.addEvt(this,'mouseleave',()=>{
-        this.style.transform = 'translateY(0px)';
-    });
-} ////////// keyhoverFn ////////////
-
-typingKey('LEOPOLD');
-// 타이핑 텍스트 키 매칭함수
-function typingKey(txt){
-    // 타이핑 텍스트 나누기
-    let eachTxt = txt.split('');
-    console.log(eachTxt);
-    // 타이핑 효과 줄 키 저장 변수
-    let sameKeyList = [];
-    for(let i=0; i<eachTxt.length; i++){
-        dFn.qsa('.key-top').forEach(ele=>{
-            if(ele.innerText.toLowerCase() == eachTxt[i].toLowerCase()){
-                //조부모찾아서 담기(스타일 대상)
-                sameKeyList[i] = ele.parentNode.parentNode;
-            } /////// if 일치하면 담기//////////
-        }); /////////// key-top forEach /////////////
-        console.log(sameKeyList);
-    } ///////// for ////////////////
-
-    // 스타일 적용
-    sameKeyList.forEach((ele,idx)=>{
-        setTimeout(()=>{
-            ele.style.transform = 'translateY(10px)';
-            dFn.qsEl(ele,'.key-top').style.backgroundColor = 'cornflowerblue';
-            typingShow(ele);
-        },3000 + (idx*600));
-    });
-} ////////// typingKey 함수 //////////
-
-// 스타일 초기화 함수
-function typingShow(ele){
-    setTimeout(()=>{
-        ele.style.transform = 'translateY(0px)';
-        dFn.qsEl(ele,'.key-top').style.backgroundColor = '#fff';
-    },200);
-} ////////// typingShow 함수 //////////

@@ -1,13 +1,17 @@
-// 보그 PJ 링크시스템 JS - linksys.js
+// 보그 PJ 링크시스템 JS - linksys2.js
+// 카테고리 페이지 단독사용 링크시스템
+
+
+// 내보내기 함수로 변환하자!
 
 // 제이쿼리 로드구역 ///////////////////////
-$(()=>{
+export function makeLink(){
     // 모든 a요소 기본이동 막기
     $('a').click(e=>e.preventDefault());
     // 요구사항 : 각 네비게이션 클릭 시 페이지 이동
     // 1. 대상선정
     // 1-1. GNB메뉴
-    const gnb = $('.gnb a, .mognb a');
+    // const gnb = $('.gnb a, .mognb a');
     // 1-2. 로고이미지
     const logo = $('.logo a');
     // console.log(gnb,logo);
@@ -17,10 +21,9 @@ $(()=>{
     logo.click(()=>location.href='index.html');
 
     // 2-2. gnb메뉴 클릭 시 카테고리 서브이동
-    gnb.click(e=>
-        location.href='category.html?category='+encodeURIComponent($(e.target).text().toLowerCase()));
-    // 'time & gem' 특수문자 변환해서 보내기
-    // encodeURIComponent(값);
+    // -> 카테고리에서는 링크 제외
+    // gnb.click(e=>
+    //     location.href='category.html?category='+$(e.target).text().toLowerCase());
     // $(e.target): 이벤트 발생요소(a태그), text(): 문자읽기
     // toLowerCase() : 소문자, toUpperCase() : 대문자
     
@@ -102,4 +105,4 @@ $(()=>{
 
     // 모바일 메뉴박스의 sns링크 4번째에서 줄바꿈 태그 넣기
     $('.mosns a').eq(3).after('<br>');
-}); //////////////JQB/////////////////////
+} ////////// makeLink 함수 //////////////

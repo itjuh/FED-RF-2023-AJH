@@ -1,12 +1,7 @@
-const dFn = {
-  qs: (x) => document.querySelector(x),
-  qsEl: (el, x) => el.querySelector(x),
-  qsa: (x) => document.querySelectorAll(x),
-  qsaEl: (el, x) => el.querySelectorAll(x),
+// 키보드 데이터 회전형으로 입력 js
 
-  // 이벤트셋팅함수
-  addEvt: (ele, evt, fn) => ele.addEventListener(evt, fn),
-};
+//돔 객체 호출
+import dFn from './dom.js';
 
 // 제품 데이터
 // ['제품코드','색상명','가격','이미지']로 구성
@@ -155,9 +150,28 @@ function makeFn(area, data, radius, imgSize) {
 // 초기makeFn호출
 makeFn(prodInBox, data750arr, 500, initImg);
 makeFn(prodOutBox, data900arr, 800, initImg);
+keyResize();
 
-window.addEventListener('resize',()=>{
+dFn.addEvt(window,'resize',()=>{
   // 반지름 크기 1920/1080 일 때 500/800
   makeFn(prodInBox, data750arr, 500, initImg);
   makeFn(prodOutBox, data900arr, 800, initImg);
+  keyResize()
 });
+
+// 키보드 사이즈 변경 시 호출 함수
+function keyResize(){
+  scaleVal = (window.innerWidth/1920) * 0.8;
+  if(scaleVal > .5) {
+    // 키보드 보여지고 작아지기
+    $('.wrap').show().css({transform:`scale(${scaleVal})`});
+    // 메세지창 위로 이동
+    $('.message-box').css({marginTop:'20vh'}).find('span').css({fontSize:`${2*scaleVal}rem`});
+  }
+  else{
+    // 키보드 안보이기
+    $('.wrap').css({display:'none'});
+    // 메세지창 중앙이동
+    $('.message-box').css({marginTop:'32vh'});
+  }
+} ////////// 키보드 사이즈 변경 함수 ////////////////

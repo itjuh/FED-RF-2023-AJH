@@ -1,4 +1,4 @@
-@import "utf-8";
+@charset "utf-8";
 /* 레오폴드 인트로페이지 css - intro.css */
 
 /* 웹폰트 */
@@ -70,9 +70,9 @@ body {
   transition: 0.3s ease-in-out;
   border: 1px solid rgba(0, 0, 0, 0.1);
 }
-.prod-item:hover {
+/* .prod-item:hover {
   transform: scale(1.2);
-}
+} */
 /* prod-item 회전 */
 @keyframes rotate-right-ani {
   to {
@@ -162,12 +162,10 @@ html{
   position: fixed;
   top: 35%;
   /* 2. 화면과 같은 너비 크기설정 */
-  width: 100vw;
+  width: 100%;
   height: 50vh;
-  /* 3. 스크롤 셋팅 */
-  overflow: auto;
-  /* background: url('../800.개인프로젝트/02.SPA프로젝트/01.자료수집/2차참고/images/main_bg3.jpg') no-repeat center/cover; */
-  transform: scale(0.7);
+
+  transform: scale(0.8);
 }
 /* 겉박스 */
 .key-box {
@@ -187,6 +185,7 @@ html{
   transition: rotateX 0.2s ease-in;
   /* 위에서보는거 */
   /* transform: rotateX(360deg) rotateZ(0deg); */
+
 }
 /* 단일키 */
 .key {
@@ -322,9 +321,9 @@ html{
   user-select: none;
 }
 /* 키 마우스오버 */
-.key-top:hover {
+/* .key-top:hover {
   background-color: #888;
-}
+} */
 /* 개별키 상단 문자열칸 공통 */
 .key-top aside {
   width: 100%;

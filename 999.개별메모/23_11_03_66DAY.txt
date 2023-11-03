@@ -13,5 +13,19 @@
 
 - 프로그래밍
 (0) 인덱스 페이지 
-1) 키보드타이핑/키보드 뿌리기 합치기(이건 뒤에서 흐리게)
+1) 키보드타이핑/키보드 뿌리기 합치기(이건 뒤에서 흐리게) - 합침
+전환효과 나중에 주자
 2) 화면전환 효과
+
+
+
+
+scaleVal = (window.innerWidth/1920) * 0.7;
+  if(scaleVal < .7){
+    scaleVal = 0.6;
+  }else if(scaleVal < .5){
+    scaleVal = 0.4;
+  }
+  $('.wrap').css({transform:`scale(${scaleVal})`});
+
+
