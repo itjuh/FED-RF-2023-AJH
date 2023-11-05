@@ -339,3 +339,16 @@ html{
 aside.part1 {
   height: 100%;
 }
+/* 따라다니는 원 */
+.mover{
+  position: absolute;
+  top: -90%;
+  left: 0;
+  width: 1000px;
+  height: 1000px;
+  border-radius: 50%;
+  outline: 1px solid #ff0000;
+  background-color: red;
+  /* 초기에 안보임 */
+  display: none;
+}

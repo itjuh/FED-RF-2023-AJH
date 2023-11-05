@@ -50,13 +50,29 @@ dFn.addEvt(window, "DOMContentLoaded", () => {
   })}, 2000 + typingArr.length * TYPING_TIME);
   
   const prodArea = $(".prod-area");
-  console.log(prodArea)
+  const mover = $('.mover');
+  console.log(mover);
+  console.log(prodArea);
   prodArea.animate(
     {
       opacity: 0,
     },
     7000,
-    "easeInQuad"); 
+    "easeInQuad",
+    // 콜백함수
+    ()=>{
+      mover.show();
+      // 마우스 무브 이벤트 작동
+      $(window).on('mousemove',function(e){
+        let pos = [];
+        pos[0] = Math.floor(e.pageX) - 50;
+        pos[1] = Math.floor(e.pageY) - 50;
+        mover.css({
+          left : pos[0] + 'px',
+          top : pos[1] + 'px',
+        })
+      })
+    }); 
 }); /////////////로드이벤트/////////////////////
 
 // 타이핑 텍스트 키 매칭함수
