@@ -172,6 +172,6 @@ function keyResize(){
     // 키보드 안보이기
     $('.wrap').css({display:'none'});
     // 메세지창 중앙이동
-    $('.message-box').css({marginTop:'32vh'});
+    $('.message-box').css({marginTop:'32vh'}).find('span').css({fontSize:`${5*scaleVal}rem`});
   }
 } ////////// 키보드 사이즈 변경 함수 ////////////////

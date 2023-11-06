@@ -112,7 +112,7 @@ html{
 /* 글자 span */
 .message-box span{
   /* outline: 1px solid red; */
-  font-size: 2rem;
+  /* font-size: 2rem; */
   user-select: none;
 }
 /* 텍스트 커서 */
@@ -181,19 +181,14 @@ html{
   transform-style: preserve-3d;
   /* 입체를 잘 보이게 약간 회전 */
   transform: translate(-50%, -100%) rotateX(30deg) rotateY(0deg) rotateZ(0deg);
-  /* transform: translate(-43%, -127%) rotateX(60deg) rotateY(358deg) rotateZ(317deg); */
-  transition: rotateX 0.2s ease-in;
-  /* 위에서보는거 */
-  /* transform: rotateX(360deg) rotateZ(0deg); */
-
+  /* 트랜지션 */
+  transition: all .5s ease-in;
 }
 /* 단일키 */
 .key {
   position: relative;
   top: 0;
   left: 0;
-  /* top: calc(50% - var(--key-height) / 2);
-  left: calc(50% - var(--key-width) / 2); */
   width: var(--key-width);
   height: var(--key-height);
 
@@ -342,13 +337,27 @@ aside.part1 {
 /* 따라다니는 원 */
 .mover{
   position: absolute;
-  top: -90%;
-  left: 0;
-  width: 1000px;
-  height: 1000px;
-  border-radius: 50%;
-  outline: 1px solid #ff0000;
-  background-color: red;
   /* 초기에 안보임 */
-  display: none;
+  width: 0px;
+  height: 0px;
+  border-radius: 50%;
+  outline: 1px solid #aaa;
+  background-color: #ffffff80;
+  cursor: pointer;
+  user-select: none;
+  /* 글자설정 */
+  color: #aaa;
+  text-align: center;
+  line-height: 200px;
+  font-family: "KOFIHDrLEEJWTTF-L";
+  font-size: .7rem;
+  /* 트랜지션 */
+  transition: left .02s ease-out, top .02s ease-out;
+  transform: scale(1);
+  animation: mover-ani .5s linear infinite alternate;
+}
+@keyframes mover-ani {
+  to{
+    transform: scale(.95);
+  }
 }

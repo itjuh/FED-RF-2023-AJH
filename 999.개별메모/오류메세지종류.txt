@@ -63,6 +63,7 @@ Uncaught Error: Minified React error #130;
 따라서 모듈을 사용할 파일을 아래와 같은 형식으로 메인 html 상단에 호출해 줘야만 한다!!!
 import로 호출한 JSX는 HTML에 등록한다(CDN에서만!!)
 <script src="모듈화한js" data-plugins="transform-es2015-modules-umd" type="text/babel"></script>
+or 파일명이 이름규칙에 맞지 않는 경우 ex)top.jsx
 
 Minified React error #200;
 Element type is invalid: expected a string (for built-in components) or a class/function (for composite components) but got: undefined.

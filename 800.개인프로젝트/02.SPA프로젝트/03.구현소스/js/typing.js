@@ -1,6 +1,6 @@
 // 인트로 페이지 타이핑 효과 js
 //돔 객체 호출
-import dFn from './dom.js';
+import dFn from "./dom.js";
 
 /////////////////////////////////////////
 ///글자타이핑/////////////////////////////
@@ -44,35 +44,75 @@ dFn.addEvt(window, "DOMContentLoaded", () => {
 
   // 글자입력 끝나면
   // 키 마우스 클릭 이벤트
-  setTimeout(()=>{const keyList = dFn.qsa(".key");
+  setTimeout(() => {
+    const keyList = dFn.qsa(".key");
     keyList.forEach((ele) => {
-        dFn.addEvt(ele, "mousedown", keyhoverFn);
-  })}, 2000 + typingArr.length * TYPING_TIME);
-  
+      dFn.addEvt(ele, "mousedown", keyhoverFn);
+    });
+  }, 2000 + typingArr.length * TYPING_TIME);
+
   const prodArea = $(".prod-area");
-  const mover = $('.mover');
+  const mover = $(".mover");
   console.log(mover);
   console.log(prodArea);
   prodArea.animate(
     {
       opacity: 0,
     },
-    7000,
-    "easeInQuad",
+    6000,
+    "easeInQuart",
     // 콜백함수
-    ()=>{
-      mover.show();
-      // 마우스 무브 이벤트 작동
-      $(window).on('mousemove',function(e){
-        let pos = [];
-        pos[0] = Math.floor(e.pageX) - 50;
-        pos[1] = Math.floor(e.pageY) - 50;
-        mover.css({
-          left : pos[0] + 'px',
-          top : pos[1] + 'px',
-        })
-      })
-    }); 
+    () => {
+      mover.animate(
+        {
+          width: "200px",
+          height: "200px",
+        },
+        500,
+        "linear",
+        () => {
+          // 마우스 무브 이벤트 작동
+          $(window).on("mousemove", function (e) {
+            let pos = [];
+            pos[0] = Math.floor(e.pageX) - 100;
+            pos[1] = Math.floor(e.pageY) - 100;
+            mover.css({
+              left: pos[0] + "px",
+              top: pos[1] + "px",
+            }).text('Enter');
+          })
+          // 이벤트 등록 후 클릭 시 페이지 전환
+          .click(function(e){
+            let pos = [];
+            pos[0] = Math.floor(e.pageX) - 2500;
+            pos[1] = Math.floor(e.pageY) - 2500;
+            console.log('클릭함');
+            // 클릭하면 하단 키보드 돌고 화면 전환
+            $('.key-box').css({
+              transform: 'translate(-50%, -100%) rotateX(90deg)'
+            })
+            mover
+            // 원 안쪽 글자 비우고, 이전애니 없애고, 커지면서 화면전환
+            .text('')
+            .stop()
+            .animate(
+              {
+                width: '5000px',
+                height: '5000px',
+                left: pos[0] + "px",
+                top: pos[1] + "px",
+                backgroundColor: '#fff',
+              },
+              1200,
+              "easeOutQuart",
+              ()=>{
+                location.href = 'index.html';
+              }) ///////mover ani종료 //////////
+          }); ////////클릭이벤트
+        }/////콜백함수
+      );
+    }
+  );
 }); /////////////로드이벤트/////////////////////
 
 // 타이핑 텍스트 키 매칭함수
@@ -116,12 +156,12 @@ function keyhoverFn() {
   this.style.transform = "translateY(10px)";
   dFn.qsEl(this, ".key-top").style.backgroundColor = "#888";
   // 마우스 놓을 때
-  dFn.addEvt(this, "mouseup", function(){
+  dFn.addEvt(this, "mouseup", function () {
     this.style.transform = "translateY(0px)";
     dFn.qsEl(this, ".key-top").style.backgroundColor = "#fff";
   });
   // 마우스 떠날 때
-  dFn.addEvt(this, "mouseleave", function(){
+  dFn.addEvt(this, "mouseleave", function () {
     this.style.transform = "translateY(0px)";
     dFn.qsEl(this, ".key-top").style.backgroundColor = "#fff";
   });

@@ -44,6 +44,8 @@ https://surya-aditya.com/
 참고 이미지 이펙트 플러그인
 https://www.jqueryscript.net/zoom/Create-Smooth-Image-Zoom-Pan-Effects-With-jQuery-EasyZoom.html
 https://www.jqueryscript.net/demo/Create-Smooth-Image-Zoom-Pan-Effects-With-jQuery-EasyZoom/
+화면전환 플러그인
+https://tympanus.net/Development/PageLoadingEffects/index12.html
 
 
 키보드 판매업체로 추구하고 싶은 내용
