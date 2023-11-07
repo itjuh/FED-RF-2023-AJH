@@ -48,7 +48,7 @@ export const catContext = React.createContext();
 import { catContext } from "./components/cat_context.jsx";
 // 2. 프로바이더 세팅 
 // 3. value속성에 넣어 공유하기
-    <catContext.Provier value={chgCat}>
+    <catContext.Provider value={chgCat}>
       {/* 1. 상단영역 */}
       <TopArea />
       {/* <TopArea  chgFn={chgCat}/> 프롭스 펑션다운으로 처리함*/}
@@ -56,7 +56,7 @@ import { catContext } from "./components/cat_context.jsx";
       <MainCategory category={nowCat}/>
       {/* 3. 하단영역 */}
       <FooterArea />
-    </catContext.Provier>
+    </catContext.Provider>
 // 4. 
 
 ...3교시...
@@ -69,3 +69,18 @@ node.js 자바스크립트를 돌리는 런타임환경 크로스플랫폼
 
 깃허브에 ignore설정 해야함!!
 node
+
+커뮤니케이션 능력에 대한 지난 이력에 대한 관련경험 언급
+빠른 습득력 등 입사 후 포부
+파고드는 성격 같은 부분을 우대역량과 접목시켜서 준비하자
+
+경험의 자산화 - 삶과 지식에 대한 부분을 자산화
+다양한 input - 채용정보에 대한 끊임없는 노력을 해야 기회가 주어짐
+깃허브, 노션, 블로그를 이용한 자산화
+
+이력서&자기소개서
+질문거리를 기획하는 단계 -> 잘 하는 것을 작성해야 그점에 대한 부분을 물어봄
+직무역량에 대해 알고있는 부분을 명료하게 표현하도록
+원티드/점핏 가입 - 신입보다 경력직을 많이 구함
+
+내가 어떤 업무를 하게되는지 어떤 기술을 사용하는지 문의하자~~
