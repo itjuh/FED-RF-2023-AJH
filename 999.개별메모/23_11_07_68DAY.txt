@@ -66,3 +66,6 @@ history.pushState(null,null,'?category='+v);
 ...4교시...
 node.js 자바스크립트를 돌리는 런타임환경 크로스플랫폼
 서버에서 자바스크립트를 실행하여 모든 프로그래밍을 가능하게 해줌
+
+깃허브에 ignore설정 해야함!!
+node
