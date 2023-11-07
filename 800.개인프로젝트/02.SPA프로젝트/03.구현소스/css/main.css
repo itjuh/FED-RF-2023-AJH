@@ -5,3 +5,26 @@
 @import url(./reset.css);
 @import url(./core.css);
 @import url(./common.css);
+
+/************** 2. 메인영역  ****************/
+/* 2-1. 제품 정렬옵션 */
+[class*='option-sub']{
+    margin: 0 auto;
+    height: 50%;
+}
+/* 옵션 단계 */
+/* 옵션 바 공통 */
+[class*='option-bar']{
+    height: 3px;
+    border-radius: 10px;
+}
+/* 옵션 바 */
+.option-bar{
+    width: 100%;
+    background-color: #888;
+}
+.option-bar-step{
+    position: absolute;
+    width: 10%;
+    background-color: lightseagreen;
+}

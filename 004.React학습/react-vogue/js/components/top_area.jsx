@@ -1,5 +1,7 @@
 // VOGUE 상단영역 컴포넌트 - top_area.jsx
 
+// 카테고리 context API파일 불러오기
+import { catContext } from "./components/cat_context.jsx";
 // 링크시스템 js 가져오기
 import { makeLink } from "./linksys2.js";
 //////////// 상단영역 컴포넌트 ////////////////////
@@ -10,11 +12,14 @@ import { makeLink } from "./linksys2.js";
 export default function TopArea(props) {
   //컴포넌트 요소 랜더링 직전 호출구역
   // -> 컴포넌트는 모두 만들어진 후 화면 뿌리기 직전(가 랜더링)
-  React.useEffect(makeLink,[]);
+  React.useEffect(makeLink, []);
   // useEffect(함수,[]) -> 뒤에 의존성 변수 구역이 비어있으면 본 컴포넌트는 1번만 실행 됨
   // React.useLayoutEffect(()=>{makeLink() dFn2() }); //여러개 쓰는 경우 익명함수로
-  // gnb용 메뉴 배열
-  const gnbText = ["FASHION", "BEAUTY", "LIVING", "PEOPLE", "VIDEO", "RUNWAY", "TIME & GEM", "SHOPPING"];
+
+  // 자식컴포넌트로 함수를 만들어서 전달
+  // const goFn = (v)=>props.chgFn(v);
+  // -> 컨텍스트 API를 사용할 때는 프롭스 펑션다운 불필요
+
   // sns용 메뉴배열
   const snsText = [
     ["fi-instagram", "인스타그램"],
@@ -31,12 +36,6 @@ export default function TopArea(props) {
         <span className="ir">{v[1]}</span>
       </a>
     ));
-
-  // 메뉴클릭 시 변수변경 함수
-  const chgCategory = (data) => {
-    console.log(data, "들어왔습니다.");
-    props.chgFn(data.toLowerCase());
-  }; ///////////chgCategory 함수 /////////////
 
   return (
     <div id="top-area">
@@ -76,28 +75,7 @@ export default function TopArea(props) {
           </a>
         </h1>
         {/* 1-3.GNB박스 */}
-        <nav className="gnb">
-          <ul>
-            {gnbText.map((v) => (
-              <li>
-                <a
-                  href="#"
-                  onClick={()=>{
-                    chgCategory(v)
-                  }}
-                >
-                  {v}
-                </a>
-              </li>
-            ))}
-            <li>
-              {/* 돋보기 검색버튼 */}
-              <i className="fi fi-search">
-                <span className="ir">search</span>
-              </i>
-            </li>
-          </ul>
-        </nav>
+        <GnbMenu />
         {/* 모바일용 버튼 */}
         <MobBtns />
       </header>
@@ -106,6 +84,54 @@ export default function TopArea(props) {
     </div>
   );
 } /////////// TopArea 컴포넌트 ////////////////////
+
+/************************************************ 
+  컴포넌트명 : GnbMenu
+  기능 : GNB메뉴 컴포넌트
+************************************************/
+function GnbMenu(props) {
+  // 이 컴포넌트에서 컨텍스트API를 사용할 것이므로
+  // 여기에 useContext(생성컨텍스트명)을 셋팅한다!
+  const gnbContext = React.useContext(catContext);
+  // 할당 된 변수에는 전역변수/함수가 들어있다!
+  // 부모의 Context.Provider value에 셋팅 된 값을 호출한다
+
+  // gnb용 메뉴 배열
+  const gnbText = ["FASHION", "BEAUTY", "LIVING", "PEOPLE", "VIDEO", "RUNWAY", "TIME & GEM", "SHOPPING"];
+  // 메뉴클릭 시 변수변경 함수
+  const chgCat = (data) => {
+    console.log(data, "들어왔습니다.");
+    // TopArea컴포넌트에서 보낸 속성함수를 호출!
+    // setNowCat 변경 함수
+    // props.gnbFn(data.toLowerCase());
+    // -> 컨텍스트 API를 사용할 때는 프롭스 펑션다운 불필요
+    gnbContext.chgCat(data.toLowerCase());
+  }; ///////////chgCategory 함수 /////////////
+  return (
+    <nav className="gnb">
+      <ul>
+        {gnbText.map((v) => (
+          <li>
+            <a
+              href="#"
+              onClick={() => {
+                chgCat(v);
+              }}
+            >
+              {v}
+            </a>
+          </li>
+        ))}
+        <li>
+          {/* 돋보기 검색버튼 */}
+          <i className="fi fi-search">
+            <span className="ir">search</span>
+          </i>
+        </li>
+      </ul>
+    </nav>
+  );
+} /////////// GnbMenu 컴포넌트 ////////////////////
 
 /************************************************ 
   컴포넌트명 : MobBtns
