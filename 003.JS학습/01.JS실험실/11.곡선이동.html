@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JS실험실: 11. 곡선이동</title>
+    <style>
+      body {
+        background: #000 url(./images/rot.png) no-repeat center/cover;
+        height: 100vh;
+      }
+      h1 {
+        position: relative;
+        text-align: center;
+        color: #fff;
+        z-index: 10;
+      }
+      /* 회전 원의 부모박스 */
+      .bx {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 40vw;
+        aspect-ratio: 1;
+        /* height: 40vw; */
+        border: 2px solid pink;
+        border-radius: 50%;
+        transition: 1s ease-in-out;
+      }
+      /* 회전하는 원 */
+      .tg {
+        position: absolute;
+        top: 50%;
+        left: 0;
+        transform: translate(-50%, -50%);
+        width: 30px;
+        height: 30px;
+        border: 1px solid #000;
+        border-radius: 50%;
+        background-color: darkorange;
+        /* background-color: #000; */
+        transition: 1s linear;
+      }
+    </style>
+    <script>
+      window.addEventListener("load", () => {
+        /****************************************************** 
+            [ CSS로 곡선이동하기 ] 
+            1. 우선 이동 위치값 top, left를 지정한다
+            2. 이동시에 top과 left의 이징값을 반대로 설정한다
+            조합의 예)
+                top -> ease-in / left -> ease-out
+                top -> ease-out / left -> ease-in
+            3. 곡선의 원리:
+                -> 직선이동시 top/left방향으로 처음에 느리게/빠르게
+                혹은 나중에 느리게/빠르게 설정하면 이동시 곡선경로를
+                그리게 된다!
+            
+            ******************************************************/
+        //대상 .tg
+
+        const tg = document.querySelector(".tg");
+        const TM = 1000;
+        // 회전함수 최초 호출
+        rotFn();
+        // 회전함수 만들기
+        function rotFn() {
+          //2사분면
+          setTimeout(() => {
+            tg.style.top = "0";
+            tg.style.left = "50%";
+            tg.style.transition = `top ${TM}ms ease-out, left ${TM}ms ease-in`;
+          }, 0);
+          // 1사분면
+          setTimeout(() => {
+            tg.style.top = "50%";
+            tg.style.left = "100%";
+            tg.style.transition = `top ${TM}ms ease-in, left ${TM}ms ease-out`;
+          }, TM * 1);
+          // 4사분면
+          setTimeout(() => {
+            tg.style.top = "100%";
+            tg.style.left = "50%";
+            tg.style.transition = `top ${TM}ms ease-out, left ${TM}ms ease-in`;
+          }, TM * 2);
+          // 3사분면
+          setTimeout(() => {
+            tg.style.top = "50%";
+            tg.style.left = "0%";
+            tg.style.transition = `top ${TM}ms ease-in, left ${TM}ms ease-out`;
+          }, TM * 3);
+          //모두 회전 후 재귀호출
+          setTimeout(()=>{
+            rotFn();
+          }, TM * 4);
+        } ///////rotFn//////////
+
+        // 부모박스 사이즈 동적 변경하기
+        // 사이즈 배열
+        const bxSize = [10,40,20,60,30,50];
+        // 부모박스
+        const pBox = document.querySelector('.bx');
+        // 인터발함수로 부모박스 크기 변경하기
+        let num = 0;
+        setInterval(()=>{
+            // 1. 사이즈 변경
+            pBox.style.width = bxSize[num]+'vw';
+            // 2. 배열순번 증가
+            num++;
+            // 3. 배열 마지막번호 초과 시 처음으로!!
+            if(num>bxSize.length-1) num=0;
+        }, 500); //////인터발함수
+      });
+    </script>
+  </head>
+  <body>
+    <!-- 타이틀 -->
+    <h1>JS실험실: 11. 곡선이동</h1>
+    <div class="bx">
+      <div class="tg"></div>
+    </div>
+  </body>
+</html>

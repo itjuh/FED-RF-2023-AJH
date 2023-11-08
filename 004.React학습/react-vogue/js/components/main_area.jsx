@@ -16,6 +16,7 @@ export default function MainCategory(props) {
   const selData = catData[props.category];
 
   // console.log(selData);
+  console.log('메인영역 실행');
   return (
     <div id="main-area">
       <main className="main-area ibx">

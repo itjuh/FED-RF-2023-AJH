@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>제품구역</title>
+    <!-- 제이쿼리 라이브러리 -->
+    <script src="./js/jquery-3.7.1.min.js"></script>
+    <script src="./js/jquery-ui.min.js"></script>
+    <style>
+      @font-face {
+        font-family: "KOFIHDrLEEJWTTF-L";
+        src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2210-2@1.0/KOFIHDrLEEJWTTF-L.woff2")
+          format("woff2");
+        font-weight: 300;
+        font-style: normal;
+      }
+      /* 초기화 */
+      ol,
+      body,
+      html,h3 {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+      .prod-area ol {
+        position: relative;
+        top: 50%;
+        left: 0;
+        /* transform: */
+        width: 1280px;
+        height: 600px;
+        outline: 1px solid #eee;
+        box-shadow: 0px 0px 3px rgb(0, 0, 0, 0.15);
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
+        grid-template-rows: repeat(3, 1fr);
+        justify-items: center;
+        align-items: center;
+        gap: 30px;
+      }
+      /* 각 제품 구역 */
+      .prod-area li>div{
+        width: 220px;
+        aspect-ratio: 400/130;
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-position: center;
+        background-image: url(./images/image_prod2/keyboard2.png);
+        filter: blur(20%);
+      }
+      .prod-area li>div:hover{
+        filter: blur(0);
+      }
+      /* 제품 개별 */
+      .prod-area li:nth-child(1) {
+        grid-column: 2/3;
+      }
+      .prod-area li:nth-child(2) {
+        grid-column: 3/5;
+      }
+      .prod-area li:nth-child(3) {
+        grid-column: 5/6;
+      }
+      .prod-area li:nth-child(4) {
+        grid-column: 1/3;
+        grid-row: 2/3;
+      }
+      .prod-area li:nth-child(5) {
+        grid-column: 3/4;
+        grid-row: 2/3;
+      }
+      .prod-area li:nth-child(6) {
+        grid-column: 4/5;
+        grid-row: 2/3;
+      }
+      .prod-area li:nth-child(7) {
+        grid-column: 5/7;
+        grid-row: 2/3;
+      }
+      .prod-area li:nth-child(8) {
+        grid-column: 2/3;
+      }
+      .prod-area li:nth-child(9) {
+        grid-column: 3/5;
+      }
+      .prod-area li:nth-child(10) {
+        grid-column: 5/6;
+      }
+      /* 제품 이름 */
+      h3.prod-item-title {
+        position: relative;
+        top: 74%;
+        left: 1px;
+        padding: 3px 0;
+        background-image: linear-gradient(90deg, cornflowerblue , transparent);
+        color: #fff;
+        font-family: "KOFIHDrLEEJWTTF-L";
+        font-size: 1rem;
+        text-indent: 5px;
+      }
+      h3.prod-item-title+h3.prod-item-title{
+        text-indent: 15px;
+        font-size: .8rem;
+      }
+    </style>
+    <script>
+      const prodData = [
+        ["FC900RBTPD", "코랄 블루", "178000", "keyboard1"],
+        ["FC750RBTPD", "코랄 블루", "175000", "keyboard2"],
+        ["FC900RBTPD", "밀크 터쿼이즈", "178000", "keyboard3"],
+        ["FC750RBTPD", "밀크 터쿼이즈", "175000", "keyboard4"],
+        ["FC900RBTPD", "그레이 블루", "178000", "keyboard5"],
+        ["FC750RBTPD", "그레이 블루", "175000", "keyboard6"],
+        ["FC900RBTPD", "화이트 투톤", "178000", "keyboard7"],
+        ["FC750RBTPD", "화이트 투톤", "175000", "keyboard8"],
+        ["FC900RBTPD", "그레이 퍼플", "178000", "keyboard9"],
+        ["FC750RBTPD", "그레이 퍼플", "175000", "keyboard10"],
+        ["FC900RBTPD", "라이트 핑크", "178000", "keyboard11"],
+        ["FC750RBTPD", "라이트 핑크", "175000", "keyboard12"],
+        ["FC900RBTPD", "화이트 민트", "178000", "keyboard13"],
+        ["FC750RBTPD", "화이트 민트", "175000", "keyboard14"],
+        ["FC900RBTPD", "화이트 그레이", "178000", "keyboard15"],
+        ["FC750RBTPD", "화이트 그레이", "175000", "keyboard16"],
+        ["FC900RBTPD", "다크 블루", "178000", "keyboard17"],
+        ["FC750RBTPD", "다크 블루", "175000", "keyboard18"],
+        ["FC900RBTPD", "차콜 블루", "178000", "keyboard19"],
+        ["FC750RBTPD", "차콜 블루", "175000", "keyboard20"],
+        ["FC900RBTPD", "애쉬 옐로우", "178000", "keyboard21"],
+        ["FC750RBTPD", "애쉬 옐로우", "175000", "keyboard22"],
+        ["FC900RBTPD", "화이트 블루스타", "178000", "keyboard23"],
+        ["FC750RBTPD", "화이트 블루스타", "175000", "keyboard24"],
+        ["FC900RBTPD", "블랙 ", "178000", "keyboard25"],
+        ["FC750RBTPD", "블랙 ", "175000", "keyboard26"],
+        ["FC900RBTPD", "스웨디시 화이트", "178000", "keyboard27"],
+        ["FC750RBTPD", "스웨디시 화이트", "175000", "keyboard28"],
+        ["NP900RBTPD", "화이트 투톤", "178000", "keyboard29"],
+        ["NP900RBTPD", "차콜 블루", "178000", "keyboard30"],
+        ["NP900RBTPD", "그레이 블루", "178000", "keyboard31"],
+        ["NP750RBTPD", "그레이 블루", "175000", "keyboard32"],
+        ["FC980MBTPD", "화이트 투톤", "182500", "keyboard33"],
+        ["FC980MBTPD", "화이트 블루스타", "182500", "keyboard34"],
+        ["FC980MBTPD", "애쉬 옐로우", "182500", "keyboard35"],
+        ["FC980MBTPD", "그레이 블루", "182500", "keyboard36"],
+        ["FC980MPD", "화이트 투톤", "155000", "keyboard37"],
+        ["FC980MPD", "화이트 블루스타", "155000", "keyboard38"],
+        ["FC980MPD", "애쉬 옐로우", "155000", "keyboard39"],
+        ["FC980MPD", "블랙 ", "155000", "keyboard40"],
+        ["FC980MPD", "그레이 블루", "155000", "keyboard41"],
+        ["FC980C", "화이트 ", "265000", "keyboard42"],
+        ["FC900RPD", "화이트 투톤", "149500", "keyboard43"],
+        ["FC900RPD", "화이트 그레이", "149500", "keyboard44"],
+        ["FC900RPD", "블랙 ", "149500", "keyboard45"],
+        ["FC900RPD", "다크 블루", "149500", "keyboard46"],
+        ["FC900RPD", "그레이 블루", "149500", "keyboard47"],
+        ["FC900ROE", "블랙 퍼플", "149500", "keyboard48"],
+      ];
+      //////////////////////JQB///////////////////
+      $(() => {
+        const imgArrNum = [];
+        // 랜덤 이미지 초기에 불러오기 함수
+        for (let i = 1; i < 11; i++) {
+          let randomNum = 0;
+          // 배열 내 랜덤 수 만들기 함수 /////////////////
+          function inputNum() {
+            randomNum = Math.floor(Math.random() * 48 + 1);
+            // 배열 내 랜덤 수 존재여부
+            let isIt = imgArrNum.find((v) => {
+              if (v == randomNum) return true;
+            });
+            if (!isIt) imgArrNum.push(randomNum);
+            else inputNum();
+            console.log(isIt,imgArrNum);
+          } ///////inputNum//////////
+          // 랜덤 수 만들기
+          inputNum();
+          // console.log(imgArrNum[i - 1]-1,prodData[imgArrNum[i - 1]-1][0]);
+          $(".prod-area ol").append(`
+            <li>    
+                <div class="prod-item" style="background-image: url(./images/image_prod2/keyboard${
+                  imgArrNum[i - 1]
+                }.png)" data-seq='${imgArrNum[i - 1]-1}'>
+                </div>
+                <h3 class='prod-item-title'>${prodData[imgArrNum[i - 1]-1][0]}</h3>
+                <h3 class='prod-item-title'>${prodData[imgArrNum[i - 1]-1][1]}</h3>
+            </li>`);
+        } ///////////for문//////////////////////
+      }); ////////////JQB///////////////////////////////////////
+    </script>
+  </head>
+  <body>
+    <div class="prod-area">
+      <ol></ol>
+    </div>
+  </body>
+</html>

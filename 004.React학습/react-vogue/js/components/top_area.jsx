@@ -37,6 +37,7 @@ export default function TopArea(props) {
       </a>
     ));
 
+  console.log('상단영역 실행');
   return (
     <div id="top-area">
       <header class="top-area ibx common-area">

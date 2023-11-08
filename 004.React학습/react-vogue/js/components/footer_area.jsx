@@ -6,22 +6,52 @@
   기능 : 하단영역 링크메뉴, 회사정보 구성
 ************************************************/
 export default function FooterArea() {
+  console.log("하단영역 실행");
+
+  // 상태관리변수 : 하단 변경여부 저장 변수
+  const [chgFooter, setChgFooter] = React.useState(0);
+
+  return (
+    <React.Fragment>
+      {/* 하단 상태값 변경 버튼 */}
+      <div style={{ textAlign: "center" }}>
+        <button
+          onClick={() => {
+            setChgFooter(chgFooter?0:1);
+          }}
+        >
+          하단로고변경
+        </button>
+      </div>
+      <FooterMemo fsts={chgFooter} />
+    </React.Fragment>
+  );
+} /////////// FooterArea 컴포넌트 ////////////////////
+
+// 하단 코드를 메모이제이션하기위한 컴포넌트
+// 만약 전달값 props가 없으면 없는 상태가 계속 유지되므로
+// 재활용 없이 다시 컴포넌트가 그려지는 일은 없다(중복실행 막기)
+const FooterMemo = React.memo((props) => {
+  console.log("메모실행");
   // 하단 링크 데이터
   const fTxt = ["정기구독", "회사소개", "광고 및 제휴", "개인정보 처리방침"];
 
+  // 리스트 생성 함수
   const makeList = (data) =>
     data.map((v) => (
       <li>
         <a href="#">{v}</a>
       </li>
     ));
+
   return (
     <React.Fragment>
       <div id="footer-area">
         <footer className="footer-area ibx common-area">
           {/* 3-1.하단로고 */}
           <div className="blogo">
-            <img src="./images/footer_logo.png" alt="하단로고" />
+            {/* 전달 상태값에 따라 이미지 변경 함 */}
+            <img src={props.fsts==0?"./images/footer_logo.png":"https://media.tenor.com/roL8BtIs724AAAAd/vogue-celine-vogue.gif"} alt="하단로고" />
           </div>
           {/* 3-2.회사주소 */}
           <address className="addr">
@@ -38,4 +68,7 @@ export default function FooterArea() {
       </a>
     </React.Fragment>
   );
-} /////////// FooterArea 컴포넌트 ////////////////////
+}); ////////////// FooterMemo 컴포넌트 /////////
+// const Component = React.memo((props) => {
+//   return (컴포넌트 랜더링 코드)}
+// );
