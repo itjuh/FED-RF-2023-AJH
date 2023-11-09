@@ -31,15 +31,18 @@
             </a>
           </h1>
         </div>
-        <div class="part-box col-2"></div>
         <!-- 1-2. 타이틀영역 -->
         <div class="part-box col-6">
           <div class="top-title"><h2>Keyboard List</h2></div>
         </div>
         <!-- 1-3. GNB메뉴 -->
-        <div class="part-box col-2"></div>
         <div class="part-box col-3 flex-box gnb-area">
-          <a href="#" class="fa-solid fa-magnifying-glass" title="검색"><span class="ir">검색</span></a>
+          <a href="#" class="fa-solid fa-magnifying-glass on" title="검색">
+            <span class="ir">검색</span>
+            <input type="text" class="search-area">
+            <!-- <div class="search-area">
+            </div> -->
+          </a>
           <a href="#" class="fa-solid fa-user" title="로그인"><span class="ir">로그인</span></a>
           <a href="#" class="fa-solid fa-cart-shopping" title="장바구니"><span class="ir">장바구니</span></a>
         </div>
@@ -48,8 +51,7 @@
     <!-- 2. 메인영역 -->
     <div id="main">
       <main class="main in-box row-12">
-        <div class="part-box col-16 row-1"></div>
-        <!-- 2-1. 제품 정렬옵션 -->
+       <!-- 2-1. 제품 정렬옵션 -->
         <div class="part-box col-16 row-1">
           <div class="progress-area col-6">
             <ul class="flex-box">
@@ -64,6 +66,35 @@
               </li>
             </ul>
             <div class="progress-bar"></div>
+          </div>
+        </div>
+        <!-- 옵션 선택 시 세부옵션 -->
+        <div class="part-box col-16 row-1">
+          <div class="progress-sub-area col-5 flex-box array-area">
+            <input type="checkbox" value="900" id="array-900" checked>
+            <label class='check-array' for="array-900">900</label>
+            <input type="checkbox" value="750" id="array-750" checked>
+            <label class='check-array' for="array-750">750</label>
+            <input type="checkbox" value="etc" id="array-etc" checked>
+            <label class='check-array' for="array-etc">etc</label>
+          </div>
+          <div class="progress-sub-area col-5 flex-box color-area">
+            <input type="checkbox" value="" id="color-wt" checked>
+            <label class='check-color color-wt' for="color-wt"></label>
+            <input type="checkbox" value="" id="color-bk" checked>
+            <label class='check-color color-bk' for="color-bk"></label>
+            <input type="checkbox" value="" id="color-gy" checked>
+            <label class='check-color color-gy' for="color-gy"></label>
+            <input type="checkbox" value="" id="color-bu" checked>
+            <label class='check-color color-bu' for="color-bu"></label>
+            <input type="checkbox" value="" id="color-ye" checked>
+            <label class='check-color color-ye' for="color-ye"></label>
+            <input type="checkbox" value="" id="color-rd" checked>
+            <label class='check-color color-rd' for="color-rd"></label>
+          </div>
+          <div class="progress-sub-area col-5 flex-box option-switch-area">
+            <input type="checkbox" value="" id="" checked>
+            <label class='check-switch' for=""></label>
           </div>
         </div>
         <!-- 2-2. 제품 리스트 -->

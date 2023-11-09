@@ -1,0 +1,12 @@
+/* 리셋 공통 CSS html 페이지 전체에 적용됨! */
+html,body,ul,ol,dl,dt,dd,p,figure,figcaption,h1,h2,h3,h4 {
+  margin: 0;
+  padding: 0;
+}
+body{
+  background-color: #e5e5e5;
+}
+/* ul,ol */
+ul,ol{
+  list-style: none;
+}

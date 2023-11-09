@@ -15,15 +15,15 @@
 1. 라디오버튼은 공통중에 1개만 선택되는 버튼
     <input type='radio'>
 2. 라디오 버튼끼리 묶으려면 name을 같게 해야함
-    <input namd='flavor'>맛1
-    <input namd='flavor'>맛2
-    <input namd='flavor'>맛3
+    <input name='flavor'>맛1
+    <input name='flavor'>맛2
+    <input name='flavor'>맛3
 3. 라디오버튼에 글자도 클릭되게 넣으려면 label이용
 
 4. 라벨의 글자와 라디오 버튼을 이으려면
     라벨 for의 속성과 input id의 속성을 일치시켜야함
-<label for='sweet'> <input id='sweet' namd='flavor'>
-<label for='salty'> <input id='salty' namd='flavor'>
+<label for='sweet'> <input id='sweet' name='flavor'>
+<label for='salty'> <input id='salty' name='flavor'>
 
 5. 라디오버튼 CSS
 버튼 원형 없애기
