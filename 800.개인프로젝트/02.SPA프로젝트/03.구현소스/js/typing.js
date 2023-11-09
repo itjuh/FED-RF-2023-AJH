@@ -38,8 +38,10 @@ dFn.addEvt(window, "DOMContentLoaded", () => {
   msgBoxSpan.innerText = "";
   //  인터발함수 호출
   setTimeout(() => {
+    // 글자입력 함수
     insertText();
   }, 2000);
+  // 키보드 타이핑 함수 호출
   typingKey(typingData.main);
 
   // 글자입력 끝나면
