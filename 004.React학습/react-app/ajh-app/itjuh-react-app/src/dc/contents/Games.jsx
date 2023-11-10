@@ -2,12 +2,12 @@
 
 import { Banner } from "./Banner";
 
-export function Games(props){
+export function Games(){
     // cat - 메뉴분류
     return(
         <>
         <h1 style={{textAlign:'center'}}>게임 페이지</h1>
-        <Banner category={props.cat} />
+        <Banner category='GAMES' />
         </>
     );
 } ///////////// Games 구성 컴포넌트 //////////

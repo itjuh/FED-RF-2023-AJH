@@ -107,6 +107,8 @@ input[type="checkbox"]:checked + label::after {
   padding: 3px 0;
   border-radius: 2px;
   user-select: none;
+  /* 처음에 안보임 */
+  display: none;
 }
 input[type="checkbox"]:checked + .check-array {
   outline: 1px solid #fff;
@@ -130,49 +132,85 @@ input[type="checkbox"]:checked + .check-array {
 .color-wt {
   border: 2px solid #ccc;
 }
+.color-bk {
+  border: 2px solid #131313;
+}
+.color-gy {
+  border: 2px solid #858585;
+}
+.color-bu {
+  border: 2px solid cornflowerblue;
+}
+.color-ye {
+  border: 2px solid #ffe65a;
+}
+.color-rd {
+  border: 2px solid orangered;
+}
+/* 체크박스 체크 시 */
 input[type="checkbox"]:checked + .color-wt {
   outline: 1px solid #ccc;
   background-color: #eeeeee;
-}
-.color-bk {
-  border: 2px solid #131313;
 }
 input[type="checkbox"]:checked + .color-bk {
   outline: 1px solid #858585;
   background-color: #131313;
   color:#fff;
 }
-.color-gy {
-  border: 2px solid #858585;
-}
 input[type="checkbox"]:checked + .color-gy {
   outline: 1px solid #ccc;
   background-color: #858585;
-}
-.color-bu {
-  border: 2px solid cornflowerblue;
 }
 input[type="checkbox"]:checked + .color-bu {
   outline: 1px solid #1e6f9c;
   background-color: cornflowerblue;
 }
-.color-ye {
-  border: 2px solid #ffe65a;
-}
 input[type="checkbox"]:checked + .color-ye {
   outline: 1px solid #d3aa24;
   background-color: #ffe65a;
-}
-.color-rd {
-  border: 2px solid orangered;
 }
 input[type="checkbox"]:checked + .color-rd {
   outline: 1px solid coral;
   background-color: orangered;
 }
-
 /* 세부3 스위치 옵션 */
-
+.option-switch-area{
+  justify-content: space-between;
+  top: 8%;
+  /* 처음에 안보임 */
+  display: none;
+}
+.check-switch{
+  height: 5vh;
+  aspect-ratio: 1/1;
+  outline: 1px solid #ccc;
+  border-radius: 50%;
+  background-repeat: no-repeat;
+  background-position: top;
+  background-size: 200% 200%;
+}
+/* 스위치 개별 이미지 */
+.switch-br {
+  background-image: url(../images/switch_prod/png/click_brown.png);
+}
+.switch-bu {
+  background-image: url(../images/switch_prod/png/click_blue.png);
+}
+.switch-sl {
+  background-image: url(../images/switch_prod/png/silent_silver.png);
+}
+.switch-sr {
+  background-image: url(../images/switch_prod/png/silent_red.png);
+}
+.switch-lr {
+  background-image: url(../images/switch_prod/png/linear_red.png);
+}
+.switch-bk {
+  background-image: url(../images/switch_prod/png/linear_black.png);
+}
+.switch-cl {
+  background-image: url(../images/switch_prod/png/nonclick_clear.png);
+}
 /* 각 제품 구역 */
 .prod-area ol {
   position: relative;
@@ -204,13 +242,13 @@ input[type="checkbox"]:checked + .color-rd {
 /* 제품 개별 */
 /* 메인 검색 상품1 */
 .prod-area li:nth-child(1) {
-  top: 40%;
+  top: 38%;
   left: 20%;
   z-index: 1;
 }
 /* 메인 검색 상품2 */
 .prod-area li:nth-child(2) {
-  top: 40%;
+  top: 38%;
   left: 55%;
   z-index: 1;
 }

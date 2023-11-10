@@ -2,12 +2,12 @@
 
 import { Banner } from "./Banner";
 
-export function News(props){
+export function News(){
     // cat - 메뉴분류
     return(
         <>
         <h1 style={{textAlign:'center'}}>뉴스 페이지</h1>
-        <Banner category={props.cat} />
+        <Banner category='NEWS' />
         </>
     );
 } ///////////// News 구성 컴포넌트 //////////

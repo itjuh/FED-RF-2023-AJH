@@ -25,6 +25,11 @@ https://www.cherry.kr/about-cherry/our-technologies
 https://leopold.co.kr/brand.html
 
 
+참고 효과 - 글자등장 효과들
+https://wsss.tistory.com/285
+참고 플러그인 - 화면전환
+https://www.jqueryscript.net/slideshow/Responsive-jQuery-Slideshow-with-3D-CSS3-Transforms-Refine-Slide.html
+
 무료아이콘 모음사이트
 https://www.i-boss.co.kr/ab-6141-60320
     1)쓸만한

@@ -1,0 +1,21 @@
+@charset "utf-8";
+
+/* 레오폴드 PJ : 메인 CSS - main.css */
+/* 리셋, 공통, 코어 외부 CSS합치기(merging) */
+@import url(./reset.css);
+@import url(./core.css);
+@import url(./common.css);
+
+/************** 2. 메인영역  ****************/
+
+/* 각 제품 구역 */
+.prod-area {
+  position: relative;
+  width: 100%;
+  outline: 1px solid #eee;
+  box-shadow: 0px 0px 3px rgb(0, 0, 0, 0.15);
+}
+.top-title small{
+  font-size: 1rem;
+  font-family: KOFIHDrLEEJWTTF-L;
+}
