@@ -13,6 +13,8 @@
     <!-- 제이쿼리 라이브러리 -->
     <script src="./js/jquery-3.7.1.min.js"></script>
     <script src="./js/jquery-ui.min.js"></script>
+    <!-- 정보 가로스크롤 JS -->
+    <script type="module" src="./js/info_scroll.js"></script>
     <!-- 서브CSS -->
     <link rel="stylesheet" href="./css/sub.css" />
     <style>
@@ -56,7 +58,7 @@
     <div id="main">
       <main class="main in-box row-12">
         <!-- 네비게이션 구역 -->
-        <div class="part-box col-16 row-2 nav-area">
+        <div class="part-box col-14 row-1 nav-area">
           <ul class="flex-box">
             <li>
               <h2 class="nav-tit">image1</h2>
@@ -81,8 +83,23 @@
           </ul>
         </div>
         <!-- 제품 설명 구역 -->
-        <div class="part-box col-16 row-8 prod-area"></div>
-        <div class="part-box col-16 row-2"></div>
+        <div class="part-box col-16 row-11 prod-area">
+          <section class="prod-info row-10">
+            <!-- 제품 정보 옆으로 흘러갈 박스 -->
+            <div class="info-img flex-box">
+              <img src="./images/FC900RBTPD/01.jpg" alt="키보드 이미지">
+              <img src="./images/FC900RBTPD/02.jpg" alt="키보드 이미지">
+              <img src="./images/FC900RBTPD/03.jpg" alt="키보드 이미지">
+              <img src="./images/FC900RBTPD/04.jpg" alt="키보드 이미지">
+              <img src="./images/FC900RBTPD/05.jpg" alt="키보드 이미지">
+              <img src="./images/FC900RBTPD/06.jpg" alt="키보드 이미지">
+            </div>
+          </section>
+          <section class="prod_pick flex-box">
+            <div class='add-wish'>add to wishlist ＞</div>
+            <div class='add-wish buy-btn'>buy now ↗</div>
+          </section>
+        </div>
       </main>
     </div>
     <!-- 3. 하단영역 -->

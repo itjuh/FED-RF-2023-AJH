@@ -1,17 +1,29 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+// 메인 페이지 JS - index.js
+import React, { useState } from 'react';
+import { createRoot, ReactDOM } from 'react-dom/client';
+import { TopArea } from './layout/TopArea';
+import { MainArea } from './layout/MainArea';
+import { FooterArea } from './layout/Footer';
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
+// 페이지 공통 CSS
+import './css/common.css'
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+// 최상위 Root 컴포넌트 ////////////
+function App(){
+  // 페이지 변경용 후크 상태변수 설정
+  const [pageName, setPageName] = useState('main');
+
+  // 후크변수 변경함수
+  const chgPgName = x => setPageName(x);
+  return(
+    <>
+      <TopArea chgFn={chgPgName}/>
+      <MainArea page={pageName}/>
+      <FooterArea />
+    </>
+  )
+} ///////// App 컴포넌트 /////////////
+
+const root = createRoot(document.querySelector('#root'));
+root.render(<App />);
+

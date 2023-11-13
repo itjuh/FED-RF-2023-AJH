@@ -1,17 +1,18 @@
-import React from 'react';
+// index.js는 public/index.html 페이지에 적용되는 컴포넌트다! - root컴포넌트
+import React, { useState } from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
+export default function App(){
+  return(
+    <BrowserRouter>
+      <Routes>
+      </Routes>
+    </BrowserRouter>
+  )
+} /////////App /////////////
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+// 컴포넌트 출력 //////////////////
+// root객체 ReactDOM.createRoot() -> root.render(</>)
+const root = ReactDOM.createRoot(document.querySelector('#root'));
+root.render(<App />);
