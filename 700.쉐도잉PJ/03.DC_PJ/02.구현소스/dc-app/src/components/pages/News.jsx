@@ -1,6 +1,6 @@
 // 메인페이지 뉴스 컨텐츠
 
-import { Banner } from "./Banner";
+import { Banner } from "../modules/Banner";
 
 export function News(){
     // cat - 메뉴분류

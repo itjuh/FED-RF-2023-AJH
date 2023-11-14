@@ -1,6 +1,6 @@
 // 메인페이지 코믹스컨텐츠
 
-import { Banner } from "./Banner";
+import { Banner } from "../modules/Banner";
 
 export function Comics(){
     // cat - 메뉴분류

@@ -1,6 +1,6 @@
 // 메인페이지 게임 컨텐츠
 
-import { Banner } from "./Banner";
+import { Banner } from "../modules/Banner";
 
 export function Games(){
     // cat - 메뉴분류

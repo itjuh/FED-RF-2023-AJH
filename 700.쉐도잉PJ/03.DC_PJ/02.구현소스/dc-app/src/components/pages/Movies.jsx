@@ -1,6 +1,6 @@
 // 메인페이지 무비 컨텐츠
 
-import { Banner } from "./Banner";
+import { Banner } from "../modules/Banner";
 
 export function Movies(){
     // cat - 메뉴분류
