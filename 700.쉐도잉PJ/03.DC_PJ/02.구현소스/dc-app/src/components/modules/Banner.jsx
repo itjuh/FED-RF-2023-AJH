@@ -1,18 +1,18 @@
 // DC.com 배너 컴포넌트
 
 // 배너데이터
-import { banData } from "../../data/banner";
+import { banData } from "../data/banner";
 // 배너 CSS
-import "../../../css/banner.css";
+import "../../css/banner.css";
 import { useEffect } from "react";
 // 제이쿼리 + 제이쿼리 ui
 import $ from "jquery";
 import "jquery-ui-dist/jquery-ui";
 
-// 슬라이드 기능 구현 함수
-function slideFn() {
-  // [1] 이동 대상선정
-  const sliderBox = $(".slider");
+// 배너 컴포넌트 //
+export function Banner(props) {
+  // category - 카테고리 분류명(배너 데이터 키)
+
   // [2] 변수설정
   // 1. 애니메이션 동작시간
   const A_TM = 600;
@@ -24,18 +24,31 @@ function slideFn() {
   // let sNum = 1;
   // 5. 슬라이드 개수
   // const sCnt = sliderBox.find('li').length;
-  // 6. 슬라이드 블릿
-  const indic = $('.indic li');
 
-  // [3] 이벤트 설정 및 기능구현
-  // 이동버튼 클릭 시
-  $(".abtn").click(function () {
+  //// 슬라이드 이동구현 함수 ////////
+  //// 이벤트 설정 및 함수 호출은 리액트 파트에서 처리함!!
+  // -> 그래야 다중 컴포넌트 배치 시 개별화를 할 수 있다
+  function goSlide(e) {
+    // [1] 이벤트 발생한 요소
+    const tg = e.target;
+    console.log(tg);
+
+    // [2] 이동 대상선정
+    // 상대적으로 부모를 잡아준다.
+    //  (1) 슬라이드 : 클릭 된 버튼기준으로 잡아준다.
+    const sliderBox = $(tg).siblings(".slider");
+    //  (2) 슬라이드 블릿
+    const indic = $(tg).siblings(".indic").find('li');
+
+    // [3] 이벤트 설정 및 기능구현
+
+    // 이동버튼 클릭 시
     // 0. 광클 금지
     if (!cSts) return;
     cSts = 0; //잠그기
     setTimeout(() => (cSts = 1), A_TM / 6);
     // 1. 버튼 오른쪽 여부
-    let isR = $(this).is(".rb");
+    let isR = $(tg).is(".rb");
     console.log("bt클릭", isR);
     // 2. 버튼 별 분기
     if (isR) {
@@ -58,10 +71,11 @@ function slideFn() {
         }
       );
       // 현재 인딕 담기
-      let nowIndic = $(".indic li.on");
-      // console.log(nowIndic,indic.last(),'같은지여부 =>',indic.last() == nowIndic)
+      let nowIndic = $(tg).siblings(".indic").find('li.on');
+      console.log(nowIndic,indic.last(),'같은지여부 =>',indic.last() == nowIndic)
       nowIndic.removeClass("on");
-      if (indic.last()[0] == nowIndic[0]) { // 마지막 순번
+      if (indic.last()[0] == nowIndic[0]) {
+        // 마지막 순번
         indic.first().addClass("on");
       } else {
         nowIndic.next().addClass("on");
@@ -79,42 +93,35 @@ function slideFn() {
         A_ES
       );
       // 현재 인딕 담기
-      let nowIndic = $(".indic li.on");
+      let nowIndic = $(tg).siblings(".indic").find('li.on');
       nowIndic.removeClass("on");
-      if (indic.first()[0] == nowIndic[0]) { // 첫 순번
+      if (indic.first()[0] == nowIndic[0]) {
+        // 첫 순번
         indic.last().addClass("on");
       } else {
         nowIndic.prev().addClass("on");
       }
     } //// else //////
-  }); ///////// abtn 클동이벤트 //////////
-} ////////// slideFn 함수 /////////////
-
-// 배너 컴포넌트 //
-export function Banner(props) {
-  // category - 카테고리 분류명(배너 데이터 키)
+    console.log("bt클릭", isR);
+  } //////////// goSlide 함수 ////////////////
 
   // 선택 데이터
   const selData = banData[props.category];
-
-  // 페이지 랜더링 후 실행구역
-  useEffect(() => {
-    console.log("랜더링 후~");
-    // 슬라이드 기능구현 함수 호출 : 슬라이드가 여러개일때
-    if(selData.length > 1) slideFn();
-  });
 
   // 리스트 만들기 함수
   const makeList = (data) => {
     return data.map((v, i) => (
       <li key={i}>
         <img src={v.src} alt="배너이미지"></img>
-        <section className="bantit">
-            <h3>{v.tit1}</h3>
-            <h2>{v.tit2}</h2>
-            <p>{v.cont}</p>
-            <button style={{marginTop:'20px'}}>{v.btn}</button>
-        </section>
+          <section className="bantit">
+          <h3>{v.tit1}</h3>
+          <h2>{v.tit2}</h2>
+          <p>{v.cont}</p>
+          {/* 버튼데이터가 없으면 출력하지 않음 */}
+          { v.btn != false &&
+          <button style={{ marginTop: "20px" }}>{v.btn}</button>
+          }
+          </section>
       </li>
     ));
   }; ///////// makeList함수 //////////
@@ -126,8 +133,12 @@ export function Banner(props) {
       {/* 이동버튼 + 슬라이드 블릿 : 슬라이드 2개 이상이면 보임 */}
       {selData.length > 1 && (
         <>
-          <button className="abtn lb">＜</button>
-          <button className="abtn rb">＞</button>
+          <button className="abtn lb" onClick={goSlide}>
+            ＜
+          </button>
+          <button className="abtn rb" onClick={goSlide}>
+            ＞
+          </button>
 
           {/* 블릿 인디케이터 */}
           <ol className="indic">

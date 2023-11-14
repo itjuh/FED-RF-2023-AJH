@@ -1,6 +1,6 @@
 // 비디오페이지 메인 컴포넌트
 
-import { isrc } from "../../data/imgSrc";
+import { isrc } from "../data/imgSrc";
 
 
 // 바디오페이지 메인 컴포넌트 //

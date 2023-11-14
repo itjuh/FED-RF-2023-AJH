@@ -1,18 +1,26 @@
 // index.js는 public/index.html 페이지에 적용되는 컴포넌트다! - root컴포넌트
-import React, { useState } from 'react';
-import ReactDOM from 'react-dom/client';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Layout } from "./components/layout/Layout";
+// 레오폴드 메인 css
+import './css/index.css';
 
-export default function App(){
-  return(
+export default function App() {
+  return (
     <BrowserRouter>
       <Routes>
+        {/* 중요!! 레이아웃 컴포넌트를 루트로 설정!! */}
+        <Route path="/" element={<Layout />}>
+          {/* 하위 라우터 세팅 */}
+          {/* <Route index element={<Main />} /> */}
+        </Route>
       </Routes>
     </BrowserRouter>
-  )
+  );
 } /////////App /////////////
 
 // 컴포넌트 출력 //////////////////
 // root객체 ReactDOM.createRoot() -> root.render(</>)
-const root = ReactDOM.createRoot(document.querySelector('#root'));
+const root = ReactDOM.createRoot(document.querySelector("#root"));
 root.render(<App />);

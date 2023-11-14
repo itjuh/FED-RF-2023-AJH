@@ -7,7 +7,7 @@ export function Main(){
     return(
         <>
         <h1 style={{textAlign:'center'}}>메인 페이지</h1>
-        <Banner category='main' />
+        <Banner category={'main'+Math.ceil(Math.random()*3)} />
         </>
     );
 } ///////////// Main 구성 컴포넌트 //////////

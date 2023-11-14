@@ -2,7 +2,7 @@
 
 // gnb데이터 불러오기
 import { Link } from "react-router-dom";
-import { Logo } from "../contents/modules/Logo";
+import { Logo } from "../modules/Logo";
 import { menu } from "../data/gnb";
 
 export function TopArea() {

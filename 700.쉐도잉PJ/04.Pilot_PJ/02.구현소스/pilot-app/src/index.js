@@ -17,13 +17,27 @@ function App(){
   const chgPgName = x => setPageName(x);
   return(
     <>
-      <TopArea chgFn={chgPgName}/>
-      <MainArea page={pageName}/>
+      <TopArea cat={pageName}/>
+      <MainArea page={pageName} />
       <FooterArea />
     </>
-  )
+)
 } ///////// App 컴포넌트 /////////////
 
 const root = createRoot(document.querySelector('#root'));
 root.render(<App />);
 
+// 버튼 구역
+
+{/* <button onClick={()=>chgPgName('main')}>
+메인페이지
+</button>
+<button onClick={()=>chgPgName('men')}>
+남성페이지
+</button>
+<button onClick={()=>chgPgName('women')}>
+여성페이지
+</button>
+<button onClick={()=>chgPgName('style')}>
+스타일페이지
+</button> */}

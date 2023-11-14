@@ -3,7 +3,11 @@
 [1] 배너모듈
     - 모듈명 : Banner (JS/CSS)
     (1) 구조정의 : 
-        Root > div.banner > ul.slider > li > img + section.bantit > h2 + p + button
+        Root > 
+            div.banner > 
+                (ul.slider > li > img + section.bantit > h2 + p + button) 
+                + button.abtn 
+                + ol.indic
     (2) 객체화 : 
         {
             "src": 배너이미지 경로
