@@ -23,7 +23,7 @@
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
-  background-image: url(../../public/images/image_prod2/keyboard2.png);
+  /* background-image: url(../../public/images/image_prod2/keyboard2.png); */
 }
 /* 각 제품 li 오버시 */
 .prod-area li:hover {

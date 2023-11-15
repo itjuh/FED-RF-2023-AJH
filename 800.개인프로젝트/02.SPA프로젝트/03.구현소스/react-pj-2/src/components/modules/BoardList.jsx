@@ -3,24 +3,21 @@
 // import { boardData } from "../data/boardData";
 // 제이쿼리 가져오기
 import $ from "jquery";
-import { inputNum } from "../func/prod_list";
+import { setNum } from "../func/prod_list";
 import { boardData } from '../data/boardData';
-import { useEffect } from "react";
 window.jQuery = $;
 require("jquery-ui-dist/jquery-ui");
 require("jquery-ui-touch-punch/jquery.ui.touch-punch");
 
 export function BoardList() {
   // 이미지 출력 할 랜덤이미지 번호 생성
-  useEffect(()=>{
-    const setImgNum = inputNum();
-  },[]);
+  const setImgNum = setNum();
   const makeList = (data) => {
     return data.map((v, i) => 
       <li key={i}>
         <div
           className="prod-item"
-          style={"background-image: url(./images/image_prod2/keyboard"+v+".png)"}
+          style={{backgroundImage:'url(../images/image_prod2/keyboard'+{v}+'.png)'}}
           data-seq={v}
         >
           {/* 더보기 */}
