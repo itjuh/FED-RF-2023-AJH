@@ -4,6 +4,9 @@
 import { Link } from "react-router-dom";
 import { Logo } from "../modules/Logo";
 import { menu } from "../data/gnb";
+// 폰트어썸 아이콘 불러오기
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export function TopArea() {
 /******************************************************* 
@@ -28,10 +31,11 @@ export function TopArea() {
         <nav className="gnb">
           {/* 1-1. 네비게이션 GNB파트 */}
           <ul>
+            {/* 1) DC 로고 컴포넌트 */}
             <li>
-              {/* DC 로고 */}
               <Logo logoStyle='top'/>
             </li>
+            {/* 2) GNB메뉴 데이터 기반으로 li태그 생성하기*/}
             {menu && menu.map((v, i) => (
               <li key={i}>
                 <Link to={v.link}>{v.txt}</Link>
@@ -49,7 +53,23 @@ export function TopArea() {
                 }
               </li>
             ))}
+            {/* 3) 검색,회원가입,로그인 링크 */}
+            <li style={{marginLeft:'auto'}}>
+              {/* 검색기능 링크 - 클릭 시 검색창 보이기 */}
+              <a href='#' onClick={()=>{}}>
+                <FontAwesomeIcon icon={faSearch}/>
+              </a>
+            </li>
+            {/* 회원가입, 로그인은 로그인 아닌 상태일 때 나옴 */}
+            <li>
+              <Link to='/member'>Join us</Link>
+            </li>
+            <li>
+              <Link to='/login'>Log in</Link>
+            </li>
           </ul>
+          {/* 모바일용 햄버거 버튼 */}
+          <button className='hambtn' onClick={()=>{}}></button>
         </nav>
       </header>
     </>

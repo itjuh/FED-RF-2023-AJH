@@ -20,13 +20,13 @@ export function TopArea() {
   }
   // gnb메뉴 생성 함수
   const makeGnb = () => {
-    return gnbData.map((v, i) =><>
-        <a key={i} href="#" title={v.txt}>
+    return gnbData.map((v, i) =>
+        <a href="#" title={v.txt} key={i}>
           <span className="ir">{v.txt}</span>
           {v.txt === '검색'?<input type="text" className="search-area"/>:<></>}
           {v.com}
         </a>
-      </>);
+      );
   };
   return (
     <>

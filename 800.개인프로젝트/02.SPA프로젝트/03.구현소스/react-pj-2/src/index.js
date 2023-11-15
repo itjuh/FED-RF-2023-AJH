@@ -3,8 +3,10 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Layout } from "./components/layout/Layout";
-// 레오폴드 메인 css
-import './css/index.css';
+import { Main } from "./components/pages/Main";
+// 레오폴드 공통 css
+// import './css/index.css'; 
+//순서오류로 인해서 사용중지
 
 export default function App() {
   return (
@@ -13,7 +15,7 @@ export default function App() {
         {/* 중요!! 레이아웃 컴포넌트를 루트로 설정!! */}
         <Route path="/" element={<Layout />}>
           {/* 하위 라우터 세팅 */}
-          {/* <Route index element={<Main />} /> */}
+          <Route index element={<Main />} />
         </Route>
       </Routes>
     </BrowserRouter>

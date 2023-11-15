@@ -80,3 +80,15 @@ key={}라고 하는 유일한 값을 넣어준다!
 warning: functions are not valid as a react child. this may happen if you return a component instead of <component /> from render. or maybe you meant to call this function rather than return it.
 오류원인 : 리액트 함수 호출의 문제
 해결방안 : 함수명뒤에 괄호를 붙여줌 ()
+
+React Hooks / Uncaught Error: Expected `onClick` listener to be a function, instead got a value of `string` type.
+오류원인 : 리액트 함수 설정에서 onClick이 String형으로 호출되면 생기는 오류
+해결방안 : onClick을 함수를 호출하도록 설정해줌
+
+Warning: Failed prop type: You provided a checked prop to a form field without an onChange handler. This will render a read-only field. If the field should be mutable use defaultChecked. Otherwise, set either onChange or readOnly.
+오류원인 : checkbox 인풋을 사용할 때 onClick 핸들러와 checked 속성을 동시에 사용하면 안된다는 내용이었다.
+해결방안 : checked 속성 대신에 defaultChecked 속성을 사용한다./onClick 대신에 onChange 핸들러를 사용한다./onClick을 사용하고 싶으면 readOnly 속성을 추가한다.
+
+Warning: Invalid DOM property `for`. Did you mean `htmlFor`?
+오류원인 : JSX는 javaScrit이기 때문에 for은 반복문을 의미함
+해결방안 : HTML 상에서는 for 대신 htmlFor를 사용한다.

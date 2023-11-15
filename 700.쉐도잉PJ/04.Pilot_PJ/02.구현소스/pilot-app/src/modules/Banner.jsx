@@ -17,7 +17,7 @@ export function Banner() {
         hcode[i] = <li key={i} className={i==0?'on':""}><a href="#"><span class="bld">블릿</span></a></li>
       }
     }
-    console.log(hcode);
+    // console.log(hcode);
     // 코드리턴
     return hcode;
   }; ///////// makeList함수 ////////////

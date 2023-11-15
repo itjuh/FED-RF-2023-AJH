@@ -12,6 +12,17 @@ export function FooterArea() {
       axis: "x",
       containment: "parent"
     });
+    $('.tg-btn').droppable({
+      drop:function(evt,ele){
+        // evt-이벤트전달변수 ele-드롭객체
+        $(this).css({
+          color: '#000',
+        }).siblings().css({
+          color: 'rgb(128, 128, 128)',
+        })
+        // 드롭된 요소는 ele.draggable
+      }, ///////drop이벤트 옵션 메서드
+    });
   }); /////////useEffect구역///////////
   return (
     <>

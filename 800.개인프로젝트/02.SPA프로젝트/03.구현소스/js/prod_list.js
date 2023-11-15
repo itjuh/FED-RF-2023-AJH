@@ -39,7 +39,6 @@ $(() => {
             <h3 class='prod-item-title'>${prodData[imgArrNum[i - 1]-1][1]}</h3>
             <!-- 위시리스트 버튼 -->
             <div class='add-wish'>add to wishlist ＞</div>
-            
         </li>`);
     } ///////////for문//////////////////////
   }

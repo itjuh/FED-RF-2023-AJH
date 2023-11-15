@@ -1,6 +1,6 @@
 // 폰트어썸 아이콘 사용 컴포넌트
 import React from "react";
-import { faUser, faMagnifyingGlass, faCartShopping } from "@fortawesome/free-solid-svg-icons";
+import { faUser, faMagnifyingGlass, faCartShopping, faCheck } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 function UserCon(){
@@ -12,5 +12,7 @@ function GlassCon(){
 function CartCon(){
     return <FontAwesomeIcon icon={faCartShopping} />  
 };
-
-export {UserCon, GlassCon, CartCon};
+function CheckCon(){
+    return <FontAwesomeIcon icon={faCheck} />
+}
+export {UserCon, GlassCon, CartCon, CheckCon};
