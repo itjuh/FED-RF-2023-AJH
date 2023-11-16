@@ -96,6 +96,43 @@ export function dragBanner() {
 
     // 현재 배너 클래스 읽기
     const currCls = currBan.attr("class");
-    console.log("글자등장 슉", currCls);
+
+    // 기존 h2 태그는 삭제
+    $(".btit").remove();
+
+    // console.log("글자등장 슉", banTxt[currCls]);
+    // 타이틀을 현재 배너에 추가함
+    currBan.append(`<h2 class='btit'>${banTxt[currCls]}</h2>`);
+    // 타이틀 left위치 변수처리
+    // ban2, ban3만 오른쪽위치
+    let lval = "30%";
+    if (currCls === "ban2" || currCls === "ban3") lval = "70%";
+
+    // css/ animate 코드
+    currBan
+      .find(".btit")
+      .css({
+        position: "absolute",
+        top: "55%", // 약간아래
+        left: lval,
+        transform: "translate(-50%,-50%)",
+        font: "bold 4.5vmax Verdana",
+        color: "#fff",
+        textShadow: "1px 1px 3px #777",
+        whiteSpace: "nowrap",
+        opacity: 0, // 처음에 투명
+        userSelected: 'none',
+      })
+      .animate(
+        {
+          top: "50%",
+          opacity: 1,
+        },
+        1000,
+        "easeInOutQuart"
+      );
   }; ///////// showTit 함수 /////////////
+
+  // 첫 배너 등장 호출
+  setTimeout(showTit, 1000);
 } ////////// dragBanner 함수 //////////////
