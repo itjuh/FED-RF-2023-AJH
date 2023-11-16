@@ -2,6 +2,7 @@
 // 섹션소개 모듈 데이터 가져오기
 import { secIntroData } from "../data/sec_intro";
 import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 // css가져오기
 import "../../css/sec_intro.css";
 
@@ -10,6 +11,10 @@ import "../../css/sec_intro.css";
 export function SecIntro() {
   // 선택 데이터
   const selData = secIntroData;
+  // 라우터 이동함수
+  const goNav = useNavigate();
+  // 라우터 이동함수
+  const chgPg = (txt)=>goNav(txt);
   return (
     <>
       <section className="sec-intro">
@@ -26,9 +31,9 @@ export function SecIntro() {
             </div>
             {/* 3. 버튼 박스 */}
             <div className="btnbx">
-              <Link to={v.link}>
-                <button>{v.btn.toUpperCase()}</button>
-              </Link>
+              {/* <Link to={v.link}> */}
+                <button onClick={()=>chgPg(v.link)}>{v.btn.toUpperCase()}</button>
+              {/* </Link> */}
             </div>
           </div>
         ))}

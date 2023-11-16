@@ -1,9 +1,9 @@
 // 제이쿼리로 구현한 자동페이지 휠 JS : jquery-autoScroll.js
 // 제이쿼리 가져오기
-import $ from 'jquery';
+import $ from "jquery";
 window.jQuery = $;
-require('jquery-ui-dist/jquery-ui');
-require('jquery-ui-touch-punch/jquery.ui.touch-punch');
+require("jquery-ui-dist/jquery-ui");
+require("jquery-ui-touch-punch/jquery.ui.touch-punch");
 
 // 로딩구역없이 함수로 구현함! /////
 export function autoScroll() {
@@ -24,14 +24,26 @@ export function autoScroll() {
 
   /****************************************** 
     이벤트 등록하기
+    **React에서 jquery로 이벤트 설정을 할 경우
+    리액트와 충돌되는 문제가 생길 수 있다.
+    예컨테 현재 휠 이벤트는 설정되지만 wheelDelta값이
+    undefined됨 
+    원인 : 제이쿼리로 이벤트를 설정 시, 객체형으로 처리됨
+    해결방안 : 순수한 JS로 설정 시 값을 받아올 수 있음
   ******************************************/
   // 윈도우 휠이벤트 발생시
-  $(window).on("wheel", wheelFn);
+  // $(window).on("wheel", wheelFn); -> 제이쿼리 사용 안함
+  window.addEventListener("wheel", wheelFn);
+  // 키보드 방향키 이벤트도 동일하게 js로 설정
 
   // 키보드 이벤트발생시 업데이트
   // 1. Page Up(33) / Up Arrow (38)
   // 2. Page Down(34) / Down Arrow (40)
-  $(document).keydown((e) => {
+  $(document).keydown((e) => { 
+  // document.addEventListener("keydown", function (e) { -> 제이쿼리 안되면 해당으로 바꾸면 됨
+    // 계속실행금지
+    if (prot[0]) return;
+    chkCrazy(0);
     // 이전페이지이동
     if (e.keyCode === 33 || e.keyCode === 38) {
       pno--;
@@ -59,7 +71,7 @@ export function autoScroll() {
     if (prot[0]) return;
     chkCrazy(0);
 
-    console.log("휠~~~~~~!");
+    // console.log("휠~~~~~~!");
 
     // 1.휠방향 알아내기
     let delta = e.wheelDelta;
@@ -77,7 +89,7 @@ export function autoScroll() {
       // 첫페이지번호에 고정!
     } //// else ////
 
-    console.log(pno);
+    // console.log(pno);
 
     // 3. 스크롤 이동하기 + 메뉴에 클래스"on"넣기
     movePg();

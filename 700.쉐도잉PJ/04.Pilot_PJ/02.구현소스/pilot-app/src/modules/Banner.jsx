@@ -12,9 +12,9 @@ export function Banner() {
     let hcode = [];
     for(let i=0; i<BAN_CNT; i++){
       if(gubun){ // 배너코드
-        hcode[i] = <li key={i} className={'ban'+(i==0?'6':i)}><span class="ir">{'배너'+(i==0?'6':i)}</span></li>
+        hcode[i] = <li key={i} className={'ban'+(i==0?'6':i)}><span className="ir">{'배너'+(i==0?'6':i)}</span></li>
       }else{ // 불릿코드
-        hcode[i] = <li key={i} className={i==0?'on':""}><a href="#"><span class="bld">블릿</span></a></li>
+        hcode[i] = <li key={i} className={i==0?'on':""}><a href="#"><span className="bld">블릿</span></a></li>
       }
     }
     // console.log(hcode);

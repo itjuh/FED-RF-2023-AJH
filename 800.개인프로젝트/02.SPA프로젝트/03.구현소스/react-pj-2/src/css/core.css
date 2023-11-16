@@ -23,7 +23,9 @@ body *{
     /* background: #eee;   */
 }
 body{
-    height: 100vh;
+    height: 100%;
+    width:100%;
+    overflow: hidden;
 }
 /* 속박스 */
 .in-box {

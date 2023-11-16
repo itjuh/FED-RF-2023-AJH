@@ -35,6 +35,7 @@ React
 기본이동과 똑같은데
 for문으로 append prepend를 블릿순번-슬라이드 순번 차이만큼 반복해줌(이동값은 확인해야함)
 
+최 상단에 import { useNavigate } from 'react-router-dom'
 const goNav = useNavigate();
 사용법 : 반드시 useNavigate()메서드를 변수에 담아 이동할 라우터 주소를 쓰면 이동한다
 예) goNav('/news') -> 뉴스페이지로 이동
