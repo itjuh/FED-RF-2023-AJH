@@ -2,15 +2,17 @@
 
 import { Banner } from "../modules/Banner";
 import { VidIntro } from "../modules/VidIntro";
+import { VidSwipe } from "../modules/VidSwipe";
 
 export function Movies(){
     // cat - 메뉴분류
     return(
         <>
+        <Banner category='MOVIES' />
         {/* 1. 비디오소개 컴포넌트 
         :cat - 페이지 분류명 cls - 클래스명(배경on/off)*/}
         <VidIntro cat='MOVIES' cls='on'/>
-        <Banner category='MOVIES' />
+        <VidSwipe tit='TRAILERS, CLIPS AND MORE' />
         </>
     );
 } ///////////// Movies 구성 컴포넌트 //////////

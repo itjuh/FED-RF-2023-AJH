@@ -1,18 +1,20 @@
 // 서브페이지 sub KeyboardList page - SubBoard.jsx
+// 서브 페이지용 css
+import { useLocation } from 'react-router-dom';
+import '../../css/subboard.css'
 // 서브페이지용 데이터
 import { detailData } from "../data/detailData";
-// 서브 페이지용 css
-import '../../css/subboard.css'
 
 
-export function SubBoard(props) {
+export function SubBoard() {
   // 본페이지에서 데이터 받아오기
   // console.log(detailData[props.name]);
-  let name = 'keyboard1';
+  const location = useLocation();
+  let name = location.state.name;
   // console.log(detailData[name]);
   const makeProgress = (data)=>{
     return(
-      data.map((v,i)=><li>
+      data.map((v,i)=><li key={i}>
         <h2 className='nav-tit'>{'image'+(i+1)}</h2>
         <div className='nav-cont'></div>
       </li>)
@@ -41,8 +43,8 @@ export function SubBoard(props) {
             </div>
           </section>
           <section className="prod_pick flex-box">
-            <div className="add-wish">add to wishlist ＞</div>
-            <div className="add-wish buy-btn">buy now ↗</div>
+            <div className="add-wish wish-sub">add to wishlist ＞</div>
+            <div className="add-wish wish-sub buy-btn">buy now ↗</div>
           </section>
         </div>
       </main>

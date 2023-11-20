@@ -1,9 +1,9 @@
 // 메인페이지 Main KeyboardList page - Main.jsx
 
-import { Options } from "../modules/Options";
-import { BoardList } from "../modules/BoardList";
 // 메인페이지 css
 import "../../css/main.css";
+import { Options } from "../modules/Options";
+import { BoardList } from "../modules/BoardList";
 import { Filter } from "../modules/Filter";
 import { useState } from "react";
 

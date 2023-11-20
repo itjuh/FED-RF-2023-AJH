@@ -25,22 +25,22 @@
   height: 90%;
   align-items: flex-end;
 }
-li {
+.nav-area ul li {
   width: 10vw;
 }
-li:nth-child(1) {
+.nav-area ul li:nth-child(1) {
   width: 20%;
 }
-li:nth-child(2) {
+.nav-area ul li:nth-child(2) {
   width: 15%;
 }
-li:nth-child(3) {
+.nav-area ul li:nth-child(3) {
   width: 10%;
 }
-li:nth-child(4) {
+.nav-area ul li:nth-child(4) {
   width: 15%;
 }
-li:nth-child(5) {
+.nav-area ul li:nth-child(5) {
   width: 20%;
 }
 /* 타이틀 */
@@ -79,7 +79,7 @@ li:nth-child(5) {
   object-fit: fill;
 }
 /* 위시리스트 버튼 */
-.add-wish {
+.wish-sub {
   right: auto;
   bottom: 70px;
   left: 10px;

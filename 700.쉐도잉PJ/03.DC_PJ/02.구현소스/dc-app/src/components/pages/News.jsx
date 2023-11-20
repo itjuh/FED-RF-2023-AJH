@@ -6,7 +6,6 @@ export function News(){
     // cat - 메뉴분류
     return(
         <>
-        <h1 style={{textAlign:'center'}}>뉴스 페이지</h1>
         <Banner category='NEWS' />
         </>
     );

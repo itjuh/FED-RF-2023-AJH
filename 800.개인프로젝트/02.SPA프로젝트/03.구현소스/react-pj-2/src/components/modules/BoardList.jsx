@@ -1,9 +1,10 @@
 // LEOPOLD Keyboard List만들기 컴포넌트
 // 키보드 제품 데이터
 // import { boardData } from "../data/boardData";
-import { setNum } from "../func/prod_list";
 import { boardData } from '../data/boardData';
 import { useLayoutEffect } from "react";
+import { useLocation } from 'react-router-dom';
+
 // 제이쿼리 가져오기
 import $ from "jquery";
 import { Link } from "react-router-dom";
@@ -13,7 +14,7 @@ require("jquery-ui-touch-punch/jquery.ui.touch-punch");
 
 export function BoardList() {
 
-  // 랜더링 후 이미지 넣기
+  // 랜더링되기 전 이미지 넣기
   useLayoutEffect(()=>{
     $('.prod-item').each((i,v)=>{
       // console.log($(v).data('seq'));
@@ -24,32 +25,33 @@ export function BoardList() {
     });
   },[]); /////////// useEffect ///////
 
-  // 이미지 출력 할 랜덤이미지 번호 생성
-  const setImgNum = setNum();
   // 대상 출력하기
-  const makeList = (data) => {
-    console.log(setImgNum);
-    return data.map((v, i) => 
-      <li key={i}>
-        <Link to='subboard'>
-        <div
-          className="prod-item"
-          data-seq={v}
-        >
-          {/* 더보기 */}
-          <div className="prod-detail-view">view</div>
-        </div>
-        <h3 className="prod-item-title">{boardData[v-1][0]}</h3>
-        <h3 className="prod-item-title">{boardData[v-1][1]}</h3>
-        {/* 위시리스트 버튼 */}
-        <div className="add-wish">add to wishlist ＞</div>
-        </Link>
+  const makeList = () => {
+    const hcode = [];
+    // 10개의 데이터 넣기
+    for(let i=0; i < 10; i++){
+      let seq = i+1;
+      hcode[i] = <li key={i}>
+      <Link to='/subboard' state={{name:'keyboard'+seq}}>
+      <div
+        className="prod-item"
+        data-seq={seq}
+      >
+        {/* 더보기 */}
+        <div className="prod-detail-view">view</div>
+      </div>
+      <h3 className="prod-item-title">{boardData[i][0]}</h3>
+      <h3 className="prod-item-title">{boardData[i][1]}</h3>
+      {/* 위시리스트 버튼 */}
+      <div className="add-wish">add to wishlist ＞</div>
+      </Link>
       </li>
-    );
+    }///////// for/////////
+    return hcode;
   };
   return (
     <ol>
-        {makeList(setImgNum)}
+        {makeList().map(v=>v)}
     </ol>
   );
 } /////////// BoardList 컴포넌트 ////////////

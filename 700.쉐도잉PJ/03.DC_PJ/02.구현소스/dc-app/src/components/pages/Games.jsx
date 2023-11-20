@@ -7,10 +7,10 @@ export function Games(){
     // cat - 메뉴분류
     return(
         <>
+        <Banner category='GAMES' />
         {/* 1. 비디오소개 컴포넌트 
         :cat - 페이지 분류명 cls - 클래스명(배경on/off)*/}
         <VidIntro cat='GAMES' cls='on'/>
-        <Banner category='GAMES' />
         </>
     );
 } ///////////// Games 구성 컴포넌트 //////////
