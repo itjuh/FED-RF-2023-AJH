@@ -1,10 +1,13 @@
 // 서브페이지 sub KeyboardList page - SubBoard.jsx
 // 서브 페이지용 css
-import { useLocation } from 'react-router-dom';
-import '../../css/subboard.css'
+import { useLocation } from "react-router-dom";
+import "../../css/subboard.css";
 // 서브페이지용 데이터
 import { detailData } from "../data/detailData";
-import { useLayoutEffect } from 'react';
+import { useEffect, useLayoutEffect } from "react";
+// 제이쿼리
+import $ from "jquery";
+import { moveImgInfo } from "../func/info_scroll";
 
 /*
   keyboard1: {
@@ -28,45 +31,64 @@ export function SubBoard() {
   let selData = detailData[name];
 
   // 랜더링 후
-  useLayoutEffect(()=>{
-    // 네비게이션바 길이 조정
-
+  useLayoutEffect(() => {
+    // 이미지 길이로 네비게이션바 길이 조정
+    const imgWd = [];
+    let all = 0;
+    $(".info-img img").each((i, v) => (all += v.height));
+    $(".info-img img").each((i, v) => {
+      imgWd[i] = Math.floor((v.height / all) * 100);
+    });
+    console.log(imgWd, all);
+    $(".nav-area li").each((i, v) => $(v).css({ width: imgWd[i] + "%" }));
+    // 휠 이벤트
+    moveImgInfo($('.list-page'));
   });
 
   // 네비게이션
-  const makeProgress = (data)=>{
-    return(
-      data.map((v,i)=><li key={i}>
-        <h2 className='nav-tit'>{v['ialt']}</h2>
-        <div className='nav-cont'></div>
-      </li>)
-    )
+  const makeProgress = (data) => {
+    return (
+      <div className="part-box col-14 row-1 nav-area">
+        <ul className="flex-box">
+          {data.map((v, i) => (
+            <li key={i}>
+              {/* 네비게이션 안내 */}
+              <h2 className="nav-tit">{v["ialt"]}</h2>
+              <div className="nav-cont">
+                {/* 네비게이션 색 채우기 구역 */}
+                <div className="nav-full"></div>
+              </div>
+            </li>
+          ))}
+        </ul>
+      </div>
+    );
   };
   // 이미지
   const makeImage = (data) => {
-    return(
-      data.map((v,i)=><img key={i} src={v['isrc']} alt={selData['sub']+' '+v['ialt']} />)
-    )
+    return (
+      <section className="prod-info row-10">
+        <div className="info-img flex-box">
+          {/* 제품 정보 옆으로 흘러갈 박스 */}
+          {data.map((v, i) => (
+            <img key={i} src={v["isrc"]} alt={selData["sub"] + " " + v["ialt"]} />
+          ))}
+        </div>
+      </section>
+    );
   };
 
   // 리턴구역 ///////////////////
   return (
     <>
-      <main className="main in-box row-12">
+      <main className="main in-box row-12 list-page">
         {/* 네비게이션 구역 */}
-        <div className="part-box col-14 row-1 nav-area">
-          <ul className="flex-box">
-            {makeProgress(selData['img'])}
-          </ul>
-        </div>
+        {makeProgress(selData["img"])}
         {/* 제품 설명 구역 */}
         <div className="part-box col-16 row-11 prod-area">
-          <section className="prod-info row-10">
-            {/* 제품 정보 옆으로 흘러갈 박스 */}
-            <div className="info-img flex-box">
-              {makeImage(selData['img'])}
-            </div>
-          </section>
+          {/* 제품이미지 */}
+          {makeImage(selData["img"])}
+          {/* 버튼들 */}
           <section className="prod_pick flex-box">
             <div className="add-wish wish-sub">add to wishlist ＞</div>
             <div className="add-wish wish-sub buy-btn">buy now ↗</div>

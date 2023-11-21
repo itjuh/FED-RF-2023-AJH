@@ -38,11 +38,11 @@
 /* 컨텐츠 박스 */
 .sw-inbox {
   width: 100%;
-  aspect-ratio: 1 / 1.1;
+  /* aspect-ratio: 1 / 1.1; */
   cursor: pointer;
   user-select: none;
   /* outline: 1px solid red; */
-  box-shadow: 4px 4px 5px rgba(0, 0, 0, 0.553);
+  box-shadow: 4px 4px 5px rgba(0, 0, 0, 0.300);
 }
 
 /* 비디오이미지박스 */

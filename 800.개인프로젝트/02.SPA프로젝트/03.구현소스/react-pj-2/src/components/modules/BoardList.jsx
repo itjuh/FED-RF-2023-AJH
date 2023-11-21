@@ -25,10 +25,10 @@ export function BoardList() {
   },[]); /////////// useEffect ///////
 
   // 대상 출력하기
-  const makeList = () => {
+  const makeList = (num) => {
     const hcode = [];
     // 10개의 데이터 넣기
-    for(let i=0; i < 10; i++){
+    for(let i=num; i < num+10; i++){
       let seq = i+1;
       hcode[i] = <li key={i}>
       <Link to='/subboard' state={{name:'keyboard'+seq}}>
@@ -50,7 +50,7 @@ export function BoardList() {
   };
   return (
     <ol>
-        {makeList().map(v=>v)}
+        {makeList(0).map(v=>v)}
     </ol>
   );
 } /////////// BoardList 컴포넌트 ////////////

@@ -89,12 +89,19 @@
         2) 비디오 메뉴 클릭시 별창 동영상 재생기능(닫기버튼)
 
 [5] 캐릭터모듈
-    - 모듈명: Cat (JS/CSS/data)
+    - 모듈명: CatList (JS/CSS/data)
 
     (1) 구조정의 :
         제목 + 스와이퍼모듈
         -> 하위 스와이퍼모듈(이미지+이름)
+        Root >
+            section.cat-swbox >
+                h2.tit + 스와이퍼컴포넌트(<SwiperCat />)
         
+                -> 스와이퍼 컴포넌트 구조정의
+                스와이퍼 리스트 >
+                    a링크(<Link to />) > 
+                        (section.sw-inbox2 > img) + (div.cat-tit2 > h3)
     (2) 객체화 :
         {
             idx : "",
@@ -146,6 +153,7 @@
             1) 캐릭터이름 : cname
             2) 캐릭터분류 : alignment(히어로/빌런/복잡)
             3) 캐릭터타입 : type(개인/단체)
+
 
 [8] 캐릭터리스트 모듈 : 개별 모듈
     - 모듈명: CatList (JS/CSS/data)

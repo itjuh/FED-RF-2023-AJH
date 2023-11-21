@@ -8,11 +8,13 @@ export function Movies(){
     // cat - 메뉴분류
     return(
         <>
+        {/* 1. 비디오소개 페이지 배너 */}
         <Banner category='MOVIES' />
-        {/* 1. 비디오소개 컴포넌트 
+        {/* 2. 비디오소개 컴포넌트 
         :cat - 페이지 분류명 cls - 클래스명(배경on/off)*/}
         <VidIntro cat='MOVIES' cls='on'/>
-        <VidSwipe tit='TRAILERS, CLIPS AND MORE' />
+        {/* 3. 비디오소개 스와이퍼 */}
+        <VidSwipe cat='movies' />
         </>
     );
 } ///////////// Movies 구성 컴포넌트 //////////

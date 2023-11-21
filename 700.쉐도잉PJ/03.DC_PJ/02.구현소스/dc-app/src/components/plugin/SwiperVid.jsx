@@ -22,9 +22,11 @@ import "./css/swiper_vid.css";
 // 사용할 스와이퍼 모듈을 불러온다 (페이지네이션-불릿, 네비게이션-좌우, 키보드 이동, 자동넘김)
 import { Navigation, Keyboard } from "swiper/modules";
 
-export function SwiperVid() {
+export function SwiperVid(props) {
+  // props.cat - 데이터 선택을 위한 객체속성명
+
   // 선택 데이터
-  const selData = swVidData;
+  const selData = swVidData[props.cat];
   // 비디오 보이기 함수 ///
   const showVid = (src,tit)=>{
     // src - 비디오 경로, tit - 비디오 제목
