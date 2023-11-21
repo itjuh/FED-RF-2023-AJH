@@ -39,8 +39,8 @@ export function autoScroll() {
   // 키보드 이벤트발생시 업데이트
   // 1. Page Up(33) / Up Arrow (38)
   // 2. Page Down(34) / Down Arrow (40)
-  $(document).keydown((e) => { 
-  // document.addEventListener("keydown", function (e) { -> 제이쿼리 안되면 해당으로 바꾸면 됨
+  $(document).keydown((e) => {
+    // document.addEventListener("keydown", function (e) { -> 제이쿼리 안되면 해당으로 바꾸면 됨
     // 계속실행금지
     if (prot[0]) return;
     chkCrazy(0);
@@ -48,12 +48,14 @@ export function autoScroll() {
     if (e.keyCode === 33 || e.keyCode === 38) {
       pno--;
       if (pno === -1) pno = 0;
+      //스크롤 이동하기 + 메뉴에 클래스"on"넣기
       movePg();
     }
     // 다음페이지이동
     else if (e.keyCode === 34 || e.keyCode === 40) {
       pno++;
       if (pno === pgcnt) pno = pgcnt - 1;
+      //스크롤 이동하기 + 메뉴에 클래스"on"넣기
       movePg();
     }
   }); ///////////// keydown ////////////////
@@ -75,7 +77,7 @@ export function autoScroll() {
 
     // 1.휠방향 알아내기
     let delta = e.wheelDelta;
-    console.log(delta);
+    // console.log(delta);
 
     // 2. 방향에 따른 페이지번호 증감
     if (delta < 0) {
@@ -118,7 +120,99 @@ export function autoScroll() {
           scrollTop: $(window).height() * pno + "px",
         },
         700,
-        "easeInOutQuint"
-      );
+        "easeInOutQuint",
+        // 애니메이션 후 actPage함수 호출
+        actPage
+      ); /////// animate //////////
+    // 선택 메뉴에 클래스 on 넣기
+    addOn();
   } ///////////////// movePg ////////////////
+
+  /***********************************************
+    GNB메뉴 + 사이드 인디케이터 클릭 이동기능
+  ***********************************************/
+  $(".gnb li, .indic li").click(function () {
+    // 1. 순번가져오기
+    let idx = $(this).index();
+    // 2. 순번 pno 할당
+    pno = idx;
+    // 3. 페이지 이동
+    movePg();
+  }); /////////// click //////////////
+
+  /*************************************************** 
+    함수명: addOn
+    기능: GNB + 사이드 인디케이터 해당페이지에 on 넣기
+    사용: 메뉴클릭 + 마우스 휠 이동 시 함수호출
+  ***************************************************/
+  const addOn = () => {
+    $(".gnb li").eq(pno).addClass("on").siblings().removeClass("on");
+    $(".indic li").eq(pno).addClass("on").siblings().removeClass("on");
+  }; /////////// addOn 함수 //////////
+
+  /******************************************** 
+    [ 페이지 등장액션 요소 적용하기 ]
+    1. 이벤트 적용시점 : 페이지도착후(애니후콜백) 
+    2. 이벤트 대상 : 각 페이지 동일
+      (1) .page .imgc - 이미지파트
+      (2) .page .txtc h2 a - 타이틀파트
+    3. 변경내용 :
+      [스타일시트 아래 항목 변경]
+      ((변경값))
+      transform: rotate(45deg);
+      opacity: 0;
+      transition: 1s 1s; -> 타이틀만 지연시간
+      ((고정값))
+      transform-origin: left top;
+      display: inline-block; -> a요소만
+  ********************************************/
+  /********************************************
+    함수명: initSet
+    기능: 등장요소 처음상태 셋팅
+  ********************************************/
+  function initSet() {
+    // 1. 초기화 하기
+    // 대상: .imgc
+    $(".imgc").css({
+      transform: "rotate(45deg)",
+      transformOrigin: "-10% -10%",
+      opacity: 0,
+      transition: "1s ease-in-out",
+    }); ////// imgc css /////////////////
+    // 대상: .txtc a
+    $(".txtc a").css({
+      transform: "rotate(45deg)",
+      transformOrigin: "-100% -100%",
+      opacity: 0,
+      transition: "1s ease-in-out .5s",
+      display: "inline-block",
+    }); ////// .txtc a css /////////////////
+  } ///////// initSet ///////////////
+  // 초기화 함수 최초호출
+  initSet();
+  /********************************************
+    함수명: actPage
+    기능: 페이지 도착 후 등장 애니메이션
+  ********************************************/
+  function actPage() {
+    // console.log("액션!!", pno);
+    // pno가 0 또는 4가 아니면 작동
+    if (pno != 0 || pno != 4) {
+      // 대상: 해당순번 .page 아래 .imgc .txtc a
+      $(".page").eq(pno).find(".imgc, .txtc a").css({
+        transform: "rotate(0deg)",
+        opacity: 1,
+      });
+    } 
+    // 최상단 페이지에서 초기화
+    if(pno == 0){
+      initSet();
+    }
+  } ///////// actPage ///////////////
+
+  $('#logo a').click(e=>{
+    e.preventDefault();
+    pno = 0;
+    movePg();
+  })
 } ////// autoScroll 함수 //////

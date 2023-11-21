@@ -3,7 +3,6 @@
 // import { boardData } from "../data/boardData";
 import { boardData } from '../data/boardData';
 import { useLayoutEffect } from "react";
-import { useLocation } from 'react-router-dom';
 
 // 제이쿼리 가져오기
 import $ from "jquery";

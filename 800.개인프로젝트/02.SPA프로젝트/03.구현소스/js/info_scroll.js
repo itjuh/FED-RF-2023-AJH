@@ -25,7 +25,6 @@ let all = 0;
 // 이동거리 측정 대상
 const infoImg = infoBox.find("img");
 
-
 // 이미지 세로크기 저장 함수
 const sizeCheck = (ele) => {
   imgWidSize.length = 0;
@@ -57,25 +56,51 @@ sizeCheck(infoImg);
 
 // 기능 : 이미지의 크기를 받아와서 가로스크롤을 수행한다.
 // 파라미터(이동대상, 이동값)
-function horizonScroll(target,dir) {
+// function horizonScroll(target, dir) {
+//   x += MOVE * dir;
+//   // console.log(x <= -target[0],'조건문1',target[2].position().top < -target[1],'조건문2',target[2].position().top != 0,'조건문3',dir == -1);
+//   if (x > -target[0] && dir == -1) y = 0; //x축 이동가능 / 아래방향 스크롤
+//   else if (x <= -target[0] && target[2].position().top != -target[1] && dir == -1) {
+//     //y축 이동가능 / 아래방향 스크롤
+//     x = -target[0];
+//     verticalScroll(target, dir);
+//   } else if (target[2].position().top != 0 && dir == 1) {
+//     // y축 이동가능 / 윗방향 스크롤
+//     x -= MOVE * dir; // x축 이동 초기화
+//     verticalScroll(target, dir);
+//   } else if (target[2].position().top == 0 && dir == 1) {
+//     // x축 이동가능 / 윗방향 스크롤
+//   }
+//   console.log(x);
+//   return x;
+// } ////////// 가로스크롤 함수 //////////////
+
+function horizonScroll(target, dir) {
   x += MOVE * dir;
-  // console.log(x <= -target[0],'조건문1',target[2].position().top < -target[1],'조건문2',target[2].position().top != 0,'조건문3',dir == -1);
-  if (x > -target[0] && dir == -1 ) y = 0; //x축 이동가능 / 아래방향 스크롤
-  else if (x <= -target[0] && target[2].position().top != -target[1] && dir == -1) { //y축 이동가능 / 아래방향 스크롤
-    x = -target[0];
-    verticalScroll(target, dir);
-  }else if(target[2].position().top != 0 && dir == 1){ // y축 이동가능 / 윗방향 스크롤
-    x -= MOVE * dir; // x축 이동 초기화
-    verticalScroll(target, dir);
-  }else if(target[2].position().top == 0 && dir == 1){ // x축 이동가능 / 윗방향 스크롤
-    
+
+  if (dir === -1) {
+    //아래방향 스크롤
+    if (x > -target[0]) y = 0; //y고정 x이동
+    else if (x <= -target[0] && target[2].position().top != -target[1]) {
+      //x고정 y이동
+      x = -target[0];
+      verticalScroll(target, dir);
+    }
+  } else {
+    //윗방향 스크롤
+    if (target[2].position().top != 0) {
+      // x고정 y이동
+      x -= MOVE * dir; // x축 이동 초기화
+      verticalScroll(target, dir);
+    }
   }
+  console.log(x);
   return x;
 } ////////// 가로스크롤 함수 //////////////
 
 // 기능 : 이미지의 세로높이를 받아와서 세로스크롤을 수행한다.
 // 파라미터(이동대상, 이동값)
-function verticalScroll(target,dir) {
+function verticalScroll(target, dir) {
   // target - 대상배열
   y += MOVE * dir;
   if (y > 0) y = 0;
@@ -90,6 +115,7 @@ function infoScroll() {} //////// infoScroll 함수 ///////////////
 infoBox.on("wheel", () => {
   let delta = event.wheelDelta;
   // console.log("휠중", delta);
+  delta = delta > 0 ? 1 : -1;
   /////// 광스크롤 막기 //////////////////
   if (psts === 1) return true; //돌아가!
   psts = 1; //잠금!
@@ -97,27 +123,35 @@ infoBox.on("wheel", () => {
     psts = 0; //해제
   }, 20); //0.02초후 해제///////////
   //// 마우스 휠 방향에 따라 가로스크롤 이동 증감! /////
-  if (delta > 0) { //윗방향(양수) +px로 이동
-    // 구역분기
-    // console.log(x,'조건1',x >= -pos[0][0],'조건2',x >= -pos[1][0],'조건3',x >= -pos[2][0]);
-    // 0 > x > -1540
-    if ( x >= -pos[0][0]) x = horizonScroll(pos[0],1);
-    // -1540 > x > -2440
-    else if( x >= -pos[1][0]) x = horizonScroll(pos[1],1);
-    // -2440 > x > -3440
-    else if ( x >= -pos[2][0]) x = horizonScroll(pos[2],1);
-    // +0
-    if (x > 0) x = 0;
-  } //////// if문 ///////////////////
-  else {  // 아랫방향(음수) -px로 이동
-    // x >= -1540
-    if( x >= -pos[0][0]) x = horizonScroll(pos[0],-1); 
-    // -1540 > x > -2440
-    else if( x >= -pos[1][0])  x = horizonScroll(pos[1],-1); 
-    // -2440 > x > -3440
-    else if( x >= -pos[2][0])  x = horizonScroll(pos[2],-1); 
-    // -3440
-    if( x <= -pos[2][0])  x = -pos[2][0];
-  } ////////// else문 //////////////
+  if (x >= 0 && delta > 0) x = 0;
+  else if (x >= -pos[0][0]) x = horizonScroll(pos[0], delta);
+  else if (x >= -pos[1][0]) x = horizonScroll(pos[1], delta);
+  else if (x >= -pos[2][0]) x = horizonScroll(pos[2], delta);
+  if (x <= -pos[2][0] && delta < 0) x = -pos[2][0];
+
+  // if (delta > 0) {
+  //   //윗방향(양수) +px로 이동
+  //   // 구역분기
+  //   // console.log(x,'조건1',x >= -pos[0][0],'조건2',x >= -pos[1][0],'조건3',x >= -pos[2][0]);
+  //   // 0 > x > -1540
+  //   if (x >= -pos[0][0]) x = horizonScroll(pos[0], 1);
+  //   // -1540 > x > -2440
+  //   else if (x >= -pos[1][0]) x = horizonScroll(pos[1], 1);
+  //   // -2440 > x > -3440
+  //   else if (x >= -pos[2][0]) x = horizonScroll(pos[2], 1);
+  //   // +0
+  //   if (x > 0) x = 0;
+  // } //////// if문 ///////////////////
+  // else {
+  //   // 아랫방향(음수) -px로 이동
+  //   // x >= -1540
+  //   if (x >= -pos[0][0]) x = horizonScroll(pos[0], -1);
+  //   // -1540 > x > -2440
+  //   else if (x >= -pos[1][0]) x = horizonScroll(pos[1], -1);
+  //   // -2440 > x > -3440
+  //   else if (x >= -pos[2][0]) x = horizonScroll(pos[2], -1);
+  //   // -3440
+  //   if (x <= -pos[2][0]) x = -pos[2][0];
+  // } ////////// else문 //////////////
   infoBox.css("left", x + "px");
 });

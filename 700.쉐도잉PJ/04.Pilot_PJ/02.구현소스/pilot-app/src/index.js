@@ -22,21 +22,25 @@ function App() {
 
   // 랜더링 후 실행구역
   useEffect(()=>{
-    $('.gnb li, .indic li').click(function(){
-      // 순번변수 
-      let idx = $(this).index();
-      console.log('app start',idx);
+    // 햄버거버튼 클릭 시 
+    $('.ham').click(e=>{
+      // 1. 전체메뉴 보이기 / 숨기기
+      $('.mbox').fadeToggle(400);
+      // 2. 햄버거 버튼 on 주기 / 빼기
+      // e.target 누른 요소(span) e.currentTaget 버블링 된 요소(ham)
+      $(e.currentTarget).toggleClass('on');
+      // 3. 비디오 재생 / 멈춤
+      // 대상 .bgm
+      // get(0) 비디오 컬렉션 0은 해당비디오 -> 제이쿼리용
+      const vid = $('.bgm').get(0);
+      // 멈춤상태 확인해서 플레이 또는 멈춤
+      vid.paused? vid.play():vid.pause();
+      // console.log(vid.paused);
 
-      // 페이지 이동
-      $('html,body').animate({
-        scrollTop:($(window).height()*idx)+'px'
-      },800,'easeInOutQuint');////////// animate /////////////
-
-      // 클릭 된 메뉴에 클래스 on 넣기
-      $('.gnb li').eq(idx).addClass('on').siblings().removeClass('on');
-      $('.indic li').eq(idx).addClass('on').siblings().removeClass('on');
-    }); /////////// click //////////////
-    
+      // paused 속성 : 동영상 멈춤 일때 true 리턴
+      // play() 메서드 : 동영상 재생 메서드
+      // pause() 메서드 : 동영상 정지 메서드
+    })
   }); ////////// useEffect ////////////////
 
   // 리턴코드구역
