@@ -2,14 +2,14 @@ import { TopArea } from "./TopArea";
 import { MainArea } from "./MainArea";
 import { FooterArea } from "./FooterArea";
 // 컨텍스트
-import { useState } from "react";
+import { memo, useState } from "react";
 import { LeoCon } from "../modules/LeopoldContext";
 import { useNavigate } from "react-router-dom";
 // 링크데이터
 import { link } from "../data/link";
 
 // 레이아웃 구성 컴포넌트
-export function Layout() {
+export const Layout = memo(()=>{
   // 링크 데이터
   let selData;
   
@@ -46,4 +46,4 @@ export function Layout() {
       <FooterArea />
     </LeoCon.Provider>
   );
-} ////////// Layout 컴포넌트 ////////////
+}) ////////// Layout 컴포넌트 ////////////

@@ -28,7 +28,7 @@ export function moveImgInfo(tg) {
   // 이동거리 측정 대상
   const infoImg = infoBox.find("img");
 
-  console.log(infoBox, limitH, limitW, infoImg);
+  // console.log(infoBox, limitH, limitW, infoImg);
   // 이미지 세로크기 저장 함수
   const sizeCheck = (ele) => {
     imgWidSize.length = 0;
@@ -53,7 +53,7 @@ export function moveImgInfo(tg) {
     });
     // 전체 이동거리 업데이트
     all = xpos - limitW;
-    console.log("imgWidSize", imgWidSize, "pos", pos, all);
+    // console.log("imgWidSize", imgWidSize, "pos", pos, all);
     // 위치이동 포인트 설정(이미지 가로세로가 다르면 세로스크롤)
   }; //////// 사이즈 저장 함수 ///////////
 
@@ -130,7 +130,7 @@ export function moveImgInfo(tg) {
   let nav = document.querySelectorAll(".nav-area>ul>li");
   // console.log(nav);
   nav.forEach((ele, idx) => ele.addEventListener("click", () => {clickNav(idx)}));
-  // 네비게이션 동작
+  // 네비게이션 클릭 동작 함수
   function clickNav(idx) {
     // 누른대상 순번 - idx
     // 누른대상 앞쪽 on 뒤쪽 remove
@@ -142,7 +142,7 @@ export function moveImgInfo(tg) {
     // y값은 초기로
     y = 0;
     infoImg.css("top", y + "px");
-  }
+  } /////////// clickNav ////////////
 
   // 휠 이벤트 주기
   document.querySelector(".prod-info").addEventListener("wheel", (event) => {

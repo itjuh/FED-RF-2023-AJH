@@ -19,6 +19,8 @@
 }
 /* 1-2. 타이틀영역 */
 .top-title {
+  position: relative;
+  /* small 부모 */
   width: max(320px, 20vw);
   border: 1px solid #ccc;
   border-top: none;
@@ -28,7 +30,7 @@
 }
 /* 타이틀 영역 h2*/
 .top-title h2 {
-  height: 100%;
+  height: 70%;
   font-family: "KOFIHDrLEEJWTTF-L";
   text-align: center;
   font-size: 2.5rem;
