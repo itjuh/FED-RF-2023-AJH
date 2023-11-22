@@ -1,6 +1,24 @@
 // Pliot PJ 전체메뉴 컴포넌트 TotalMenu.jsx
+// 컨텍스트 API
+import { useContext } from "react";
+import { pCon } from "./PliotContext";
 
 export function TotalMenu() {
+
+  // 컨텍스트 사용
+  let myCon = useContext(pCon);
+  // pCon에 공개한 Provider value속성에 공개한 변수/함수를 사용 할 수 있다!
+
+  // 메뉴이동 처리함수
+  const goPage = (txt)=>{
+    myCon.chgPgName(txt);
+    // 전체박스 숨기기
+    document.querySelector('.ham').click();
+    // 동영상 멈추기
+    // document.querySelector('.bgm')
+  }; /////////// goPage 함수 //////////////
+
+  // 코드리턴 //////////////////////////
   return (
     <>
       <div className="mbox">
@@ -8,7 +26,7 @@ export function TotalMenu() {
         <nav className="mlist">
           <dl>
             <dt>
-              <a href="#">MEN</a>
+              <a href="#" onClick={()=>goPage('men')}>MEN</a>
             </dt>
             <dd>
               <a href="#">T-SHIRT</a>
@@ -25,7 +43,7 @@ export function TotalMenu() {
           </dl>
           <dl>
             <dt>
-              <a href="#">WOMEN</a>
+              <a href="#" onClick={()=>goPage('women')}>WOMEN</a>
             </dt>
             <dd>
               <a href="#">T-SHIRT</a>
@@ -42,7 +60,7 @@ export function TotalMenu() {
           </dl>
           <dl>
             <dt>
-              <a href="#">STYLE</a>
+              <a href="#" onClick={()=>goPage('style')}>STYLE</a>
             </dt>
             <dd>
               <a href="#">COLLECTION</a>

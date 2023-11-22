@@ -54,7 +54,8 @@ export function SwiperCat() {
           // 고유번호 7번 이하만 출력
           Number(v.idx) <= 7 &&
             <SwiperSlide key={i}>
-              <Link to='/detail'>
+              {/* 라우터 데이터 전달은 state속성에 객체로 보낸다 */}
+              <Link to='/detail' state={{cname:v.cname,cdesc:v.cdesc,facts:v.facts,}}>
                 <section className="sw-inbox2">
                   {/* 캐릭터 이미지 영역 */}
                   <div className="cat-img2">

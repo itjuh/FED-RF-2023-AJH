@@ -92,3 +92,7 @@ Warning: Failed prop type: You provided a checked prop to a form field without a
 Warning: Invalid DOM property `for`. Did you mean `htmlFor`?
 오류원인 : JSX는 javaScrit이기 때문에 for은 반복문을 의미함
 해결방안 : HTML 상에서는 for 대신 htmlFor를 사용한다.
+
+Warning: Cannot update a component (`Layout`) while rendering a different component (`Main`). To locate the bad setState() call inside `Main`, follow the stack trace as described in https://reactjs.org/link/setstate-in-render
+오류원인 : A 컴포넌트를 변경할 때 B 컴포넌트를 업데이트 할 수 없다는 내용, props를 사용중에 context로 변환하는 과정에서 업데이트가 되지 않음
+해결방안 : context를 layout으로 옮기고 props로 전달되는 값을 context에 넣어서 불러오는 식으로 전환시킴

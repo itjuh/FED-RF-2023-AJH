@@ -28,7 +28,6 @@
   justify-content: space-between;
 }
 .nav-area ul li {
-  width: 10vw;
   cursor: pointer;
 }
 /* 타이틀 */

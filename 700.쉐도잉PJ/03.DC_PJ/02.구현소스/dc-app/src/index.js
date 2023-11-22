@@ -1,7 +1,7 @@
 // index.js는 public/index.html 페이지에 적용되는 컴포넌트다! - root컴포넌트
 // css 도 불러온다!
 import './css/index.css';
-import React, { useState } from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Layout } from './components/layout/Layout';
@@ -12,6 +12,9 @@ import { Movies } from './components/pages/Movies';
 import { Games } from './components/pages/Games';
 import { News } from './components/pages/News';
 import { Video } from './components/pages/Video';
+import { SwiperApp } from './components/plugin/SwiperApp';
+import { CatDetail } from './components/pages/CatDetail';
+import { Series } from './components/pages/Series';
 // import { SwiperApp } from './components/plugin/pages/SwiperApp';
 
 /********************************************* 
@@ -59,9 +62,12 @@ export default function App(){
           <Route path='characters' element={<Character />} />
           <Route path='comics' element={<Comics />} />
           <Route path='movies' element={<Movies />} />
+          <Route path='series' element={<Series />} />
           <Route path='games' element={<Games />} />
           <Route path='news' element={<News />} />
           <Route path='video' element={<Video />} />
+          <Route path='board' element={<SwiperApp />} />
+          <Route path='detail' element={<CatDetail />} />
           {/* <Route path='board' element={<SwiperApp />} /> */}
         </Route>
       </Routes>

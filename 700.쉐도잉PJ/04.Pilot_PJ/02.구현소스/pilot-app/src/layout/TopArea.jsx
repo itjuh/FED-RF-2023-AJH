@@ -39,8 +39,3 @@ export function TopArea(props) {
     </>
   );
 } ////////// TopArea 컴포넌트 ///////////
-
-// <button onClick={()=>{props.chgFn('men')}}>남성페이지</button>
-//             <button }>여성페이지</button>
-//             <button onClick={()=>{props.chgFn('style')}}>스타일페이지</button>
-//             <button onClick={()=>{props.chgFn('main')}}>메인페이지</button>

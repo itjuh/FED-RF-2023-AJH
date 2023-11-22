@@ -11,6 +11,8 @@ import 'jquery-ui-dist/jquery-ui';
 // 페이지 공통 CSS
 import "./css/common.css";
 import { useEffect } from "react";
+// 컨텍스트 API
+import { pCon } from './modules/PliotContext'
 
 // 최상위 Root 컴포넌트 ////////////
 function App() {
@@ -41,15 +43,16 @@ function App() {
       // play() 메서드 : 동영상 재생 메서드
       // pause() 메서드 : 동영상 정지 메서드
     })
-  }); ////////// useEffect ////////////////
+    // 랜더링구역 한번만 실행
+  },[]); ////////// useEffect ////////////////
 
   // 리턴코드구역
   return (
-    <>
+    <pCon.Provider value={{chgPgName}}>
       <TopArea cat={pageName} />
       <MainArea page={pageName} />
       <FooterArea />
-    </>
+    </pCon.Provider>
   );
 } ///////// App 컴포넌트 /////////////
 

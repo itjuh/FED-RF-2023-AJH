@@ -43,7 +43,7 @@ export function moveImgInfo(tg) {
       // 가로 이동거리 저장
       xpos += v.width;
       // 이미지 별 이동값 저장(네비용)
-      imgWidSize[i] = xpos - limitW<=0?0:xpos - limitW;
+      imgWidSize[i] = xpos - limitW <= 0 ? 0 : xpos - limitW;
 
       if (v.height !== v.width) {
         // 가로영역 이동한계값, 세로 한계값, 움직일 요소
@@ -53,7 +53,7 @@ export function moveImgInfo(tg) {
     });
     // 전체 이동거리 업데이트
     all = xpos - limitW;
-    // console.log("imgWidSize", imgWidSize, "pos", pos, all);
+    console.log("imgWidSize", imgWidSize, "pos", pos, all);
     // 위치이동 포인트 설정(이미지 가로세로가 다르면 세로스크롤)
   }; //////// 사이즈 저장 함수 ///////////
 
@@ -62,14 +62,14 @@ export function moveImgInfo(tg) {
 
   // 네비게이션 영역
   let navJ = $(".nav-area>ul>li");
-  // 네비게이션 클래스넣기 함수
-  function addOnNav(num){
-    // 클래스 주기
-    navJ.eq(num).addClass('on');
-    navJ.eq(num).prevAll().addClass('on');
-    navJ.eq(num).nextAll().removeClass('on');
-  } ////////// addOnNav ////////////////
 
+  // 네비게이션 클래스넣기 함수
+  function addOnNav(num) {
+    // 클래스 주기
+    navJ.eq(num).addClass("on");
+    navJ.eq(num).prevAll().addClass("on");
+    navJ.eq(num).nextAll().removeClass("on");
+  } ////////// addOnNav ////////////////
 
   // 이미지 초기 네비게이션 세팅
   addOnNav(imgNum);
@@ -85,7 +85,7 @@ export function moveImgInfo(tg) {
         //x고정 y이동
         x = -target[0];
         verticalScroll(target, dir);
-      }
+      } 
     } else {
       //윗방향 스크롤
       if (target[2].position().top != 0) {
@@ -116,27 +116,32 @@ export function moveImgInfo(tg) {
     else if (x >= -pos[1][0]) x = horizonScroll(pos[1], delta);
     // else if (x >= -pos[2][0]) x = horizonScroll(pos[2], delta);
     if (x <= -pos[1][0] && delta < 0) x = -pos[1][0];
+    // 휠 이벤트 시 네비설정
+    for(let i=0; i < imgWidSize.length; i++){
+      if(x <= -imgWidSize[i]){
+        addOnNav(i)
+      }
+    }
     infoBox.css("left", x + "px");
   } //////// infoScroll 함수 ///////////////
 
   // 네비게이션 바 클릭이벤트 주기
   let nav = document.querySelectorAll(".nav-area>ul>li");
   // console.log(nav);
-  nav.forEach((ele,idx) =>
-    ele.addEventListener("click", (event) => {
-      // 누른대상 순번 - idx
-      // 누른대상 앞쪽 on 뒤쪽 remove
-      addOnNav(idx);
-      imgNum = idx;
-      // x값 위치 조정, y값 위치 조정
-      x = -imgWidSize[idx];
-      infoBox.css("left", x + "px");
-      // y값은 초기로
-      y = 0
-      infoImg.css("top", y + "px");
-    })
-  );
-  // 상세 전달값을 못읽어옴
+  nav.forEach((ele, idx) => ele.addEventListener("click", () => {clickNav(idx)}));
+  // 네비게이션 동작
+  function clickNav(idx) {
+    // 누른대상 순번 - idx
+    // 누른대상 앞쪽 on 뒤쪽 remove
+    addOnNav(idx);
+    imgNum = idx;
+    // x값 위치 조정, y값 위치 조정
+    x = -imgWidSize[idx];
+    infoBox.css("left", x + "px");
+    // y값은 초기로
+    y = 0;
+    infoImg.css("top", y + "px");
+  }
 
   // 휠 이벤트 주기
   document.querySelector(".prod-info").addEventListener("wheel", (event) => {
