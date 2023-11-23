@@ -21,10 +21,12 @@
 }
 /* 스위치 이미지 공통 */
 .sw-img figure {
-  height: 56vh;
+  height: 63vh;
   background-size: 300px;
   background-repeat: no-repeat;
-  background-position: center 75%;
+  background-position: center 65%;
+  /* 트랜지션 */
+  transition: background-position .3s ease-out;
 }
 /* 스위치 이미지 타이틀 */
 .sw-tit{
@@ -38,14 +40,33 @@
     text-align: center;
     font-family: "KOFIHDrLEEJWTTF-B";
     font-size: 2rem;
+    color: #222222;
     /* 트랜지션 */
-    transition: .4s ease-in;
+    transition: background-image .4s ease-in;
 }
 /* 더보기 버튼 */
 figure .prod-detail-view{
-    top: calc(50% - 20px);
+    top: 50%;
+    width: 60px;
+    height: auto;
+    line-height: 1.2;
     transition: transform .2s ease-out;
 }
+/* 스위치 이미지 설명:ir처리 */
+
+/* 스위치 설명 */
+.sw-desc{
+    position: absolute;
+    width: 80%;
+    left: 50%;
+    bottom:0;
+    height: 9vh;
+    font-size: 1.5rem;
+    font-family: "KOFIHDrLEEJWTTF-L";
+    transform: translateX(-50%);
+    opacity: 0;
+}
+
 /* 스위치 마우스 오버 ************/
 /* 개별 박스 */
 .switch-box:hover {
@@ -55,7 +76,7 @@ figure .prod-detail-view{
 }
 /* 스위치 이미지 공통 */
 .switch-box:hover .sw-img figure {
-    background-position: center 65%;
+    background-position: center 55%;
 }
 /* 개별 타이틀 */
 .switch-box:hover .sw-tit{
@@ -66,15 +87,9 @@ figure .prod-detail-view{
 .switch-box:hover figure .prod-detail-view{
     transform: scale(1.5) rotate(0deg);
 }
-
-/* 스위치 이미지 설명:ir처리 */
-
 /* 스위치 설명 */
-.sw-desc{
-    position: absolute;
-    bottom:0;
-    height: 9vh;
-    font-size: 1.5rem;
-    font-family: "KOFIHDrLEEJWTTF-L";
-    display: none;
+.switch-box:hover .sw-desc{
+    opacity: 1;
+    /* 트랜지션 */
+    transition: opacity .5s ease-in .2s;
 }

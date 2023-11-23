@@ -3,7 +3,7 @@ import $ from "jquery";
 
 export function moveImgInfo(tg) {
   // 이동 대상
-  const infoBox = $(tg).find(".info-img");
+  const infoBox = $(tg).find(".info-box");
   // 한계값을 위한 겉박스 크기
   const limitW = $(tg).find(".prod-info").width();
   const limitH = $(tg).find(".prod-info").height();

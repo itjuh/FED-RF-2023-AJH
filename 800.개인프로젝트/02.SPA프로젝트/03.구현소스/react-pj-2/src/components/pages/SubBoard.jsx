@@ -32,13 +32,14 @@ export function SubBoard() {
   let selData = detailData[name] ? detailData[name] : false;
   // 컨텍스트
   const myCon = useContext(LeoCon);
+  myCon.chgTit(selData.code +'^'+ selData.sub);
 
   const loadFn = () => {
     const imgWd = [];
     let all = 0;
     const setNav = () => {
-      $(".info-img img").each((i, v) => (all += v.height));
-      $(".info-img img").each((i, v) => {
+      $(".info-box img").each((i, v) => (all += v.height));
+      $(".info-box img").each((i, v) => {
         imgWd[i] = Math.floor((v.height / all) * 100);
       });
       // 네비게이션 길이 적용
@@ -46,11 +47,6 @@ export function SubBoard() {
       // 휠 이벤트
       moveImgInfo($(".detail-page"));
     }; /////// nav세팅 함수 /////////////
-    
-    // 타이틀 세팅
-    let txt = selData.code +'^'+ selData.sub
-    myCon.chgTit(txt);
-
     if (!selData) return;
     else setNav();
   }; ///////////// loadFn 함수 //////////////
@@ -78,7 +74,7 @@ export function SubBoard() {
   const makeImage = (data) => {
     return (
       <section className="prod-info row-10">
-        <div className="info-img flex-box">
+        <div className="info-box flex-box">
           {/* 제품 정보 옆으로 흘러갈 박스 */}
           {data.map((v, i) => (
             <img key={i} src={v["isrc"]} alt={selData["sub"] + " " + v["ialt"]} />

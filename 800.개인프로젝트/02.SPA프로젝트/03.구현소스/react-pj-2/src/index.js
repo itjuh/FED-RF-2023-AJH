@@ -9,6 +9,7 @@ import { Layout } from "./components/layout/Layout";
 import { Main } from "./components/pages/Main";
 import { SubBoard } from './components/pages/SubBoard';
 import { Switch } from './components/pages/Switch';
+import { SubSwtich } from './components/pages/SubSwitch';
 
 export default function App() {
   return (
@@ -18,8 +19,12 @@ export default function App() {
         <Route path="/" element={<Layout />}>
           {/* 하위 라우터 세팅 */}
           <Route index element={<Main />} />
+          {/* 키보드 상세페이지 */}
           <Route path='subboard' element={<SubBoard />} />
+          {/* 스위치 페이지 */}
           <Route path='switch' element={<Switch />} />
+          {/* 스위치 상세페이지 */}
+          <Route path='subswitch' element={<SubSwtich />} />
         </Route>
       </Routes>
     </BrowserRouter>
