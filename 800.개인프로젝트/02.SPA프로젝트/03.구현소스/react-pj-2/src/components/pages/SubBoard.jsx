@@ -32,7 +32,6 @@ export function SubBoard() {
   let selData = detailData[name] ? detailData[name] : false;
   // 컨텍스트
   const myCon = useContext(LeoCon);
-  myCon.chgTit(selData.code +'^'+ selData.sub);
 
   const loadFn = () => {
     const imgWd = [];
@@ -47,6 +46,11 @@ export function SubBoard() {
       // 휠 이벤트
       moveImgInfo($(".detail-page"));
     }; /////// nav세팅 함수 /////////////
+    
+    // 타이틀 세팅
+    let txt = selData.code +'^'+ selData.sub
+    myCon.chgTit(txt);
+
     if (!selData) return;
     else setNav();
   }; ///////////// loadFn 함수 //////////////

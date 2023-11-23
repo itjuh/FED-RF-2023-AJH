@@ -95,4 +95,10 @@ Warning: Invalid DOM property `for`. Did you mean `htmlFor`?
 
 Warning: Cannot update a component (`Layout`) while rendering a different component (`Main`). To locate the bad setState() call inside `Main`, follow the stack trace as described in https://reactjs.org/link/setstate-in-render
 오류원인 : A 컴포넌트를 변경할 때 B 컴포넌트를 업데이트 할 수 없다는 내용, props를 사용중에 context로 변환하는 과정에서 업데이트가 되지 않음
-해결방안 : context를 layout으로 옮기고 props로 전달되는 값을 context에 넣어서 불러오는 식으로 전환시킴
+해결방안 : 
+1. context를 layout으로 옮기고 props로 전달되는 값을 context에 넣어서 불러오는 식으로 전환시킴
+2. context를 컴포넌트에서 불러오고 setting은 load구역 안쪽에서 수행하도록 함
+
+React Hook "useContext" cannot be called inside a callback. React Hooks must be called in a React function component or a custom React Hook function
+오류원인 : useContext 사용 시 컨텍스크 구성을 useEffect 구역에서 실행하면 발생하는 오류
+해결방안 : useContext 호출을 랜더링과 상관없는 일반구역에서 하도록 수정함

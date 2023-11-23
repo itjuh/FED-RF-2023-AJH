@@ -7,12 +7,15 @@ import { FooterArea } from "./layout/Footer";
 // 제이쿼리
 import $ from 'jquery';
 import 'jquery-ui-dist/jquery-ui';
+// 자동스크롤 js불러오기
+import { wheelFn, evtFn, initPos } from './func/jquery-autoScroll';
 
 // 페이지 공통 CSS
 import "./css/common.css";
 import { useEffect } from "react";
 // 컨텍스트 API
 import { pCon } from './modules/PliotContext'
+import { useLayoutEffect } from "react";
 
 // 최상위 Root 컴포넌트 ////////////
 function App() {
@@ -46,9 +49,14 @@ function App() {
     // 랜더링구역 한번만 실행
   },[]); ////////// useEffect ////////////////
 
+  // 처음 로딩 시 스크롤 상단이동
+  useLayoutEffect(()=>{
+    // initPos();
+    window.scrollTo(0,0);
+  }); ///////// useLayoutEffect ///////////
   // 리턴코드구역
   return (
-    <pCon.Provider value={{chgPgName}}>
+    <pCon.Provider value={{pageName, chgPgName}}>
       <TopArea cat={pageName} />
       <MainArea page={pageName} />
       <FooterArea />

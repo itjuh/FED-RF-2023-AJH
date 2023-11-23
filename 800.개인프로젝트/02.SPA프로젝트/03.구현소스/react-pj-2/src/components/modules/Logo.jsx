@@ -1,14 +1,16 @@
 // LEOPOLD 로고 넣기 컴포넌트
 import { useContext } from 'react';
 import { LeoCon } from './LeopoldContext';
+import { initToggle } from '../func/init_toggle';
 
 export function Logo() {
   // 컨텍스트
   const myCon = useContext(LeoCon);
 
   function goMain(){
-    // 토글변경시 메인 이동함
+    // 메인 이동 시 토글 초기화
     myCon.chgTog('main');
+    initToggle();
   }; ////// 메인이동함수 //////////
   return (
     <>

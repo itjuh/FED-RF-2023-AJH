@@ -6,6 +6,7 @@ import "jquery-ui-dist/jquery-ui";
 import { useContext } from "react";
 import { LeoCon } from "./LeopoldContext";
 import { useLayoutEffect } from "react";
+import { initToggle } from "../func/init_toggle";
 
 
 export function Toggle() {
@@ -13,9 +14,7 @@ export function Toggle() {
 
   useLayoutEffect(()=>{
     // 토글박스 원 초기설정
-    $(".tg-cir").css({
-      left:'4px',
-    })
+    initToggle();
   },[]);
   useEffect(() => {
     const cir = $(".tg-cir");
@@ -53,6 +52,7 @@ export function Toggle() {
       }, ///////drop이벤트 옵션 메서드
     });
   }); /////////useEffect구역///////////
+
   return (
     <div className="part-box col-6 flex-box toggle-area">
       <aside className="toggle-btn-box">

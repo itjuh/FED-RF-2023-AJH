@@ -5,11 +5,15 @@ import { Link } from "react-router-dom";
 import { Logo } from "../modules/Logo";
 import { menu } from "../data/gnb";
 // 폰트어썸 아이콘 불러오기
-import { faSearch } from '@fortawesome/free-solid-svg-icons';
+import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// 제이쿼리
+import $ from 'jquery';
+// 네비
+import { useNavigate } from 'react-router-dom';
 
 export function TopArea() {
-/******************************************************* 
+  /******************************************************* 
   [ 리액트 라우터와 연결하여 사용되는 라우터 컴포넌트 ]
   1. <Link to="/경로명"></Link>
   -> to속성의 경로는 <Route path="/경로명"> 과 일치함!
@@ -24,6 +28,29 @@ export function TopArea() {
   ->>> Warning: Each child in a list should have a unique "key" prop.
   (이유: 구별되는 항목으로 나중에 업데이트 시 이용할 수 있도록 리액트에서 강제하고 있음)
 */
+// 라우터 이동 메서드 함수
+const goNav = useNavigate();
+
+// 검색관련 함수 ////////////////////////
+// 1. 검색창 보이기 함수
+const showSearch = () =>{
+  // 검색창 보이고 입력창에 포커스
+  $('.searchingGnb').show().find('#schinGnb').focus();
+}; /////////// showSearch 함수 /////////
+// 2. 입력창에 엔터키를 누르면 검색함수 호출
+const enterKey = (e)=>{
+  if(e.key === 'Enter') goSearch();
+  // console.log(e.key);
+}; //////// enterKey함수 //////////
+// 3. 검색페이지로 검색어와 함께 이동하기
+const goSearch = () => {
+  console.log('나는 검색하러 간다규!');
+  // 라우터 이동함수로 이동하기
+  goNav('/schpage',{state:{keyword:''}});
+}; ////////// goSearch함수 ////////////
+
+
+///리턴코드 /////////////////////////////
   return (
     <>
       {/* 1. 상단영역 */}
@@ -33,47 +60,58 @@ export function TopArea() {
           <ul>
             {/* 1) DC 로고 컴포넌트 */}
             <li>
-              <Logo logoStyle='top'/>
+              <Logo logoStyle="top" />
             </li>
             {/* 2) GNB메뉴 데이터 기반으로 li태그 생성하기*/}
-            {menu && menu.map((v, i) => (
-              <li key={i}>
-                {
-                  // 하위메뉴가 있으면 일반 a요소에 출력
-                  // 없으면 Link 라우팅 출력
-                  v.sub ? <a href="#">{v.txt}</a>:<Link to={v.link}>{v.txt}</Link>
-                }
-                { 
-                  // 서브메뉴가 있는 경우 하위 그리기
-                  v.sub &&
-                  (<div className='smenu'>
-                    {/* 서브메뉴 */}
-                    <ol>
-                      {v.sub.map((v,i)=><li key={i}>
-                        <Link to={v.link}>{v.txt}</Link>
-                      </li>)}
-                    </ol>
-                  </div>)                  
-                }
-              </li>
-            ))}
+            {menu &&
+              menu.map((v, i) => (
+                <li key={i}>
+                  {
+                    // 하위메뉴가 있으면 일반 a요소에 출력
+                    // 없으면 Link 라우팅 출력
+                    v.sub ? <a href="#">{v.txt}</a> : <Link to={v.link}>{v.txt}</Link>
+                  }
+                  {
+                    // 서브메뉴가 있는 경우 하위 그리기
+                    v.sub && (
+                      <div className="smenu">
+                        {/* 서브메뉴 */}
+                        <ol>
+                          {v.sub.map((v, i) => (
+                            <li key={i}>
+                              <Link to={v.link}>{v.txt}</Link>
+                            </li>
+                          ))}
+                        </ol>
+                      </div>
+                    )
+                  }
+                </li>
+              ))}
             {/* 3) 검색,회원가입,로그인 링크 */}
-            <li style={{marginLeft:'auto'}}>
+            <li style={{ marginLeft: "auto" }}>
+              {/* 검색 입력 박스 */}
+              <div className="searchingGnb">
+                {/* 검색버튼 돋보기 아이콘 */}
+                <FontAwesomeIcon icon={faSearch} className="schbtnGnb" title="Open search" />
+                {/* 입력창 */}
+                <input id="schinGnb" onKeyUp={enterKey} type="text" placeholder="Filter by keyword" />
+              </div>
               {/* 검색기능 링크 - 클릭 시 검색창 보이기 */}
-              <a href='#' onClick={()=>{}}>
-                <FontAwesomeIcon icon={faSearch}/>
+              <a href="#" onClick={showSearch}>
+                <FontAwesomeIcon icon={faSearch} />
               </a>
             </li>
             {/* 회원가입, 로그인은 로그인 아닌 상태일 때 나옴 */}
             <li>
-              <Link to='/member'>Join us</Link>
+              <Link to="/member">Join us</Link>
             </li>
             <li>
-              <Link to='/login'>Log in</Link>
+              <Link to="/login">Log in</Link>
             </li>
           </ul>
           {/* 모바일용 햄버거 버튼 */}
-          <button className='hambtn' onClick={()=>{}}></button>
+          <button className="hambtn" onClick={() => {}}></button>
         </nav>
       </header>
     </>

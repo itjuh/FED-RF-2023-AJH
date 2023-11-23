@@ -3,23 +3,48 @@ import { useEffect } from "react";
 import { Banner } from "../modules/Banner";
 
 // 페이지별 자동 스크롤 js 가져오기
-import { autoScroll } from "../func/jquery-autoScroll";
+// import { autoScroll } from "../func/jquery-autoScroll";
+import { wheelFn, evtFn, initSet, zeroPno, initPos } from "../func/jquery-autoScroll";
 // 드래그 배너 js불러오기
 import { dragBanner } from "../func/drag_banner";
 import { FashionIntro } from "../modules/FashionIntro";
+import $ from 'jquery';
 
 export function MainCont() {
   // 메인 페이지일때만 자동 스크롤 기능 적용 함
   useEffect(() => {
     //랜더링 후 한 번만 적용!
     console.log("랜더링완료");
+
+    // ((중요!!))
+    // 특정이벤트를 설정 해제하고자 할 때
+    // 반드시 그 이벤트 설정은 js파일 내부에서 하지말고 
+    // 리액트 함수에서 js함수를 호출하는 형태로 해야
+    // 해제 메서드인 removeEventListener가 유효함!!
+
+    // 새로고침 위치 초기화
+    initPos();
     // 자동스크롤 호출
-    autoScroll();
+    window.addEventListener('wheel',wheelFn);
+    // 메뉴 + 인디케이터 이벤트 기능설정 함수호출 //////
+    evtFn();
+    // 이미지 초기세팅 함수 호출
+    initSet();
+    // 페이지 번호 초기화 함수 호출
+    zeroPno();
+    // autoScroll();
     // 드래그 배너 호출
     dragBanner();
-    // 컴포넌트 소멸자
+    // 컴포넌트 소멸자 : 이 컴포넌트가 삭제 될 때 호출
     return(()=>{
       console.log('난 소멸했어~~');
+      // 자동스크롤 해제
+      window.removeEventListener('wheel',wheelFn);
+      // 메인페이지에만 사용되는 로고 클릭 시 상단이동 이벤트 해제
+      // 제이쿼리 이벤트 해제 off(이벤트명)
+      $("#logo a").off('click');
+      $('.gnb li').off('click').removeClass('on');
+      $(document).off('keydown');
     })
   }, []); //////// useEffect ///////////////
 

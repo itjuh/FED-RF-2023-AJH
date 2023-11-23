@@ -186,7 +186,7 @@ input[type="checkbox"]:checked + .color-rd {
 }
 /* 스위치 개별 이미지 */
 .switch-br {
-  background-image: url(../../public/images/switch_prod/png/click_brown.png);
+  background-image: url(../../public/images/switch_prod/png/nonclick_brown.png);
 }
 .switch-bu {
   background-image: url(../../public/images/switch_prod/png/click_blue.png);
