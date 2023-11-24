@@ -18,7 +18,7 @@ export const switchData = [
     swclass: "switch-lr",
   },
   {
-    swname: "silent-sliver",
+    swname: "silent-silver",
     swkname: "저소음 은축",
     swdesc: "일반적인 압력의 키압과 고속 타이핑",
     swclass: "switch-sl",
@@ -42,7 +42,7 @@ export const switchData = [
     swclass: "switch-bu",
   },
   {
-    swname: "slient-red",
+    swname: "silent-red",
     swkname: "저소음 적축",
     swdesc: "소음을 30%줄인 조용하고 부드러운 타이핑",
     swclass: "switch-sr",

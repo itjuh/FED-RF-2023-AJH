@@ -72,6 +72,7 @@
   flex-wrap: nowrap;
   align-items: flex-start;
 }
+/* 이미지 */
 .info-box img {
   position: relative;
   width: 100%;

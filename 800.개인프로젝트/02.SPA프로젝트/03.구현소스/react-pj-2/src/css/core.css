@@ -18,10 +18,10 @@
     font-style: normal;
   }
 /* 공사중표시 */
-body *{
+/* body *{
     outline: 1px dashed rgba(255, 127, 80, 0.171);
-    /* background: #eee;   */
-}
+    background: #eee;  
+} */
 body{
     height: 100%;
     width:100%;

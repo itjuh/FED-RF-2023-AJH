@@ -44,7 +44,7 @@ export const Logo = (props)=>{
 
     // 코드리턴
     return(
-     <h1 style={myStyle[props.logoStyle]} onClick={()=>myCon.chgPg('/')}>
+     <h1 style={myStyle[props.logoStyle]} onClick={()=>myCon.chgPg('/',{})}>
         <img src={isrc.logo} alt='DC logo' style={{width: myImg[props.logoStyle]}}/>
      </h1>
     );

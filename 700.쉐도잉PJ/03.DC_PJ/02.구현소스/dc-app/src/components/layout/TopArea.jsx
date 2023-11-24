@@ -4,13 +4,15 @@
 import { Link } from "react-router-dom";
 import { Logo } from "../modules/Logo";
 import { menu } from "../data/gnb";
+// 컨텍스트 API
+import { dcCon } from '../modules/dcContext'
+import { useContext } from "react";
 // 폰트어썸 아이콘 불러오기
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 // 제이쿼리
 import $ from 'jquery';
-// 네비
-import { useNavigate } from 'react-router-dom';
+
 
 export function TopArea() {
   /******************************************************* 
@@ -28,8 +30,7 @@ export function TopArea() {
   ->>> Warning: Each child in a list should have a unique "key" prop.
   (이유: 구별되는 항목으로 나중에 업데이트 시 이용할 수 있도록 리액트에서 강제하고 있음)
 */
-// 라우터 이동 메서드 함수
-const goNav = useNavigate();
+const myCon = useContext(dcCon);
 
 // 검색관련 함수 ////////////////////////
 // 1. 검색창 보이기 함수
@@ -39,14 +40,25 @@ const showSearch = () =>{
 }; /////////// showSearch 함수 /////////
 // 2. 입력창에 엔터키를 누르면 검색함수 호출
 const enterKey = (e)=>{
-  if(e.key === 'Enter') goSearch();
-  // console.log(e.key);
+  console.log('enterKey진입');
+  if(e.key === 'Enter'){ 
+    let txt = $(e.target).val().trim();
+    // console.log(txt);
+    // 빈 값이 아니면 검색함수 호출(검색어 전달)
+    if(txt!='') {
+      // 자기자신 닫기
+      $(e.target).val('').parent().hide();
+      // 검색보내기
+      goSearch(txt);
+    }
+  } ///////// if /////////
 }; //////// enterKey함수 //////////
 // 3. 검색페이지로 검색어와 함께 이동하기
-const goSearch = () => {
+const goSearch = (txt) => {
   console.log('나는 검색하러 간다규!');
-  // 라우터 이동함수로 이동하기
-  goNav('/schpage',{state:{keyword:''}});
+  // 라우터 이동함수로 이동하기 : context API사용하기
+  // goNav('/schpage',{state:{keyword:''}});
+  myCon.chgPg('/schpage',{state:{keyword:txt}});
 }; ////////// goSearch함수 ////////////
 
 

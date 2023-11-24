@@ -102,3 +102,8 @@ Warning: Cannot update a component (`Layout`) while rendering a different compon
 React Hook "useContext" cannot be called inside a callback. React Hooks must be called in a React function component or a custom React Hook function
 오류원인 : useContext 사용 시 컨텍스크 구성을 useEffect 구역에서 실행하면 발생하는 오류
 해결방안 : useContext 호출을 랜더링과 상관없는 일반구역에서 하도록 수정함
+
+A component is changing an uncontrolled input to be controlled. This is likely caused by the value changing from undefined to a defined value, which should not happen. Decide between using a controlled or uncontrolled input element for the lifetime of the component.
+오류원인 : 
+해결방안 : 
+어렵다~~~~ https://jihyundev.tistory.com/23

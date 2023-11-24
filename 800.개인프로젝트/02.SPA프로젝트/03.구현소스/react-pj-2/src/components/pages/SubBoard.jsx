@@ -4,6 +4,8 @@ import { useLocation } from "react-router-dom";
 import "../../css/subboard.css";
 // 서브페이지용 데이터
 import { detailData } from "../data/detailData";
+// 네비게이션
+import { MakeProgress } from "../modules/MakeProgress";
 // 제이쿼리
 import $ from "jquery";
 import { moveImgInfo } from "../func/info_scroll";
@@ -27,12 +29,18 @@ import { LeoCon } from "../modules/LeopoldContext";
 export function SubBoard() {
   // 본페이지에서 데이터 받아오기
   const location = useLocation();
-  let name = location.state.name; //detailData key
-  // 선택 데이터
-  let selData = detailData[name] ? detailData[name] : false;
   // 컨텍스트
   const myCon = useContext(LeoCon);
-  myCon.chgTit(selData.code +'^'+ selData.sub);
+  // detailData key
+  let name;
+  // 선택 데이터
+  let selData;
+  // 데이터 있는 경우만 작동
+  if(location.state) {
+    name = location.state.name;
+    selData = detailData[name] ? detailData[name] : false;
+    myCon.chgTit(selData.code +'^'+ selData.sub);
+  }
 
   const loadFn = () => {
     const imgWd = [];
@@ -51,25 +59,7 @@ export function SubBoard() {
     else setNav();
   }; ///////////// loadFn 함수 //////////////
 
-  // 네비게이션
-  const makeProgress = (data) => {
-    return (
-      <div className="part-box col-14 row-1 nav-area">
-        <ul className="flex-box">
-          {data.map((v, i) => (
-            <li key={i}>
-              {/* 네비게이션 안내 */}
-              <h2 className="nav-tit">{v["ialt"]}</h2>
-              <div className="nav-cont">
-                {/* 네비게이션 색 채우기 구역 */}
-                <div className="nav-full"></div>
-              </div>
-            </li>
-          ))}
-        </ul>
-      </div>
-    );
-  };
+
   // 이미지
   const makeImage = (data) => {
     return (
@@ -89,7 +79,9 @@ export function SubBoard() {
     <>
       <main className="main in-box row-12 detail-page" onLoad={loadFn}>
         {/* 네비게이션 구역 */}
-        {selData ? makeProgress(selData["img"]) : <h2></h2>}
+         { selData &&
+          <MakeProgress data={selData["img"]}/>
+         }
         {/* 제품 설명 구역 */}
         <div className="part-box col-16 row-11 prod-area">
           {/* 제품이미지 */}

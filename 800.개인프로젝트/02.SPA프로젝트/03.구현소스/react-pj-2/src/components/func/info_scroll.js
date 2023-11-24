@@ -45,7 +45,7 @@ export function moveImgInfo(tg) {
       // 이미지 별 이동값 저장(네비용)
       imgWidSize[i] = xpos - limitW <= 0 ? 0 : xpos - limitW;
 
-      if (v.height !== v.width) {
+      if (v.height > v.width) {
         // 가로영역 이동한계값, 세로 한계값, 움직일 요소
         pos[seq] = [xpos - limitW, v.height - limitH, infoImg.eq(i)];
         seq++;
@@ -147,14 +147,14 @@ export function moveImgInfo(tg) {
   // 휠 이벤트 주기
   document.querySelector(".prod-info").addEventListener("wheel", (event) => {
     let delta = event.wheelDelta;
-    console.log("휠중", delta);
+    // console.log("휠중", delta);
     delta = delta > 0 ? 1 : -1;
     /////// 광스크롤 막기 //////////////////
     if (psts === 1) return true; //돌아가!
     psts = 1; //잠금!
     setTimeout(function () {
       psts = 0; //해제
-    }, 20); //0.02초후 해제///////////
+    }, 400); //0.02초후 해제///////////
     //// 마우스 휠 방향에 따라 가로스크롤 이동 증감! /////
     infoScroll(delta);
   });

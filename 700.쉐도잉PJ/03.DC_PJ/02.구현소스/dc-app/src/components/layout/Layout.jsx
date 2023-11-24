@@ -18,7 +18,7 @@ export function Layout() {
   // 라우터 이동함수
   const goNav = useNavigate();
   // 라우터 이동함수
-  const chgPg = (txt) => goNav(txt);
+  const chgPg = (txt,param) => goNav(txt,param);
 
   /********************************** 
    [컨텍스트 API 공유값 설정]

@@ -1,0 +1,54 @@
+/* 레오폴드 서브페이지용 css - subswitch.css */
+
+/* info-box > (info-inbox > img)+(info-inbox.info-txt > info-table + info-desc) */
+/* 개별 박스 */
+.info-inbox{
+    position: relative;
+    height: 100%;
+    flex-shrink: 0;
+    padding: 0 1vw;
+}
+/* 글자정보 테이블 */
+.info-txt {
+    display: flex;
+    flex-wrap: nowrap;
+    width: 850px;
+}
+/* 정보테이블 css, 상세정보 */
+.info-table, .info-desc {
+    display: block;
+    margin: 5vh 2vw;
+    font-family: KOFIHDrLEEJWTTF-L;
+    font-size: 1.3rem;
+    width: 400px;
+    box-shadow: 0px 0px 3px rgb(0, 0, 0, 0.15);
+}
+/* 테이블 타이틀 */
+.info-table caption, .info-desc h2:nth-child(1) {
+    padding: 1.5vw 0;
+    font-family: KOFIHDrLEEJWTTF-B;
+    text-align-last: left;
+    text-indent: 1rem;
+    font-size: 1.6rem;
+}
+/* 테이블 tr,td */
+.info-table tr,.info-table td {
+    padding: 1vw;
+}
+/* 테이블 마지막 tr */
+.info-table tr:last-child td {
+    font-family: KOFIHDrLEEJWTTF-L;
+    color: orangered;
+}
+/* 상세정보 h2 */
+.info-desc h2:nth-child(2){
+    padding: 0 1vw;
+    line-height: 2;
+    letter-spacing: .15rem;
+}
+/* 스위치 이미지 */
+.info-box .sw-img {
+    height: 60%;
+    position: relative;
+    top: 20%;
+}

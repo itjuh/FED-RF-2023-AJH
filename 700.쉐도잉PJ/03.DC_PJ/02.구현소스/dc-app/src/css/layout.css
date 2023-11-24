@@ -123,6 +123,7 @@ input:focus {
 .info > ul > li:last-child {
   font-weight: bold;
 }
+/* 하단영역 ol.bmenu>li>a링크 박스 */
 .bmenu {
   font-family: "Ubuntu Condensed", sans-serif;
   display: flex;

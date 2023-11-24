@@ -62,7 +62,7 @@ export function SwiperCat() {
                     <img src={v.tmsrc} alt={v.cname}/>
                   </div>
                   {/* 캐릭터 타이틀 영역 */}
-                  <div className="cat-tit2">{v.cname}</div>
+                  <div className="cat-tit2"><h3>{v.cname}</h3></div>
                 </section>
               </Link>
             </SwiperSlide>)
