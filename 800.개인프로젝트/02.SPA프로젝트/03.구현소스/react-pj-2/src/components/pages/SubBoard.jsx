@@ -9,7 +9,7 @@ import { MakeProgress } from "../modules/MakeProgress";
 // 제이쿼리
 import $ from "jquery";
 import { moveImgInfo } from "../func/info_scroll";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { LeoCon } from "../modules/LeopoldContext";
 
 /*
@@ -35,12 +35,18 @@ export function SubBoard() {
   let name;
   // 선택 데이터
   let selData;
-  // 데이터 있는 경우만 작동
-  if(location.state) {
-    name = location.state.name;
-    selData = detailData[name] ? detailData[name] : false;
-    myCon.chgTit(selData.code +'^'+ selData.sub);
-  }
+  name = location.state.name;
+  selData = detailData[name] ? detailData[name] : false;
+  // useEffect
+  useEffect(()=>{
+    // 데이터 있는 경우만 작동
+    if(name) {
+      let tit = selData.code +'^'+ selData.sub;
+      myCon.chgTit(tit);
+    }
+    // 휠 이벤트
+    moveImgInfo($(".detail-page"));
+  },[myCon,name,selData.code,selData.sub]);
 
   const loadFn = () => {
     const imgWd = [];
@@ -52,11 +58,12 @@ export function SubBoard() {
       });
       // 네비게이션 길이 적용
       $(".nav-area li").each((i, v) => $(v).css({ width: imgWd[i] + "%" }));
-      // 휠 이벤트
-      moveImgInfo($(".detail-page"));
     }; /////// nav세팅 함수 /////////////
     if (!selData) return;
-    else setNav();
+    else {
+      // 네비게이션 세팅
+      setNav();
+    }
   }; ///////////// loadFn 함수 //////////////
 
 

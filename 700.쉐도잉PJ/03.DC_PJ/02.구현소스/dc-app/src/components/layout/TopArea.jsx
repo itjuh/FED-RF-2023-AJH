@@ -5,16 +5,34 @@ import { Link } from "react-router-dom";
 import { Logo } from "../modules/Logo";
 import { menu } from "../data/gnb";
 // 컨텍스트 API
-import { dcCon } from '../modules/dcContext'
-import { useContext } from "react";
+// import { dcCon } from '../modules/dcContext'
+// import { useContext } from "react";
 // 폰트어썸 아이콘 불러오기
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 // 제이쿼리
 import $ from 'jquery';
+import { memo } from "react";
 
+/*
+ 메모이제이션 적용하기!
+ 그러나 단순히 적용하면 효과가 없음
+ 이유는? 컨텍스트 API가 전역적인 함수/변수를 전달하고 있어서 매번 새롭게
+ 리 랜더링 되므로 메모이제이션 갱신을 하게끔하기에 효과가 없음
+ ->> 방법은? 컨텍스트 API를 사용하지 않고
+ props로 전달하는 방식으로 전환하면 효과를 볼 수 있다
+ ->> 왜? React.memo는 전달 속성이 변경 됨을 기준하여 메모이제이션 기능을 제공하기 때문이다.
+ ->> 전달되는 함수는 반드시 useCallback()처리가 되어야 한다!!
+*/
 
-export function TopArea() {
+export const TopArea = memo(({chgPgFn})=>{
+  /* 
+    보통 props등 전달변수만 쓰면 하위 속성명으로 값을 전달하지만
+    중괄호 {}를 사용하면 속성명을 직접 사용할 수 있다.
+  */
+  
+  // 컴포넌트 호출 확인
+  console.log('TopArea 컴포넌트 호출!!!');
   /******************************************************* 
   [ 리액트 라우터와 연결하여 사용되는 라우터 컴포넌트 ]
   1. <Link to="/경로명"></Link>
@@ -30,11 +48,13 @@ export function TopArea() {
   ->>> Warning: Each child in a list should have a unique "key" prop.
   (이유: 구별되는 항목으로 나중에 업데이트 시 이용할 수 있도록 리액트에서 강제하고 있음)
 */
-const myCon = useContext(dcCon);
+// const myCon = useContext(dcCon);
 
 // 검색관련 함수 ////////////////////////
 // 1. 검색창 보이기 함수
-const showSearch = () =>{
+const showSearch = (e) =>{
+  // a요소 기본기능 막기
+  e.preventDefault();
   // 검색창 보이고 입력창에 포커스
   $('.searchingGnb').show().find('#schinGnb').focus();
 }; /////////// showSearch 함수 /////////
@@ -58,7 +78,10 @@ const goSearch = (txt) => {
   console.log('나는 검색하러 간다규!');
   // 라우터 이동함수로 이동하기 : context API사용하기
   // goNav('/schpage',{state:{keyword:''}});
-  myCon.chgPg('/schpage',{state:{keyword:txt}});
+  // myCon.chgPg('/schpage',{state:{keyword:txt}});
+
+  // 메모이제이션 적용하여 페이지 이동하기
+  chgPgFn('/schpage',{state:{keyword:txt}});
 }; ////////// goSearch함수 ////////////
 
 
@@ -128,4 +151,4 @@ const goSearch = (txt) => {
       </header>
     </>
   );
-} ////////// TopArea 컴포넌트 //////////
+}); ////////// TopArea 컴포넌트 //////////

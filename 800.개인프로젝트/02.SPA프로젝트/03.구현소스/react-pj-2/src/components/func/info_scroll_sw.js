@@ -3,9 +3,9 @@ import $ from "jquery";
 
 export function moveBoxInfo(tg) {
   // 이동 대상
-  const infoBox = $(tg).find(".info-box");
+  const infoBox = $(tg).find(".info-box-sw");
   // 한계값을 위한 겉박스 크기
-  const limitW = $(tg).find(".prod-info2").width();
+  const limitW = $(tg).find(".prod-info-sw").width();
 
   let psts = 0; /// 광스크롤막기(0-허용,1-막기)
   // 위치변수
@@ -85,9 +85,9 @@ export function moveBoxInfo(tg) {
   } /////////// clickNav ////////////
 
   // 휠 이벤트 주기
-  document.querySelector(".prod-info2").addEventListener("wheel", (event) => {
+  document.querySelector(".prod-info-sw").addEventListener("wheel", (event) => {
     let delta = event.wheelDelta;
-    console.log("휠중", delta);
+    // console.log("휠중", delta);
     delta = delta > 0 ? 1 : -1;
     /////// 광스크롤 막기 //////////////////
     if (psts === 1) return true; //돌아가!

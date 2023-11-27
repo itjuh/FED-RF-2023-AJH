@@ -46,7 +46,7 @@
 }
 /* 더보기 버튼 */
 figure .prod-detail-view{
-    top: 50%;
+    top: 80%;
     width: 60px;
     height: auto;
     line-height: 1.2;
@@ -59,7 +59,7 @@ figure .prod-detail-view{
     position: absolute;
     width: 80%;
     left: 50%;
-    bottom:0;
+    top: 25%;
     height: 9vh;
     font-size: 1.5rem;
     font-family: "KOFIHDrLEEJWTTF-L";

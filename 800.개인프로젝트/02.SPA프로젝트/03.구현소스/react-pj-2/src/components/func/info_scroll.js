@@ -7,10 +7,13 @@ export function moveImgInfo(tg) {
   // 한계값을 위한 겉박스 크기
   const limitW = $(tg).find(".prod-info").width();
   const limitH = $(tg).find(".prod-info").height();
+  // 이동거리 측정 대상
+  const infoImg = infoBox.find("img");
 
   let psts = 0; /// 광스크롤막기(0-허용,1-막기)
   // 위치변수
-  let x = 0;
+  let x = $(tg).find(".info-box").position().left;
+
   let y = 0;
   const MOVE = 150;
   // 초기 이미지값 변수
@@ -25,8 +28,6 @@ export function moveImgInfo(tg) {
   let pos = [];
   // 전체 이동거리
   let all = 0;
-  // 이동거리 측정 대상
-  const infoImg = infoBox.find("img");
 
   // console.log(infoBox, limitH, limitW, infoImg);
   // 이미지 세로크기 저장 함수
@@ -94,7 +95,7 @@ export function moveImgInfo(tg) {
         verticalScroll(target, dir);
       }
     }
-    console.log(x, target[2].position().top);
+    // console.log(x, target[2].position().top);
     return x;
   } ////////// 가로스크롤 함수 //////////////
 
@@ -110,21 +111,22 @@ export function moveImgInfo(tg) {
 
   // 기능 : 가로세로 스크롤을 조합하여 박스를 이동시킨다.
   // 파라미터 (이미지 전체박스)
-  function infoScroll(delta) {
-    if (x >= 0 && delta > 0) x = 0;
-    else if (x >= -pos[0][0]) x = horizonScroll(pos[0], delta);
-    else if (x >= -pos[1][0]) x = horizonScroll(pos[1], delta);
-    else if (x >= 0 && delta <= 0) x = 0;
-    // else if (x >= -pos[2][0]) x = horizonScroll(pos[2], delta);
-    if (x <= -pos[1][0] && delta < 0) x = -pos[1][0];
+  const infoScroll = (delta,x)=>{
+    console.log(x,delta);
     // 휠 이벤트 시 네비설정
     for(let i=0; i < imgWidSize.length; i++){
       if(x <= -imgWidSize[i]){
         addOnNav(i)
       }
     }
+    if (x >= 0 && delta > 0) x = 0;
+    else if (x >= -pos[0][0]) x = horizonScroll(pos[0], delta);
+    else if (x >= -pos[1][0]) x = horizonScroll(pos[1], delta);
+    else if (x >= 0 && delta <= 0) x = 0;
+    // else if (x >= -pos[2][0]) x = horizonScroll(pos[2], delta);
+    if (x <= -pos[1][0] && delta < 0) x = -pos[1][0];
     infoBox.css("left", x + "px");
-  } //////// infoScroll 함수 ///////////////
+  }; //////// infoScroll 함수 ///////////////
 
   // 네비게이션 바 클릭이벤트 주기
   let nav = document.querySelectorAll(".nav-area>ul>li");
@@ -146,16 +148,19 @@ export function moveImgInfo(tg) {
 
   // 휠 이벤트 주기
   document.querySelector(".prod-info").addEventListener("wheel", (event) => {
-    let delta = event.wheelDelta;
-    // console.log("휠중", delta);
-    delta = delta > 0 ? 1 : -1;
-    /////// 광스크롤 막기 //////////////////
     if (psts === 1) return true; //돌아가!
     psts = 1; //잠금!
     setTimeout(function () {
       psts = 0; //해제
-    }, 400); //0.02초후 해제///////////
+    }, 100); //0.02초후 해제///////////
+    // console.log(event);
+    let delta = event.wheelDelta;
+    x = $(tg).find(".info-box").position().left;
+    // console.log(x,delta);
+    // console.log("휠중", delta);
+    delta = delta > 0 ? 1 : -1;
+    /////// 광스크롤 막기 //////////////////
     //// 마우스 휠 방향에 따라 가로스크롤 이동 증감! /////
-    infoScroll(delta);
+    infoScroll(delta,x);
   });
 }

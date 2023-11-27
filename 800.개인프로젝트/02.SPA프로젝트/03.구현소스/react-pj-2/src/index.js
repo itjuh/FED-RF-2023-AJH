@@ -10,6 +10,7 @@ import { Main } from "./components/pages/Main";
 import { SubBoard } from './components/pages/SubBoard';
 import { Switch } from './components/pages/Switch';
 import { SubSwtich } from './components/pages/SubSwitch';
+import { Menu } from './components/pages/Menu';
 
 export default function App() {
   return (
@@ -25,6 +26,8 @@ export default function App() {
           <Route path='switch' element={<Switch />} />
           {/* 스위치 상세페이지 */}
           <Route path='subswitch' element={<SubSwtich />} />
+          {/* 메뉴 페이지 */}
+          <Route path='menu' element={<Menu />} />
         </Route>
       </Routes>
     </BrowserRouter>

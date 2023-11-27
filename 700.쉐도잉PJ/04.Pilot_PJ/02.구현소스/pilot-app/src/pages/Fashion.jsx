@@ -8,6 +8,7 @@ import { useContext } from "react";
 import '../css/fashion.css';
 import { SwiperApp } from "../plugin/SwiperApp";
 import $ from 'jquery'
+import { NewProdList } from '../modules/NewProdList';
 
 
 export function Fashion() {
@@ -31,7 +32,9 @@ export function Fashion() {
         <SwiperApp />
       </section>
       {/* 2. 신상품영역 */}
-      <section id="c1" className={"cont c1 "+pg}></section>
+      <section id="c1" className={"cont c1 "+pg}>
+        <NewProdList pageName={pg} />
+      </section>
       {/* 상세보기박스 */}
       <div id="bgbx"></div>
       {/* 3. 패럴렉스영역 */}

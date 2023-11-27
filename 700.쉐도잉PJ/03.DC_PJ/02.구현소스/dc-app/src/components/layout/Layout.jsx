@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 // Context API 불러오기
 import { dcCon } from "../modules/dcContext";
 import { useLayoutEffect } from "react";
+import { useCallback } from "react";
 
 // 레이아웃 구성 컴포넌트
 export function Layout() {
@@ -18,7 +19,14 @@ export function Layout() {
   // 라우터 이동함수
   const goNav = useNavigate();
   // 라우터 이동함수
-  const chgPg = (txt,param) => goNav(txt,param);
+  /* 
+   메모이제이션 되는 TopArea 컴포넌트에 제공하는 함수가
+   useCallback을 사용한 메모이제이션 처리되어야 
+   변경 없는 것을 체크하여 함수가 업데이트 하지 않음
+   useCallback(기존 익명함수,[의존성])
+   -> 의존성 변수가 없을 때 비워놓아도 효과 있음(단, 형식을 맞출 것)
+  */
+  const chgPg = useCallback((txt,param) => goNav(txt,param),[]);
 
   /********************************** 
    [컨텍스트 API 공유값 설정]
@@ -26,7 +34,8 @@ export function Layout() {
    **********************************/
   return (
     <dcCon.Provider value={{ chgPg }}>
-      <TopArea />
+      {/* 메모이제이션 관리를 위해 함수를 컨텍스트 방식이 아닌 속성으로 직접 보냄 */}
+      <TopArea chgPgFn={chgPg}/>
       <MainArea />
       <FooterArea />
     </dcCon.Provider>

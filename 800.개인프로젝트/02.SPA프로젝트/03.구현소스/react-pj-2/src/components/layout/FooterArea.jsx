@@ -1,10 +1,17 @@
 // 하단영역 컴포넌트
 
+import { memo } from "react";
 import { KeyCon, UpArrowCon } from "../modules/Icons";
 import { Toggle } from "../modules/Toggle";
+import { useNavigate } from "react-router-dom";
 
-export function FooterArea() {
-  
+export const FooterArea = memo(()=>{
+  // console.log('하단 불러옴');
+  const nav = useNavigate();
+  // 네비게이션 설정 함수
+  function goNav() {
+    nav("/menu");
+  }
   return (
     <>
       {/* 3. 하단영역 */}
@@ -12,7 +19,7 @@ export function FooterArea() {
       <footer className="footer in-box row-2 flex-box">
         <div className="part-box col-6"></div>
         {/* 3-1. 하단메뉴 아이콘 */}
-        <div className="part-box col-4 flex-box menu-area">
+        <div className="part-box col-4 flex-box menu-area" onClick={goNav}>
           <a href="#" className="menu-icon" title="메뉴열기"><UpArrowCon /><span className="ir">위쪽방향화살표</span></a>
           <a href="#" className="menu-icon" title="메뉴열기"><KeyCon /><span className="ir">메뉴</span></a>
         </div>
@@ -22,4 +29,4 @@ export function FooterArea() {
       </div>
     </>
   ); //////// return //////////
-} ///////// FooterArea 컴포넌트 ////////////
+}); ///////// FooterArea 컴포넌트 ////////////

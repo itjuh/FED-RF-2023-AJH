@@ -1,7 +1,7 @@
 // 상단영역 컴포넌트
 // 폰트어썸 아이콘
 
-import { useEffect } from "react";
+import { memo, useEffect } from "react";
 import { gnbData } from "../data/gnbData";
 import { Logo } from "../modules/Logo";
 import { TopTitle } from "../modules/TopTitle";
@@ -10,7 +10,9 @@ import $ from "jquery";
 import "jquery-ui-dist/jquery-ui";
 
 
-export function TopArea() {
+export const TopArea = memo((props)=>{
+  // props.tit : 상단타이틀
+  // console.log('상단 불러옴');
   useEffect(()=>{
     $('.gnb-area a').first().click(addOn);
   });
@@ -36,7 +38,7 @@ export function TopArea() {
           {/* 1-1. 로고영역 */}
           <Logo />
           {/* 1-2. 타이틀영역 */}
-          <TopTitle />
+          <TopTitle tit={props.tit}/>
           {/* 1-3. GNB메뉴 */}
           <div className="part-box col-3 flex-box gnb-area">
             {makeGnb()}
@@ -45,4 +47,4 @@ export function TopArea() {
       </div>
     </>
   );
-} ////////// TopArea 컴포넌트 //////////
+}) ////////// TopArea 컴포넌트 //////////

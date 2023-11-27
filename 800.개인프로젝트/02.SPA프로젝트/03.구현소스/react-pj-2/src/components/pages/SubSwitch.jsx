@@ -1,6 +1,5 @@
 // 서브페이지 sub switch page - SubSwitch.jsx
 import { useLocation } from "react-router-dom";
-import "../../css/subboard.css";
 import "../../css/subswitch.css";
 // 서브페이지용 데이터
 import { detailData } from "../data/detailData";
@@ -25,14 +24,14 @@ export function SubSwtich() {
     const imgWd = [];
     let all = 0;
     const setNav = () => {
-      $(".info-box .info-inbox").each((i, v) => (all += v.clientWidth));
-      $(".info-box .info-inbox").each((i, v) => {
+      $(".info-box-sw .info-inbox").each((i, v) => (all += v.clientWidth));
+      $(".info-box-sw .info-inbox").each((i, v) => {
         imgWd[i] = Math.floor((v.clientWidth / all) * 100);
       });
       // 네비게이션 길이 적용
       $(".nav-area li").each((i, v) => $(v).css({ width: imgWd[i] + "%" }));
       // 휠 이벤트
-      moveBoxInfo($(".detail-page"));
+      moveBoxInfo($(".detail-page-sw"));
     }; /////// nav세팅 함수 /////////////
 
     // 타이틀 세팅
@@ -47,8 +46,8 @@ export function SubSwtich() {
   // 이미지
   const makeImage = (data) => {
     return (
-      <section className="prod-info2 row-10">
-        <div className="info-box flex-box">
+      <section className="prod-info-sw row-10">
+        <div className="info-box-sw flex-box">
           {/* 제품 정보 옆으로 흘러갈 박스 */}
           {data.map((v, i) => imgMap(v, i))}
         </div>
@@ -95,13 +94,13 @@ export function SubSwtich() {
   // 리턴구역 ///////////////////
   return (
     <>
-      <main className="main in-box row-12 detail-page" onLoad={loadFn}>
+      <main className="main in-box row-12 detail-page-sw" onLoad={loadFn}>
         {/* 네비게이션 구역 */}
         { selData &&
           <MakeProgress data={selData["img"]}/>
          }
         {/* 제품 설명 구역 */}
-        <div className="part-box col-16 row-11 prod-area">
+        <div className="part-box col-16 row-11 prod-area-sw">
           {/* 제품이미지 */}
           {selData ? makeImage(selData["img"]) : <h2>세부이미지가 없습니다.</h2>}
           {/* 버튼들 */}

@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { switchData } from '../data/switchData';
 
 export function SwitchList() {
+  // 스위치 페이지 링크연결
   const nav = useNavigate();
   function goNav(txt){
     nav('/subswitch',{state:{name:txt}})
