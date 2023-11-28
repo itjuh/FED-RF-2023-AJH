@@ -104,9 +104,10 @@
 }
 /************** 3. 하단영역  ****************/
 /* 3-1. 하단메뉴 아이콘 */
-.menu-area {
+.menu-area>a {
   align-items: center;
   font-size: 3.5rem;
+  justify-content: center;
 }
 /* 아이콘 공통 */
 .menu-icon {
@@ -116,7 +117,14 @@
 }
 /* 아이콘 상단 화살표 */
 .menu-icon:nth-child(1) {
+  /* 트랜지션 */
+  transition: transform .5s ease-in;
   font-size: 2rem;
+}
+.menu-icon:nth-child(2) {
+  position: relative;
+  top: -20%;
+  display: block;
 }
 
 /* 3-2. 토글버튼 영역 */

@@ -3,7 +3,8 @@
 /* 2. 메인영역 */
 /* gnb메뉴 */
 .gnb-menu-area {
-  width: 80%;
+  position: relative;
+    width: 100%;
   margin: 0 auto;
   outline: 1px solid #eee;
   box-shadow: 0px 0px 3px rgb(0, 0, 0, 0.15);
@@ -13,22 +14,76 @@
   letter-spacing: 0.1rem;
 }
 /* gnb 메뉴 속박스 ul */
-.gnb-menu-box{
-    box-sizing: border-box;
-    padding: 4rem;
+.gnb-menu-box {
+  box-sizing: border-box;
+  padding: 4rem 8rem;
 }
-.gnb-menu-box span{
-    position: relative;
-    color: #ccc;
+.gnb-menu-box li {
+  position: relative;
+  cursor: pointer;
+  user-select: none;
+  height: 80px;
+  width: 30%;
 }
-.gnb-menu-box b{
-    position: absolute;
-    width: 0%;
-    overflow: hidden;
-    left: 0;
-    color: #111111;
-    transition: width .5s ease-in;
+/* gnb 배경글자 */
+.gnb-menu-box span {
+  position: absolute;
+  left: 0;
+  color: #ebebeb;
 }
-.gnb-menu-box li:hover b{
-    width: 100%;
+/* gnb 상위글자 */
+.gnb-menu-box b {
+  position: relative;
+  overflow: hidden;
+  left: 0;
+  color: #111111;
+}
+/* 텍스트 커서 */
+.text-cursor {
+  /* display: inline-block; */
+  height: 2rem;
+  width: 0.05rem;
+  background-color: #777;
+  display: none;
+
+  /* 애니메이션 */
+  animation: txt-cursor-ani 1s infinite steps(2);
+}
+/* 텍스트 커서 애니 */
+@keyframes txt-cursor-ani {
+  from {
+    opacity: 0;
+  }
+}
+
+/* 마우스 오버 시 커서 보이기 */
+.gnb-menu-box li:hover .text-cursor{
+  display: inline-block;
+}
+/* 닫기버튼 */
+.close-btn{
+  position: absolute;
+  top: 5%;
+  right: 5%;
+  cursor: pointer;
+  color:#ebebeb;
+}
+.close-btn:hover{
+  color:#111111;
+}
+/* 키보드 구역 */
+.keyboard-menu {
+  position: relative;
+  top: 35%;
+}
+/* 광실행 막기 박스 */
+.cover{
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  background-color:rgba(255, 0, 0, 0.144);
+  z-index:999;
+  display: none;
 }

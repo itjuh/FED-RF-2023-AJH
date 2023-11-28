@@ -52,7 +52,7 @@ export function Toggle() {
   }); /////////useEffect구역///////////
 
   return (
-    <div className="part-box col-6 flex-box toggle-area">
+    <div className="part-box col-6 row-2 flex-box toggle-area">
       <aside className="toggle-btn-box">
         <div className="tg-cir"></div>
         <div className="tg-keyboard tg-btn" onClick={initToggle}>

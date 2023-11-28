@@ -22,7 +22,10 @@ export function Fashion() {
     // 로고 클릭 시 페이지 이동 : pageName 변경 -> chgPgName
     $('#logo a').click(()=>myCon.chgPgName('main'));
     return(()=>{
-      $("body, html").css({overflow:"hidden"});
+      $("body, html").css({
+        overflow:"visible",
+        overflowX:'hidden'
+      });
     })
   }, []);
   return (
@@ -33,7 +36,7 @@ export function Fashion() {
       </section>
       {/* 2. 신상품영역 */}
       <section id="c1" className={"cont c1 "+pg}>
-        <NewProdList pageName={pg} />
+        <NewProdList pageName={pg} cat={pg}/>
       </section>
       {/* 상세보기박스 */}
       <div id="bgbx"></div>

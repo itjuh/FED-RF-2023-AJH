@@ -27,7 +27,7 @@ export function SwiperApp() {
   const makeList = (num) =>{
     let temp = [];
     for(let i=0; i<num; i++) {
-      temp[i] = <SwiperSlide>
+      temp[i] = <SwiperSlide key={i}>
         <img src={"./images/sub/"+pg+"/banner/ban"+(i+1)+".png"} alt={"배너"+i+1} />
       </SwiperSlide>
     }; ///////// for ///////////

@@ -2,7 +2,7 @@ import { TopArea } from "./TopArea";
 import { MainArea } from "./MainArea";
 import { FooterArea } from "./FooterArea";
 // 컨텍스트
-import { memo, useCallback, useState } from "react";
+import { memo, useCallback, useRef, useState } from "react";
 import { LeoCon } from "../modules/LeopoldContext";
 import { useNavigate } from "react-router-dom";
 // 링크데이터
@@ -21,6 +21,10 @@ export const Layout = memo(()=>{
   const [toggleVal, setToggleVal] = useState("main");
   // 상단 타이틀용 후크변수
   const [titVal, setTitVal] = useState("Keyboard List");
+  // 하단 메뉴용 useRef 변수
+  const sts = useRef(0);
+  // 1-메뉴열림 0-닫힘
+  
   // 상단 타이틀 함수
   const chgTit = useCallback((txt) => setTitVal(txt),[]);
   // 필터 업데이트 함수
