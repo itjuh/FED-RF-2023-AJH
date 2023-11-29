@@ -38,7 +38,7 @@ function insertText(data, area) {
 function typingKey(txt) {
   // 타이핑 텍스트 나누기
   let eachTxt = txt.toUpperCase().split("");
-  console.log(eachTxt);
+  // console.log(eachTxt);
   // 타이핑 효과 줄 키 저장 변수
   let sameKeyList = [];
   for (let i = 0; i < eachTxt.length; i++) {

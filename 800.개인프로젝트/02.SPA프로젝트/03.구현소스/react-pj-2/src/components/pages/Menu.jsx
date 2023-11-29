@@ -4,8 +4,8 @@ import $ from "jquery";
 // 데이터 가져오기
 import { menuData } from "../data/menuData";
 import { MakeKey } from "../modules/MakeKey";
-export function Menu() {
 
+export function Menu() {
   const keyinput = (e) => {
     // $(".cover").show();
     let target = $(e.currentTarget).find(".typing-area");
@@ -26,36 +26,32 @@ export function Menu() {
   ////// 리턴구역 ////////////////////
   return (
     <>
-      <main className="main in-box row-12">
+      <div className="part-box row-12">
         {/* 2-1. 메뉴영역 */}
-        <div className="part-box gnb-menu-area row-12">
-          <ul className="gnb-menu-box">
-            {menuData.map((v, i) => (
-              <li key={i} onMouseEnter={keyinput} onMouseLeave={clear} data-seq={i}>
-                {/* <a href="#"> */}
-                <span>{v}</span>
-                <b className="typing-area"></b>
-                <div className="text-cursor"></div>
-                {/* </a> */}
-              </li>
-            ))}
-          </ul>
-          <div className="close-btn">×</div>
-        </div>
-        {/* 2-2. 키보드 메뉴 영역 */}
-        <div className="part-box col-16 row-4 menu-footer">
-          <div className="keyboard-menu">
-            {/* 키보드 구역 */}
-            <div className="wrap">
-              <div className="key-box">
-                <MakeKey />
-              </div>
+        <ul className="gnb-menu-box">
+          {menuData.map((v, i) => (
+            <li key={i} onMouseEnter={keyinput} onMouseLeave={clear} data-seq={i}>
+              {/* <a href="#"> */}
+              <span>{v}</span>
+              <b className="typing-area"></b>
+              <div className="text-cursor"></div>
+              {/* </a> */}
+            </li>
+          ))}
+        </ul>
+        <div className="close-btn">×</div>
+      </div>
+      {/* 2-2. 키보드 메뉴 영역 */}
+      <div className="part-box col-16 row-4 menu-footer">
+        <div className="keyboard-menu">
+          {/* 키보드 구역 */}
+          <div className="wrap">
+            <div className="key-box">
+              <MakeKey />
             </div>
           </div>
         </div>
-        {/* 메뉴창 전환직후 가리기박스 */}
-        <div className="cover"></div>
-      </main>
+      </div>
     </>
   );
 } ////////// Menu 컴포넌트  ////////////

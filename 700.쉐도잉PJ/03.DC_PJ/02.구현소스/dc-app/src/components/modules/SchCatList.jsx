@@ -1,24 +1,17 @@
 // DC PJ 캐릭터 검색결과 리스트 컴포넌트
-// 캐릭터 리스트
-import { catListData } from "../data/swiper_cat";
 // 캐릭터 검색 css
 import '../../css/search_cat_list.css';
 import { Link } from "react-router-dom";
 
-export function SchCatList(props) {
-  // props.word - 데이터 선택 값
-  // props.chgCntFn - 개수 보이기 함수
-  // 전달 된 검색어 변환
-  let kword = props.word.toLowerCase();
+export function SchCatList({dt,total}) {
+  // props.dt - 검색 된 배열데이터
+  // props.total - 검색 된 배열데이터 개수
+
   // 선택 데이터
-  const selData = catListData.filter(v=>{
-    if(v.cname.toLowerCase().indexOf(kword) !== -1) return true;
-  });
+  const selData = dt;
   // 선택 데이터 개수
-  const selCnt = selData.length;
-  // 선택 데이터 개수 훅 변수 업데이트
-  props.chgCntFn(selCnt);
-  console.log(selData,selCnt);
+  const selCnt = total;
+  // console.log(selData,selCnt);
   return (
     <>
       {

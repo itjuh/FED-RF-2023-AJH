@@ -108,3 +108,10 @@ A component is changing an uncontrolled input to be controlled. This is likely c
 해결방안 : 
 어렵다~~~~ https://jihyundev.tistory.com/23
 
+Cannot update a component (`Searching`) while rendering a different component (`SchCatList`). To locate the bad setState() call inside `SchCatList`, follow the stack trace as described in
+오류원인 : 하위컴포넌트 업데이트 결과가 상위컴포넌트에 반영되지 않음, 심크가 맞지 않다.
+해결방안 : 상단에서 데이터처리를 해서 내려보내면 하단에서 처리하지 않아도 되어서 데이터 심크게 맞게 됨
+
+Uncaught DOMException: Failed to execute 'pushState' on 'History': () => sts.current ? sts.current = 0 : sts.current = 1 could not be cloned.
+오류원인 : state객체의 크기가 640000자 이상이 될 경우 생기는 오류가
+해결방안 : 전달값을 localStorage나 sessionStorage로 전달해야한다.

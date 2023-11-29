@@ -9,26 +9,27 @@ import { TopTitle } from "../modules/TopTitle";
 import $ from "jquery";
 import "jquery-ui-dist/jquery-ui";
 
-
-export const TopArea = memo((props)=>{
+export const TopArea = memo((props) => {
   // props.tit : 상단타이틀
+  // props.sts : 1-메뉴열림 0-닫힘
+
   // console.log('상단 불러옴');
-  useEffect(()=>{
-    $('.gnb-area a').first().click(addOn);
+  useEffect(() => {
+    $(".gnb-area a").first().click(addOn);
   });
   // 클래스 생성 함수
-  const addOn = function(e){
-    $(e.currentTarget).toggleClass('on');
-  }
+  const addOn = function (e) {
+    $(e.currentTarget).toggleClass("on");
+  };
   // gnb메뉴 생성 함수
   const makeGnb = () => {
-    return gnbData.map((v, i) =>
-        <a href="#" title={v.txt} key={i}>
-          <span className="ir">{v.txt}</span>
-          {v.txt === '검색'?<input type="text" className="search-area"/>:<></>}
-          {v.com}
-        </a>
-      );
+    return gnbData.map((v, i) => (
+      <a href="#" title={v.txt} key={i}>
+        <span className="ir">{v.txt}</span>
+        {v.txt === "검색" ? <input type="text" className="search-area" /> : <></>}
+        {v.com}
+      </a>
+    ));
   };
   return (
     <>
@@ -38,13 +39,18 @@ export const TopArea = memo((props)=>{
           {/* 1-1. 로고영역 */}
           <Logo />
           {/* 1-2. 타이틀영역 */}
-          <TopTitle tit={props.tit}/>
-          {/* 1-3. GNB메뉴 */}
-          <div className="part-box col-3 flex-box gnb-area">
-            {makeGnb()}
+          <div className="part-box col-6">
+            <div className="top-title">
+              { 
+                props.sts == 0 && 
+                <TopTitle tit={props.tit} />
+              }
+            </div>
           </div>
+          {/* 1-3. GNB메뉴 */}
+          <div className="part-box col-3 flex-box gnb-area">{makeGnb()}</div>
         </header>
       </div>
     </>
   );
-}) ////////// TopArea 컴포넌트 //////////
+}); ////////// TopArea 컴포넌트 //////////

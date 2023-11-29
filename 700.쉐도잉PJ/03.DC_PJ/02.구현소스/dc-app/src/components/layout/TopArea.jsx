@@ -60,8 +60,8 @@ const showSearch = (e) =>{
 }; /////////// showSearch 함수 /////////
 // 2. 입력창에 엔터키를 누르면 검색함수 호출
 const enterKey = (e)=>{
-  console.log('enterKey진입');
   if(e.key === 'Enter'){ 
+    console.log('enterKey진입');
     let txt = $(e.target).val().trim();
     // console.log(txt);
     // 빈 값이 아니면 검색함수 호출(검색어 전달)

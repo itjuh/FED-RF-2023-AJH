@@ -4,7 +4,7 @@
 /* gnb메뉴 */
 .gnb-menu-area {
   position: relative;
-    width: 100%;
+  width: 100%;
   margin: 0 auto;
   outline: 1px solid #eee;
   box-shadow: 0px 0px 3px rgb(0, 0, 0, 0.15);
@@ -12,6 +12,11 @@
   font-size: 3rem;
   line-height: 1.6;
   letter-spacing: 0.1rem;
+  /* 처음에 안보임 */
+  display: none;
+}
+.gnb-menu-area.on {
+  display: block;
 }
 /* gnb 메뉴 속박스 ul */
 .gnb-menu-box {
@@ -75,15 +80,4 @@
 .keyboard-menu {
   position: relative;
   top: 35%;
-}
-/* 광실행 막기 박스 */
-.cover{
-  position: fixed;
-  width: 100vw;
-  height: 100vh;
-  top: 0;
-  left: 0;
-  background-color:rgba(255, 0, 0, 0.144);
-  z-index:999;
-  display: none;
 }

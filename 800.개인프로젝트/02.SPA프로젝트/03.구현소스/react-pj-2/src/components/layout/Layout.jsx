@@ -21,7 +21,7 @@ export const Layout = memo(()=>{
   const [toggleVal, setToggleVal] = useState("main");
   // 상단 타이틀용 후크변수
   const [titVal, setTitVal] = useState("Keyboard List");
-  // 하단 메뉴용 useRef 변수
+  // 하단 메뉴용 useRef 변수   1-메뉴열림 0-닫힘
   const sts = useRef(0);
   // 1-메뉴열림 0-닫힘
   
@@ -39,15 +39,17 @@ export const Layout = memo(()=>{
     // 타이틀 변경
     chgTit(selData.tit);
   },[]);
+  // useRef 변경 함수
+  const chgsts = (num) => sts.current=num;
   // 클릭한 필터를 옵션 세부옵션에 적용하기
   // 세부 옵션을 제품리스트에 적용하기
   // -> selNum으로 세팅
 
   return (
     <LeoCon.Provider value={{ selNum, chgSel, toggleVal, chgTog, titVal, chgTit }}>
-      <TopArea tit={titVal}/>
+      <TopArea tit={titVal} sts={sts}/>
       <MainArea chgTitFn={chgTit}/>
-      <FooterArea />
+      <FooterArea tit={titVal} chgsts={chgsts} sts={sts}/>
     </LeoCon.Provider>
   );
 }) ////////// Layout 컴포넌트 ////////////
