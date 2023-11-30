@@ -1,6 +1,6 @@
 // 하단영역 컴포넌트
 
-import { memo } from "react";
+import { memo, useRef } from "react";
 import { Toggle } from "../modules/Toggle";
 import { useNavigate } from "react-router-dom";
 import $ from "jquery";
@@ -10,13 +10,26 @@ import { Menu } from "../pages/Menu";
 
 export const FooterArea = memo((props) => {
   // props.tit - 상단타이틀 props.chgsts - 상태변경 함수 1-메뉴열림 0-닫힘
-  const nav = useNavigate();
+  // const nav = useNavigate();
+  // 메뉴 열림 닫힘 useRef 상태변경 함수 1-메뉴열림 0-닫힘
+  const menuSts = useRef(0);
+  const chgMenuSts = num => {
+    // useRef 변경
+    menuSts.current = num;
+    // props 상태변경
+    props.chgsts(menuSts.current);
+    // 메뉴상태 변경
+    onOff(menuSts.current);
+  }
   // 네비게이션 설정 함수
-  function goNav() {
-    console.log("어디로든 가자");
-  } /////// goNav함수 /////////
+  // function goNav() {
+  //   console.log("어디로든 가자");
+  // } /////// goNav함수 /////////
+
+  // 메뉴 열림 닫힘 상태변경
   const onOff = (num) => {
     if (num) {
+      // console.log($(".basic-footer"));
       $(".basic-footer").animate(
         {
           opacity: "0",
@@ -27,13 +40,11 @@ export const FooterArea = memo((props) => {
         () => {
           // keyboard 보이기
           $('.gnb-menu-area').addClass('on');
-          props.chgsts(1);
         }
       );
     } else {
       // 메뉴창 닫힘
       $('.gnb-menu-area').removeClass('on');
-      props.chgsts(0);
       $(".basic-footer").animate(
         {
           opacity: "1",
@@ -54,7 +65,7 @@ export const FooterArea = memo((props) => {
             <div className="part-box col-6"></div>
             {/* 3-1. 하단메뉴 아이콘 */}
             <div className="part-box col-4 menu-area">
-              <a className="flex-box" href="#" title="메뉴열기" onClick={onOff(1)}>
+              <a className="flex-box" href="#" title="메뉴열기" onClick={()=>chgMenuSts(1)}>
                 <FontAwesomeIcon icon={faChevronUp} className="menu-icon" />
                 <span className="ir">위쪽방향화살표</span>
                 <FontAwesomeIcon icon={faKeyboard} className="menu-icon" />
@@ -65,11 +76,8 @@ export const FooterArea = memo((props) => {
             <Toggle />
           </div>
           {/* 하위메뉴 열기영역 */}
-          <section className="in-box row-12 gnb-menu-area" onClick={onOff(0)}>
-            {
-              props.sts == 1 &&
-              <Menu />
-            }
+          <section className="in-box row-12 gnb-menu-area">
+            <Menu chgFn={chgMenuSts} sts={menuSts.current}/>
           </section>
         </footer>
       </div>

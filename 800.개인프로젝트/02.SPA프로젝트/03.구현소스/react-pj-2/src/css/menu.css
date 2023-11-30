@@ -3,7 +3,8 @@
 /* 2. 메인영역 */
 /* gnb메뉴 */
 .gnb-menu-area {
-  position: relative;
+  position: absolute;
+  top: 0%;
   width: 100%;
   margin: 0 auto;
   outline: 1px solid #eee;
@@ -12,16 +13,20 @@
   font-size: 3rem;
   line-height: 1.6;
   letter-spacing: 0.1rem;
+  background-color: white;
+  z-index: 999;
+  transition: all 0.5s ease-in;
   /* 처음에 안보임 */
-  display: none;
+  height: 0;
+  overflow: hidden;
 }
 .gnb-menu-area.on {
-  display: block;
+  height: auto;
 }
 /* gnb 메뉴 속박스 ul */
 .gnb-menu-box {
   box-sizing: border-box;
-  padding: 4rem 8rem;
+  padding: 10rem 8rem;
 }
 .gnb-menu-box li {
   position: relative;
@@ -62,22 +67,29 @@
 }
 
 /* 마우스 오버 시 커서 보이기 */
-.gnb-menu-box li:hover .text-cursor{
+.gnb-menu-box li:hover .text-cursor {
   display: inline-block;
 }
 /* 닫기버튼 */
-.close-btn{
+.close-btn {
   position: absolute;
-  top: 5%;
-  right: 5%;
+  height: 40px;
+  aspect-ratio: 1/1;
+  text-align: center;
+  line-height: 1;
+  top: 10%;
+  right: 10%;
   cursor: pointer;
-  color:#ebebeb;
+  color: #ebebeb;
+  /* 트랜지션 */
+  transition: transform 0.3s;
 }
-.close-btn:hover{
-  color:#111111;
+.close-btn:hover {
+  color: #111111;
+  transform: rotate(-90deg);
 }
 /* 키보드 구역 */
 .keyboard-menu {
   position: relative;
-  top: 35%;
+  top: 70%;
 }

@@ -29,20 +29,20 @@ export function Searching(props) {
   // console.log("전달 검색어 : ", props.kword);
 
   /////// 후크 상태관리 변수 /////////////
-  // 1. 검색어 후크상태 변수
-  const [kword, setKword] = useState(props.kword);
+  // 1. 검색어 후크상태 변수 : 초기값 null
+  const [kword, setKword] = useState(null);
 
   // 2. 출력개수
   const [cntNum, setCntNum] = useState(0);
 
   // 3. 데이터 구성 상태변수 : [배열데이터,정렬상태]
-  const [selData, setSelData] = useState([catListData,2]);
+  const [selData, setSelData] = useState([[],2]);
   // - 정렬상태값 : 0-오름차순 1-내림차순 2-정렬전
   // 두가지 값을 같이 관리하는 이유? -> 데이터 정렬만 변경 될 경우
   // 배열 자체가 변경된 것으로 인식하지 않기 때문이다
   
   // 4. 데이터 개수
-  const [cnt, setCnt] = useState(catListData.length);
+  const [cnt, setCnt] = useState(0);
   /////////////////////////////////////////
 
   ///////// useRef 변수 //////////////////////////////
@@ -53,6 +53,9 @@ export function Searching(props) {
   // useRef변수 사용은 변수명.current
   // 2. 폰트어썸 참조변수
   const fontRef = useRef(null);
+  // 3. 처음상태 구분변수(랜더링 이전시점 1번 실행 구분)
+  const firstSts = useRef(0);
+
   useEffect(() => {
     // fontRef가 폰트어썸 컴포넌트를 담은 후!
     // console.log(fontRef);
@@ -66,14 +69,40 @@ export function Searching(props) {
   const initFn = () => {
     // 넘어온 검색어와 셋팅 된 검색어가 다르면 업데이트
     if (props.kword != kword) {
-      console.log(props.kword, "props.kword", kword, "kword");
+      console.log('상단검색 실행:',props.kword, "props.kword", kword, "kword");
+      // 키워드 상태 변수에 업데이트
       chgKword(props.kword);
       // 모듈검색 input창에 같은 값 넣어주기
       $("#schin").val(props.kword);
       // 검색 리스트 만들기 함수 호출
-      // schList();
+      schList();
     } ////////// if /////////
   }; /////// 초기실행 함수 initFn ///////////
+
+  // 키워드를 받아서 처음 한번 filter검색하는 함수//////////////
+  function firstDo (){
+    console.log('처음한번만~!',props.kword);
+    const firstTemp = catListData.filter(v=>{
+      if(v.cname.toLowerCase().indexOf(props.kword.toLowerCase())!==-1) return true;
+    })
+    
+    firstTemp.sort((a,b)=>{
+      return a.cname==b.cname?0:a.cname>b.cname?1:-1;
+    })
+  
+    console.log('처음결과:',firstTemp);
+    setSelData([firstTemp,2]);
+    // 검색건수 상태관리변수 업데이트!
+    setCnt(firstTemp.length);
+  
+    chgKword(props.kword);
+  
+  } ///////////// firstDo 함수 ////////
+  // 한번만 호출
+  if(!firstSts.current) {
+    firstDo();
+    firstSts.current = 1;
+  } ////// if ////////
 
   // 만약 useRef변수 값이 1이면 initFn실행
   if(allow.current) initFn();
@@ -87,7 +116,7 @@ export function Searching(props) {
 
   ////////////////////////////////////
   // 검색 리스트 만들기 함수////////////
-  const schList = (e) => {
+  function schList(e){
     // 1. 검색어 읽어오기
     let keyword = $('#schin').val();
     // 2. 데이터 검색하기
@@ -102,7 +131,7 @@ export function Searching(props) {
     // 검색건수 상태관리 변수 업데이트
     setCnt(newList.length);
     
-  }; /////// schList함수 ////////
+  } /////// schList함수 ////////
 
   // 엔터 키 반응함수
   const enterKey = (e) => {

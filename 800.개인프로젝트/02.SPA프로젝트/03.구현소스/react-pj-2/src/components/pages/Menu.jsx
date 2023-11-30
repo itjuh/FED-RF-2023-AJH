@@ -5,7 +5,9 @@ import $ from "jquery";
 import { menuData } from "../data/menuData";
 import { MakeKey } from "../modules/MakeKey";
 
-export function Menu() {
+export function Menu(props) {
+  // props.chgFn(useRef 변경 함수)
+  // props.sts 메뉴상태
   const keyinput = (e) => {
     // $(".cover").show();
     let target = $(e.currentTarget).find(".typing-area");
@@ -39,7 +41,7 @@ export function Menu() {
             </li>
           ))}
         </ul>
-        <div className="close-btn">×</div>
+        <div className="close-btn" onClick={()=>props.chgFn(0)}>×</div>
       </div>
       {/* 2-2. 키보드 메뉴 영역 */}
       <div className="part-box col-16 row-4 menu-footer">

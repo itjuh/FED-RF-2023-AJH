@@ -4,11 +4,13 @@ import { useEffect } from "react";
 import $ from "jquery";
 // 신상품 데이터 가져오기
 import { newProdData } from "../data/new_prod";
+import { useRef } from "react";
 
-export function NewProdList(props) {
-  // props.cat 카테고리 분류명
+export function NewProdList({cat, chgItemFn}) {
+  // cat 카테고리 분류명
+  // chgItemFn - 선택상품정보변경 부모함수
   // 선택 데이터 : 해당 카테고리 상품 데이터만 가져온다
-  let selData = newProdData[props.cat];
+  let selData = newProdData[cat];
 
   const makeList = () => {
     // 코드 담을 배열
@@ -18,8 +20,10 @@ export function NewProdList(props) {
       temp[i] = (
         <li onMouseEnter={showInfo} onMouseLeave={removeInfo} 
         key={i} className={"m" + (i + 1)}>
-          <a href="#">
-            <img src={"./images/goods/" + props.cat + "/m" + (i + 1) + ".png"} 
+          <a href="#" onClick={(e)=>{
+            e.preventDefault();
+            chgItemFn('m'+(i+1))}}>
+            <img src={"./images/goods/" + cat + "/m" + (i + 1) + ".png"} 
             alt="신상품" />
           </a>
         </li>
@@ -52,40 +56,42 @@ export function NewProdList(props) {
   }
 
   // 신상품 리스트 이동함수 변수
+  // 리랜더링 시 기존값을 유지하도록 useRef를 사용한다.
   // 위치값 변수(left값)
-  let lpos = 0;
+  let lpos = useRef(0);
   // 재귀호출 상태값 ( 1- 호출, 0 멈춤)
-  let callSts = 1;
+  let callSts = useRef(1);
 
   // 신상품 리스트 이동함수
   const flowList = (ele) => {
     // console.log('호출');
     // 대상의 left값을 1씩 감소함
-    lpos--;
+    lpos.current--;
     // 이미지 박스 한개가 나가면 잘라서 맨 뒤로 보냄
-    if (lpos < -300) {
+    if (lpos.current < -300) {
       // 위치값 초기화 (-301 일때 0으로)
-      lpos = 0;
+      lpos.current = 0;
       // 첫번째 li 맨 뒤로 이동
       ele.append(ele.find("li").first());
     }
     // 적용
-    ele.css({ left: lpos + "px" });
+    ele.css({ left: lpos.current + "px" });
     // 재귀호출
-    if (callSts) setTimeout(() => flowList(ele), 40);
+    if (callSts.current) setTimeout(() => flowList(ele), 40);
   }; //////// flowList //////////
 
   // 오버 아웃 시 상태값 변경함수
   const chgSts = (num) => {
-    callSts = num;
+    callSts.current = num;
   }; /////// chgSts 함수 ////////////
-  // 랜더링 후 실행구역
+
+  // 랜더링 후 한 번 실행구역
   useEffect(() => {
     // 대상선정: .flist
 
     // 신상 리스트 이동 함수
     flowList($(".flist"));
-  }); //////// useEffect 구역 /////////
+  },[]); //////// useEffect 구역 /////////
 
   // 리턴코드
   return (

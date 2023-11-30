@@ -1,0 +1,82 @@
+[ 개인 프로젝트 ]
+
+(0) 메뉴페이지
+1) 구성전환
+하단에서 fixed로 화면덮기
+- 열고 닫기 링크 구현
+
+(1) 메인페이지
+1) 메인페이지 리스트
+- 필터적용 데이터 꺼내기
+- 리스트 앞뒤버튼 + 넘기기 효과
+2) 토글버튼 클릭효과
+
+[ 오늘의 일정 : 11월 30일(목) ]
+------------------------------
+1. Pilot PJ : 
+   - 컴포넌트 구현 및 적용
+   (1) 신상품 영역 구현 -> 상세보기2
+2. DC PJ : 
+   - 컴포넌트 구현 및 적용 : 
+   (1) 검색모듈6 - 수정하기
+3. 개인 PJ 작업 및 리뷰시간(PM 02:30~)
+
+
+
+리랜더링으로 발생하는 오류 잡기
+-> 전역변수격으로 사용할 변수는useRef를 사용한다!
+
+
+    // 1) 대상선정
+    // let tgName = topchk=='switch'?'.option-'+topchk+'-area>input:checked':'.'+topchk+'-area>input:checked';
+    // 2. 체크박스 체크여부 가져오기
+    // console.log($(tgName));
+    // const chked = $(tgName).length;
+    // console.log(tgName,chked);
+    // 3. 기존 입력 데이터 가져오기 selData의 첫번째 배열값
+    /*
+    let temp = selData[0];
+    // 최종 결과 집합배열 변수
+    let lastList = [];
+    // 4. 체크박스 체크개수 세기 : 1개 초과 시 배열 합치기
+    let num = $('.chkhdn:checked').length;
+    // 5. 체크박스 체크유무에 따른 분기
+    // (1) 체크박스가 true일때 해당 검색어로 검색하기
+    if(chked){
+      // 현재 데이터 변수에 담기(검색결과에서 검색하기)
+      const nowList = selData.filter(v=>{
+        if(v[topchk] == topchk) return true;
+      }) ; ///// filter //////
+      // 체크개수가 1 초과일 때 배열 합치기
+      if(num>1){ //스프레스 연산자(...) 사용!
+        lastList = [...temp,...nowList];
+      }else{
+        lastList = nowList;
+      }
+    }
+    // (2) 체크박스가 false일때 해당 검색어로 검색해서 배열 제거하기
+    /*
+    else{
+      // for문을 돌면서 배열데이터 중 해당값을 지운다
+      for(let i=0; i<temp.length; i++){
+        // 데이터 중 alignment항목 값이 cid와 일치하면 삭제
+        if(temp[i].alignment == cid){
+          // 해당항목 지우기
+          // 배열지우기 메서드 : splice(순번,개수)
+          temp.splice(i,1);
+          // 주의사항! 배열 length가 줄어든다. 반드시 줄임 처리!
+          i--;
+
+          // 참고테스트 : 배열삭제 delete는 무엇인가?
+          // delete배열지우기는 값만 지우고 주소는 남는다 지운 후 값은 undefined처리
+          // delete temp[i]; ->> 리스트 처리 시 에러발생
+          // 여기서는 splice를 반드시 사용할 것!
+        }
+      }
+      console.log('삭제처리 된 배열 : temp',temp);
+      lastList = temp;
+    }
+    // 6. 검색결과 리스트 업데이트하기
+    setSelData([lastList,2]);
+    setCnt(lastList.length);
+    */
