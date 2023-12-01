@@ -5,10 +5,15 @@ import "../../css/main.css";
 import { Options } from "../modules/Options";
 import { BoardList } from "../modules/BoardList";
 import { Filter } from "../modules/Filter";
-import { useEffect,useRef, useState } from "react";
+import { useEffect,useMemo,useRef, useState } from "react";
 import { filterBoardData } from "../data/boardData";
 
 export function Main() {
+  const optionData = {
+    array:[900,750,980],
+    color:['co-wt','co-bk','co-gy','co-bu','co-ye','co-rd'],
+    switch:['sw-bu','sw-br','sw-sl','sw-lr','sw-cl','sw-sr','sw-bk'],
+  }
   // 대분류/세부분류 변수
   const [optSel, setOptSel] = useState('array');
   const [optSubSel, setOptSubSel] = useState([900,750,980]);
@@ -17,9 +22,19 @@ export function Main() {
   // 데이터 변수
   const dataIdx = useRef(['1','2','3','4','5','6','7','8','9','10']);
   // 변경함수
-  const chgOpt = txt => setOptSel(txt);
+  const chgOpt = txt => {
+    // 대분류 변경
+    setOptSel(txt);
+    // optionData
+    setOptSubSel(optionData[txt]);
+  };
   const chgOptSub = arr => setOptSubSel(arr);
   
+  // let sel = useMemo(()=>{
+  //   // useMemo()함수 내부에서 원래 객체를 리턴함!!
+  //   return optSel==='array'?[900,750,980]:optSel==='color'?['','','',]:['','','',];
+  // },[optSel]);
+
   // const chgOpt = txt => optSel.current = txt;
   // const chgOptSub = arr => optSubSel.current = arr;
   
@@ -36,7 +51,7 @@ export function Main() {
     arr.forEach((ele,idx)=>{
       // 세부값에 해당하는 데이터의 idx를 골라서 담는다
       newList[idx] = filterBoardData.filter(v=>{
-        if(v[optSel].indexOf(ele) != -1) return true;
+        if(v[optSel].indexOf(ele) !== -1) return true;
       }); ///////// filter /////////////////
     });
     // 수량변수
@@ -66,7 +81,7 @@ export function Main() {
         <Options chgOptFn={chgOptSub} opt={optSel}/>
         {/* 2-2. 제품 리스트 */}
         <div className="part-box col-16 row-10 prod-area">
-        <BoardList data={dataIdx}/>
+        <BoardList data={dataIdx.current}/>
         </div>
       </main>
     </>

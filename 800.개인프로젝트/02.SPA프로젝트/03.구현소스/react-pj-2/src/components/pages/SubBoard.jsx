@@ -44,8 +44,6 @@ export function SubBoard() {
       let tit = selData.code +'^'+ selData.sub;
       myCon.chgTit(tit);
     }
-    // 휠 이벤트
-    moveImgInfo($(".detail-page"));
   },[myCon,name,selData.code,selData.sub]);
 
   const loadFn = () => {
@@ -64,6 +62,8 @@ export function SubBoard() {
       // 네비게이션 세팅
       setNav();
     }
+    // 휠 이벤트
+    moveImgInfo($(".detail-page"));
   }; ///////////// loadFn 함수 //////////////
 
 

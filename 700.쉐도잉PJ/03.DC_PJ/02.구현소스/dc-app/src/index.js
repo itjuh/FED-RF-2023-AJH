@@ -16,6 +16,7 @@ import { SwiperApp } from './components/plugin/SwiperApp';
 import { CatDetail } from './components/pages/CatDetail';
 import { Series } from './components/pages/Series';
 import { SchPage } from './components/pages/SchPage';
+import { Member } from './components/pages/Member';
 // import { SwiperApp } from './components/plugin/pages/SwiperApp';
 
 /********************************************* 
@@ -70,6 +71,7 @@ export default function App(){
           <Route path='board' element={<SwiperApp />} />
           <Route path='detail' element={<CatDetail />} />
           <Route path='schpage' element={<SchPage />} />
+          <Route path='member' element={<Member />} />
           {/* <Route path='board' element={<SwiperApp />} /> */}
         </Route>
       </Routes>

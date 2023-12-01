@@ -147,6 +147,7 @@
   font-family: "KOFIHDrLEEJWTTF-B";
   line-height: max(26px, 2.5vh);
   text-indent: 12%;
+  cursor: pointer;
 }
 /* 토글버튼 */
 .tg-btn {

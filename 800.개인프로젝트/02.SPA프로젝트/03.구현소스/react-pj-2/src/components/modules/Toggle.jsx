@@ -1,24 +1,89 @@
 // 하단 토글 변환 컴포넌트
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 // 제이쿼리 + 제이쿼리 ui
 import $ from "jquery";
 import "jquery-ui-dist/jquery-ui";
-import { useLayoutEffect } from "react";
-import { initToggle, swToggle } from "../func/init_toggle";
 import { useContext } from "react";
 import { LeoCon } from "../modules/LeopoldContext";
 
 export function Toggle() {
   const myCon = useContext(LeoCon);
+  console.log(window.location.href.split('/')[1]);
+  let val = myCon.toggleVal == "switch" ? 0 : 1;
   // 결과값
   let res;
+  // 토글상태 변수
+  // const [board, setBoard] = useState(1);
+  const board = useRef(val);
+  console.log("useRef값:", board.current);
+  // 토글상태 변경함수(true/false)
+  const chgBoard = (num) => {
+    board.current = num;
+    myCon.chgTog(num?"main":'switch');
+  };
+  // const chgBoard = (num) => {
+  //   setBoard(num);
+  // };
+  // 토글버튼클릭 -> 변화없음
+  // 배경클릭 -> 토글함수 변경
+  // 토글값에 따라 sts값을 변경하기!
 
-  useLayoutEffect(() => {
-    // 토글박스 원 초기설정
-    res = initToggle();
-    myCon.chgTog(res[0]);
-    myCon.chgTit(res[1]);
-  }, []);
+  // 토글 변경 함수 : 위치를 분기하여 값을 적용한다.
+  const swToggle = (tg) => {
+    let tgTxt = $(tg).text();
+    if (tgTxt !== "") {
+      // console.log('변경하러 가자!',board);
+      console.log("변경하러 가자!", board.current);
+      // 기존값에서 변경 됨
+      // let num = board?0:1;
+      let num = board.current ? 0 : 1;
+      setPage(num);
+      // chgBoard(board?0:1); // 토글 변경
+      chgBoard(board.current ? 0 : 1); // 토글 변경
+    }
+    // 변경적용 함수 호출
+  };
+  // 변경적용 함수 (css/pagelink)
+  const setPage = (num) => {
+    // 토글값에 따른 위치이동
+    if (num) {
+      // 토글 키보드
+      // 토글박스 원 초기설정
+      $(".tg-cir").css({
+        left: "4px",
+      });
+      // 토글박스 글자 초기설정
+      $(".tg-btn")
+        .first()
+        .css({
+          color: "#000",
+        })
+        .siblings()
+        .css({
+          color: "rgb(128, 128, 128)",
+        });
+      myCon.chgTog("main");
+    } else {
+      console.log("보드상태", board);
+      // 토글 스위치
+      // 토글박스 원 설정
+      $(".tg-cir").css({
+        left: "99px",
+      });
+      // 토글박스 글자 설정
+      $(".tg-btn")
+        .last()
+        .css({
+          color: "#000",
+        })
+        .siblings()
+        .css({
+          color: "rgb(128, 128, 128)",
+        });
+      myCon.chgTog("switch");
+    }
+  };
+
   useEffect(() => {
     const cir = $(".tg-cir");
     // 제이쿼리 드래그
@@ -29,38 +94,32 @@ export function Toggle() {
     $(".tg-btn").droppable({
       drop: function (evt, ele) {
         // evt-이벤트전달변수 ele-드롭객체
-        $(this)
-          .css({
-            color: "#000",
-          })
-          .siblings()
-          .css({
-            color: "rgb(128, 128, 128)",
-          });
         // 드롭 시 위치 조정 + 토글변경
         let txt = $(this).text();
-        if (txt == "switch") {
-          res = swToggle();
+        if (txt === "switch") {
+          chgBoard(0);
+          // 변경적용 함수 호출
+          setPage(0);
         } else {
-          res = initToggle();
+          chgBoard(1);
+          // 변경적용 함수 호출
+          setPage(1);
         }
-        console.log(res);
-        myCon.chgTog(res[0]);
-        myCon.chgTit(res[1]);
       }, ///////drop이벤트 옵션 메서드
     });
   }); /////////useEffect구역///////////
 
   return (
     <div className="part-box col-6 row-2 flex-box toggle-area">
-      <aside className="toggle-btn-box">
+      <aside
+        className="toggle-btn-box"
+        onClick={(e) => {
+          swToggle(e.target);
+        }}
+      >
         <div className="tg-cir"></div>
-        <div className="tg-keyboard tg-btn" onClick={initToggle}>
-          keyboard
-        </div>
-        <div className="tg-switch tg-btn" onClick={swToggle}>
-          switch
-        </div>
+        <div className="tg-keyboard tg-btn">keyboard</div>
+        <div className="tg-switch tg-btn">switch</div>
       </aside>
     </div>
   );

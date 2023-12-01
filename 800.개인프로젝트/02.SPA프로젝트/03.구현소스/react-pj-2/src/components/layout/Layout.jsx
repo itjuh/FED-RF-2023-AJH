@@ -44,12 +44,12 @@ export const Layout = memo(()=>{
   // 클릭한 필터를 옵션 세부옵션에 적용하기
   // 세부 옵션을 제품리스트에 적용하기
   // -> selNum으로 세팅
-
+  console.log(toggleVal);
   return (
     <LeoCon.Provider value={{ selNum, chgSel, toggleVal, chgTog, titVal, chgTit }}>
       <TopArea tit={titVal} sts={sts}/>
       <MainArea chgTitFn={chgTit}/>
-      <FooterArea tit={titVal} chgsts={chgsts} sts={sts}/>
+      <FooterArea tit={titVal} chgsts={chgsts} sts={sts} chgTog={chgTog}/>
     </LeoCon.Provider>
   );
 }) ////////// Layout 컴포넌트 ////////////

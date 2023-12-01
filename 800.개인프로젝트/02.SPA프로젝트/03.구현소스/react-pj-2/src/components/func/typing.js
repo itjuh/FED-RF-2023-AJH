@@ -22,6 +22,9 @@ function insertText(data, area) {
   typingArr = data.split("");
   let txt = "";
   let count = 0;
+
+  
+  clearInterval(autoI);
   // 인터발 함수
   autoI = setInterval(() => {
     txt += typingArr[count];

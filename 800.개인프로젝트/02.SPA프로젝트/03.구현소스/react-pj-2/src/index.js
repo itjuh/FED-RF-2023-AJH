@@ -11,6 +11,7 @@ import { SubBoard } from './components/pages/SubBoard';
 import { Switch } from './components/pages/Switch';
 import { SubSwtich } from './components/pages/SubSwitch';
 import { Menu } from './components/pages/Menu';
+import { Member } from './components/pages/Member';
 
 export default function App() {
   return (
@@ -28,6 +29,8 @@ export default function App() {
           <Route path='subswitch' element={<SubSwtich />} />
           {/* 메뉴 페이지 */}
           <Route path='menu' element={<Menu />} />
+          {/* 회원가입 페이지 */}
+          <Route path='member' element={<Member />} />
         </Route>
       </Routes>
     </BrowserRouter>

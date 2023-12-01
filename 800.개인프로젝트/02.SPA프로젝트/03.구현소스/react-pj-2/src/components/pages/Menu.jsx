@@ -8,12 +8,16 @@ import { MakeKey } from "../modules/MakeKey";
 export function Menu(props) {
   // props.chgFn(useRef 변경 함수)
   // props.sts 메뉴상태
+
+  let sts;
   const keyinput = (e) => {
     // $(".cover").show();
     let target = $(e.currentTarget).find(".typing-area");
     let seq = $(e.currentTarget).attr("data-seq");
+    $(e.currentTarget).find(".typing-area").text("");
+    clearTimeout(sts)
     // 타임아웃 함수
-    setTimeout(() => {
+    sts = setTimeout(() => {
       // 글자입력 함수
       insertText(menuData[seq], target);
     }, 40);

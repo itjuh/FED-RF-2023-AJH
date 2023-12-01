@@ -13,7 +13,7 @@ require("jquery-ui-touch-punch/jquery.ui.touch-punch");
 
 export function BoardList({ data }) {
   // 받은 데이터 리스트 - data [값이 배열형]
-  console.log("전달받음", data.current);
+  console.log("전달받음", data);
   const nav = useNavigate();
   // 네비게이션 설정 함수
   function goNav(seq) {
@@ -51,7 +51,7 @@ export function BoardList({ data }) {
   return (
     <ol>
       {
-        makeList(data.current)
+        makeList(data)
       }
     </ol>
   );

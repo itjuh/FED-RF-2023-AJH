@@ -9,10 +9,12 @@ import { faChevronUp, faKeyboard } from "@fortawesome/free-solid-svg-icons";
 import { Menu } from "../pages/Menu";
 
 export const FooterArea = memo((props) => {
-  // props.tit - 상단타이틀 props.chgsts - 상태변경 함수 1-메뉴열림 0-닫힘
+  // props.tit - 상단타이틀  props.chgsts - 상태변경 함수 1-메뉴열림 0-닫힘
+
   // const nav = useNavigate();
   // 메뉴 열림 닫힘 useRef 상태변경 함수 1-메뉴열림 0-닫힘
   const menuSts = useRef(0);
+  // 메뉴 열림닫힘
   const chgMenuSts = num => {
     // useRef 변경
     menuSts.current = num;
