@@ -12,6 +12,9 @@ import { Switch } from './components/pages/Switch';
 import { SubSwtich } from './components/pages/SubSwitch';
 import { Menu } from './components/pages/Menu';
 import { Member } from './components/pages/Member';
+import { Login } from './components/pages/Login';
+import { Wishlist } from './components/pages/Wishlist';
+import { CopInfo } from './components/pages/CopInfo';
 
 export default function App() {
   return (
@@ -31,6 +34,12 @@ export default function App() {
           <Route path='menu' element={<Menu />} />
           {/* 회원가입 페이지 */}
           <Route path='member' element={<Member />} />
+          {/* 로그인 페이지 */}
+          <Route path='login' element={<Login />} />
+          {/* 장바구니 페이지 */}
+          <Route path='wishlist' element={<Wishlist />} />
+          {/* 회사정보 페이지 */}
+          <Route path='contact' element={<CopInfo />} />
         </Route>
       </Routes>
     </BrowserRouter>

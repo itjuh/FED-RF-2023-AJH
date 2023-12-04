@@ -13,7 +13,7 @@ export const TopArea = memo(({sts, tit}) => {
   // props.tit : 상단타이틀
   // props.sts : 1-메뉴열림 0-닫힘
 
-  console.log('상단 불러옴 , sts 부르기',sts,tit);
+  // console.log('상단 불러옴 , sts 부르기',sts,tit);
   useEffect(() => {
     $(".gnb-area a").first().click(addOn);
   });

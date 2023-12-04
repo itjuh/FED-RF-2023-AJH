@@ -7,7 +7,7 @@ export function SwitchList() {
   // 스위치 페이지 링크연결
   const nav = useNavigate();
   function goNav(txt){
-    nav('/subswitch',{state:{name:txt}})
+    nav('/subswitch',{state:{name:txt}});
   }
   return (
     

@@ -5,6 +5,7 @@ import { SwitchList } from "../modules/SwitchList";
 import "../../css/switch.css";
 
 export function Switch() {
+  
   return (
     <>
       <main className="main in-box row-12">

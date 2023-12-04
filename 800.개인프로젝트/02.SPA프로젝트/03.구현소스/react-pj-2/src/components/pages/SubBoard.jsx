@@ -35,7 +35,12 @@ export function SubBoard() {
   let name;
   // 선택 데이터
   let selData;
-  name = location.state.name;
+  if(!location.state){//데이터 없으면
+    name = myCon.sub;
+  }else{ // 데이터 받아오면
+    name = location.state.name;
+  }
+  console.log('name',name,'myCon.sub',myCon.sub);
   selData = detailData[name] ? detailData[name] : false;
   // useEffect
   useEffect(()=>{
@@ -43,6 +48,9 @@ export function SubBoard() {
     if(name) {
       let tit = selData.code +'^'+ selData.sub;
       myCon.chgTit(tit);
+    }
+    if(location.state){//데이터 없으면
+      myCon.chgSub(name);
     }
   },[myCon,name,selData.code,selData.sub]);
 

@@ -13,7 +13,7 @@ require("jquery-ui-touch-punch/jquery.ui.touch-punch");
 
 export const BoardList = memo(({ data }) =>{
   // 받은 데이터 리스트 - data [값이 배열형]
-  // console.log("전달받음", data); // 초기에 받고 세팅후에 한 번 더 받음
+  // console.log("전달받음", data);
   const nav = useNavigate();
   // 네비게이션 설정 함수
   function goNav(seq) {
