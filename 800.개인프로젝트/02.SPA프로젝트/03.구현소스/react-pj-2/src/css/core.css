@@ -19,7 +19,7 @@
   }
 /* 공사중표시 */
 body *{
-    outline: 1px dashed rgba(255, 127, 80, 0.171);
+    /* outline: 1px dashed rgba(255, 127, 80, 0.171); */
     /* background: #eee;   */
 }
 body{

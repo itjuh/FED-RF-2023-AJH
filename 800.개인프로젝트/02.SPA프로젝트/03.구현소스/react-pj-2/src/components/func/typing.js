@@ -37,6 +37,7 @@ function insertText(data, area) {
   }, TYPING_TIME);
 } ////////////insertText함수/////////////
 
+let typingStyle;
 // 타이핑 텍스트 키 매칭함수
 function typingKey(txt) {
   // 타이핑 텍스트 나누기
@@ -48,26 +49,28 @@ function typingKey(txt) {
     $(".key-top aside").each((idx, ele) => {
       if ($(ele).text() == eachTxt[i]) {
         //조부모찾아서 담기(스타일 대상)
-        sameKeyList[i] = $(ele).parent();
+        sameKeyList[i] = $(ele).parents('.key');
       } /////// if 일치하면 담기//////////
     }); /////////// key-top forEach /////////////
   } ///////// for ////////////////
-
-  // 스타일 적용
+  //스타일 적용
   sameKeyList.forEach((ele, idx) => {
-    setTimeout(() => {
-      ele.css({ transform: "translateY(10px)", backgroundColor: "cornflowerblue" });
+    typingStyle = setTimeout(() => {
+      ele.css({ transform: "translateY(10px)"}).find('.key-top aside').css({ backgroundColor: "cornflowerblue" });
       // 일정시간 후 타이핑 초기화
       typingShow(ele);
     }, 30 + idx * TYPING_TIME);
   });
 } ////////// typingKey 함수 //////////
-
 // 스타일 초기화 함수
 function typingShow(ele) {
+  // 리셋 setTime함수 호출
   setTimeout(() => {
-    ele.css({ transform: "translateY(0px)", backgroundColor: "#fff" });
-  }, 100);
+    ele.css({ transform: "translateY(0px)"}).find('.key-top aside').css({ backgroundColor: "#fff" });
+  }, 80);
 } ////////// typingShow 함수 //////////
 
-export { insertText, typingKey };
+function resetTyping(){
+  clearTimeout(typingStyle);
+}
+export { insertText, typingKey, resetTyping };

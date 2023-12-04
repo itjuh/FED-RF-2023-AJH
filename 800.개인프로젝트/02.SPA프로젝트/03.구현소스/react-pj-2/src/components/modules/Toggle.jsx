@@ -8,37 +8,26 @@ import { LeoCon } from "../modules/LeopoldContext";
 
 export function Toggle() {
   const myCon = useContext(LeoCon);
-  console.log(window.location.href.split('/')[1]);
+  // console.log(window.location.href.split('/')[1]);
   let val = myCon.toggleVal == "switch" ? 0 : 1;
-  // 결과값
-  let res;
   // 토글상태 변수
   // const [board, setBoard] = useState(1);
   const board = useRef(val);
-  console.log("useRef값:", board.current);
+  // console.log("useRef값- 0:switch, 1:keyboard", board.current);
   // 토글상태 변경함수(true/false)
   const chgBoard = (num) => {
     board.current = num;
     myCon.chgTog(num?"main":'switch');
   };
-  // const chgBoard = (num) => {
-  //   setBoard(num);
-  // };
-  // 토글버튼클릭 -> 변화없음
-  // 배경클릭 -> 토글함수 변경
-  // 토글값에 따라 sts값을 변경하기!
 
   // 토글 변경 함수 : 위치를 분기하여 값을 적용한다.
   const swToggle = (tg) => {
     let tgTxt = $(tg).text();
     if (tgTxt !== "") {
-      // console.log('변경하러 가자!',board);
-      console.log("변경하러 가자!", board.current);
+      // console.log("변경하러 가자!", board.current);
       // 기존값에서 변경 됨
-      // let num = board?0:1;
       let num = board.current ? 0 : 1;
       setPage(num);
-      // chgBoard(board?0:1); // 토글 변경
       chgBoard(board.current ? 0 : 1); // 토글 변경
     }
     // 변경적용 함수 호출
@@ -64,7 +53,6 @@ export function Toggle() {
         });
       myCon.chgTog("main");
     } else {
-      console.log("보드상태", board);
       // 토글 스위치
       // 토글박스 원 설정
       $(".tg-cir").css({

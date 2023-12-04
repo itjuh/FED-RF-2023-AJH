@@ -1,5 +1,5 @@
 import "../../css/menu.css";
-import { insertText, typingKey } from "../func/typing";
+import { insertText, resetTyping, typingKey } from "../func/typing";
 import $ from "jquery";
 // 데이터 가져오기
 import { menuData } from "../data/menuData";
@@ -11,11 +11,13 @@ export function Menu(props) {
 
   let sts;
   const keyinput = (e) => {
-    // $(".cover").show();
+    // 키보드 타이핑 초기화
+    resetTyping();
+    // 해당 타이핑 영역
     let target = $(e.currentTarget).find(".typing-area");
     let seq = $(e.currentTarget).attr("data-seq");
-    $(e.currentTarget).find(".typing-area").text("");
-    clearTimeout(sts)
+    // $(e.currentTarget).find(".typing-area").text("");
+    clearTimeout(sts);
     // 타임아웃 함수
     sts = setTimeout(() => {
       // 글자입력 함수
@@ -25,8 +27,9 @@ export function Menu(props) {
     typingKey(menuData[seq]);
   };
   const clear = (e) => {
+    // 전체박스 타이핑영역 초기화
+    $(".typing-area").text("");
     $(e.currentTarget).find(".typing-area").text("");
-    // console.log($(e.currentTarget));
   };
 
   ////// 리턴구역 ////////////////////
@@ -45,7 +48,9 @@ export function Menu(props) {
             </li>
           ))}
         </ul>
-        <div className="close-btn" onClick={()=>props.chgFn(0)}>×</div>
+        <div className="close-btn" onClick={() => props.chgFn(0)}>
+          ×
+        </div>
       </div>
       {/* 2-2. 키보드 메뉴 영역 */}
       <div className="part-box col-16 row-4 menu-footer">

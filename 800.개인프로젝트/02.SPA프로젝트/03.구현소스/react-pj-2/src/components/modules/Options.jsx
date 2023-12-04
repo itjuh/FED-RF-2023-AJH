@@ -9,8 +9,8 @@ window.jQuery = $;
 require("jquery-ui-dist/jquery-ui");
 require("jquery-ui-touch-punch/jquery.ui.touch-punch");
 
-export function Options({ opt, chgOptFn }) {
-  // opt-상위옵션/chgOptFn 하위옵션 변경메서드
+export function Options({ opt, chgOptFn, clickFn }) {
+  // opt-상위옵션/chgOptFn 하위옵션 변경메서드/clickFn 클릭상태변경함수
   // opt - 선택 상위옵션 0-array 1-color 2-switch
   let selNum = opt == "array" ? 0 : opt == "color" ? 1 : 2;
 
@@ -23,11 +23,14 @@ export function Options({ opt, chgOptFn }) {
     // 1) 체크 값 가져오기
     $(tgName).each((i,v)=>chked[i] = v.value);
     // 2) 프롭스 펑션 업
-    if(chked.length == 0){ //모두 체크 해제 시
-      $(e.currentTarget).attr("checked",true);
-      console.log(e.currentTarget);
-    }
     chgOptFn(chked);
+    // 3) 클릭 값 업데이트
+    clickFn(e.target.checked);
+    console.log(e.target.checked);
+    // if(chked.length == 0){ //모두 체크 해제 시
+    //   $(e.currentTarget).attr("checked",true);
+    //   console.log(e.currentTarget);
+    // }
   };
 
   // useEffect 구역

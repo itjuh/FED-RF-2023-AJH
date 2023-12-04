@@ -3,7 +3,7 @@
 import './css/index.css';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, HashRouter } from 'react-router-dom';
 import { Layout } from './components/layout/Layout';
 import { Main } from './components/pages/Main';
 import { Character } from './components/pages/Character';
@@ -53,7 +53,11 @@ import { Member } from './components/pages/Member';
 export default function App(){
   
   return(
-    <BrowserRouter>
+    /* basename속성은 package.json의 'homepage'속성값을 읽어옴 */
+    /* basename 을 안써도 HashRouter는 package.json의 homepage속성을 자동으로 연결 */
+    <HashRouter>
+    {/* <BrowserRouter> */}
+    {/* <BrowserRouter basename={process.env.PUBLIC_URL}> */}
       <Routes>
         {/* 중요!! 레이아웃 컴포넌트를 루트로 설정!! */}
         <Route path='/' element={<Layout />}>
@@ -64,7 +68,7 @@ export default function App(){
           <Route path='characters' element={<Character />} />
           <Route path='comics' element={<Comics />} />
           <Route path='movies' element={<Movies />} />
-          <Route path='series' element={<Series />} />
+          <Route path='movies/series' element={<Series />} />
           <Route path='games' element={<Games />} />
           <Route path='news' element={<News />} />
           <Route path='video' element={<Video />} />
@@ -75,7 +79,8 @@ export default function App(){
           {/* <Route path='board' element={<SwiperApp />} /> */}
         </Route>
       </Routes>
-    </BrowserRouter>
+    {/* </BrowserRouter> */}
+    </HashRouter>
   )
 } /////////App /////////////
 

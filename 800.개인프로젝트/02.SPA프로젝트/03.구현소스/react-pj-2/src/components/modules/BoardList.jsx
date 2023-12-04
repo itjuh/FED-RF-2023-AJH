@@ -2,7 +2,7 @@
 // 키보드 제품 데이터
 // import { boardData } from "../data/boardData";
 import { boardData } from "../data/boardData";
-import { useEffect, useRef } from "react";
+import { memo } from "react";
 
 // 제이쿼리 가져오기
 import $ from "jquery";
@@ -11,9 +11,9 @@ window.jQuery = $;
 require("jquery-ui-dist/jquery-ui");
 require("jquery-ui-touch-punch/jquery.ui.touch-punch");
 
-export function BoardList({ data }) {
+export const BoardList = memo(({ data }) =>{
   // 받은 데이터 리스트 - data [값이 배열형]
-  console.log("전달받음", data);
+  // console.log("전달받음", data); // 초기에 받고 세팅후에 한 번 더 받음
   const nav = useNavigate();
   // 네비게이션 설정 함수
   function goNav(seq) {
@@ -44,35 +44,12 @@ export function BoardList({ data }) {
     });
     return temp;
   };
-  useEffect(() => {
-
-  }); /////////// useEffect ///////
 
   return (
-    <ol>
+    <ol className='list-area-ol'>
       {
         makeList(data)
       }
     </ol>
   );
-} /////////// BoardList 컴포넌트 ////////////
-
-// {data.map(
-//   (v, i) =>
-//     i < 10 && (
-//       <li key={i} onClick={() => goNav(v)}>
-//         <div
-//           className="prod-item"
-//           data-seq={v}
-//           style={{ backgroundImage: "url(../images/image_prod2/keyboard" + v + ".png)" }}
-//         >
-//           {/* 더보기 */}
-//           <div className="prod-detail-view">view</div>
-//         </div>
-//         <h3 className="prod-item-title">{boardData[v - 1][0]}</h3>
-//         <h3 className="prod-item-title">{boardData[v - 1][1]}</h3>
-//         {/* 위시리스트 버튼 */}
-//         <div className="add-wish">add to wishlist ＞</div>
-//       </li>
-//     )
-// )}
+}); /////////// BoardList 컴포넌트 ////////////

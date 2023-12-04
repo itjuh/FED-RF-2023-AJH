@@ -9,11 +9,11 @@ import { TopTitle } from "../modules/TopTitle";
 import $ from "jquery";
 import "jquery-ui-dist/jquery-ui";
 
-export const TopArea = memo((props) => {
+export const TopArea = memo(({sts, tit}) => {
   // props.tit : 상단타이틀
   // props.sts : 1-메뉴열림 0-닫힘
 
-  // console.log('상단 불러옴');
+  console.log('상단 불러옴 , sts 부르기',sts,tit);
   useEffect(() => {
     $(".gnb-area a").first().click(addOn);
   });
@@ -42,8 +42,8 @@ export const TopArea = memo((props) => {
           <div className="part-box col-6">
             <div className="top-title">
               { 
-                props.sts == 0 && 
-                <TopTitle tit={props.tit} />
+                sts.current == 0 && 
+                <TopTitle tit={tit} />
               }
             </div>
           </div>

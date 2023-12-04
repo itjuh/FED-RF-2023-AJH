@@ -2,7 +2,7 @@
 import $ from "jquery";
 
 export function moveImgInfo(tg) {
-  console.log($(tg))
+  // console.log($(tg));
   // 이동 대상
   const infoBox = $(tg).find(".info-box");
   // 한계값을 위한 겉박스 크기
@@ -16,7 +16,7 @@ export function moveImgInfo(tg) {
   let x = $(tg)?0:$(tg).find(".info-box").position().left;
 
   let y = 0;
-  const MOVE = 150;
+  const MOVE = 200;
   // 초기 이미지값 변수
   let imgNum = 1;
 
@@ -33,7 +33,7 @@ export function moveImgInfo(tg) {
   // console.log(infoBox, limitH, limitW, infoImg);
   // 이미지 세로크기 저장 함수
   const sizeCheck = (ele) => {
-    console.log(ele);
+    // console.log(ele);
     imgWidSize.length = 0;
     // 이동거리 저장용 임시변수
     let xpos = 0;
@@ -47,13 +47,13 @@ export function moveImgInfo(tg) {
       xpos += v.width;
       // 이미지 별 이동값 저장(네비용)
       imgWidSize[i] = xpos - limitW <= 0 ? 0 : xpos - limitW;
-      console.log(pos);
+      // console.log(pos);
 
       if (v.height > v.width) {
         // 가로영역 이동한계값, 세로 한계값, 움직일 요소
         pos[seq] = [xpos - limitW, v.height - limitH, infoImg.eq(i)];
         seq++;
-        console.log(pos);
+        // console.log(pos);
       }
     });
     // 전체 이동거리 업데이트
@@ -81,7 +81,7 @@ export function moveImgInfo(tg) {
 
   // 가로스크롤 함수
   function horizonScroll(target, dir) {
-    console.log(target,dir);
+    // console.log(target,dir);
     x += MOVE * dir;
 
     if (dir === -1) {
@@ -117,7 +117,7 @@ export function moveImgInfo(tg) {
   // 기능 : 가로세로 스크롤을 조합하여 박스를 이동시킨다.
   // 파라미터 (이미지 전체박스)
   const infoScroll = (delta,x)=>{
-    console.log(x,delta);
+    // console.log(x,delta);
     // 휠 이벤트 시 네비설정
     for(let i=0; i < imgWidSize.length; i++){
       if(x <= -imgWidSize[i]){
@@ -166,7 +166,7 @@ export function moveImgInfo(tg) {
     delta = delta > 0 ? 1 : -1;
     /////// 광스크롤 막기 //////////////////
     //// 마우스 휠 방향에 따라 가로스크롤 이동 증감! /////
-    console.log(x,delta);
+    // console.log(x,delta);
     infoScroll(delta,x);
   });
 }
