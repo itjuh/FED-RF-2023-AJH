@@ -35,6 +35,11 @@ export const link = [
         tit:'search',
     },
     {
+        txt:"FIND",
+        tit:'Find id/password',
+        link:'/find',
+    },
+    {
         txt:"main",
         tit:"Keyboard List",
         link:"/",

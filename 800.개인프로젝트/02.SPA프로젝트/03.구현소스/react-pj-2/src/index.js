@@ -14,7 +14,8 @@ import { Menu } from './components/pages/Menu';
 import { Member } from './components/pages/Member';
 import { Login } from './components/pages/Login';
 import { Wishlist } from './components/pages/Wishlist';
-import { CopInfo } from './components/pages/CopInfo';
+import { CorpInfo } from './components/pages/CorpInfo';
+import { FindMember } from './components/pages/FindMember';
 
 export default function App() {
   return (
@@ -36,10 +37,12 @@ export default function App() {
           <Route path='member' element={<Member />} />
           {/* 로그인 페이지 */}
           <Route path='login' element={<Login />} />
+          {/* 아이디/비밀번호 찾기 페이지 */}
+          <Route path='find' element={<FindMember />} />
           {/* 장바구니 페이지 */}
           <Route path='wishlist' element={<Wishlist />} />
           {/* 회사정보 페이지 */}
-          <Route path='contact' element={<CopInfo />} />
+          <Route path='contact' element={<CorpInfo/>} />
         </Route>
       </Routes>
     </BrowserRouter>

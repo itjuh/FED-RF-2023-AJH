@@ -1,7 +1,7 @@
-/* 레오폴드 PJ : 로그인 CSS - login.css */
+/* 레오폴드 PJ : 회원가입 CSS - member.css */
 /************** 2. 메인영역  ****************/
-/* 전체 로그인박스 */
-.login-area {
+/* 전체 회원가입 박스 */
+.member-area {
   position: relative;
   top: 50%;
   transform: translateY(-50%);
@@ -14,7 +14,7 @@
   color: rgb(70, 70, 70);
 }
 /* 타이틀 영역 */
-.login-area h2 {
+.member-area h2 {
     padding-top: 40px;
     box-sizing: border-box;
     font-family: "KOFIHDrLEEJWTTF-B";
@@ -26,54 +26,50 @@
     white-space: nowrap;
     user-select: none;
   }
-/* 로그인 속박스 */
-.login-area ul {
-  padding: 30px 60px;
+/* 회원가입 속박스 */
+.member-area ul {
+  padding: 0px 60px;
   user-select: none;
 }
-/* 로그인 li */
-.login-area li:nth-child(1) ~ li:nth-child(2) {
-  padding: 30px 0;
+/* 회원가입 li */
+.member-area li {
+  padding: 5px 0;
 }
-/* 아이디 찾기부터 */
-.login-area li:nth-child(3) {
+/* 아이디 찾기 */
+.member-area li:nth-child(6) {
   padding-top: 50px;
-  padding-bottom: 10px;
+  padding-bottom: 5px;
 }
-.login-area li:nth-child(4),
-.login-area li:nth-child(5) {
-  padding-bottom: 10px;
-}
-.login-area li:hover a {
+.member-area li:hover a {
   color: cornflowerblue;
 }
 /* 입력창 라벨 */
-.label-login {
+.label-member {
   display: block;
   font-family: "KOFIHDrLEEJWTTF-B";
-  margin-bottom: 10px;
+  margin-bottom: 5px;
 }
-/* 입력창 */
-.input-login {
+/* 입력창 input */
+.input-member {
   padding: 4px;
   width: 100%;
   box-sizing: border-box;
-  font-size: 1.5rem;  
+  font-size: 1.2rem;
   border-radius: 3px;
   outline: 1px solid rgb(192, 192, 192);
   border: 2px solid transparent;
 }
 /* 입력데이터 오류표시 */
-.input-login.red {
+.input-member.red {
   border-bottom: 2px solid #ff0000;
 }
-.input-login::placeholder {
+.input-member::placeholder {
   font-family: "KOFIHDrLEEJWTTF-L";
 }
-/* 로그인 버튼 */
-.login-area button {
+/* 회원가입 버튼 */
+.member-area button {
   position: relative;
-  top: -40px;
+  top: -50px;
   color: rgb(70, 70, 70);
   font-family: "KOFIHDrLEEJWTTF-B";
   font-size: 1.4rem;
@@ -85,24 +81,29 @@
   cursor: pointer;
 }
 /* 버튼 오버 시 */
-.login-area button:hover {
+.member-area button:hover {
   color: cornflowerblue;
 }
 /************ 미디어쿼리구역 **************/
 /* 750px 이하 미디어쿼리 시작 */
 @media screen and (max-width: 750px) {
-  /* 로그인 속박스 */
-  .login-area ul {
+  /* 회원가입 속박스 */
+  .member-area ul {
   padding: 0 20px 10px 20px;
   }
   /* 입력창 */
-.input-login {
+.input-member {
   font-size: 1rem; 
   padding: .5rem;
   }
-  /* 로그인 버튼 */
-.login-area button {
+  /* 회원가입 버튼 */
+.member-area button {
   top: 40px;
   float: left;
+}
+/* 아이디 찾기 */
+.member-area li:nth-child(6) {
+  padding-top: 20px;
+  padding-bottom: 5px;
 }
 } /* 750px 이하 미디어쿼리 종료*/

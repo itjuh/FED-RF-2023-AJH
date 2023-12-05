@@ -38,7 +38,7 @@ export const FooterArea = memo((props) => {
       // keyboard 없애기
       $(".gnb-menu-area").removeClass("on");
       // 메뉴창 닫힘
-      $(".basic-footer").slideDown(400);
+      $(".basic-footer").slideDown(100);
     } ////////// else ////////////
   };
 
