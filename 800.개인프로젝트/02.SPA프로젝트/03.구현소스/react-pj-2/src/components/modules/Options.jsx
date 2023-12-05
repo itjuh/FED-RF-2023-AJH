@@ -26,7 +26,7 @@ export function Options({ opt, chgOptFn, clickFn }) {
     chgOptFn(chked);
     // 3) 클릭 값 업데이트
     clickFn(e.target.checked);
-    console.log(e.target.checked);
+    // console.log(e.target.checked);
     // if(chked.length == 0){ //모두 체크 해제 시
     //   $(e.currentTarget).attr("checked",true);
     //   console.log(e.currentTarget);

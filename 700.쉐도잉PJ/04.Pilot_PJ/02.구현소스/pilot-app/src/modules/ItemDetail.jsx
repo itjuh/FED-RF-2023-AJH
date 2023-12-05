@@ -4,6 +4,7 @@
 import { useEffect } from "react";
 import { newProdData } from "../data/new_prod";
 import $ from 'jquery';
+import { CartList } from "./CartList";
 
 export function ItemDetail({ goods,cat }) {
   // goods - 상품 아이템정보(속성코드)
@@ -146,6 +147,8 @@ export function ItemDetail({ goods,cat }) {
           </section>
         </div>
       </div>
+      {/* 카트 리스트 */}
+      <CartList />
     </>
   );
 } /////////// ItemDetail 컴포넌트 ///////////

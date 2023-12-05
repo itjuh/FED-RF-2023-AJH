@@ -31,6 +31,10 @@ export const link = [
         link:"/contact",
     },
     {
+        txt:"SEARCH",
+        tit:'search',
+    },
+    {
         txt:"main",
         tit:"Keyboard List",
         link:"/",

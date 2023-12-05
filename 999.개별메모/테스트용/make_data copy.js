@@ -55,20 +55,36 @@ const x = [
 // rdm[아이템개수]
 let rdm = (x) => Math.floor(Math.random()*x);
 let bb = '';
-for(let i=0;i<48;i++){
-
+for(let i=10;i<48;i++){
 bb += `
-    {
-        "src" : "${x[i][3]}",
-        "idx" : "${i+1}",
-        "code" : "${x[i][0]}",
-        'sub' : "${x[i][1]}",
-        "array" : "${x[i][0].toString().substr(2,3)}",
-        "color" : ["${x[i][4]}","${x[i][5]}"],
-        "switch" : ["${key[rdm(6)]}","${key[rdm(6)]}","${key[rdm(6)]}"],
-        "cost" : "${x[i][2]}",
-    },
- `;
+
+  keyboard${i+1}: {
+    code: "${x[i][0]}",
+    sub: "${x[i][1]}",
+    type: "keyboard",
+    img: [
+      { isrc: "./images/keyboard888/01.jpg", ialt: "image1" },
+      { isrc: "./images/keyboard888/02.jpg", ialt: "image2" },
+      { isrc: "./images/keyboard888/03.jpg", ialt: "image3" },
+      { isrc: "./images/keyboard1/04.jpg", ialt: "must-read" },
+      { isrc: "./images/keyboard888/05.jpg", ialt: "info1" },
+    ],
+  },
+
+`
+
+// bb += `
+//     {
+//         "src" : "${x[i][3]}",
+//         "idx" : "${i+1}",
+//         "code" : "${x[i][0]}",
+//         'sub' : "${x[i][1]}",
+//         "array" : "${x[i][0].toString().substr(2,3)}",
+//         "color" : ["${x[i][4]}","${x[i][5]}"],
+//         "switch" : ["${key[rdm(6)]}","${key[rdm(6)]}","${key[rdm(6)]}"],
+//         "cost" : "${x[i][2]}",
+//     },
+//  `;
 // bb += `
 //     {
 //         "idx":"${x}",

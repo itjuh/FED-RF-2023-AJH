@@ -100,7 +100,8 @@
 }
 /* 위시리스트 버튼 오버시 */
 .add-wish:hover {
-  background-color: #ccc;
+  background-color: cornflowerblue;
+  color: white;
 }
 /************** 3. 하단영역  ****************/
 /* 3-1. 하단메뉴 아이콘 */

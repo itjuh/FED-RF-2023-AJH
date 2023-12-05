@@ -40,7 +40,7 @@ export function SubBoard() {
   }else{ // 데이터 받아오면
     name = location.state.name;
   }
-  console.log('name',name,'myCon.sub',myCon.sub);
+  // console.log('name',name,'myCon.sub',myCon.sub);
   selData = detailData[name] ? detailData[name] : false;
   // useEffect
   useEffect(()=>{

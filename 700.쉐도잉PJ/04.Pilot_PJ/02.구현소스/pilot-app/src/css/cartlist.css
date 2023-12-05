@@ -1,0 +1,17 @@
+/* Pilot PJ 장바구니 CSS - cartlist.css */
+
+/* 전체 부모박스 */
+#cartlist{
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 60vw;
+    height: 100vh;
+    background-color: #ffffff94;
+    z-index: 9999;
+}
+#cartlist table{
+    width: 90%;
+    margin: 50px auto;
+    
+}
