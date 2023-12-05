@@ -26,7 +26,7 @@
     /* 줄바꿈 방지 */
     white-space: nowrap;
     user-select: none;
-  }
+}
 /* 회사정보 속박스 */
 .contact-area ul {
   padding: 0 60px 30px 60px;

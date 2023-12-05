@@ -1,0 +1,139 @@
+/* 레오폴드 PJ : 장바구니 CSS - wishlist.css */
+/************** 2. 메인영역  ****************/
+/* 전체 장바구니 박스 */
+.wish-area {
+  /* 중앙정렬 */
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+  /* 오른쪽에 붙임 */
+  margin-left: auto;
+  max-width: 1024px;
+  min-height: 600px;
+  outline: 1px solid #eee;
+  box-shadow: 0px 0px 3px rgb(0, 0, 0, 0.15);
+  font-family: "KOFIHDrLEEJWTTF-L";
+  color: rgb(70, 70, 70);
+}
+/* 타이틀 영역 */
+.wish-area h2 {
+  box-sizing: border-box;
+  font-family: "KOFIHDrLEEJWTTF-B";
+  text-indent: 2rem;
+  font-size: 2.2rem;
+  line-height: 1.2;
+  padding: 1rem;
+  padding-top: 30px;
+  box-sizing: border-box;
+  /* 줄바꿈 방지 */
+  white-space: nowrap;
+  user-select: none;
+}
+/* 닫기버튼 */
+.close-btn {
+  position: absolute;
+  font-size: 3rem;
+  height: 40px;
+  aspect-ratio: 1/1;
+  text-align: center;
+  line-height: 1;
+  top: 5%;
+  right: 5%;
+  cursor: pointer;
+  color: #6e6e6e;
+  /* 트랜지션 */
+  transition: transform 0.3s;
+}
+/* 닫기 오버 */
+.close-btn:hover {
+  color: #111111;
+  transform: rotate(-90deg);
+}
+/* 장바구니 속박스 */
+.wish-box {
+  padding: 0 60px 30px 60px;
+  user-select: none;
+}
+/* 장바구니 테이블 */
+.wish-table {
+  width: 100%;
+  border: 1px solid #00000021;
+}
+/* 장바구니 공통 */
+.wish-table td,
+th {
+  box-sizing: border-box;
+  padding: 0.3vw;
+  text-align: center;
+}
+.wish-table tbody tr {
+  border-bottom: 1px solid lightseagreen;
+  min-height: 50px;
+}
+
+/* 장바구니 상단부 */
+.wish-table thead td {
+  font-family: "KOFIHDrLEEJWTTF-B";
+  text-indent: 2rem;
+  font-size: 1.3rem;
+  line-height: 2.5;
+  text-align: left;
+}
+/* 2-1. 체크박스 영역 */
+.wish-table th:nth-child(1),
+td:nth-child(1) {
+  width: 5%;
+}
+/* 2-2. 이미지 */
+.wish-table th:nth-child(2),
+td:nth-child(2) {
+  width: 15%;
+}
+/* 2-3. 제품명 */
+.wish-table th:nth-child(3),
+td:nth-child(3) {
+  width: 30%;
+}
+.wish-table td:nth-child(3) {
+  text-indent: 1rem;
+}
+.wish-table td:nth-child(3) {
+  text-align: left;
+}
+/* 2-4. 수량 */
+.wish-table th:nth-child(4),
+td:nth-child(4) {
+  width: 10%;
+}
+/* 2-5. 단가 */
+.wish-table th:nth-child(5),
+td:nth-child(5) {
+  width: 10%;
+}
+.quant-box {
+  justify-content: center;
+  gap: 3px;
+}
+/* 2-6. 할인 */
+.wish-table th:nth-child(6),
+td:nth-child(6) {
+  width: 10%;
+  text-align: center;
+}
+/* 2-7. 배송비 */
+.wish-table th:nth-child(7),
+td:nth-child(7) {
+  width: 10%;
+  text-align: center;
+}
+/* 2-8. 선택구역 */
+.wish-table th:nth-child(8),
+td:nth-child(8) {
+  width: 13%;
+  text-align: center;
+}
+.sel-box {
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+}

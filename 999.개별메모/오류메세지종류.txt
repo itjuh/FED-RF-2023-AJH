@@ -115,3 +115,7 @@ Cannot update a component (`Searching`) while rendering a different component (`
 Uncaught DOMException: Failed to execute 'pushState' on 'History': () => sts.current ? sts.current = 0 : sts.current = 1 could not be cloned.
 오류원인 : state객체의 크기가 640000자 이상이 될 경우 생기는 오류가
 해결방안 : 전달값을 localStorage나 sessionStorage로 전달해야한다.
+
+Warning: validateDOMNesting(...): Text nodes cannot appear as a child of <tr>
+오류원인 : 리액트에서 thead에 tr없이 string을 배치하면 생김
+해결방안 : tr > td colspan='num' 으로 table 구성요소를 맞춰주어야한다.
