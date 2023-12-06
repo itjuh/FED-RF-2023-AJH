@@ -10,7 +10,6 @@
   margin-left: auto;
   max-width: 1024px;
   min-height: 600px;
-  outline: 1px solid #eee;
   box-shadow: 0px 0px 3px rgb(0, 0, 0, 0.15);
   font-family: "KOFIHDrLEEJWTTF-L";
   color: rgb(70, 70, 70);
@@ -57,7 +56,6 @@
 /* 장바구니 테이블 */
 .wish-table {
   width: 100%;
-  border: 1px solid #00000021;
 }
 /* 장바구니 공통 */
 .wish-table td,
@@ -74,20 +72,52 @@ th {
 /* 장바구니 상단부 */
 .wish-table thead td {
   font-family: "KOFIHDrLEEJWTTF-B";
-  text-indent: 2rem;
   font-size: 1.3rem;
   line-height: 2.5;
   text-align: left;
+}
+/* 장바구니 분류 */
+.wish-table th{
+  background-color: #e2e2e2;
+  line-height: 2;
 }
 /* 2-1. 체크박스 영역 */
 .wish-table th:nth-child(1),
 td:nth-child(1) {
   width: 5%;
 }
+/* 체크박스 라벨 */
+.wish-table .wish-chk{
+  display: block;
+  margin: 0 auto;
+  width: 20px;
+  height: 20px;
+  border-radius: 5px;
+  line-height: 1.4;
+  box-shadow: 0px 0px 3px lightseagreen;
+  color:#ccc;
+}
+/* 체크시 */
+.wish-table input:checked + .wish-chk{
+  box-shadow: none;
+  background-color: lightseagreen;
+  color: #fff;
+}
+/* 상단 타이틀 전체체크 구역 */
+.wish-table thead .wish-chk{
+  display: inline-block;
+  text-align: center;
+  font-size: 1rem;
+  margin-right: 10px;
+  margin-left: 10px;
+}
 /* 2-2. 이미지 */
 .wish-table th:nth-child(2),
 td:nth-child(2) {
   width: 15%;
+}
+.wish-table img{
+  max-width: 100px;
 }
 /* 2-3. 제품명 */
 .wish-table th:nth-child(3),
@@ -100,40 +130,72 @@ td:nth-child(3) {
 .wish-table td:nth-child(3) {
   text-align: left;
 }
-/* 2-4. 수량 */
-.wish-table th:nth-child(4),
-td:nth-child(4) {
-  width: 10%;
-}
-/* 2-5. 단가 */
+/* 2-4. 단가 */
 .wish-table th:nth-child(5),
 td:nth-child(5) {
   width: 10%;
 }
+/* 2-5. 수량 */
+.wish-table th:nth-child(4),
+td:nth-child(4) {
+  width: 10%;
+}
+/* 수량조절 */
 .quant-box {
   justify-content: center;
-  gap: 3px;
+  gap: 10px;
 }
-/* 2-6. 할인 */
+/* 수량 증감버튼 */
+.quant-btn {
+  border-radius: 3px;
+  outline: 1px solid #ccc;
+  cursor: pointer;
+}
+/* 숫자 자리 */
+.quant {
+  width: 25px;
+}
+/* 2-6. 합계 */
 .wish-table th:nth-child(6),
 td:nth-child(6) {
   width: 10%;
   text-align: center;
 }
-/* 2-7. 배송비 */
+/* 2-7. 선택구역 */
 .wish-table th:nth-child(7),
 td:nth-child(7) {
   width: 10%;
   text-align: center;
 }
-/* 2-8. 선택구역 */
-.wish-table th:nth-child(8),
-td:nth-child(8) {
-  width: 13%;
-  text-align: center;
-}
 .sel-box {
   flex-direction: column;
   align-items: center;
-  gap: 3px;
+  gap: 10px;
+}
+.sel-box button {
+  width: 60px;
+  height: 20px;
+  border-radius: 3px;
+  font-family: "KOFIHDrLEEJWTTF-L";
+  font-size: 1.2rem;
+  cursor: pointer;
+  color: #fff;
+}
+/* order버튼 */
+.sel-box button:nth-child(1){
+  background-color: rgb(105, 190, 142);
+}
+/* delete버튼 */
+.sel-box button:nth-child(2){
+  background-color: rgb(253, 170, 140);
+}
+/* 합계구역 */
+tfoot td{
+  font-family: "KOFIHDrLEEJWTTF-L"; 
+  line-height: 2;
+}
+/* 합계구역 합산금액 */
+tfoot i{
+  font-family: "KOFIHDrLEEJWTTF-B";
+  color: lightseagreen;
 }
