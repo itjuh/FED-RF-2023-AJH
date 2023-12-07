@@ -76,23 +76,24 @@ export function FindMember() {
       } ///////// id 유효성 /////
     }
     if (txt == "id") {
-      nameChk(inName[0]);
-      mailChk(inEmail[0]);
+      console.log(inName,inEmail);
+      nameChk(inName);
+      mailChk(inEmail);
       let data = localStorage.getItem("member");
       // id 찾기
       data = JSON.parse(data);
       // 데이터 일치 조회
       sameData = data.find((v) => {
-        if (v.unm == inName[0]) {
-          if (v.eml == inEmail[0]) {
+        if (v.unm == inName) {
+          if (v.eml == inEmail) {
             return true;
           }
         }
       });
       console.log(sameData !== undefined ? sameData.uid : sameData);
     } else if (txt == "pw") {
-      nameChk(inName[1]);
-      mailChk(inEmail[1]);
+      nameChk(inName);
+      mailChk(inEmail);
       idChk(inId);
       let inId = $(".find-id").val();
       if (inId.trim() == null) inId = "";
