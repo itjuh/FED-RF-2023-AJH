@@ -5,6 +5,10 @@ import $ from "jquery";
 export function Wishlist() {
   // 로컬 데이터 읽어오기
   let data = JSON.parse(localStorage.getItem("wish"));
+  if(!data){
+    localStorage.setItem('wish',JSON.parse([]));
+    data = JSON.parse(localStorage.getItem("wish"));
+  }
 
   // 총 합계 변수
   let subFee = 0;
