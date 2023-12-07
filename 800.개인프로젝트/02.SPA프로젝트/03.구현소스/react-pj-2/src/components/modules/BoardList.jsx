@@ -1,7 +1,7 @@
 // LEOPOLD Keyboard List만들기 컴포넌트
 // 키보드 제품 데이터
 import { boardData, filterBoardData } from "../data/boardData";
-import { memo, useState } from "react";
+import { memo } from "react";
 
 // 제이쿼리 가져오기
 import $ from "jquery";
@@ -19,7 +19,7 @@ export const BoardList = memo(({ data }) =>{
     nav("/subboard", { state: { name: "keyboard" + seq } });
   }
   // 위시 상태 관리 변수
-  // const [wishSts, setWishSts] = useState(0);
+
   // 위시 상태 업데이트 변수
   const inputWish = (e) => {
     // 1. 상품 불러오기
@@ -57,8 +57,6 @@ export const BoardList = memo(({ data }) =>{
       // 다시 문자 형 변환하여 넣기
       localStorage.setItem('wish',JSON.stringify(localData));
     }
-    // 3. 위시상태 바꾸기
-    // setWishSts(1);
   }; /////// inputWish 함수 ///////////
 
   // 리스트 만들기 함수

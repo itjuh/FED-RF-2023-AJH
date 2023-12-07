@@ -303,8 +303,7 @@ export function Member() {
                 type="text"
                 maxLength="50"
                 placeholder="Please enter your Email"
-                value={email}
-                onChange={changeEmail}
+                
               />
               {
                 // 에러일 경우 메세지 출력

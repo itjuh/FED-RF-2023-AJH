@@ -1,6 +1,6 @@
 // 상단영역 컴포넌트
 // 폰트어썸 아이콘
-import { Fragment, memo, useEffect } from "react";
+import { Fragment, memo, useEffect, useLayoutEffect } from "react";
 import { gnbData } from "../data/gnbData";
 import { Logo } from "../modules/Logo";
 import { TopTitle } from "../modules/TopTitle";
@@ -28,7 +28,7 @@ export const TopArea = memo(({ sts, tit }) => {
     linkData = link.find((v) => {
       if (v["txt"] == txt) return true;
     });
-    console.log(linkData);
+    // console.log(linkData);
     // 페이지 이동
     nav(linkData.link);
     // 타이틀 변경
@@ -38,27 +38,40 @@ export const TopArea = memo(({ sts, tit }) => {
   // 클래스 생성 함수
   const addOn = function (e) {
     $(e.currentTarget).toggleClass("on");
-  };
+  }; ///////// addOn ///////////
+  // 로그아웃 함수
+  const logOutFn = function (){
+    sessionStorage.removeItem('loginMem');
+  }; //////// logOutFn /////////////
   // gnb메뉴 생성 함수
   const makeGnb = () => {
+    console.log('makeGnb');
     return gnbData.map((v, i) => (
       <Fragment key={i}>
         {/* 검색버튼 */}
         {v.txt === "SEARCH" && (
-          <a href="#" title={v.txt} onClick={(e)=>addOn(e)}>
+          <a href="#" title={v.txt} onClick={(e) => addOn(e)} className="gnb-icon">
             <span className="ir">{v.txt}</span>
             <input type="text" className="search-area" />
             {v.com}
           </a>
         )}
+        {/* 로그아웃 */}
+        {v.txt === "LOGOUT" && (
+          <a href="#" title={v.txt} style={{color: "cornflowerblue"}} className="gnb-icon" onClick={logOutFn}>
+            <span className="ir">{v.txt}</span>
+            {v.com}
+          </a>
+        )}
         {/* 그외 아이콘 */}
-        {v.txt !== "SEARCH" && (
+        {v.txt !== "SEARCH" && v.txt !== "LOGOUT" && (
           <a
             href="#"
             title={v.txt}
             onClick={(e) => {
               goNav(v.txt, e);
             }}
+            className="gnb-icon"
           >
             <span className="ir">{v.txt}</span>
             {v.com}
@@ -67,6 +80,25 @@ export const TopArea = memo(({ sts, tit }) => {
       </Fragment>
     ));
   };
+  //useLayoutEffect
+  useLayoutEffect(() => {
+    const icons = $(".gnb-icon");
+    if (sessionStorage.getItem("loginMem") == null) {
+      // 비로그인 상태
+      $('.welcome-tit').text('');
+      icons.eq(1).show();
+      icons.eq(2).hide();
+    } else {
+      let memName = JSON.parse(sessionStorage.getItem("loginMem"));
+      // 로그인 상태
+      $('.welcome-tit').css({
+        fontFamily: "KOFIHDrLEEJWTTF-L",
+        fontSize:'.8rem',
+      }).text('Welcome🎉'+memName+'😊');
+      icons.eq(2).show()
+      icons.eq(1).hide();
+    }
+  });
   return (
     <>
       {/* 1. 상단영역 */}
@@ -79,7 +111,10 @@ export const TopArea = memo(({ sts, tit }) => {
             <div className="top-title">{sts.current == 0 && <TopTitle tit={tit} />}</div>
           </div>
           {/* 1-3. GNB메뉴 */}
-          <div className="part-box col-3 flex-box gnb-area">{makeGnb()}</div>
+          <div className="part-box col-3 flex-box gnb-zone">
+            <div className='welcome-tit'></div>
+            <div className='gnb-area flex-box'>{makeGnb()}</div>
+          </div>
         </header>
       </div>
     </>

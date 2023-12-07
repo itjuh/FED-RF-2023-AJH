@@ -40,6 +40,11 @@ export const link = [
         link:'/find',
     },
     {
+        txt:"LOGOUT",
+        tit:'Keyboard List',
+        link:'/',
+    },
+    {
         txt:"main",
         tit:"Keyboard List",
         link:"/",

@@ -5,6 +5,8 @@ export const gnbData = [
         com:<GlassCon />},
     {txt : 'LOGIN',
         com:<UserCon />},
+    {txt : 'LOGOUT',
+        com:<UserCon />},
     {txt : 'WISHLIST',
         com:<CartCon />},
 ]
