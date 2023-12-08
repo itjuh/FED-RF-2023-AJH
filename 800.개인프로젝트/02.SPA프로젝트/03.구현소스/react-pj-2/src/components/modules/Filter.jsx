@@ -45,7 +45,7 @@ export function Filter({chgOptFn}) {
 
   return (
     <>
-      <div className="progress-area col-6">
+      <div className="progress-area col-6 col-s-14">
         <ul className="flex-box">
           {optionData[0].top.map((v, i) => (
             <li key={i} className={i == 0 ? "on" : ""} onClick={(e)=>{chkTop(e); addOn(e)}}>

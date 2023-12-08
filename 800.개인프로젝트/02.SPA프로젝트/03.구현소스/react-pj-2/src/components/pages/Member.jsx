@@ -228,9 +228,9 @@ export function Member() {
   }; ///////// onSubmit 함수 //////////////
 
   return (
-    <main className="main in-box row-12">
+    <main className="main in-box row-12 row-s-13">
       {/* 1. 회원가입 박스 */}
-      <div className="part-box col-16 row-12 ">
+      <div className="part-box col-16 row-12 row-s-13">
         <div className="member-area">
           {/* 1-1. 상단 타이틀 */}
           <h2>

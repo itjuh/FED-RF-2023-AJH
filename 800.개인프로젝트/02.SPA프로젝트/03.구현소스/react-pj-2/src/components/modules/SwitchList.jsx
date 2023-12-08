@@ -11,7 +11,7 @@ export function SwitchList() {
   }
   return (
     
-      <dl key={'swlist'} className="switch-info flex-box row-10">
+      <dl key={'swlist'} className="switch-info flex-box row-10 row-s-12">
         {
         switchData.map((v, i) => (
           <div key={i} className="switch-box" onClick={()=>goNav(v.swname)}>

@@ -228,7 +228,7 @@ export const WishTable = memo(({ data, chgFn }) => {
                       </td>
                       {/* 2-2. 이미지 */}
                       <td>
-                        <img src={"/images/image_prod2/" + v.src + ".png"} alt={v.src + "이미지"} />
+                        <img src={"./images/image_prod2/" + v.src + ".png"} alt={v.src + "이미지"} />
                       </td>
                       {/* 2-3. 제품명 */}
                       <td>

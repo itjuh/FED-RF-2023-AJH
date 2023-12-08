@@ -4,9 +4,9 @@ import '../../css/contact.css';
 
 export function CorpInfo() {
   return (
-    <main className="main in-box row-12">
+    <main className="main in-box row-12 row-s-13">
       {/* 1. 회사정보 박스 */}
-      <div className="part-box col-16 row-12 ">
+      <div className="part-box col-16 row-12 row-s-13">
         <div className="contact-area">
           {/* 1-1. 상단 타이틀 */}
           <h2>

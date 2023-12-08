@@ -206,3 +206,17 @@ input[type="checkbox"]:checked + .color-rd {
 .switch-cl {
   background-image: url(../../public/images/switch_prod/nonclick_clear/01.png);
 }
+
+/************ 미디어쿼리구역 **************/
+/* 750px 이하 미디어쿼리 시작 */
+@media screen and (max-width: 750px) {
+  /* 세부3 스위치 옵션 */
+  .option-switch-area {
+    justify-content: center;
+    gap: 2vw;
+  }
+  .check-switch {
+    height: 4vh;
+    aspect-ratio: 1/1;
+  }
+  } /* 750px 이하 미디어쿼리 종료*/

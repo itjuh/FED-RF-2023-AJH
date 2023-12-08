@@ -47,8 +47,6 @@ export function moveImgInfo(tg) {
       xpos += v.width;
       // 이미지 별 이동값 저장(네비용)
       imgWidSize[i] = xpos - limitW <= 0 ? 0 : xpos - limitW;
-      // console.log(pos);
-
       if (v.height > v.width) {
         // 가로영역 이동한계값, 세로 한계값, 움직일 요소
         pos[seq] = [xpos - limitW, v.height - limitH, infoImg.eq(i)];
@@ -58,8 +56,7 @@ export function moveImgInfo(tg) {
     });
     // 전체 이동거리 업데이트
     all = xpos - limitW;
-    // console.log("imgWidSize", imgWidSize, "pos", pos, all);
-    // 위치이동 포인트 설정(이미지 가로세로가 다르면 세로스크롤)
+    // 위치이동 포인트 설정(이미지 가로길이보다 세로길이가 크면 세로스크롤)
   }; //////// 사이즈 저장 함수 ///////////
 
   // 최초 이미지 크기 저장
@@ -81,9 +78,8 @@ export function moveImgInfo(tg) {
 
   // 가로스크롤 함수
   function horizonScroll(target, dir) {
-    // console.log(target,dir);
+    // target - 이동대상 dif - 방향
     x += MOVE * dir;
-
     if (dir === -1) {
       //아래방향 스크롤
       if (x > -target[0]) y = 0; //y고정 x이동
@@ -100,7 +96,6 @@ export function moveImgInfo(tg) {
         verticalScroll(target, dir);
       }
     }
-    // console.log(x, target[2].position().top);
     return x;
   } ////////// 가로스크롤 함수 //////////////
 
@@ -117,7 +112,6 @@ export function moveImgInfo(tg) {
   // 기능 : 가로세로 스크롤을 조합하여 박스를 이동시킨다.
   // 파라미터 (이미지 전체박스)
   const infoScroll = (delta,x)=>{
-    // console.log(x,delta);
     // 휠 이벤트 시 네비설정
     for(let i=0; i < imgWidSize.length; i++){
       if(x <= -imgWidSize[i]){
@@ -128,7 +122,6 @@ export function moveImgInfo(tg) {
     else if (x >= -pos[0][0]) x = horizonScroll(pos[0], delta);
     else if (x >= -pos[1][0]) x = horizonScroll(pos[1], delta);
     else if (x >= 0 && delta <= 0) x = 0;
-    // else if (x >= -pos[2][0]) x = horizonScroll(pos[2], delta);
     if (x <= -pos[1][0] && delta < 0) x = -pos[1][0];
     infoBox.css("left", x + "px");
   }; //////// infoScroll 함수 ///////////////

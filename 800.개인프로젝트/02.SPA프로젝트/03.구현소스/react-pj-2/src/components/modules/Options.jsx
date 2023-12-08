@@ -41,7 +41,7 @@ export function Options({ opt, chgOptFn, clickFn }) {
   // 배열 옵션 리스트 함수
   const makeList = (data) => {
     return (
-      <div className={"progress-sub-area col-5 flex-box " + data.label + "-area"}>
+      <div className={"progress-sub-area col-5 flex-box col-s-14 " + data.label + "-area"}>
         {data.inputList.map((v, i) => (
           <Fragment key={i}>
             {/* 옵션 선택 구역 */}

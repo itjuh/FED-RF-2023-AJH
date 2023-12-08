@@ -180,3 +180,23 @@
   cursor: pointer;
   box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.15);
 }
+
+/************ 미디어쿼리구역 **************/
+/* 750px 이하 미디어쿼리 시작 */
+@media screen and (max-width: 750px) {
+/* 1-2. 타이틀영역 */
+.top-title {
+  border: none;
+  box-shadow: none;
+  display: none;
+}
+/* 1-3. GNB메뉴 */
+.gnb-area {
+  gap: 2vw;
+  justify-content: space-around;
+}
+/* 위시리스트 버튼 */
+.add-wish {
+  bottom: 0px;
+}
+} /* 750px 이하 미디어쿼리 종료*/

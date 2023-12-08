@@ -19,7 +19,7 @@
   /* 처음에 안보임 */
   transform: translateY(150%);
   /* height: 0; */
-  transition: .3s linear;
+  transition: 0.3s linear;
 }
 .gnb-menu-area.on {
   transform: translateY(0);
@@ -95,3 +95,27 @@
   position: relative;
   top: 70%;
 }
+/************** 최대사이즈 750px 이하 시작 **************/
+@media screen and (max-width: 750px) {
+  /* gnb 메뉴 속박스 ul */
+  .gnb-menu-box {
+    padding: 2rem 0.5rem;
+    margin-top: 20px;
+  }
+  /* 키보드 구역 */
+  .keyboard-menu {
+    display: none;
+  }
+  /* gnb 메뉴 속박스 li */
+  .gnb-menu-box li:hover {
+    color: #000;
+  }
+  /* gnb메뉴 */
+  .gnb-menu-area {
+    top: 20%;
+  }
+.gnb-menu-area.on {
+  height: auto;
+}
+}
+/************** 최대사이즈 750px 이하 끝**************/

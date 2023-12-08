@@ -48,9 +48,9 @@ export const FooterArea = memo((props) => {
       <div id="footer">
         <footer className="footer in-box row-2">
           <div className="basic-footer flex-box">
-            <div className="part-box col-6"></div>
+            <div className="part-box col-6 col-s-0"></div>
             {/* 3-1. 하단메뉴 아이콘 */}
-            <div className="part-box col-4 menu-area">
+            <div className="part-box col-4 menu-area col-s-6">
               <a className="flex-box" href="#" title="메뉴열기" onClick={() => chgMenuSts(1)}>
                 <FontAwesomeIcon icon={faChevronUp} className="menu-icon" />
                 <span className="ir">위쪽방향화살표</span>

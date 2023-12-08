@@ -70,7 +70,7 @@ export const BoardList = memo(({ data }) =>{
             className="prod-item"
             data-seq={v}
             onClick={() => goNav(v)}
-            style={{ backgroundImage: "url(../images/image_prod2/keyboard" + v + ".png)" }}
+            style={{ backgroundImage: "url(./images/image_prod2/keyboard" + v + ".png)" }}
           >
             {/* 더보기 */}
             <div className="prod-detail-view">view</div>

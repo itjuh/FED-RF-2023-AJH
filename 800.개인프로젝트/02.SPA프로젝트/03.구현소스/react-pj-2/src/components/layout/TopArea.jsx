@@ -103,17 +103,17 @@ export const TopArea = memo(({ sts, tit }) => {
     <>
       {/* 1. 상단영역 */}
       <div id="header">
-        <header className="header in-box row-2 flex-box">
+        <header className="header in-box row-2 flex-box row-s-1">
           {/* 1-1. 로고영역 */}
           <Logo />
           {/* 1-2. 타이틀영역 */}
-          <div className="part-box col-6">
+          <div className="part-box col-6 col-s-1">
             <div className="top-title">{sts.current == 0 && <TopTitle tit={tit} />}</div>
           </div>
           {/* 1-3. GNB메뉴 */}
-          <div className="part-box col-3 flex-box gnb-zone">
+          <div className="part-box col-3 flex-box gnb-zone col-s-7">
             <div className='welcome-tit'></div>
-            <div className='gnb-area flex-box'>{makeGnb()}</div>
+            <div className='gnb-area flex-box col-s-12'>{makeGnb()}</div>
           </div>
         </header>
       </div>

@@ -106,9 +106,9 @@ export function Login() {
     } //////// if-else local exist //////////
   }; ///////// onSubmit 함수 //////////////
   return (
-    <main className="main in-box row-12">
+    <main className="main in-box row-12 row-s-13">
       {/* 1. 로그인 박스 */}
-      <div className="part-box col-16 row-12 ">
+      <div className="part-box col-16 row-12 row-s-13">
         <div className="login-area">
           {/* 1-1. 상단 타이틀 */}
           <h2>
@@ -135,14 +135,10 @@ export function Login() {
               </li>
               <li>
                 {/* 1-4. 아이디 분실 */}
-                <Link to="/find"> Did you forget id?</Link>
+                <Link to="/find"> Did you forget id/password?</Link>
               </li>
               <li>
-                {/* 1-5. 비밀번호 분실 */}
-                <Link to="/find"> Did you forget password?</Link>
-              </li>
-              <li>
-                {/* 1-6. 회원가입 */}
+                {/* 1-5. 회원가입 */}
                 <Link to="/member"> Don't have an account?</Link>
               </li>
               <li>

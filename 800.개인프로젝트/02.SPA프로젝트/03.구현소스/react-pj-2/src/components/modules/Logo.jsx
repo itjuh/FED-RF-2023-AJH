@@ -24,7 +24,7 @@ export function Logo() {
   } ////// 메인이동함수 //////////
   return (
     <>
-      <div className="part-box col-3 flex-box">
+      <div className="part-box col-3 flex-box row-s-1 col-s-8">
         <h1 className="header__logo" onClick={(e) => goMain()}>
           <img src="./images/logo_bk1.png" alt="레오폴드 로고" />
           <span className="ir">레오폴드 로고</span>

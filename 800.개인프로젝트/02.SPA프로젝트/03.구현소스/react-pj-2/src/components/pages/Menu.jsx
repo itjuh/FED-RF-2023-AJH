@@ -76,7 +76,7 @@ export function Menu(props) {
         </div>
       </div>
       {/* 2-2. 키보드 메뉴 영역 */}
-      <div className="part-box col-16 row-4 menu-footer">
+      <div className="part-box col-16 row-4 menu-footer row-s-0 col-s-0">
         <div className="keyboard-menu">
           {/* 키보드 구역 */}
           <div className="wrap">

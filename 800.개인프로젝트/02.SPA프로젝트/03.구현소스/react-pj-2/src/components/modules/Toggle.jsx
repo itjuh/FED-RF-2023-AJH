@@ -98,7 +98,7 @@ export function Toggle() {
   }); /////////useEffect구역///////////
 
   return (
-    <div className="part-box col-6 row-2 flex-box toggle-area">
+    <div className="part-box col-6 row-2 flex-box toggle-area col-s-10">
       <aside
         className="toggle-btn-box"
         onClick={(e) => {

@@ -131,7 +131,7 @@ export function Main() {
 
   return (
     <>
-      <main className="main in-box row-12">
+      <main className="main in-box row-12 row-s-13">
         {/* 2-1. 제품 정렬옵션 */}
         <div className="part-box col-16 row-1">
           <Filter chgOptFn={chgOpt} />
