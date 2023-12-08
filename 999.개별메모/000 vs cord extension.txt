@@ -1,0 +1,27 @@
+익스텐션
+
+auto rename tag 태그변경 시 자동업데이트
+auto close tag 태그 자동닫기
+
+material icon theme
+
+prettier - code formatter
+esLint 문법교정
+
+code spell checker 파일이름
+
+es7+ react/redux
+
+    nfn => 자동으로 arrow function 
+    rfc => 자동으로 리액트 import / return function 
+    rfce -> function export default
+
+Error Lens
+
+Console Nunja
+ => 서버가 켜져있으면 console.log 옆에 띄워줌/ 재 호출도 보여줌
+
+
+clg ???????????? 
+
+

@@ -10,7 +10,7 @@ let autoI;
 // 잠금설정
 let psts = 0; // 1잠금 0해제
 
-// .25초마다 글자를 입력하는 인터발 함수
+// 초마다 글자를 입력하는 인터발 함수
 function insertText(data, area) {
   if (psts === 1) return true; //돌아가!
   psts = 1; //잠금!
