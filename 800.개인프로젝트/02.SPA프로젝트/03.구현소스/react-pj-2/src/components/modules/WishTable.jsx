@@ -1,5 +1,5 @@
 import { memo } from "react";
-import $, { each } from "jquery";
+import $ from "jquery";
 
 // LEOPOLD WishList Table만들기 컴포넌트
 export const WishTable = memo(({ data, chgFn }) => {

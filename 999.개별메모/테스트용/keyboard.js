@@ -101,7 +101,7 @@ const keyBox = dFn.qs('.key-box');
 
 let hcode = '';
 
-keyData.forEach(ele=>{
+keyData22.forEach(ele=>{
     hcode += `
     <div class="key ${ele[0]}">
         <!-- 키 윗면 -->

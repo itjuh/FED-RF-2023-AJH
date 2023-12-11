@@ -14,6 +14,9 @@ export function ItemDetail({ goods,cat }) {
   
   // 카트 상태관리 변수
   const [cartSts, setCartSts] = useState(0);
+  // 변환값 변수
+  let [transData, setTransData] = useState(null);
+
   // 카트 상태 업데이트 변수
   const useCart = () => {
     
@@ -26,17 +29,18 @@ export function ItemDetail({ goods,cat }) {
    // num항목 추가 : 값은 #sum의 value값
    selData.num = $('#sum').val();
    console.log('카트호출!', selData);
+    let localData;
     // 2. 로컬스토리지에 담기
     if(!localStorage.getItem('cart')){
       // 데이터 없는 경우
       // selData가 객체형이므로 배열에 넣어줌
-      let arr = [];
-      arr.push(selData);
-      localStorage.setItem('cart',JSON.stringify(arr));
+      localData = [];
+      localData.push(selData);
+      localStorage.setItem('cart',JSON.stringify(localData));
     }
     else{
       // 기존 카트 있는 경우
-      let localData = localStorage.getItem('cart');
+      localData = localStorage.getItem('cart');
       // 객체변환
       localData = JSON.parse(localData);
       // 기존 데이터에서 ginfo 일치하면 num 더하기
@@ -46,7 +50,8 @@ export function ItemDetail({ goods,cat }) {
       // 다시 문자 형 변환하여 넣기
       localStorage.setItem('cart',JSON.stringify(localData));
     }
-
+    // localData 변환값 변수에 담기:CartList 컴포넌트 전달용
+    setTransData(localData);
     setCartSts(1);
   }; //////// useCart 함수 ////////////
 
@@ -207,7 +212,7 @@ export function ItemDetail({ goods,cat }) {
       {/* 카트 리스트 */}
       {
         cartSts &&
-        <CartList />
+        <CartList data={transData}/>
       }
     </>
   );

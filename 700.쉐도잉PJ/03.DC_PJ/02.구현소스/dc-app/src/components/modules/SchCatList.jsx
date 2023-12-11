@@ -23,7 +23,7 @@ export function SchCatList({dt,total}) {
               {/* 라우터 데이터 전달은 state속성에 객체로 보낸다 */}
               <Link to="/detail" state={{ cname: v.cname, cdesc: v.cdesc, facts: v.facts }}>
                 {/* 캐릭터 이미지 영역 */}
-                <img src={v.tmsrc} alt={v.cname} />
+                <img src={process.env.PUBLIC_URL+v.tmsrc} alt={v.cname} />
                 {/* 캐릭터 타이틀 영역 */}
                 <h3>{v.cname}</h3>
               </Link>

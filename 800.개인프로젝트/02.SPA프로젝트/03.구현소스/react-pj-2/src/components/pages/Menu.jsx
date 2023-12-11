@@ -1,7 +1,8 @@
 import "../../css/menu.css";
-import { insertText, resetTyping, typingKey } from "../func/typing";
+import { insertText, resetAutoI } from "../func/typing";
 import $ from "jquery";
-// 데이터 가져오기
+// 키보드 데이터
+import { keyData } from "../data/keyData.js";
 import { menuData } from "../data/menuData";
 import { MakeKey } from "../modules/MakeKey";
 import { useNavigate } from "react-router-dom";
@@ -30,24 +31,16 @@ export function Menu(props) {
     props.chgFn(0);
   };
 
-  let sts;
   const keyinput = (e) => {
-    // 키보드 타이핑 초기화
-    resetTyping();
+    resetAutoI();
     // 해당 타이핑 영역
     let target = $(e.currentTarget).find(".typing-area");
-    let seq = $(e.currentTarget).attr("data-seq");
-    // $(e.currentTarget).find(".typing-area").text("");
-    clearTimeout(sts);
-    // 타임아웃 함수
-    sts = setTimeout(() => {
-      // 글자입력 함수
-      insertText(menuData[seq], target);
-    }, 40);
-    // 키보드 타이핑 함수 호출
-    typingKey(menuData[seq]);
+    // let txt = $(e.currentTarget).attr("data-seq");
+    let txt = $(e.currentTarget).text();
+    insertText(txt,target);
   };
   const clear = (e) => {
+    resetAutoI();
     // 전체박스 타이핑영역 초기화
     $(".typing-area").text("");
     $(e.currentTarget).find(".typing-area").text("");
@@ -81,7 +74,7 @@ export function Menu(props) {
           {/* 키보드 구역 */}
           <div className="wrap">
             <div className="key-box">
-              <MakeKey />
+              <MakeKey keyData={keyData}/>
             </div>
           </div>
         </div>

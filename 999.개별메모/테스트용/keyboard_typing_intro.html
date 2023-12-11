@@ -126,6 +126,12 @@
         transition: rotateX 0.2s ease-in;
         /* 위에서보는거 */
         /* transform: rotateX(360deg) rotateZ(0deg); */
+        animation: ani 3s ease-in-out infinite alternate;
+      }
+      @keyframes ani {
+        100%{
+          transform: translate(-50%, -100%) rotateX(40deg) rotateY(20deg) rotateZ(0deg);
+        }
       }
       /* 단일키 */
       .key {

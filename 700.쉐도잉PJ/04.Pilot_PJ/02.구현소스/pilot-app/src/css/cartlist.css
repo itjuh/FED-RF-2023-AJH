@@ -4,7 +4,8 @@
 #cartlist{
     position: fixed;
     top: 0px;
-    right: 0px;
+    /* 처음에 안보임 */
+    right: -61%;
     width: 60vw;
     height: 100vh;
     background-color: rgba(255, 255, 255, 0.8);
@@ -51,4 +52,42 @@
 }
 #cartlist td img{
     width: 50px;
+}
+/* 카트박스 */
+#mycart{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9999999;
+    cursor: pointer;
+    display: none;
+}
+/* 카트박스 이미지 */
+#mycart img{
+    width: 370px;
+}
+/* 카트박스 사이드 이동 */
+#mycart.on{
+    position: fixed;
+    top: 20%;
+    left: calc(100% - 70px);
+    transform: translate(0, -50%);
+    transition: .4s ease-in 2s;
+    background-color: cadetblue;
+    box-shadow: 0px 0px 3px #00000080;
+    border-radius: 10px 0 0 10px;
+    padding: 10px;
+}
+.cntBx{
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+    color: cyan;
+    text-shadow: 1px 1px 1px #000000;
+}
+/* 사이드 이동 크기 */
+#mycart.on img{
+    width: 50px;
+    transition: .4s ease-in 2s;
 }

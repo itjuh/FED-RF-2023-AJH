@@ -1,0 +1,12 @@
+[ 이미지 경로 변경 ]
+
+- 목적 : 서버에 배포 시 혹은 하위경로로 설정 한 경우 이미지가 깨지는 것을 방지하기 위한 방법
+
+1. 모든 이미지 데이터 경로를 절대상대 경로로 변경하기
+-> ./images >>>>> /images
+
+2. 이미지를 세팅하는 컴포넌트의 src생성 코드에 
+process.env.PUBLIC_URL 을 앞에 붙여준다
+-> <img src={v.src} alt={} /> >>>> <img src={process.env.PUBLIC_URL + v.src} alt={} />
+
+3. 개발에서 운영할 때는 homepage속성 값을 비우고 배포시에만 서버 URL을 넣어준다.
