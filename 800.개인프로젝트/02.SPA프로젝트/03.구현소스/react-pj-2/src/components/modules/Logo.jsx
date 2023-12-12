@@ -17,19 +17,17 @@ export function Logo() {
       initToggle();
     } else {
       // 페이지 이동
-      goNav('/');
+      goNav("/");
       // 타이틀 변경
-      myCon.chgTit('Keyboard List');
+      myCon.chgTit("Keyboard List");
     }
   } ////// 메인이동함수 //////////
   return (
     <>
-      <div className="part-box col-3 flex-box row-s-1 col-s-8">
-        <h1 className="header__logo" onClick={(e) => goMain()}>
-          <img src="./images/logo_bk1.png" alt="레오폴드 로고" />
-          <span className="ir">레오폴드 로고</span>
-        </h1>
-      </div>
+      <h1 className="header__logo" onClick={(e) => goMain()}>
+        <img src="./images/logo_bk1.png" alt="레오폴드 로고" />
+        <span className="ir">레오폴드 로고</span>
+      </h1>
     </>
   );
 } ///////// Logo컴포넌트 ///////////////////

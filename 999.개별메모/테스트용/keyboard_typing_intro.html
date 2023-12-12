@@ -126,9 +126,12 @@
         transition: rotateX 0.2s ease-in;
         /* 위에서보는거 */
         /* transform: rotateX(360deg) rotateZ(0deg); */
-        animation: ani 3s ease-in-out infinite alternate;
+        animation: ani 2s ease-in-out infinite alternate;
       }
       @keyframes ani {
+        50%{
+          transform: translate(-50%, -100%) rotateX(10deg) rotateY(0deg) rotateZ(15deg);
+        }
         100%{
           transform: translate(-50%, -100%) rotateX(40deg) rotateY(20deg) rotateZ(0deg);
         }
@@ -293,12 +296,12 @@
   </head>
   <body>
     <!-- 메세지 구역 -->
-    <div class="message-area">
+    <!-- <div class="message-area">
       <section class="message-box">
         <span>LEOPOLD</span>
         <div class="text-cursor"></div>
       </section>
-    </div>
+    </div> -->
     <!-- 키보드 구역 -->
     <div class="wrap">
       <div class="key-box"></div>

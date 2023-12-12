@@ -1,10 +1,10 @@
 // DC PJ 로그인 page 컴포넌트
 // 디자인은 회원가입과 동일
-import { useState } from "react";
+import { useState, useContext } from "react";
 import "../../css/member.css";
 // 로컬스 데이터 초기화 함수
 import { initData } from "../func/mem_fn";
-
+import { dcCon } from "../modules/dcContext";
 import $ from "jquery";
 
 export function Login() {
@@ -22,11 +22,15 @@ export function Login() {
   // [ 아이디 관련 메세지 프리셋 ]
   const msgId = ["This is a required entry", "ID does not exist"];
   // [ 비밀번호 관련 메세지 프리셋 ]
-  const msgPwd = ['This is a required entry',"Password doesn't match"];
+  const msgPwd = ["This is a required entry", "Password doesn't match"];
   // [3] 에러메세지 상태관리 변수 /////////////////////
   const [idMsg, setIdMsg] = useState(msgId[0]);
   const [pwdMsg, setPwdMsg] = useState(msgPwd[0]);
   //[ 유효성 검사 함수 ] //////////////////////////////
+
+  // 컨텍스트 API 사기하기
+  const myCon = useContext(dcCon);
+
   // 1. ID 유효성 검사
   const changeUserId = (e) => {
     // 1-1.빈값 체크
@@ -76,40 +80,78 @@ export function Login() {
       let memData = localStorage.getItem("mem-data");
       // 로컬스 데이터 객체화
       memData = JSON.parse(memData);
-      memData.forEach(v=>{
-        // 같은 아이디가 있는가?
-        if(v['uid']===userId){
-            console.log('아이디 일치');
-            // 아이디 에러상태 업데이트
-            setUserIdError(false);
-            isNot = false;
-            // 비밀번호 일치여부
-            if(v['pwd']===pwd){
-                console.log('비밀번호 일치');
-                // 패스워드 에러상태 업데이트
-                setPwdError(false);
-                isNot = false;
-            }else{
-                console.log('비밀번호 불일치');
-                // 메세지 업데이트
-                setPwdMsg(msgPwd[1]);
-                // 패스워드 에러상태 업데이트
-                setPwdError(true);
-            }
+      let findData = memData.find((v) => {
+        if (v["uid"] === userId) return true;
+      }); ////// find ////////////
+      // console.log(findData);
+      // 결과 있으면 true 없으면 undefined false처리
+      if (findData) {
+        setUserIdError(false);
+        // 비밀번호 일치여부
+        if (findData["pwd"] === pwd) {
+          // console.log("비밀번호 일치");
+          // 패스워드 에러상태 업데이트
+          setPwdError(false);
+          // 회원정보 로컬스에 세팅
+          localStorage.setItem("minfo", JSON.stringify(findData));
+          // 메인으로 이동
+          $(".sbtn").text("로그인 되었습니다.");
+          // 컨텍스트 로그인 상태값 변경
+          myCon.setLogSts(localStorage.getItem("minfo"));
+          // 컨텍스트 로그인 환영 메세지 변경
+          myCon.setLogMsg('Welcome '+findData.unm);
+          // 라우터 이동
+          setTimeout(()=>myCon.chgPg('/',{}),1000);
+        } else {
+          console.log("비밀번호 불일치");
+          // 메세지 업데이트
+          setPwdMsg(msgPwd[1]);
+          // 패스워드 에러상태 업데이트
+          setPwdError(true);
         }
-      }); ///////// forEach ////////
-      if(isNot){
-        console.log('아이디 불일치');
+      } else {
         // 아이디가 다를 때 메세지 보이기
         setIdMsg(msgId[1]);
         // 아이디 에러상태 업데이트
         setUserIdError(true);
-      } ////// if ///////
+      } /////// find if-else //////////
+
+      // memData.forEach((v) => {
+      //   console.time();
+      //   // 같은 아이디가 있는가?
+      //   if (v["uid"] === userId) {
+      //     console.log("아이디 일치");
+      //     // 아이디 에러상태 업데이트
+      //     setUserIdError(false);
+      //     isNot = false;
+      //     // 비밀번호 일치여부
+      //     if (v["pwd"] === pwd) {
+      //       console.log("비밀번호 일치");
+      //       // 패스워드 에러상태 업데이트
+      //       setPwdError(false);
+      //       isNot = false;
+      //     } else {
+      //       console.log("비밀번호 불일치");
+      //       // 메세지 업데이트
+      //       setPwdMsg(msgPwd[1]);
+      //       // 패스워드 에러상태 업데이트
+      //       setPwdError(true);
+      //     }
+      //   }
+      //   console.timeEnd();
+      // }); ///////// forEach ////////
+      // if (isNot) {
+      //   console.log("아이디 불일치");
+      //   // 아이디가 다를 때 메세지 보이기
+      //   setIdMsg(msgId[1]);
+      //   // 아이디 에러상태 업데이트
+      //   setUserIdError(true);
+      // } ////// if ///////
     }
     // 4-3. 유효성 검사 실패 //////////
-    else {
-      console.log("실패");
-    }
+    // else {
+    //   console.log("실패");
+    // }
   }; /////// onSubmit 함수 ////////
   return (
     <div className="outbx">

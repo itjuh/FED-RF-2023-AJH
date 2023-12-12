@@ -7,20 +7,7 @@ import $ from "jquery";
 import { link } from "../data/link";
 
 export function Login() {
-  const initData = () => {
-    if (localStorage.getItem("member") === null) {
-      let sample = [
-        {
-          idx: 0,
-          uid: "sample",
-          pwd: "sample11!!",
-          unm: "sampledata",
-          eml: "jh.2144.9679@gmail.com",
-        },
-      ];
-      localStorage.setItem("member", JSON.stringify(sample));
-    }
-  }; ////////// initData() ////////////////
+
   // validation check 0-fail 1-pass
   // 아이디 체크 변수
   const [okId, setOkId] = useState(0);

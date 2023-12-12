@@ -13,6 +13,14 @@ main.cont {
   height: 58px;
   z-index: 9999;
   background-color: #fff;
+  font-family: "Ubuntu Condensed", sans-serif;
+}
+/* 로그인 환영 메세지 */
+.logmsg {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: "Ubuntu Condensed", sans-serif;
 }
 .gnb {
   max-width: 1320px;
@@ -174,7 +182,7 @@ input:focus {
     /* 첫번째 컨텐츠 가려짐방지 패딩 */
     overflow-x: hidden;
   }
-  .top-area{
+  .top-area {
     /* 보이는 화면고정 */
     position: fixed;
     top: 0;

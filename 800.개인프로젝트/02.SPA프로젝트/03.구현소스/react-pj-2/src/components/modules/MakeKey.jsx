@@ -16,7 +16,7 @@ export const MakeKey = memo(({keyData})=>{
               <aside className="part2">{v[1][0]}</aside>
               <aside className="part2">{v[1][1]}</aside>
               </>:
-              <aside className="part1">{v[1]=='SpaceBar'?"":v[1]}</aside>
+              <aside className="part1">{v[1]==='SpaceBar'?"":v[1]}</aside>
             }
         </div>
         </span>

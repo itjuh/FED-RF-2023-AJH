@@ -51,7 +51,7 @@ export const WishTable = memo(({ data, chgFn }) => {
     let cnt = target.val();
     if (txt === "－") {
       cnt--;
-      if (cnt == 0) cnt = 1;
+      if (cnt === 0) cnt = 1;
     } else {
       cnt++;
       if (cnt > 99) cnt = 99;

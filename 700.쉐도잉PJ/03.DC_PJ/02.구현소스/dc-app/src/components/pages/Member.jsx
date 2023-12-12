@@ -6,6 +6,8 @@ import "../../css/member.css";
 import { Link } from "react-router-dom";
 // 로컬스토리지 생성 JS
 import { clearData, initData } from "../func/mem_fn";
+import { useContext } from "react";
+import { dcCon } from "../modules/dcContext";
 
 export function Member() {
   // 회원가입 페이지 요구사항
@@ -52,6 +54,8 @@ export function Member() {
   }; ///////// msgEtc
   // [3] 에러메세지 상태관리 변수 /////////////////////
   const [idMsg, setIdMsg] = useState(msgId[0]);
+  // 컨텍스트 API
+  let myCon = useContext(dcCon);
 
   ////////////////////////////////////////////////////
   //[ 유효성 검사 함수 ] //////////////////////////////
@@ -198,6 +202,8 @@ export function Member() {
       localStorage.setItem("mem-data", JSON.stringify(memData));
       // 5. 로그인 페이지로 이동(라우터 이동)
       document.querySelector(".sbtn").innerText = "넌 이제 회원인거야~";
+      // 6. 페이지 이동하기
+      setTimeout(()=>myCon.chgPg('/login',{}),1000);
     } else {
       // 불통과
       alert("please fill the forms");
@@ -303,7 +309,8 @@ export function Member() {
                 type="text"
                 maxLength="50"
                 placeholder="Please enter your Email"
-                
+                value={email}
+                onChange={changeEmail}
               />
               {
                 // 에러일 경우 메세지 출력

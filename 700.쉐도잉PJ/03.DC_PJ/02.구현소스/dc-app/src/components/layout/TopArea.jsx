@@ -11,8 +11,10 @@ import { menu } from "../data/gnb";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 // 제이쿼리
-import $ from 'jquery';
-import { memo } from "react";
+import $ from "jquery";
+import { memo} from "react";
+import { useContext } from "react";
+import { dcCon } from "../modules/dcContext";
 
 /*
  메모이제이션 적용하기!
@@ -25,14 +27,15 @@ import { memo } from "react";
  ->> 전달되는 함수는 반드시 useCallback()처리가 되어야 한다!!
 */
 
-export const TopArea = memo(({chgPgFn})=>{
+export const TopArea = memo(({ chgPgFn, logSts, logMsg, logOutFn }) => {
   /* 
     보통 props등 전달변수만 쓰면 하위 속성명으로 값을 전달하지만
     중괄호 {}를 사용하면 속성명을 직접 사용할 수 있다.
   */
-  
+
   // 컴포넌트 호출 확인
-  console.log('TopArea 컴포넌트 호출!!!');
+  console.log("TopArea 컴포넌트 호출!!!");
+
   /******************************************************* 
   [ 리액트 라우터와 연결하여 사용되는 라우터 컴포넌트 ]
   1. <Link to="/경로명"></Link>
@@ -48,48 +51,49 @@ export const TopArea = memo(({chgPgFn})=>{
   ->>> Warning: Each child in a list should have a unique "key" prop.
   (이유: 구별되는 항목으로 나중에 업데이트 시 이용할 수 있도록 리액트에서 강제하고 있음)
 */
-// const myCon = useContext(dcCon);
+  // const myCon = useContext(dcCon);
 
-// 검색관련 함수 ////////////////////////
-// 1. 검색창 보이기 함수
-const showSearch = (e) =>{
-  // a요소 기본기능 막기
-  e.preventDefault();
-  // 검색창 보이고 입력창에 포커스
-  $('.searchingGnb').show().find('#schinGnb').focus();
-}; /////////// showSearch 함수 /////////
-// 2. 입력창에 엔터키를 누르면 검색함수 호출
-const enterKey = (e)=>{
-  if(e.key === 'Enter'){ 
-    console.log('enterKey진입');
-    let txt = $(e.target).val().trim();
-    // console.log(txt);
-    // 빈 값이 아니면 검색함수 호출(검색어 전달)
-    if(txt!='') {
-      // 자기자신 닫기
-      $(e.target).val('').parent().hide();
-      // 검색보내기
-      goSearch(txt);
-    }
-  } ///////// if /////////
-}; //////// enterKey함수 //////////
-// 3. 검색페이지로 검색어와 함께 이동하기
-const goSearch = (txt) => {
-  console.log('나는 검색하러 간다규!');
-  // 라우터 이동함수로 이동하기 : context API사용하기
-  // goNav('/schpage',{state:{keyword:''}});
-  // myCon.chgPg('/schpage',{state:{keyword:txt}});
+  // 검색관련 함수 ////////////////////////
+  // 1. 검색창 보이기 함수
+  const showSearch = (e) => {
+    // a요소 기본기능 막기
+    e.preventDefault();
+    // 검색창 보이고 입력창에 포커스
+    $(".searchingGnb").show().find("#schinGnb").focus();
+  }; /////////// showSearch 함수 /////////
+  // 2. 입력창에 엔터키를 누르면 검색함수 호출
+  const enterKey = (e) => {
+    if (e.key === "Enter") {
+      console.log("enterKey진입");
+      let txt = $(e.target).val().trim();
+      // console.log(txt);
+      // 빈 값이 아니면 검색함수 호출(검색어 전달)
+      if (txt != "") {
+        // 자기자신 닫기
+        $(e.target).val("").parent().hide();
+        // 검색보내기
+        goSearch(txt);
+      }
+    } ///////// if /////////
+  }; //////// enterKey함수 //////////
+  // 3. 검색페이지로 검색어와 함께 이동하기
+  const goSearch = (txt) => {
+    console.log("나는 검색하러 간다규!");
+    // 라우터 이동함수로 이동하기 : context API사용하기
+    // goNav('/schpage',{state:{keyword:''}});
+    // myCon.chgPg('/schpage',{state:{keyword:txt}});
 
-  // 메모이제이션 적용하여 페이지 이동하기
-  chgPgFn('/schpage',{state:{keyword:txt}});
-}; ////////// goSearch함수 ////////////
+    // 메모이제이션 적용하여 페이지 이동하기
+    chgPgFn("/schpage", { state: { keyword: txt } });
+  }; ////////// goSearch함수 ////////////
 
-
-///리턴코드 /////////////////////////////
+  ///리턴코드 /////////////////////////////
   return (
     <>
       {/* 1. 상단영역 */}
       <header className="top-area">
+        {/* 로그인 환영 메세지 박스 */}
+        <div className="logmsg">{logMsg}</div>
         <nav className="gnb">
           {/* 1-1. 네비게이션 GNB파트 */}
           <ul>
@@ -137,13 +141,24 @@ const goSearch = (txt) => {
                 <FontAwesomeIcon icon={faSearch} />
               </a>
             </li>
-            {/* 회원가입, 로그인은 로그인 아닌 상태일 때 나옴 */}
-            <li>
-              <Link to="/member">Join us</Link>
-            </li>
-            <li>
-              <Link to="/login">Log in</Link>
-            </li>
+            {
+              logSts === null &&
+            /* 회원가입, 로그인은 로그인 아닌 상태일 때 나옴 */
+              <>
+                <li>
+                  <Link to="/member">JOIN US</Link>
+                </li>
+                <li>
+                  <Link to="/login">LOGIN</Link>
+                </li>
+              </>
+            }
+            {
+              logSts !== null &&
+              <li>
+                <a href='#' onClick={logOutFn}>LOGOUT</a>
+              </li>
+            }
           </ul>
           {/* 모바일용 햄버거 버튼 */}
           <button className="hambtn" onClick={() => {}}></button>

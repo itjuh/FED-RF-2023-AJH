@@ -1,78 +1,88 @@
 // 상품상세보기 컴포넌트
 
 import { useEffect } from "react";
-import $ from 'jquery';
+import $ from "jquery";
 import { CartList } from "./CartList";
 import { useState } from "react";
 // 신상품 데이터 가져오기
 // import { newProdData } from "../data/new_prod";
-import gdata from '../data/glist_item';
+import gdata from "../data/glist_item";
 
-export function ItemDetail({ goods,cat }) {
+export function ItemDetail({ goods, cat }) {
   // goods - 상품 아이템정보(속성코드)
   // cat - 카테고리
-  
+
   // 카트 상태관리 변수
   const [cartSts, setCartSts] = useState(0);
   // 변환값 변수
   let [transData, setTransData] = useState(null);
 
+  let temp;
   // 카트 상태 업데이트 변수
   const useCart = () => {
-    
     // 1. 선택 된 상품의 수량 조절하기
     /*
     데이터 구성
     {idx:'상품유일키',cat:'카테고리',ginfo:'상품정보',num:'선택상품수'}
     -> 기존 선택 데이터는 selData에 담김// 여기에 num 추가
     */
-   // num항목 추가 : 값은 #sum의 value값
-   selData.num = $('#sum').val();
-   console.log('카트호출!', selData);
+    // num항목 추가 : 값은 #sum의 value값
+    selData.num = $("#sum").val();
+    //  console.log('카트호출!', selData);
     let localData;
     // 2. 로컬스토리지에 담기
-    if(!localStorage.getItem('cart')){
+    if (!localStorage.getItem("cart")) {
       // 데이터 없는 경우
       // selData가 객체형이므로 배열에 넣어줌
       localData = [];
-      localData.push(selData);
-      localStorage.setItem('cart',JSON.stringify(localData));
-    }
-    else{
+      temp = selData;
+    } else {
       // 기존 카트 있는 경우
-      localData = localStorage.getItem('cart');
+      localData = localStorage.getItem("cart");
       // 객체변환
       localData = JSON.parse(localData);
       // 기존 데이터에서 ginfo 일치하면 num 더하기
-      
-      // push로 추가
+      temp = localData.find((v) => {
+        if (v.idx === selData.idx) return true;
+      }); //////// find /////////
+    }
+    if (!temp) {
       localData.push(selData);
-      // 다시 문자 형 변환하여 넣기
-      localStorage.setItem('cart',JSON.stringify(localData));
+      localStorage.setItem("cart", JSON.stringify(localData));
+      // 쇼핑카트 버튼 초기화
+      $("#mycart")
+        .removeClass("on")
+        .delay(2000) // 트랜지션 딜레이시간
+        .fadeIn(300, function () {
+          //페이드 애니 후
+          $(this).addClass("on");
+        }); ///// fadeIn ////////
+      setTransData(localData);
+      setCartSts(1);
+    } else {
+      alert("이미 선택하신 아이템 입니다.");
+      // 중복있음 : 메세지 띄우기, 데이터 안넣기
     }
     // localData 변환값 변수에 담기:CartList 컴포넌트 전달용
-    setTransData(localData);
-    setCartSts(1);
   }; //////// useCart 함수 ////////////
 
-  const selData = gdata.find(v=>{
+  const selData = gdata.find((v) => {
     // 카테고리와 상품코드가 둘다 일치
-    if(v.cat===cat && v.ginfo[0]===goods) return true;
-  })
+    if (v.cat === cat && v.ginfo[0] === goods) return true;
+  });
   // console.log('선택데이터',selData);
   // selData에 담긴 기존 객체데이터와 상품개수 항목이 추가 된 객체를 만들고
   // 이것을 로컬스에 저장한다
   // 전체 데이터를 셋업하기 위한 항목은 ginfo임
   const ginfo = selData.ginfo;
-  
 
   // 선택 데이터 : 전체데이터[분류명][상품코드].split('^')
   //-> 개별상품 배열이 된다
-  // [상품명, 상품코드, 가격] 
+  // [상품명, 상품코드, 가격]
   // const selData = newProdData[cat][goods].split('^');
   // const selData = newProdData[cat][goods];
   // let cnt = setPrice(selData[2]);
-  console.log('선택데이터',selData);
+  // console.log('선택데이터',selData);
   // function setPrice(v) {
   //   let prevCnt = v.split(',')[0];
   //   let nextCnt = v.split(',')[1].split('원')[0];
@@ -84,44 +94,44 @@ export function ItemDetail({ goods,cat }) {
   }
 
   // 숫자세팅 함수
-  
-  // 닫기함수 // 
-  const closebox = e => {
+
+  // 닫기함수 //
+  const closebox = (e) => {
     e.preventDefault();
-    $('#bgbx').slideUp(400);
-  }
+    $("#bgbx").slideUp(400);
+  };
   // 랜더링 후 실행구역
-  useEffect(()=>{
+  useEffect(() => {
     // 숫자 출력 input
-    const sum = $('#sum');
+    const sum = $("#sum");
     // 수량 증감 이미지버튼
-    const numBtn = $('.chg_num img');
-    numBtn.click(e=>{
+    const numBtn = $(".chg_num img");
+    numBtn.click((e) => {
       // 이미지 순번 : 0-증가 1-감소
       let seq = $(e.currentTarget).index();
       // 기존 값 읽기
       let num = Number(sum.val());
-      if(seq){
+      if (seq) {
         num--;
-        if(num<1) num=1;
-      }else{
+        if (num < 1) num = 1;
+      } else {
         num++;
       }
       // 값 대입
       sum.val(num);
       // 총 합계 반영
       // $('#total').text(addCommas(cnt*num)+'원');
-      $('#total').text(addCommas(ginfo[3]*num)+'원');
+      $("#total").text(addCommas(ginfo[3] * num) + "원");
     });
-  },[])
+  }, []);
   // 리랜더링 후 실행구역
-  useEffect(()=>{
-    $('#sum').val(1);
+  useEffect(() => {
+    $("#sum").val(1);
     // $('#total').text(addCommas(cnt)+'원');
-    $('#total').text(addCommas(ginfo[3])+'원');
-  })
+    $("#total").text(addCommas(ginfo[3]) + "원");
+  });
   // 수량 증감함수 /////////
-  
+
   return (
     <>
       <a href="#" className="cbtn" onClick={closebox}>
@@ -130,7 +140,7 @@ export function ItemDetail({ goods,cat }) {
       <div id="imbx">
         <div className="inx">
           <section className="gimg">
-            <img src={"./images/goods/"+cat+"/"+goods+".png"} alt="큰 이미지" />
+            <img src={"./images/goods/" + cat + "/" + goods + ".png"} alt="큰 이미지" />
             <div className="small">
               <a href="#">
                 <img src="./images/goods/men/m1.png" alt="썸네일 이미지" />
@@ -164,7 +174,7 @@ export function ItemDetail({ goods,cat }) {
                   <span>적립금</span>
                   <span>
                     <img src="./images/icon_my_m02.gif" alt="적립금" />
-                    {addCommas(ginfo[3]*0.05)}(5%적립)원
+                    {addCommas(ginfo[3] * 0.05)}(5%적립)원
                   </span>
                 </li>
                 <li>
@@ -203,17 +213,16 @@ export function ItemDetail({ goods,cat }) {
             </div>
             <div>
               <button className="btn btn1">BUY NOW</button>
-              <button className="btn" onClick={useCart}>SHOPPING CART</button>
+              <button className="btn" onClick={useCart}>
+                SHOPPING CART
+              </button>
               <button className="btn">WISH LIST</button>
             </div>
           </section>
         </div>
       </div>
       {/* 카트 리스트 */}
-      {
-        cartSts &&
-        <CartList data={transData}/>
-      }
+      {cartSts && <CartList data={transData} />}
     </>
   );
 } /////////// ItemDetail 컴포넌트 ///////////

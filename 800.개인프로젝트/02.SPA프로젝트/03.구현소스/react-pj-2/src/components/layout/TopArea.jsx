@@ -36,29 +36,46 @@ export const TopArea = memo(({ sts, tit }) => {
   };
 
   // 클래스 생성 함수
-  const addOn = function (e) {
-    $(e.currentTarget).toggleClass("on");
+  const addOn = function () {
+    $(".gnb-icon").first().addClass("on");
   }; ///////// addOn ///////////
+  const removeOn = function (e) {
+    // 이벤트/ 버블링 막기
+    e.preventDefault();
+    e.stopPropagation();
+    $(e.currentTarget).parents(".gnb-icon").removeClass("on");
+  };
   // 로그아웃 함수
-  const logOutFn = function (){
-    sessionStorage.removeItem('loginMem');
+  const logOutFn = function () {
+    sessionStorage.removeItem("loginMem");
   }; //////// logOutFn /////////////
   // gnb메뉴 생성 함수
   const makeGnb = () => {
-    console.log('makeGnb');
+    console.log("makeGnb");
     return gnbData.map((v, i) => (
       <Fragment key={i}>
         {/* 검색버튼 */}
         {v.txt === "SEARCH" && (
-          <a href="#" title={v.txt} onClick={(e) => addOn(e)} className="gnb-icon">
-            <span className="ir">{v.txt}</span>
-            <input type="text" className="search-area" />
-            {v.com}
-          </a>
+          <>
+            <a href="#" title={v.txt} onClick={addOn} className="gnb-icon">
+              <span className="ir">{v.txt}</span>
+              {v.com}
+              <div className="search-area">
+                <label>Search</label>
+                <div className="search-box">
+                  {v.com}
+                  <input type="text" placeholder="Filter by keyword" />
+                </div>
+                <button className="close-btn" onClick={(e) => removeOn(e)}>
+                  ×
+                </button>
+              </div>
+            </a>
+          </>
         )}
         {/* 로그아웃 */}
         {v.txt === "LOGOUT" && (
-          <a href="#" title={v.txt} style={{color: "cornflowerblue"}} className="gnb-icon" onClick={logOutFn}>
+          <a href="#" title={v.txt} style={{ color: "cornflowerblue" }} className="gnb-icon" onClick={logOutFn}>
             <span className="ir">{v.txt}</span>
             {v.com}
           </a>
@@ -85,17 +102,19 @@ export const TopArea = memo(({ sts, tit }) => {
     const icons = $(".gnb-icon");
     if (sessionStorage.getItem("loginMem") == null) {
       // 비로그인 상태
-      $('.welcome-tit').text('');
+      $(".welcome-tit").text("");
       icons.eq(1).show();
       icons.eq(2).hide();
     } else {
       let memName = JSON.parse(sessionStorage.getItem("loginMem"));
       // 로그인 상태
-      $('.welcome-tit').css({
-        fontFamily: "KOFIHDrLEEJWTTF-L",
-        fontSize:'.8rem',
-      }).text('Welcome🎉'+memName+'😊');
-      icons.eq(2).show()
+      $(".welcome-tit")
+        .css({
+          fontFamily: "KOFIHDrLEEJWTTF-L",
+          fontSize: ".8rem",
+        })
+        .text("Welcome🎉" + memName + "😊");
+      icons.eq(2).show();
       icons.eq(1).hide();
     }
   });
@@ -104,16 +123,20 @@ export const TopArea = memo(({ sts, tit }) => {
       {/* 1. 상단영역 */}
       <div id="header">
         <header className="header in-box row-2 flex-box row-s-1">
-          {/* 1-1. 로고영역 */}
-          <Logo />
-          {/* 1-2. 타이틀영역 */}
-          <div className="part-box col-6 col-s-1">
-            <div className="top-title">{sts.current == 0 && <TopTitle tit={tit} />}</div>
+          {/* 1-1. 토글영역 */}
+          <div className="part-box col-3 flex-box row-s-1 col-s-0"></div>
+          {/* 1-2. 로고영역 */}
+          <div className="part-box col-6 col-s-8">
+            {/* <div className="top-title">{sts.current == 0 && <TopTitle tit={tit} />}</div> */}
+            <div className="top-title">
+              <Logo />
+            </div>
           </div>
           {/* 1-3. GNB메뉴 */}
           <div className="part-box col-3 flex-box gnb-zone col-s-7">
-            <div className='welcome-tit'></div>
-            <div className='gnb-area flex-box col-s-12'>{makeGnb()}</div>
+            <div className="welcome-tit"></div>
+            <div className="gnb-area flex-box col-s-12">{makeGnb()}</div>
+            
           </div>
         </header>
       </div>
