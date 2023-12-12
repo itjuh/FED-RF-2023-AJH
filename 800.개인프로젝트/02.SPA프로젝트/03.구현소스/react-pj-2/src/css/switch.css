@@ -103,11 +103,15 @@ figure .prod-detail-view {
   .switch-box {
     flex: 0;
   }
+  /* 개별 박스 */
+.switch-box:hover {
+  flex: 0;
+}
   /* 스위치 이미지 공통 */
   .sw-img figure {
     height: 10vh;
     background-size: 80px;
-    background-position: 35% 65%;
+    background-position: 35% -45%;
   }
   /* 스위치 이미지 타이틀 */
   .sw-tit {
