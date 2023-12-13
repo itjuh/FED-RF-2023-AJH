@@ -1,14 +1,21 @@
-import { memo } from "react";
+import { memo, useEffect, useState } from "react";
 import $ from "jquery";
 
 // LEOPOLD WishList Table만들기 컴포넌트
-export const WishTable = memo(({ data, chgFn }) => {
+// export const WishTable = memo(({ data, chgFn }) => {
+export const WishTable = memo(({ wishdata, flag }) => {
+  
   // 받은 데이터 : 장바구니 localstorage data
-  if (!data) {
-    console.log(!data);
+  if (!wishdata) {
     localStorage.setItem("wish", JSON.stringify([]));
-    data = JSON.parse(localStorage.getItem("wish"));
+    wishdata = JSON.parse(localStorage.getItem("wish"));
   }
+  // 변경 데이터 변수
+  const [data, setData] = useState(wishdata);
+  // 데이터 변경 시에만 리랜더링
+  if(data!==wishdata&&flag.current) setData(wishdata);
+  // console.log("wishTable// wishdata:",wishdata,'\ndata:',data);
+  
   // 총 합계 변수
   let subFee;
   let totalFee;
@@ -62,12 +69,13 @@ export const WishTable = memo(({ data, chgFn }) => {
     const targetSeq = $(e.currentTarget).parent().attr("data-seq");
     //업데이트 데이터 번호
     let arrNum = 0;
-    data.forEach((v, i) => {
+    let updateData = data.filter((v, i) => {
       if (Number(v.idx) === Number(targetSeq)) {
-        arrNum = i;
-      }
+        v.count = cnt;
+        return true;
+      }else return true;
     });
-    data[arrNum].count = cnt;
+    setData(updateData);
     // 로컬 스토리지 반영하기
     localStorage.setItem("wish", JSON.stringify(data));
     // 아이템 가격 세팅
@@ -77,8 +85,8 @@ export const WishTable = memo(({ data, chgFn }) => {
       .next()
       .find(".item-fee")
       .text("￦" + addCommas(data[arrNum].cost * data[arrNum].count));
-    // 프롭스 펑션 업
-    chgFn(1);
+    // 자식 컴포넌트 업데이트
+    flag.current = false;
     // 합계 반영하기
     totalSet();
     totalDisplaySet();
@@ -108,6 +116,7 @@ export const WishTable = memo(({ data, chgFn }) => {
     let btns = $(".message-box button");
     btns.click(function () {
       let tg = $(this).text();
+      let updateData;
       if (tg === "Delete") {
         // 삭제버튼 클릭
         if (tgSeq < 0) {
@@ -118,26 +127,27 @@ export const WishTable = memo(({ data, chgFn }) => {
           arr.each((i, v) => {
             arrNum.push(v.className);
           });
-          // 데이터 제거
-          data = data.filter(v =>!arrNum.includes(v.src));
+          updateData = data.filter((v) => !arrNum.includes(v.src));
+          // 데이터 제거 반영
+          setData(updateData);
         } else {
           // 단순 삭제
-          // 제거 데이터 배열번호
-          let arrNum = 0;
-          data.forEach((v, i) => {
-            if (Number(v.idx) === Number(tgSeq)) {
-              arrNum = i;
+          updateData = data.filter(v => {
+            if (Number(v.idx) !== Number(tgSeq)) {
+              return true;
             }
           });
-          // 데이터 제거
-          data.splice(arrNum, 1);
+          // 데이터 제거 반영
+          setData(updateData);
         }
         // 로컬 스토리지 반영하기
-        localStorage.setItem("wish", JSON.stringify(data));
-        // 프롭스 펑션 업
-        chgFn(1);
+        localStorage.setItem("wish", JSON.stringify(updateData));
+        // 자식컴포넌트 업데이트
+        flag.current = false;
+        // 체크박스 해제
+        $('input[type="checkbox"]').prop('checked',false)
       }
-        $(".message-box").fadeOut(30);
+      $(".message-box").fadeOut(30);
     });
   };
   // 숫자 회계처리
@@ -167,6 +177,9 @@ export const WishTable = memo(({ data, chgFn }) => {
   //   });
   //   $(".wish-chk-input").prop('check',false);
   // };
+  useEffect(()=>{
+    if(flag.current)$('input[type="checkbox"]').prop('checked',true);
+  },[]);
   return (
     <section className="wish-box">
       <table className="wish-table">
@@ -189,7 +202,7 @@ export const WishTable = memo(({ data, chgFn }) => {
               <tr>
                 {/* 2-1. 체크박스 */}
                 <th>
-                  <input type="checkbox" name="all-item" id="all-item" defaultChecked onChange={(e) => allChkFn(e)} />
+                  <input type="checkbox" name="all-item" id="all-item" onChange={(e) => allChkFn(e)} />
                   <label className="wish-chk" htmlFor="all-item">
                     ✔
                   </label>
@@ -219,7 +232,6 @@ export const WishTable = memo(({ data, chgFn }) => {
                           name={"item" + v.idx}
                           id={"item" + v.idx}
                           className="wish-chk-input"
-                          defaultChecked
                           onChange={() => eachChkFn()}
                         />
                         <label className="wish-chk" htmlFor={"item" + v.idx}>

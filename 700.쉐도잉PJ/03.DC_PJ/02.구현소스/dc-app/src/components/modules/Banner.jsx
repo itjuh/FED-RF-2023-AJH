@@ -120,7 +120,7 @@ export function Banner(props) {
           <p>{v.cont}</p>
           {/* 버튼데이터가 없으면 출력하지 않음 */}
           { v.btn != false &&
-          <button style={{ marginTop: "20px" }}>{v.btn}</button>
+          <button style={{ marginTop: "10px" }}>{v.btn}</button>
           }
           </section>
       </li>

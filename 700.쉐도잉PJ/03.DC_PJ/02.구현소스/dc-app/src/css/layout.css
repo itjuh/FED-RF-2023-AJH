@@ -177,6 +177,9 @@ input:focus {
 
 /* 1320px이하 미디어쿼리 */
 @media screen and (max-width: 1320px) {
+  html{
+    overflow-x: hidden;
+  }
   body {
     padding-top: 58px;
     /* 첫번째 컨텐츠 가려짐방지 패딩 */
@@ -191,7 +194,6 @@ input:focus {
     padding: 0 20px;
     box-sizing: border-box;
     z-index: 9999;
-    overflow: hidden;
     transition: 0.4s ease-out;
   }
   .top-area.on {
@@ -201,6 +203,13 @@ input:focus {
 
 /* 1024px 이하 미디어쿼리 */
 @media screen and (max-width: 1024px) {
+  .top-area {
+    overflow: hidden;
+  }
+  /* 로그인 메세지창 */
+  .logmsg {
+    top: 19px;
+  }
   .gnb {
     background-color: #fff;
   }
@@ -288,5 +297,6 @@ input:focus {
     left: 5%;
     transform: none;
     z-index: 1;
+    text-indent: 0px;
   }
 }

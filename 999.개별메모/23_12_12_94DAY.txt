@@ -24,8 +24,6 @@ footer - menu
 레이아웃 잡기 -> 완료
 기능 구현하기
 
-
-
 [추가 구현 사항]
 1. 장바구니 담기 액션
 2. 서서브 장바구니 연결
@@ -40,3 +38,15 @@ footer - menu
 9. 후기 페이지 만들기
 
 useMemo 구역에는 usecontext를 쓰면 안된다.->계속 갱신됨
+
+다트 기본 문법
+int double num
+String
+List<형선언> [] 배열유사
+Set<형선언> {} 중복불가
+Map<형선언,형선언> {} 객체유사 
+
+flutter 설치하기 => 드라이브 옮기기
+환경변수 설정하기
+VSCODE에서 설치하기
+reboot!

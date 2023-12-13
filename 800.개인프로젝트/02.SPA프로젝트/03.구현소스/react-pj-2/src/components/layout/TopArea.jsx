@@ -124,7 +124,8 @@ export const TopArea = memo(({ sts, tit }) => {
       <div id="header">
         <header className="header in-box row-2 flex-box row-s-1">
           {/* 1-1. 토글영역 */}
-          <div className="part-box col-3 flex-box row-s-1 col-s-0"></div>
+          <div className="part-box col-3 flex-box row-s-1 col-s-0">
+          </div>
           {/* 1-2. 로고영역 */}
           <div className="part-box col-6 col-s-8">
             {/* <div className="top-title">{sts.current == 0 && <TopTitle tit={tit} />}</div> */}

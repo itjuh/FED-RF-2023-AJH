@@ -98,8 +98,10 @@ export function Login() {
           $(".sbtn").text("로그인 되었습니다.");
           // 컨텍스트 로그인 상태값 변경
           myCon.setLogSts(localStorage.getItem("minfo"));
+          // 유저 아이콘
+          const userIcon = ['🧙‍♂️','🦸‍♂','🦸‍♀','🧚‍♀️','🦹‍♀️','🦹‍♂️'];
           // 컨텍스트 로그인 환영 메세지 변경
-          myCon.setLogMsg('Welcome '+findData.unm);
+          myCon.setLogMsg('Welcome '+findData.unm+userIcon[Math.floor(Math.random()*6)]);
           // 라우터 이동
           setTimeout(()=>myCon.chgPg('/',{}),1000);
         } else {

@@ -115,5 +115,8 @@
 }
 
 @media screen and (max-width: 1200px) {
-  
+  /* 동영상타이틀 */
+.cat-tit2 h3 {
+  line-height: 4;
+}
 }

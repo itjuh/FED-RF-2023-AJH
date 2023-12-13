@@ -1,31 +1,14 @@
 // 레오폴드 장바구니 페이지
-import { useState } from "react";
+import { useRef, useState } from "react";
 import "../../css/wishlist.css";
 import { WishTable } from "../modules/WishTable";
 
 export function Wishlist() {
   // 로컬 데이터 읽어오기
   let data = JSON.parse(localStorage.getItem("wish"));
-  // 변경 상태 관리 : 0:변경없음 1:변경있음
-  const [sts, setSts] = useState(0);
-  const chgFn = (num)=>{
-    setSts(num);
-    setTimeout(()=>{
-      setSts(0);
-    },30)
-  }; ///////// chgFn //////////
+  /** flag true 새로추가 false 내부변경 */
+  const flag = useRef(true); // true 부모변경 false 내부변경
 
-  if(sts){
-    data = JSON.parse(localStorage.getItem("wish"));
-  }
-  // // 장바구니 닫기
-  // const closeList = () => {
-  //   $(".wish-area").animate({ left: "200%" });
-  // };
-
-  // useEffect(()=>{
-  //   $(".wish-area").animate({ left: "0%" });
-  // })
   return (
     <main className="main in-box row-12">
       {/* 장바구니 박스 */}
@@ -39,7 +22,8 @@ export function Wishlist() {
             ×
           </div> */}
           {/* 2. 장바구니 영역 */}
-          <WishTable data={data} chgFn={chgFn}/>
+          {/* <WishTable data={data} chgFn={chgFn}/> */}
+          <WishTable wishdata={data} flag={flag}/>
         </div>
       </div>
       <div className="message-box">

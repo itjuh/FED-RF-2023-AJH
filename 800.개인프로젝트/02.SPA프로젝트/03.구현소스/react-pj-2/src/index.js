@@ -16,6 +16,7 @@ import { Login } from './components/pages/Login';
 import { Wishlist } from './components/pages/Wishlist';
 import { CorpInfo } from './components/pages/CorpInfo';
 import { FindMember } from './components/pages/FindMember';
+import { TestPage } from './components/pages/Test';
 
 export default function App() {
   return (
@@ -43,6 +44,8 @@ export default function App() {
           <Route path='wishlist' element={<Wishlist />} />
           {/* 회사정보 페이지 */}
           <Route path='contact' element={<CorpInfo/>} />
+          {/* 테스트 페이지 */}
+          <Route path='testpage' element={<TestPage/>} />
         </Route>
       </Routes>
     </HashRouter>

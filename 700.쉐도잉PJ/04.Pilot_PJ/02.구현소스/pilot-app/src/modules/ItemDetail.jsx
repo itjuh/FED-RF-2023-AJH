@@ -1,11 +1,9 @@
 // 상품상세보기 컴포넌트
 
-import { useEffect } from "react";
+import { useEffect, useState, useRef } from "react";
 import $ from "jquery";
 import { CartList } from "./CartList";
-import { useState } from "react";
 // 신상품 데이터 가져오기
-// import { newProdData } from "../data/new_prod";
 import gdata from "../data/glist_item";
 
 export function ItemDetail({ goods, cat }) {
@@ -14,6 +12,9 @@ export function ItemDetail({ goods, cat }) {
 
   // 카트 상태관리 변수
   const [cartSts, setCartSts] = useState(0);
+  // 카트리스트 컴포넌트 변경체크 변수(리랜더링 시 상태 변경 없음)
+  /** flag true 새로추가 false 내부변경 */
+  const flag = useRef(true);
   // 변환값 변수
   let [transData, setTransData] = useState(null);
 
@@ -41,12 +42,13 @@ export function ItemDetail({ goods, cat }) {
       localData = localStorage.getItem("cart");
       // 객체변환
       localData = JSON.parse(localData);
-      // 기존 데이터에서 ginfo 일치하면 num 더하기
+      // 기존 데이터에서 ginfo 일치하면 안넣기
       temp = localData.find((v) => {
         if (v.idx === selData.idx) return true;
       }); //////// find /////////
     }
     if (!temp) {
+      flag.current = true;
       localData.push(selData);
       localStorage.setItem("cart", JSON.stringify(localData));
       // 쇼핑카트 버튼 초기화
@@ -222,7 +224,7 @@ export function ItemDetail({ goods, cat }) {
         </div>
       </div>
       {/* 카트 리스트 */}
-      {cartSts && <CartList data={transData} />}
+      {cartSts && <CartList data={transData} flag={flag}/>}
     </>
   );
 } /////////// ItemDetail 컴포넌트 ///////////

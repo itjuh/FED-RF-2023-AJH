@@ -15,6 +15,7 @@ import $ from "jquery";
 import { memo} from "react";
 import { useContext } from "react";
 import { dcCon } from "../modules/dcContext";
+import { useEffect } from "react";
 
 /*
  메모이제이션 적용하기!
@@ -82,11 +83,23 @@ export const TopArea = memo(({ chgPgFn, logSts, logMsg, logOutFn }) => {
     // 라우터 이동함수로 이동하기 : context API사용하기
     // goNav('/schpage',{state:{keyword:''}});
     // myCon.chgPg('/schpage',{state:{keyword:txt}});
-
     // 메모이제이션 적용하여 페이지 이동하기
     chgPgFn("/schpage", { state: { keyword: txt } });
+    // 모바일 메뉴닫기
+    $('.top-area').removeClass('on');
   }; ////////// goSearch함수 ////////////
 
+  // 햄버거용 버튼함수
+  const showMenu = () =>{
+    $('.top-area').toggleClass('on');
+  }
+  // 랜더링 후 실행구역 /////
+  useEffect(()=>{
+    // GNB a요소 클릭 시 전체메뉴 닫기
+    $(".gnb a[href!='#']").on('click',()=>{
+      $('.top-area').removeClass('on');
+    });
+  });
   ///리턴코드 /////////////////////////////
   return (
     <>
@@ -128,7 +141,7 @@ export const TopArea = memo(({ chgPgFn, logSts, logMsg, logOutFn }) => {
                 </li>
               ))}
             {/* 3) 검색,회원가입,로그인 링크 */}
-            <li style={{ marginLeft: "auto" }}>
+            <li style={{ marginLeft: "auto", marginRight: '25px' }}>
               {/* 검색 입력 박스 */}
               <div className="searchingGnb">
                 {/* 검색버튼 돋보기 아이콘 */}
@@ -160,9 +173,9 @@ export const TopArea = memo(({ chgPgFn, logSts, logMsg, logOutFn }) => {
               </li>
             }
           </ul>
-          {/* 모바일용 햄버거 버튼 */}
-          <button className="hambtn" onClick={() => {}}></button>
         </nav>
+          {/* 모바일용 햄버거 버튼 */}
+          <button className="hambtn" onClick={showMenu}></button>
       </header>
     </>
   );

@@ -236,7 +236,6 @@
 /* 750px 이하 미디어쿼리 시작 */
 @media screen and (max-width: 750px) {
 /* 1-2. 타이틀영역 */
-
 .top-title {
   width: auto;
   border: none;
