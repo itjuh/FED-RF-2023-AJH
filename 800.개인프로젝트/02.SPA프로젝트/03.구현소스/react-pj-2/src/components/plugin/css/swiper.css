@@ -1,8 +1,8 @@
 /* 스와이퍼 CSS */
-
+/* 
 .swiper {
-  aspect-ratio: 400/130;
-}
+  
+} */
 
 .swiper-slide {
   text-align: center;
@@ -20,4 +20,8 @@
   width: 300px;
   aspect-ratio: 400/130;
   object-fit: cover;
+}
+
+.swiper2{
+  top: 20%;
 }

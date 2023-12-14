@@ -52,14 +52,19 @@ export const CartList = memo(({data, flag })=>{
   }; //////// showList ///////
   // 리스트 삭제 함수 /////////
   const delList = (e)=>{
-    const selIdx = $(e.target).attr('data-idx');
-    let result = cartData.filter(v=>{
-      if(v.idx!==selIdx) return true;
-    });
-    localStorage.setItem('cart',JSON.stringify(result));
-    // 전체 데이터 업데이트로 리랜더링
-    setCartData(result);
+    
     flag.current=false;
+    let confMsg = '정말 삭제하시겠습니까?';
+    //confirm() 확인-true / 취소-false 리턴
+    if(confirm(confMsg)){
+      const selIdx = $(e.target).attr('data-idx');
+      let result = cartData.filter(v=>{
+        if(v.idx!==selIdx) return true;
+      });
+      localStorage.setItem('cart',JSON.stringify(result));
+      // 전체 데이터 업데이트로 리랜더링
+      setCartData(result);
+    }
   }
 
   useEffect(() => {

@@ -128,19 +128,35 @@
 .dtblview td:last-child {
     width: 650px;
 }
-
 .dtblview td {
     border-bottom: 1px solid #ccc;
     padding: 8px;
 }
-
 .dtblview td:first-child {
     width: 200px;
     background-color: #E0E0E0;
     text-align: center;
 }
-.dtblview td input{
+/* 내용보기 input, textarea */
+.dtblview td input, 
+.dtblview td textarea {
     font-family: 'Ubuntu Condensed', sans-serif;
+    font-size: 1.3rem;
+    padding: 4px;
+    border: 1px solid #888;
+    border-radius: 5px;
+}
+.dtblview td input{
+    transform: translateY(-10%);
+}
+/* 내용보기 read-only */
+.dtblview td input:read-only,
+.dtblview td textarea:read-only {
+    border: 1px solid #ccc;
+}
+/* 초기화 */
+.dtblview td textarea:focus-visible{
+    outline: none;
 }
 /* 버튼그룹 */
 .btngrp button{
@@ -163,4 +179,8 @@
 }
 .btngrp button:hover a{
     color: #fff;
+}
+/* 페이징 */
+.paging{
+    font-size: 1.2rem;
 }

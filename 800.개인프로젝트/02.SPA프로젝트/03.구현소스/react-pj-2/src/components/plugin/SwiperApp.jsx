@@ -39,12 +39,12 @@ export function SwiperApp() {
             translate: [0, 0, 0],
           },
           next: {
-            translate: [0,"100%", 0],
+            translate: [0,"90%", 0],
           },
         }}
         direction={"vertical"}
         modules={[EffectCreative]}
-        className="mySwiper row-s-13"
+        className="mySwiper row-s-6"
         // slidesPerView={5}
         // spaceBetween={30}
         // pagination={{
