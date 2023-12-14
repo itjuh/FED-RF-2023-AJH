@@ -29,7 +29,7 @@ export function ItemDetail({ goods, cat }) {
     */
     // num항목 추가 : 값은 #sum의 value값
     selData.num = $("#sum").val();
-    //  console.log('카트호출!', selData);
+     console.log('카트호출!', selData,!localStorage.getItem("cart"));
     let localData;
     // 2. 로컬스토리지에 담기
     if (!localStorage.getItem("cart")) {

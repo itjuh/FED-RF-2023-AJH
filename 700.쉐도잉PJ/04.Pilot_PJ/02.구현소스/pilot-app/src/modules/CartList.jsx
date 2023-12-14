@@ -9,18 +9,18 @@ import { useState } from "react";
 import { useRef } from "react";
 
 // 전달 값 변경 시 리랜더링 하기 위해 메모이제이션 적용
-export const CartList = memo(({data, flag })=>{
-  console.log('업뎃 상태값 :',flag.current);
+export const CartList = memo(({ data, flag }) => {
+  console.log("업뎃 상태값 :", flag.current);
   // 로컬스토리지 데이터를 props로 전달 받는다
   // console.log(JSON.parse(localStorage.getItem('cart')));
   // let data = JSON.parse(localStorage.getItem("cart"));
   // 화면 리랜더링을 위한 상태관리 변수 설정
   // 1. 변경 데이터 변수
   const [cartData, setCartData] = useState(data);
-  console.log('받은데이터',data,'\n기존데이터',cartData,'\n유지데이터');
-  // 카트 컴포넌트의 데이터의 상태관리로 컴포넌트 리랜더링을 위함 
+  console.log("받은데이터", data, "\n기존데이터", cartData, "\n유지데이터");
+  // 카트 컴포넌트의 데이터의 상태관리로 컴포넌트 리랜더링을 위함
   // 외부데이터 업데이트는 외부에서 온 경우만!!
-  if(cartData!==data&&flag.current) setCartData(data);
+  if (cartData !== data && flag.current) setCartData(data);
 
   // 데이터 개수
   const cntData = cartData.length;
@@ -37,44 +37,76 @@ export const CartList = memo(({data, flag })=>{
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   }
   // 리스트 보이기 함수 //////////
-  const showList = ()=>{
-    $('#cartlist').animate({
-      right:'0'
-    },600);
+  const showList = () => {
+    $("#cartlist").animate(
+      {
+        right: "0",
+      },
+      600
+    );
   }; //////// showList ///////
-  
+
   // 리스트 숨기기 함수 /////////
-  const hideList = (e)=>{
+  const hideList = (e) => {
     e.preventDefault();
-    $('#cartlist').animate({
-      right:'-61%'
-    },600);
+    $("#cartlist").animate(
+      {
+        right: "-61%",
+      },
+      600
+    );
   }; //////// showList ///////
   // 리스트 삭제 함수 /////////
-  const delList = (e)=>{
-    
-    flag.current=false;
-    let confMsg = '정말 삭제하시겠습니까?';
+  const delList = (e) => {
+    flag.current = false;
+    let confMsg = "👔👕👖🩳👗정말 삭제하시겠습니까?😭😥😱";
     //confirm() 확인-true / 취소-false 리턴
-    if(confirm(confMsg)){
-      const selIdx = $(e.target).attr('data-idx');
-      let result = cartData.filter(v=>{
-        if(v.idx!==selIdx) return true;
+    if (window.confirm(confMsg)) {
+      const selIdx = $(e.target).attr("data-idx");
+      let result = cartData.filter((v) => {
+        if (v.idx !== selIdx) return true;
       });
-      localStorage.setItem('cart',JSON.stringify(result));
+      localStorage.setItem("cart", JSON.stringify(result));
       // 전체 데이터 업데이트로 리랜더링
       setCartData(result);
     }
-  }
+  };
+  // 증감 반영 함수
+  const chgNum = (e) => {
+    // 이벤트 대상
+    const tg = $(e.target)
+    // 이벤트 대상 입력창
+    const tgInput = tg.parent().siblings('.item-cnt');
+    // 입력창 숫자
+    let tgCnt = Number(tgInput.val());
+    console.log('증감반영',tg.prop('alt'));
+    tgInput.focus();
+    // 증감체크
+    if(tg.prop('alt')==='증가'){
+      // 증가
+      tgCnt++;
+      if(tgCnt < 1) tgCnt = 1;
+    }else{
+      // 감소
+      tgCnt--;
+      if(tgCnt > 99) tgCnt = 99;
+    }
+    // 화면반영
+    tgInput.val(tgCnt);
+  }; ///////// chgNum ///////////
+  // 반영버튼 클릭 시 데이터 업데이트 하기
+  const goResult = ()=>{
+    console.log('결과 나와주세요!!!📢');
+  }; ///////// goResult함수 ////////
 
   useEffect(() => {
     // 카트 버튼 보이기
     $("#mycart")
-    .removeClass('on')
-    .fadeIn(300, function () {
-      //페이드 애니 후
-      $(this).addClass('on');
-    }); ///// fadeIn ////////
+      .removeClass("on")
+      .fadeIn(300, function () {
+        //페이드 애니 후
+        $(this).addClass("on");
+      }); ///// fadeIn ////////
   }, []); ///// useEffect 구역 ///////
   // 리턴코드 //////////////////
   return (
@@ -113,7 +145,18 @@ export const CartList = memo(({data, flag })=>{
                 {/* 단가 */}
                 <td>{addCommas(v.ginfo[3])}원</td>
                 {/* 수량 */}
-                <td>{v.num}개</td>
+                <td className="cnt-part">
+                  <div>
+                    <span>
+                      <input type="text" className="item-cnt" defaultValue={v.num} />
+                      <button className="btn-insert" onClick={goResult}>반영</button>
+                      <b className="btn-cnt">
+                        <img src="./images/cnt_up.png" alt="증가" onClick={chgNum}/>
+                        <img src="./images/cnt_down.png" alt="감소" onClick={chgNum}/>
+                      </b>
+                    </span>
+                  </div>
+                </td>
                 {/* 합계 */}
                 <td>{addCommas(v.ginfo[3] * v.num)}원</td>
                 {/* 삭제 */}
