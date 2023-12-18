@@ -6,7 +6,6 @@ import { SwiperApp2 } from "../plugin/SwiperApp copy";
 export function TestPage(){
     return(
         <>
-        <h1>테스트용 페이지야~</h1>
             <MySwiper />
         </>
     )

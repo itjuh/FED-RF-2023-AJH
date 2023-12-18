@@ -18,6 +18,13 @@ const initData = () => {
                             "pwd":"1111",
                             "unm":"Tom",
                             "eml":"tom@gmail.com"
+                        },
+                        {
+                            "idx": 2,
+                            "uid":"admin",
+                            "pwd":"1111",
+                            "unm":"Administrator",
+                            "eml":"admin@dc.com"
                         }
                     ]
                 `

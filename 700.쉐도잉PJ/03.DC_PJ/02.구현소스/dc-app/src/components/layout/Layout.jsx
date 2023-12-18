@@ -45,9 +45,10 @@ export function Layout() {
    [컨텍스트 API 공유값 설정]
    1. chgPage 함수 : 라우터 이동기능
    2. setLogSts : 로그인 상태값 업데이트
+   3. logSts : 로그인 상태값 - 게시판용
    **********************************/
   return (
-    <dcCon.Provider value={{ chgPg, setLogSts, setLogMsg }}>
+    <dcCon.Provider value={{ chgPg, setLogSts, logSts, setLogMsg }}>
       {/* 메모이제이션 관리를 위해 함수를 컨텍스트 방식이 아닌 속성으로 직접 보냄 */}
       <TopArea chgPgFn={chgPg} logSts={logSts} logMsg={logMsg} logOutFn={logOut}/>
       <MainArea />

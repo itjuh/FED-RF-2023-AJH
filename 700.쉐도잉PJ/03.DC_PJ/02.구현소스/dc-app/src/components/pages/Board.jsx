@@ -1,13 +1,16 @@
 // DC PJ - OPINION page 컴포넌트
+import { useState, Fragment, useRef, useContext } from "react";
 // 게시판용 css
-import { useState } from "react";
 import "../../css/board.css";
 // 데이터
 import baseData from "../data/board.json";
+// 로컬스토리지 생성 JS
+import { initData } from "../func/mem_fn";
+
 import $ from "jquery";
-import { Fragment } from "react";
-import { useCallback } from "react";
-import { useRef } from "react";
+// 컨텍스트
+import { dcCon } from "../modules/dcContext";
+import { useEffect } from "react";
 
 // baseData reverse sort
 baseData.sort((a, b) => {
@@ -22,6 +25,8 @@ else originData = baseData;
 
 //************* Board 컴포넌트 상단 ************//
 export function Board() {
+  // 기본 사용자 정보 셋업함수 호출
+  initData();
   /**
    * [ 공통변수 ]
    * 1. 페이지 단위 수: 페이지당 레코드수
@@ -29,6 +34,7 @@ export function Board() {
    */
   const PAGE_BLOCK = 8;
   const totNum = originData.length;
+  const myCon = useContext(dcCon);
 
   /**[ 상태관리 변수 셋팅 ]
    * 1. 현재 페이지 번호 pgNum
@@ -36,10 +42,27 @@ export function Board() {
    * 3. 게시판 모드 관리 변수 CRUD
    * 4. 단일페이지 데이터
    * c-create r-read u-updata d-delete l-list
+   * 5. 버튼 공개여부 관리변수 : modify
    */
   const [pgNum, setPgNum] = useState(1);
   const [currentData, setCurrentData] = useState(null);
   const [bdMode, setBdMode] = useState("L");
+  const [btnSts, setBtnSts] = useState(false);
+  // 리 랜더링 루프 방지용으로 랜더링 후 실행구역에 변경코드
+  useEffect(()=>{
+    // 로그아웃 시 버튼 상태값 false로 변경하기
+    if(myCon.logSts === null) setBtnSts(false);
+    // 로그아웃 시 페이지 이동하기
+    if((myCon.logSts === null && bdMode === "C")||(myCon.logSts === null && bdMode === "U")){
+      setBdMode('L');
+    } 
+  },[myCon.logSts]);
+  /** 리랜더링의 원인 중 많은 경우 
+   * 랜더링 전 가상돔에 설정을 잡을 때 발생한다.
+   * 해결책은 랜더링 후 처리구역에서 변경되는 상태변수를 의존성에 등록하여 
+   * 변경 발생 시 한 번만 실행되도록 설정하는 것이다.
+  */
+
   // 선택된 데이터 셋팅을 위한 참조변수
   const selData = useRef(null);
 
@@ -52,7 +75,7 @@ export function Board() {
     let txt = $(e.currentTarget).text();
     switch (txt) {
       case "Write":
-        // 읽기모드 화면데이터 불러오기
+        // 쓰기모드 화면데이터 불러오기
         writeMod();
         // 화면처리
         setBdMode("C");
@@ -76,8 +99,12 @@ export function Board() {
         break;
       default:
         let seq = $(e.currentTarget).attr("data-idx");
+        // 화면처리
         setBdMode("R");
+        // 읽기모드 화면데이터 불러오기
         readCont(seq);
+        // 수정버튼
+        compUser(selData.current.uid);
     }
   };
   /**
@@ -117,19 +144,67 @@ export function Board() {
     if (modeTxt === "R") {
       // 1. a링크의 data-idx 읽어오기
       let cidx = $(e.target).attr("data-idx");
+      console.log(cidx, selData);
       readCont(cidx);
-      // 2. 리스트 이동
+      // 2. 본인 글 확인
+      console.log(selData.current.uid);
+      compUser(selData.current.uid);
+      // 3. 리스트 이동
       setBdMode(modeTxt);
     } ////// if ///////
     // 3-2. 쓰기 모드
     else if (modeTxt === "C") {
       console.log("쓰기모드");
       writeMod();
+
       setBdMode(modeTxt);
     } ////// else if ///////
     // 3-3. 쓰기 처리
     else if (modeTxt === "S" && bdMode === "C") {
       console.log("쓰기처리");
+      // 1. 제목, 내용 필수입력 체크
+      const subVal = $('.writeone .subject').val().trim();
+      const contVal = $('.writeone .content').val().trim();
+      if(subVal===''||contVal===''){
+        alert('제목과 내용은 필수 입력입니다.');
+      }else{
+        const addZero = x => x<10?'0'+x:x;
+        // 2-1. 날짜 데이터 구성
+        let today = new Date();
+        let yy = today.getFullYear();
+        let mm = today.getMonth() + 1;
+        let dd = today.getDate();
+        // 2-2. 원본데이터 변수할당
+        let originTemp = originData;
+        // 2-3-1. 입력 데이터가 역순정렬 되었으므로 0번데이터의 idx를 읽어옴
+        // let idxData = Number(originData[0].idx)
+        // 2-3. 입력 idx값 모아서 최대값에 1을 더함
+        let idxData = originData.map(v=>parseInt(v.idx));
+        console.log(idxData);
+        // Math.max()에서 값을 비교하기위해 값을 나열하여 입력하면 됨
+        // Spread Operator로 합칠 수 있음
+        console.log('최대값 :',Math.max.apply(null,idxData));
+        console.log('최대값 :',Math.max(...idxData));
+        idxData = Math.max(...idxData);
+        // 그외 방법
+        // 2-3. 임시 변수에 입력할 객체 데이터 생성하기
+        let temp = {
+          idx: idxData+1,
+          tit: subVal,
+          cont: contVal,
+          att:'',
+          date:`${yy}-${addZero(mm)}-${addZero(dd)}`,
+          uid:selData.current.uid,
+          unm:selData.current.unm,
+          cnt:0,
+        };
+        // 3. 원본 데이터 push
+        originTemp.push(temp);
+        // 4. 데이터 로컬스토리지 반영
+        localStorage.setItem('boardData',JSON.stringify(originTemp));
+        // 5. 리스트 페이지로 이동
+        setBdMode('L');
+      }
     }
     // 3-3. 수정하기 모드
     else if (modeTxt === "U") {
@@ -139,7 +214,7 @@ export function Board() {
     // 3-5. 수정 처리
     else if (modeTxt === "S" && bdMode === "U") {
       console.log("수정처리");
-      setBdMode('L');
+      setBdMode("L");
     } ////// else if ///////
     // 3-4. 삭제하기 모드
     else if (modeTxt === "D") {
@@ -156,7 +231,8 @@ export function Board() {
    */
   const readCont = (data) => {
     selData.current = originData.find((v) => {
-      if (v.idx === data) return true;
+      console.log(v.idx);
+      if (Number(v.idx) === Number(data)) return true;
     });
   };
   /**
@@ -165,9 +241,35 @@ export function Board() {
    * 기능2 : 제목과 내용은 빈값없이 작성
    */
   const writeMod = () => {
-    let tempMem = { uid: "tomtom", eml: "tom@gmail.com" };
-    selData.current = tempMem;
+    const currentUser = JSON.parse(myCon.logSts);
+    selData.current = currentUser;
   };
+  /**
+   * 함수명 : compUser
+   * 기능 : 사용자 정보 비교함수, btnSts를 변경함
+   */
+  const compUser = (user) => { // 글쓴이 아이디 - uid
+    // 사용자 정보조회 로컬스(mem-data)
+    // 보드 상단에서 null일경우 생성함수 이미 호출!
+    // null을 고려하지 말고 코드작성!
+    // 로그인 상태일 경우 조회하여 버튼상태 업데이트
+    if(myCon.logSts !== null){ //로그인
+      // 1. 로컬스 원본 데이터 조회
+      const info = JSON.parse(localStorage.getItem("mem-data"));
+      // 2. 원본으로 부터 해당 사용자 정보 조회
+      const cUser = info.find((v) => {
+        if (v.uid === user) return true;
+      });
+      // 3. 로그인 사용자 정보와 비교
+      const currentUser = JSON.parse(myCon.logSts);
+      if(currentUser.uid===cUser.uid) setBtnSts(true);
+      else setBtnSts(false);
+    }else{ //로그아웃
+      setBtnSts(false);
+    }
+
+    // 3. 로그인 사용자 정보와 조회하기
+  }; ///////// chgUsrInfo 함수 ////////
 
   /**
    * 함수명 : bindList
@@ -181,6 +283,9 @@ export function Board() {
      * 페이지 종료 번호 : pgNum*PAGE_BLOCK
      */
     const tempData = [];
+    originData.sort((a,b)=>{
+      return Number(a.idx) == Number(b.idx) ? 0 : Number(a.idx) > Number(b.idx) ? -1 : 1;
+    })
     let initSeq = (pgNum - 1) * PAGE_BLOCK;
     let lastSeq = pgNum * PAGE_BLOCK;
     // 데이터 선별용 for
@@ -202,12 +307,12 @@ export function Board() {
         <td>{initSeq + i + 1}</td>
         {/* 2. 타이틀 */}
         <td>
-          <a href="#" data-idx={v.idx} onClick={chgMode1}>
+          <a href="#" data-idx={v.idx} onClick={chgMode2}>
             {v.tit}
           </a>
         </td>
         {/* 3. 작성자 */}
-        <td>{v.writer}</td>
+        <td>{v.unm}</td>
         {/* 4. 작성일 */}
         <td>{v.date}</td>
         {/* 5. 조회수 */}
@@ -303,13 +408,13 @@ export function Board() {
               <tr>
                 <td>Name</td>
                 <td>
-                  <input type="text" className="name" size="20" readOnly defaultValue={selData.current.uid} />
+                  <input type="text" className="name" size="20" readOnly value={selData.current.unm} />
                 </td>
               </tr>
               <tr>
                 <td>Email</td>
                 <td>
-                  <input type="text" className="email" size="40" readOnly defaultValue={selData.current.eml} />
+                  <input type="text" className="email" size="40" readOnly value={selData.current.eml} />
                 </td>
               </tr>
               <tr>
@@ -337,13 +442,13 @@ export function Board() {
               <tr>
                 <td width="100">Name</td>
                 <td width="650">
-                  <input type="text" className="name" size="20" readOnly defaultValue={selData.current.writer} />
+                  <input type="text" className="name" size="20" readOnly value={selData.current.unm} />
                 </td>
               </tr>
               <tr>
                 <td>Title</td>
                 <td>
-                  <input type="text" className="subject" size="60" readOnly defaultValue={selData.current.tit} />
+                  <input type="text" className="subject" size="60" readOnly value={selData.current.tit} />
                 </td>
               </tr>
               <tr>
@@ -371,13 +476,13 @@ export function Board() {
               <tr>
                 <td>Name</td>
                 <td>
-                  <input type="text" className="name" size="20" readOnly defaultValue={selData.current.writer}/>
+                  <input type="text" className="name" size="20" readOnly defaultValue={selData.current.unm} />
                 </td>
               </tr>
               <tr>
                 <td>Title</td>
                 <td>
-                  <input type="text" className="subject" size="60" defaultValue={selData.current.tit}/>
+                  <input type="text" className="subject" size="60" defaultValue={selData.current.tit} />
                 </td>
               </tr>
               <tr>
@@ -398,8 +503,8 @@ export function Board() {
             <td>
               {
                 /**1. 게시판 리스트:bdMode L */
-                bdMode === "L" && (
-                  <button onClick={chgMode1}>
+                bdMode === "L" && myCon.logSts !== null && (
+                  <button onClick={chgMode2}>
                     <a href="#">Write</a>
                   </button>
                 )
@@ -408,10 +513,10 @@ export function Board() {
                 /**2. 글쓰기 테이블 :bdMode C */
                 bdMode === "C" && (
                   <>
-                    <button onClick={chgMode1}>
+                    <button onClick={chgMode2}>
                       <a href="#">Submit</a>
                     </button>
-                    <button onClick={chgMode1}>
+                    <button onClick={chgMode2}>
                       <a href="#">List</a>
                     </button>
                   </>
@@ -421,12 +526,16 @@ export function Board() {
                 /**3. 읽기 테이블 :bdMode R */
                 bdMode === "R" && (
                   <>
-                    <button onClick={chgMode1}>
+                    <button onClick={chgMode2}>
                       <a href="#">List</a>
                     </button>
-                    <button onClick={chgMode1}>
-                      <a href="#">Modify</a>
-                    </button>
+                    {
+                    /**글쓴이 === 로그인사용자 */
+                    btnSts && (
+                      <button onClick={chgMode2}>
+                        <a href="#">Modify</a>
+                      </button>
+                    )}
                   </>
                 )
               }
@@ -434,13 +543,13 @@ export function Board() {
                 /**4. 수정/삭제 테이블 :bdMode U/D */
                 bdMode === "U" && (
                   <>
-                    <button onClick={chgMode1}>
+                    <button onClick={chgMode2}>
                       <a href="#">Submit</a>
                     </button>
-                    <button onClick={chgMode1}>
+                    <button onClick={chgMode2}>
                       <a href="#">Delete</a>
                     </button>
-                    <button onClick={chgMode1}>
+                    <button onClick={chgMode2}>
                       <a href="#">List</a>
                     </button>
                   </>

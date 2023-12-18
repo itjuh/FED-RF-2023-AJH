@@ -110,7 +110,7 @@ export function Banner(props) {
 
   // 리스트 만들기 함수
   const makeList = (data) => {
-    console.log(process.env.PUBLIC_URL);
+    // console.log(process.env.PUBLIC_URL);
     return data.map((v, i) => (
       <li key={i}>
         <img src={process.env.PUBLIC_URL + v.src} alt="배너이미지"></img>
