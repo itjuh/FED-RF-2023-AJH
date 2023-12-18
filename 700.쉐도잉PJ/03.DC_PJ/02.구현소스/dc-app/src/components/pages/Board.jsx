@@ -6,6 +6,8 @@ import "../../css/board.css";
 import baseData from "../data/board.json";
 import $ from "jquery";
 import { Fragment } from "react";
+import { useCallback } from "react";
+import { useRef } from "react";
 
 // baseData reverse sort
 baseData.sort((a, b) => {
@@ -25,36 +27,146 @@ export function Board() {
    * 1. 페이지 단위 수: 페이지당 레코드수
    * 2. 전체 레코드 수
    */
-  const PAGE_BLOCK = 7;
+  const PAGE_BLOCK = 8;
   const totNum = originData.length;
 
   /**[ 상태관리 변수 셋팅 ]
    * 1. 현재 페이지 번호 pgNum
    * 2. 데이터 변경관리 변수 : 출력 될 list
    * 3. 게시판 모드 관리 변수 CRUD
+   * 4. 단일페이지 데이터
    * c-create r-read u-updata d-delete l-list
    */
   const [pgNum, setPgNum] = useState(1);
   const [currentData, setCurrentData] = useState(null);
   const [bdMode, setBdMode] = useState("L");
+  // 선택된 데이터 셋팅을 위한 참조변수
+  const selData = useRef(null);
 
-  // 상태관리 변경함수
-  const chgMode = (e) => {
+  /**
+   * 함수명 : chgMode
+   * 기능 : 게시판 상태를 변경
+   */
+  const chgMode1 = (e) => {
+    e.preventDefault();
     let txt = $(e.currentTarget).text();
     switch (txt) {
       case "Write":
+        // 읽기모드 화면데이터 불러오기
+        writeMod();
+        // 화면처리
         setBdMode("C");
         break;
-      case "Submit":
-        setBdMode("R");
+      case "Submit": // write, modify에서 둘다 있음
+        if (bdMode === "C") {
+          // write의 submit
+        } else {
+          // modify의 submit
+        }
+        setBdMode("L");
         break;
       case "List":
         setBdMode("L");
         break;
-      default:
-        setBdMode("R");
+      case "Modify":
+        setBdMode("U");
         break;
+      case "Delete":
+        setBdMode("L");
+        break;
+      default:
+        let seq = $(e.currentTarget).attr("data-idx");
+        setBdMode("R");
+        readCont(seq);
     }
+  };
+  /**
+   * 함수명 : chgMode2
+   * 기능 : 게시판 상태를 변경 _ version2
+   */
+  const chgMode2 = (e) => {
+    // 1. 해당 버튼의 텍스트 읽어오기
+    let btxt = $(e.target).text();
+    console.log(btxt);
+
+    // 2. 텍스트별 모드 연결하기
+    let modeTxt;
+
+    switch (btxt) {
+      case "List":
+        modeTxt = "L";
+        break;
+      case "Write":
+        modeTxt = "C";
+        break;
+      case "Modify":
+        modeTxt = "U";
+        break;
+      case "Submit":
+        modeTxt = "S";
+        break;
+      case "Delete":
+        modeTxt = "D";
+        break;
+      default:
+        modeTxt = "R";
+    }
+
+    // 3. 모드별 분기하기 //////
+    // 3-1. 읽기 모드
+    if (modeTxt === "R") {
+      // 1. a링크의 data-idx 읽어오기
+      let cidx = $(e.target).attr("data-idx");
+      readCont(cidx);
+      // 2. 리스트 이동
+      setBdMode(modeTxt);
+    } ////// if ///////
+    // 3-2. 쓰기 모드
+    else if (modeTxt === "C") {
+      console.log("쓰기모드");
+      writeMod();
+      setBdMode(modeTxt);
+    } ////// else if ///////
+    // 3-3. 쓰기 처리
+    else if (modeTxt === "S" && bdMode === "C") {
+      console.log("쓰기처리");
+    }
+    // 3-3. 수정하기 모드
+    else if (modeTxt === "U") {
+      console.log("수정모드");
+      setBdMode(modeTxt);
+    } ////// else if ///////
+    // 3-5. 수정 처리
+    else if (modeTxt === "S" && bdMode === "U") {
+      console.log("수정처리");
+      setBdMode('L');
+    } ////// else if ///////
+    // 3-4. 삭제하기 모드
+    else if (modeTxt === "D") {
+      console.log("삭제처리");
+    } ////// else if ///////
+    // 3-5. 리스트 모드
+    else if (modeTxt === "L") {
+      setBdMode(modeTxt);
+    }
+  };
+  /**
+   * 함수명 : readCont
+   * 기능 : 클릭한 글 내용을 바인딩
+   */
+  const readCont = (data) => {
+    selData.current = originData.find((v) => {
+      if (v.idx === data) return true;
+    });
+  };
+  /**
+   * 함수명 : writeMod
+   * 기능 : 작성자/메일 자동처리
+   * 기능2 : 제목과 내용은 빈값없이 작성
+   */
+  const writeMod = () => {
+    let tempMem = { uid: "tomtom", eml: "tom@gmail.com" };
+    selData.current = tempMem;
   };
 
   /**
@@ -90,7 +202,7 @@ export function Board() {
         <td>{initSeq + i + 1}</td>
         {/* 2. 타이틀 */}
         <td>
-          <a href="#" datatype={v.idx} onClick={chgMode}>
+          <a href="#" data-idx={v.idx} onClick={chgMode1}>
             {v.tit}
           </a>
         </td>
@@ -144,6 +256,7 @@ export function Board() {
    * 기능 : 페이지 리스트 재생성하여 바인딩
    */
   const chgList = (e) => {
+    e.preventDefault();
     setPgNum(e.target.innerText);
     // bindList(); ->>> pgNum사용으로 리랜더링
   }; /////// chgList 함수 ///////////
@@ -190,13 +303,13 @@ export function Board() {
               <tr>
                 <td>Name</td>
                 <td>
-                  <input type="text" className="name" size="20" readOnly />
+                  <input type="text" className="name" size="20" readOnly defaultValue={selData.current.uid} />
                 </td>
               </tr>
               <tr>
                 <td>Email</td>
                 <td>
-                  <input type="text" className="email" size="40" readOnly />
+                  <input type="text" className="email" size="40" readOnly defaultValue={selData.current.eml} />
                 </td>
               </tr>
               <tr>
@@ -224,19 +337,25 @@ export function Board() {
               <tr>
                 <td width="100">Name</td>
                 <td width="650">
-                  <input type="text" className="name" size="20" readOnly />
+                  <input type="text" className="name" size="20" readOnly defaultValue={selData.current.writer} />
                 </td>
               </tr>
               <tr>
                 <td>Title</td>
                 <td>
-                  <input type="text" className="subject" size="60" readOnly />
+                  <input type="text" className="subject" size="60" readOnly defaultValue={selData.current.tit} />
                 </td>
               </tr>
               <tr>
                 <td>Content</td>
                 <td>
-                  <textarea className="content" cols="60" rows="10" readOnly></textarea>
+                  <textarea
+                    className="content"
+                    cols="60"
+                    rows="10"
+                    readOnly
+                    defaultValue={selData.current.cont}
+                  ></textarea>
                 </td>
               </tr>
             </tbody>
@@ -252,19 +371,19 @@ export function Board() {
               <tr>
                 <td>Name</td>
                 <td>
-                  <input type="text" className="name" size="20" readOnly />
+                  <input type="text" className="name" size="20" readOnly defaultValue={selData.current.writer}/>
                 </td>
               </tr>
               <tr>
                 <td>Title</td>
                 <td>
-                  <input type="text" className="subject" size="60" />
+                  <input type="text" className="subject" size="60" defaultValue={selData.current.tit}/>
                 </td>
               </tr>
               <tr>
                 <td>Content</td>
                 <td>
-                  <textarea className="content" cols="60" rows="10"></textarea>
+                  <textarea className="content" cols="60" rows="10" defaultValue={selData.current.cont}></textarea>
                 </td>
               </tr>
             </tbody>
@@ -280,7 +399,7 @@ export function Board() {
               {
                 /**1. 게시판 리스트:bdMode L */
                 bdMode === "L" && (
-                  <button onClick={chgMode}>
+                  <button onClick={chgMode1}>
                     <a href="#">Write</a>
                   </button>
                 )
@@ -289,10 +408,10 @@ export function Board() {
                 /**2. 글쓰기 테이블 :bdMode C */
                 bdMode === "C" && (
                   <>
-                    <button onClick={chgMode}>
+                    <button onClick={chgMode1}>
                       <a href="#">Submit</a>
                     </button>
-                    <button onClick={chgMode}>
+                    <button onClick={chgMode1}>
                       <a href="#">List</a>
                     </button>
                   </>
@@ -301,30 +420,32 @@ export function Board() {
               {
                 /**3. 읽기 테이블 :bdMode R */
                 bdMode === "R" && (
-                  <button onClick={chgMode}>
-                    <a href="#">List</a>
-                  </button>
+                  <>
+                    <button onClick={chgMode1}>
+                      <a href="#">List</a>
+                    </button>
+                    <button onClick={chgMode1}>
+                      <a href="#">Modify</a>
+                    </button>
+                  </>
                 )
               }
               {
                 /**4. 수정/삭제 테이블 :bdMode U/D */
                 bdMode === "U" && (
                   <>
-                    <button onClick={chgMode}>
+                    <button onClick={chgMode1}>
                       <a href="#">Submit</a>
                     </button>
-                    <button onClick={chgMode}>
+                    <button onClick={chgMode1}>
                       <a href="#">Delete</a>
                     </button>
-                    <button onClick={chgMode}>
+                    <button onClick={chgMode1}>
                       <a href="#">List</a>
                     </button>
                   </>
                 )
               }
-              {/* <button onClick={chgMode}>
-                      <a href="#">Modify</a>
-                    </button> */}
             </td>
           </tr>
         </tbody>

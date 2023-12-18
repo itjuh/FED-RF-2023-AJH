@@ -17,6 +17,8 @@ export const CartList = memo(({ data, flag }) => {
   // 화면 리랜더링을 위한 상태관리 변수 설정
   // 1. 변경 데이터 변수
   const [cartData, setCartData] = useState(data);
+  // 2. 리랜더링 강제적용 상태변수
+  const [force, setForse] = useState(null);
   console.log("받은데이터", data, "\n기존데이터", cartData, "\n유지데이터");
   // 카트 컴포넌트의 데이터의 상태관리로 컴포넌트 리랜더링을 위함
   // 외부데이터 업데이트는 외부에서 온 경우만!!
@@ -93,10 +95,58 @@ export const CartList = memo(({ data, flag }) => {
     }
     // 화면반영
     tgInput.val(tgCnt);
+    
   }; ///////// chgNum ///////////
   // 반영버튼 클릭 시 데이터 업데이트 하기
-  const goResult = ()=>{
+  const goResult = (e)=>{
+    let tg = $(e.currentTarget);
+    let cidx = tg.attr('data-idx');
     console.log('결과 나와주세요!!!📢');
+    // 데이터 리랜더링 중복실행막기
+    flag.current = false;
+    // 해당 데이터 업데이트 하기
+    // forEach로 돌리면 중간에 맞을 경우 return할 수 없음!
+    // 일반 for문으로 해야 return 또는 continue를 사용 가능
+
+    // ->>> some() 이라는 메서드가 있다!!!
+    // return true로 조건에 처리시 
+    // for문을 빠져나옴(return과 유사)
+    // return false로 조건 처리시 for문을 해당순번 
+    // 제외하고 계속 순회함(continue와 유사!)
+    // 참고: https://www.w3schools.com/jsref/jsref_some.asp
+
+    // [Array some() 메서드 테스트] //////
+    // cartData.some((v) => {
+    //   console.log('some테스트상단:',v.idx);
+    //   // if(v.idx==17){return true;} // -> for문 break 유사
+    //   if(v.idx==17){return false;} // -> for문 continue 유사
+    //   console.log('some테스트하단:',v.idx);
+    // });
+
+    // 클릭시 'data-idx'값에 업데이트할 요소 idx번호 있음!->cidx
+    cartData.some((v,i) => {
+      // 해당순번 업데이트하기
+      if(v.idx==cidx){
+        // 업데이트 하기 ///
+        cartData[i].num = tg.prev().val();
+
+        // some 메서드 이므로 true 리턴시 순회종료!
+        return true;
+
+      } ///// if ///////
+    });
+
+    // 로컬스 데이터 업데이트!!!
+    localStorage.setItem("cart", JSON.stringify(cartData));
+
+    // 전체 데이터 업데이트 하면 모두 리랜더링되게 하자!
+    setCartData(cartData);
+
+    // 그러나 기존 배열 자체가 추가/삭제되지 않는 한
+    // 배열데이터가 업데이트 된 것으로 인식되지 않는다.
+    // 따라서 강제 리랜더링되게 상태값을 설정하여 이 값을 변경
+    setForse(Math.random());
+
   }; ///////// goResult함수 ////////
 
   useEffect(() => {
@@ -149,7 +199,7 @@ export const CartList = memo(({ data, flag }) => {
                   <div>
                     <span>
                       <input type="text" className="item-cnt" defaultValue={v.num} />
-                      <button className="btn-insert" onClick={goResult}>반영</button>
+                      <button className="btn-insert" onClick={goResult} data-idx={v.idx}>반영</button>
                       <b className="btn-cnt">
                         <img src="./images/cnt_up.png" alt="증가" onClick={chgNum}/>
                         <img src="./images/cnt_down.png" alt="감소" onClick={chgNum}/>

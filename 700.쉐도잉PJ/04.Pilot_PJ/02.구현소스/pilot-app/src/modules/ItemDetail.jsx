@@ -10,13 +10,19 @@ export function ItemDetail({ goods, cat }) {
   // goods - 상품 아이템정보(속성코드)
   // cat - 카테고리
 
-  // 카트 상태관리 변수
-  const [cartSts, setCartSts] = useState(0);
+  let stsVal = 0;
+  let transVal = null;
+  if(localStorage.getItem("cart")){
+    stsVal = 1;
+    transVal = JSON.parse(localStorage.getItem("cart"));
+  }
   // 카트리스트 컴포넌트 변경체크 변수(리랜더링 시 상태 변경 없음)
   /** flag true 새로추가 false 내부변경 */
   const flag = useRef(true);
+  // 초기 카트 사용여부 로컬스토리지 cart가 있으면 1 없으면 0
+  const [cartSts, setCartSts] = useState(stsVal);
   // 변환값 변수
-  let [transData, setTransData] = useState(null);
+  let [transData, setTransData] = useState(transVal);
 
   let temp;
   // 카트 상태 업데이트 변수

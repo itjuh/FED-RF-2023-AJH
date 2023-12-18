@@ -109,7 +109,8 @@
 }
 /* 입력창 포커스 가면 형제요소 보이기 */
 .item-cnt:focus + .btn-insert {
-  display: inline-block;
+  width: 34px;
+  transition: none;
 }
 /* 증감 이미지버튼 */
 #cartlist .btn-cnt img {
@@ -119,9 +120,11 @@
 /* 반영 버튼 */
 .btn-insert {
   position: absolute;
-  left: 80%;
-  width: 34px;
+  margin-left: 43px;
   white-space: nowrap;
   padding: 0;
-  display: none;
+  overflow: hidden;
+  width: 0;
+  transition: .1s .1s;
+  /* display: none; */
 }

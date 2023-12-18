@@ -1,3 +1,4 @@
+import { MySwiper } from "../plugin/MySwiper";
 import { SwiperApp } from "../plugin/SwiperApp";
 import { SwiperApp2 } from "../plugin/SwiperApp copy";
 
@@ -6,8 +7,7 @@ export function TestPage(){
     return(
         <>
         <h1>테스트용 페이지야~</h1>
-            <SwiperApp />
-            <SwiperApp2 />
+            <MySwiper />
         </>
     )
 } ////////// Test page ////////

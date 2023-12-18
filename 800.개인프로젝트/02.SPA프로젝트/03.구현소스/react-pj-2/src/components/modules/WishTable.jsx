@@ -4,7 +4,6 @@ import $ from "jquery";
 // LEOPOLD WishList Table만들기 컴포넌트
 // export const WishTable = memo(({ data, chgFn }) => {
 export const WishTable = memo(({ wishdata, flag }) => {
-  
   // 받은 데이터 : 장바구니 localstorage data
   if (!wishdata) {
     localStorage.setItem("wish", JSON.stringify([]));
@@ -13,9 +12,11 @@ export const WishTable = memo(({ wishdata, flag }) => {
   // 변경 데이터 변수
   const [data, setData] = useState(wishdata);
   // 데이터 변경 시에만 리랜더링
-  if(data!==wishdata&&flag.current) setData(wishdata);
+  if (data !== wishdata && flag.current) setData(wishdata);
   // console.log("wishTable// wishdata:",wishdata,'\ndata:',data);
-  
+
+  // 출력 리스트 변수
+  let listCnt = 10;
   // 총 합계 변수
   let subFee;
   let totalFee;
@@ -73,7 +74,7 @@ export const WishTable = memo(({ wishdata, flag }) => {
       if (Number(v.idx) === Number(targetSeq)) {
         v.count = cnt;
         return true;
-      }else return true;
+      } else return true;
     });
     setData(updateData);
     // 로컬 스토리지 반영하기
@@ -132,7 +133,7 @@ export const WishTable = memo(({ wishdata, flag }) => {
           setData(updateData);
         } else {
           // 단순 삭제
-          updateData = data.filter(v => {
+          updateData = data.filter((v) => {
             if (Number(v.idx) !== Number(tgSeq)) {
               return true;
             }
@@ -145,7 +146,7 @@ export const WishTable = memo(({ wishdata, flag }) => {
         // 자식컴포넌트 업데이트
         flag.current = false;
         // 체크박스 해제
-        $('input[type="checkbox"]').prop('checked',false)
+        $('input[type="checkbox"]').prop("checked", false);
       }
       $(".message-box").fadeOut(30);
     });
@@ -177,159 +178,151 @@ export const WishTable = memo(({ wishdata, flag }) => {
   //   });
   //   $(".wish-chk-input").prop('check',false);
   // };
-  useEffect(()=>{
-    if(flag.current)$('input[type="checkbox"]').prop('checked',true);
-  },[]);
+  useEffect(() => {
+    if (flag.current) $('input[type="checkbox"]').prop("checked", true);
+  }, []);
   return (
     <section className="wish-box">
-      <table className="wish-table">
-        <thead>
-          {/* 장바구니 상단부 */}
-          <tr>
-            {items > 1 && <td colSpan={3}>SubTotal({items} items)</td>}
-            {items <= 1 && <td colSpan={3}>SubTotal({items} item)</td>}
-            <td colSpan={4}>
-              <div className="sel-chk-box flex-box" data-seq="-1">
-                <button onClick={checkList}>checked order</button>
-                <button onClick={(e) => deleteFn(e)}>checked delete</button>
-              </div>
-            </td>
-          </tr>
-        </thead>
-        {data.length !== 0 && (
-          <>
-            <tbody>
-              <tr>
-                {/* 2-1. 체크박스 */}
-                <th>
-                  <input type="checkbox" name="all-item" id="all-item" onChange={(e) => allChkFn(e)} />
-                  <label className="wish-chk" htmlFor="all-item">
-                    ✔
-                  </label>
-                </th>
-                {/* 2-2. 이미지 */}
-                <th>Image</th>
-                {/* 2-3. 제품명 */}
-                <th>Product</th>
-                {/* 2-4. 단가 */}
-                <th>Price</th>
-                {/* 2-5. 수량 */}
-                <th>Quantity</th>
-                {/* 2-6. 합계 */}
-                <th>Sub Total</th>
-                {/* 2-7. 선택구역 */}
-                <th>Select</th>
-              </tr>
-              {data.map(
-                (v, i) =>
-                  i < 5 &&
-                  i >= 0 && (
-                    <tr key={i} className={v.src}>
-                      {/* 2-1. 체크박스 */}
-                      <td>
-                        <input
-                          type="checkbox"
-                          name={"item" + v.idx}
-                          id={"item" + v.idx}
-                          className="wish-chk-input"
-                          onChange={() => eachChkFn()}
-                        />
-                        <label className="wish-chk" htmlFor={"item" + v.idx}>
-                          ✔
-                        </label>
-                      </td>
-                      {/* 2-2. 이미지 */}
-                      <td>
-                        <img src={"./images/image_prod2/" + v.src + ".png"} alt={v.src + "이미지"} />
-                      </td>
-                      {/* 2-3. 제품명 */}
-                      <td>
-                        <span>
-                          {v.code} - {v.sub}
-                        </span>
-                      </td>
-                      {/* 2-4. 단가 */}
-                      <td>
-                        <span>￦{addCommas(v.cost)}</span>
-                      </td>
-                      {/* 2-5. 수량 */}
-                      <td>
-                        <div className="quant-box flex-box" data-seq={v.idx}>
-                          <div className="quant-btn" onClick={(e) => updateCnt(e)}>
-                            －
+      <div className="wish-in-box scbar row-8">
+        <table className="wish-table">
+          <thead>
+            {/* 장바구니 상단부 */}
+            <tr>
+              {items > 1 && <td colSpan={3}>SubTotal({items} items)</td>}
+              {items <= 1 && <td colSpan={3}>SubTotal({items} item)</td>}
+              <td colSpan={4}>
+                <div className="sel-chk-box flex-box" data-seq="-1">
+                  <button onClick={checkList}>checked order</button>
+                  <button onClick={(e) => deleteFn(e)}>checked delete</button>
+                </div>
+              </td>
+            </tr>
+          </thead>
+          {data.length !== 0 && (
+            <>
+              <tbody>
+                <tr>
+                  {/* 2-1. 체크박스 */}
+                  <th>
+                    <input type="checkbox" name="all-item" id="all-item" onChange={(e) => allChkFn(e)} />
+                    <label className="wish-chk" htmlFor="all-item">
+                      ✔
+                    </label>
+                  </th>
+                  {/* 2-2. 이미지 */}
+                  <th>Image</th>
+                  {/* 2-3. 제품명 */}
+                  <th>Product</th>
+                  {/* 2-4. 단가 */}
+                  <th>Price</th>
+                  {/* 2-5. 수량 */}
+                  <th>Quantity</th>
+                  {/* 2-6. 합계 */}
+                  <th>Sub Total</th>
+                  {/* 2-7. 선택구역 */}
+                  <th>Select</th>
+                </tr>
+                {data.map(
+                  (v, i) =>
+                    i >= 1 && (
+                      <tr key={i} className={v.src}>
+                        {/* 2-1. 체크박스 */}
+                        <td>
+                          <input
+                            type="checkbox"
+                            name={"item" + v.idx}
+                            id={"item" + v.idx}
+                            className="wish-chk-input"
+                            onChange={() => eachChkFn()}
+                          />
+                          <label className="wish-chk" htmlFor={"item" + v.idx}>
+                            ✔
+                          </label>
+                        </td>
+                        {/* 2-2. 이미지 */}
+                        <td>
+                          <img src={"./images/image_prod2/" + v.src + ".png"} alt={v.src + "이미지"} />
+                        </td>
+                        {/* 2-3. 제품명 */}
+                        <td>
+                          <span>
+                            {v.code} - {v.sub}
+                          </span>
+                        </td>
+                        {/* 2-4. 단가 */}
+                        <td>
+                          <span>￦{addCommas(v.cost)}</span>
+                        </td>
+                        {/* 2-5. 수량 */}
+                        <td>
+                          <div className="quant-box flex-box" data-seq={v.idx}>
+                            <div className="quant-btn" onClick={(e) => updateCnt(e)}>
+                              －
+                            </div>
+                            <input type="text" className="quant" readOnly defaultValue={v.count} />
+                            <div className="quant-btn" onClick={(e) => updateCnt(e)}>
+                              ＋
+                            </div>
                           </div>
-                          <input type="text" className="quant" readOnly defaultValue={v.count} />
-                          <div className="quant-btn" onClick={(e) => updateCnt(e)}>
-                            ＋
+                        </td>
+                        {/* 2-6. 합계 */}
+                        <td>
+                          <span className="item-fee">￦{addCommas(v.cost * v.count)}</span>
+                        </td>
+                        {/* 2-7. 선택구역 */}
+                        <td>
+                          <div className="sel-box flex-box" data-seq={v.idx}>
+                            <button>order</button>
+                            <button onClick={(e) => deleteFn(e)}>delete</button>
                           </div>
-                        </div>
-                      </td>
-
-                      {/* 2-6. 합계 */}
-                      <td>
-                        <span className="item-fee">￦{addCommas(v.cost * v.count)}</span>
-                      </td>
-                      {/* 2-7. 선택구역 */}
-                      <td>
-                        <div className="sel-box flex-box" data-seq={v.idx}>
-                          <button>order</button>
-                          <button onClick={(e) => deleteFn(e)}>delete</button>
-                        </div>
-                      </td>
-                    </tr>
-                  )
-              )}
-              {data.map(
-                (v, i) =>
-                  i === 5 && (
-                    <tr key={i}>
-                      <td colSpan={7}>... show more...</td>
-                    </tr>
-                  )
-              )}
-            </tbody>
-            <tfoot>
-              <tr className="total-fee">
-                <td colSpan={3}>
-                  ￦{addCommas(subFee)}(Product Price) + ￦{addCommas(sendFee)}(delivery fee) =
-                </td>
-                <td colSpan={3}>
-                  <i>Total ￦{addCommas(totalFee)}</i>
-                </td>
-              </tr>
-            </tfoot>
-          </>
-        )}
-        {items === 0 && (
-          <>
-            <tbody>
-              <tr>
-                {/* 2-1. 체크박스 */}
-                <th></th>
-                {/* 2-2. 이미지 */}
-                <th>Image</th>
-                {/* 2-3. 제품명 */}
-                <th>Product</th>
-                {/* 2-4. 단가 */}
-                <th>Price</th>
-                {/* 2-5. 수량 */}
-                <th>Quantity</th>
-                {/* 2-6. 합계 */}
-                <th>Sub Total</th>
-                {/* 2-7. 선택구역 */}
-                <th>Select</th>
-              </tr>
-            </tbody>
-            <tfoot>
-              <tr>
-                <td colSpan={7} style={{ fontSize: "1.6rem", padding: "2vw" }}>
-                  <i>You didn't put the product in wishlist.....</i>
-                </td>
-              </tr>
-            </tfoot>
-          </>
-        )}
-      </table>
+                        </td>
+                      </tr>
+                    )
+                )}
+              </tbody>
+              <tfoot>
+                <tr className="total-fee">
+                  <td colSpan={3}>
+                    ￦{addCommas(subFee)}(Product Price) + ￦{addCommas(sendFee)}(delivery fee) =
+                  </td>
+                  <td colSpan={3}>
+                    <i>Total ￦{addCommas(totalFee)}</i>
+                  </td>
+                </tr>
+              </tfoot>
+            </>
+          )}
+          {items === 0 && (
+            <>
+              <tbody>
+                <tr>
+                  {/* 2-1. 체크박스 */}
+                  <th></th>
+                  {/* 2-2. 이미지 */}
+                  <th>Image</th>
+                  {/* 2-3. 제품명 */}
+                  <th>Product</th>
+                  {/* 2-4. 단가 */}
+                  <th>Price</th>
+                  {/* 2-5. 수량 */}
+                  <th>Quantity</th>
+                  {/* 2-6. 합계 */}
+                  <th>Sub Total</th>
+                  {/* 2-7. 선택구역 */}
+                  <th>Select</th>
+                </tr>
+              </tbody>
+              <tfoot>
+                <tr>
+                  <td colSpan={7} style={{ fontSize: "1.6rem", padding: "2vw" }}>
+                    <i>You didn't put the product in wishlist.....</i>
+                  </td>
+                </tr>
+              </tfoot>
+            </>
+          )}
+        </table>
+      </div>
     </section>
   );
 }); ////////// WishTable 컴포넌트 ///////////

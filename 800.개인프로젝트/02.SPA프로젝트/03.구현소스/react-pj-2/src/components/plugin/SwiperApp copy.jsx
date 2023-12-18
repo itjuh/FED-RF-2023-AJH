@@ -32,7 +32,7 @@ export function SwiperApp2() {
   return (
     <>
       <Swiper
-        slidesPerView={4}
+        slidesPerView={5}
         spaceBetween={30}
         // pagination={{
         //   clickable: true,
@@ -42,14 +42,13 @@ export function SwiperApp2() {
         // }}
         direction={"vertical"}
         keyboard={true}
-        loop={true}
         // autoplay={{
         //   delay: 1000,
         //   disableOnInteraction: false,
         // }}
         // 사용 할 모듈을 여기에 적용시킨다
         modules={[Pagination, Navigation, Keyboard, Autoplay]}
-        className="mySwiper swiper2 row-s-10"
+        className="mySwiper swiper2 row-s-13"
       >
         {
           imgArr.map((v,i)=><SwiperSlide key={i}><img src={"./images/image_prod2/" + v + ".png"} alt='images'/></SwiperSlide>)
