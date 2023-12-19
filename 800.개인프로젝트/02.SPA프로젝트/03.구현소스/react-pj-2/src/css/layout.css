@@ -252,6 +252,9 @@
 } /* 750px 이하 미디어쿼리 종료*/
 /* 500px 이하 미디어쿼리 시작 */
 @media screen and (max-width: 500px) {
+  .top-title img{
+    padding-top: 5px;
+  }
   .gnb-area a+a{
     display: none;
   }

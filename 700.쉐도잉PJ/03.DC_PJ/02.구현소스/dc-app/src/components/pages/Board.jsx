@@ -295,11 +295,7 @@ export function Board() {
     }
     // 데이터 없는 경우 출력
     if (tempData.length === 0)
-      return (
-        <tr>
-          <td colSpan="5">There is no data.</td>
-        </tr>
-      );
+      
     // 데이터 있는 경우 출력
     return tempData.map((v, i) => (
       <tr key={i}>

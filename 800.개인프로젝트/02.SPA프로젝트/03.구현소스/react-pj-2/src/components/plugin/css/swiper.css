@@ -18,17 +18,15 @@
   position: relative;
   /* width: 400px;
   aspect-ratio: 400/130; */
-  outline:1px dotted rgb(206, 17, 17);
 }
 .slide{
   box-sizing: border-box;
   position: relative;
   top: 50%;
-  width: 90%;
-  height: 90%;
+  width: 60%;
+  height: 80%;
   margin: 0 auto;
   transform: translateY(-50%) scale(1);
-  background-color: rgb(206, 17, 17);
   border-radius: 10px;
   transition: transform .7s ease-in-out;
 }

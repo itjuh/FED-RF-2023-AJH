@@ -88,6 +88,7 @@ h3.prod-item-title {
   font-family: "KOFIHDrLEEJWTTF-L";
   font-size: 1rem;
   text-indent: 5px;
+  background-color: #fff;
 }
 h3.prod-item-title + h3.prod-item-title {
   text-indent: 15px;
@@ -194,7 +195,7 @@ h3.prod-item-title + h3.prod-item-title {
   width: 45vw;
 }
   .prod-item {
-    width: 45vw;
+    width: 60vw;
   }
   /* 메인 제외 상품 3번째부터 */
 .prod-area li:nth-child(2) ~ li .prod-item {

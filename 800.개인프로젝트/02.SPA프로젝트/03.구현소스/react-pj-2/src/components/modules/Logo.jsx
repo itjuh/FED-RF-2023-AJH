@@ -17,7 +17,7 @@ export function Logo() {
       initToggle();
     } else {
       // 페이지 이동
-      goNav("/testpage");
+      goNav("/");
       // 타이틀 변경
       myCon.chgTit("Keyboard List");
     }

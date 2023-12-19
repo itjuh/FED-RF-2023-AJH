@@ -15,10 +15,20 @@ export const CartList = memo(({ data, flag }) => {
   // console.log(JSON.parse(localStorage.getItem('cart')));
   // let data = JSON.parse(localStorage.getItem("cart"));
   // 화면 리랜더링을 위한 상태관리 변수 설정
-  // 1. 변경 데이터 변수
+  /**  1. 현재 페이지 번호 pgNum */
+  const [pgNum, setPgNum] = useState(1);
+  // 2. 변경 데이터 변수
   const [cartData, setCartData] = useState(data);
-  // 2. 리랜더링 강제적용 상태변수
+  // 3. 리랜더링 강제적용 상태변수
   const [force, setForse] = useState(null);
+  /**
+   * [ 공통변수 ]
+   * 1. 페이지 단위 수: 페이지당 레코드수
+   * 2. 전체 레코드 수
+   */
+  const PAGE_BLOCK = 5;
+  const totNum = cartData.length;
+
   console.log("받은데이터", data, "\n기존데이터", cartData, "\n유지데이터");
   // 카트 컴포넌트의 데이터의 상태관리로 컴포넌트 리랜더링을 위함
   // 외부데이터 업데이트는 외부에서 온 경우만!!
@@ -76,32 +86,31 @@ export const CartList = memo(({ data, flag }) => {
   // 증감 반영 함수
   const chgNum = (e) => {
     // 이벤트 대상
-    const tg = $(e.target)
+    const tg = $(e.target);
     // 이벤트 대상 입력창
-    const tgInput = tg.parent().siblings('.item-cnt');
+    const tgInput = tg.parent().siblings(".item-cnt");
     // 입력창 숫자
     let tgCnt = Number(tgInput.val());
-    console.log('증감반영',tg.prop('alt'));
+    console.log("증감반영", tg.prop("alt"));
     tgInput.focus();
     // 증감체크
-    if(tg.prop('alt')==='증가'){
+    if (tg.prop("alt") === "증가") {
       // 증가
       tgCnt++;
-      if(tgCnt < 1) tgCnt = 1;
-    }else{
+      if (tgCnt < 1) tgCnt = 1;
+    } else {
       // 감소
       tgCnt--;
-      if(tgCnt > 99) tgCnt = 99;
+      if (tgCnt > 99) tgCnt = 99;
     }
     // 화면반영
     tgInput.val(tgCnt);
-    
   }; ///////// chgNum ///////////
   // 반영버튼 클릭 시 데이터 업데이트 하기
-  const goResult = (e)=>{
+  const goResult = (e) => {
     let tg = $(e.currentTarget);
-    let cidx = tg.attr('data-idx');
-    console.log('결과 나와주세요!!!📢');
+    let cidx = tg.attr("data-idx");
+    console.log("결과 나와주세요!!!📢");
     // 데이터 리랜더링 중복실행막기
     flag.current = false;
     // 해당 데이터 업데이트 하기
@@ -109,9 +118,9 @@ export const CartList = memo(({ data, flag }) => {
     // 일반 for문으로 해야 return 또는 continue를 사용 가능
 
     // ->>> some() 이라는 메서드가 있다!!!
-    // return true로 조건에 처리시 
+    // return true로 조건에 처리시
     // for문을 빠져나옴(return과 유사)
-    // return false로 조건 처리시 for문을 해당순번 
+    // return false로 조건 처리시 for문을 해당순번
     // 제외하고 계속 순회함(continue와 유사!)
     // 참고: https://www.w3schools.com/jsref/jsref_some.asp
 
@@ -124,15 +133,14 @@ export const CartList = memo(({ data, flag }) => {
     // });
 
     // 클릭시 'data-idx'값에 업데이트할 요소 idx번호 있음!->cidx
-    cartData.some((v,i) => {
+    cartData.some((v, i) => {
       // 해당순번 업데이트하기
-      if(v.idx==cidx){
+      if (v.idx == cidx) {
         // 업데이트 하기 ///
         cartData[i].num = tg.prev().val();
 
         // some 메서드 이므로 true 리턴시 순회종료!
         return true;
-
       } ///// if ///////
     });
 
@@ -146,8 +154,78 @@ export const CartList = memo(({ data, flag }) => {
     // 배열데이터가 업데이트 된 것으로 인식되지 않는다.
     // 따라서 강제 리랜더링되게 상태값을 설정하여 이 값을 변경
     setForse(Math.random());
-
   }; ///////// goResult함수 ////////
+  /**
+   * 함수명 : bindList
+   * 기능 : 페이지별 리스트 생성하여 바인딩
+   */
+  const bindList = () => {
+    /**
+     * 페이지 시작 번호 : (pgNum-1)*PAGE_BLOCK
+     * 페이지 종료 번호 : pgNum*PAGE_BLOCK
+     */
+    const tempData = [];
+    cartData.sort((a, b) => {
+      return Number(a.idx) == Number(b.idx) ? 0 : Number(a.idx) > Number(b.idx) ? -1 : 1;
+    });
+    let initSeq = (pgNum - 1) * PAGE_BLOCK;
+    let lastSeq = pgNum * PAGE_BLOCK;
+    // 데이터 선별용 for
+    for (let i = initSeq; i < lastSeq; i++) {
+      if (i == totNum) break; // 마지막 페이지 한계수
+      tempData.push(cartData[i]); // 코드 푸쉬
+    }
+    // 데이터 없는 경우 출력
+    if (cartData.length === 0) {
+      return (
+        <tr>
+          <td colSpan="8">There is no data.</td>
+        </tr>
+      );
+    }
+    // 데이터 있는 경우 출력
+    else {
+      return tempData.map((v, i) => (
+        <tr key={i}>
+          {/* 상품 */}
+          <td>
+            <img src={"images/goods/" + v.cat + "/" + v.ginfo[0] + ".png"} alt="item" />
+          </td>
+          {/* 번호 */}
+          <td>{i + 1}</td>
+          {/* 상품명 */}
+          <td>{v.ginfo[1]}</td>
+          {/* 상품코드 */}
+          <td>{v.ginfo[2]} </td>
+          {/* 단가 */}
+          <td>{addCommas(v.ginfo[3])}원</td>
+          {/* 수량 */}
+          <td className="cnt-part">
+            <div>
+              <span>
+                <input type="text" className="item-cnt" defaultValue={v.num} />
+                <button className="btn-insert" onClick={goResult} data-idx={v.idx}>
+                  반영
+                </button>
+                <b className="btn-cnt">
+                  <img src="./images/cnt_up.png" alt="증가" onClick={chgNum} />
+                  <img src="./images/cnt_down.png" alt="감소" onClick={chgNum} />
+                </b>
+              </span>
+            </div>
+          </td>
+          {/* 합계 */}
+          <td>{addCommas(v.ginfo[3] * v.num)}원</td>
+          {/* 삭제 */}
+          <td>
+            <button className="cfn" data-idx={v.idx} onClick={delList}>
+              ×
+            </button>
+          </td>
+        </tr>
+      ));
+    }
+  }; ///////// bindList /////////
 
   useEffect(() => {
     // 카트 버튼 보이기
@@ -180,43 +258,7 @@ export const CartList = memo(({ data, flag }) => {
               <th>합계</th>
               <th>삭제</th>
             </tr>
-            {cartData.map((v, i) => (
-              <tr key={i}>
-                {/* 상품 */}
-                <td>
-                  <img src={"images/goods/" + v.cat + "/" + v.ginfo[0] + ".png"} alt="item" />
-                </td>
-                {/* 번호 */}
-                <td>{i + 1}</td>
-                {/* 상품명 */}
-                <td>{v.ginfo[1]}</td>
-                {/* 상품코드 */}
-                <td>{v.ginfo[2]} </td>
-                {/* 단가 */}
-                <td>{addCommas(v.ginfo[3])}원</td>
-                {/* 수량 */}
-                <td className="cnt-part">
-                  <div>
-                    <span>
-                      <input type="text" className="item-cnt" defaultValue={v.num} />
-                      <button className="btn-insert" onClick={goResult} data-idx={v.idx}>반영</button>
-                      <b className="btn-cnt">
-                        <img src="./images/cnt_up.png" alt="증가" onClick={chgNum}/>
-                        <img src="./images/cnt_down.png" alt="감소" onClick={chgNum}/>
-                      </b>
-                    </span>
-                  </div>
-                </td>
-                {/* 합계 */}
-                <td>{addCommas(v.ginfo[3] * v.num)}원</td>
-                {/* 삭제 */}
-                <td>
-                  <button className="cfn" data-idx={v.idx} onClick={delList}>
-                    ×
-                  </button>
-                </td>
-              </tr>
-            ))}
+            {bindList()}
             <tr>
               <td colSpan="6">총합계 :</td>
               <td>{addCommas(totalFee)}원</td>
