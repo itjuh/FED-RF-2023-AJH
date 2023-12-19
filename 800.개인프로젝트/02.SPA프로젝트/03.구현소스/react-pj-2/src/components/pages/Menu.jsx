@@ -22,11 +22,8 @@ export function Menu(props) {
   const nav = useNavigate();
   const goNav = (num) => {
     linkData = link[num];
-    // console.log(linkData);
     // 페이지 이동
     nav(linkData.link);
-    // 타이틀 변경
-    myCon.chgTit(linkData.tit);
     // 메뉴닫기
     props.chgFn(0);
   };
@@ -35,7 +32,6 @@ export function Menu(props) {
     resetAutoI();
     // 해당 타이핑 영역
     let target = $(e.currentTarget).find(".typing-area");
-    // let txt = $(e.currentTarget).attr("data-seq");
     let txt = $(e.currentTarget).text();
     insertText(txt,target);
   };

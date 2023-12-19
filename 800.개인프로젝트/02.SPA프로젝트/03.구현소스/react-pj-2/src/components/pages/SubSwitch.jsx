@@ -48,10 +48,6 @@ export function SubSwtich() {
       moveBoxInfo($(".detail-page-sw"));
     }; /////// nav세팅 함수 /////////////
 
-    // 타이틀 세팅
-    let txt = selData.code + "^" + selData.sub;
-    myCon.chgTit(txt);
-
     // imgMap(selData['img'][1]);
     if (!selData) return;
     else setNav();

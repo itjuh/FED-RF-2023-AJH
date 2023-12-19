@@ -3,7 +3,6 @@
 import { Fragment, memo, useEffect, useLayoutEffect } from "react";
 import { gnbData } from "../data/gnbData";
 import { Logo } from "../modules/Logo";
-import { TopTitle } from "../modules/TopTitle";
 import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { LeoCon } from "../modules/LeopoldContext";
@@ -13,8 +12,7 @@ import { link } from "../data/link";
 import $ from "jquery";
 import "jquery-ui-dist/jquery-ui";
 
-export const TopArea = memo(({ sts, tit }) => {
-  // props.tit : 상단타이틀
+export const TopArea = memo(({ sts }) => {
   // props.sts : 1-메뉴열림 0-닫힘
 
   // 링크 데이터
@@ -31,8 +29,6 @@ export const TopArea = memo(({ sts, tit }) => {
     // console.log(linkData);
     // 페이지 이동
     nav(linkData.link);
-    // 타이틀 변경
-    myCon.chgTit(linkData.tit);
   };
 
   // 클래스 생성 함수

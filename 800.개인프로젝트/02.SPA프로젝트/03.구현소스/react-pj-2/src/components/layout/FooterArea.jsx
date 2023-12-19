@@ -9,7 +9,7 @@ import { faChevronUp, faKeyboard } from "@fortawesome/free-solid-svg-icons";
 import { Menu } from "../pages/Menu";
 
 export const FooterArea = memo((props) => {
-  // props.tit - 상단타이틀  props.chgsts - 상태변경 함수 1-메뉴열림 0-닫힘
+  // props.chgsts - 상태변경 함수 1-메뉴열림 0-닫힘
 
   // 메뉴 열림 닫힘 useRef 상태변경 함수 1-메뉴열림 0-닫힘
   const menuSts = useRef(0);
@@ -22,10 +22,6 @@ export const FooterArea = memo((props) => {
     // 메뉴상태 변경
     onOff(menuSts.current);
   };
-  // 네비게이션 설정 함수
-  // function goNav() {
-  //   console.log("어디로든 가자");
-  // } /////// goNav함수 /////////
 
   // 메뉴 열림 닫힘 상태변경
   const onOff = (num) => {

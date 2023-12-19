@@ -19,15 +19,11 @@ export const Layout = memo(() => {
   const [selNum, setSelNum] = useState(0);
   // 토글용 후크변수
   const [toggleVal, setToggleVal] = useState("main");
-  // 상단 타이틀용 후크변수
-  const [titVal, setTitVal] = useState("Keyboard List");
   // 하단 메뉴용 useRef 변수   1-메뉴열림 0-닫힘
   const sts = useRef(0);
   // 서브페이지 후크변수
   const [sub, setSub] = useState(null);
 
-  // 상단 타이틀 함수
-  const chgTit = useCallback((txt) => setTitVal(txt), []);
   // 필터 업데이트 함수
   const chgSel = (num) => setSelNum(num);
   // 토글 업데이트 함수
@@ -41,7 +37,6 @@ export const Layout = memo(() => {
     // 페이지 이동
     goNav(linkData.link);
     // 타이틀 변경
-    chgTit(linkData.tit);
   }, []);
   // useRef 변경 함수
   const chgsts = (num) => (sts.current = num);
@@ -50,10 +45,10 @@ export const Layout = memo(() => {
   // console.log(toggleVal, "토글상태 변수.. 새로고침하면 왜 바뀔까...", sts, "하단메뉴용 이것도 바뀌나...");
 
   return (
-    <LeoCon.Provider value={{ selNum, chgSel, toggleVal, chgTog, titVal, chgTit, sub, chgSub }}>
-      <TopArea tit={titVal} sts={sts} />
-      <MainArea chgTitFn={chgTit} />
-      <FooterArea tit={titVal} chgsts={chgsts} sts={sts} />
+    <LeoCon.Provider value={{ selNum, chgSel, toggleVal, chgTog, sub, chgSub }}>
+      <TopArea sts={sts} />
+      <MainArea />
+      <FooterArea chgsts={chgsts} sts={sts} />
     </LeoCon.Provider>
   );
 }); ////////// Layout 컴포넌트 ////////////

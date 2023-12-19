@@ -128,3 +128,15 @@
   transition: .1s .1s;
   /* display: none; */
 }
+/* 페이징 */
+.paging{
+  text-align: center;
+  /*글자중앙정렬*/
+  padding: 20px 0px;
+  /*위아래,우좌 padding설정*/
+}
+.paging a{
+  color: #222;
+  text-decoration: none;
+  font-size: 1.4rem;
+}

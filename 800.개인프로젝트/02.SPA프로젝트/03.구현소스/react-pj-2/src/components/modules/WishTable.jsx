@@ -224,7 +224,7 @@ export const WishTable = memo(({ wishdata, flag }) => {
                 </tr>
                 {data.map(
                   (v, i) =>
-                    i >= 1 && (
+                    // i >= 1 && (
                       <tr key={i} className={v.src}>
                         {/* 2-1. 체크박스 */}
                         <td>
@@ -277,7 +277,7 @@ export const WishTable = memo(({ wishdata, flag }) => {
                           </div>
                         </td>
                       </tr>
-                    )
+                    // )
                 )}
               </tbody>
               <tfoot>

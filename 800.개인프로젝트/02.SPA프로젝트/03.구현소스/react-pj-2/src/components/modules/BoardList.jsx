@@ -87,8 +87,9 @@ export const BoardList = memo(({ data }) => {
   };
   return (
     <>
-      {window.innerWidth > 550 && <ol className="list-area-ol">{makeList(data)}</ol>}
-      {window.innerWidth <= 550 && <MySwiper data={data} inputWish={inputWish} />}
+      {/* {window.innerWidth > 550 && <ol className="list-area-ol">{makeList(data)}</ol>} */}
+      {/* {window.innerWidth <= 550 && <MySwiper data={data} inputWish={inputWish} />} */}
+      <ol className="list-area-ol">{makeList(data)}</ol>
     </>
   );
 }); /////////// BoardList 컴포넌트 ////////////

@@ -11,7 +11,7 @@ export function Member() {
     if (localStorage.getItem("member") === null) {
       let sample = [{
         idx: 0,
-        uid: "sample",
+        uid: "",
         pwd: "sample11!!",
         unm: "sampledata",
         eml: "jh.2144.9679@gmail.com",

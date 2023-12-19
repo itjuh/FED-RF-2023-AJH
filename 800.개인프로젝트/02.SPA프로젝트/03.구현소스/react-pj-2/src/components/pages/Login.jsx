@@ -58,24 +58,24 @@ export function Login() {
     const idValid = /^[a-z]{1}[a-z0-9]{4,19}$/g;
     const pWValid = /^.*(?=^.{5,15}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$/;
     if (idValid.test(inId)) {
+      console.log('아이디 유효성 확인');
       setOkId(1);
     } else {
+      console.log('아이디 유효성 실패');
       setOkId(0);
     } ///////// id 유효성 /////
     if (pWValid.test(inPw)) {
+      console.log('비번 유효성 확인');
       setOkPw(1);
     } else {
+      console.log('비번 유효성 실패');
       setOkPw(0);
     } ///////// pw 유효성 /////
     if (localStorage.getItem("member") === null) {
       msgBox(false,'notdata');
       return;
-    }// 유효성검사 통과 못하면 return;
-    else if (okId==0 || okPw==0) {
-      msgBox(false,'vaild');
-      return;
     }
-    else{
+    else if (okId&&okPw) {
       let data = localStorage.getItem("member");
       data = JSON.parse(data);
       // 데이터 일치 조회
@@ -90,6 +90,10 @@ export function Login() {
       if (sessionStorage.getItem("loginMem") === null) {
         msgBox(false,'notsame');
       }
+    }// 유효성검사 통과 못하면 return;
+    else{
+      msgBox(false,'vaild');
+      return;
     } //////// if-else local exist //////////
   }; ///////// onSubmit 함수 //////////////
   return (

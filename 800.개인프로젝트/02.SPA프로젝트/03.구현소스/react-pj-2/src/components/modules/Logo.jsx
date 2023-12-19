@@ -18,8 +18,6 @@ export function Logo() {
     } else {
       // 페이지 이동
       goNav("/");
-      // 타이틀 변경
-      myCon.chgTit("Keyboard List");
     }
   } ////// 메인이동함수 //////////
   return (

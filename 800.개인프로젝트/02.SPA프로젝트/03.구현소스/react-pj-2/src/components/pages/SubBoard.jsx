@@ -42,17 +42,6 @@ export function SubBoard() {
   }
   // console.log('name',name,'myCon.sub',myCon.sub);
   selData = detailData[name] ? detailData[name] : false;
-  // useEffect
-  useEffect(()=>{
-    // 데이터 있는 경우만 작동
-    if(name) {
-      let tit = selData.code +'^'+ selData.sub;
-      myCon.chgTit(tit);
-    }
-    if(location.state){//데이터 없으면
-      myCon.chgSub(name);
-    }
-  },[myCon,name,selData.code,selData.sub]);
 
   const loadFn = () => {
     const imgWd = [];

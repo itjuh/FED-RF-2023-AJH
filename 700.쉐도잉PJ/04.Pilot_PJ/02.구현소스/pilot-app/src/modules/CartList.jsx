@@ -7,6 +7,7 @@ import "../css/cartlist.css";
 import $ from "jquery";
 import { useState } from "react";
 import { useRef } from "react";
+import { Fragment } from "react";
 
 // 전달 값 변경 시 리랜더링 하기 위해 메모이제이션 적용
 export const CartList = memo(({ data, flag }) => {
@@ -24,10 +25,8 @@ export const CartList = memo(({ data, flag }) => {
   /**
    * [ 공통변수 ]
    * 1. 페이지 단위 수: 페이지당 레코드수
-   * 2. 전체 레코드 수
    */
   const PAGE_BLOCK = 5;
-  const totNum = cartData.length;
 
   console.log("받은데이터", data, "\n기존데이터", cartData, "\n유지데이터");
   // 카트 컴포넌트의 데이터의 상태관리로 컴포넌트 리랜더링을 위함
@@ -172,7 +171,7 @@ export const CartList = memo(({ data, flag }) => {
     let lastSeq = pgNum * PAGE_BLOCK;
     // 데이터 선별용 for
     for (let i = initSeq; i < lastSeq; i++) {
-      if (i == totNum) break; // 마지막 페이지 한계수
+      if (i == cntData) break; // 마지막 페이지 한계수
       tempData.push(cartData[i]); // 코드 푸쉬
     }
     // 데이터 없는 경우 출력
@@ -192,7 +191,7 @@ export const CartList = memo(({ data, flag }) => {
             <img src={"images/goods/" + v.cat + "/" + v.ginfo[0] + ".png"} alt="item" />
           </td>
           {/* 번호 */}
-          <td>{i + 1}</td>
+          <td>{initSeq+i+1}</td>
           {/* 상품명 */}
           <td>{v.ginfo[1]}</td>
           {/* 상품코드 */}
@@ -203,7 +202,7 @@ export const CartList = memo(({ data, flag }) => {
           <td className="cnt-part">
             <div>
               <span>
-                <input type="text" className="item-cnt" defaultValue={v.num} />
+                <input type="text" className="item-cnt" value={v.num} readOnly/>
                 <button className="btn-insert" onClick={goResult} data-idx={v.idx}>
                   반영
                 </button>
@@ -226,6 +225,50 @@ export const CartList = memo(({ data, flag }) => {
       ));
     }
   }; ///////// bindList /////////
+  /**
+   * 함수명 : pagingLink
+   * 기능 : 페이징
+   */
+  const pagingLink = () => {
+    // 페이징 블록 만들기 ///
+    /**
+     * 1. 전체 레코드 : cntData
+     * 2. 페이지 단위 : PAGE_BLOCK
+     * 3. 남은 블록 : blockPad
+     * 4. 전체 페이지 번호 : blockPad===0?blockCnt:blockCnt+1
+     */
+    const blockCnt = Math.floor(cntData / PAGE_BLOCK);
+    const blockPad = cntData % PAGE_BLOCK;
+    // console.log("블록개수:", blockCnt, "\n블록나머지:", blockPad);
+    // 최종 블록 수
+    let limit = blockPad === 0 ? blockCnt : blockCnt + 1;
+    // 리액트에서는 jsx문법 코드를 배열에 담아서 return map
+    let code = [];
+    for (let i = 0; i < limit; i++) {
+      code[i] = (
+        <Fragment key={i}>
+          {i === pgNum - 1 ? (
+            <b>{i + 1}</b>
+          ) : (
+            <a href="#" onClick={chgList}>
+              {i + 1}
+            </a>
+          )}
+          {i < limit - 1 ? " | " : ""}
+        </Fragment>
+      );
+    }
+    return <>{code.map((v) => v)}</>;
+  }; /////// pagingLink ////////////
+  /**
+   * 함수명 : chgList
+   * 기능 : 페이지 리스트 재생성하여 바인딩
+   */
+  const chgList = (e) => {
+    e.preventDefault();
+    setPgNum(e.target.innerText);
+    // bindList(); ->>> pgNum사용으로 리랜더링
+  }; /////// chgList 함수 ///////////
 
   useEffect(() => {
     // 카트 버튼 보이기
@@ -265,12 +308,21 @@ export const CartList = memo(({ data, flag }) => {
               <td></td>
             </tr>
           </tbody>
+          {/* 하단 페이징 표시부분 */}
+          <tfoot>
+            <tr>
+              <td colSpan="8" className="paging">
+                {/* 페이징번호 위치  */}
+                {pagingLink()}
+              </td>
+            </tr>
+          </tfoot>
         </table>
       </section>
       {/* 카트 버튼 구역 */}
       <div id="mycart" onClick={showList}>
         {/* 카트 이미지 */}
-        <img src="./images/mycart.gif" title="개의 상품이 있습니다." />
+        <img src="./images/mycart.gif" title={cntData+"개의 상품이 있습니다."} />
         {/* 카트상품 개수 출력 박스 */}
         <div className="cntBx">{cntData}</div>
       </div>

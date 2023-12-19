@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 // Context API 불러오기
 import { dcCon } from "../modules/dcContext";
 import { useLayoutEffect, useCallback, useState } from "react";
+import { useEffect } from "react";
 
 // 레이아웃 구성 컴포넌트
 export function Layout() {
@@ -13,7 +14,16 @@ export function Layout() {
     // 페이지 이동시 스크롤위치 상단이동
     window.scrollTo(0, 0);
   }); /////////// useEffect ///////////
-
+  // 랜더링 후(화면보이기 전) 1회 실행구역 ///////
+  useEffect(()=>{
+    if(localStorage.getItem('minfo')){
+      const minfo = JSON.parse(localStorage.getItem('minfo'));
+      // 유저 아이콘
+      const userIcon = ['🧙‍♂️','🦸‍♂','🦸‍♀','🧚‍♀️','🦹‍♀️','🦹‍♂️'];
+      // 컨텍스트 로그인 환영 메세지 변경
+      setLogMsg('Welcome '+minfo.unm+userIcon[Math.floor(Math.random()*6)]);
+    }
+  },[])
   // 라우터 이동함수
   const goNav = useNavigate();
   // 라우터 이동함수

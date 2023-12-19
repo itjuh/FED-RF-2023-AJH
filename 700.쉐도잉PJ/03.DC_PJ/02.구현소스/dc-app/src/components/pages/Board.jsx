@@ -214,11 +214,47 @@ export function Board() {
     // 3-5. 수정 처리
     else if (modeTxt === "S" && bdMode === "U") {
       console.log("수정처리");
-      setBdMode("L");
+      // 1. 제목, 내용 필수입력 체크
+      const subVal = $('.updateone .subject').val().trim();
+      const contVal = $('.updateone .content').val().trim();
+      console.log(selData.current.idx, subVal, contVal);
+      
+      if(subVal===''||contVal===''){
+        alert('제목과 내용은 필수 입력입니다.');
+      }else{
+        // 2. 원본데이터 변수할당
+        let originTemp = originData;
+        originTemp.some(v=>{
+          if(Number(selData.current.idx)===Number(v.idx)) {
+            // 제목과 내용 업데이트하기
+            v.tit = subVal;
+            v.cont = contVal;
+            return true; // 코드중단
+          } ///////// if ///////
+        })
+        // 3. 데이터 로컬스토리지 반영
+        localStorage.setItem('boardData',JSON.stringify(originTemp));
+        // 4. 리스트 페이지로 이동
+        setBdMode('L');
+      }
     } ////// else if ///////
     // 3-4. 삭제하기 모드
-    else if (modeTxt === "D") {
+    else if (modeTxt === "D" && bdMode==='U') {
+      if(window.confirm('Would you remove it?')){
+        // 데이터 순회하다가 해당 데이터이면 순번으로 splice(순번,1)사용 삭제
+        originData.some((v,i)=>{
+          if(Number(selData.current.idx)===Number(v.idx)) {
+            // 해당 데이터의 순번으로 삭제
+            originData.splice(i,1);
+            return true; // 코드중단
+          }//// if ////
+        }) //// some ////
+      } //// if confirm ////
       console.log("삭제처리");
+      // 3. 데이터 로컬스토리지 반영
+      localStorage.setItem('boardData',JSON.stringify(originData));
+      // 4. 리스트 페이지로 이동
+      setBdMode('L');
     } ////// else if ///////
     // 3-5. 리스트 모드
     else if (modeTxt === "L") {
@@ -294,7 +330,13 @@ export function Board() {
       tempData.push(originData[i]); // 코드 푸쉬
     }
     // 데이터 없는 경우 출력
-    if (tempData.length === 0)
+    if (tempData.length === 0){
+      return (
+        <tr>
+          <td colSpan="8">There is no data.</td>
+        </tr>
+      );
+    }
       
     // 데이터 있는 경우 출력
     return tempData.map((v, i) => (

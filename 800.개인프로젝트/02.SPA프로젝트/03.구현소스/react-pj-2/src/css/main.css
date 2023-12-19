@@ -195,7 +195,8 @@ h3.prod-item-title + h3.prod-item-title {
   width: 45vw;
 }
   .prod-item {
-    width: 60vw;
+    /* width: 60vw; */
+    width: 45vw;
   }
   /* 메인 제외 상품 3번째부터 */
 .prod-area li:nth-child(2) ~ li .prod-item {

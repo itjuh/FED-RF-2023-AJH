@@ -2,10 +2,9 @@ import $ from "jquery";
 import "jquery-ui-dist/jquery-ui";
 import { boardData } from "../data/boardData";
 
-
 export function MySwiper({ data, inputWish }) {
   // 데이터 받아서 swiper구현하기
-  console.log('myswiper:',data);
+  console.log("myswiper:", data);
   /**
    * 1. 드래그 배너 구현하기
    * 요구사항
@@ -23,12 +22,13 @@ export function MySwiper({ data, inputWish }) {
   // const tg = document.querySelector('.slider-box');
   // 1. 대상선정 : .dtg는 .slide와 일치함!
   let pos = 0;
-  const move = (e) => {
+  // 정방향 이동함수
+  const moveNext = (e) => {
     pos -= 25;
     // 대상요소 움직이기
     $(".slider-box").animate({ top: pos + "%" }, 500, "easeInOutQuad");
     let isFirst = $(".slide").first().hasClass("on");
-    // 첫 대상 분기
+    // 대상 분기
     if (!isFirst) {
       //첫 대상인 경우
       $(".slide").first().addClass("on");
@@ -51,32 +51,40 @@ export function MySwiper({ data, inputWish }) {
         });
     }
   };
+  // 역방향 이동함수
+  const movePrev = (e) => {
+    pos += 25;
+    //대상 분기
+    
+    //대상요소 움직이기
+    $(".slider-box").animate({ top: pos + "%" }, 500, "easeInOutQuad");
+  }
   const bindSlider = (data) => {
-    return(
-      data.map((v, i) => 
-        <div className="slider" key={i}>
-          <div className="slide">
-            <div
-              className="prod-item"
-              data-seq={v}
-              // onClick={() => goNav(v)}
-              style={{ backgroundImage: "url(./images/image_prod2/keyboard" + v + ".png)" }}
-            >
-              {/* 더보기 */}
-              <div className="prod-detail-view">view</div>
-            </div>
-            <h3 className="prod-item-title">{boardData[v - 1][0]}</h3>
-            <h3 className="prod-item-title">{boardData[v - 1][1]}</h3>
-            {/* 위시리스트 버튼 */}
-            <div className="add-wish" onClick={inputWish} data-seq={v}>add to wishlist ＞</div>
+    return data.map((v, i) => (
+      <div className="slider" key={i}>
+        <div className="slide">
+          <div
+            className="prod-item"
+            data-seq={v}
+            // onClick={() => goNav(v)}
+            style={{ backgroundImage: "url(./images/image_prod2/keyboard" + v + ".png)" }}
+          >
+            {/* 더보기 */}
+            <div className="prod-detail-view">view</div>
+          </div>
+          <h3 className="prod-item-title">{boardData[v - 1][0]}</h3>
+          <h3 className="prod-item-title">{boardData[v - 1][1]}</h3>
+          {/* 위시리스트 버튼 */}
+          <div className="add-wish" onClick={inputWish} data-seq={v}>
+            add to wishlist ＞
           </div>
         </div>
-      )
-    )
+      </div>
+    ));
   };
   return (
     <div className="slider-area row-s-11">
-      <div className="slider-box" onClick={move}>
+      <div className="slider-box" onClick={moveNext}>
         {bindSlider(data)}
       </div>
     </div>

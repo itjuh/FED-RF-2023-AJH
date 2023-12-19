@@ -58,7 +58,7 @@ export function Fashion() {
       </section>
       {/* 상세보기박스 */}
       <div id="bgbx">
-        <ItemDetail goods={item} cat={pg}/>
+        <ItemDetail goods={item} cat={pg} chgItemFn={chgItem}/>
       </div>
       {/* 3. 패럴렉스영역 */}
       <section id="c2" className={"cont c2 "+pg}></section>

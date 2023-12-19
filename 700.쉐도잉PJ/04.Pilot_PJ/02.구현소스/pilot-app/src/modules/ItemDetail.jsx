@@ -6,15 +6,14 @@ import { CartList } from "./CartList";
 // 신상품 데이터 가져오기
 import gdata from "../data/glist_item";
 
-export function ItemDetail({ goods, cat }) {
+export function ItemDetail({ goods, cat, chgItemFn }) {
   // goods - 상품 아이템정보(속성코드)
   // cat - 카테고리
-
   let stsVal = 0;
   let transVal = null;
-  if(localStorage.getItem("cart")){
-    stsVal = 1;
+  if (localStorage.getItem("cart")) {
     transVal = JSON.parse(localStorage.getItem("cart"));
+    if(transVal.length !== 0) stsVal = 1;
   }
   // 카트리스트 컴포넌트 변경체크 변수(리랜더링 시 상태 변경 없음)
   /** flag true 새로추가 false 내부변경 */
@@ -35,7 +34,7 @@ export function ItemDetail({ goods, cat }) {
     */
     // num항목 추가 : 값은 #sum의 value값
     selData.num = $("#sum").val();
-     console.log('카트호출!', selData,!localStorage.getItem("cart"));
+    console.log("카트호출!", selData, !localStorage.getItem("cart"));
     let localData;
     // 2. 로컬스토리지에 담기
     if (!localStorage.getItem("cart")) {
@@ -97,11 +96,31 @@ export function ItemDetail({ goods, cat }) {
   //   let cnt = Number(prevCnt+nextCnt);
   //   return cnt;
   // }
+  // 숫자세팅 함수
   function addCommas(x) {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   }
-
-  // 숫자세팅 함수
+  // 아이템 리스트 만들기 함수
+  const makeList = () => {
+    // 코드 담을 배열
+    let temp = [];
+    // 만들 개수만큼 반복
+    for (let i = 0; i < 6; i++) {
+      temp[i] = (
+          <a
+            href="#"
+            onClick={(e) => {
+              e.preventDefault();
+              chgItemFn("m" + (i + 1));
+            }}
+          >
+            <img src={"./images/goods/" + cat + "/m" + (i + 1) + ".png"} alt="신상품" />
+          </a>
+      );
+    } /////// for //////////
+    // JSX를 담은 배열을 리턴 -> 자동 태그 변환
+    return temp;
+  }; /////// makeList ///////////
 
   // 닫기함수 //
   const closebox = (e) => {
@@ -131,6 +150,12 @@ export function ItemDetail({ goods, cat }) {
       // $('#total').text(addCommas(cnt*num)+'원');
       $("#total").text(addCommas(ginfo[3] * num) + "원");
     });
+    // 카트가 생성 된 경우 버튼보이기
+    // 쇼핑카트 버튼 초기화
+    if(cartSts===1){
+      $('#bgbx').show().find('#mycart').addClass('on');
+    }
+
   }, []);
   // 리랜더링 후 실행구역
   useEffect(() => {
@@ -150,18 +175,19 @@ export function ItemDetail({ goods, cat }) {
           <section className="gimg">
             <img src={"./images/goods/" + cat + "/" + goods + ".png"} alt="큰 이미지" />
             <div className="small">
-              <a href="#">
+              {makeList()}
+              {/* <a href="#">
                 <img src="./images/goods/men/m1.png" alt="썸네일 이미지" />
                 <img src="./images/goods/men/m2.png" alt="썸네일 이미지" />
                 <img src="./images/goods/men/m3.png" alt="썸네일 이미지" />
                 <img src="./images/goods/men/m4.png" alt="썸네일 이미지" />
                 <img src="./images/goods/men/m5.png" alt="썸네일 이미지" />
                 <img src="./images/goods/men/m6.png" alt="썸네일 이미지" />
-              </a>
+              </a> */}
             </div>
           </section>
           <section className="gdesc scbar">
-            <h1>HOME &gt; MEN</h1>
+            <h1>HOME &gt; {cat.toUpperCase()}</h1>
             <div>
               <ol>
                 <li>
@@ -176,7 +202,7 @@ export function ItemDetail({ goods, cat }) {
                 </li>
                 <li>
                   <span>판매가</span>
-                  <span id="gprice">{ginfo[3]}</span>
+                  <span id="gprice">{addCommas(ginfo[3])}원</span>
                 </li>
                 <li>
                   <span>적립금</span>
@@ -230,7 +256,7 @@ export function ItemDetail({ goods, cat }) {
         </div>
       </div>
       {/* 카트 리스트 */}
-      {cartSts && <CartList data={transData} flag={flag}/>}
+      {cartSts && <CartList data={transData} flag={flag} />}
     </>
   );
 } /////////// ItemDetail 컴포넌트 ///////////
