@@ -23,7 +23,7 @@ export function MySwiper() {
     const move = (e) => {
         pos -= 25;
         // 대상요소 움직이기
-        $(".slider-box").animate({ top: pos + "%" }, 3000, "easeInOutQuad");
+        $(".slider-box").animate({ top: pos + "%" }, 500, "easeInOutQuad");
         let isFirst = $(".slide").first().hasClass("on");
         // 첫 대상 분기
         if (!isFirst) {
@@ -31,18 +31,21 @@ export function MySwiper() {
             $(".slide").first().addClass("on");
             $(".slider")
                 .first()
-                .animate({ top: -pos + "%" }, 3000, "easeInOutQuad");
+                .animate({ top: -pos + "%" }, 500, "easeInOutQuad");
         } else {
             // 두번째 대상인 경우
+            console.log(pos);
             $(".slider")
                 .first()
-                .animate({ top: 50 + "%" }, 3000, "easeInOutQuad", () => {});
+                .animate({ top: -pos + "%" }, 500, "easeInOutQuad", () => {
 
+                });
+            pos += 25;
             $(".slide").eq(1).addClass("on");
             $(".slider")
                 .eq(1)
-                .animate({ top: 25 + "%" }, 3000, "easeInOutQuad", function () {
-                    $(".slider-box").css({ top: -25 + "%" });
+                .animate({ top: -pos + "%" }, 500, "easeInOutQuad", function () {
+                    $(".slider-box").css({ top: pos + "%" });
                     $(".slider-box").append($(".slider").first().css({ top: 0 }));
                     $(".slide").last().removeClass("on");
                 });
