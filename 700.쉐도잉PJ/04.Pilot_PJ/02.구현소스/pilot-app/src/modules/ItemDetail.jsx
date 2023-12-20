@@ -1,28 +1,16 @@
 // 상품상세보기 컴포넌트
 
-import { useEffect, useState, useRef } from "react";
+import { useEffect } from "react";
 import $ from "jquery";
-import { CartList } from "./CartList";
 // 신상품 데이터 가져오기
 import gdata from "../data/glist_item";
+import { useContext } from "react";
+import { pCon } from "./PliotContext";
 
 export function ItemDetail({ goods, cat, chgItemFn }) {
   // goods - 상품 아이템정보(속성코드)
   // cat - 카테고리
-  let stsVal = 0;
-  let transVal = null;
-  if (localStorage.getItem("cart")) {
-    transVal = JSON.parse(localStorage.getItem("cart"));
-    if(transVal.length !== 0) stsVal = 1;
-  }
-  // 카트리스트 컴포넌트 변경체크 변수(리랜더링 시 상태 변경 없음)
-  /** flag true 새로추가 false 내부변경 */
-  const flag = useRef(true);
-  // 초기 카트 사용여부 로컬스토리지 cart가 있으면 1 없으면 0
-  const [cartSts, setCartSts] = useState(stsVal);
-  // 변환값 변수
-  let [transData, setTransData] = useState(transVal);
-
+  const myCon = useContext(pCon);
   let temp;
   // 카트 상태 업데이트 변수
   const useCart = () => {
@@ -53,7 +41,7 @@ export function ItemDetail({ goods, cat, chgItemFn }) {
       }); //////// find /////////
     }
     if (!temp) {
-      flag.current = true;
+      myCon.flag.current = true;
       localData.push(selData);
       localStorage.setItem("cart", JSON.stringify(localData));
       // 쇼핑카트 버튼 초기화
@@ -64,8 +52,8 @@ export function ItemDetail({ goods, cat, chgItemFn }) {
           //페이드 애니 후
           $(this).addClass("on");
         }); ///// fadeIn ////////
-      setTransData(localData);
-      setCartSts(1);
+      myCon.setTransData(localData);
+      myCon.setCartSts(1);
     } else {
       alert("이미 선택하신 아이템 입니다.");
       // 중복있음 : 메세지 띄우기, 데이터 안넣기
@@ -113,6 +101,7 @@ export function ItemDetail({ goods, cat, chgItemFn }) {
               e.preventDefault();
               chgItemFn("m" + (i + 1));
             }}
+            key={i}
           >
             <img src={"./images/goods/" + cat + "/m" + (i + 1) + ".png"} alt="신상품" />
           </a>
@@ -150,17 +139,10 @@ export function ItemDetail({ goods, cat, chgItemFn }) {
       // $('#total').text(addCommas(cnt*num)+'원');
       $("#total").text(addCommas(ginfo[3] * num) + "원");
     });
-    // 카트가 생성 된 경우 버튼보이기
-    // 쇼핑카트 버튼 초기화
-    if(cartSts===1){
-      $('#bgbx').show().find('#mycart').addClass('on');
-    }
-
   }, []);
   // 리랜더링 후 실행구역
   useEffect(() => {
     $("#sum").val(1);
-    // $('#total').text(addCommas(cnt)+'원');
     $("#total").text(addCommas(ginfo[3]) + "원");
   });
   // 수량 증감함수 /////////
@@ -255,8 +237,6 @@ export function ItemDetail({ goods, cat, chgItemFn }) {
           </section>
         </div>
       </div>
-      {/* 카트 리스트 */}
-      {cartSts && <CartList data={transData} flag={flag} />}
     </>
   );
 } /////////// ItemDetail 컴포넌트 ///////////

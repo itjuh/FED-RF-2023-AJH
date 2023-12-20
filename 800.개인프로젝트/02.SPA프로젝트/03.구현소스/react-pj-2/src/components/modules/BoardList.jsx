@@ -2,11 +2,10 @@
 // 키보드 제품 데이터
 import { boardData, filterBoardData } from "../data/boardData";
 import { memo } from "react";
+import { useNavigate } from "react-router-dom";
 
 // 제이쿼리 가져오기
 import $ from "jquery";
-import { useNavigate } from "react-router-dom";
-import { MySwiper } from "../plugin/MySwiper";
 window.jQuery = $;
 require("jquery-ui-dist/jquery-ui");
 require("jquery-ui-touch-punch/jquery.ui.touch-punch");

@@ -49,19 +49,19 @@ export function Board() {
   const [bdMode, setBdMode] = useState("L");
   const [btnSts, setBtnSts] = useState(false);
   // 리 랜더링 루프 방지용으로 랜더링 후 실행구역에 변경코드
-  useEffect(()=>{
+  useEffect(() => {
     // 로그아웃 시 버튼 상태값 false로 변경하기
-    if(myCon.logSts === null) setBtnSts(false);
+    if (myCon.logSts === null) setBtnSts(false);
     // 로그아웃 시 페이지 이동하기
-    if((myCon.logSts === null && bdMode === "C")||(myCon.logSts === null && bdMode === "U")){
-      setBdMode('L');
-    } 
-  },[myCon.logSts]);
-  /** 리랜더링의 원인 중 많은 경우 
+    if ((myCon.logSts === null && bdMode === "C") || (myCon.logSts === null && bdMode === "U")) {
+      setBdMode("L");
+    }
+  }, [myCon.logSts]);
+  /** 리랜더링의 원인 중 많은 경우
    * 랜더링 전 가상돔에 설정을 잡을 때 발생한다.
-   * 해결책은 랜더링 후 처리구역에서 변경되는 상태변수를 의존성에 등록하여 
+   * 해결책은 랜더링 후 처리구역에서 변경되는 상태변수를 의존성에 등록하여
    * 변경 발생 시 한 번만 실행되도록 설정하는 것이다.
-  */
+   */
 
   // 선택된 데이터 셋팅을 위한 참조변수
   const selData = useRef(null);
@@ -144,13 +144,15 @@ export function Board() {
     if (modeTxt === "R") {
       // 1. a링크의 data-idx 읽어오기
       let cidx = $(e.target).attr("data-idx");
-      console.log(cidx, selData);
+      // console.log(cidx, selData);
       readCont(cidx);
       // 2. 본인 글 확인
-      console.log(selData.current.uid);
+      // console.log(selData.current.uid);
       compUser(selData.current.uid);
       // 3. 리스트 이동
       setBdMode(modeTxt);
+      // 4. 조회수 증가함수 호출!
+      plusCnt();
     } ////// if ///////
     // 3-2. 쓰기 모드
     else if (modeTxt === "C") {
@@ -163,12 +165,12 @@ export function Board() {
     else if (modeTxt === "S" && bdMode === "C") {
       console.log("쓰기처리");
       // 1. 제목, 내용 필수입력 체크
-      const subVal = $('.writeone .subject').val().trim();
-      const contVal = $('.writeone .content').val().trim();
-      if(subVal===''||contVal===''){
-        alert('제목과 내용은 필수 입력입니다.');
-      }else{
-        const addZero = x => x<10?'0'+x:x;
+      const subVal = $(".writeone .subject").val().trim();
+      const contVal = $(".writeone .content").val().trim();
+      if (subVal === "" || contVal === "") {
+        alert("제목과 내용은 필수 입력입니다.");
+      } else {
+        const addZero = (x) => (x < 10 ? "0" + x : x);
         // 2-1. 날짜 데이터 구성
         let today = new Date();
         let yy = today.getFullYear();
@@ -179,31 +181,31 @@ export function Board() {
         // 2-3-1. 입력 데이터가 역순정렬 되었으므로 0번데이터의 idx를 읽어옴
         // let idxData = Number(originData[0].idx)
         // 2-3. 입력 idx값 모아서 최대값에 1을 더함
-        let idxData = originData.map(v=>parseInt(v.idx));
+        let idxData = originData.map((v) => parseInt(v.idx));
         console.log(idxData);
         // Math.max()에서 값을 비교하기위해 값을 나열하여 입력하면 됨
         // Spread Operator로 합칠 수 있음
-        console.log('최대값 :',Math.max.apply(null,idxData));
-        console.log('최대값 :',Math.max(...idxData));
+        console.log("최대값 :", Math.max.apply(null, idxData));
+        console.log("최대값 :", Math.max(...idxData));
         idxData = Math.max(...idxData);
         // 그외 방법
         // 2-3. 임시 변수에 입력할 객체 데이터 생성하기
         let temp = {
-          idx: idxData+1,
+          idx: idxData + 1,
           tit: subVal,
           cont: contVal,
-          att:'',
-          date:`${yy}-${addZero(mm)}-${addZero(dd)}`,
-          uid:selData.current.uid,
-          unm:selData.current.unm,
-          cnt:0,
+          att: "",
+          date: `${yy}-${addZero(mm)}-${addZero(dd)}`,
+          uid: selData.current.uid,
+          unm: selData.current.unm,
+          cnt: 0,
         };
         // 3. 원본 데이터 push
         originTemp.push(temp);
         // 4. 데이터 로컬스토리지 반영
-        localStorage.setItem('boardData',JSON.stringify(originTemp));
+        localStorage.setItem("boardData", JSON.stringify(originTemp));
         // 5. 리스트 페이지로 이동
-        setBdMode('L');
+        setBdMode("L");
       }
     }
     // 3-3. 수정하기 모드
@@ -215,46 +217,46 @@ export function Board() {
     else if (modeTxt === "S" && bdMode === "U") {
       console.log("수정처리");
       // 1. 제목, 내용 필수입력 체크
-      const subVal = $('.updateone .subject').val().trim();
-      const contVal = $('.updateone .content').val().trim();
+      const subVal = $(".updateone .subject").val().trim();
+      const contVal = $(".updateone .content").val().trim();
       console.log(selData.current.idx, subVal, contVal);
-      
-      if(subVal===''||contVal===''){
-        alert('제목과 내용은 필수 입력입니다.');
-      }else{
+
+      if (subVal === "" || contVal === "") {
+        alert("제목과 내용은 필수 입력입니다.");
+      } else {
         // 2. 원본데이터 변수할당
         let originTemp = originData;
-        originTemp.some(v=>{
-          if(Number(selData.current.idx)===Number(v.idx)) {
+        originTemp.some((v) => {
+          if (Number(selData.current.idx) === Number(v.idx)) {
             // 제목과 내용 업데이트하기
             v.tit = subVal;
             v.cont = contVal;
             return true; // 코드중단
           } ///////// if ///////
-        })
+        });
         // 3. 데이터 로컬스토리지 반영
-        localStorage.setItem('boardData',JSON.stringify(originTemp));
+        localStorage.setItem("boardData", JSON.stringify(originTemp));
         // 4. 리스트 페이지로 이동
-        setBdMode('L');
+        setBdMode("L");
       }
     } ////// else if ///////
     // 3-4. 삭제하기 모드
-    else if (modeTxt === "D" && bdMode==='U') {
-      if(window.confirm('Would you remove it?')){
+    else if (modeTxt === "D" && bdMode === "U") {
+      if (window.confirm("Would you remove it?")) {
         // 데이터 순회하다가 해당 데이터이면 순번으로 splice(순번,1)사용 삭제
-        originData.some((v,i)=>{
-          if(Number(selData.current.idx)===Number(v.idx)) {
+        originData.some((v, i) => {
+          if (Number(selData.current.idx) === Number(v.idx)) {
             // 해당 데이터의 순번으로 삭제
-            originData.splice(i,1);
+            originData.splice(i, 1);
             return true; // 코드중단
-          }//// if ////
-        }) //// some ////
+          } //// if ////
+        }); //// some ////
       } //// if confirm ////
       console.log("삭제처리");
       // 3. 데이터 로컬스토리지 반영
-      localStorage.setItem('boardData',JSON.stringify(originData));
+      localStorage.setItem("boardData", JSON.stringify(originData));
       // 4. 리스트 페이지로 이동
-      setBdMode('L');
+      setBdMode("L");
     } ////// else if ///////
     // 3-5. 리스트 모드
     else if (modeTxt === "L") {
@@ -284,12 +286,14 @@ export function Board() {
    * 함수명 : compUser
    * 기능 : 사용자 정보 비교함수, btnSts를 변경함
    */
-  const compUser = (user) => { // 글쓴이 아이디 - uid
+  const compUser = (user) => {
+    // 글쓴이 아이디 - uid
     // 사용자 정보조회 로컬스(mem-data)
     // 보드 상단에서 null일경우 생성함수 이미 호출!
     // null을 고려하지 말고 코드작성!
     // 로그인 상태일 경우 조회하여 버튼상태 업데이트
-    if(myCon.logSts !== null){ //로그인
+    if (myCon.logSts !== null) {
+      //로그인
       // 1. 로컬스 원본 데이터 조회
       const info = JSON.parse(localStorage.getItem("mem-data"));
       // 2. 원본으로 부터 해당 사용자 정보 조회
@@ -298,9 +302,10 @@ export function Board() {
       });
       // 3. 로그인 사용자 정보와 비교
       const currentUser = JSON.parse(myCon.logSts);
-      if(currentUser.uid===cUser.uid) setBtnSts(true);
+      if (currentUser.uid === cUser.uid) setBtnSts(true);
       else setBtnSts(false);
-    }else{ //로그아웃
+    } else {
+      //로그아웃
       setBtnSts(false);
     }
 
@@ -319,9 +324,9 @@ export function Board() {
      * 페이지 종료 번호 : pgNum*PAGE_BLOCK
      */
     const tempData = [];
-    originData.sort((a,b)=>{
+    originData.sort((a, b) => {
       return Number(a.idx) == Number(b.idx) ? 0 : Number(a.idx) > Number(b.idx) ? -1 : 1;
-    })
+    });
     let initSeq = (pgNum - 1) * PAGE_BLOCK;
     let lastSeq = pgNum * PAGE_BLOCK;
     // 데이터 선별용 for
@@ -330,14 +335,14 @@ export function Board() {
       tempData.push(originData[i]); // 코드 푸쉬
     }
     // 데이터 없는 경우 출력
-    if (tempData.length === 0){
+    if (tempData.length === 0) {
       return (
         <tr>
           <td colSpan="8">There is no data.</td>
         </tr>
       );
     }
-      
+
     // 데이터 있는 경우 출력
     return tempData.map((v, i) => (
       <tr key={i}>
@@ -404,6 +409,62 @@ export function Board() {
     // bindList(); ->>> pgNum사용으로 리랜더링
   }; /////// chgList 함수 ///////////
   const makeTit = () => {};
+
+  /**
+   * 함수명 : plusCnt
+   * 기능 : 게시판 조회수 증가 반영하기
+   * 조건
+   *  1) 자신의 글은 업데이트 안 됨
+   *  2) 같은 글은 1회 만 조회수 업데이트
+   * ->> 사용자 방문한 글 번호를 session에 기록
+   * 업데이트 시점 : 글 읽기 모드에 들어간 후
+   */
+  const plusCnt = () => {
+    // 0. 처음에 통과상태 설정하기
+    let isOk = true;
+    // 조건 : session 등록 된 글 or 로그인 사용자는 false로 처리
+    // 1. 현재 읽은 글 정보 selData.current
+    let cidx = selData.current.idx;
+    // 2. sessionStorage 조회
+    // - 빈 데이터 처리
+    if (!sessionStorage.getItem("board-idx")) sessionStorage.setItem("board-idx", "[]");
+    // - 세션정보 조회
+    let boardIdx = JSON.parse(sessionStorage.getItem("board-idx"));
+    // 3. 조건 검사
+    // 3-1. 읽은 글 검사
+    boardIdx.some((v) => {
+      if (Number(v) === Number(cidx)) {
+        isOk = false;
+        return true;
+      }
+    }); /////// some ////////
+    // 3-2. 로그인 사용자 검사
+    if(localStorage.getItem('minfo')){
+      let currentLoginMember = JSON.parse(localStorage.getItem('minfo'));
+      // console.log('currentLoginMember.uid',currentLoginMember.uid);
+      if(currentLoginMember.uid==selData.current.uid) isOk = false;
+    }
+    // 4. 카운트 증가
+    if (isOk) {
+      let boardData = JSON.parse(localStorage.getItem("boardData"));
+      boardData.some((v) => {
+        if (Number(v.idx) === Number(cidx)) {
+          v.cnt += 1;
+          return true;
+        }
+      });
+      originData = boardData;
+      // 원본데이터 업데이트
+      localStorage.setItem("boardData", JSON.stringify(boardData));
+    } /// if ///
+    // 5. 읽은 글 session update
+    if (isOk) {
+      // 배열에 저장
+      boardIdx.push(Number(cidx));
+      // 세션에 저장하기
+      sessionStorage.setItem("board-idx", JSON.stringify(boardIdx));
+    }
+  }; ///// plusCnt 함수 //////
   return (
     <>
       {
@@ -568,12 +629,13 @@ export function Board() {
                       <a href="#">List</a>
                     </button>
                     {
-                    /**글쓴이 === 로그인사용자 */
-                    btnSts && (
-                      <button onClick={chgMode2}>
-                        <a href="#">Modify</a>
-                      </button>
-                    )}
+                      /**글쓴이 === 로그인사용자 */
+                      btnSts && (
+                        <button onClick={chgMode2}>
+                          <a href="#">Modify</a>
+                        </button>
+                      )
+                    }
                   </>
                 )
               }

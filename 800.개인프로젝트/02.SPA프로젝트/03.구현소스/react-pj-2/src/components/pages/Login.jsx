@@ -1,98 +1,99 @@
 // 레오폴드 로그인 페이지
-import { useContext, useState } from "react";
+import { useContext, useRef, useState } from "react";
 import "../../css/login.css";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { LeoCon } from "../modules/LeopoldContext";
 import $ from "jquery";
-import { link } from "../data/link";
+import { msgPopupData } from "../data/popupData";
 
 export function Login() {
-
   // validation check 0-fail 1-pass
   // 아이디 체크 변수
-  const [okId, setOkId] = useState(0);
+  const okId = useRef(0);
   // 비밀번호 체크 변수
-  const [okPw, setOkPw] = useState(0);
+  const okPw = useRef(0);
+  // 비밀번호 체크 변수
+
   // 컨텍스트
   const myCon = useContext(LeoCon);
-  // 링크 데이터
-  let linkData;
-  // 페이지 이동용
-  const nav = useNavigate();
-  const goNav = () => {
-    linkData = link[8];
-    nav(linkData.link);
-    // 타이틀 변경
-    myCon.chgTit(linkData.tit);
-  };
-  const msgBox = (bool,txt) => {
-    if (bool) {
-      $(".message-tit span").text("😀Success - "+txt);
-      $(".message-cont").text("You are logged in. Go to the main page.");
-      $(".message-box").fadeIn(30);
-      let btns = $(".message-box button");
-      btns.click(function () {
-        $(".message-box").fadeOut(30);
-        goNav();
-      });
-    } else {
-      $(".message-tit span").text("😢Failed - "+txt);
-      $(".message-cont").text("You are checked your information.");
-      $(".message-box").fadeIn(30);
-      let btns = $(".message-box button");
-      btns.click(function () {
-        $(".message-box").fadeOut(30);
-      });
-    }
-  };
-  const onSubmit = (e) => {
-    e.preventDefault();
-    // 데이터 유효성 넣기
-    let inId = $(".log-id").val();
-    let inPw = $(".log-pw").val();
-    // 값이 없으면 빈값넣기
-    if(inId.trim() == null || inPw.trim() == null){
-      inId = '';
-      inPw = '';
-    }
+
+  const popup = (key,txt)=>{
+    $(".message-tit span").text(msgPopupData[key].span);
+    if(txt!=='') $(".message-cont").text(msgPopupData[key].cont+txt);
+    else $(".message-cont").text(msgPopupData[key].cont);
+    $(".message-box").fadeIn(30);
+    let btns = $(".message-box button");
+    btns.click(function () {
+      $(".message-box").fadeOut(30);
+      // pass 페이지 이동
+      if(msgPopupData[key].link){
+        myCon.goPage(msgPopupData[key].link, "");
+      }
+    });
+  }
+
+  // 유효성 검사
+  const validCheckIdPW = ()=>{
+    let vaildOk = true;
+    
+    // 유효성 정규식
     const idValid = /^[a-z]{1}[a-z0-9]{4,19}$/g;
     const pWValid = /^.*(?=^.{5,15}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$/;
+    
+    // 값 가져오기
+    let inId = $(".log-id").val();
+    let inPw = $(".log-pw").val();
+    
+    // 값이 없으면 빈값넣기
+    if (inId.trim() == null || inPw.trim() == null) {
+      inId = "";
+      inPw = "";
+    }
+
     if (idValid.test(inId)) {
-      console.log('아이디 유효성 확인');
-      setOkId(1);
+      okId.current = 1;
     } else {
-      console.log('아이디 유효성 실패');
-      setOkId(0);
+      okId.current = 0;
+      vaildOk = false;
     } ///////// id 유효성 /////
     if (pWValid.test(inPw)) {
-      console.log('비번 유효성 확인');
-      setOkPw(1);
+      okPw.current = 1;
     } else {
-      console.log('비번 유효성 실패');
-      setOkPw(0);
+      okPw.current = 0;
+      vaildOk = false;
     } ///////// pw 유효성 /////
-    if (localStorage.getItem("member") === null) {
-      msgBox(false,'notdata');
-      return;
-    }
-    else if (okId&&okPw) {
+    return vaildOk;    
+  }; ///////// validCheckIdPW /////////
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+    let inId = $(".log-id").val();
+    let inPw = $(".log-pw").val();
+    if (validCheckIdPW()) {
       let data = localStorage.getItem("member");
       data = JSON.parse(data);
       // 데이터 일치 조회
-      data.find((v) => {
-        if (v.uid == inId) {
-          if (v.pwd == inPw) {
+      data.some((v) => {
+        if (v.uid === inId) {
+          if (v.pwd === inPw) {
             sessionStorage.setItem("loginMem", JSON.stringify([v.uid]));
-            msgBox(true, v.uid);
+            popup('loginPass',v.uid);
+            myCon.setLoginSts(sessionStorage.getItem("loginMem"));
+            return;
           }
         }
+        popup('loginFailNotSame','');
+        return;
       });
-      if (sessionStorage.getItem("loginMem") === null) {
-        msgBox(false,'notsame');
-      }
-    }// 유효성검사 통과 못하면 return;
-    else{
-      msgBox(false,'vaild');
+    }else if (localStorage.getItem("member") === null || JSON.parse(localStorage.getItem("member")).length === 0) {
+      popup('loginFailNoData','');
+      return;
+    }
+    else if(!validCheckIdPW()) {
+      popup('loginFailVaild','');
+      return;
+    }else{
+      popup('loginFailNotSame','');
       return;
     } //////// if-else local exist //////////
   }; ///////// onSubmit 함수 //////////////

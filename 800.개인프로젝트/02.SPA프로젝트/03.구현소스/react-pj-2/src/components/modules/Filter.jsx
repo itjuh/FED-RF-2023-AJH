@@ -32,7 +32,7 @@ export function Filter({chgOptFn}) {
     $(".progress-bar").css({
       width: wid + "%",
     });
-    myCon.chgSel(idx);
+    // myCon.chgSel(idx);
   };
 
   // 대분류 변경 함수 /////////////

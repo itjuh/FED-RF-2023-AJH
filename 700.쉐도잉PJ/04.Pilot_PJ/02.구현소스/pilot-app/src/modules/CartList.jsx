@@ -11,7 +11,7 @@ import { Fragment } from "react";
 
 // 전달 값 변경 시 리랜더링 하기 위해 메모이제이션 적용
 export const CartList = memo(({ data, flag }) => {
-  console.log("업뎃 상태값 :", flag.current);
+  // console.log("업뎃 상태값 :", flag.current);
   // 로컬스토리지 데이터를 props로 전달 받는다
   // console.log(JSON.parse(localStorage.getItem('cart')));
   // let data = JSON.parse(localStorage.getItem("cart"));
@@ -28,7 +28,7 @@ export const CartList = memo(({ data, flag }) => {
    */
   const PAGE_BLOCK = 5;
 
-  console.log("받은데이터", data, "\n기존데이터", cartData, "\n유지데이터");
+  // console.log("받은데이터", data, "\n기존데이터", cartData, "\n유지데이터");
   // 카트 컴포넌트의 데이터의 상태관리로 컴포넌트 리랜더링을 위함
   // 외부데이터 업데이트는 외부에서 온 경우만!!
   if (cartData !== data && flag.current) setCartData(data);

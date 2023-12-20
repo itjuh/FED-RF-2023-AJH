@@ -5,7 +5,7 @@ import "../../css/main.css";
 import { Options } from "../modules/Options";
 import { BoardList } from "../modules/BoardList";
 import { Filter } from "../modules/Filter";
-import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { filterBoardData } from "../data/boardData";
 // filterBoardData idx값만 가져오기
 let AllData = [];

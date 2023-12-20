@@ -26,7 +26,6 @@ export function Layout() {
   },[])
   // 라우터 이동함수
   const goNav = useNavigate();
-  // 라우터 이동함수
   /**
    * 1. 로그인 상태 관리 변수 logSts
    * 2. 환영메세지 logMsg

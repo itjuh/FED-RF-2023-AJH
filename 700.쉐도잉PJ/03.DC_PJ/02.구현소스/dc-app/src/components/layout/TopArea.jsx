@@ -13,8 +13,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 // 제이쿼리
 import $ from "jquery";
 import { memo} from "react";
-import { useContext } from "react";
-import { dcCon } from "../modules/dcContext";
 import { useEffect } from "react";
 
 /*

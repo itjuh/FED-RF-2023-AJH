@@ -2,21 +2,48 @@
 import { Link } from "react-router-dom";
 import "../../css/find_member.css";
 import $ from "jquery";
-import { useState } from "react";
+import { useContext, useRef, useState } from "react";
+import { LeoCon } from "../modules/LeopoldContext";
+import { msgPopupData } from "../data/popupData";
 
 export function FindMember() {
   if (localStorage.getItem("member") === null) {
     let sample = [
       {
         idx: 0,
-        uid: "sample",
-        pwd: "sample11!!",
-        unm: "sampledata",
+        uid: "tomtom",
+        pwd: "a12345678!!",
+        unm: "tom",
         eml: "jh.2144.9679@gmail.com",
       },
     ];
     localStorage.setItem("member", JSON.stringify(sample));
   }
+  // validation check 0-fail 1-pass
+  // 이름 체크 변수
+  const okName = useRef(0);
+  // 이메일 체크 변수
+  const okEmail = useRef(0);
+  // 아이디 체크 변수
+  const okId = useRef(0);
+
+  // 컨텍스트
+  const myCon = useContext(LeoCon);
+
+  const popup = (key,txt) => {
+    $(".message-tit span").text(msgPopupData[key].span);
+    if(txt!=='') $(".message-cont").text(msgPopupData[key].cont+txt);
+    else $(".message-cont").text(msgPopupData[key].cont);
+    $(".message-box").fadeIn(30);
+    let btns = $(".message-box button");
+    btns.click(function () {
+      $(".message-box").fadeOut(30);
+      // pass 페이지 이동
+      if (msgPopupData[key].link) {
+        myCon.goPage(msgPopupData[key].link, "");
+      }
+    });
+  };
   // 페이지 구분 함수
   const addOn = function (e) {
     let target = $(e.currentTarget);
@@ -25,79 +52,66 @@ export function FindMember() {
       // 아이디 누르면 id 박스 열기
       $(".find-box").first().addClass("on").siblings().removeClass("on");
       // 빈값넣기
-      $(".find-box").find('input').val('');
+      $(".find-box").find("input").val("");
     } else {
       $(".find-box").last().addClass("on").siblings().removeClass("on");
       // 빈값넣기
-      $(".find-box").find('input').val('');
+      $(".find-box").find("input").val("");
     }
   };
-  const msgBox = (num,txt) => {
-    if (num===1) {
-      $(".message-tit span").text("😀Success");
-      $(".message-cont").text("Your id is "+txt);
-      $(".message-box").fadeIn(30);
-      let btns = $(".message-box button");
-      btns.click(function () {
-        $(".message-box").fadeOut(30);
-      });
-    } else if(num===0){
-      $(".message-tit span").text("😢Failed");
-      $(".message-cont").text("No matching information found.");
-      $(".message-box").fadeIn(30);
-      let btns = $(".message-box button");
-      btns.click(function () {
-        $(".message-box").fadeOut(30);
-      });
-    } else {
-      $(".message-tit span").text("😀Success");
-      $(".message-cont").text("We reset your password. Please login with the password written to the next - a12345678!!");
-      $(".message-box").fadeIn(30);
-      let btns = $(".message-box button");
-      btns.click(function () {
-        $(".message-box").fadeOut(30);
-      });
-    }
-  };
-  // validation check 0-fail 1-pass
-  // 이름 체크 변수
-  const [okName, setOkName] = useState(0);
-  // 이메일 체크 변수
-  const [okEmail, setOkEmail] = useState(0);
-  // 아이디 체크 변수
-  const [okId, setOkId] = useState(0);
 
-  const onSubmit = (e, txt) => {
-    e.preventDefault();
-    let sameData = "";  
+  // 유효성 검사
+  const validCheck = (num, arr) => {
+    let vaildOk = true;
     // 유효성 정규식
     const idValid = /^[a-z]{1}[a-z0-9]{4,19}$/g;
     const nameValid = /^([a-zA-Z]{2,15}|[가-힣]{2,15})$/;
     const emailValid = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/;
+
     const nameChk = (data) => {
       if (nameValid.test(data)) {
-        console.log('name pass');
-        setOkName(1);
+        // console.log("name pass");
+        okName.current = 1;
       } else {
-        setOkName(0);
+        okName.current = 0;
+        vaildOk = false;
       } ///////// Name 유효성 /////
     };
-    const mailChk = (data)=>{
+    const mailChk = (data) => {
       if (emailValid.test(data)) {
-        console.log('mail pass');
-        setOkEmail(1);
+        // console.log("mail pass");
+        okEmail.current = 1;
       } else {
-        setOkEmail(0);
+        okEmail.current = 0;
+        vaildOk = false;
       } ///////// Email 유효성 /////
     };
-    const idChk = (data)=>{
+    const idChk = (data) => {
       if (idValid.test(data)) {
-        console.log('id pass');
-        setOkId(1);
+        // console.log("id pass");
+        okId.current = 1;
       } else {
-        setOkId(0);
+        okId.current = 0;
+        vaildOk = false;
       } ///////// id 유효성 /////
+    };
+
+    if (num == 2) {
+      //2가지 체크
+      nameChk(arr[0]);
+      mailChk(arr[1]);
+    } else {
+      nameChk(arr[0]);
+      mailChk(arr[1]);
+      idChk(arr[2]);
     }
+    // console.log(num,'가지 유효성결과:',vaildOk);
+    return vaildOk;
+  };
+  
+  const onSubmit = (e, txt) => {
+    e.preventDefault();
+    let sameData = undefined;
     if (txt == "id") {
       let inName = $(".find-id-name").val();
       let inEmail = $(".find-id-email").val();
@@ -106,20 +120,24 @@ export function FindMember() {
         inName = "";
         inEmail = "";
       }
-      nameChk(inName);
-      mailChk(inEmail);
-      let data = localStorage.getItem("member");
-      // id 찾기
-      data = JSON.parse(data);
-      // 데이터 일치 조회
-      sameData = data.find((v) => {
-        if (v.unm == inName) {
-          if (v.eml == inEmail) {
-            return true;
+      // 유효성 확인
+      let result = validCheck(2, [inName, inEmail]);
+      if (result) {
+        let data = localStorage.getItem("member");
+        // id 찾기
+        data = JSON.parse(data);
+        // 데이터 일치 조회
+        sameData = data.find((v) => {
+          if (v.unm == inName) {
+            if (v.eml == inEmail) {
+              return true;
+            }
           }
-        }
-      });
-      sameData !== undefined ? msgBox(1,sameData.uid) : msgBox(0,'');
+        });
+        // sameData !== undefined ? msgBox(1,sameData.uid) : msgBox(0,'');
+      }
+      console.log(sameData.uid);
+      sameData !== undefined ? popup("findIdPass", sameData.uid) : popup("findFail", "");
     } else if (txt == "pw") {
       let inName = $(".find-pw-name").val();
       let inEmail = $(".find-pw-email").val();
@@ -130,27 +148,27 @@ export function FindMember() {
         inEmail = "";
         inId = "";
       }
-      nameChk(inName);
-      mailChk(inEmail);
-      idChk(inId);
-      
-      let data = localStorage.getItem("member");
-      // pw 찾기
-      data = JSON.parse(data);
-      // 데이터 일치 조회
-      sameData = data.find((v) => {
-        if (v.unm == inName) {
-          if (v.eml == inEmail) {
-            if (v.uid == inId) {
-              v.pwd = 'a12345678!!';
-              return true;
+      // 유효성 확인
+      let result = validCheck(3, [inName, inEmail, inId]);
+      if (result) {
+        let data = localStorage.getItem("member");
+        // pw 찾기
+        data = JSON.parse(data);
+        // 데이터 일치 조회
+        sameData = data.find((v) => {
+          if (v.unm == inName) {
+            if (v.eml == inEmail) {
+              if (v.uid == inId) {
+                v.pwd = "a12345678!!";
+                return true;
+              }
             }
           }
-        }
-      });
-      // 로컬 업데이트
-      localStorage.setItem('member',JSON.stringify(data));
-      sameData !== undefined ? msgBox(-1,'') : msgBox(0,'');
+        });
+        // 로컬 업데이트
+        localStorage.setItem("member", JSON.stringify(data));
+      }
+      sameData !== undefined ? popup("findPwPass", "") : popup("findFail", "");
     } ///////// if-elseif ///////////////
   }; ////// onSubmit ////////////
   return (
@@ -223,7 +241,12 @@ export function FindMember() {
                 <li>
                   {/* 4-1. 아이디 */}
                   <label className="label-find">ID</label>
-                  <input className="input-find find-pw-id" type="text" maxLength="20" placeholder="Please enter your ID" />
+                  <input
+                    className="input-find find-pw-id"
+                    type="text"
+                    maxLength="20"
+                    placeholder="Please enter your ID"
+                  />
                 </li>
                 <li>
                   {/* 4-2. 이름 */}

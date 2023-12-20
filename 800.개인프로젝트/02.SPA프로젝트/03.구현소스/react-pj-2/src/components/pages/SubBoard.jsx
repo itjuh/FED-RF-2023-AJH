@@ -44,6 +44,7 @@ export function SubBoard() {
   selData = detailData[name] ? detailData[name] : false;
 
   const loadFn = () => {
+    $(()=>{
     const imgWd = [];
     let all = 0;
     const setNav = () => {
@@ -59,8 +60,10 @@ export function SubBoard() {
       // 네비게이션 세팅
       setNav();
     }
+
     // 휠 이벤트
-    moveImgInfo($(".detail-page"));
+      moveImgInfo($(".detail-page"));
+    })
   }; ///////////// loadFn 함수 //////////////
 
 

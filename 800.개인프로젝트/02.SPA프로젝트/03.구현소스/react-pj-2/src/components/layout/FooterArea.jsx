@@ -1,7 +1,6 @@
 // 하단영역 컴포넌트
 
 import { memo, useRef } from "react";
-import { Toggle } from "../modules/Toggle";
 
 import $ from "jquery";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -54,8 +53,7 @@ export const FooterArea = memo((props) => {
                 <span className="ir">메뉴</span>
               </a>
             </div>
-            {/* 3-2. 토글버튼 영역 */}
-            <Toggle />
+            
           </div>
           {/* 하위메뉴 열기영역 */}
           <section className="in-box row-16 gnb-menu-area">
