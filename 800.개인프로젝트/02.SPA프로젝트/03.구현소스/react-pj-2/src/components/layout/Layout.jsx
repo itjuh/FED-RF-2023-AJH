@@ -56,7 +56,7 @@ export function Layout() {
    3. sub - 서브페이지용 데이터
    4. chgSub - 서브페이지용 데이터 업데이트
    5. goPage - 페이지 이동 useNavigate
-   6. 
+   6. setLoginSts - 로그인 설정용(로그인페이지에서 세팅)
    **********************************/
   return (
     <LeoCon.Provider value={{ toggleVal, chgTog, sub, chgSub, goPage, setLoginSts}}>
