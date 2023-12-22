@@ -10,7 +10,7 @@
 .header > div {
   align-items: flex-end;
 }
-.header__logo{
+.header__logo {
   cursor: pointer;
 }
 /* 1-2. 타이틀영역 */
@@ -26,7 +26,7 @@
   color: rgb(70, 70, 70);
   box-sizing: border-box;
 }
-.top-title img{
+.top-title img {
   display: block;
   margin: 0 auto;
   padding-top: 15px;
@@ -67,9 +67,9 @@
   transition: opacity 0.1s ease-in 0.1s, transform 0.3s ease-in;
 }
 /* 검색창 내부 라벨 */
-.search-area label{
+.search-area label {
   display: block;
-  width: min(600px,80vw);
+  width: min(600px, 80vw);
   margin: 0 auto;
   font-family: "KOFIHDrLEEJWTTF-B";
   line-height: 3;
@@ -80,13 +80,13 @@
 .search-box {
   position: relative;
   /* 아이콘 부모자격 */
-  width: min(600px,80vw);
+  width: min(600px, 80vw);
   margin: 0 auto;
 }
 /* 검색창 내부 input */
-.search-box input{
+.search-box input {
   display: block;
-  width: min(600px,80vw);
+  width: min(600px, 80vw);
   height: 40px;
   border: 1px solid #dfdfdf;
   border-radius: 10px;
@@ -98,7 +98,7 @@
 }
 
 /* 검색창 닫기버튼 */
-.search-area .close-btn{
+.search-area .close-btn {
   background-color: transparent;
   line-height: 0.6;
   transform-origin: center;
@@ -111,18 +111,35 @@
   color: rgb(70, 70, 70);
 }
 /* 검색창 내부 아이콘 */
-.search-area svg{
+.search-area svg {
   position: absolute;
   left: 1%;
   top: 20%;
   font-size: 1.4rem;
 }
 /* 로그인 타이틀 */
-.welcome-tit{
+.welcome-tit {
   font-family: "KOFIHDrLEEJWTTF-L";
-  font-size: ".8rem";
+  font-size: 0.8rem;
 }
-
+/* 로그아웃 아이콘 글자 */
+.log-icon {
+  position: absolute;
+  top: 85%;
+  left: -11%;
+  font-family: "KOFIHDrLEEJWTTF-L";
+  font-size: 0.8rem;
+  color: #000;
+}
+/* 장바구니 안쪽 숫자 */
+.wish-cnt {
+  font-family: "KOFIHDrLEEJWTTF-B";
+  position: absolute;
+  top: 21%;
+  left: 45%;
+  color: #fff;
+  font-size: 1rem;
+}
 
 /************** 2. 메인영역  ****************/
 /* 위시리스트 버튼 */
@@ -146,7 +163,7 @@
 }
 /************** 3. 하단영역  ****************/
 /* 3-1. 하단메뉴 아이콘 */
-.menu-area>a {
+.menu-area > a {
   align-items: center;
   font-size: 3.5rem;
   justify-content: center;
@@ -157,13 +174,13 @@
   text-align: center;
   color: rgb(70, 70, 70);
 }
-.menu-icon:hover{
+.menu-icon:hover {
   color: rgb(128, 128, 128);
 }
 /* 아이콘 상단 화살표 */
 .menu-icon:nth-child(1) {
   /* 트랜지션 */
-  transition: transform .5s ease-in;
+  transition: transform 0.5s ease-in;
   font-size: 2rem;
 }
 .menu-icon:nth-child(2) {
@@ -201,12 +218,12 @@
   color: rgb(128, 128, 128);
 }
 /* 개별토글 */
-.tg-keyboard{
+.tg-keyboard {
   text-align: left;
   padding-left: 1%;
   color: #000;
 }
-.tg-switch{
+.tg-switch {
   text-align: center;
   padding-right: 3%;
 }
@@ -224,27 +241,27 @@
 /************ 미디어쿼리구역 **************/
 /* 750px 이하 미디어쿼리 시작 */
 @media screen and (max-width: 750px) {
-/* 1-2. 타이틀영역 */
-.top-title {
-  width: auto;
-  border: none;
-  box-shadow: none;
-}
-/* 1-3. GNB메뉴 */
-.gnb-area {
-  gap: 2vw;
-}
-/* 위시리스트 버튼 */
-.add-wish {
-  bottom: 0px;
-}
+  /* 1-2. 타이틀영역 */
+  .top-title {
+    width: auto;
+    border: none;
+    box-shadow: none;
+  }
+  /* 1-3. GNB메뉴 */
+  .gnb-area {
+    gap: 2vw;
+  }
+  /* 위시리스트 버튼 */
+  .add-wish {
+    bottom: 0px;
+  }
 } /* 750px 이하 미디어쿼리 종료*/
 /* 500px 이하 미디어쿼리 시작 */
 @media screen and (max-width: 500px) {
-  .top-title img{
+  .top-title img {
     padding-top: 5px;
   }
-  .gnb-area a+a{
+  .gnb-area a + a {
     display: none;
   }
 } /* 500px 이하 미디어쿼리 종료*/

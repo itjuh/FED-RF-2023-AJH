@@ -5,12 +5,17 @@ import $ from "jquery";
 // 신상품 데이터 가져오기
 import { newProdData } from "../data/new_prod";
 import { useRef } from "react";
+import { useContext } from "react";
+import { pCon } from "./PliotContext";
+
 
 export function NewProdList({cat, chgItemFn}) {
   // cat 카테고리 분류명
   // chgItemFn - 선택상품정보변경 부모함수
   // 선택 데이터 : 해당 카테고리 상품 데이터만 가져온다
   let selData = newProdData[cat];
+  // 컨텍스트 API사용하기
+  const myCon = useContext(pCon);
 
   const makeList = () => {
     // 코드 담을 배열
@@ -98,7 +103,9 @@ export function NewProdList({cat, chgItemFn}) {
     <>
       <h2 className="c1tit">
         NEW MEN'S ARRIVAL
-        <button>전체리스트</button>
+        <button
+          onClick={()=>myCon.chgPgName('glist')}
+        >전체리스트</button>
       </h2>
       <div
         className="flowbx"

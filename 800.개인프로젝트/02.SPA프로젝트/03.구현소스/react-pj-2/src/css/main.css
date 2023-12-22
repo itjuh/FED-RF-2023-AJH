@@ -20,7 +20,7 @@
   width: 300px;
   aspect-ratio: 400/130;
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: contain;
   background-position: center;
 }
 /* 각 제품 li 오버시 */

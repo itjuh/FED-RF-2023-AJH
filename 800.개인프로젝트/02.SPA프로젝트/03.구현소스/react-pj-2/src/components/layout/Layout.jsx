@@ -22,7 +22,11 @@ export function Layout() {
   const [toggleVal, setToggleVal] = useState("main");
   const [sub, setSub] = useState(null);
   const [loginSts, setLoginSts] = useState(sessionStorage.getItem("loginMem"));
-
+  const [wishCnt, setWishCnt] = useState(JSON.parse(localStorage.getItem('wish')).length);
+  // 장바구니 수량 업데이트
+  const wishUpdate = useCallback(()=>{
+    setWishCnt(JSON.parse(localStorage.getItem('wish')).length);
+  },[]);
   // 로그인 업데이트
   const logOutFn = useCallback(()=>{
     sessionStorage.removeItem("loginMem");
@@ -57,10 +61,11 @@ export function Layout() {
    4. chgSub - 서브페이지용 데이터 업데이트
    5. goPage - 페이지 이동 useNavigate
    6. setLoginSts - 로그인 설정용(로그인페이지에서 세팅)
+   7. wishUpdate - 장바구니 설정용(장바구니페이지에서 세팅)
    **********************************/
   return (
-    <LeoCon.Provider value={{ toggleVal, chgTog, sub, chgSub, goPage, setLoginSts}}>
-      <TopArea loginSts={loginSts} logOutFn={logOutFn} goPage={goPage} />
+    <LeoCon.Provider value={{ toggleVal, chgTog, sub, chgSub, goPage, setLoginSts, wishUpdate}}>
+      <TopArea loginSts={loginSts} logOutFn={logOutFn} goPage={goPage} wishCnt={wishCnt}/>
       <MainArea />
       <FooterArea />
     </LeoCon.Provider>

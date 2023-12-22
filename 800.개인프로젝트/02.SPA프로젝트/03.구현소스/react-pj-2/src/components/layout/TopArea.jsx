@@ -8,8 +8,7 @@ import { Toggle } from "../modules/Toggle";
 import $ from "jquery";
 import "jquery-ui-dist/jquery-ui";
 import { CartCon, GlassCon, UserCon } from "../modules/Icons";
-export const TopArea = memo(({ loginSts, logOutFn, goPage }) => {
-  console.log('top생성');
+export const TopArea = memo(({ loginSts, logOutFn, goPage, wishCnt }) => {
   const goNav = (txt, e) => {
     e.preventDefault();
     // 페이지 이동
@@ -67,7 +66,8 @@ export const TopArea = memo(({ loginSts, logOutFn, goPage }) => {
               </a>
               {/* 로그아웃 */}
               {loginSts !== null && (
-                <a href="#" title="LOGOUT" style={{ color: "cornflowerblue" }} className="gnb-icon" onClick={logOutFn}>
+                <a href="#" title="LOGOUT" style={{ color: "lightseagreen" }} className="gnb-icon" onClick={logOutFn}>
+                  <div className='log-icon'>logout</div>
                   <span className="ir">LOGOUT</span>
                   <UserCon />
                 </a>
@@ -95,6 +95,10 @@ export const TopArea = memo(({ loginSts, logOutFn, goPage }) => {
                 }}
                 className="gnb-icon"
               >
+                {
+                  wishCnt > 0 &&
+                  <div className='wish-cnt'>{wishCnt}</div>
+                }
                 <span className="ir">WISHLIST</span>
                 <CartCon />
               </a>

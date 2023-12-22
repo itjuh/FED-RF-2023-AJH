@@ -1,5 +1,6 @@
-import { memo, useEffect, useState } from "react";
+import { memo, useContext, useEffect, useState } from "react";
 import $ from "jquery";
+import { LeoCon } from "./LeopoldContext";
 
 // LEOPOLD WishList Table만들기 컴포넌트
 // export const WishTable = memo(({ data, chgFn }) => {
@@ -9,6 +10,8 @@ export const WishTable = memo(({ wishdata, flag }) => {
     localStorage.setItem("wish", JSON.stringify([]));
     wishdata = JSON.parse(localStorage.getItem("wish"));
   }
+  // contextAPI
+  const myCon = useContext(LeoCon);
   // 변경 데이터 변수
   const [data, setData] = useState(wishdata);
   // 데이터 변경 시에만 리랜더링
@@ -92,20 +95,26 @@ export const WishTable = memo(({ wishdata, flag }) => {
     totalSet();
     totalDisplaySet();
   };
-  const checkList = (e) => {
+  const checkList = () => {
     // 누른 대상의 seq 고유번호
     // 체크박스 체크 된 데이터 배열번호
+    // let arr = $(".wish-chk-input:checked").parent().parent();
+    // let arrNum = [];
+    // arr.each((i, v) => {
+    //   // 제거 데이터 배열번호
+    //   data.forEach((val, seq) => {
+    //     if (val.src === v.className) {
+    //       arrNum.push(seq);
+    //     }
+    //   });
+    // });
     let arr = $(".wish-chk-input:checked").parent().parent();
     let arrNum = [];
     arr.each((i, v) => {
-      // 제거 데이터 배열번호
-      data.forEach((val, seq) => {
-        if (val.src === v.className) {
-          arrNum.push(seq);
-        }
-      });
+      arrNum.push(v.className);
     });
     console.log(arrNum);
+    return arrNum;
   };
   // 항목 삭제함수
   const deleteFn = (e) => {
@@ -118,16 +127,12 @@ export const WishTable = memo(({ wishdata, flag }) => {
     btns.click(function () {
       let tg = $(this).text();
       let updateData;
+
       if (tg === "Delete") {
         // 삭제버튼 클릭
         if (tgSeq < 0) {
-          // 체크삭제 클릭
-          // 체크박스 체크 된 데이터
-          let arr = $(".wish-chk-input:checked").parent().parent();
-          let arrNum = [];
-          arr.each((i, v) => {
-            arrNum.push(v.className);
-          });
+          // 체크삭제 클릭 : 체크박스 체크 된 데이터
+          let arrNum = checkList();
           updateData = data.filter((v) => !arrNum.includes(v.src));
           // 데이터 제거 반영
           setData(updateData);
@@ -149,6 +154,8 @@ export const WishTable = memo(({ wishdata, flag }) => {
         $('input[type="checkbox"]').prop("checked", false);
       }
       $(".message-box").fadeOut(30);
+      // 위시리스트 업데이트
+      myCon.wishUpdate();
     });
   };
   // 숫자 회계처리
@@ -223,61 +230,62 @@ export const WishTable = memo(({ wishdata, flag }) => {
                   <th>Select</th>
                 </tr>
                 {data.map(
-                  (v, i) =>
+                  (v, i) => (
                     // i >= 1 && (
-                      <tr key={i} className={v.src}>
-                        {/* 2-1. 체크박스 */}
-                        <td>
-                          <input
-                            type="checkbox"
-                            name={"item" + v.idx}
-                            id={"item" + v.idx}
-                            className="wish-chk-input"
-                            onChange={() => eachChkFn()}
-                          />
-                          <label className="wish-chk" htmlFor={"item" + v.idx}>
-                            ✔
-                          </label>
-                        </td>
-                        {/* 2-2. 이미지 */}
-                        <td>
-                          <img src={"./images/image_prod2/" + v.src + ".png"} alt={v.src + "이미지"} />
-                        </td>
-                        {/* 2-3. 제품명 */}
-                        <td>
-                          <span>
-                            {v.code} - {v.sub}
-                          </span>
-                        </td>
-                        {/* 2-4. 단가 */}
-                        <td>
-                          <span>￦{addCommas(v.cost)}</span>
-                        </td>
-                        {/* 2-5. 수량 */}
-                        <td>
-                          <div className="quant-box flex-box" data-seq={v.idx}>
-                            <div className="quant-btn" onClick={(e) => updateCnt(e)}>
-                              －
-                            </div>
-                            <input type="text" className="quant" readOnly defaultValue={v.count} />
-                            <div className="quant-btn" onClick={(e) => updateCnt(e)}>
-                              ＋
-                            </div>
+                    <tr key={i} className={v.src}>
+                      {/* 2-1. 체크박스 */}
+                      <td>
+                        <input
+                          type="checkbox"
+                          name={"item" + v.idx}
+                          id={"item" + v.idx}
+                          className="wish-chk-input"
+                          onChange={() => eachChkFn()}
+                        />
+                        <label className="wish-chk" htmlFor={"item" + v.idx}>
+                          ✔
+                        </label>
+                      </td>
+                      {/* 2-2. 이미지 */}
+                      <td>
+                        <img src={"./images/image_prod2/" + v.src + ".png"} alt={v.src + "이미지"} />
+                      </td>
+                      {/* 2-3. 제품명 */}
+                      <td>
+                        <span>
+                          {v.code} - {v.sub}
+                        </span>
+                      </td>
+                      {/* 2-4. 단가 */}
+                      <td>
+                        <span>￦{addCommas(v.cost)}</span>
+                      </td>
+                      {/* 2-5. 수량 */}
+                      <td>
+                        <div className="quant-box flex-box" data-seq={v.idx}>
+                          <div className="quant-btn" onClick={(e) => updateCnt(e)}>
+                            －
                           </div>
-                        </td>
-                        {/* 2-6. 합계 */}
-                        <td>
-                          <span className="item-fee">￦{addCommas(v.cost * v.count)}</span>
-                        </td>
-                        {/* 2-7. 선택구역 */}
-                        <td>
-                          <div className="sel-box flex-box" data-seq={v.idx}>
-                            <button>order</button>
-                            <button onClick={(e) => deleteFn(e)}>delete</button>
+                          <input type="text" className="quant" readOnly defaultValue={v.count} />
+                          <div className="quant-btn" onClick={(e) => updateCnt(e)}>
+                            ＋
                           </div>
-                        </td>
-                      </tr>
-                    // )
+                        </div>
+                      </td>
+                      {/* 2-6. 합계 */}
+                      <td>
+                        <span className="item-fee">￦{addCommas(v.cost * v.count)}</span>
+                      </td>
+                      {/* 2-7. 선택구역 */}
+                      <td>
+                        <div className="sel-box flex-box" data-seq={v.idx}>
+                          <button>order</button>
+                          <button onClick={(e) => deleteFn(e)}>delete</button>
+                        </div>
+                      </td>
+                    </tr>
+                  )
+                  // )
                 )}
               </tbody>
               <tfoot>

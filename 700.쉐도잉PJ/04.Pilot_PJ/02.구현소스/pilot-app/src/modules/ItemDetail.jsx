@@ -60,7 +60,6 @@ export function ItemDetail({ goods, cat, chgItemFn }) {
     }
     // localData 변환값 변수에 담기:CartList 컴포넌트 전달용
   }; //////// useCart 함수 ////////////
-
   const selData = gdata.find((v) => {
     // 카테고리와 상품코드가 둘다 일치
     if (v.cat === cat && v.ginfo[0] === goods) return true;

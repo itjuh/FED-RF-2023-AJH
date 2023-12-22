@@ -25,6 +25,13 @@ else originData = baseData;
 
 //************* Board 컴포넌트 상단 ************//
 export function Board() {
+  // 보드 데이터가 로컬스에 없으면 생성하기!
+  if (!localStorage.getItem("boardData")) {
+    // !연산자로 false일때 실행
+    // 로컬스 'bdata'가 없으므로 여기서 최초 생성하기
+    // -> 조회수증가시 로컬스 데이터로 확인하기 때문!
+    localStorage.setItem("boardData", JSON.stringify(originData));
+  } //////////// if ///////////////
   // 기본 사용자 정보 셋업함수 호출
   initData();
   /**
@@ -439,10 +446,10 @@ export function Board() {
       }
     }); /////// some ////////
     // 3-2. 로그인 사용자 검사
-    if(localStorage.getItem('minfo')){
-      let currentLoginMember = JSON.parse(localStorage.getItem('minfo'));
+    if (localStorage.getItem("minfo")) {
+      let currentLoginMember = JSON.parse(localStorage.getItem("minfo"));
       // console.log('currentLoginMember.uid',currentLoginMember.uid);
-      if(currentLoginMember.uid==selData.current.uid) isOk = false;
+      if (currentLoginMember.uid == selData.current.uid) isOk = false;
     }
     // 4. 카운트 증가
     if (isOk) {

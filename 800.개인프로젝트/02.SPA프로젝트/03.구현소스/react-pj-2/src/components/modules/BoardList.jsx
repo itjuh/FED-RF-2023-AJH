@@ -1,16 +1,19 @@
 // LEOPOLD Keyboard List만들기 컴포넌트
 // 키보드 제품 데이터
 import { boardData, filterBoardData } from "../data/boardData";
-import { memo } from "react";
+import { memo, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 
 // 제이쿼리 가져오기
 import $ from "jquery";
+import { LeoCon } from "./LeopoldContext";
 window.jQuery = $;
 require("jquery-ui-dist/jquery-ui");
 require("jquery-ui-touch-punch/jquery.ui.touch-punch");
 
 export const BoardList = memo(({ data }) => {
+  // context API
+  const myCon = useContext(LeoCon);
   // 받은 데이터 리스트 - data [값이 배열형]
   console.log(data);
   const nav = useNavigate();
@@ -49,11 +52,17 @@ export const BoardList = memo(({ data }) => {
           v.count += 1;
         }
       });
-      // 동일상품 없는경우만 push;
-      if (exist) localData.push(selData);
-
-      // 다시 문자 형 변환하여 넣기
-      localStorage.setItem("wish", JSON.stringify(localData));
+      if (exist) {
+        // 동일상품 없는경우만 push;
+        localData.push(selData);
+        // 다시 문자 형 변환하여 넣기
+        localStorage.setItem("wish", JSON.stringify(localData));
+        // 위시리스트 업데이트
+        myCon.wishUpdate();
+      } else {
+        // 다시 문자 형 변환하여 넣기
+        localStorage.setItem("wish", JSON.stringify(localData));
+      }
     }
   }; /////// inputWish 함수 ///////////
 
