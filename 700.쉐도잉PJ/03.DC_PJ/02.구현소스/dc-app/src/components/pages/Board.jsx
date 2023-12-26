@@ -477,32 +477,52 @@ export function Board() {
       {
         /**1. 게시판 리스트:bdMode L */
         bdMode === "L" && (
-          <table className="dtbl" id="board">
-            <caption>{makeTit()}</caption>
-            <caption>OPINION</caption>
-            {/* 상단 컬럼명 표시영역 */}
-            <thead>
-              <tr>
-                <th>Number</th>
-                <th>Title</th>
-                <th>Writer</th>
-                <th>Date</th>
-                <th>Hits</th>
-              </tr>
-            </thead>
-            {/* 중앙 레코드 표시부분 */}
-            <tbody>{bindList()}</tbody>
+          <>
+            {/* 전체 타이틀 */}
+            <h1 className="tit">OPINION</h1>
+            {/* 검색 옵션 박스 */}
+            <div className="selbx">
+              <select name="cta" id="cta" className="cta">
+                <option value="tit">Title</option>
+                <option value="cont">Contents</option>
+                <option value="unm">Writer</option>
+              </select>
+              <select name="sel" id="sel" className="sel">
+                <option value="0" selected disabled hidden>
+                  SelectSort
+                </option>
+                <option value="1">Ascending</option>
+                <option value="2">Descending</option>
+              </select>
+              <input id="stxt" type="text" maxlength="50" />
+              <button className="sbtn">Search</button>
+            </div>
+            <table className="dtbl" id="board">
+              <caption>{makeTit()}</caption>
+              {/* 상단 컬럼명 표시영역 */}
+              <thead>
+                <tr>
+                  <th>Number</th>
+                  <th>Title</th>
+                  <th>Writer</th>
+                  <th>Date</th>
+                  <th>Hits</th>
+                </tr>
+              </thead>
+              {/* 중앙 레코드 표시부분 */}
+              <tbody>{bindList()}</tbody>
 
-            {/* 하단 페이징 표시부분 */}
-            <tfoot>
-              <tr>
-                <td colSpan="5" className="paging">
-                  {/* 페이징번호 위치  */}
-                  {pagingLink()}
-                </td>
-              </tr>
-            </tfoot>
-          </table>
+              {/* 하단 페이징 표시부분 */}
+              <tfoot>
+                <tr>
+                  <td colSpan="5" className="paging">
+                    {/* 페이징번호 위치  */}
+                    {pagingLink()}
+                  </td>
+                </tr>
+              </tfoot>
+            </table>
+          </>
         )
       }
       {
@@ -610,9 +630,14 @@ export function Board() {
               {
                 /**1. 게시판 리스트:bdMode L */
                 bdMode === "L" && myCon.logSts !== null && (
-                  <button onClick={chgMode2}>
-                    <a href="#">Write</a>
-                  </button>
+                  <>
+                    <button onClick={chgMode2}>
+                      <a href="#">Write</a>
+                    </button>
+                    <button onClick={chgMode2}>
+                      <a href="#">List</a>
+                    </button>
+                  </>
                 )
               }
               {

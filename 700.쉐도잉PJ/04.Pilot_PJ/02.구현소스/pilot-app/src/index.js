@@ -73,8 +73,11 @@ function App() {
   useLayoutEffect(() => {
     // initPos();
     window.scrollTo(0, 0);
-  },[]); ///////// useLayoutEffect ///////////
+  }, []); ///////// useLayoutEffect ///////////
 
+  // glist 페이지 filterMode 변경용 변수
+  const [glistMode, setGlistMode] = useState('F');
+  // F - Filter List P - Paging List M - MoreList
   /**
    * [ context API ]
    * 1. pgName - 페이지이름
@@ -83,10 +86,11 @@ function App() {
    * 4. setCartSts - 로컬스토리지 카트 상태 업데이트
    * 5. transData - 카트 사용데이터
    * 6. setTransData - 카트 사용데이터 업데이트
+   * 7. glistMode,setGlistMode - 전체리스트 페이지 뷰모드 구분
    */
   // 리턴코드구역
   return (
-    <pCon.Provider value={{ pageName, chgPgName, flag, setCartSts, transData, setTransData }}>
+    <pCon.Provider value={{ pageName, chgPgName, flag, setCartSts, transData, setTransData, glistMode, setGlistMode }}>
       <TopArea cat={pageName} />
       <MainArea page={pageName} />
       <FooterArea />

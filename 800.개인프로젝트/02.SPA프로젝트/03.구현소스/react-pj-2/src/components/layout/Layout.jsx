@@ -2,7 +2,7 @@ import { TopArea } from "./TopArea";
 import { MainArea } from "./MainArea";
 import { FooterArea } from "./FooterArea";
 // 컨텍스트
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useState } from "react";
 import { LeoCon } from "../modules/LeopoldContext";
 import { useNavigate } from "react-router-dom";
 // 링크데이터
@@ -10,6 +10,7 @@ import { link } from "../data/link";
 
 // 레이아웃 구성 컴포넌트
 export function Layout() {
+  console.log('레이아웃페이지')
   // 링크 데이터
   let linkData = link;
   // 라우터 이동함수
@@ -18,6 +19,7 @@ export function Layout() {
    * 토글용 : toggleVal
    * 서브페이지용 : sub
    * 로그인용 : loginSts
+   * 장바구니 수량 : wishCnt
    */
   const [toggleVal, setToggleVal] = useState("main");
   const [sub, setSub] = useState(null);
@@ -37,7 +39,7 @@ export function Layout() {
     linkData = link.find((v) => {
       if (v["txt"] == txt) return true;
     });
-    console.log(linkData.link, param);
+    console.log('gopage',linkData.link, param);
     goNav(linkData.link,param);
   },[]);
   // 필터 업데이트 함수

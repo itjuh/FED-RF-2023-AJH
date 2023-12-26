@@ -11,20 +11,17 @@ export function Toggle() {
   // console.log(window.location.href.split('/')[1]);
   let val = myCon.toggleVal == "switch" ? 0 : 1;
   // 토글상태 변수
-  // const [board, setBoard] = useState(1);
   const board = useRef(val);
-  // console.log("useRef값- 0:switch, 1:keyboard", board.current);
   // 토글상태 변경함수(true/false)
   const chgBoard = (num) => {
     board.current = num;
-    myCon.chgTog(num?"main":'switch');
   };
+
 
   // 토글 변경 함수 : 위치를 분기하여 값을 적용한다.
   const swToggle = (tg) => {
     let tgTxt = $(tg).text();
     if (tgTxt !== "") {
-      // console.log("변경하러 가자!", board.current);
       // 기존값에서 변경 됨
       let num = board.current ? 0 : 1;
       setPage(num);

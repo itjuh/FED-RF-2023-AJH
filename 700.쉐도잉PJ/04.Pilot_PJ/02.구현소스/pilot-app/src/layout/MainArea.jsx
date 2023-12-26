@@ -6,7 +6,6 @@ import { MainCont } from "../pages/MainCont";
 
 // 라우터 역할을 하는 컴포넌트 ////////////////////
 export function MainArea(props){
-    console.log('메인다시찍힘');
     // props.page 페이지 속성값으로 main/men/women/style
     return(
         <>

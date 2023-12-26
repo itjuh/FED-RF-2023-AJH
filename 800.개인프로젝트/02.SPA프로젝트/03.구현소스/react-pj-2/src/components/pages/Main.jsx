@@ -7,6 +7,7 @@ import { BoardList } from "../modules/BoardList";
 import { Filter } from "../modules/Filter";
 import { useEffect, useState } from "react";
 import { filterBoardData } from "../data/boardData";
+import { useRef } from "react";
 // filterBoardData idx값만 가져오기
 let AllData = [];
 filterBoardData.map((v, i) => {
@@ -23,8 +24,9 @@ let optionData = {
 
 export function Main() {
   // 대분류/세부분류 변수
-  const [optSel, setOptSel] = useState("array");
-  const [optSubSel, setOptSubSel] = useState(optionData[optSel]);
+  // const [optSel, setOptSel] = useState("array");
+  const optSel = useRef('array');
+  const [optSubSel, setOptSubSel] = useState(optionData[optSel.current]);
   const [clickSub, setClickSub] = useState(true);
 
   // 데이터 변수
@@ -32,13 +34,14 @@ export function Main() {
   // 대분류 변경함수
   const chgOpt = (txt) => {
     // 대분류 변경
-    setOptSel(txt);
+    // setOptSel(txt);
+    optSel.current = txt;
     // optionData
     setOptSubSel(optionData[txt]);
     // 데이터 변경사항 리스트변수에 담기
     prodList = dataIdx;
     // 옵션데이터 업데이트
-    optionData[optSel] = optSubSel;
+    optionData[optSel.current] = optSubSel;
     // console.log('대분류 변경으로 데이터 업데이트',optionData);
   };
   // 소분류 변경함수
@@ -72,7 +75,7 @@ export function Main() {
       // 세부값에 해당하는 데이터의 idx를 골라서 담는다
       selList[idx] = filterBoardData.filter((v) => {
         // console.log(v[optSel].indexOf(ele),'있는지 여부',v[optSel],'arr값',ele);
-        if (v[optSel].indexOf(ele) !== -1) return true;
+        if (v[optSel.current].indexOf(ele) !== -1) return true;
       }); ///////// filter /////////////////
     });
     // console.log("세부값이 일치하는 데이터", selList);
@@ -127,7 +130,7 @@ export function Main() {
   useEffect(() => {
     // console.log(optSel, optSubSel);
     setDataIdx(selData(optSubSel));
-  }, [optSel, optSubSel]);
+  }, [optSel.current, optSubSel]);
 
   return (
     <>
@@ -137,7 +140,7 @@ export function Main() {
           <Filter chgOptFn={chgOpt} />
         </div>
         {/* 2-2. 옵션 선택 시 세부옵션 */}
-        <Options chgOptFn={chgOptSub} opt={optSel} clickFn={chgClick} />
+        <Options chgOptFn={chgOptSub} opt={optSel.current} clickFn={chgClick} />
         {/* 2-2. 제품 리스트 */}
         <div className="part-box col-16 row-10 prod-area">
           <BoardList data={dataIdx} />

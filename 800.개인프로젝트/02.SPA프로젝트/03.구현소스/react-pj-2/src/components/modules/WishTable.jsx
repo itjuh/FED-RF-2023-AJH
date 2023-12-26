@@ -19,7 +19,7 @@ export const WishTable = memo(({ wishdata, flag }) => {
   // console.log("wishTable// wishdata:",wishdata,'\ndata:',data);
 
   // 출력 리스트 변수
-  let listCnt = 10;
+  // let listCnt = 10;
   // 총 합계 변수
   let subFee;
   let totalFee;
