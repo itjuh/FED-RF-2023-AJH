@@ -17,6 +17,7 @@ export const TopArea = memo(({ loginSts, logOutFn, goPage, wishCnt }) => {
 
   // 클래스 생성 함수
   const addOn = function (e) {
+    e.preventDefault();
     console.log($(e.currentTarget));
     $(e.currentTarget).addClass("on");
   }; ///////// addOn ///////////

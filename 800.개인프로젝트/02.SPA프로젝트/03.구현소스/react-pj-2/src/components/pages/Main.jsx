@@ -4,10 +4,17 @@
 import "../../css/main.css";
 import { Options } from "../modules/Options";
 import { BoardList } from "../modules/BoardList";
-import { Filter } from "../modules/Filter";
 import { useEffect, useState } from "react";
-import { filterBoardData } from "../data/boardData";
 import { useRef } from "react";
+// 데이터 가져오기
+import { filterBoardData } from "../data/boardData";
+import { optionData } from "../data/optionData";
+// 제이쿼리 가져오기
+import $ from "jquery";
+window.jQuery = $;
+require("jquery-ui-dist/jquery-ui");
+require("jquery-ui-touch-punch/jquery.ui.touch-punch");
+
 // filterBoardData idx값만 가져오기
 let AllData = [];
 filterBoardData.map((v, i) => {
@@ -16,17 +23,18 @@ filterBoardData.map((v, i) => {
 // 대분류 변경에 따른 리스트 변수
 let prodList = AllData;
 // 옵션데이터
-let optionData = {
+let optionDataOrigin = {
   array: [900, 750, 980],
   color: ["co-wt", "co-bk", "co-gy", "co-bu", "co-ye", "co-rd"],
   switch: ["sw-bu", "sw-br", "sw-sl", "sw-lr", "sw-cl", "sw-sr", "sw-bk"],
 };
 
 export function Main() {
+  console.log("Main불러옴");
   // 대분류/세부분류 변수
   // const [optSel, setOptSel] = useState("array");
-  const optSel = useRef('array');
-  const [optSubSel, setOptSubSel] = useState(optionData[optSel.current]);
+  const optSel = useRef("array");
+  const [optSubSel, setOptSubSel] = useState(optionDataOrigin[optSel.current]);
   const [clickSub, setClickSub] = useState(true);
 
   // 데이터 변수
@@ -37,11 +45,11 @@ export function Main() {
     // setOptSel(txt);
     optSel.current = txt;
     // optionData
-    setOptSubSel(optionData[txt]);
+    // setOptSubSel(optionData[txt]);
     // 데이터 변경사항 리스트변수에 담기
     prodList = dataIdx;
     // 옵션데이터 업데이트
-    optionData[optSel.current] = optSubSel;
+    optionDataOrigin[optSel.current] = optSubSel;
     // console.log('대분류 변경으로 데이터 업데이트',optionData);
   };
   // 소분류 변경함수
@@ -126,10 +134,38 @@ export function Main() {
     return fullList;
   }; ///// selData ///////
 
+  // 클릭한 필터 값 이동하기
+  const addOn = function (e) {
+    const prog = $(".progress-area li");
+    let tg = $(e.currentTarget);
+    // 클릭 li 순번
+    let idx = prog.index(tg);
+    // progressbar 길이
+    let wid = 33.3 * (idx + 1);
+
+    // 해당순번에 on넣고 이전순번까지on 적용
+    prog.eq(idx).addClass("on").prevAll().addClass("on");
+    // 해당순전 이후 on제거
+    prog.eq(idx).nextAll().removeClass("on");
+    // 프로그래스바 css적용
+    $(".progress-bar").css({
+      width: wid + "%",
+    });
+    // myCon.chgSel(idx);
+  };
+
+  // 대분류 변경 함수 /////////////
+  const chkTop = (e) => {
+    // 1. 체크박스 대분류
+    const topchk = $(e.currentTarget).text();
+    // 프롭스 펑션 업
+    chgOptSub(topchk);
+  }; //////// chkTop함수 ///////////
+
   // useEffect 구역 옵션변경 시 적용
   useEffect(() => {
     // console.log(optSel, optSubSel);
-    setDataIdx(selData(optSubSel));
+    // setDataIdx(selData(optSubSel));
   }, [optSel.current, optSubSel]);
 
   return (
@@ -137,7 +173,23 @@ export function Main() {
       <main className="main in-box row-12 row-s-13">
         {/* 2-1. 제품 정렬옵션 */}
         <div className="part-box col-16 row-1">
-          <Filter chgOptFn={chgOpt} />
+          <div className="progress-area col-6 col-s-14">
+            <ul className="flex-box">
+              {optionData[0].top.map((v, i) => (
+                <li
+                  key={i}
+                  className={i == 0 ? "on" : ""}
+                  onClick={(e) => {
+                    chkTop(e);
+                    addOn(e);
+                  }}
+                >
+                  <h2>{v}</h2>
+                </li>
+              ))}
+            </ul>
+            <div className="progress-bar"></div>
+          </div>
         </div>
         {/* 2-2. 옵션 선택 시 세부옵션 */}
         <Options chgOptFn={chgOptSub} opt={optSel.current} clickFn={chgClick} />
