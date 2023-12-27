@@ -4,6 +4,7 @@
 #cont{
     font-family: 'Ubuntu','Nanum Gothic';
     min-height: calc(100vh - 477px);
+    background-color: #ccc;
 }
 
 /* 상세보기 내부 박스 디자인 변경 */

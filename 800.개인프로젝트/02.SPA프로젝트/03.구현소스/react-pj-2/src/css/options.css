@@ -115,7 +115,7 @@ input[type="checkbox"]:checked + .check-array {
   justify-content: center;
   gap: 20px;
   /* 처음에 안보임 */
-  display: none;
+  /* display: none; */
 }
 .check-color {
   width: 14px;
@@ -173,7 +173,7 @@ input[type="checkbox"]:checked + .color-rd {
   justify-content: space-between;
   top: 8%;
   /* 처음에 안보임 */
-  display: none;
+  /* display: none; */
 }
 .check-switch {
   height: 5vh;

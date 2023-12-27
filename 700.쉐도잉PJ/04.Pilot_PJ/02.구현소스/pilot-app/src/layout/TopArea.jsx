@@ -26,6 +26,8 @@ export function TopArea(props) {
       tgEle.addClass('on').siblings().removeClass('on');
       // 공유 참조변수 업데이트 : 첫글자로 모드명 가져오기
       myCon.setGlistMode(atxt);
+      // 초기화 여부 구분 true
+      myCon.gInit.current = true;
     }
   }; ////// clickGnb
   /// GNB메뉴 리스트 만들기 함수

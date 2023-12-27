@@ -39,7 +39,7 @@ export function Options({ opt, chgOptFn, clickFn }) {
     $(".progress-sub-area").eq(selNum).css({ display: "flex" }).siblings().css({ display: "none" });
   }, [selNum]);
   // 배열 옵션 리스트 함수
-  const makeList = (data) => {
+  const makeOptionList = (data) => {
     return (
       <div className={"progress-sub-area col-5 flex-box col-s-14 " + data.label + "-area"}>
         {data.inputList.map((v, i) => (
@@ -62,11 +62,11 @@ export function Options({ opt, chgOptFn, clickFn }) {
   return (
     <div className="part-box col-16 row-1">
       {/* 1) 배열 옵션 */}
-      {makeList(optionData[1])}
+      {makeOptionList(optionData[1])}
       {/* 2) 색 옵션 */}
-      {makeList(optionData[2])}
+      {makeOptionList(optionData[2])}
       {/* 3) 스위치 옵션 */}
-      {makeList(optionData[3])}
+      {makeOptionList(optionData[3])}
     </div>
   );
 } ////////// Options 컴포넌트 ///////////

@@ -11,6 +11,7 @@ import $ from "jquery";
 import gdata from "../data/glist_item";
 import { ItemDetail } from "../modules/ItemDetail";
 import { pCon } from "../modules/PliotContext";
+import { Fragment } from "react";
 
 //////// GList component ///////////
 export function GList() {
@@ -27,31 +28,134 @@ export function GList() {
   const item = useRef("m1");
   // 2. 카테고리명(men/women/style)
   const catName = useRef("men");
+  ///////////페이징 변수 세팅 ///////////
+  // 3. 페이지 단위수 : 한 페이지 당 레코드수
+  const PAGE_BLOCK = 10;
+  // 4. 전체 레코드수 : 배열데이터 총개수
+  const totNum = gdata.length;
+  // 1. 현재 페이지 번호 : 가장중요한 리스트 바인딩의 핵심!
+  const [pgNum, setPgNum] = useState(1);
+  //////////////////////////////////////
 
   // 리랜더링을 위한 상태변수 : 무조건 리랜더링설정목적
   const [force, setForce] = useState(null);
   // 데이터 상태관리변수
   const [currData, setCurrData] = useState(transData.current);
+
+  /**
+   * 함수명 : pagingLink
+   * 기능 : 페이징
+   */
+  const pagingLink = () => {
+    // 페이징 블록 만들기 ///
+    /**
+     * 1. 전체 레코드 : totNum
+     * 2. 페이지 단위 : PAGE_BLOCK
+     * 3. 남은 블록 : blockPad
+     * 4. 전체 페이지 번호 : blockPad===0?blockCnt:blockCnt+1
+     */
+    const blockCnt = Math.floor(totNum / PAGE_BLOCK);
+    const blockPad = totNum % PAGE_BLOCK;
+    // console.log("블록개수:", blockCnt, "\n블록나머지:", blockPad);
+    // 최종 블록 수
+    let limit = blockPad === 0 ? blockCnt : blockCnt + 1;
+    // 리액트에서는 jsx문법 코드를 배열에 담아서 return map
+    let code = [];
+    for (let i = 0; i < limit; i++) {
+      code[i] = (
+        <Fragment key={i}>
+          {i === pgNum - 1 ? (
+            <b>{i + 1}</b>
+          ) : (
+            <a href="#" onClick={chgList}>
+              {i + 1}
+            </a>
+          )}
+          {i < limit - 1 ? " | " : ""}
+        </Fragment>
+      );
+    }
+    return <>{code.map((v) => v)}</>;
+  }; /////// pagingLink ////////////
+  /**
+   * 함수명 : chgList
+   * 기능 : 페이지 리스트 재생성하여 바인딩
+   */
+  const chgList = (e) => {
+    e.preventDefault();
+    setPgNum(e.target.innerText);
+    // 초기화 전역변수 false로 업데이트
+    myCon.gInit.current = false;
+    // bindList(); ->>> pgNum사용으로 리랜더링
+  }; /////// chgList 함수 ///////////
+
   // 리스트 만들기 함수 ////////
-  const makeList = () =>
-    currData.map((v, i) => (
-      <div key={i}>
-        <a
-          href="#"
-          onClick={(e) => {
-            e.preventDefault();
-            showDetail(v.ginfo[0], v.cat);
-          }}
-        >
-          [{i + 1}]
-          <img src={"./images/goods/" + v.cat + "/" + v.ginfo[0] + ".png"} alt="dress" />
-          <aside>
-            <h2>{v.ginfo[1]}</h2>
-            <h3>{addComma(v.ginfo[3])}원</h3>
-          </aside>
-        </a>
-      </div>
-    )); //////////// makeList ////////
+  const makeList = () => {
+    let temp;
+
+    // 1. Filter List
+    if (myCon.glistMode === "F") {
+      // 데이터 초기화 하기
+      // gdata와 같지 않으면 초기화, 단 모드 변경 시에만
+      // gInit 참조변수 true일때만 적용
+      if(currData !== gdata && myCon.gInit.current){
+        // 깊은복사로 재할당 -> 무한 리랜더링을 피하려면 참조변수를 활용한다!
+        transData.current = JSON.parse(JSON.stringify(gdata));
+      }
+      temp = transData.current.map((v, i) => (
+        <div key={i}>
+          <a
+            href="#"
+            onClick={(e) => {
+              e.preventDefault();
+              showDetail(v.ginfo[0], v.cat);
+            }}
+          >
+            [{i + 1}]
+            <img src={"./images/goods/" + v.cat + "/" + v.ginfo[0] + ".png"} alt="dress" />
+            <aside>
+              <h2>{v.ginfo[1]}</h2>
+              <h3>{addComma(v.ginfo[3])}원</h3>
+            </aside>
+          </a>
+        </div>
+      ));
+    }
+    // 2. Paging list
+    else if (myCon.glistMode === "P") {
+      // 상단메뉴 클릭 한 경우 pgNum이 1이 아니면 초기화
+      if(myCon.gInit.current && pgNum !== 1){
+        setPgNum(1);
+      }
+      // map이 아닌 일반 for문 사용시 배열에 데이터 push하여 데이터 넣기
+      // JSX문법 태그는 그냥 태그가 아.니.다...!!!
+      // 페이징은 데이터 변형이 아니므로 원본데이터에 대한 부분데이터 가져오기다
+      temp = [];
+      for (let i = (pgNum-1)*PAGE_BLOCK; i < pgNum*PAGE_BLOCK; i++) {
+        if (i == totNum) break;
+        temp.push(
+          <div key={i}>
+            <a
+              href="#"
+              onClick={(e) => {
+                e.preventDefault();
+                showDetail(gdata[i].ginfo[0], gdata[i].cat);
+              }}
+            >
+              [{i + 1}]
+              <img src={"./images/goods/" + gdata[i].cat + "/" + gdata[i].ginfo[0] + ".png"} alt="dress" />
+              <aside>
+                <h2>{gdata[i].ginfo[1]}</h2>
+                <h3>{addComma(gdata[i].ginfo[3])}원</h3>
+              </aside>
+            </a>
+          </div>
+        );
+      }
+    }
+    // 3. More list
+    return temp;
+  }; //////////// makeList ////////
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -77,13 +181,15 @@ export function GList() {
     // -> ItemDetail 컴포넌트 파트가 업데이트됨!
 
     // 대상 보이기
-    $(".bgbx").slideDown(600);
+    $("#bgbx").slideDown(600);
   }; //////////// showDetail 함수 ///////////
   /**
    * 함수명 : changeList
    * 기능 : 체크박스에 따른 리스트 변경하기
    */
   const changeList = (e) => {
+    // 체크박스일 경우 초기화 전역변수 false로 업데이트
+    myCon.gInit.current = false;
     // console.log("나야나 체크!", e.currentTarget);
     // 1. 체크박스 아이디 : 검색항목의 값(alignment)
     const cid = e.target.id;
@@ -164,7 +270,7 @@ export function GList() {
         <section>
           <div className="grid">{makeList()}</div>
           <div id="paging">
-            <a href="#">1</a>|<a href="#">2</a>|<a href="#">3</a>
+            {pagingLink()}
           </div>
         </section>
       )}
@@ -179,7 +285,7 @@ export function GList() {
       )}
       {/* 2.5. 상세보기박스 */}
       <div
-        className="bgbx"
+        id="bgbx"
         style={{
           position: "fixed",
           top: 0,

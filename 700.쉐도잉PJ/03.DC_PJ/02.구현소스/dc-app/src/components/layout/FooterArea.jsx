@@ -3,6 +3,7 @@ import { Logo } from "../modules/Logo";
 // 링크데이터
 import { bmData } from "../data/bmenu";
 import { memo } from "react";
+import Weather from "../modules/Weather";
 
 // export function FooterArea() {
 export const FooterArea = memo(()=>{
@@ -37,6 +38,8 @@ export const FooterArea = memo(()=>{
             © & ™ DC. ALL RIGHTS RESERVED
         </li>
       </ul>
+      {/* 날씨정보 컴포넌트 */}
+      <Weather />
     </footer>
   ); //////// return //////////
 }); ///////// FooterArea 컴포넌트 ////////////

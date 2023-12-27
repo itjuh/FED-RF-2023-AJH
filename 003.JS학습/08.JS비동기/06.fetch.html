@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS비동기 : 6. fetch 프라미스 사용법</title>
+
+</head>
+<body>
+    <p>
+        <div class="exp"></div>
+    </p>
+    <script>
+        /* 
+        [ fetch 프라미스 ]
+        데이터를 다른 서버에서 가져올 경우 같은 서버에 위치한 파일보다 시간이 더 걸릴 수 있다!
+        이 때 그 전송파일을 이용한 처리코드가 에러를 나타낼 확률이 높아진다.
+        이때 Promise를 사용하면 되겠다.
+        더 쉬운 Promise가 fetch API 이다.
+        https://www.w3schools.com/js/js_api_fetch.asp
+
+        [ fetch API란 ]
+        Fetch API 인터페이스를 사용하면 웹 브라우저가 웹 서버에 HTTP 요청을 할 수 있습니다.
+        😀 더 이상 XMLHttpRequest가 필요하지 않습니다.
+
+        1) 사용법 : 
+        변수 = 웹상파일주소;
+
+        fetch(변수)         // 웹 브라우저 데이터 로드
+        .then(              // 로드 후 실행구역
+            x=>x.text()     // 텍스트 읽기
+            )
+        .then(              // 텍스트 읽은 후 실행구역
+            y=>명령어 사용   // 텍스트 읽기
+        )
+
+        2) 사용법 : 
+        변수 = 웹상파일주소;
+
+        // async 함수 만들기
+        async function 비동기함수(변수){
+            변수1 = await fetch(변수);  //fetch기다림
+            변수2 = await 변수1.text(); //text()기다림
+            하고싶은 코드... // 위의 코드 완료 후 실행
+        } /////// 비동기함수 ///////
+
+        // 적절한 곳에서 비동기함수 호출
+        비동기함수(변수);
+
+         */
+
+        const target = document.querySelector('.exp');
+        // 웹에 공개 된 텍스트 파일
+        let file="https://tombap8.github.io/FED-RF-2023-TOM/500.%ED%95%84%EA%B8%B0%EB%AA%A8%EC%9D%8C/013.DOM%EC%9D%B4%EB%9E%80.txt";
+        
+        // 일반적인 파일 -> 실제파일은 가져오지 못함
+        // target.innerHTML = file;
+
+        // 웹 주소의 파일을 fetch하기 -> 실제파일 가져옮
+        fetch(file)
+        .then(x=>x.text())
+        .then(x=>target.innerHTML = x);
+
+        let file2 = "https://tombap8.github.io/FED-PJ-2022-tom/004.JS%ED%95%99%EC%8A%B5/JS%EB%B9%84%EB%8F%99%EA%B8%B0/defaultSettings.json";
+
+        // async 함수 만들기
+        async function getFile(fileData){
+            myFetch = await fetch(fileData);
+            myText = await myFetch.text();
+
+            target.innerHTML += myText;
+        } ///// getFile ///////
+        // async 함수호출
+        getFile(file2);
+        
+
+    </script>
+</body>
+</html>

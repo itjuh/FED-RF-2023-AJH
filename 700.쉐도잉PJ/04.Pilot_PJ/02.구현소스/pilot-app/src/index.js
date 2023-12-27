@@ -78,6 +78,9 @@ function App() {
   // glist 페이지 filterMode 변경용 변수
   const [glistMode, setGlistMode] = useState('F');
   // F - Filter List P - Paging List M - MoreList
+  // 전체 리스트 페이지에서 초기화 상태변수를 참조변수로 생성
+  const gInit = useRef(false);
+
   /**
    * [ context API ]
    * 1. pgName - 페이지이름
@@ -87,10 +90,11 @@ function App() {
    * 5. transData - 카트 사용데이터
    * 6. setTransData - 카트 사용데이터 업데이트
    * 7. glistMode,setGlistMode - 전체리스트 페이지 뷰모드 구분
+   * 8. gInit - 초기화 여부 구분
    */
   // 리턴코드구역
   return (
-    <pCon.Provider value={{ pageName, chgPgName, flag, setCartSts, transData, setTransData, glistMode, setGlistMode }}>
+    <pCon.Provider value={{ pageName, chgPgName, flag, setCartSts, transData, setTransData, glistMode, setGlistMode, gInit }}>
       <TopArea cat={pageName} />
       <MainArea page={pageName} />
       <FooterArea />

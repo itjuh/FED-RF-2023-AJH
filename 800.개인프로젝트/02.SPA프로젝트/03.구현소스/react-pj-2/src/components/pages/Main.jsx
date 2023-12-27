@@ -4,13 +4,14 @@
 import "../../css/main.css";
 import { Options } from "../modules/Options";
 import { BoardList } from "../modules/BoardList";
-import { useEffect, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { useRef } from "react";
 // 데이터 가져오기
 import { filterBoardData } from "../data/boardData";
 import { optionData } from "../data/optionData";
 // 제이쿼리 가져오기
 import $ from "jquery";
+import { CheckCon } from "../modules/Icons";
 window.jQuery = $;
 require("jquery-ui-dist/jquery-ui");
 require("jquery-ui-touch-punch/jquery.ui.touch-punch");
@@ -32,30 +33,29 @@ let optionDataOrigin = {
 export function Main() {
   console.log("Main불러옴");
   // 대분류/세부분류 변수
-  // const [optSel, setOptSel] = useState("array");
-  const optSel = useRef("array");
-  const [optSubSel, setOptSubSel] = useState(optionDataOrigin[optSel.current]);
+  const [optSel, setOptSel] = useState("array");
+  // const optSel = useRef("array");
+  const optSubSel = useRef(optionDataOrigin[optSel]);
   const [clickSub, setClickSub] = useState(true);
 
-  // 데이터 변수
-  const [dataIdx, setDataIdx] = useState(prodList);
-  // 대분류 변경함수
-  const chgOpt = (txt) => {
-    // 대분류 변경
-    // setOptSel(txt);
-    optSel.current = txt;
-    // optionData
-    // setOptSubSel(optionData[txt]);
-    // 데이터 변경사항 리스트변수에 담기
-    prodList = dataIdx;
-    // 옵션데이터 업데이트
-    optionDataOrigin[optSel.current] = optSubSel;
-    // console.log('대분류 변경으로 데이터 업데이트',optionData);
-  };
+  // 데이터 변수 -> ref 바꿔야함 : 리스트가 바뀌어도 상단 리랜더링 금지
+  const dataIdx = useRef(prodList);
+
+  // 대분류 변경 함수 /////////////
+  const chkTop = (e) => {
+    // 1. 체크박스 대분류
+    const topchk = $(e.currentTarget).text();
+    // 2. 소분류 변경
+    optSubSel.current = optionDataOrigin[topchk];
+    // 3. 대분류 변경
+    setOptSel(topchk);
+  }; //////// chkTop함수 ///////////
+
   // 소분류 변경함수
+  // 소분류는 변경 시 데이터를 업데이트함
   const chgOptSub = (arr) => {
     //변수업데이트
-    setOptSubSel(arr);
+    optSubSel.current = arr;
   };
   // 소분류 클릭 값 변경함수
   const chgClick = (val) => setClickSub(val);
@@ -153,20 +153,89 @@ export function Main() {
     });
     // myCon.chgSel(idx);
   };
-
-  // 대분류 변경 함수 /////////////
-  const chkTop = (e) => {
-    // 1. 체크박스 대분류
-    const topchk = $(e.currentTarget).text();
-    // 프롭스 펑션 업
-    chgOptSub(topchk);
-  }; //////// chkTop함수 ///////////
-
-  // useEffect 구역 옵션변경 시 적용
-  useEffect(() => {
-    // console.log(optSel, optSubSel);
-    // setDataIdx(selData(optSubSel));
-  }, [optSel.current, optSubSel]);
+  // 1) 체크정보 저장배열
+  const chked = [];
+  const checkOnOff = (e) => {
+    // 0) 클래스명 가공하기
+    let tgName = optSel == "switch" ? ".option-" + optSel + "-area>input:checked" : "." + optSel + "-area>input:checked";
+    // 1) 체크 값 가져오기
+    $(tgName).each((i, v) => (chked[i] = v.value));
+    // 2) 체크값으로 서브옵션 업데이트
+    optSubSel.current = chked;
+    // 3) 클릭 값 업데이트
+    setClickSub(e.target.checked);
+    // console.log(e.target.checked);
+    // if(chked.length == 0){ //모두 체크 해제 시
+    //   $(e.currentTarget).attr("checked",true);
+    //   console.log(e.currentTarget);
+    // }
+  };
+  // 배열 옵션 리스트 함수
+  const makeOptionList = () => {
+    // 배열 서브옵션
+    if (optSel === "array") {
+      return (
+        <div className="progress-sub-area col-5 flex-box col-s-14 array-area">
+          {optionData[1].inputList.map((v, i) => (
+            <Fragment key={i}>
+              {/* 옵션 선택 구역 */}
+              <input type="checkbox" value={v.val} id={v.id} defaultChecked onChange={checkOnOff} />
+              <label className={v.labelClass} htmlFor={v.id}>
+                {v.labelClass === "check-array" && v.val}
+                {v.labelClass !== "check-array" && (
+                  <h1>
+                    <CheckCon />
+                  </h1>
+                )}
+              </label>
+            </Fragment>
+          ))}
+        </div>
+      );
+    }
+    // 색상 서브옵션
+    else if (optSel === "color") {
+      return (
+        <div className="progress-sub-area col-5 flex-box col-s-14 color-area">
+          {optionData[2].inputList.map((v, i) => (
+            <Fragment key={i}>
+              {/* 옵션 선택 구역 */}
+              <input type="checkbox" value={v.val} id={v.id} defaultChecked onChange={checkOnOff} />
+              <label className={v.labelClass} htmlFor={v.id}>
+                {v.labelClass === "check-array" && v.val}
+                {v.labelClass !== "check-array" && (
+                  <h1>
+                    <CheckCon />
+                  </h1>
+                )}
+              </label>
+            </Fragment>
+          ))}
+        </div>
+      );
+    }
+    // 스위치 종류 서브옵션
+    else if (optSel === "switch") {
+      return (
+        <div className="progress-sub-area col-5 flex-box col-s-14 option-switch-area">
+          {optionData[3].inputList.map((v, i) => (
+            <Fragment key={i}>
+              {/* 옵션 선택 구역 */}
+              <input type="checkbox" value={v.val} id={v.id} defaultChecked onChange={checkOnOff} />
+              <label className={v.labelClass} htmlFor={v.id}>
+                {v.labelClass === "check-array" && v.val}
+                {v.labelClass !== "check-array" && (
+                  <h1>
+                    <CheckCon />
+                  </h1>
+                )}
+              </label>
+            </Fragment>
+          ))}
+        </div>
+      );
+    }
+  };
 
   return (
     <>
@@ -192,10 +261,10 @@ export function Main() {
           </div>
         </div>
         {/* 2-2. 옵션 선택 시 세부옵션 */}
-        <Options chgOptFn={chgOptSub} opt={optSel.current} clickFn={chgClick} />
+        <div className="part-box col-16 row-1">{makeOptionList()}</div>
         {/* 2-2. 제품 리스트 */}
         <div className="part-box col-16 row-10 prod-area">
-          <BoardList data={dataIdx} />
+          <BoardList data={dataIdx.current} />
         </div>
       </main>
     </>
