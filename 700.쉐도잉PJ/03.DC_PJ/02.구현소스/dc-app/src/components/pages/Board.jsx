@@ -45,16 +45,19 @@ export function Board() {
 
   /**[ 상태관리 변수 셋팅 ]
    * 1. 현재 페이지 번호 pgNum
-   * 2. 데이터 변경관리 변수 : 출력 될 list
+   * 2. 데이터 변경관리 변수 : 출력 될 list -> 사용안함
    * 3. 게시판 모드 관리 변수 CRUD
    * 4. 단일페이지 데이터
    * c-create r-read u-updata d-delete l-list
    * 5. 버튼 공개여부 관리변수 : modify
+   * 6. 강제 리랜더링 관리 변수 : force 랜덤값으로 업데이트하여 사용
    */
   const [pgNum, setPgNum] = useState(1);
-  const [currentData, setCurrentData] = useState(null);
+  // const [currentData, setCurrentData] = useState(null);
   const [bdMode, setBdMode] = useState("L");
   const [btnSts, setBtnSts] = useState(false);
+  const [force, setForce] = useState(null);
+  
   // 리 랜더링 루프 방지용으로 랜더링 후 실행구역에 변경코드
   useEffect(() => {
     // 로그아웃 시 버튼 상태값 false로 변경하기
@@ -472,6 +475,39 @@ export function Board() {
       sessionStorage.setItem("board-idx", JSON.stringify(boardIdx));
     }
   }; ///// plusCnt 함수 //////
+
+  /**
+   * 함수명 : searchList
+   * 기능 : 검색기능 수행 함수
+   */
+  const searchList = ()=>{
+    // 1. 검색기준값 읽어오기 : 소문자변환
+    const cta = $('#cta').val();
+    console.log('검색시작',cta);
+    // 2. 검색어 읽어오기
+    const inputText = $('#stxt').val().trim().toLowerCase();
+    // 3. 공백처리
+    if(inputText === ''){
+      alert('Write down keyword!!!');
+      $('#stxt').val('').focus();
+      return;
+    }
+    // 4. 검색용 스토리지 데이터 불러오기
+    const storageData = JSON.parse(localStorage.getItem('boardData'));
+    // 3. 전체 원본 데이터에서 검색 기준값으로 검색하기
+    const resultData = storageData.filter(v=>{
+      // 검색기준은 동적으로 변수에 담기므로 []안으로 감싸준다.
+      // 소문자 처리
+      let compareTxt = v[cta].toLowerCase();
+      //  indexOf() like검색
+      if(compareTxt.indexOf(inputText)!==-1) return true;
+    });
+    console.log('검색데이터',resultData,'원본데이터',originData);
+    // 4. 리스트 업데이트
+    originData = resultData;
+    // 5. 강제 리랜더링
+    setForce(Math.random());
+  }; ///// searchList 함수 ////
   return (
     <>
       {
@@ -483,19 +519,19 @@ export function Board() {
             {/* 검색 옵션 박스 */}
             <div className="selbx">
               <select name="cta" id="cta" className="cta">
-                <option value="tit">Title</option>
-                <option value="cont">Contents</option>
-                <option value="unm">Writer</option>
+                <option value="tit" readOnly>Title</option>
+                <option value="cont" readOnly>Contents</option>
+                <option value="unm" readOnly>Writer</option>
               </select>
               <select name="sel" id="sel" className="sel">
-                <option value="0" selected disabled hidden>
+                <option value="0" selected disabled hidden readOnly>
                   SelectSort
                 </option>
-                <option value="1">Ascending</option>
-                <option value="2">Descending</option>
+                <option value="1" readOnly>Ascending</option>
+                <option value="2" readOnly>Descending</option>
               </select>
-              <input id="stxt" type="text" maxlength="50" />
-              <button className="sbtn">Search</button>
+              <input id="stxt" type="text" maxLength="50" />
+              <button className="sbtn" onClick={searchList}>Search</button>
             </div>
             <table className="dtbl" id="board">
               <caption>{makeTit()}</caption>
@@ -634,7 +670,7 @@ export function Board() {
                     <button onClick={chgMode2}>
                       <a href="#">Write</a>
                     </button>
-                    <button onClick={chgMode2}>
+                    <button onClick={()=>setForce(Math.random())}>
                       <a href="#">List</a>
                     </button>
                   </>

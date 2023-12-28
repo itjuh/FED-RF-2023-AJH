@@ -1,7 +1,7 @@
 // LEOPOLD Keyboard List만들기 컴포넌트
 // 키보드 제품 데이터
 import { boardData, filterBoardData } from "../data/boardData";
-import { memo, useContext } from "react";
+import { memo, useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 // 제이쿼리 가져오기
@@ -11,11 +11,16 @@ window.jQuery = $;
 require("jquery-ui-dist/jquery-ui");
 require("jquery-ui-touch-punch/jquery.ui.touch-punch");
 
-export const BoardList = memo(({ data }) => {
+export const BoardList = memo(({ dataIdx, flag }) => {
   // context API
   const myCon = useContext(LeoCon);
   // 받은 데이터 리스트 - data [값이 배열형]
-  console.log(data);
+  console.log(dataIdx,flag);
+  // 변경 데이터 변수
+  const [data, setData] = useState(dataIdx);
+  // 데이터 변경 시에만 리랜더링
+  if (!flag) setData(dataIdx);
+
   const nav = useNavigate();
   // 네비게이션 설정 함수
   function goNav(seq) {
@@ -67,9 +72,9 @@ export const BoardList = memo(({ data }) => {
   }; /////// inputWish 함수 ///////////
 
   // 리스트 만들기 함수
-  const makeList = (data) => {
+  const makeList = (arr) => {
     let temp = [];
-    data.map((v, i) => {
+    arr.map((v, i) => {
       if (i > 9) return; // 10개만 넣기
       temp[i] = (
         <li key={i}>
@@ -97,7 +102,7 @@ export const BoardList = memo(({ data }) => {
     <>
       {/* {window.innerWidth > 550 && <ol className="list-area-ol">{makeList(data)}</ol>} */}
       {/* {window.innerWidth <= 550 && <MySwiper data={data} inputWish={inputWish} />} */}
-      <ol className="list-area-ol">{makeList(data)}</ol>
+      <ol className="list-area-ol">{makeList(dataIdx)}</ol>
     </>
   );
 }); /////////// BoardList 컴포넌트 ////////////

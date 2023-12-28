@@ -128,15 +128,21 @@ input#stxt {
 }
 .dtbl tbody tr td:nth-child(2) a {
   display: block;
-  /* overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis; */
+  /* title 말줄임표시 */
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
   -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
 }
+/* title 말줄임표시 */
+/* #board tbody td a {
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: min(361px,40vw);
+} */
 /*
    가상 클래스 중
    :first-child - 첫번째 자식
@@ -235,4 +241,20 @@ input#stxt {
 /* 페이징 */
 .paging {
   font-size: 1.2rem;
+}
+@media screen and (max-width:850px) {
+  .weather-bx{
+      top: 10%;
+      transform: none;
+      line-height: 10px;
+      font-size: 9px;
+  }
+  .weather-bx h5{
+      margin-top: 0;
+  }
+  .weather-bx img{
+    width: 40px;
+    margin-top: -7px;
+    margin-bottom: -8px;
+  }
 }

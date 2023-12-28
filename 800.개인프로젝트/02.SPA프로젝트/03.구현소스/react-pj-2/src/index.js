@@ -32,8 +32,6 @@ export default function App() {
           <Route path='switch' element={<Switch />} />
           {/* 스위치 상세페이지 */}
           <Route path='subswitch' element={<SubSwtich />} />
-          {/* 메뉴 페이지 */}
-          {/* <Route path='menu' element={<Menu />} /> */}
           {/* 회원가입 페이지 */}
           <Route path='member' element={<Member />} />
           {/* 로그인 페이지 */}
