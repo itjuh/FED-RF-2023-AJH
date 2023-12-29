@@ -11,15 +11,13 @@ window.jQuery = $;
 require("jquery-ui-dist/jquery-ui");
 require("jquery-ui-touch-punch/jquery.ui.touch-punch");
 
-export const BoardList = memo(({ dataIdx, flag }) => {
+export const BoardList = memo(({ dataIdx }) => {
   // context API
   const myCon = useContext(LeoCon);
-  // 받은 데이터 리스트 - data [값이 배열형]
-  console.log(dataIdx,flag);
+  // 받은 데이터 리스트 - dataIdx [값이 배열형]
+  console.log(dataIdx);
   // 변경 데이터 변수
   const [data, setData] = useState(dataIdx);
-  // 데이터 변경 시에만 리랜더링
-  if (!flag) setData(dataIdx);
 
   const nav = useNavigate();
   // 네비게이션 설정 함수

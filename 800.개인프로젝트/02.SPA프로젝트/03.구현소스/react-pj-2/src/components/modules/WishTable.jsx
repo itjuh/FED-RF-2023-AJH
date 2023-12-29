@@ -96,18 +96,6 @@ export const WishTable = memo(({ wishdata, flag }) => {
     totalDisplaySet();
   };
   const checkList = () => {
-    // 누른 대상의 seq 고유번호
-    // 체크박스 체크 된 데이터 배열번호
-    // let arr = $(".wish-chk-input:checked").parent().parent();
-    // let arrNum = [];
-    // arr.each((i, v) => {
-    //   // 제거 데이터 배열번호
-    //   data.forEach((val, seq) => {
-    //     if (val.src === v.className) {
-    //       arrNum.push(seq);
-    //     }
-    //   });
-    // });
     let arr = $(".wish-chk-input:checked").parent().parent();
     let arrNum = [];
     arr.each((i, v) => {
@@ -177,14 +165,6 @@ export const WishTable = memo(({ wishdata, flag }) => {
       $("#all-item").prop("checked", false);
     }
   };
-  // 박스 체크해제
-  // const unCheck = () => {
-  //   let input = $(".wish-chk-input");
-  //   input.each(i => {
-  //     input.eq(i).prop("checked", false);
-  //   });
-  //   $(".wish-chk-input").prop('check',false);
-  // };
   useEffect(() => {
     if (flag.current) $('input[type="checkbox"]').prop("checked", true);
   }, []);

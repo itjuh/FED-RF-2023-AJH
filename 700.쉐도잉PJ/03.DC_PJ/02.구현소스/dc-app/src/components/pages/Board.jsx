@@ -49,15 +49,17 @@ export function Board() {
    * 3. 게시판 모드 관리 변수 CRUD
    * 4. 단일페이지 데이터
    * c-create r-read u-updata d-delete l-list
-   * 5. 버튼 공개여부 관리변수 : modify
+   * 5. 버튼 공개여부 관리변수 - 수정버튼 : modify
    * 6. 강제 리랜더링 관리 변수 : force 랜덤값으로 업데이트하여 사용
+   * 7. 검색상태 관리변수 : 값 유지
    */
   const [pgNum, setPgNum] = useState(1);
   // const [currentData, setCurrentData] = useState(null);
   const [bdMode, setBdMode] = useState("L");
   const [btnSts, setBtnSts] = useState(false);
   const [force, setForce] = useState(null);
-  
+  const searchSts = useRef(false);
+
   // 리 랜더링 루프 방지용으로 랜더링 후 실행구역에 변경코드
   useEffect(() => {
     // 로그아웃 시 버튼 상태값 false로 변경하기
@@ -75,57 +77,24 @@ export function Board() {
 
   // 선택된 데이터 셋팅을 위한 참조변수
   const selData = useRef(null);
-
-  /**
-   * 함수명 : chgMode
-   * 기능 : 게시판 상태를 변경
-   */
-  const chgMode1 = (e) => {
-    e.preventDefault();
-    let txt = $(e.currentTarget).text();
-    switch (txt) {
-      case "Write":
-        // 쓰기모드 화면데이터 불러오기
-        writeMod();
-        // 화면처리
-        setBdMode("C");
-        break;
-      case "Submit": // write, modify에서 둘다 있음
-        if (bdMode === "C") {
-          // write의 submit
-        } else {
-          // modify의 submit
-        }
-        setBdMode("L");
-        break;
-      case "List":
-        setBdMode("L");
-        break;
-      case "Modify":
-        setBdMode("U");
-        break;
-      case "Delete":
-        setBdMode("L");
-        break;
-      default:
-        let seq = $(e.currentTarget).attr("data-idx");
-        // 화면처리
-        setBdMode("R");
-        // 읽기모드 화면데이터 불러오기
-        readCont(seq);
-        // 수정버튼
-        compUser(selData.current.uid);
-    }
-  };
   /**
    * 함수명 : chgMode2
    * 기능 : 게시판 상태를 변경 _ version2
    */
   const chgMode2 = (e) => {
+    // 기본막기
+    e.preventDefault();
+    // 검색상태이면 데이터 초기화
+    if (searchSts.current) {
+      // 검색상태가 아니므로 상태값 초기화
+      searchSts.current = false;
+      // orgData 초기화
+      rawData();
+    }
+
     // 1. 해당 버튼의 텍스트 읽어오기
     let btxt = $(e.target).text();
     console.log(btxt);
-
     // 2. 텍스트별 모드 연결하기
     let modeTxt;
 
@@ -321,6 +290,29 @@ export function Board() {
 
     // 3. 로그인 사용자 정보와 조회하기
   }; ///////// chgUsrInfo 함수 ////////
+  /**
+   * 함수명 : sortFn
+   * 기능 : 정렬 함수 내림차순 [-1,1] 오름차순 [1,-1]
+   */
+  function sortFn(data) {
+    if ($("#sel").val() == 0)
+      return data.sort((a, b) => {
+        return Number(a.idx) == Number(b.idx) ? 0 : Number(a.idx) > Number(b.idx) ? -1 : 1;
+      });
+    else
+      return data.sort((a, b) => {
+        return Number(a.idx) == Number(b.idx) ? 0 : Number(a.idx) > Number(b.idx) ? 1 : -1;
+      });
+  } //////// sortFn 함수 /////////
+
+  /**
+   * 함수명 : rawData
+   * 기능 : 데이터 초기화 하기
+   */
+  const rawData = () => {
+    // originData 를 localstorageData로 덮어쓰기(내림차순 정렬)
+    originData = sortFn(JSON.parse(localStorage.getItem("boardData")));
+  };
 
   /**
    * 함수명 : bindList
@@ -334,9 +326,8 @@ export function Board() {
      * 페이지 종료 번호 : pgNum*PAGE_BLOCK
      */
     const tempData = [];
-    originData.sort((a, b) => {
-      return Number(a.idx) == Number(b.idx) ? 0 : Number(a.idx) > Number(b.idx) ? -1 : 1;
-    });
+    // 내림차순 정렬
+    sortFn(originData);
     let initSeq = (pgNum - 1) * PAGE_BLOCK;
     let lastSeq = pgNum * PAGE_BLOCK;
     // 데이터 선별용 for
@@ -480,34 +471,45 @@ export function Board() {
    * 함수명 : searchList
    * 기능 : 검색기능 수행 함수
    */
-  const searchList = ()=>{
+  const searchList = () => {
     // 1. 검색기준값 읽어오기 : 소문자변환
-    const cta = $('#cta').val();
-    console.log('검색시작',cta);
+    const cta = $("#cta").val();
+    console.log("검색시작", cta);
     // 2. 검색어 읽어오기
-    const inputText = $('#stxt').val().trim().toLowerCase();
+    const inputText = $("#stxt").val().trim().toLowerCase();
     // 3. 공백처리
-    if(inputText === ''){
-      alert('Write down keyword!!!');
-      $('#stxt').val('').focus();
+    if (inputText === "") {
+      alert("Write down keyword!!!");
+      $("#stxt").val("").focus();
       return;
     }
     // 4. 검색용 스토리지 데이터 불러오기
-    const storageData = JSON.parse(localStorage.getItem('boardData'));
+    const storageData = JSON.parse(localStorage.getItem("boardData"));
     // 3. 전체 원본 데이터에서 검색 기준값으로 검색하기
-    const resultData = storageData.filter(v=>{
+    const resultData = storageData.filter((v) => {
       // 검색기준은 동적으로 변수에 담기므로 []안으로 감싸준다.
       // 소문자 처리
       let compareTxt = v[cta].toLowerCase();
       //  indexOf() like검색
-      if(compareTxt.indexOf(inputText)!==-1) return true;
+      if (compareTxt.indexOf(inputText) !== -1) return true;
     });
-    console.log('검색데이터',resultData,'원본데이터',originData);
     // 4. 리스트 업데이트
     originData = resultData;
-    // 5. 강제 리랜더링
-    setForce(Math.random());
+    // 5. 강제 리랜더링 1페이지 일때
+    if (pgNum === 1) setForce(Math.random());
+    else setPgNum(1);
+    // 6. 검색상태관리 참조변수 업데이트
+    searchSts.current = true;
   }; ///// searchList 함수 ////
+
+  // 다른 페이지로 이동 할 경우 데이터가 검색 된 것으로 남아있으므로
+  // 소멸자로 원본데이터 초기화 세팅을 호출
+  useEffect(() => {
+    return () => {
+      rawData();
+    }; ////// unMount //////
+  }, []); /////// useEffect ////////
+
   return (
     <>
       {
@@ -519,19 +521,43 @@ export function Board() {
             {/* 검색 옵션 박스 */}
             <div className="selbx">
               <select name="cta" id="cta" className="cta">
-                <option value="tit" readOnly>Title</option>
-                <option value="cont" readOnly>Contents</option>
-                <option value="unm" readOnly>Writer</option>
-              </select>
-              <select name="sel" id="sel" className="sel">
-                <option value="0" selected disabled hidden readOnly>
-                  SelectSort
+                <option value="tit" readOnly>
+                  Title
                 </option>
-                <option value="1" readOnly>Ascending</option>
-                <option value="2" readOnly>Descending</option>
+                <option value="cont" readOnly>
+                  Contents
+                </option>
+                <option value="unm" readOnly>
+                  Writer
+                </option>
               </select>
-              <input id="stxt" type="text" maxLength="50" />
-              <button className="sbtn" onClick={searchList}>Search</button>
+              <select
+                name="sel"
+                id="sel"
+                className="sel"
+                onChange={() => {
+                  sortFn(originData);
+                  setForce(Math.random());
+                }}
+              >
+                <option value="0" readOnly>
+                  Descending
+                </option>
+                <option value="1" readOnly>
+                  Ascending
+                </option>
+              </select>
+              <input
+                id="stxt"
+                type="text"
+                maxLength="50"
+                onKeyUp={(e) => {
+                  if (e.code === "Enter") searchList();
+                }}
+              />
+              <button className="sbtn" onClick={searchList}>
+                Search
+              </button>
             </div>
             <table className="dtbl" id="board">
               <caption>{makeTit()}</caption>
@@ -664,16 +690,28 @@ export function Board() {
           <tr>
             <td>
               {
-                /**1. 게시판 리스트:bdMode L */
-                bdMode === "L" && myCon.logSts !== null && (
+                /** 게시판 리스트 버튼 : 검색 상태관리 참조변수 searchSts값이 true일때만 출력*/
+                bdMode === "L" && searchSts.current && (
                   <>
-                    <button onClick={chgMode2}>
-                      <a href="#">Write</a>
-                    </button>
-                    <button onClick={()=>setForce(Math.random())}>
+                    <button
+                      onClick={() => {
+                        rawData();
+                        $("#stxt").val("").focus();
+                        $("#cta").val("tit");
+                        setForce(Math.random());
+                      }}
+                    >
                       <a href="#">List</a>
                     </button>
                   </>
+                )
+              }
+              {
+                /**1. 게시판 리스트:bdMode L */
+                bdMode === "L" && myCon.logSts !== null && (
+                  <button onClick={chgMode2}>
+                    <a href="#">Write</a>
+                  </button>
                 )
               }
               {

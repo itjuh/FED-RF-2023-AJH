@@ -2,7 +2,31 @@
 @import url(./options.css);
 
 /************** 2. 메인영역  ****************/
-
+/* 옵션 선택 안내박스 */
+.desc-box{
+  position: absolute;
+  top: 10%;
+  left: 50%;
+  width: 150px;
+  height: 40px;
+  background-color:#00000080;
+  color: white;
+  clip-path: polygon(0% 0%, 100% 0%, 100% 70%, 55% 70%, 50% 100%, 45% 70%, 0% 70%);
+  padding-top: 3px;
+  padding-left: 10px;
+  transform: translateX(-50%);
+  animation: desc-ani .3s linear alternate infinite , desc-hide .3s ease-in 4.2s forwards;
+}
+@keyframes desc-ani {
+to{
+  top:10.5%;
+  }
+}
+@keyframes desc-hide {
+to{
+  opacity: 0;
+  }
+}
 /* 각 제품 구역 */
 .prod-area ol {
   position: relative;
