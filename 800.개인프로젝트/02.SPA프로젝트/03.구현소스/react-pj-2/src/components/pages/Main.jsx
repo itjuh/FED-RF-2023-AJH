@@ -43,9 +43,27 @@ export function Main() {
   // 데이터 변수 -> 리스트가 바뀌어도 상단 리랜더링 금지
   const [dataIdx, setDataIdx] = useState(prodList);
 
-  const dataFilter = (arr, set) => {
-    set(arr);
+  // 다른 옵션 선택 함수
+  const otherOptionList = (opt, arr) => {
+    // 배열의 교집합이 존재할 경우 idx를 리턴
+    let selData = [];
+    let i = 0;
+    filterBoardData.filter((v) => {
+      let setArray = [...new Set([...arr, ...v[opt]])];
+      console.log("arr ||", arr, "v[opt]\n", v[opt], "setArray\n", setArray);
+      console.log(setArray == arr);
+      if (setArray === arr) {
+        selData[i] = v.idx;
+        i++;
+        return true;
+      }
+    });
+    return selData;
   };
+  const arrayOptionList = (arr) =>{
+    let selData = [];
+    let i = 0;
+  }
 
   const optSubSel = useRef(["full", "tenkey less", "slim"]);
   // const [clickSub, setClickSub] = useState(true);
@@ -154,24 +172,34 @@ export function Main() {
       optSel == "switch" ? ".option-" + optSel + "-area>input:checked" : "." + optSel + "-area>input:checked";
     // 1) 체크 값 가져오기
     $(tgName).each((i, v) => (chked[i] = v.value));
+    let list1;
+    let list2;
     // 리스트 업데이트
     switch (optSel) {
       case "array":
         setArrayOpt(chked);
         // 나머지 옵션값에 대한 데이터 가져오기 => 함수로 만들기(데이터는 넘겨주고)
         // 체크상태 분기해서 데이터 넣거나 빼기 => 함수로 만들기(데이터는 넘겨주고)
+        list1 = otherOptionList("color", colorOpt);
+        list2 = otherOptionList("switch", switchOpt);
+        console.log(list1, list2);
         break;
       case "color":
         setColorOpt(chked);
+        // list1 = otherOptionList("array", arrayOpt);
+        list2 = otherOptionList("switch", switchOpt);
         // 나머지 옵션값에 대한 데이터 가져오기
         // 체크상태 분기해서 데이터 넣거나 빼기
         break;
       case "switch":
         setSwitchOpt(chked);
+        list1 = otherOptionList("color", colorOpt);
+        // list1 = otherOptionList("array", arrayOpt);
         // 나머지 옵션값에 대한 데이터 가져오기
         // 체크상태 분기해서 데이터 넣거나 빼기
         break;
     }
+
     // 분기해서 체크 값 업데이트
 
     // 0) 클래스명 가공하기

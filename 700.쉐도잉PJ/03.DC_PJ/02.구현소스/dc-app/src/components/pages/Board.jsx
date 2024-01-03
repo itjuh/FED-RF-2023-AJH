@@ -36,15 +36,18 @@ export function Board() {
   initData();
   /**
    * [ 공통변수 ]
-   * 1. 페이지 단위 수: 페이지당 레코드수
+   * 1. 페이지 단위 수 : 페이지당 레코드수
    * 2. 전체 레코드 수
+   * 3. 페이징 블록 단위 수 : 하단 페이징 블록의 레코드 수
    */
-  const PAGE_BLOCK = 8;
+  const PAGE_BLOCK = 5;
+  const PAGING_BLOCK = 4;
   const totNum = originData.length;
   const myCon = useContext(dcCon);
 
   /**[ 상태관리 변수 셋팅 ]
-   * 1. 현재 페이지 번호 pgNum
+   * 1-1. 현재 페이지 번호 pgNum
+   * 1-2. 페이징블록의 번호 pgpgNum
    * 2. 데이터 변경관리 변수 : 출력 될 list -> 사용안함
    * 3. 게시판 모드 관리 변수 CRUD
    * 4. 단일페이지 데이터
@@ -52,13 +55,16 @@ export function Board() {
    * 5. 버튼 공개여부 관리변수 - 수정버튼 : modify
    * 6. 강제 리랜더링 관리 변수 : force 랜덤값으로 업데이트하여 사용
    * 7. 검색상태 관리변수 : 값 유지
+   * 8. 최초 랜더링시 상태관리변수 : 처음 한번만 내림차순적용하기
    */
   const [pgNum, setPgNum] = useState(1);
+  const pgPgNum = useRef(1);
   // const [currentData, setCurrentData] = useState(null);
   const [bdMode, setBdMode] = useState("L");
   const [btnSts, setBtnSts] = useState(false);
   const [force, setForce] = useState(null);
   const searchSts = useRef(false);
+  const firstSts = useRef(true);
 
   // 리 랜더링 루프 방지용으로 랜더링 후 실행구역에 변경코드
   useEffect(() => {
@@ -183,7 +189,9 @@ export function Board() {
         originTemp.push(temp);
         // 4. 데이터 로컬스토리지 반영
         localStorage.setItem("boardData", JSON.stringify(originTemp));
-        // 5. 리스트 페이지로 이동
+        // 5. 내림차순 정렬하도록 바인드 전에 firstSts를 true 적용하면?
+        firstSts.current = true;
+        // 6. 리스트 페이지로 이동
         setBdMode("L");
       }
     }
@@ -240,7 +248,7 @@ export function Board() {
     // 3-5. 리스트 모드
     else if (modeTxt === "L") {
       setBdMode(modeTxt);
-    }
+    } ////// else if ///////
   };
   /**
    * 함수명 : readCont
@@ -294,15 +302,13 @@ export function Board() {
    * 함수명 : sortFn
    * 기능 : 정렬 함수 내림차순 [-1,1] 오름차순 [1,-1]
    */
-  function sortFn(data) {
-    if ($("#sel").val() == 0)
-      return data.sort((a, b) => {
-        return Number(a.idx) == Number(b.idx) ? 0 : Number(a.idx) > Number(b.idx) ? -1 : 1;
-      });
-    else
-      return data.sort((a, b) => {
-        return Number(a.idx) == Number(b.idx) ? 0 : Number(a.idx) > Number(b.idx) ? 1 : -1;
-      });
+  function sortFn(data, arr) {
+    // arr은 배열값으로
+    // 내림차순은 [-1,1]
+    // 오름차순은 [1,-1] 을 보내준다!
+    return data.sort((a, b) => {
+      return Number(a.idx) === Number(b.idx) ? 0 : Number(a.idx) > Number(b.idx) ? arr[0] : arr[1];
+    });
   } //////// sortFn 함수 /////////
 
   /**
@@ -311,14 +317,26 @@ export function Board() {
    */
   const rawData = () => {
     // originData 를 localstorageData로 덮어쓰기(내림차순 정렬)
-    originData = sortFn(JSON.parse(localStorage.getItem("boardData")));
+    originData = sortFn(JSON.parse(localStorage.getItem("boardData")), [-1, 1]);
   };
+
+  // 최초랜더링 시에만 한번 실행하기
+  // 경우에 따라 내림차순 필요한 경우 firstSts값을 true로만 변경하면 리랜더링 시 위에서 먼저 적용된다.
+  // 글쓰기에 필요
+  if (firstSts.current) {
+    // 내림차순 정렬 적용
+    sortFn(originData, [-1, 1]);
+    // 정렬 선택박스 내림차순으로 변경하기
+    $("#sel").val("0");
+  } ///////// if //////////
 
   /**
    * 함수명 : bindList
    * 기능 : 페이지별 리스트 생성하여 바인딩
    */
   const bindList = () => {
+    // 바인드시 최초상태 false로 업데이트!
+    firstSts.current = false;
     // console.log("다시 바인딩", pgNum);
     // 데이터 선별하기
     /**
@@ -326,8 +344,8 @@ export function Board() {
      * 페이지 종료 번호 : pgNum*PAGE_BLOCK
      */
     const tempData = [];
-    // 내림차순 정렬
-    sortFn(originData);
+    // // 내림차순 정렬
+    // sortFn(originData, [-1, 1]);
     let initSeq = (pgNum - 1) * PAGE_BLOCK;
     let lastSeq = pgNum * PAGE_BLOCK;
     // 데이터 선별용 for
@@ -381,11 +399,31 @@ export function Board() {
     // console.log("블록개수:", blockCnt, "\n블록나머지:", blockPad);
     // 최종 블록 수
     let limit = blockPad === 0 ? blockCnt : blockCnt + 1;
-    // 리액트에서는 jsx문법 코드를 배열에 담아서 return map
+    // 페이징의 페이징 하기 //////////
+    /**
+     * 1. 페이징의 블록단위 : PAGING_BLOCK
+     * 2. 페이징의 현재 블록번호 : pgPgNum
+     * 3. 남은 페이징 블록 : pgBlockPad
+     * 4. 전체 페이징의 블록 수 : pgLimit
+     */
+    // 페이징 블록의 한계 수
+    const pgBlockCnt = Math.floor(limit / PAGING_BLOCK);
+    const pgBlockPad = limit % PAGING_BLOCK;
+    let pgLimit = pgBlockPad === 0 ? pgBlockCnt : pgBlockCnt + 1;
+    console.log(pgLimit,pgBlockPad);
+    /**
+     * 페이징 시작값 : (pgPgNum.current-1)*PAGING_BLOCK;
+     * 페이징 종료값 : pgPgNum.current*PAGING_BLOCK
+     */
+    let initNum = (pgPgNum.current - 1) * PAGING_BLOCK;
+    let limitNum = pgPgNum.current * PAGING_BLOCK;
+    // 리액트에서는 jsx문법 코드를 배열에 담기
     let code = [];
-    for (let i = 0; i < limit; i++) {
+    for (let i = initNum; i < limitNum; i++) {
+      if(pgPgNum.current===pgLimit && i===pgBlockPad-1) break;
       code[i] = (
         <Fragment key={i}>
+          {/* 페이징 링크 */}
           {i === pgNum - 1 ? (
             <b>{i + 1}</b>
           ) : (
@@ -397,9 +435,42 @@ export function Board() {
         </Fragment>
       );
     }
-    return <>{code.map((v) => v)}</>;
+    // 페이징 이전블록 버튼 : 처음 블록이 아니면 출력
+    if (pgPgNum.current !== 1)
+      code.unshift(
+        <Fragment key="-1">
+          <a href="#" onClick={(e)=>{
+            e.preventDefault();
+            chgPaging(-1);
+          }}>◀ </a>
+        </Fragment>
+      );
+    // 페이징 다음블록 버튼 : 마지막 블록이 아니면 출력
+    if (pgPgNum.current !== pgLimit)
+      code.push(
+        <Fragment key="-2">
+          <a href="#" onClick={(e)=>{
+            e.preventDefault();
+            chgPaging(1);
+          }}> ▶</a>
+        </Fragment>
+      );
+    return code;
   }; /////// pagingLink ////////////
 
+  /**
+   * 함수명 : chgPaging
+   * 기능 : 페이지 리스트 재생성하여 바인딩
+   */
+  const chgPaging = (dir) =>{
+    // dir 이동방향
+    const newPgPgNum = pgPgNum.current + dir;
+    const newPgNum = newPgPgNum * PAGING_BLOCK;
+    // 페이징의 블록번호 업데이트
+    pgPgNum.current = newPgPgNum;
+    // 이동할 페이지 번호
+    setPgNum(newPgNum);
+  }
   /**
    * 함수명 : chgList
    * 기능 : 페이지 리스트 재생성하여 바인딩
@@ -495,10 +566,12 @@ export function Board() {
     });
     // 4. 리스트 업데이트
     originData = resultData;
-    // 5. 강제 리랜더링 1페이지 일때
+    // 5. 내림차순 정렬하도록 바인드 전에 firstSts를 true 적용하면?
+    firstSts.current = true;
+    // 6. 강제 리랜더링 1페이지 일때
     if (pgNum === 1) setForce(Math.random());
     else setPgNum(1);
-    // 6. 검색상태관리 참조변수 업데이트
+    // 7. 검색상태관리 참조변수 업데이트
     searchSts.current = true;
   }; ///// searchList 함수 ////
 
@@ -535,8 +608,16 @@ export function Board() {
                 name="sel"
                 id="sel"
                 className="sel"
-                onChange={() => {
-                  sortFn(originData);
+                onChange={(e) => {
+                  // 선택값읽기
+                  let opt = $(e.currentTarget).val();
+                  console.log("선택값:", opt);
+                  // 선택에 따른 정렬호출
+                  if (Number(opt) === 0) sortFn(originData, [-1, 1]);
+                  else sortFn(originData, [1, -1]);
+
+                  console.log(originData);
+                  // 강제 리랜더링
                   setForce(Math.random());
                 }}
               >
