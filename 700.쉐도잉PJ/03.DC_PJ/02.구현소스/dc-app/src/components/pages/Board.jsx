@@ -410,7 +410,7 @@ export function Board() {
     const pgBlockCnt = Math.floor(limit / PAGING_BLOCK);
     const pgBlockPad = limit % PAGING_BLOCK;
     let pgLimit = pgBlockPad === 0 ? pgBlockCnt : pgBlockCnt + 1;
-    console.log(pgLimit,pgBlockPad);
+    console.log(pgLimit, pgBlockPad);
     /**
      * 페이징 시작값 : (pgPgNum.current-1)*PAGING_BLOCK;
      * 페이징 종료값 : pgPgNum.current*PAGING_BLOCK
@@ -420,7 +420,7 @@ export function Board() {
     // 리액트에서는 jsx문법 코드를 배열에 담기
     let code = [];
     for (let i = initNum; i < limitNum; i++) {
-      if(pgPgNum.current===pgLimit && i===pgBlockPad-1) break;
+      if (pgPgNum.current === pgLimit && i === pgBlockPad - 1) break;
       code[i] = (
         <Fragment key={i}>
           {/* 페이징 링크 */}
@@ -431,7 +431,7 @@ export function Board() {
               {i + 1}
             </a>
           )}
-          {i < limit - 1 ? " | " : ""}
+          {i < limitNum - 1 && i < limit - 1 ? " | " : ""}
         </Fragment>
       );
     }
@@ -439,20 +439,51 @@ export function Board() {
     if (pgPgNum.current !== 1)
       code.unshift(
         <Fragment key="-1">
-          <a href="#" onClick={(e)=>{
-            e.preventDefault();
-            chgPaging(-1);
-          }}>◀ </a>
+          <a
+            href="#"
+            style={{ marginRight: "10px" }}
+            onClick={(e) => {
+              e.preventDefault();
+              chgPaging(1, false);
+            }}
+          >
+            «
+          </a>
+          <a
+            href="#"
+            onClick={(e) => {
+              e.preventDefault();
+              chgPaging(-1, true);
+            }}
+          >
+            ◀{" "}
+          </a>
         </Fragment>
       );
     // 페이징 다음블록 버튼 : 마지막 블록이 아니면 출력
     if (pgPgNum.current !== pgLimit)
       code.push(
         <Fragment key="-2">
-          <a href="#" onClick={(e)=>{
-            e.preventDefault();
-            chgPaging(1);
-          }}> ▶</a>
+          <a
+            href="#"
+            onClick={(e) => {
+              e.preventDefault();
+              chgPaging(1, true);
+            }}
+          >
+            {" "}
+            ▶
+          </a>
+          <a
+            href="#"
+            style={{ marginLeft: "10px" }}
+            onClick={(e) => {
+              e.preventDefault();
+              chgPaging(pgLimit, false);
+            }}
+          >
+            »
+          </a>
         </Fragment>
       );
     return code;
@@ -462,15 +493,17 @@ export function Board() {
    * 함수명 : chgPaging
    * 기능 : 페이지 리스트 재생성하여 바인딩
    */
-  const chgPaging = (dir) =>{
-    // dir 이동방향
-    const newPgPgNum = pgPgNum.current + dir;
-    const newPgNum = newPgPgNum * PAGING_BLOCK;
-    // 페이징의 블록번호 업데이트
-    pgPgNum.current = newPgPgNum;
-    // 이동할 페이지 번호
-    setPgNum(newPgNum);
-  }
+  const chgPaging = (dir, opt) => {
+    // dir 이동방향 , opt true 앞뒤/false 맨앞맨뒤
+    if(opt){
+      const newPgPgNum = pgPgNum.current + dir;
+      const newPgNum = newPgPgNum * PAGING_BLOCK;
+      // 페이징의 블록번호 업데이트
+      pgPgNum.current = newPgPgNum;
+      // 이동할 페이지 번호
+      setPgNum(newPgNum);
+    }
+  };
   /**
    * 함수명 : chgList
    * 기능 : 페이지 리스트 재생성하여 바인딩

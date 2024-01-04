@@ -27,13 +27,39 @@ to{
   opacity: 0;
   }
 }
+/* 필터 리셋 버튼 */
+.reset-filter-btn{
+  position: absolute;
+  width: 150px;
+  color: lightseagreen;
+  font-family: "KOFIHDrLEEJWTTF-B";
+  font-size: 1.2rem;
+  text-align: center;
+  outline: 1px solid lightseagreen;
+  padding: 3px 0;
+  border-radius: 5px;
+  -webkit-user-select: none;
+  user-select: none;
+  top: 17%;
+  right:20%;
+}
+.reset-filter-btn:hover{
+  background-color: #ccc;
+  outline: none;
+  color: #fff;
+}
+/* 전체 제품 구역 */
+.prod-area{
+  max-width: 1400px;
+  margin: 0 auto;
+  outline: 1px solid #eee;
+  box-shadow: 0px 0px 3px rgb(0, 0, 0, 0.15);
+}
 /* 각 제품 구역 */
 .prod-area ol {
   position: relative;
   width: 100%;
   height: 100%;
-  outline: 1px solid #eee;
-  box-shadow: 0px 0px 3px rgb(0, 0, 0, 0.15);
 }
 .prod-area li {
   position: absolute;
@@ -58,7 +84,7 @@ to{
 /* 메인 검색 상품1 */
 .prod-area li:nth-child(1) {
   top: 38%;
-  left: 20%;
+  left: 25%;
   z-index: 1;
 }
 /* 메인 검색 상품2 */
@@ -85,11 +111,11 @@ to{
 }
 .prod-area li:nth-child(6) {
   top: 40%;
-  left: -5%;
+  left: 0%;
 }
 .prod-area li:nth-child(7) {
   top: 40%;
-  left: 85%;
+  left: 83%;
 }
 .prod-area li:nth-child(8) {
   top: 75%;
@@ -113,6 +139,7 @@ h3.prod-item-title {
   font-size: 1rem;
   text-indent: 5px;
   background-color: #fff;
+  text-align: left;
 }
 h3.prod-item-title + h3.prod-item-title {
   text-indent: 15px;
