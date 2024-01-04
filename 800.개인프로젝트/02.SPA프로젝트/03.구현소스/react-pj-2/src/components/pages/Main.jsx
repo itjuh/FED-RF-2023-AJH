@@ -3,7 +3,7 @@
 // 메인페이지 css
 import "../../css/main.css";
 import { BoardList } from "../modules/BoardList";
-import { Fragment, useEffect, useLayoutEffect, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { useRef } from "react";
 // 데이터 가져오기
 import { filterBoardData } from "../data/boardData";

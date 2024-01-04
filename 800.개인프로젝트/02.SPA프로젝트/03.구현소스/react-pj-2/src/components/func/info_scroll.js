@@ -151,15 +151,15 @@ export function moveImgInfo(tg) {
     setTimeout(function () {
       psts = 0; //해제
     }, 100); //0.02초후 해제///////////
-    // console.log(event);
     let delta = event.wheelDelta;
     x = $(tg).find(".info-box").position().left;
+    console.log(event,x);
     // console.log(x,delta);
-    // console.log("휠중", delta);
     delta = delta > 0 ? 1 : -1;
+    // console.log("휠중", delta); 
     /////// 광스크롤 막기 //////////////////
     //// 마우스 휠 방향에 따라 가로스크롤 이동 증감! /////
     // console.log(x,delta);
-    infoScroll(delta,x);
+    // infoScroll(delta,x);
   });
 }

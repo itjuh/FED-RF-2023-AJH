@@ -15,14 +15,12 @@ export function Logo() {
     if (myCon.toggleVal !== "main") {
       myCon.chgTog("main");
       initToggle();
-    } else {
-      // 페이지 이동
-      // goNav("/");
-    }
+    } 
+    myCon.goPage('main','')
   } ////// 메인이동함수 //////////
   return (
     <>
-      <h1 className="header__logo" onClick={(e) => goMain()}>
+      <h1 className="header__logo" onClick={() => goMain()}>
         <img src="./images/logo_bk1.png" alt="레오폴드 로고" />
         <span className="ir">레오폴드 로고</span>
       </h1>
