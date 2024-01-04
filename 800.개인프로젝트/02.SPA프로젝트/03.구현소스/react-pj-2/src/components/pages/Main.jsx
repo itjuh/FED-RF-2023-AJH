@@ -15,7 +15,6 @@ window.jQuery = $;
 require("jquery-ui-dist/jquery-ui");
 require("jquery-ui-touch-punch/jquery.ui.touch-punch");
 
-
 export function Main() {
   // filterBoardData idx값만 가져오기
   let idxData = [];
@@ -24,7 +23,7 @@ export function Main() {
   });
   // 대분류 변경에 따른 리스트 변수
   let prodList = idxData;
-  console.log(prodList,'prodList');
+  console.log(prodList, "prodList");
   console.log("Main불러옴");
   // 대분류/세부분류
   const [optSel, setOptSel] = useState("array");
@@ -32,9 +31,6 @@ export function Main() {
   const arrayOpt = useRef(["full", "tenkey less", "slim"]);
   const colorOpt = useRef(["co-wt", "co-bk", "co-gy", "co-bu", "co-ye", "co-rd"]);
   const switchOpt = useRef(["sw-bu", "sw-br", "sw-sl", "sw-lr", "sw-cl", "sw-sr", "sw-bk"]);
-  // const [arrayOpt, setArrayOpt] = useState(["full", "tenkey less", "slim"]);
-  // const [colorOpt, setColorOpt] = useState(["co-wt", "co-bk", "co-gy", "co-bu", "co-ye", "co-rd"]);
-  // const [switchOpt, setSwitchOpt] = useState(["sw-bu", "sw-br", "sw-sl", "sw-lr", "sw-cl", "sw-sr", "sw-bk"]);
 
   // 데이터 변수 -> 리스트가 바뀌어도 상단 리랜더링 금지
   // const dataIdx = useRef(prodList);
@@ -149,6 +145,17 @@ export function Main() {
     // dataIdx.current = listSum;
     setDataIdx(listSum);
   };
+  const filterReset = () => {
+    // 전달 데이터 업데이트
+    setDataIdx(prodList);
+    // 옵션 초기화
+    arrayOpt.current = ["full", "tenkey less", "slim"];
+    colorOpt.current = ["co-wt", "co-bk", "co-gy", "co-bu", "co-ye", "co-rd"];
+    switchOpt.current = ["sw-bu", "sw-br", "sw-sl", "sw-lr", "sw-cl", "sw-sr", "sw-bk"];
+    // 체크박스 초기화
+    let tg = $('input[type="checkbox"]');
+    tg.prop('checked',true);
+  }; ///// filterReset ////
 
   // useEffect 구역
   useEffect(() => {
@@ -185,7 +192,9 @@ export function Main() {
           <span>Choose an option</span>
         </div>
         {/* 필터 리셋 버튼 */}
-        <div className="reset-filter-btn">reset filter</div>
+        <div className="reset-filter-btn" onClick={()=>filterReset()}>
+          reset filter
+        </div>
         {/* 2-1. 제품 정렬옵션 */}
         <div className="part-box in-box col-16 row-1">
           <div className="progress-area col-6 col-s-14">
@@ -216,7 +225,7 @@ export function Main() {
           {makeOptionList(optionData[3])}
         </div>
         {/* 2-2. 제품 리스트 */}
-        <div className="part-box col-16 row-10 prod-area">
+        <div className="part-box col-16 row-10 prod-area prod-area-board">
           {/* <BoardList dataIdx={dataIdx.current} /> */}
           <BoardList dataIdx={dataIdx} />
         </div>
