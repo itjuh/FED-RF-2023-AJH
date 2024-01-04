@@ -10,7 +10,7 @@ import { link } from "../data/link";
 
 // 레이아웃 구성 컴포넌트
 export function Layout() {
-  console.log('레이아웃페이지')
+  console.log('레이아웃페이지');
   // 링크 데이터
   let linkData = link;
   // 라우터 이동함수

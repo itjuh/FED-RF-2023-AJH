@@ -1,22 +1,41 @@
 // LEOPOLD Keyboard List만들기 컴포넌트
 // 키보드 제품 데이터
 import { boardData, filterBoardData } from "../data/boardData";
-import { memo, useContext, useState } from "react";
+import { memo, useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { LeoCon } from "./LeopoldContext";
+
+import "swiper/css";
+import "swiper/css/pagination";
+import { Keyboard, Navigation, Pagination } from "swiper/modules";
+import "../plugin/css/swiper.css";
 
 // 제이쿼리 가져오기
 import $ from "jquery";
-import { LeoCon } from "./LeopoldContext";
 window.jQuery = $;
 require("jquery-ui-dist/jquery-ui");
 require("jquery-ui-touch-punch/jquery.ui.touch-punch");
 
+
 export const BoardList = memo(({ dataIdx }) => {
+  console.log(dataIdx);
+  // 총 리스트 개수 구하기
+  /**
+   * [ 변수설정 ] 
+   * PAGE_BLOCK : 페이지당 출력 제품수 
+   * pageCount : 페이지 수
+   * pagePad : 마지막페이지 제품수
+   * pageNum : 현재 페이지
+   */
+  const PAGE_BLOCK = 10;
+  let pageCount = dataIdx.length/PAGE_BLOCK;
+  const pagePad = dataIdx.length%PAGE_BLOCK;
+  pageCount = pagePad===0?pageCount:pageCount+1;
+
   // context API
   const myCon = useContext(LeoCon);
   // 받은 데이터 리스트 - dataIdx [값이 배열형]
-  // console.log(dataIdx);
-  // 변경 데이터 변수
 
   const nav = useNavigate();
   // 네비게이션 설정 함수
@@ -68,11 +87,28 @@ export const BoardList = memo(({ dataIdx }) => {
     }
   }; /////// inputWish 함수 ///////////
 
+  // 페이지 리스트 만들기
+  const makeOnePage = ()=>{
+    // 데이터 잘라서 넘기기
+    let temp = [];
+    for(let i=0; i<=pageCount-1; i++){
+      let pageDataIdx = dataIdx.splice(0,PAGE_BLOCK);
+      // console.log(pageDataIdx);
+      temp.push(
+      <SwiperSlide key={i}>
+        <ol className="list-area-ol in-box">
+        {makeList(pageDataIdx)}
+        </ol>
+      </SwiperSlide>
+      );
+    }
+    return temp;
+  }
   // 리스트 만들기 함수
   const makeList = (arr) => {
     let temp = [];
     arr.map((v, i) => {
-      if (i > 9) return; // 10개만 넣기
+      if (i > PAGE_BLOCK-1) return; // 10개만 넣기
       temp[i] = (
         <li key={i}>
           <div
@@ -95,11 +131,26 @@ export const BoardList = memo(({ dataIdx }) => {
     });
     return temp;
   };
+
   return (
     <>
-      {/* {window.innerWidth > 550 && <ol className="list-area-ol">{makeList(data)}</ol>} */}
-      {/* {window.innerWidth <= 550 && <MySwiper data={data} inputWish={inputWish} />} */}
-      <ol className="list-area-ol">{makeList(dataIdx)}</ol>
+      <Swiper
+        slidesPerView={1}
+        spaceBetween={30}
+        pagination={{
+          clickable: true,
+        }}
+        navigation={{
+          clickable: true,
+        }}
+        keyboard={true}
+        loop={true}
+        // 사용 할 모듈을 여기에 적용시킨다
+        modules={[Pagination, Navigation, Keyboard]}
+        className="mySwiper"
+      >
+        {makeOnePage()}
+      </Swiper>
     </>
   );
 }); /////////// BoardList 컴포넌트 ////////////

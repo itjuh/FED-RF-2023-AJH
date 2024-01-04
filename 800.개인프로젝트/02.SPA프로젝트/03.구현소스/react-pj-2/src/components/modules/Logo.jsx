@@ -17,7 +17,7 @@ export function Logo() {
       initToggle();
     } else {
       // 페이지 이동
-      goNav("/");
+      // goNav("/");
     }
   } ////// 메인이동함수 //////////
   return (
