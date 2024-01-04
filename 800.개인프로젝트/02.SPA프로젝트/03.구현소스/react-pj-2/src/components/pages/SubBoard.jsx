@@ -11,8 +11,8 @@ import $ from "jquery";
 import { moveImgInfo } from "../func/info_scroll";
 import { useContext, useEffect } from "react";
 import { LeoCon } from "../modules/LeopoldContext";
-import { useLayoutEffect } from "react";
-import axios from "axios";
+// import { useLayoutEffect } from "react";
+// import axios from "axios";
 
 /*
   keyboard1: {

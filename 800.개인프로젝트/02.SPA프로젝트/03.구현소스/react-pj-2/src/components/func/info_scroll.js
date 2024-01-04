@@ -160,6 +160,6 @@ export function moveImgInfo(tg) {
     /////// 광스크롤 막기 //////////////////
     //// 마우스 휠 방향에 따라 가로스크롤 이동 증감! /////
     // console.log(x,delta);
-    // infoScroll(delta,x);
+    infoScroll(delta,x);
   });
 }
