@@ -25,6 +25,7 @@ export function Layout() {
   const [sub, setSub] = useState(null);
   const [loginSts, setLoginSts] = useState(sessionStorage.getItem("loginMem"));
   const [wishCnt, setWishCnt] = useState(JSON.parse(localStorage.getItem('wish')).length);
+  console.log('토글상태',toggleVal);
   // 장바구니 수량 업데이트
   const wishUpdate = useCallback(()=>{
     setWishCnt(JSON.parse(localStorage.getItem('wish')).length);

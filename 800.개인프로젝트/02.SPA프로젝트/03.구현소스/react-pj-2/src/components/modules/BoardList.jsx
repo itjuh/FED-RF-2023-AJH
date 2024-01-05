@@ -19,9 +19,8 @@ require("jquery-ui-touch-punch/jquery.ui.touch-punch");
 
 
 export const BoardList = memo(({ dataIdx }) => {
-  
   // console.log(dataIdx, dataIdx.length===0);
-  // if(dataIdx.length===0){ // 데이터 전달이 없으면 전체데이터 출력
+  // if(dataIdx.length===0){ // 데이터 전달이 없으면 전체데이터
   //   for(let i=0;i<filterBoardData.length;i++){
   //     dataIdx.push(i+1);
   //   }

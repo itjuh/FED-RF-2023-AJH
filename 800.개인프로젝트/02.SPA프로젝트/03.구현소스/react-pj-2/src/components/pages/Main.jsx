@@ -1,5 +1,8 @@
 // 메인페이지 Main KeyboardList page - Main.jsx
 
+import { LeoCon } from "../modules/LeopoldContext";
+import { useContext } from "react";
+
 // 메인페이지 css
 import "../../css/main.css";
 import { BoardList } from "../modules/BoardList";
@@ -11,24 +14,33 @@ import { optionData } from "../data/optionData";
 // 제이쿼리 가져오기
 import $ from "jquery";
 import { CheckCon } from "../modules/Icons";
+import { useLocation } from "react-router-dom";
+import { Swiper } from "swiper/types";
 
 window.jQuery = $;
 require("jquery-ui-dist/jquery-ui");
 require("jquery-ui-touch-punch/jquery.ui.touch-punch");
-let idxData = [];
-// filterBoardData idx값만 가져오기
-filterBoardData.map((v, i) => {
-  idxData[i] = v.idx;
-});
-let prodList = JSON.parse(JSON.stringify(idxData));
+
 let num = 0;
 export function Main() {
+  // 컨텍스트
+  const myCon = useContext(LeoCon);
+
+  let idxData = [];
+  // filterBoardData idx값만 가져오기
+  filterBoardData.map((v, i) => {
+    idxData[i] = v.idx;
+  });
+
+  let prodList = JSON.parse(JSON.stringify(idxData));
+
+  // localStorage.setItem('pList',JSON.stringify(prodList));
+
   // 대분류 변경에 따른 리스트 변수
   num++;
-  console.log(prodList, "prodList", idxData, "idxData",num);
+  console.log(prodList, "prodList", idxData, "idxData", num);
   console.log("Main불러옴");
   const [force, setForce] = useState(null);
-  const [init, setInit] = useState(true);
 
   // 대분류/세부분류
   const [optSel, setOptSel] = useState("array");
@@ -163,8 +175,6 @@ export function Main() {
     // 체크박스 초기화
     let tg = $('input[type="checkbox"]');
     tg.prop("checked", true);
-    // 강제 리랜더링
-    setForce(Math.random());
   }; ///// filterReset ////
 
   // useEffect 구역
@@ -174,12 +184,24 @@ export function Main() {
     $(".progress-sub-area").eq(selNum).css({ display: "flex" }).siblings().css({ display: "none" });
   }, [optSel]);
 
-  useEffect(()=>{
-    if(dataIdx.length !== prodList.lenght){
+  useEffect(() => {
+    if (dataIdx.length !== prodList.lenght) {
       // 페이지 이동에 의한 main -> 강제 리랜더링 처리 필요
       // setForce(Math.random());
     }
   });
+
+  const myNav = useLocation();
+  console.log("파라:", myNav.state);
+  if (myNav.state) {
+    dataIdx.current = prodList;
+    // 필터 초기화
+    filterReset();
+    // 스와이퍼 초기화
+    swiper.slideTo( index , speed , runCallbacks );
+    myNav.state = null;
+  }
+
   // 배열 옵션 리스트 함수
   const makeOptionList = (data) => {
     return (
@@ -208,7 +230,14 @@ export function Main() {
           <span>Choose an option</span>
         </div>
         {/* 필터 리셋 버튼 */}
-        <div className="reset-filter-btn" onClick={() => filterReset()}>
+        <div
+          className="reset-filter-btn"
+          onClick={() => {
+            filterReset();
+            // 강제 리랜더링
+            setForce(Math.random());
+          }}
+        >
           reset filter
         </div>
         {/* 2-1. 제품 정렬옵션 */}

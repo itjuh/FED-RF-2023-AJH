@@ -4,6 +4,7 @@ import { useLocation } from "react-router-dom";
 import "../../css/subboard.css";
 // 서브페이지용 데이터
 import { detailData } from "../data/detailData";
+import { filterBoardData } from "../data/boardData";
 // 네비게이션
 import { MakeProgress } from "../modules/MakeProgress";
 // 제이쿼리
@@ -45,8 +46,40 @@ export function SubBoard() {
     name = location.state.name;
   }
   // console.log('name',name,'myCon.sub',myCon.sub);
+  // 데이터 이미지용
   selData = detailData[name] ? detailData[name] : false;
+  // 데이터 정보용
+  let selDataInfo = filterBoardData.find((v) => {
+    if (v.src === name) return true;
+  });
+  // 출력용 데이터
+  const colorName = {
+    "co-wt": "white",
+    "co-bk": "black",
+    "co-gy": "gray",
+    "co-bu": "blue",
+    "co-ye": "yellow",
+    "co-rd": "red",
+  };
+  const arrayName = {
+    'full': "900array fullkey design",
+    "tenkey less": "750array tenkey less design",
+    'slim': "980array fullkey slim design",
+  };
+  const switchName = {
+    "sw-bu": "click-blue",
+    "sw-br": "nonclick-brown",
+    "sw-sl": "silent-silver",
+    "sw-lr": "linear-red",
+    "sw-cl": "nonclick-clear",
+    "sw-sr": "silent-red",
+    "sw-bk": "linear-black",
+  };
 
+  // 3자리수 콤마 함수
+  function addCommas(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  }
   // 이미지
   const makeImage = (data) => {
     return (
@@ -56,6 +89,34 @@ export function SubBoard() {
           {data.map((v, i) => (
             <img key={i} src={v["isrc"]} alt={selData["sub"] + " " + v["ialt"]} />
           ))}
+        </div>
+        <div className="prod-info-text">
+          <p>
+            <span>product name :</span>
+            <span>
+              {selDataInfo.code}-{selDataInfo.sub}
+            </span>
+          </p>
+          <p>
+            <span>product array :</span>
+            <span>{arrayName[selDataInfo.array]}</span>
+          </p>
+          <p>
+            <span>key color :</span>
+            {selDataInfo.color.map((v,i) => (
+              <span key={i}>{colorName[v]}</span>
+            ))}
+          </p>
+          <p>
+            <span>selectable switch types :</span>
+            {selDataInfo.switch.map((v,i) => (
+              <span key={i}>{switchName[v]}</span>
+            ))}
+          </p>
+          <p>
+            <span>price :</span>
+            <span>￦{addCommas(selDataInfo.cost)}</span>
+          </p>
         </div>
       </section>
     );
@@ -77,7 +138,6 @@ export function SubBoard() {
         // 네비게이션 세팅
         setNav();
       }
-
       // 휠 이벤트
       moveImgInfo($(".detail-page"));
     });
@@ -125,8 +185,8 @@ export function SubBoard() {
           {selData ? makeImage(selData["img"]) : <h2>세부이미지가 없습니다.</h2>}
           {/* 버튼들 */}
           <section className="prod_pick flex-box">
-            <div className="add-wish wish-sub">add to wishlist ＞</div>
-            <div className="add-wish wish-sub buy-btn">buy now ↗</div>
+            <div className="add-wish wish-sub">add to wishlist ↗</div>
+            <div className="add-wish wish-sub buy-btn">Show switch Infomation ＞</div>
           </section>
         </div>
       </main>

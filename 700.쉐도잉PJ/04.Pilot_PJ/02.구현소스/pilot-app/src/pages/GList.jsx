@@ -33,8 +33,14 @@ export function GList() {
   const PAGE_BLOCK = 10;
   // 4. 전체 레코드수 : 배열데이터 총개수
   const totNum = gdata.length;
-  // 1. 현재 페이지 번호 : 가장중요한 리스트 바인딩의 핵심!
+  // 5. 현재 페이지 번호 : 가장중요한 리스트 바인딩의 핵심!
   const [pgNum, setPgNum] = useState(1);
+  // 6. 더보기 블록단위수 : 한 번에 보여 줄 레코드 수
+  const MORE_BLOCK = 5;
+  // 7. 더보기 블록 개수 : 참조변수로 숫자 유지하기
+  const [moreNum, setMoreNum] = useState(1);
+  // 8. 더보기 한계수
+  const MORE_LIMIT = totNum % MORE_BLOCK > 0 ? Math.floor(totNum / MORE_BLOCK) + 1 : totNum / MORE_BLOCK;
   //////////////////////////////////////
 
   // 리랜더링을 위한 상태변수 : 무조건 리랜더링설정목적
@@ -98,7 +104,7 @@ export function GList() {
       // 데이터 초기화 하기
       // gdata와 같지 않으면 초기화, 단 모드 변경 시에만
       // gInit 참조변수 true일때만 적용
-      if(currData !== gdata && myCon.gInit.current){
+      if (currData !== gdata && myCon.gInit.current) {
         // 깊은복사로 재할당 -> 무한 리랜더링을 피하려면 참조변수를 활용한다!
         transData.current = JSON.parse(JSON.stringify(gdata));
       }
@@ -124,14 +130,14 @@ export function GList() {
     // 2. Paging list
     else if (myCon.glistMode === "P") {
       // 상단메뉴 클릭 한 경우 pgNum이 1이 아니면 초기화
-      if(myCon.gInit.current && pgNum !== 1){
+      if (myCon.gInit.current && pgNum !== 1) {
         setPgNum(1);
       }
       // map이 아닌 일반 for문 사용시 배열에 데이터 push하여 데이터 넣기
       // JSX문법 태그는 그냥 태그가 아.니.다...!!!
       // 페이징은 데이터 변형이 아니므로 원본데이터에 대한 부분데이터 가져오기다
       temp = [];
-      for (let i = (pgNum-1)*PAGE_BLOCK; i < pgNum*PAGE_BLOCK; i++) {
+      for (let i = (pgNum - 1) * PAGE_BLOCK; i < pgNum * PAGE_BLOCK; i++) {
         if (i == totNum) break;
         temp.push(
           <div key={i}>
@@ -154,6 +160,37 @@ export function GList() {
       }
     }
     // 3. More list
+    else if (myCon.glistMode === "M") {
+
+      if (myCon.gInit.current && moreNum !== 1) {
+        setMoreNum(1);
+      }
+      // 리턴할 배열을 새로 할당
+      temp = [];
+      // 한계값 설정
+      let limit = moreNum * MORE_BLOCK;
+      if (limit > totNum) limit = totNum;
+      for (let i = 0; i < limit; i++) {
+        temp.push(
+          <div key={i}>
+            <a
+              href="#"
+              onClick={(e) => {
+                e.preventDefault();
+                showDetail(gdata[i].ginfo[0], gdata[i].cat);
+              }}
+            >
+              [{i + 1}]
+              <img src={"./images/goods/" + gdata[i].cat + "/" + gdata[i].ginfo[0] + ".png"} alt="dress" />
+              <aside>
+                <h2>{gdata[i].ginfo[1]}</h2>
+                <h3>{addComma(gdata[i].ginfo[3])}원</h3>
+              </aside>
+            </a>
+          </div>
+        );
+      }
+    }
     return temp;
   }; //////////// makeList ////////
 
@@ -269,18 +306,28 @@ export function GList() {
         // paging list Mode 출력
         <section>
           <div className="grid">{makeList()}</div>
-          <div id="paging">
-            {pagingLink()}
-          </div>
+          <div id="paging">{pagingLink()}</div>
         </section>
       )}
       {myCon.glistMode === "M" && (
         // more list Mode 출력
         <section>
           <div className="grid">{makeList()}</div>
-          <div id="more">
-            <button className="more">MORE</button>
-          </div>
+          {moreNum !== MORE_LIMIT && (
+            <div id="more">
+              <button
+                className="more"
+                onClick={() => {
+                  // 부모클릭 상태 변수값 초기화
+                  myCon.gInit.current = false;
+                  let num = moreNum;
+                  setMoreNum(++num);
+                }}
+              >
+                MORE
+              </button>
+            </div>
+          )}
         </section>
       )}
       {/* 2.5. 상세보기박스 */}

@@ -11,12 +11,13 @@ export function Logo() {
   const goNav = useNavigate();
 
   function goMain() {
+    myCon.chgTog("main");
     // 메인 이동 시 토글 초기화
     if (myCon.toggleVal !== "main") {
-      myCon.chgTog("main");
       initToggle();
     } 
-    myCon.goPage('main','')
+    goNav('/',{state:{val:"main->main"}});
+    // myCon.goPage('main','');
   } ////// 메인이동함수 //////////
   return (
     <>
