@@ -11,20 +11,25 @@ import { optionData } from "../data/optionData";
 // 제이쿼리 가져오기
 import $ from "jquery";
 import { CheckCon } from "../modules/Icons";
+
 window.jQuery = $;
 require("jquery-ui-dist/jquery-ui");
 require("jquery-ui-touch-punch/jquery.ui.touch-punch");
-
+let idxData = [];
+// filterBoardData idx값만 가져오기
+filterBoardData.map((v, i) => {
+  idxData[i] = v.idx;
+});
+let prodList = JSON.parse(JSON.stringify(idxData));
+let num = 0;
 export function Main() {
-  // filterBoardData idx값만 가져오기
-  let idxData = [];
-  filterBoardData.map((v, i) => {
-    idxData[i] = v.idx;
-  });
   // 대분류 변경에 따른 리스트 변수
-  let prodList = idxData;
-  console.log(prodList, "prodList");
+  num++;
+  console.log(prodList, "prodList", idxData, "idxData",num);
   console.log("Main불러옴");
+  const [force, setForce] = useState(null);
+  const [init, setInit] = useState(true);
+
   // 대분류/세부분류
   const [optSel, setOptSel] = useState("array");
   // 세부분류 옵션 -> 변경 시 데이터변수 변경
@@ -33,8 +38,8 @@ export function Main() {
   const switchOpt = useRef(["sw-bu", "sw-br", "sw-sl", "sw-lr", "sw-cl", "sw-sr", "sw-bk"]);
 
   // 데이터 변수 -> 리스트가 바뀌어도 상단 리랜더링 금지
-  // const dataIdx = useRef(prodList);
-  const [dataIdx, setDataIdx] = useState(prodList);
+  const dataIdx = useRef(prodList);
+  // const [dataIdx, setDataIdx] = useState(idxData);
 
   // 선택 옵션에 대한 idx 배열 리턴함수
   const otherOptionList = (opt, arr) => {
@@ -142,19 +147,24 @@ export function Main() {
     // 데이터 정렬
     sortFn(listSum);
     // 전달 데이터 업데이트
-    // dataIdx.current = listSum;
-    setDataIdx(listSum);
+    dataIdx.current = listSum;
+    // setDataIdx(listSum);
+    // 강제 리랜더링
+    setForce(Math.random());
   };
   const filterReset = () => {
     // 전달 데이터 업데이트
-    setDataIdx(prodList);
+    // setDataIdx(prodList);
+    dataIdx.current = prodList;
     // 옵션 초기화
     arrayOpt.current = ["full", "tenkey less", "slim"];
     colorOpt.current = ["co-wt", "co-bk", "co-gy", "co-bu", "co-ye", "co-rd"];
     switchOpt.current = ["sw-bu", "sw-br", "sw-sl", "sw-lr", "sw-cl", "sw-sr", "sw-bk"];
     // 체크박스 초기화
     let tg = $('input[type="checkbox"]');
-    tg.prop('checked',true);
+    tg.prop("checked", true);
+    // 강제 리랜더링
+    setForce(Math.random());
   }; ///// filterReset ////
 
   // useEffect 구역
@@ -164,6 +174,12 @@ export function Main() {
     $(".progress-sub-area").eq(selNum).css({ display: "flex" }).siblings().css({ display: "none" });
   }, [optSel]);
 
+  useEffect(()=>{
+    if(dataIdx.length !== prodList.lenght){
+      // 페이지 이동에 의한 main -> 강제 리랜더링 처리 필요
+      // setForce(Math.random());
+    }
+  });
   // 배열 옵션 리스트 함수
   const makeOptionList = (data) => {
     return (
@@ -192,7 +208,7 @@ export function Main() {
           <span>Choose an option</span>
         </div>
         {/* 필터 리셋 버튼 */}
-        <div className="reset-filter-btn" onClick={()=>filterReset()}>
+        <div className="reset-filter-btn" onClick={() => filterReset()}>
           reset filter
         </div>
         {/* 2-1. 제품 정렬옵션 */}
@@ -226,8 +242,8 @@ export function Main() {
         </div>
         {/* 2-2. 제품 리스트 */}
         <div className="part-box col-16 row-10 prod-area prod-area-board">
-          {/* <BoardList dataIdx={dataIdx.current} /> */}
-          <BoardList dataIdx={dataIdx} />
+          <BoardList dataIdx={dataIdx.current} />
+          {/* <BoardList dataIdx={dataIdx} /> */}
         </div>
       </main>
     </>
