@@ -3,6 +3,7 @@
 import { LeoCon } from "../modules/LeopoldContext";
 import { useContext } from "react";
 
+
 // 메인페이지 css
 import "../../css/main.css";
 import { BoardList } from "../modules/BoardList";
@@ -15,14 +16,15 @@ import { optionData } from "../data/optionData";
 import $ from "jquery";
 import { CheckCon } from "../modules/Icons";
 import { useLocation } from "react-router-dom";
-import { Swiper } from "swiper/types";
 
 window.jQuery = $;
 require("jquery-ui-dist/jquery-ui");
 require("jquery-ui-touch-punch/jquery.ui.touch-punch");
 
+
 let num = 0;
 export function Main() {
+
   // 컨텍스트
   const myCon = useContext(LeoCon);
 
@@ -33,12 +35,14 @@ export function Main() {
   });
 
   let prodList = JSON.parse(JSON.stringify(idxData));
-
+  
   // localStorage.setItem('pList',JSON.stringify(prodList));
+
+
 
   // 대분류 변경에 따른 리스트 변수
   num++;
-  console.log(prodList, "prodList", idxData, "idxData", num);
+  console.log(prodList, "prodList", idxData, "idxData",num);
   console.log("Main불러옴");
   const [force, setForce] = useState(null);
 
@@ -52,6 +56,9 @@ export function Main() {
   // 데이터 변수 -> 리스트가 바뀌어도 상단 리랜더링 금지
   const dataIdx = useRef(prodList);
   // const [dataIdx, setDataIdx] = useState(idxData);
+
+  
+  
 
   // 선택 옵션에 대한 idx 배열 리턴함수
   const otherOptionList = (opt, arr) => {
@@ -175,6 +182,8 @@ export function Main() {
     // 체크박스 초기화
     let tg = $('input[type="checkbox"]');
     tg.prop("checked", true);
+    // 강제 리랜더링
+    setForce(Math.random());
   }; ///// filterReset ////
 
   // useEffect 구역
@@ -184,24 +193,22 @@ export function Main() {
     $(".progress-sub-area").eq(selNum).css({ display: "flex" }).siblings().css({ display: "none" });
   }, [optSel]);
 
-  useEffect(() => {
-    if (dataIdx.length !== prodList.lenght) {
+  useEffect(()=>{
+    if(dataIdx.length !== prodList.lenght){
       // 페이지 이동에 의한 main -> 강제 리랜더링 처리 필요
       // setForce(Math.random());
     }
   });
 
+  
   const myNav = useLocation();
-  console.log("파라:", myNav.state);
-  if (myNav.state) {
+  console.log('파라:',myNav.state)
+  if(myNav.state) {
     dataIdx.current = prodList;
-    // 필터 초기화
     filterReset();
-    // 스와이퍼 초기화
-    swiper.slideTo( index , speed , runCallbacks );
     myNav.state = null;
   }
-
+  
   // 배열 옵션 리스트 함수
   const makeOptionList = (data) => {
     return (
@@ -230,14 +237,7 @@ export function Main() {
           <span>Choose an option</span>
         </div>
         {/* 필터 리셋 버튼 */}
-        <div
-          className="reset-filter-btn"
-          onClick={() => {
-            filterReset();
-            // 강제 리랜더링
-            setForce(Math.random());
-          }}
-        >
+        <div className="reset-filter-btn" onClick={() => filterReset()}>
           reset filter
         </div>
         {/* 2-1. 제품 정렬옵션 */}

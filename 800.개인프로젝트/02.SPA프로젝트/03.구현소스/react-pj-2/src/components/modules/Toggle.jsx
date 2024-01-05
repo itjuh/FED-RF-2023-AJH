@@ -12,7 +12,6 @@ export function Toggle() {
   let val = myCon.toggleVal == "switch" ? 0 : 1;
   // 토글상태 변수
   const board = useRef(val);
-  console.log('토글버튼 호출',myCon.toggleVal,'보드상태',board.current);
   // 토글상태 변경함수(true/false)
   const chgBoard = (num) => {
     board.current = num;
@@ -22,13 +21,11 @@ export function Toggle() {
   // 토글 변경 함수 : 위치를 분기하여 값을 적용한다.
   const swToggle = (tg) => {
     let tgTxt = $(tg).text();
-    console.log(tgTxt);
     if (tgTxt !== "") {
       // 기존값에서 변경 됨
       let num = board.current ? 0 : 1;
-      console.log('토글변경 호출 보드상태 변경..!!0스위치,1보드',board.current);
       setPage(num);
-      chgBoard(num); // 토글 변경
+      chgBoard(board.current ? 0 : 1); // 토글 변경
     }
     // 변경적용 함수 호출
   };

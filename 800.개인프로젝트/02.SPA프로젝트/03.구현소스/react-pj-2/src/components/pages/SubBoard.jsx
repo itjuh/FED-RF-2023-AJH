@@ -4,7 +4,6 @@ import { useLocation } from "react-router-dom";
 import "../../css/subboard.css";
 // 서브페이지용 데이터
 import { detailData } from "../data/detailData";
-import { filterBoardData } from "../data/boardData";
 // 네비게이션
 import { MakeProgress } from "../modules/MakeProgress";
 // 제이쿼리
@@ -12,6 +11,8 @@ import $ from "jquery";
 import { moveImgInfo } from "../func/info_scroll";
 import { useContext, useEffect } from "react";
 import { LeoCon } from "../modules/LeopoldContext";
+import { filterBoardData } from "../data/boardData";
+
 // import { useLayoutEffect } from "react";
 // import axios from "axios";
 
@@ -62,9 +63,9 @@ export function SubBoard() {
     "co-rd": "red",
   };
   const arrayName = {
-    'full': "900array fullkey design",
+    full: "900array fullkey design",
     "tenkey less": "750array tenkey less design",
-    'slim': "980array fullkey slim design",
+    slim: "980array fullkey slim design",
   };
   const switchName = {
     "sw-bu": "click-blue",
@@ -80,6 +81,7 @@ export function SubBoard() {
   function addCommas(x) {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   }
+
   // 이미지
   const makeImage = (data) => {
     return (
@@ -103,13 +105,13 @@ export function SubBoard() {
           </p>
           <p>
             <span>key color :</span>
-            {selDataInfo.color.map((v,i) => (
+            {selDataInfo.color.map((v, i) => (
               <span key={i}>{colorName[v]}</span>
             ))}
           </p>
           <p>
             <span>selectable switch types :</span>
-            {selDataInfo.switch.map((v,i) => (
+            {selDataInfo.switch.map((v, i) => (
               <span key={i}>{switchName[v]}</span>
             ))}
           </p>
@@ -138,6 +140,7 @@ export function SubBoard() {
         // 네비게이션 세팅
         setNav();
       }
+
       // 휠 이벤트
       moveImgInfo($(".detail-page"));
     });
