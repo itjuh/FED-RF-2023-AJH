@@ -12,11 +12,11 @@ export function Logo() {
 
   function goMain() {
     // 메인 이동 시 토글 초기화
-    if (myCon.toggleVal !== "main") {
-      myCon.chgTog("main");
+    if (myCon.toggleVal !== "MAIN") {
+      myCon.chgTog("MAIN");
       initToggle();
     } 
-    goNav('main',{state:{val:"11"}});
+    // goNav('MAIN',{state:{val:"11"}});
   } ////// 메인이동함수 //////////
   return (
     <>

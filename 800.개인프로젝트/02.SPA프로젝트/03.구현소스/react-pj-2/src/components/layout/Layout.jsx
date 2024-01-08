@@ -11,8 +11,6 @@ import { link } from "../data/link";
 // 레이아웃 구성 컴포넌트
 export function Layout() {
   console.log('레이아웃페이지');
-  // 링크 데이터
-  let linkData = link;
   // 라우터 이동함수
   const goNav = useNavigate();
   /**
@@ -21,7 +19,7 @@ export function Layout() {
    * 로그인용 : loginSts
    * 장바구니 수량 : wishCnt
    */
-  const [toggleVal, setToggleVal] = useState("main");
+  const [toggleVal, setToggleVal] = useState("MAIN");
   const [sub, setSub] = useState(null);
   const [loginSts, setLoginSts] = useState(sessionStorage.getItem("loginMem"));
   let datacnt = JSON.parse(localStorage.getItem('wish'));
@@ -39,12 +37,13 @@ export function Layout() {
     setLoginSts(null);
   },[]);
   // 페이지 이동
-  const goPage = useCallback((txt,param)=>{
-    linkData = link.find((v) => {
-      if (v["txt"] == txt) return true;
+  const goPage = useCallback((value,param)=>{
+    let golink = link.find((v) => {
+      console.log(v.txt == value);
+      if (v.txt == value) return true;
     });
-    console.log('gopage',linkData.link, param);
-    goNav(linkData.link,param);
+    console.log('gopage',golink['link'], param);
+    // goNav(linkData.link,param);
   },[]);
   // 필터 업데이트 함수
   // const chgSel = (num) => setSelNum(num);
@@ -53,7 +52,11 @@ export function Layout() {
     // 토글 후크 업데이트
     setToggleVal(val);
     // 페이지 이동
-    goPage(val,'');
+    let golink = link.find((v) => {
+      console.log(v.txt == val);
+      if (v.txt == val) return true;
+    });
+    goNav(golink.link,{state:{val:"11"}});
   }, []);
   // 서브페이지 변경함수
   const chgSub = (txt) => setSub(txt);

@@ -95,6 +95,7 @@
   padding: 3px 0px 3px 40px;
   font-size: 1.2rem;
   box-sizing: border-box;
+  user-select: auto;
 }
 
 /* 검색창 닫기버튼 */
@@ -109,6 +110,20 @@
   opacity: 1;
   transform: translateX(-50%) translateY(0%);
   color: rgb(70, 70, 70);
+}
+/* 검색버튼 */
+.search-btn{
+  position: absolute;
+  max-width: 80px;
+  right: 1%;
+  top: 12%;
+  font-size: 1.4rem;
+  cursor: pointer;
+  border-radius: 10px;
+  padding: 3px;
+  outline: 1px solid lightseagreen;
+  color: lightseagreen;
+  background-color: transparent;
 }
 /* 검색창 내부 아이콘 */
 .search-area svg {

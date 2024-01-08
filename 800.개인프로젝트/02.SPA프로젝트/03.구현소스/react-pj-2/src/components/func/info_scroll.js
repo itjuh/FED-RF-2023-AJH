@@ -152,8 +152,8 @@ export function moveImgInfo(tg) {
       psts = 0; //해제
     }, 100); //0.02초후 해제///////////
     let delta = event.wheelDelta;
-    x = $(tg).find(".info-box").position().left;
-    console.log(event,x);
+    x = infoBox.position().left;
+    console.log(event,x,delta);
     // console.log(x,delta);
     delta = delta > 0 ? 1 : -1;
     // console.log("휠중", delta); 

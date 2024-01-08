@@ -17,7 +17,6 @@ export function Toggle() {
     board.current = num;
   };
 
-
   // 토글 변경 함수 : 위치를 분기하여 값을 적용한다.
   const swToggle = (tg) => {
     let tgTxt = $(tg).text();
@@ -48,7 +47,7 @@ export function Toggle() {
         .css({
           color: "rgb(128, 128, 128)",
         });
-      myCon.chgTog("main");
+      myCon.chgTog("MAIN");
     } else {
       // 토글 스위치
       // 토글박스 원 설정
@@ -65,34 +64,9 @@ export function Toggle() {
         .css({
           color: "rgb(128, 128, 128)",
         });
-      myCon.chgTog("switch");
+      myCon.chgTog("SWITCH");
     }
   };
-
-  // useEffect(() => {
-  //   const cir = $(".tg-cir");
-  //   // 제이쿼리 드래그
-  //   cir.draggable({
-  //     axis: "x",
-  //     containment: "parent",
-  //   });
-  //   $(".tg-btn").droppable({
-  //     drop: function (evt, ele) {
-  //       // evt-이벤트전달변수 ele-드롭객체
-  //       // 드롭 시 위치 조정 + 토글변경
-  //       let txt = $(this).text();
-  //       if (txt === "switch") {
-  //         chgBoard(0);
-  //         // 변경적용 함수 호출
-  //         setPage(0);
-  //       } else {
-  //         chgBoard(1);
-  //         // 변경적용 함수 호출
-  //         setPage(1);
-  //       }
-  //     }, ///////drop이벤트 옵션 메서드
-  //   });
-  // }); /////////useEffect구역///////////
 
   return (
       <aside

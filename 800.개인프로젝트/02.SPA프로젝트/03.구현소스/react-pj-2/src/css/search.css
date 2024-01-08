@@ -1,0 +1,220 @@
+/* 레오폴드 searchinging css */
+
+/************** 2. 메인영역  ****************/
+/* 전체 검색 박스 */
+.searching-area {
+  /* 중앙정렬 */
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+  /* 오른쪽에 붙임 */
+  /* margin-left: auto; */
+  margin: 0 auto;
+  min-height: 600px;
+  box-shadow: 0px 0px 3px rgb(0, 0, 0, 0.15);
+  font-family: "KOFIHDrLEEJWTTF-L";
+  color: rgb(70, 70, 70);
+}
+/* 타이틀 영역 */
+.searching-area h2 {
+  box-sizing: border-box;
+  font-family: "KOFIHDrLEEJWTTF-B";
+  text-indent: 2rem;
+  font-size: 2.2rem;
+  line-height: 1.2;
+  padding: 1rem;
+  padding-top: 30px;
+  box-sizing: border-box;
+  /* 줄바꿈 방지 */
+  white-space: nowrap;
+  user-select: none;
+}
+/* 검색 박스 */
+.searching-box {
+  padding: 0 60px 30px 60px;
+  user-select: none;
+}
+/* 검색 속박스 */
+.searching-in-box {
+  overflow-y: scroll;
+}
+.scbar::-webkit-scrollbar {
+  /* 전체 스크롤바 크기변경 */
+  width: 7px;
+}
+.scbar::-webkit-scrollbar-thumb {
+  /* 스크롤바 */
+  background-color: lightseagreen;
+  border-radius: 5px;
+}
+.scbar::-webkit-scrollbar-track {
+  /* 스크롤바 트랙 */
+  background-color: #ddd;
+  border-radius: 5px;
+}
+/* 검색결과 타이틀 caption */
+.searching-box caption {
+  font-family: "KOFIHDrLEEJWTTF-L";
+  font-size: 1.2rem;
+  padding: 10px 0;
+  white-space: nowrap;
+  user-select: none;
+  text-align: left;
+}
+/* 검색 테이블 */
+.searching-table {
+  width: 100%;
+}
+/* 검색 공통 */
+.searching-table td,
+th {
+  box-sizing: border-box;
+  padding: 0.3vw;
+  text-align: center;
+}
+/* 검색 하단 밑줄 */
+.searching-table tr:nth-child(1){
+  border-bottom: 2px solid #aaa;
+}
+.searching-table tr+tr{
+  border-bottom: 1px solid #ccc;
+}
+/* 검색 상단부 */
+.searching-table thead td {
+  font-family: "KOFIHDrLEEJWTTF-B";
+  font-size: 1.3rem;
+  line-height: 2.5;
+  text-align: left;
+}
+/* 검색 분류 */
+.searching-table th {
+  background-color: #e2e2e2;
+  line-height: 2;
+}
+
+/* 2-1. 이미지 */
+.searching-table th:nth-child(1),
+td:nth-child(1) {
+  width: 20%;
+}
+.searching-table img {
+  max-width: 150px;
+  margin: 3px 0;
+}
+/* 스위치 결과 이미지 */
+.switch-result img{
+  max-width: 100px;
+}
+/* 2-2. 제품정보 */
+.searching-table th:nth-child(2),
+td:nth-child(2) {
+  width: 50%;
+}
+.searching-table td:nth-child(2) {
+  text-indent: 1rem;
+  text-align: left;
+}
+/* 2-3. 가격 */
+.searching-table th:nth-child(3),
+td:nth-child(3) {
+  width: 10%;
+}
+/* 2-4. 페이지 이동 */
+.searching-table td:nth-child(4) {
+  width: 20%;
+}
+/* 검색창 하단 더보기 버튼 */
+.searching-table tfoot{
+    width: 100%;
+  text-align: center;
+}
+/* view detail 버튼 */
+.view-detail{
+  width: 160px;
+  height: 30px;
+  padding: 5px 0;
+  color: rgb(253, 170, 140);
+  outline: 2px solid rgb(253, 170, 140);
+  background-color: transparent;
+  border-radius: 3px;
+  font-family: "KOFIHDrLEEJWTTF-L";
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+.view-detail:hover{
+  background-color: rgb(253, 170, 140);
+  color: #fff;
+}
+
+/* more버튼 */
+.view-more-btn {
+  position: relative;
+  width: 160px;
+  height: 30px;
+  padding: 5px 0;
+  color: rgb(105, 190, 142);
+  outline: 2px solid rgb(105, 190, 142);
+  background-color: transparent;
+  border-radius: 3px;
+  font-family: "KOFIHDrLEEJWTTF-L";
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+.view-more-btn:hover {
+  background-color: rgb(105, 190, 142);
+  color: #fff;
+}
+
+/************ 미디어쿼리구역 **************/
+/* 1000px 이하 미디어쿼리 시작 */
+@media screen and (max-width: 1000px) {
+  /* 전체 검색 박스 */
+  .searching-area {
+    min-height: 500px;
+  }
+  /* 타이틀 영역 */
+  .searching-area h2 {
+    text-indent: 1.5rem;
+    font-size: 2rem;
+  }
+} /* 1000px 이하 미디어쿼리 종료*/
+/* 750px 이하 미디어쿼리 시작 */
+@media screen and (max-width: 750px) {
+  /* 전체 검색 박스 */
+  .searching-area {
+    min-height: 350px;
+  }
+  /* 타이틀 영역 */
+  .searching-area h2 {
+    text-indent: 0.5rem;
+    font-size: 1.6rem;
+  }
+  /* 검색 상단부 */
+  .searching-table thead td {
+    font-size: 1rem;
+    line-height: 2;
+    padding: 15px 0;
+  }
+  /* 검색 공통 */
+  .searching-table td,
+  th {
+    font-size: 0.9rem;
+    padding: 10px 1px;
+  }
+  /* 타이틀 영역 */
+  .searching-area h2 {
+    padding-top: 20px;
+  }
+  /* 검색 속박스 */
+  .searching-box {
+    padding: 0 10px;
+  }
+  /* 2-2. 이미지 */
+  .searching-table img {
+    max-width: 70px;
+  }
+  /* 제품명 */
+  .searching-table td:nth-child(3) {
+    text-indent: 0.5rem;
+  }
+} /* 750px 이하 미디어쿼리 종료*/

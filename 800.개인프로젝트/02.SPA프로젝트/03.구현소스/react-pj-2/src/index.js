@@ -4,19 +4,18 @@ import './css/index.css';
 // css 덮어쓰지 않도록 최상단 불러오기
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { BrowserRouter, Routes, Route, HashRouter } from "react-router-dom";
+import { Routes, Route, HashRouter } from "react-router-dom";
 import { Layout } from "./components/layout/Layout";
 import { Main } from "./components/pages/Main";
 import { SubBoard } from './components/pages/SubBoard';
 import { Switch } from './components/pages/Switch';
 import { SubSwtich } from './components/pages/SubSwitch';
-import { Menu } from './components/pages/Menu';
 import { Member } from './components/pages/Member';
 import { Login } from './components/pages/Login';
 import { Wishlist } from './components/pages/Wishlist';
 import { CorpInfo } from './components/pages/CorpInfo';
 import { FindMember } from './components/pages/FindMember';
-import { TestPage } from './components/pages/Test';
+import { SearchPage } from './components/pages/SearchPage';
 
 export default function App() {
   return (
@@ -43,8 +42,8 @@ export default function App() {
           <Route path='wishlist' element={<Wishlist />} />
           {/* 회사정보 페이지 */}
           <Route path='contact' element={<CorpInfo/>} />
-          {/* 테스트 페이지 */}
-          <Route path='testpage' element={<TestPage/>} />
+          {/* 검색 페이지 */}
+          <Route path='search' element={<SearchPage />} />
         </Route>
       </Routes>
     </HashRouter>

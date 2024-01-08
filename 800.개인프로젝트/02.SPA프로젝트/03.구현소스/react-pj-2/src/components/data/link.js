@@ -1,13 +1,13 @@
 // GNB 페이지별 메뉴 데이터 link.js
 export const link = [
     {
-        txt:"KEYBOARD",
-        tit:"Keyboard List",
+        txt:"MAIN",
+        tit:"main",
         link:"/",
     },
     {
         txt:"SWITCH",
-        tit:"Switch List",
+        tit:"switch",
         link:"/switch",
     },
     {
@@ -33,6 +33,7 @@ export const link = [
     {
         txt:"SEARCH",
         tit:'search',
+        link:"/search"
     },
     {
         txt:"FIND",
@@ -41,17 +42,17 @@ export const link = [
     },
     {
         txt:"LOGOUT",
-        tit:'Keyboard List',
+        tit:'main',
         link:'/',
     },
     {
-        txt:"main",
-        tit:"Keyboard List",
+        txt:"MAIN",
+        tit:"main",
         link:"/",
     },
     {
-        txt:"switch",
-        tit:"Switch List",
+        txt:"SWITCH",
+        tit:"switch",
         link:"/switch",
     },
 ];
