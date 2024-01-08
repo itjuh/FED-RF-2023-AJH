@@ -34,7 +34,7 @@ export function Layout() {
   // 페이지 이동
   const goPage = useCallback((value,param)=>{
     let golink = link.find((v) => {
-      console.log(v.txt == value);
+      // console.log(v.txt == value);
       if (v.txt == value) return true;
     });
     console.log('gopage',golink['link'], param);
@@ -48,7 +48,7 @@ export function Layout() {
   const logOutFn = useCallback(()=>{
     sessionStorage.removeItem("loginMem");
     setLoginSts(null);
-    goPage('MAIN', {state:{val:"11"}});
+    // goPage('MAIN', {state:{val:"11"}});
   },[]);
   // 필터 업데이트 함수
   // const chgSel = (num) => setSelNum(num);
@@ -79,7 +79,7 @@ export function Layout() {
    **********************************/
   return (
     <LeoCon.Provider value={{ toggleVal, chgTog, sub, chgSub, goPage, setLoginSts, wishUpdate}}>
-      <TopArea loginSts={loginSts} logOutFn={logOutFn} goPage={goPage} wishCnt={wishCnt}/>
+      <TopArea loginSts={loginSts} logOutFn={logOutFn} goPage={goPage} wishCnt={wishCnt} setLoginSts={setLoginSts}/>
       <MainArea />
       <FooterArea />
     </LeoCon.Provider>

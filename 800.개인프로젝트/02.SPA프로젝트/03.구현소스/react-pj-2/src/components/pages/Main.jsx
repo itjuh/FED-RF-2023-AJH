@@ -20,9 +20,10 @@ import { useLocation } from "react-router-dom";
 window.jQuery = $;
 require("jquery-ui-dist/jquery-ui");
 require("jquery-ui-touch-punch/jquery.ui.touch-punch");
-
+let num = 0;
 export function Main() {
-  console.log('메인불러옴')
+  num++;
+  console.log('메인불러옴',num);
   // 컨텍스트
   const myCon = useContext(LeoCon);
   // 로케이션
@@ -55,7 +56,7 @@ export function Main() {
   // 데이터 변수 -> 리스트가 바뀌어도 상단 리랜더링 금지
   const dataIdx = useRef(prodList);
   // const [dataIdx, setDataIdx] = useState(idxData);
-  const filterReset = (val) => {
+  const filterReset = () => {
     // 전달 데이터 업데이트
     dataIdx.current = prodList;
     console.log('필터리셋 후 dataIdx',dataIdx.current);
@@ -67,23 +68,40 @@ export function Main() {
     let tg = $('input[type="checkbox"]');
     tg.prop("checked", true);
     // 강제 리랜더링
-    if(val){
-      console.log('필터변수 강제리랜더링');
-      setForce(Math.random());
-    }
+    setForce(Math.random());
   }; ///// filterReset ////
 
   console.log('파라:',myLoc.state);
   console.log(myLoc);
-  if(myLoc.state) {
-    filterReset(myLoc.state);
+  if(myLoc.state.val == '11') {
+    // filterReset(); // 전달 데이터 업데이트
+    dataIdx.current = prodList;
+    console.log('필터리셋 후 dataIdx',dataIdx.current);
+    // 옵션 초기화
+    arrayOpt.current = ["full", "tenkey less", "slim"];
+    colorOpt.current = ["co-wt", "co-bk", "co-gy", "co-bu", "co-ye", "co-rd"];
+    switchOpt.current = ["sw-bu", "sw-br", "sw-sl", "sw-lr", "sw-cl", "sw-sr", "sw-bk"];
+    // 체크박스 초기화
+    let tg = $('input[type="checkbox"]');
+    tg.prop("checked", true);
     // if(!sessionStorage.getItem("loginMem"))
     myLoc.state = null;
     console.log('파라미터 있을 때 dataIdx',dataIdx.current);
-  }else{
-    console.log('파라미터 없 때 dataIdx',dataIdx.current);
+  }else if(myLoc.state.val == '22'){
+    // filterReset(); // 전달 데이터 업데이트
+    dataIdx.current = prodList;
+    console.log('필터리셋 후 dataIdx',dataIdx.current);
+    // 옵션 초기화
+    arrayOpt.current = ["full", "tenkey less", "slim"];
+    colorOpt.current = ["co-wt", "co-bk", "co-gy", "co-bu", "co-ye", "co-rd"];
+    switchOpt.current = ["sw-bu", "sw-br", "sw-sl", "sw-lr", "sw-cl", "sw-sr", "sw-bk"];
+    // 체크박스 초기화
+    let tg = $('input[type="checkbox"]');
+    tg.prop("checked", true);
+    // if(!sessionStorage.getItem("loginMem"))
+    myLoc.state = null;
+    myCon.setLoginSts(null);
   }
-  
 
   // 선택 옵션에 대한 idx 배열 리턴함수
   const otherOptionList = (opt, arr) => {
@@ -232,7 +250,7 @@ export function Main() {
           <span>Choose an option</span>
         </div>
         {/* 필터 리셋 버튼 */}
-        <div className="reset-filter-btn" onClick={() => filterReset(1)}>
+        <div className="reset-filter-btn" onClick={() => filterReset()}>
           reset filter
         </div>
         {/* 2-1. 제품 정렬옵션 */}
@@ -266,7 +284,14 @@ export function Main() {
         </div>
         {/* 2-2. 제품 리스트 */}
         <div className="part-box col-16 row-10 prod-area prod-area-board">
-          <BoardList dataIdx={dataIdx.current} />
+          {
+            dataIdx.current !== undefined &&
+            <BoardList dataIdx={dataIdx.current} />
+          }
+          {
+            dataIdx.current === undefined &&
+            <BoardList dataIdx={prodList} />
+          }
           {/* <BoardList dataIdx={dataIdx} /> */}
         </div>
       </main>
