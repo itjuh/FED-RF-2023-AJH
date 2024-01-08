@@ -31,11 +31,6 @@ export function Layout() {
   const wishUpdate = useCallback(()=>{
     setWishCnt(JSON.parse(localStorage.getItem('wish')).length);
   },[]);
-  // 로그인 업데이트
-  const logOutFn = useCallback(()=>{
-    sessionStorage.removeItem("loginMem");
-    setLoginSts(null);
-  },[]);
   // 페이지 이동
   const goPage = useCallback((value,param)=>{
     let golink = link.find((v) => {
@@ -43,7 +38,17 @@ export function Layout() {
       if (v.txt == value) return true;
     });
     console.log('gopage',golink['link'], param);
-    // goNav(linkData.link,param);
+    if(golink['link']) goNav(golink['link'],param);
+    else{
+      alert('페이지 이동 에러, 메인으로 이동합니다.');
+      goNav('/',{state:{val:"11"}});
+    } 
+  },[]);
+  // 로그인 업데이트
+  const logOutFn = useCallback(()=>{
+    sessionStorage.removeItem("loginMem");
+    setLoginSts(null);
+    goPage('MAIN', {state:{val:"11"}});
   },[]);
   // 필터 업데이트 함수
   // const chgSel = (num) => setSelNum(num);
@@ -53,9 +58,9 @@ export function Layout() {
     setToggleVal(val);
     // 페이지 이동
     let golink = link.find((v) => {
-      console.log(v.txt == val);
       if (v.txt == val) return true;
     });
+    console.log('토글',golink['link']);
     goNav(golink.link,{state:{val:"11"}});
   }, []);
   // 서브페이지 변경함수

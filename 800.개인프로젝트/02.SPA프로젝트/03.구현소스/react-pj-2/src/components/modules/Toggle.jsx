@@ -1,5 +1,4 @@
 // 하단 토글 변환 컴포넌트
-import { useEffect, useRef } from "react";
 // 제이쿼리 + 제이쿼리 ui
 import $ from "jquery";
 import "jquery-ui-dist/jquery-ui";
@@ -8,63 +7,19 @@ import { LeoCon } from "../modules/LeopoldContext";
 
 export function Toggle() {
   const myCon = useContext(LeoCon);
-  // console.log(window.location.href.split('/')[1]);
-  let val = myCon.toggleVal == "switch" ? 0 : 1;
-  // 토글상태 변수
-  const board = useRef(val);
-  // 토글상태 변경함수(true/false)
-  const chgBoard = (num) => {
-    board.current = num;
-  };
 
   // 토글 변경 함수 : 위치를 분기하여 값을 적용한다.
-  const swToggle = (tg) => {
-    let tgTxt = $(tg).text();
-    if (tgTxt !== "") {
-      // 기존값에서 변경 됨
-      let num = board.current ? 0 : 1;
-      setPage(num);
-      chgBoard(board.current ? 0 : 1); // 토글 변경
+  const swToggle = (e) => {
+    // 토글이 아웃된 곳 클릭시 target과 currentTarget 동일함
+    if(e.target===e.currentTarget){
+      $('.toggle-btn-box').toggleClass('on');
     }
-    // 변경적용 함수 호출
-  };
-  // 변경적용 함수 (css/pagelink)
-  const setPage = (num) => {
-    // 토글값에 따른 위치이동
-    if (num) {
-      // 토글 키보드
-      // 토글박스 원 초기설정
-      $(".tg-cir").css({
-        left: "4px",
-      });
-      // 토글박스 글자 초기설정
-      $(".tg-btn")
-        .first()
-        .css({
-          color: "#000",
-        })
-        .siblings()
-        .css({
-          color: "rgb(128, 128, 128)",
-        });
-      myCon.chgTog("MAIN");
-    } else {
-      // 토글 스위치
-      // 토글박스 원 설정
-      $(".tg-cir").css({
-        left: "99px",
-      });
-      // 토글박스 글자 설정
-      $(".tg-btn")
-        .last()
-        .css({
-          color: "#000",
-        })
-        .siblings()
-        .css({
-          color: "rgb(128, 128, 128)",
-        });
+    // on으로 바뀐경우 switch로 이동
+    if($('.toggle-btn-box').hasClass('on')){
       myCon.chgTog("SWITCH");
+    }else{
+      // 아닌 경우 메인으로 이동 
+      myCon.chgTog("MAIN");
     }
   };
 
@@ -72,7 +27,7 @@ export function Toggle() {
       <aside
         className="toggle-btn-box"
         onClick={(e) => {
-          swToggle(e.target);
+          swToggle(e);
         }}
       >
         <div className="tg-cir"></div>

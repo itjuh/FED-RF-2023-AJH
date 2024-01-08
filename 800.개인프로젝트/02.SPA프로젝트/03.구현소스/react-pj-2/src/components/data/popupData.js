@@ -3,7 +3,7 @@ export const msgPopupData = {
   loginPass: {
     span: "😀Success",
     cont: "You are logged in. Go to the main page. Welcome ",
-    link: "main",
+    link: "MAIN",
   },
   loginFailNotSame: {
     span: "😢Failed - not same.",

@@ -9,6 +9,7 @@ import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { LeoCon } from "../modules/LeopoldContext";
 import { link } from "../data/link";
+import { initToggle } from "../func/init_toggle";
 
 export function Menu(props) {
   // props.chgFn(useRef 변경 함수)
@@ -21,6 +22,13 @@ export function Menu(props) {
   // 페이지 이동용
   const nav = useNavigate();
   const goNav = (num) => {
+    if(num === 0){// 토글 업데이트
+      initToggle();
+      myCon.chgTog("MAIN");
+    }else if(num === 1){
+      document.querySelector('.toggle-btn-box').classList.add('on');
+      myCon.chgTog("SWITCH");
+    }
     linkData = link[num];
     // 페이지 이동
     nav(linkData.link);
@@ -45,7 +53,7 @@ export function Menu(props) {
   ////// 리턴구역 ////////////////////
   return (
     <>
-      <div className="part-box row-12">
+      <div className="part-box row-12 row-s-13">
         {/* 2-1. 메뉴영역 */}
         <ul className="gnb-menu-box">
           {menuData.map((v, i) => (

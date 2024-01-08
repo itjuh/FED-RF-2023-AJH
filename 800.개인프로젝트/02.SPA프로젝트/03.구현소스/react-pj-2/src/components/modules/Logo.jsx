@@ -2,21 +2,17 @@
 import { useContext } from "react";
 import { LeoCon } from "./LeopoldContext";
 import { initToggle } from "../func/init_toggle";
-import { useNavigate } from "react-router-dom";
 
 export function Logo() {
   // 컨텍스트
   const myCon = useContext(LeoCon);
-  // 링크
-  const goNav = useNavigate();
 
   function goMain() {
     // 메인 이동 시 토글 초기화
     if (myCon.toggleVal !== "MAIN") {
-      myCon.chgTog("MAIN");
       initToggle();
     } 
-    // goNav('MAIN',{state:{val:"11"}});
+    myCon.chgTog("MAIN");
   } ////// 메인이동함수 //////////
   return (
     <>

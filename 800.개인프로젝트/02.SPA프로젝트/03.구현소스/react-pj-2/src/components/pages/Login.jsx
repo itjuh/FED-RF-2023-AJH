@@ -27,7 +27,7 @@ export function Login() {
       $(".message-box").fadeOut(30);
       // pass 페이지 이동
       if(msgPopupData[key].link){
-        myCon.goPage(msgPopupData[key].link, "");
+        myCon.goPage(msgPopupData[key].link, {state:{val:"11"}});
       }
     });
   }
@@ -77,13 +77,19 @@ export function Login() {
         if (v.uid === inId) {
           if (v.pwd === inPw) {
             sessionStorage.setItem("loginMem", JSON.stringify([v.uid]));
-            popup('loginPass',v.uid);
             myCon.setLoginSts(sessionStorage.getItem("loginMem"));
+            popup('loginPass',v.uid);
+            return;
+          }else{
+            popup('loginFailNotSame','');
+            return;
+          }
+        }else{
+          if(!sessionStorage.getItem('loginMem')){
+            popup('loginFailNotSame','');
             return;
           }
         }
-        popup('loginFailNotSame','');
-        return;
       });
     }else if (localStorage.getItem("member") === null || JSON.parse(localStorage.getItem("member")).length === 0) {
       popup('loginFailNoData','');
@@ -92,10 +98,7 @@ export function Login() {
     else if(!validCheckIdPW()) {
       popup('loginFailVaild','');
       return;
-    }else{
-      popup('loginFailNotSame','');
-      return;
-    } //////// if-else local exist //////////
+    }//////// if-else local exist //////////
   }; ///////// onSubmit 함수 //////////////
   return (
     <main className="main in-box row-12 row-s-13">

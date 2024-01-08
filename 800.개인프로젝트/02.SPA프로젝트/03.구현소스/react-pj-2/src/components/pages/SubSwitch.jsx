@@ -104,13 +104,13 @@ export function SubSwtich() {
   // 리턴구역 ///////////////////
   return (
     <>
-      <main className="main in-box row-12 detail-page-sw" onLoad={loadFn}>
+      <main className="main in-box row-12 detail-page-sw row-s-13" onLoad={loadFn}>
         {/* 네비게이션 구역 */}
         { selData &&
           <MakeProgress data={selData["img"]}/>
          }
         {/* 제품 설명 구역 */}
-        <div className="part-box col-16 row-11 prod-area-sw">
+        <div className="part-box col-16 row-11 row-s-12 prod-area-sw">
           {/* 제품이미지 */}
           {selData ? makeImage(selData["img"]) : <h2>세부이미지가 없습니다.</h2>}
           {/* 버튼들 */}

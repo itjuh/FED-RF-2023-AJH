@@ -12,9 +12,9 @@ export function SearchPage(){
     if(loc.state) keyword = loc.state.keyword;
     console.log(keyword);
     return <>
-    <main className="main in-box row-12">
+    <main className="main in-box row-12 row-s-13">
       {/* 검색 박스 */}
-      <div className="part-box col-16 row-12 ">
+      <div className="part-box col-16 row-12 row-s-13">
         <div className="searching-area">
           {/* 1. 상단부 */}
           {/* 1-1. 상단 타이틀 */}

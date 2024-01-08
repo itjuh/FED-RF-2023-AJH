@@ -140,56 +140,24 @@ export function SubBoard() {
         // 네비게이션 세팅
         setNav();
       }
-
       // 휠 이벤트
       moveImgInfo($(".detail-page"));
     });
   }; ///////////// loadFn 함수 //////////////
-  // useLayoutEffect구역
-  // useLayoutEffect(() => {
-  //   // axios 라이브러리를 이용한 데이터 조회하기! //
-  //   /**
-  //    * 설치 : npm i axios
-  //    * axios는 데이터를 프라미스로 처리하여 원하는 결과를 보장하는
-  //    * 간편한 데이터 처리 라이브러리다
-  //    * 파일가져오기 메서드 get()
-  //    * 다음 실행 메서드 then()
-  //    */
 
-  //   axios
-  //     .get(selData) // file loading
-  //     .then((res) => {
-  //       // file auto parsing
-  //       console.log(res);
-  //       /**주의: data속성에 실제 데이터가 담김 : res.data해야 fetch()와 데이터가 동일 */
-  //       const imgWd = [];
-  //       let all = 0;
-  //       $(".info-box img").each((i, v) => (all += v.height));
-  //       $(".info-box img").each((i, v) => {
-  //         imgWd[i] = Math.floor((v.height / all) * 100);
-  //       });
-  //       // 네비게이션 길이 적용
-  //       $(".nav-area li").each((i, v) => $(v).css({ width: imgWd[i] + "%" }));
-  //     }) // then //
-  //     .catch((err) => {
-  //       console.log(err);
-  //     }); // error ////
-  //   /////////////// axios end ///////////
-  // });
   // 리턴구역 ///////////////////
   return (
     <>
-      <main className="main in-box row-12 detail-page" onLoad={loadFn}>
+      <main className="main in-box row-12 detail-page row-s-13" onLoad={loadFn}>
         {/* 네비게이션 구역 */}
         {selData && <MakeProgress data={selData["img"]} />}
         {/* 제품 설명 구역 */}
-        <div className="part-box col-16 row-11 prod-area">
+        <div className="part-box col-16 row-11 row-s-12 prod-area">
           {/* 제품이미지 */}
           {selData ? makeImage(selData["img"]) : <h2>세부이미지가 없습니다.</h2>}
           {/* 버튼들 */}
           <section className="prod_pick flex-box">
             <div className="add-wish wish-sub">add to wishlist ↗</div>
-            <div className="add-wish wish-sub buy-btn">Show switch Infomation ＞</div>
           </section>
         </div>
       </main>

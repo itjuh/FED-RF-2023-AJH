@@ -30,7 +30,7 @@
 }
 /* 타이틀 */
 .nav-tit {
-  font-size: .7rem;
+  font-size: 0.7rem;
   font-family: KOFIHDrLEEJWTTF-L;
 }
 /* 컨텐츠 */
@@ -71,14 +71,14 @@
   height: 100%;
   flex-wrap: nowrap;
   align-items: flex-start;
-  transition: .4s linear;
+  transition: 0.4s linear;
 }
 /* 이미지 */
 .info-box img {
   position: relative;
   width: 100%;
   object-fit: fill;
-  transition: .6s linear;
+  transition: 0.6s linear;
 }
 /* 위시리스트 버튼 */
 .wish-sub {
@@ -107,8 +107,23 @@
   background-color: #00000021;
   padding: 10px;
 }
-.prod-info-text span{
+.prod-info-text span {
   padding-left: 10px;
   font-size: 1.2rem;
   font-family: KOFIHDrLEEJWTTF-L;
+  text-shadow: 0 0 3px #fff;
 }
+
+/************** 최대사이즈 750px 이하 시작 **************/
+@media screen and (max-width: 750px) {
+  /* 타이틀 */
+  .nav-area>ul>li:nth-child(2n) h2{
+    position:absolute;
+    bottom: -15%;
+  }
+  /* 제품정보 겉박스 */
+.prod-info {
+  top: 5%;
+}
+}
+/************** 최대사이즈 750px 이하 끝**************/

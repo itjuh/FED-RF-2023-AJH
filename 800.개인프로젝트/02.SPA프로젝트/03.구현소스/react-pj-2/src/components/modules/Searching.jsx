@@ -46,7 +46,6 @@ export function Searching({ keyword }) {
   console.log("boardSearch 결과\n", boardSearch, "\nswitchSearch 결과\n", switchSearch);
   // 검색결과 수량처리
   const settingCount = (target) => {
-    console.log("검색결과 처리함수 호출");
     if (target === 0) {
       let num = prodCount + 3;
       if (num >= boardSearch.length) num = boardSearch.length;
@@ -54,8 +53,6 @@ export function Searching({ keyword }) {
     } else if(target === 1) {
       let num = switchCount + 3;
       if (num >= switchSearch.length) num = switchSearch.length;
-      console.log('스위치쪽 num',num);
-      console.log('switchCount',switchCount,switchSearch.length);
       setSwitchCount(num);
     }
   };
@@ -71,7 +68,7 @@ export function Searching({ keyword }) {
   return (
     <>
       <section className="searching-box">
-        <div className="searching-in-box scbar row-8">
+        <div className="searching-in-box scbar row-s-11">
           {/* 검색창 상단부 */}
           <table className="searching-table product-result">
             <caption>
@@ -122,7 +119,7 @@ export function Searching({ keyword }) {
                         <td>
                           <button className="view-detail"
                           onClick={()=>goNav('/subboard',v.src)}
-                          >View detail ↗</button>
+                          >View<small> detail </small>↗</button>
                         </td>
                       </tr>
                     ) // map
@@ -206,7 +203,9 @@ export function Searching({ keyword }) {
                         {/* 2-4. 페이지 이동 */}
                         <td>
                           <button className="view-detail"
-                          onClick={()=>goNav('/subswitch',v.swname)}>View detail ↗</button>
+                          onClick={()=>goNav('/subswitch',v.swname)}>
+                            View<small> detail </small>↗
+                          </button>
                         </td>
                       </tr>
                     ) // map

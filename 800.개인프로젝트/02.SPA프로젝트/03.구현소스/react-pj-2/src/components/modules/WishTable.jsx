@@ -170,7 +170,7 @@ export const WishTable = memo(({ wishdata, flag }) => {
   }, []);
   return (
     <section className="wish-box">
-      <div className="wish-in-box scbar row-8">
+      <div className="wish-in-box scbar row-8 row-s-10">
         <table className="wish-table">
           <thead>
             {/* 장바구니 상단부 */}

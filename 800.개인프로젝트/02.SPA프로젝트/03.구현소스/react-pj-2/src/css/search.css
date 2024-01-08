@@ -73,10 +73,10 @@ th {
   text-align: center;
 }
 /* 검색 하단 밑줄 */
-.searching-table tr:nth-child(1){
+.searching-table tr:nth-child(1) {
   border-bottom: 2px solid #aaa;
 }
-.searching-table tr+tr{
+.searching-table tr + tr {
   border-bottom: 1px solid #ccc;
 }
 /* 검색 상단부 */
@@ -102,7 +102,7 @@ td:nth-child(1) {
   margin: 3px 0;
 }
 /* 스위치 결과 이미지 */
-.switch-result img{
+.switch-result img {
   max-width: 100px;
 }
 /* 2-2. 제품정보 */
@@ -124,13 +124,13 @@ td:nth-child(3) {
   width: 20%;
 }
 /* 검색창 하단 더보기 버튼 */
-.searching-table tfoot{
-    width: 100%;
+.searching-table tfoot {
+  width: 100%;
   text-align: center;
 }
 /* view detail 버튼 */
-.view-detail{
-  width: 160px;
+.view-detail {
+  max-width: 160px;
   height: 30px;
   padding: 5px 0;
   color: rgb(253, 170, 140);
@@ -141,7 +141,7 @@ td:nth-child(3) {
   font-size: 1.2rem;
   cursor: pointer;
 }
-.view-detail:hover{
+.view-detail:hover {
   background-color: rgb(253, 170, 140);
   color: #fff;
 }
@@ -213,8 +213,25 @@ td:nth-child(3) {
   .searching-table img {
     max-width: 70px;
   }
-  /* 제품명 */
+  /* 제품가격 */
   .searching-table td:nth-child(3) {
-    text-indent: 0.5rem;
+    font-size: 0.7rem;
   }
 } /* 750px 이하 미디어쿼리 종료*/
+/************** 최대사이즈 500px 이하 시작 **************/
+@media screen and (max-width: 500px) {
+  .swiper-android .swiper-slide,
+  .swiper-ios .swiper-slide,
+  .swiper-wrapper {
+    transform: none;
+  }
+  /* view detail 버튼 */
+  .view-detail {
+    font-size: 1.0rem;
+  }
+  /* 버튼 글자 */
+  .searching-table small {
+    display: none;
+  }
+}
+/************** 최대사이즈 500px 이하 끝**************/

@@ -230,7 +230,6 @@
   height: max(26px, 2.5vh);
   pointer-events: none;
   user-select: none;
-  color: rgb(128, 128, 128);
 }
 /* 개별토글 */
 .tg-keyboard {
@@ -241,6 +240,7 @@
 .tg-switch {
   text-align: center;
   padding-right: 3%;
+  color: rgb(128, 128, 128);
 }
 /* 배경 원형 */
 .tg-cir {
@@ -252,6 +252,17 @@
   cursor: pointer;
   box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.15);
   transition: left .3s ease-in-out;
+  left: 4px;
+}
+/* 토글버튼 on 스위치 토글 선택시  */
+.toggle-btn-box.on .tg-keyboard{
+  color: rgb(128, 128, 128);
+}
+.toggle-btn-box.on .tg-cir{
+  left: 99px;
+}
+.toggle-btn-box.on .tg-switch{
+  color: #000;
 }
 
 /************ 미디어쿼리구역 **************/
@@ -269,7 +280,13 @@
   }
   /* 위시리스트 버튼 */
   .add-wish {
-    bottom: 0px;
+    bottom:auto;
+    top: 89px;
+  }
+  /* 다른 위시버튼 */
+  .wish-sub.add-wish{
+    top: auto;
+    bottom:0;
   }
 } /* 750px 이하 미디어쿼리 종료*/
 /* 500px 이하 미디어쿼리 시작 */
@@ -279,5 +296,14 @@
   }
   .gnb-area a + a {
     display: none;
+  }
+  /* 모바일 메뉴창 아래로 */
+  .basic-footer.flex-box {
+    justify-content: center;
+  }
+  /* 토글창 안보이기 */
+  .toggle-btn-box {
+    opacity: 0;
+    z-index: -1;
   }
 } /* 500px 이하 미디어쿼리 종료*/
