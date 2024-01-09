@@ -50,5 +50,3 @@ function resetAutoI() {
   clearInterval(autoI);
 }
 export { insertText, resetAutoI };
-
-// 텍스트 매칭 키 찾기

@@ -132,9 +132,7 @@
   height: calc(56px - 7.25px * 2);
   top: 7.25px;
   left: 7.25px;
-  /* left: calc((56px - 56px * 0.735) / 2); */
   border-radius: 1px;
-
   /* z축 밀기 */
   transform: translateZ(35.6px);
 }

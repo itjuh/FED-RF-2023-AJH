@@ -94,7 +94,7 @@ th {
 
 /* 2-1. 이미지 */
 .searching-table th:nth-child(1),
-td:nth-child(1) {
+.searching-table td:nth-child(1) {
   width: 20%;
 }
 .searching-table img {
@@ -107,7 +107,7 @@ td:nth-child(1) {
 }
 /* 2-2. 제품정보 */
 .searching-table th:nth-child(2),
-td:nth-child(2) {
+.searching-table td:nth-child(2) {
   width: 50%;
 }
 .searching-table td:nth-child(2) {
@@ -116,7 +116,7 @@ td:nth-child(2) {
 }
 /* 2-3. 가격 */
 .searching-table th:nth-child(3),
-td:nth-child(3) {
+.searching-table td:nth-child(3) {
   width: 10%;
 }
 /* 2-4. 페이지 이동 */
@@ -197,7 +197,7 @@ td:nth-child(3) {
   }
   /* 검색 공통 */
   .searching-table td,
-  th {
+  .searching-table th {
     font-size: 0.9rem;
     padding: 10px 1px;
   }

@@ -161,10 +161,10 @@ export function moveImgInfo(tg) {
     });
   // 휠 이벤트 주기
   document.querySelector(".prod-info").addEventListener("wheel", (event) => {
-    /////// 광스크롤 막기 //////////////////
     let delta = event.wheelDelta > 0 ? 1 : -1;
     setX(infoBox.position().left)
-      .then((res) => {
+    .then((res) => {
+        /////// 광스크롤 막기 //////////////////
         if (psts === 1) return true; //돌아가!
         psts = 1; //잠금!
         setTimeout(function () {
