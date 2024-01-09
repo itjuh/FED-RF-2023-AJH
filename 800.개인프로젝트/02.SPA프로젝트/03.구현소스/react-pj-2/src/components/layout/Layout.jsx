@@ -18,9 +18,9 @@ export function Layout() {
    * 서브페이지용 : sub
    * 로그인용 : loginSts
    * 장바구니 수량 : wishCnt
-   */
-  const [toggleVal, setToggleVal] = useState("MAIN");
-  const [sub, setSub] = useState(null);
+  */
+ const [toggleVal, setToggleVal] = useState("MAIN");
+ const [sub, setSub] = useState(null);
   const [loginSts, setLoginSts] = useState(sessionStorage.getItem("loginMem"));
   let datacnt = JSON.parse(localStorage.getItem('wish'));
   if(datacnt == null) datacnt = 0;

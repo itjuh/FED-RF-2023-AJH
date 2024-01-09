@@ -35,8 +35,8 @@ export function Main() {
   let prodList = JSON.parse(JSON.stringify(idxData));
   // localStorage.setItem('pList',JSON.stringify(prodList));
 
+  // 강제 리랜더링
   const [force, setForce] = useState(null);
-
   // 대분류/세부분류
   const [optSel, setOptSel] = useState("array");
   // 세부분류 옵션 -> 변경 시 데이터변수 변경
@@ -45,8 +45,7 @@ export function Main() {
   const switchOpt = useRef(["sw-bu", "sw-br", "sw-sl", "sw-lr", "sw-cl", "sw-sr", "sw-bk"]);
   // 옵션 변경 상태
   const optionChangeState = useRef(false);
-
-  // 데이터 변수 -> 리스트가 바뀌어도 상단 리랜더링 금지
+  // 데이터 변수
   const dataIdx = useRef(prodList);
   // const [dataIdx, setDataIdx] = useState(idxData);
   const filterReset = () => {
