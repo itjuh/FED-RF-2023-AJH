@@ -13,7 +13,7 @@ export function moveImgInfo(tg) {
 
   let psts = 0; /// 광스크롤막기(0-허용,1-막기)
   // 위치변수
-  let x = $(tg)?0:$(tg).find(".info-box").position().left;
+  let x = $(tg) ? 0 : $(tg).find(".info-box").position().left;
 
   let y = 0;
   const MOVE = 200;
@@ -87,7 +87,7 @@ export function moveImgInfo(tg) {
         //x고정 y이동
         x = -target[0];
         verticalScroll(target, dir);
-      } 
+      }
     } else {
       //윗방향 스크롤
       if (target[2].position().top != 0) {
@@ -111,25 +111,31 @@ export function moveImgInfo(tg) {
 
   // 기능 : 가로세로 스크롤을 조합하여 박스를 이동시킨다.
   // 파라미터 (이미지 전체박스)
-  const infoScroll = (delta,x)=>{
+  const infoScroll = (delta, x) => {
     // 휠 이벤트 시 네비설정
-    for(let i=0; i < imgWidSize.length; i++){
-      if(x <= -imgWidSize[i]){
-        addOnNav(i)
+    for (let i = 0; i < imgWidSize.length; i++) {
+      if (x <= -imgWidSize[i]) {
+        addOnNav(i);
       }
     }
-    if (x >= 0 && delta > 0) x = 0;
+
+    if (delta > 0 && x >= 0) x = 0;
     else if (x >= -pos[0][0]) x = horizonScroll(pos[0], delta);
     else if (x >= -pos[1][0]) x = horizonScroll(pos[1], delta);
     else if (x >= 0 && delta <= 0) x = 0;
-    if (x <= -pos[1][0] && delta < 0) x = -pos[1][0];
+    else if (delta < 0 && x <= -pos[1][0]) x = -pos[1][0];
+    else x = x;
     infoBox.css("left", x + "px");
   }; //////// infoScroll 함수 ///////////////
 
   // 네비게이션 바 클릭이벤트 주기
   let nav = document.querySelectorAll(".nav-area>ul>li");
   // console.log(nav);
-  nav.forEach((ele, idx) => ele.addEventListener("click", () => {clickNav(idx)}));
+  nav.forEach((ele, idx) =>
+    ele.addEventListener("click", () => {
+      clickNav(idx);
+    })
+  );
   // 네비게이션 클릭 동작 함수
   function clickNav(idx) {
     // 누른대상 순번 - idx
@@ -144,22 +150,31 @@ export function moveImgInfo(tg) {
     infoImg.css("top", y + "px");
   } /////////// clickNav ////////////
 
+  //x값 세팅 함수(promise)
+  const setX = (val) =>
+    new Promise((resolve, reject) => {
+      if (val !== null) {
+        resolve(val);
+      } else {
+        reject(val);
+      }
+    });
   // 휠 이벤트 주기
   document.querySelector(".prod-info").addEventListener("wheel", (event) => {
-    if (psts === 1) return true; //돌아가!
-    psts = 1; //잠금!
-    setTimeout(function () {
-      psts = 0; //해제
-    }, 100); //0.02초후 해제///////////
-    let delta = event.wheelDelta;
-    x = infoBox.position().left;
-    console.log(event,x,delta);
-    // console.log(x,delta);
-    delta = delta > 0 ? 1 : -1;
-    // console.log("휠중", delta); 
     /////// 광스크롤 막기 //////////////////
-    //// 마우스 휠 방향에 따라 가로스크롤 이동 증감! /////
-    // console.log(x,delta);
-    infoScroll(delta,x);
+    let delta = event.wheelDelta > 0 ? 1 : -1;
+    setX(infoBox.position().left)
+      .then((res) => {
+        if (psts === 1) return true; //돌아가!
+        psts = 1; //잠금!
+        setTimeout(function () {
+          psts = 0; //해제
+        }, 50); //0.05초후 해제///////////
+        x = res;
+        infoScroll(delta, x);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
   });
 }

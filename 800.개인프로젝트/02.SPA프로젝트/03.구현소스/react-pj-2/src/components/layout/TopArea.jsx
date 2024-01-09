@@ -9,7 +9,7 @@ import $ from "jquery";
 import "jquery-ui-dist/jquery-ui";
 import { CartCon, GlassCon, UserCon } from "../modules/Icons";
 import { LeoCon } from "../modules/LeopoldContext";
-export const TopArea = memo(({ loginSts, logOutFn, goPage, wishCnt }) => {
+export const TopArea = memo(({ loginSts, goPage, wishCnt }) => {
     const goNav = (txt, e) => {
         e.preventDefault();
         // 페이지 이동
@@ -59,7 +59,6 @@ export const TopArea = memo(({ loginSts, logOutFn, goPage, wishCnt }) => {
         goPage("SEARCH", { state: { keyword: txt } });
     };
     const myCon = useContext(LeoCon);
-    console.log("상단부로그인상태", loginSts);
     return (
         <>
             {/* 1. 상단영역 */}
@@ -122,7 +121,6 @@ export const TopArea = memo(({ loginSts, logOutFn, goPage, wishCnt }) => {
                                     className="gnb-icon"
                                     onClick={(e) => {
                                         e.preventDefault();
-                                        console.log("로그아웃 누름");
                                         sessionStorage.removeItem("loginMem");
                                         myCon.goPage('MAIN', {state:{val:"22"}});
                                     }}

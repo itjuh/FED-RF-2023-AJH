@@ -25,7 +25,6 @@ export function Layout() {
   let datacnt = JSON.parse(localStorage.getItem('wish'));
   if(datacnt == null) datacnt = 0;
   else datacnt = JSON.parse(localStorage.getItem('wish')).length;
-  // const [wishCnt, setWishCnt] = useState(JSON.parse(localStorage.getItem('wish')).length);
   const [wishCnt, setWishCnt] = useState(datacnt);
   // 장바구니 수량 업데이트
   const wishUpdate = useCallback(()=>{
@@ -44,14 +43,6 @@ export function Layout() {
       goNav('/',{state:{val:"11"}});
     } 
   },[]);
-  // 로그인 업데이트
-  const logOutFn = useCallback(()=>{
-    sessionStorage.removeItem("loginMem");
-    setLoginSts(null);
-    // goPage('MAIN', {state:{val:"11"}});
-  },[]);
-  // 필터 업데이트 함수
-  // const chgSel = (num) => setSelNum(num);
   // 토글 업데이트 함수
   const chgTog = useCallback((val) => {
     // 토글 후크 업데이트
@@ -65,7 +56,6 @@ export function Layout() {
   }, []);
   // 서브페이지 변경함수
   const chgSub = (txt) => setSub(txt);
-  // console.log(toggleVal, "토글상태 변수.. 새로고침하면 왜 바뀔까...", sts, "하단메뉴용 이것도 바뀌나...");
 
   /********************************** 
    [컨텍스트 API 공유값 설정]
@@ -79,7 +69,7 @@ export function Layout() {
    **********************************/
   return (
     <LeoCon.Provider value={{ toggleVal, chgTog, sub, chgSub, goPage, setLoginSts, wishUpdate}}>
-      <TopArea loginSts={loginSts} logOutFn={logOutFn} goPage={goPage} wishCnt={wishCnt} setLoginSts={setLoginSts}/>
+      <TopArea loginSts={loginSts} goPage={goPage} wishCnt={wishCnt} setLoginSts={setLoginSts}/>
       <MainArea />
       <FooterArea />
     </LeoCon.Provider>

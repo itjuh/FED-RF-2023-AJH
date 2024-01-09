@@ -68,7 +68,7 @@ export function Searching({ keyword }) {
   return (
     <>
       <section className="searching-box">
-        <div className="searching-in-box scbar row-s-11">
+        <div className="searching-in-box scbar row-10 row-s-11">
           {/* 검색창 상단부 */}
           <table className="searching-table product-result">
             <caption>

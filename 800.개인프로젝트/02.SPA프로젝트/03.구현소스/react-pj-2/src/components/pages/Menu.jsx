@@ -12,9 +12,6 @@ import { link } from "../data/link";
 import { initToggle } from "../func/init_toggle";
 
 export function Menu(props) {
-  // props.chgFn(useRef 변경 함수)
-  // props.sts 메뉴상태
-
   // 링크 데이터
   let linkData = link;
   // 타이틀 변경용

@@ -3,7 +3,6 @@
 import { LeoCon } from "../modules/LeopoldContext";
 import { useContext } from "react";
 
-
 // 메인페이지 css
 import "../../css/main.css";
 import { BoardList } from "../modules/BoardList";
@@ -20,10 +19,8 @@ import { useLocation } from "react-router-dom";
 window.jQuery = $;
 require("jquery-ui-dist/jquery-ui");
 require("jquery-ui-touch-punch/jquery.ui.touch-punch");
-let num = 0;
+
 export function Main() {
-  num++;
-  console.log('메인불러옴',num);
   // 컨텍스트
   const myCon = useContext(LeoCon);
   // 로케이션
@@ -36,14 +33,8 @@ export function Main() {
   });
 
   let prodList = JSON.parse(JSON.stringify(idxData));
-  
   // localStorage.setItem('pList',JSON.stringify(prodList));
 
-
-
-  // 대분류 변경에 따른 리스트 변수
-  // console.log(prodList, "prodList", idxData, "idxData");
-  // console.log("Main불러옴");
   const [force, setForce] = useState(null);
 
   // 대분류/세부분류
@@ -52,6 +43,8 @@ export function Main() {
   const arrayOpt = useRef(["full", "tenkey less", "slim"]);
   const colorOpt = useRef(["co-wt", "co-bk", "co-gy", "co-bu", "co-ye", "co-rd"]);
   const switchOpt = useRef(["sw-bu", "sw-br", "sw-sl", "sw-lr", "sw-cl", "sw-sr", "sw-bk"]);
+  // 옵션 변경 상태
+  const optionChangeState = useRef(false);
 
   // 데이터 변수 -> 리스트가 바뀌어도 상단 리랜더링 금지
   const dataIdx = useRef(prodList);
@@ -59,46 +52,32 @@ export function Main() {
   const filterReset = () => {
     // 전달 데이터 업데이트
     dataIdx.current = prodList;
-    console.log('필터리셋 후 dataIdx',dataIdx.current);
+    console.log("필터리셋 후 dataIdx", dataIdx.current);
     // 옵션 초기화
     arrayOpt.current = ["full", "tenkey less", "slim"];
     colorOpt.current = ["co-wt", "co-bk", "co-gy", "co-bu", "co-ye", "co-rd"];
     switchOpt.current = ["sw-bu", "sw-br", "sw-sl", "sw-lr", "sw-cl", "sw-sr", "sw-bk"];
+    // 옵션변경상태 초기화
+    optionChangeState.current = false;
     // 체크박스 초기화
     let tg = $('input[type="checkbox"]');
     tg.prop("checked", true);
-    // 강제 리랜더링
-    setForce(Math.random());
   }; ///// filterReset ////
 
-  console.log('파라:',myLoc.state);
-  console.log(myLoc);
-  if(myLoc.state.val == '11') {
-    // filterReset(); // 전달 데이터 업데이트
-    dataIdx.current = prodList;
-    console.log('필터리셋 후 dataIdx',dataIdx.current);
-    // 옵션 초기화
-    arrayOpt.current = ["full", "tenkey less", "slim"];
-    colorOpt.current = ["co-wt", "co-bk", "co-gy", "co-bu", "co-ye", "co-rd"];
-    switchOpt.current = ["sw-bu", "sw-br", "sw-sl", "sw-lr", "sw-cl", "sw-sr", "sw-bk"];
-    // 체크박스 초기화
-    let tg = $('input[type="checkbox"]');
-    tg.prop("checked", true);
-    // if(!sessionStorage.getItem("loginMem"))
+  // 리랜더링 조건지정
+  // 1. myLoc.state : optionChange or MenuChange -> Re-rendering need Case of MenuChange
+  if (!myLoc.state) {
+    if (!optionChangeState.current) {
+      dataIdx.current = prodList;
+    }
+    // 2. myLoc.state.val == '11' : main->main -> layout component re-render
+  } else if (myLoc.state.val == "11") {
+    filterReset();
     myLoc.state = null;
-    console.log('파라미터 있을 때 dataIdx',dataIdx.current);
-  }else if(myLoc.state.val == '22'){
-    // filterReset(); // 전달 데이터 업데이트
-    dataIdx.current = prodList;
-    console.log('필터리셋 후 dataIdx',dataIdx.current);
-    // 옵션 초기화
-    arrayOpt.current = ["full", "tenkey less", "slim"];
-    colorOpt.current = ["co-wt", "co-bk", "co-gy", "co-bu", "co-ye", "co-rd"];
-    switchOpt.current = ["sw-bu", "sw-br", "sw-sl", "sw-lr", "sw-cl", "sw-sr", "sw-bk"];
-    // 체크박스 초기화
-    let tg = $('input[type="checkbox"]');
-    tg.prop("checked", true);
-    // if(!sessionStorage.getItem("loginMem"))
+    // 3. myLoc.state.val == '22' : logout click -> layout component re-render due to changing setLoginSts.
+  } else if (myLoc.state.val == "22") {
+    //로그아웃 클릭 시
+    filterReset();
     myLoc.state = null;
     myCon.setLoginSts(null);
   }
@@ -210,6 +189,8 @@ export function Main() {
     sortFn(listSum);
     // 전달 데이터 업데이트
     dataIdx.current = listSum;
+    // 옵션변경상태 업데이트
+    optionChangeState.current = true;
     // setDataIdx(listSum);
     // 강제 리랜더링
     setForce(Math.random());
@@ -250,7 +231,14 @@ export function Main() {
           <span>Choose an option</span>
         </div>
         {/* 필터 리셋 버튼 */}
-        <div className="reset-filter-btn" onClick={() => filterReset()}>
+        <div
+          className="reset-filter-btn"
+          onClick={() => {
+            filterReset();
+            // 강제 리랜더링
+            setForce(Math.random());
+          }}
+        >
           reset filter
         </div>
         {/* 2-1. 제품 정렬옵션 */}
@@ -284,14 +272,8 @@ export function Main() {
         </div>
         {/* 2-2. 제품 리스트 */}
         <div className="part-box col-16 row-10 prod-area prod-area-board">
-          {
-            dataIdx.current !== undefined &&
-            <BoardList dataIdx={dataIdx.current} />
-          }
-          {
-            dataIdx.current === undefined &&
-            <BoardList dataIdx={prodList} />
-          }
+          {dataIdx.current !== undefined && <BoardList dataIdx={dataIdx.current} />}
+          {dataIdx.current === undefined && <BoardList dataIdx={prodList} />}
           {/* <BoardList dataIdx={dataIdx} /> */}
         </div>
       </main>
