@@ -10,12 +10,37 @@ import { pCon } from "./PliotContext";
 
 
 export function NewProdList({cat, chgItemFn}) {
-  // cat 카테고리 분류명
-  // chgItemFn - 선택상품정보변경 부모함수
+  // cat 카테고리 분류명 chgItemFn - 선택상품정보변경 부모함수
+
+  // 이전 카테고리 저장용 참조변수
+  const afterCategory = useRef(null);
   // 선택 데이터 : 해당 카테고리 상품 데이터만 가져온다
   let selData = newProdData[cat];
   // 컨텍스트 API사용하기
   const myCon = useContext(pCon);
+  
+  // 신상품 리스트 이동함수 변수
+  // 리랜더링 시 기존값을 유지하도록 useRef를 사용한다.
+  // 위치값 변수(left값)
+  const lpos = useRef(0);
+  // 재귀호출 상태값 ( 1- 호출, 0 멈춤)
+  const callSts = useRef(1);
+  // 재귀호출 변수 (setTimeOut 삭제용 변수)
+  // const autoTime = useRef(null);
+
+  // 확인
+  console.log('신상cat:',cat,'\n신상afterCategory:',afterCategory.current);
+  // 기존 cat 이전 afterCategory가 다르면 새로운 cat으로 변경되었으므로 초기화를 실행함
+  if(cat!=afterCategory.current){
+    // 신상 흘러가기 변수 초기화
+    lpos.current = 0;
+    // 신상 멈춤 가기 상태 변수 초기화
+    callSts.current = 1;
+    // setTimeout으로 재귀호출을 변수에 담아 지우기
+    // clearTimeout(autoTime.current);
+  }
+  // cat을 afterCategory에 담아서 다음에 비교하게 한다.
+  afterCategory.current = cat;
 
   const makeList = () => {
     // 코드 담을 배열
@@ -60,13 +85,6 @@ export function NewProdList({cat, chgItemFn}) {
     $(e.currentTarget).find('.ibox').remove();
   }
 
-  // 신상품 리스트 이동함수 변수
-  // 리랜더링 시 기존값을 유지하도록 useRef를 사용한다.
-  // 위치값 변수(left값)
-  let lpos = useRef(0);
-  // 재귀호출 상태값 ( 1- 호출, 0 멈춤)
-  let callSts = useRef(1);
-
   // 신상품 리스트 이동함수
   const flowList = (ele) => {
     // console.log('호출');
@@ -81,7 +99,9 @@ export function NewProdList({cat, chgItemFn}) {
     }
     // 적용
     ele.css({ left: lpos.current + "px" });
+    // setTimeout 할당
     // 재귀호출
+    // if (callSts.current) autoTime.current = setTimeout(() => flowList(ele), 40);
     if (callSts.current) setTimeout(() => flowList(ele), 40);
   }; //////// flowList //////////
 

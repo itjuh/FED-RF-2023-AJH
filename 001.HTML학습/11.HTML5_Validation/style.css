@@ -1,10 +1,10 @@
-<style>
-body {                                ------------------------ ¨ç
+
+body {                 
   margin: 30px;
   font-family:Arial, Helvetica, sans-serif;
 }
 
-form {                                 ------------------------ ¨è
+form {                  
   margin: 20px;
   padding: 50px 50px;
   width: 80%;  
@@ -14,7 +14,7 @@ form {                                 ------------------------ ¨è
   -moz-box-shadow: 5px 5px 5px #888888;
   -webkit-box-shadow: 5px 5px 5px #888888;
 } 
-form h1{                          ------------------------ ¨é
+form h1{           
   margin: 0;
   padding: 0;
   text-align: center;
@@ -25,7 +25,7 @@ form h1{                          ------------------------ ¨é
   padding: 0;
 }
 
-fieldset {                              ------------------------ ¨ê
+fieldset {               
   padding: 0 10px 10px;
   margin: 30px;
   border: 1px solid black;
@@ -44,14 +44,14 @@ label {
   margin: .15em .5em 0 0;
 }
 
-input, textarea {                      ------------------------ ¨ë
+input, textarea {       
   display: block;
   margin: 0;
   padding: .4em;
   width: 70%;
   font-size: 0.9em;
 } 
-input[type="submit"] {                 ------------------------ ¨ì
+input[type="submit"] {  
   margin: 40px auto 0 auto;
   width: 10em;
   padding: 10px;
@@ -68,5 +68,3 @@ input[type="submit"]:hover {
   background: gray;
   color: white;
 }
-
-</style>
