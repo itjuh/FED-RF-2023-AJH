@@ -1,122 +1,155 @@
 @charset "utf-8";
 /* 웹 폰트 CDN(Content Delevery Network) */
-@import url("https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Gowun+Batang:wght@400;700&family=Hi+Melody&family=Nanum+Myeongjo&family=Noto+Sans+KR&family=Song+Myung&display=swap");
-/* 
-    웹폰트 font-familiy 이름
-    font-family: 'Black Han Sans', sans-serif;
-    font-family: 'Gowun Batang', serif;
-    font-family: 'Hi Melody', cursive;
-    font-family: 'Nanum Myeongjo', serif;
-    font-family: 'Noto Sans KR', sans-serif;
-    font-family: 'Song Myung', serif;
-*/
+@font-face {
+  font-family: "Pretendard";
+  src: url("https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-ExtraLight.woff") format("woff");
+  font-weight: 200;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Pretendard";
+  src: url("https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Light.woff") format("woff");
+  font-weight: 300;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Pretendard";
+  src: url("https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff") format("woff");
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Pretendard";
+  src: url("https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-SemiBold.woff") format("woff");
+  font-weight: 600;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Pretendard";
+  src: url("https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-ExtraBold.woff") format("woff");
+  font-weight: 800;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Pretendard";
+  src: url("https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Black.woff") format("woff");
+  font-weight: 900;
+  font-style: normal;
+}
 /* 아카이브 메인 CSS - main.css */
 
 /* 초기화 */
-html, body, h1, h2, h3, h4, h5, h6, ul, ol, figure{
+html,
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+ul,
+ol,
+dl,
+dt,
+dd,
+p,
+figure,
+figcaption,
+button,
+mark {
     margin: 0;
-    padding: 0;;
+    padding: 0;
+}
+/* a요소 리셋 */
+a {
+    color: #222;
+    text-decoration: none;
+}
+/* ul,ol 순번,불릿 */
+ul,ol,mark{
+    list-style: none;
+}
+/* button요소 리셋 */
+button {
+    border: none;
+}
+img {
+    /* 이미지 링크시 서버에서 볼때 파란색 자동보더 없애기 */
+    border: none;
+    /* 박스 이미지 하단공백 제거 */
+    vertical-align: bottom;
+}
+/* em, i요소 글자 이탤릭 제거 */
+em,i {
+    font-style: normal;
+}
+/* input focus제거 */
+input {
+    outline: none;
+}
+/* 테이블요소 간격 */
+table {
+    border-collapse : collapse;
+}
+/* 글자 드래그 금지 */
+html>*{
+    user-select: none;
 }
 
-/* 전체 배경 이미지 */
-body {
-    background: url(../imgs/worksbg.jpg) no-repeat fixed center/cover;
-    /* 전체 글자체 */
-    font-family: 'Hi Melody', serif;
-    /* 전체 글씨 크기 */
-    font-size: 17px;
+
+.in-box{
+  max-width: 1280px;
+  margin: 0 auto;
+}
+body * {
+  /* 전체 글자체 */
+  font-family: "Pretendard", serif;
+}
+/* 상단부 */
+header {
+  /* 글씨 크기 */
+  font-size: 20px;
+  font-weight: 800;
+  background-color: rgb(74, 24, 121);
+  color: #fff;
+  padding: 10px;
+}
+header ul{
+  display: flex;
+  justify-content: space-around;
+  gap: min(1vw, 20px);
+  align-items: center;
+}
+/* 메뉴들 */
+header li:nth-child(2){
+  margin-left: auto;
+}
+header a{
+  color: #fff;
 }
 
+/* 모바일용 버튼 */
+header li:last-child{
+  display: none;
+}
+.moblie-btn{
+  display: flex;
+  flex-direction: column;
+  gap:5px;
+}
+.moblie-btn>div{
+  width: 20px;
+  height: 2px;
+  background-color: #fff;
+}
 /* 전체 박스 */
 .wrap {
-    background-color: hsla(0, 0%, 100%, 0.500);
-    height: 400px;
-    margin: 15% auto;
-    padding: 40px;
+  background-color: hsla(0, 0%, 100%, 0.5);
+  height: 400px;
+  margin: 15% auto;
+  padding: 40px;
 }
-
-/* 메인타이틀 */
-.tit {
-    text-align: center;
-    color: #6c1594;
-    font-weight: bold;
-    text-shadow: 1px 1px 2px #ffffff;
-}
-/* 라디오 파트 */
-.radio-part{
-  display: flex;
-  height: 300px;
-  width: 700px;
-}
-/* 라디오버튼 */
-[type="radio"] {
-  appearance: none;
-}
-label{
-  position: relative;
-  width: 300px;
-  height: 200px;
-  font-size: 20px;
-  border: 1px solid #000;
-}
-/* 버튼 라벨 */
-
-input[type="radio"]:checked + label .details::after{
-  transform : scale(1.5);
-  content: '\f00c';
-  position: absolute;
-  font-family: "Font Awesome 5 Free";
-  font-weight: 900;
-  width: 50px;
-  height: 50px;
-  right: 0;
-  top: 0;
-}
-input[type="radio"]:checked + label {
-  font-size: 30px;
-}
-
-/* 맛선택 박스 */
-.details{
-  background-color: red;
-    position: relative;
-    /* select박스 부모 */
-  }
-  /* 맛선택 이미지 겉박스 */
-  .details .img-box {
-    width: 100px;
-    height: 100px;
-    margin: 0 auto;
-    border-radius: 50%;
-    box-shadow: 0px 0px 6px #00000080;
-  }
-  /* 이미지 */
-  .details .img-box img {
-    width: 100%;
-    aspect-ratio: 1/1;
-    object-fit: cover;
-    opacity: 0.85;
-  }
-  /* 이미지 마우스오버 시 */
-  .details .img-box:hover img {
-    opacity: 1;
-  }
-  /* 선택사항 선택 가상요소이미지 */
-  .details.select::after{
-    content: '\f00c';
-    position: absolute;
-    font-family: "Font Awesome 5 Free";
-    font-weight: 900;
-    width: 50px;
-    height: 50px;
-    right: 0;
-    top: 0;
-  }
+main li a{
   /* 글자 */
-  .details .txt-box {
-    text-align: center;
-  }
-  .details .txt-box {
-    font-size: var(--fz-sign);
-  }
-  
+  font-weight: 600;
+}
