@@ -69,12 +69,6 @@ function App() {
     }
   }, []); ////////// useEffect ////////////////
 
-  // 처음 로딩 시 스크롤 상단이동
-  useLayoutEffect(() => {
-    // initPos();
-    window.scrollTo(0, 0);
-  }, []); ///////// useLayoutEffect ///////////
-
   // glist 페이지 filterMode 변경용 변수
   const [glistMode, setGlistMode] = useState('F');
   // F - Filter List P - Paging List M - MoreList

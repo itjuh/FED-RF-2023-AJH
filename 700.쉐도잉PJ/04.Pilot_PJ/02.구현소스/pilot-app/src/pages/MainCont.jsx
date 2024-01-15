@@ -1,5 +1,5 @@
 // 메인 페이지 컨텐츠 컴포넌트 jsx - MainCont.jsx
-import { useEffect } from "react";
+import { useEffect, useLayoutEffect } from "react";
 import { Banner } from "../modules/Banner";
 
 // 페이지별 자동 스크롤 js 가져오기
@@ -47,6 +47,12 @@ export function MainCont() {
       $(document).off('keydown');
     })
   }, []); //////// useEffect ///////////////
+  
+  // 처음 로딩 시 스크롤 상단이동
+  useLayoutEffect(() => {
+    // initPos();
+    window.scrollTo(0, 0);
+  }, []); ///////// useLayoutEffect ///////////
 
   return (
     <>
@@ -56,15 +62,15 @@ export function MainCont() {
       </section>
       {/* 2. 남성패션 페이지 */}
       <section className="page">
-        <FashionIntro cat="men" />
+        <FashionIntro cat="men" subcat='etc'/>
       </section>
       {/* 3. 여성패션 페이지 */}
       <section className="page">
-        <FashionIntro cat="women" />
+        <FashionIntro cat="women" subcat='etc'/>
       </section>
       {/* 4. 스타일패션 페이지 */}
       <section className="page">
-        <FashionIntro cat="style" />
+        <FashionIntro cat="style" subcat='etc'/>
       </section>
       {/* 메인에만 나오는 사이드 인디케이터 */}
       <nav className="indic">

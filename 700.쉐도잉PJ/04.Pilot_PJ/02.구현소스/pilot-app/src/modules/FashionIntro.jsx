@@ -9,14 +9,25 @@ import "../css/fashion_intro.css";
 import { useContext } from "react";
 import { pCon } from "./PliotContext";
 
+
+
 export function FashionIntro(props) {
   // props.cat - 카테고리 분류명
+  // props.subcat - 서브페이지 분류명
+
   // 컨텍스트 사용
   const myCon = useContext(pCon);
   // pCon에 Provider value 속성에 공개한 변수/함수를 사용함!
 
   // 선택데이터
-  const selData = fsData[props.cat];
+  let selData = fsData[props.cat];
+  // 만약 서브페이지 데이터일 경우 다시 선택함
+  if (props.subcat !== "etc") {
+    // props.subcat 값은 배열로 전달 됨 : [카테고리,순번]
+    // selData값을 덮어 씀 : props.cat값이 'sub'임
+    selData = fsData[props.cat][props.subcat[0]][props.subcat[1]];
+    // selData = fsData['sub']['men'][0];
+  }
 
   // 새로적용할 스타일객체
   const newStyle = {};
@@ -30,17 +41,23 @@ export function FashionIntro(props) {
         style={newStyle}
         //   style={props.cat=='women'?{flexDirection:'row-reverse'}:{}}
       >
-        <li className="imgc">
-          {/* 스타일일 때 이미지 경로는 배열 */}
-          <img
-            src={props.cat == "style" ? selData.isrc[0] : selData.isrc}
-            alt={props.cat == "style" ? selData.ialt[0] : selData.ialt}
-          />
-        </li>
+        {/* 메인에서 호출하는 subcat이 etc인 경우만 출력 */}
+        {props.subcat === "etc" && (
+          <li className="imgc">
+            <img
+              src={props.cat == "style" ? selData.isrc[0] : selData.isrc}
+              alt={props.cat == "style" ? selData.ialt[0] : selData.ialt}
+              />
+          </li>
+        )}
+        {/* 서브데이터용 페이지 구성 */}
+        {/* 스타일이면 타이틀2개, 아니면 1개 */}
+        {
+          props.subcat === 'etc' &&
         <li className="txtc">
           {props.cat != "style" && (
             <h2>
-              <a href="#" onClick={()=>myCon.chgPgName(props.cat)}>
+              <a href="#" onClick={() => myCon.chgPgName(props.cat)}>
                 {selData.tit[0]} <br />
                 {selData.tit[1]}
               </a>
@@ -49,13 +66,13 @@ export function FashionIntro(props) {
           {props.cat == "style" && (
             <>
               <h2 className="tm">
-                <a href="#" onClick={()=>myCon.chgPgName(props.cat)}>
+                <a href="#" onClick={() => myCon.chgPgName(props.cat)}>
                   {selData.tit[0][0]} <br />
                   {selData.tit[0][1]}
                 </a>
               </h2>
               <h2 className="tw">
-                <a href="#" onClick={()=>myCon.chgPgName(props.cat)}>
+                <a href="#" onClick={() => myCon.chgPgName(props.cat)}>
                   {selData.tit[1][0]} <br />
                   {selData.tit[1][1]}
                 </a>
@@ -63,12 +80,69 @@ export function FashionIntro(props) {
             </>
           )}
         </li>
+        }
         {/* 스타일 패션에서만 나오는 이미지 */}
         {props.cat == "style" && (
           <li className="imgc">
             <img src={selData.isrc[1]} alt={selData.ialt[1]} />
           </li>
         )}
+        {/* 서브페이지용 구성 */}
+        { // sub인고 첫번째 sub 분류 데이터 사용!
+        props.cat == "sub" && props.subcat[1] === 0 && (
+          <>
+            {/* 글자박스 */}
+            <li className="txtc">
+              <h2 className="sc-ani">
+                <a href="#">
+                  {selData.tit[0]} <br />
+                  {selData.tit[1]}
+                </a>
+              </h2>
+            </li>
+            {/* 이미지박스 */}
+            <li className="imgc sc-ani">
+              <img
+                src={selData.isrc}
+                alt={selData.ialt}
+              />
+            </li>
+          </>
+        )}
+        {// sub인고 두번째 sub 분류 데이터 사용!
+          props.cat == "sub" && props.subcat[1] === 1 &&
+          <>
+          {/* 이미지박스 */}
+          <li className="imgc">
+              <img
+                src={selData.isrc[0]}
+                alt={selData.ialt[0]}
+              />
+            </li>
+            {/* 글자박스 */}
+            <li className="txtc">
+              <h2 className="tm sc-ani">
+                <a href="#">
+                  {selData.tit[0][0]} <br />
+                  {selData.tit[0][1]}
+                </a>
+              </h2>
+              <h2 className="tw sc-ani">
+                <a href="#">
+                  {selData.tit[1][0]} <br />
+                  {selData.tit[1][1]}
+                </a>
+              </h2>
+            </li>
+            {/* 이미지박스 */}
+            <li className="imgc">
+              <img
+                src={selData.isrc[1]}
+                alt={selData.ialt[1]}
+              />
+            </li>
+          </>
+        }
       </ul>
     </div>
   );
