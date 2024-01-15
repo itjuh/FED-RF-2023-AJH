@@ -29,10 +29,15 @@ export function FindMember() {
 
   // 컨텍스트
   const myCon = useContext(LeoCon);
+  // 로그인 상태에서 접근 불허용
+  if(myCon.loginSts) {
+    window.history.pushState(null, null, '/');
+    myCon.goPage('MAIN', {state:{val:"11"}});
+  }
 
-  const popup = (key,txt) => {
+  const popup = (key, txt) => {
     $(".message-tit span").text(msgPopupData[key].span);
-    if(txt!=='') $(".message-cont").text(msgPopupData[key].cont+txt);
+    if (txt !== "") $(".message-cont").text(msgPopupData[key].cont + txt);
     else $(".message-cont").text(msgPopupData[key].cont);
     $(".message-box").fadeIn(30);
     let btns = $(".message-box button");
@@ -108,7 +113,7 @@ export function FindMember() {
     // console.log(num,'가지 유효성결과:',vaildOk);
     return vaildOk;
   };
-  
+
   const onSubmit = (e, txt) => {
     e.preventDefault();
     let sameData = undefined;

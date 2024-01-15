@@ -66,9 +66,10 @@ export function Layout() {
    5. goPage - 페이지 이동 useNavigate
    6. setLoginSts - 로그인 설정용(로그인페이지에서 세팅)
    7. wishUpdate - 장바구니 설정용(장바구니페이지에서 세팅)
+   8. loginSts - 로그인 상태(로그인,회원가입,찾기 페이지 접근금지)
    **********************************/
   return (
-    <LeoCon.Provider value={{ toggleVal, chgTog, sub, chgSub, goPage, setLoginSts, wishUpdate}}>
+    <LeoCon.Provider value={{ toggleVal, chgTog, sub, chgSub, goPage, setLoginSts, wishUpdate, loginSts}}>
       <TopArea loginSts={loginSts} goPage={goPage} wishCnt={wishCnt} setLoginSts={setLoginSts}/>
       <MainArea />
       <FooterArea />

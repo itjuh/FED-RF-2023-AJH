@@ -16,6 +16,11 @@ export function Login() {
 
   // 컨텍스트
   const myCon = useContext(LeoCon);
+  // 로그인 상태에서 접근 불허용
+  if(myCon.loginSts) {
+    window.history.pushState(null, null, '/');
+    myCon.goPage('MAIN', {state:{val:"11"}});
+  }
 
   const popup = (key,txt)=>{
     $(".message-tit span").text(msgPopupData[key].span);
@@ -35,10 +40,10 @@ export function Login() {
   // 유효성 검사
   const validCheckIdPW = ()=>{
     let vaildOk = true;
-    
+
     // 유효성 정규식
     const idValid = /^[a-z]{1}[a-z0-9]{4,19}$/g;
-    const pWValid = /^.*(?=^.{5,15}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$/;
+    const pWValid = /^(?=.*\d)(?=.*[!@#$%^&+=])?[A-Za-z0-9!@#$%^&+=]*$/;
     
     // 값 가져오기
     let inId = $(".log-id").val();

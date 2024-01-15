@@ -7,31 +7,36 @@ import { useContext } from "react";
 import { LeoCon } from "../modules/LeopoldContext";
 
 export function Member() {
-  const initData = () => {
-    if (localStorage.getItem("member") === null) {
-      let sample = [{
-        idx: 0,
-        uid: "",
-        pwd: "sample11!!",
-        unm: "sampledata",
-        eml: "jh.2144.9679@gmail.com",
-      }];
-      localStorage.setItem("member",JSON.stringify(sample));
-    }
-  }; ////////// initData() ////////////////
   // 컨텍스트
   const myCon = useContext(LeoCon);
+  // 로그인 상태에서 접근 불허용
+  if (myCon.loginSts) {
+    window.history.pushState(null, null, "/");
+    myCon.goPage("MAIN", { state: { val: "11" } });
+  }
   // 링크 데이터
   let linkData = link;
-   // 페이지 이동용
+  // 페이지 이동용
   const nav = useNavigate();
   const goNav = () => {
     linkData = link[2];
-     nav(linkData.link);
-     // 타이틀 변경
-     myCon.chgTit(linkData.tit);
+    nav(linkData.link);
   };
-  
+  const initData = () => {
+    if (localStorage.getItem("member") === null) {
+      let sample = [
+        {
+          idx: 0,
+          uid: "sample",
+          pwd: "1111",
+          unm: "sampledata",
+          eml: "jh.2144.9679@gmail.com",
+        },
+      ];
+      localStorage.setItem("member", JSON.stringify(sample));
+    }
+  }; ////////// initData() ////////////////
+
   // [1] 상태관리변수 //////////////////////////
   // 1. 아이디 변수
   const [userId, setUserId] = useState("");

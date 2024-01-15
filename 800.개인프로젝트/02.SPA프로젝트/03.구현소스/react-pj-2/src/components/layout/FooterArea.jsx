@@ -1,4 +1,4 @@
-// 하단영역 컴포넌트
+// 하단영역 컴포넌트hook
 
 import { memo, useRef } from "react";
 
