@@ -151,7 +151,7 @@ https://ko.legacy.reactjs.org/docs/hooks-reference.html
 중복계산을 피하여 데이터 속도를 높이는 기술. 보통 애플리케이션의 최적화를 위해 사용
 
 1. useMemo -----------------------------------
-- useMemo재렌더링 간 계산 결과를 캐시할 수 있는 React Hoo
+- useMemo재렌더링 간 계산 결과를 캐시할 수 있는 React Hook
 useMemo를 사용하면 함수 컴포넌트 내부에서 발생하는 
 연산을 최적화할 수 있음. 이전 값을 기억해두었다고 
 조건에 따라 재활용하여 성능을 최적화 하는 용도로 사용

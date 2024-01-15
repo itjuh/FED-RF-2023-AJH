@@ -1,0 +1,42 @@
+[ 오늘의 일정 : 1월 15일(월) ]
+------------------------------
+1. Pilot PJ : 
+   - 남은 구현부분 확인!
+2. 플러터 학습 : 설계하기
+3. 면접 시나리오 준비
+4. 모의 면접
+   (PM 2:30 ~ )
+
+프론트엔드 개발자가 구독하는 메일링 서비스
+
+1️⃣ JavaScript Weekly
+https://javascriptweekly.com/
+매주 금요일, 자바스크립트 관련 소식을 받아볼 수 있어요.
+
+2️⃣ Frontend Focus
+https://frontendfoc.us/
+매주 목요일, 프론트엔드 관련 소식을 받아볼 수 있어요. 최신 프레임워크, 라이브러리에 대한 정보를 얻을 수 있어요.
+
+3️⃣ React Status
+https://react.statuscode.com/
+매주 목요일, React와 ReactNative 관련 소식을 받아볼 수 있어요. React 개발자라면 한 번쯤 알아두면 좋을 정보를 얻을 수 있어요.
+
+4️⃣ Korean FE article
+https://kofearticle.substack.com/about
+매주 해외 아티클을 한국어로 번역해서 소개해요. 외국 커뮤니티에서 인기 있었던 글을 한국어로 번역해주는 경우가 많아서 트렌트를 파악하기 좋아요.
+
+5️⃣ GeekNews Weekly
+https://news.hada.io/weekly
+매주 월요일, 일주일간의 GeekNews 중 엄선한 뉴스를 소개해요. 제목만 요약만 보고도 IT 업계와 기술의 흐름을 놓치지 않도록 도와줘요.
+
+6️⃣ 일일일
+https://oneoneone.kr/
+매일 원하는 주제의 컨텐츠를 소개해요. 저는 개발 주제를 구독하고 있어요. 국내 기술 블로그나 커뮤니티에서 인기 있었던 글을 확인할 수 있어요.
+
+7️⃣ 언섹시 비즈니스
+https://maily.so/unsexybusinesskr
+화려하지 않은 비즈니스들을 소개해요. 사이드 프로젝트 아이디어를 얻기에 좋아요.
+
+8️⃣ 어피티 머니레터
+https://uppity.co.kr/
+경제 뉴스, 재테크 팁을 소개해요. 개발자에도 필요한 최소한의 금융 지식을 얻기 위해 구독하고 있어요.
