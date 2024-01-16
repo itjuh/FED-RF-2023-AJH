@@ -11,10 +11,12 @@ import "jquery-ui-dist/jquery-ui";
 
 // 페이지 공통 CSS
 import "./css/common.css";
+// 미디어쿼리 CSS (max-width:800px)
+import "./css/media.css";
 import { useEffect } from "react";
 // 컨텍스트 API
 import { pCon } from "./modules/PliotContext";
-import { useLayoutEffect, useRef } from "react";
+import {  useRef } from "react";
 
 // 최상위 Root 컴포넌트 ////////////
 function App() {
@@ -26,13 +28,13 @@ function App() {
   // 카트리스트 컴포넌트 변경체크 변수(리랜더링 시 상태 변경 없음)
   /** flag true 새로추가 false 내부변경 */
   const flag = useRef(true);
-  let stsVal = 0;
+  let stsVal = false;
   let transVal = null;
   if (localStorage.getItem("cart")) {
     transVal = JSON.parse(localStorage.getItem("cart"));
-    if (transVal.length !== 0) stsVal = 1;
+    if (transVal.length !== 0) stsVal = true;
   }
-  // 초기 카트 사용여부 로컬스토리지 cart가 있으면 1 없으면 0
+  // 초기 카트 사용여부 로컬스토리지 cart가 있으면 ture 없으면 false
   const [cartSts, setCartSts] = useState(stsVal);
   // 변환값 변수
   let [transData, setTransData] = useState(transVal);

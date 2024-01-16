@@ -30,7 +30,7 @@ export function Menu(props) {
     // 페이지 이동
     nav(linkData.link);
     // 메뉴닫기
-    props.chgFn(0);
+    props.chgFn(false);
   };
 
   const keyinput = (e) => {
@@ -65,7 +65,7 @@ export function Menu(props) {
             </li>
           ))}
         </ul>
-        <div className="close-btn" onClick={() => props.chgFn(0)}>
+        <div className="close-btn" onClick={() => props.chgFn(false)}>
           ×
         </div>
       </div>

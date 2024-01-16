@@ -7,7 +7,8 @@ export function Banner() {
   const BAN_CNT = 6
   // 리스트 생성 함수
   const makeList = (gubun) => {
-    // gubun : 1-배너/ 0-블릿
+    // gubun : true-배너/ false-블릿
+    // 0/1로 false/true를 출력하면 리액트에서 하단에 출력함. 따라서 true/false로 변경하여 코딩하면 해결됨
     // for문을 돌려서 태그를 직접 생성 할 때 배열에 담아서 map사용
     let hcode = [];
     for(let i=0; i<BAN_CNT; i++){
@@ -25,10 +26,10 @@ export function Banner() {
     <>
       <ul className="slide">
         {/* 배열로 태그를 받아서 map처리함, jsx문법은 태그를 string으로 저장하지 않으므로 바로 출력할 수 없음 */}
-        {makeList(1).map(v=>v)}
+        {makeList(true).map(v=>v)}
       </ul>
       <ol className="bindic">
-        {makeList(0).map(v=>v)}
+        {makeList(false).map(v=>v)}
       </ol>
       <div className="cover"></div>
     </>

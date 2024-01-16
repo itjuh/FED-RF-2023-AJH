@@ -22,17 +22,21 @@ export function MainCont() {
     // 리액트 함수에서 js함수를 호출하는 형태로 해야
     // 해제 메서드인 removeEventListener가 유효함!!
 
-    // 새로고침 위치 초기화
-    initPos();
-    // 자동스크롤 호출
-    window.addEventListener('wheel',wheelFn);
-    // 메뉴 + 인디케이터 이벤트 기능설정 함수호출 //////
-    evtFn();
-    // 이미지 초기세팅 함수 호출
-    initSet();
-    // 페이지 번호 초기화 함수 호출
-    zeroPno();
-    // autoScroll();
+    // 모바일 아닐 때 적용 - 가로 800px이상 호출
+    if($(window).width()>800) {
+      // 스크롤 바 없애기
+      $('html, body').css({overflow:'hidden'});
+      // 새로고침 위치 초기화
+      initPos();
+      // 자동스크롤 호출
+      window.addEventListener('wheel',wheelFn);
+      // 메뉴 + 인디케이터 이벤트 기능설정 함수호출 //////
+      evtFn();
+      // 이미지 초기세팅 함수 호출
+      initSet();
+      // 페이지 번호 초기화 함수 호출
+      zeroPno();
+    }
     // 드래그 배너 호출
     dragBanner();
     // 컴포넌트 소멸자 : 이 컴포넌트가 삭제 될 때 호출

@@ -57,48 +57,50 @@ figure,
 figcaption,
 button,
 mark {
-    margin: 0;
-    padding: 0;
+  margin: 0;
+  padding: 0;
 }
 /* a요소 리셋 */
 a {
-    color: #222;
-    text-decoration: none;
+  color: #222;
+  text-decoration: none;
 }
 /* ul,ol 순번,불릿 */
-ul,ol,mark{
-    list-style: none;
+ul,
+ol,
+mark {
+  list-style: none;
 }
 /* button요소 리셋 */
 button {
-    border: none;
+  border: none;
 }
 img {
-    /* 이미지 링크시 서버에서 볼때 파란색 자동보더 없애기 */
-    border: none;
-    /* 박스 이미지 하단공백 제거 */
-    vertical-align: bottom;
+  /* 이미지 링크시 서버에서 볼때 파란색 자동보더 없애기 */
+  border: none;
+  /* 박스 이미지 하단공백 제거 */
+  vertical-align: bottom;
 }
 /* em, i요소 글자 이탤릭 제거 */
-em,i {
-    font-style: normal;
+em,
+i {
+  font-style: normal;
 }
 /* input focus제거 */
 input {
-    outline: none;
+  outline: none;
 }
 /* 테이블요소 간격 */
 table {
-    border-collapse : collapse;
+  border-collapse: collapse;
 }
 /* 글자 드래그 금지 */
-html>*{
-    user-select: none;
+html > * {
+  user-select: none;
 }
 
-
-.in-box{
-  max-width: 1280px;
+.in-box {
+  max-width: 1024px;
   margin: 0 auto;
 }
 body * {
@@ -110,46 +112,126 @@ header {
   /* 글씨 크기 */
   font-size: 20px;
   font-weight: 800;
-  background-color: rgb(74, 24, 121);
   color: #fff;
-  padding: 10px;
+  padding: 20px;
+  background: rgb(74, 24, 121) url("../imgs/top_img.jpeg") no-repeat top center/100% 200%;
 }
-header ul{
+/* 상단 이미지 */
+.header {
+  height: 180px;
+}
+header ul {
   display: flex;
   justify-content: space-around;
   gap: min(1vw, 20px);
-  align-items: center;
+  align-items: flex-end;
+  height: 100%;
 }
 /* 메뉴들 */
-header li:nth-child(2){
+header li:nth-child(2) {
   margin-left: auto;
 }
-header a{
+header a {
   color: #fff;
 }
 
 /* 모바일용 버튼 */
-header li:last-child{
+header li:last-child {
   display: none;
 }
-.moblie-btn{
+.moblie-btn {
+  position: relative;
   display: flex;
   flex-direction: column;
-  gap:5px;
 }
-.moblie-btn>div{
+.moblie-btn > div {
+  position: absolute;
   width: 20px;
   height: 2px;
   background-color: #fff;
+  transition: 0.5s ease-in-out;
 }
-/* 전체 박스 */
-.wrap {
-  background-color: hsla(0, 0%, 100%, 0.5);
-  height: 400px;
-  margin: 15% auto;
-  padding: 40px;
+.moblie-btn div:nth-child(1) {
+  transform: translateY(-7px);
 }
-main li a{
+.moblie-btn div:nth-child(3) {
+  transform: translateY(7px);
+}
+/* 버튼 클릭 시 */
+.moblie-btn.on div:nth-child(2) {
+  transform: translateX(10px);
+  width: 0;
+}
+.moblie-btn.on div:nth-child(1) {
+  transform: rotate(45deg);
+}
+.moblie-btn.on div:nth-child(3) {
+  transform: rotate(-45deg);
+}
+
+/* 메인영역 */
+.main {
+  padding: max(20px, 2vw);
+}
+main li a {
   /* 글자 */
   font-weight: 600;
+}
+/* 한줄소개 */
+.title h1 {
+  display: block;
+  font-weight: 600;
+  font-size: 2rem;
+  white-space: nowrap;
+  color: #222;
+  margin-bottom: 20px;
+}
+/* 서브그룹 정보 */
+.info-me{
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2%;
+}
+/* 프로필 이미지 */
+.img-box {
+  flex-shrink: 0;
+  flex-grow: 0;
+  flex-basis: 200px;
+  aspect-ratio: 1/1;
+  border-radius: 50%;
+  background-color: rgb(153, 80, 153);
+  margin-left: 20px;
+}
+/* 서브그룹 정보 공통*/
+.group-info {
+  flex-shrink: 0;
+  flex-grow: 0;
+  flex-basis: 45%;
+  height: 100%;
+  padding: 2%;
+}
+/* 서브그룹 개별 */
+.about{
+  flex-basis: 80%;
+}
+/* 서브그룹 타이틀 */
+.group-title h2 {
+  font-weight: 600;
+  font-size: 1.6rem;
+  white-space: nowrap;
+  color: #222;
+}
+.group-info ul {
+  padding: 0 10px;
+  position: relative;
+}
+.group-info ul:before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 10%;
+  width: 2px;
+  height: 80%;
+  background-color: #ccc;
 }
