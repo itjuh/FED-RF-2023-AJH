@@ -1,5 +1,5 @@
 const infoData = {
-    'About me' : ['한줄소개 여기에 쓸 것',],
+    'About me' : ['유연한 개발자 안주현입니다.',],
     'An JuHyun' : ['서울시 중랑구','Tel. 010.2144.9679','Email. jh.2144.9679@gmail.com','Github. https://github.com/itjuh',],
     'Skills' : ['html,css','javascript,jquery','React','Flutter'],
     'Education' : ['2020.11 ~ 2021.04','2023.07 ~ 2024.01 교육이수',],
