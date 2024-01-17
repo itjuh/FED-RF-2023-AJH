@@ -168,7 +168,7 @@ input#stxt {
 /* 내용보기 */
 .dtblview {
   font-family: "Ubuntu Condensed", sans-serif;
-  font-size: 30px;
+  font-size: 24px;
   border-collapse: collapse;
   width: 750px;
   margin: 20px auto;
@@ -198,13 +198,10 @@ input#stxt {
 .dtblview td input,
 .dtblview td textarea {
   font-family: "Ubuntu Condensed", sans-serif;
-  font-size: 1.3rem;
+  font-size: 1.1rem;
   padding: 4px;
   border: 1px solid #888;
   border-radius: 5px;
-}
-.dtblview td input {
-  transform: translateY(-10%);
 }
 /* 내용보기 read-only */
 .dtblview td input:read-only,
