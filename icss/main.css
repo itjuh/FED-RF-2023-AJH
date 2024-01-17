@@ -133,7 +133,8 @@ header {
   color: #fff;
   padding: 20px;
   box-sizing: border-box;
-  background: rgb(74, 24, 121) url("../imgs/top_img.jpeg") no-repeat top center/100% 200%;
+  /* background: rgb(74, 24, 121) url("../imgs/top_img.jpeg") no-repeat top center/100% 200%; */
+  background: linear-gradient(to bottom right, #B721FF, cornflowerblue);
 
   z-index: 999;
 }
@@ -213,7 +214,7 @@ nav ol{
 
 /* 메인영역 */
 .main {
-  padding: 0 max(20px, 2vw);
+  padding: 0 max(2rem, 2vw);
 }
 .page{
   padding-top: 90px;
@@ -237,14 +238,14 @@ main li a {
   font-size: 2rem;
   white-space: nowrap;
   color: #222;
-  margin-bottom: 20px;
+  margin-bottom: 2rem;
 }
 /* 서브그룹 정보 */
 .info-me{
   width: 100%;
   display: flex;
   flex-wrap: wrap;
-  gap: 2%;
+  /* gap: 2%; */
 }
 /* 프로필 이미지 */
 .img-box {
@@ -254,7 +255,8 @@ main li a {
   aspect-ratio: 1/1;
   border-radius: 50%;
   background-color: rgb(153, 80, 153);
-  margin-left: 20px;
+  margin-left: 2rem;
+  margin-right: 4rem;
 }
 /* 서브그룹 정보 공통*/
 .group-info {
@@ -264,6 +266,7 @@ main li a {
   height: 100%;
   padding: 2%;
 }
+
 /* 서브그룹 개별 */
 .about{
   flex-basis: 80%;
@@ -275,16 +278,44 @@ main li a {
   white-space: nowrap;
   color: #222;
 }
+/* 서브그룹 정보 ul */
 .group-info ul {
-  padding: 0 10px;
+  padding: 0 1rem;
   position: relative;
+}
+/* 서브그룹 정보 ul */
+.group-info li {
+  padding: .3rem;
+}
+
+/* 서브그룹 정보 li : 서브타이틀 */
+.group-info li b {
+  font-size: 1.1rem;
+  color: #333;
 }
 .group-info ul:before {
   content: "";
   position: absolute;
   left: 0;
-  top: 10%;
+  top: 5%;
   width: 2px;
-  height: 80%;
+  height: 90%;
   background-color: #ccc;
+}
+/* 서브그룹 정보 하위 설명 */
+.group-info ol li {
+  text-indent: 1rem;
+}
+
+@media screen and (max-width:800px){
+  html,body{
+    font-size: 15px;
+  }
+  .group-info {
+    flex-basis: 100%;
+  }
+  /* 서브그룹 정보 ul */
+.group-info ul {
+  padding: 0 .5rem;
+}
 }
