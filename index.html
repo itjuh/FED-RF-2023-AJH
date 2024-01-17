@@ -1,65 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>안주현 포트폴리오 사이트</title>
     <!-- 아이콘 -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" />
     <!-- 외부 CSS 부르기 -->
-    <link rel="stylesheet" href="./icss/main.css">
+    <link rel="stylesheet" href="./icss/main.css" />
     <script src="/js/infomation.js" type="module"></script>
-</head>
-<body>
-    <header>
-        <nav class="header in-box">
-            <ul>
-                <li>
-                    <h1>
-                        안주현<div class="portfolio"></div>
-                    </h1>
-                </li>
-                <li><a href="">소개</a></li>
-                <li><a href="">프로젝트</a></li>
-                <li><a href="">기술스택</a></li>
-                <li>
-                    <!-- 모바일용 버튼 -->
-                    <a href="" class="moblie-btn">
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                    </a>
-                </li>
-            </ul>
-        </nav>
+    <script src="/js/auto_scroll.js" type="module"></script>
+  </head>
+  <body class="scbar">
+    <header class="on">
+      <nav class="header in-box">
+        <ul>
+          <!-- 메인 로고 -->
+          <li>
+            <h1 class="header__logo">
+              안주현
+              <div class="portfolio"></div>
+            </h1>
+          </li>
+          <!-- 모바일용 버튼 -->
+          <li>
+            <a href="" class="moblie-btn">
+              <div></div>
+              <div></div>
+              <div></div>
+            </a>
+          </li>
+        </ul>
+        <ol class="gnb">
+          <li><a href="#">소개</a></li>
+          <li><a href="#page-2">프로젝트</a></li>
+          <li><a href="#page-3">기술스택</a></li>
+        </ol>
+      </nav>
     </header>
     <main>
-        <div class="main in-box">
+      <div id="main">
+        <div class="in-box">
+          <section class="page" id="page-1">
             <div class="title">
                 <h1>유연한 개발자 안주현입니다.</h1>
             </div>
-            <section>
-                <aside class="info-me">
-                    <figure class="img-box">
-                        <img src="" alt="">
-                    </figure>
-                </aside>
-            </section>
-            <section class="portfolio">
-                <ul>
-                <li>
-                    <a href="https://url.kr/a7ecof">2. 주문제작 케이크 온고롱 웹사이트</a>
-                </li>
-                <li>
-                    <a href="https://url.kr/ymgexl">2. LEOPOLD 키보드 판매 사이트</a>
-                </li>
+            <aside class="info-me">
+              <figure class="img-box">
+                <img src="" alt="" />
+              </figure>
+            </aside>
+          </section>
+          <section class="page portfolio" id="page-2">
+            <ul>
+              <li>
+                <a href="https://url.kr/a7ecof">2. 주문제작 케이크 온고롱 웹사이트</a>
+              </li>
+              <li>
+                <a href="https://url.kr/ymgexl">2. LEOPOLD 키보드 판매 사이트</a>
+              </li>
             </ul>
-        </section>
-            <section class=""></section>
-            
-            
-            </div>
+          </section>
+          <section class="page" id="page-3"></section>
         </div>
+      </div>
     </main>
-</body>
+  </body>
 </html>

@@ -2,6 +2,7 @@ const infoData = {
     'About me' : ['한줄소개 여기에 쓸 것',],
     'An JuHyun' : ['서울시 중랑구','Tel. 010.2144.9679','E. jh.2144.9679@gmail.com','Github. https://github.com/itjuh',],
     'Skill' : ['html,css','javascript,jquery','React','Flutter'],
+    'Education' : ['2020.11 ~ 2021.04','2023.07 ~ 2024.01 교육이수',],
 };
 const skillStack = {
     'html,css':['반응형 웹을 구성할 수 있습니다.','시맨틱 태그를 사용합니다.'],

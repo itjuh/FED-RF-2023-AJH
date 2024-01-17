@@ -36,8 +36,9 @@
   font-weight: 900;
   font-style: normal;
 }
+/* 아카이브 메인 CSS - main.css */
 
-/************* 초기화 */
+/* 초기화 */
 html,
 body,
 h1,
@@ -85,15 +86,19 @@ em,
 i {
   font-style: normal;
 }
-html{
-  /* 스크롤 애니메이션 설정 */
-  scroll-behavior: smooth;
+/* input focus제거 */
+input {
+  outline: none;
+}
+/* 테이블요소 간격 */
+table {
+  border-collapse: collapse;
 }
 /* 글자 드래그 금지 */
 html > * {
   user-select: none;
 }
-/* 공통 속박스 */
+
 .in-box {
   max-width: 1024px;
   margin: 0 auto;
@@ -101,130 +106,72 @@ html > * {
 body * {
   /* 전체 글자체 */
   font-family: "Pretendard", serif;
-  overflow-x: hidden;
 }
-/* 스크롤바 디자인 클래스 */
-/* -webkit- 밴더사명(크롬,사파리) 접두어 */
-/* (참고: -ms-(ie), -o- (오페라), -moz-(파이어폭스) */
-/* 클래스명 scbar */
-.scbar::-webkit-scrollbar{
-  /* 전체 스크롤바 크기변경 */
-  width: 7px;
-}
-.scbar::-webkit-scrollbar-thumb{
-  /* 스크롤바 */
-  background-color: rgb(153, 80, 153);
-  border-radius: 5px;
-}
-.scbar::-webkit-scrollbar-track{
-  /* 스크롤바 트랙 */
-  background-color: #ddd;
-  border-radius: 5px;
-}
-
-
-/************** 상단부 */
+/* 상단부 */
 header {
-  position: static;
-  height: 180px;
   /* 글씨 크기 */
   font-size: 20px;
   font-weight: 800;
   color: #fff;
   padding: 20px;
-  box-sizing: border-box;
   background: rgb(74, 24, 121) url("../imgs/top_img.jpeg") no-repeat top center/100% 200%;
-
-  z-index: 999;
-}
-header.on{
-  position: sticky;
-  width: 100%;
-  top: 0;
-  left: 0;
-  height: 90px;
-}
-/* 네비게이션 */
-nav {
-  height: 100%;
-  position: relative;
 }
 /* 상단 이미지 */
-nav ul {
+.header {
+  height: 180px;
+}
+header ul {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   gap: min(1vw, 20px);
   align-items: flex-end;
   height: 100%;
 }
 /* 메뉴들 */
-nav a {
+header li:nth-child(2) {
+  margin-left: auto;
+}
+header a {
   color: #fff;
 }
-/* 모바일용 처음 숨기기 */
-nav ul>li:last-child {
-  position: relative;
+
+/* 모바일용 버튼 */
+header li:last-child {
   display: none;
 }
-/* 모바일버튼 세팅 */
 .moblie-btn {
-  width: 20px;
-  height: 20px;
+  position: relative;
   display: flex;
   flex-direction: column;
 }
 .moblie-btn > div {
   position: absolute;
-  top: 0;
   width: 20px;
   height: 2px;
   background-color: #fff;
   transition: 0.5s ease-in-out;
 }
-.moblie-btn div:nth-child(2) {
-  transform: translateY(7px);
+.moblie-btn div:nth-child(1) {
+  transform: translateY(-7px);
 }
 .moblie-btn div:nth-child(3) {
-  transform: translateY(14px);
+  transform: translateY(7px);
 }
-/* 모바일 모드 버튼 클릭 시 */
+/* 버튼 클릭 시 */
 .moblie-btn.on div:nth-child(2) {
-  transform: translateX(7px) translateY(7px);
+  transform: translateX(10px);
   width: 0;
 }
 .moblie-btn.on div:nth-child(1) {
-  transform: translateY(7px) rotate(45deg);
+  transform: rotate(45deg);
 }
 .moblie-btn.on div:nth-child(3) {
-  transform: translateY(7px) rotate(-45deg);
-}
-/* 상단 메뉴 겸 사이드 메뉴 */
-nav ol{
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 100%;
-  display: flex;
-  justify-content: flex-end;
-  align-items: flex-end;
-  gap: min(1vw, 20px);
+  transform: rotate(-45deg);
 }
 
 /* 메인영역 */
 .main {
-  padding: 0 max(20px, 2vw);
-}
-.page{
-  padding-top: 90px;
-  padding-bottom: 90px;
-  box-sizing: border-box;
-  height: 100vh;
-  border: 1px dotted red;
-}
-/* 첫페이지 상단 padding제거 */
-.page:nth-child(1){
-  padding-top: 0px;
+  padding: max(20px, 2vw);
 }
 main li a {
   /* 글자 */
