@@ -5,7 +5,6 @@ console.log(infoData, skillStack, edu);
 let htmlCode = "";
 for (let x in infoData) {
   htmlCode += `
-  0000000000000000000
     <div class="group-info ${x}">
     <div class="group-title">
     <h2>${x}</h2>
