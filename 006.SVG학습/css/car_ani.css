@@ -1,0 +1,191 @@
+/* 자동차 광고애니 css */
+
+html, body{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    overflow: hidden;
+    height: 100vh;
+}
+
+/* 자동차 박스 */
+#mycar{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    max-width: 1359px;
+    width: 100%;
+}
+/* 자동차 이미지 */
+#car{
+    width: 100%;
+    opacity: 0;
+}
+
+/* 자동차 선 svg */
+.spath{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+/* path설정 */
+.spath path{
+    fill: none;
+    stroke: #000;
+    stroke-width: 7;
+    /* 선 끝 둥글게 처리 */
+    stroke-linecap: round;
+    stroke-dasharray: 250%;
+    stroke-dashoffset: 250%;
+}
+
+/* 자동차 선그리기 */
+#mycar.ani-on .spath path{
+    animation: path-ani 5s linear 1s forwards, fade-ani 1s linear 6s forwards;
+}
+/* 자동차 보이기 클래스 */
+#mycar.ani-on #car{
+    animation: img-ani 1s ease-in-out 6s forwards;
+}
+/* 바퀴 나타나기+회전 */
+#mycar.ani-on .ba {
+    animation: img-ani 1s ease-in-out 6s forwards, wheel-ani .5s linear 8s infinite;
+}
+/* 자동차 시동+움직이기 */
+#mycar.ani-on{
+    animation: brr-car-ani .05s infinite 7s alternate, move-car-ani 2s ease-in-out 8s forwards;
+}
+
+@keyframes path-ani {
+    to{
+        stroke-dashoffset: 0%;
+    }
+}
+@keyframes fade-ani {
+    to{
+        opacity: 0;
+    }
+}
+@keyframes img-ani {
+    to{
+        opacity: 1;
+    }
+}
+@keyframes brr-car-ani {
+    to{
+        transform: translate(-50%, -49.3%);
+    }
+}
+@keyframes move-car-ani {
+    to{
+        left: -50%;
+    }
+}
+
+/* 바퀴공통 */
+.ba{
+    position: absolute;
+    width: 10%;
+    aspect-ratio: 1/1;
+    /* height: 133px; */
+    /* outline: 3px solid red; */
+    background: url('../images/car.jpg') no-repeat 20.2% 64.3%/1000%;
+    border-radius: 50%;
+    opacity: 0;
+}
+/* 앞바퀴 */
+.fw{
+    bottom: 30%;
+    left: 18.2%;
+}
+/* 뒷바퀴 */
+.bw{
+    bottom: 30.5%;
+    right: 20%;
+}
+
+/* 바퀴회전 ani */
+@keyframes wheel-ani {
+    to{
+        transform: rotate(-360deg);
+    }
+}
+/* 로고 */
+#logo{
+    position: absolute;
+    top: 50%;
+    left: 150%;
+    transform: translate(-50%, -50%);
+    max-width: 500px;
+    width: 60%;
+}
+/* 등장 애니 클래스 */
+#logo.ani-on{
+    left: 50%;
+    transition: left 3s ease-out;
+}
+.cir{
+    position: relative;
+    top: 44.6%;
+    left: 50.5%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    /* outline: 3px solid red; */
+    max-width: 215px;
+    aspect-ratio: 1/1;
+    width: 30%;
+    overflow: hidden;
+}
+.cir::after{
+    content: '';
+    position: absolute;
+    top: 0%;
+    left: 100%;
+    width: 120%;
+    height: 30px;
+    background-image: linear-gradient(to top, transparent, rgba(255, 255, 255, 0.199) 30%, transparent);
+    transform: translate(-50%, -50%) rotate(45deg);
+    transition: 1s ease-in-out;
+    display: none;
+}
+.cir.ani-on::after{
+    display: block;
+    animation: bling-ani 1.5s ease-in-out alternate infinite;
+}
+@keyframes bling-ani {
+    to{
+        top: 100%;
+        left: 0%;
+    }
+}
+
+/* 시작버튼 */
+.sbtn {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 300px;
+    height: 200px;
+    border-radius: 20px;
+
+    font-size: 50px;
+    font-weight: bold;
+    font-family: Verdana;
+    color: blue;
+    cursor: pointer;
+    /* display: none; */
+}
+.sbtn:hover{
+    color: lime;
+    background-color: #000;
+}
+.sbtn.hidden {
+    display: none;
+}

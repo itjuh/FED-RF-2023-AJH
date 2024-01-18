@@ -11,18 +11,20 @@ const stc = document.querySelector("#stc");
 const mlogo = document.querySelector("#mlogo");
 
 // 시차로 애니메이션 적용하기 : .ani-on
+// 타임아웃 설정 공통 함수 //////
+const setTime = (ele, time) => {
+  setTimeout(() => {
+    ele.classList.add("ani-on");
+  }, time);
+}; /////// setTime함수 ////////
+
 // 1. 2초 후 라인애니
-setTimeout(() => {
-  stage.classList.add("ani-on");
-}, 2000);
+setTime(stage, 2000);
 // 2. 5초 후 스틸컷 애니
-setTimeout(() => {
-  stc.classList.add("ani-on");
-}, 5000);
+setTime(stc, 2000);
 // 3. 8초 후 로고 애니
-setTimeout(() => {
-  mlogo.classList.add("ani-on");
-}, 8000);
+setTime(mlogo, 8000);
+
 
 // 오디오 컨트롤 하기
 // 버튼 대상 : .play-box
@@ -66,19 +68,22 @@ playbutton.addEventListener("click", function () {
 // const mlogo = $('#mlogo');
 // const playbutton = $('.play-box');
 
+// 타임아웃 설정 공통 함수 //////
+// const setTime = (ele, time) => {
+//   setTimeout(() => {
+//     ele.addClass("ani-on");
+//   }, time);
+// }; /////// setTime함수 ////////
+
 // // 시차로 애니메이션 적용하기 : .ani-on
-// // 1. 2초 후 라인애니
-// setTimeout(() => {
-//   stage.addClass("ani-on");
-// }, 2000);
-// // 2. 5초 후 스틸컷 애니
-// setTimeout(() => {
-//   stc.addClass("ani-on");
-// }, 5000);
-// // 3. 8초 후 로고 애니
-// setTimeout(() => {
-//   mlogo.addClass("ani-on");
-// }, 8000);
+// 1. 2초후 라인애니
+// setTime(stage, 2000);
+
+// // 2. 6초후 스틸컷애니
+// setTime(stc, 6000);
+
+// // 3. 12초후 로고애니
+// setTime(mlogo, 12000);
 
 // playbutton.hover(
 //   function () {
