@@ -59,6 +59,7 @@ export function Board() {
    * 6. 강제 리랜더링 관리 변수 : force 랜덤값으로 업데이트하여 사용
    * 7. 검색상태 관리변수 : 값 유지
    * 8. 최초 랜더링시 상태관리변수 : 처음 한번만 내림차순적용하기
+   * 9. 파일저장변수 참조변수 : 업로드파일 저장변수
    */
   const [pgNum, setPgNum] = useState(1);
   const pgPgNum = useRef(1);
@@ -68,6 +69,10 @@ export function Board() {
   const [force, setForce] = useState(null);
   const searchSts = useRef(false);
   const firstSts = useRef(true);
+  const uploadFile = useRef(null);
+  
+  // uploadFile변수 변경함수
+  const updateFileInfo = x => uploadFile.current = x;
 
   // 리 랜더링 루프 방지용으로 랜더링 후 실행구역에 변경코드
   useEffect(() => {
@@ -176,25 +181,60 @@ export function Board() {
         console.log("최대값 :", Math.max.apply(null, idxData));
         console.log("최대값 :", Math.max(...idxData));
         idxData = Math.max(...idxData);
+        // 입력 된 업로드 파일정보
+        console.log('업로드 파일정보',uploadFile.current.name);
         // 그외 방법
         // 2-3. 임시 변수에 입력할 객체 데이터 생성하기
         let temp = {
           idx: idxData + 1,
           tit: subVal,
           cont: contVal,
-          att: "",
+          att: uploadFile.current.name,
           date: `${yy}-${addZero(mm)}-${addZero(dd)}`,
           uid: selData.current.uid,
           unm: selData.current.unm,
           cnt: 0,
         };
-        // 3. 원본 데이터 push
+        // 3. [ 선택파일 서버전송 ]
+        // 파일이 있을 때만 전송
+        if(uploadFile.current){
+          // null이 아닌 할당상태일때만 업로드
+          // 원래는 form 태그로 싸여있어서 서버전송을 하지만,
+        // 없어도 form 전송을 서버쪽에 할 수 있도록 하는 객체가 있다.
+        // FormData() 클래스 객체를 사용
+        const formData = new FormData();
+        // 전송 데이터 추가하기
+        formData.append("file", fileInfomation);
+        // 폼데이터에는 키 값이 있음을 확인하자
+        for (const key of formData) console.log(key);
+        // 서버 전송하기 : 서버전송은 엑시오스로 하자!
+        // post 파라미터
+        // 1. 첫번째 셋팅값 전송 url에는 서버에 세팅 된 path값과 같은 .js파일에 app.post에 설정한 경로를 적어주기, 실제 업로드되는 물리적 경로와 다르다.
+        // 2. 두번째 세팅값은 서버로 전송 될 파일정보를 써준다.
+        axios
+          .post("http://localhost:8080/upload", formData)
+          // 전송 후
+          .then((res) => {
+            // 전송결과 res리턴값 변수
+            // 파일 전송 시 파일명이 중복되지 않도록 변경됨 -> 이를 다시 재 변경해서 출력해야함
+            const { fileName } = res.data;
+            console.log("전송성공", fileName);
+          })
+          // 오류 시
+          .catch((err) => {
+            console.log("전송오류", err);
+          });
+        }
+        
+
+        // 4. 원본 데이터 push
         originTemp.push(temp);
-        // 4. 데이터 로컬스토리지 반영
+        // 5. 데이터 로컬스토리지 반영
         localStorage.setItem("boardData", JSON.stringify(originTemp));
-        // 5. 내림차순 정렬하도록 바인드 전에 firstSts를 true 적용하면?
+
+        // 6. 내림차순 정렬하도록 바인드 전에 firstSts를 true 적용하면?
         firstSts.current = true;
-        // 6. 리스트 페이지로 이동
+        // 7. 리스트 페이지로 이동
         setBdMode("L");
       }
     }
@@ -737,7 +777,7 @@ export function Board() {
               <tr>
                 <td>File</td>
                 <td>
-                  <AttachBox />
+                  <AttachBox saveFile={updateFileInfo}/>
                 </td>
               </tr>
             </tbody>
@@ -897,7 +937,9 @@ export function Board() {
 //////////////////////////////////////////////////
 
 // 업로드 모듈을 리턴하는 서브 컴포넌트 ////////////
-const AttachBox = () => {
+const AttachBox = ({saveFile}) => {
+  // saveFile - 파일정보를 저장하는 함수
+
   // 상태관리변수
   // 1. 드래그 또는 파일을 첨부할 때 활성화 여부 관리 변수
   // true - 활성화 / false - 비활성화
@@ -920,34 +962,15 @@ const AttachBox = () => {
 
     setFileInfomationView(fileInfomation);
 
-    // 원래는 form 태그로 싸여있어서 서버전송을 하지만,
-    // 없어도 form 전송을 서버쪽에 할 수 있도록 하는 객체가 있다.
-    // FormData() 클래스 객체를 사용
-    const formData = new FormData();
-    // 전송 데이터 추가하기
-    formData.append('file',fileInfomation);
-    // 폼데이터에는 키 값이 있음을 확인하자
-    for(const key of formData) console.log(key);
-    // 서버 전송하기 : 서버전송은 엑시오스로 하자!
-    // post 파라미터
-    // 1. 첫번째 셋팅값 전송 url에는 서버에 세팅 된 path값과 같은 .js파일에 app.post에 설정한 경로를 적어주기, 실제 업로드되는 물리적 경로와 다르다.
-    // 2. 두번째 세팅값은 서버로 전송 될 파일정보를 써준다.
-    axios
-    .post('http://localhost:8080/upload', formData)
-    // 전송 후
-    .then(res=>{
-      // 전송결과 res리턴값 변수
-      // 파일 전송 시 파일명이 중복되지 않도록 변경됨 -> 이를 다시 재 변경해서 출력해야함
-      const {fileName} = res.data;
-      console.log('전송성공',fileName);
-    })
-    // 오류 시
-    .catch(err=>{
-      console.log('전송오류',err);
-    });
+    // 서버전송은 submit 이동 후 실행
+    /**
+     * 서브밋 저장구역에서 파일정보를 관리하는 uploadFile변수를 관리하는
+     * updateFileInfo()를 호출하는 속성을 saveFile이라는 props로 전달하여 실행
+     */
+    saveFile(fileInfomation);
   }; ///// controlDrop method /////
 
-  // 드롭 된 파일정보를  화면에 뿌려주는 메서드
+  // 드롭 된 파일정보를 화면에 뿌려주는 메서드
   const setFileInfomationView = (fileInfo) => {
     // 전달 된 객체값을 한 번에 할당하는 방법
     // 구조분해 할당을 하면 객체의 값이 담긴다!
@@ -964,6 +987,16 @@ const AttachBox = () => {
     // 변경 시 리랜더링!
   }; // setFileInfomationView method ///
 
+  // file input을 클릭해서 파일을 선택하면 발생하는 메서드
+  const changeUpload = ({target})=>{
+    // target은 event.target을 말함
+    const fileInfomation = target.files[0];
+    console.log('클릭파일',fileInfomation);
+
+    setFileInfomationView(fileInfomation);
+
+    saveFile(fileInfomation);
+  }; // changeUpload method ///
   /**
    * onDragEnter={} : 드래그 대상 영역 안으로 들어갈 때
    * onDragLeave={} : 드래그 대상 영역 밖으로 나갈 때
@@ -978,11 +1011,12 @@ const AttachBox = () => {
       onDragOver={(e) => controlDragOver(e)}
       onDrop={(e) => controlDrop(e)}
     >
-      <input type="file" className="file" />
+      {/* 파일을 클릭하여 선택창이 뜰 때 파일을 클릭하면 현재상태가 변경되기 때문에
+      onChange이벤트 속성을 씀!!! */}
+      <input type="file" className="file" onChange={changeUpload}/>
       {
         // 업로드 정보가 null이 아니면 파일정보 출력
-        uploadedInfo &&
-        <FileInfo uploadedInfo={uploadedInfo}/>
+        uploadedInfo && <FileInfo uploadedInfo={uploadedInfo} />
       }
       {
         // 업로드 정보가 null이면 안내문자 출력
@@ -1006,17 +1040,17 @@ Object.entries(obj) – [키, 값] 쌍을 담은 배열을 반환합니다.
 */
 
 // 파일정보 컴포넌트 만들기 /////
-const FileInfo = ({ uploadedInfo }) => <ul className="info-view-info">
-  {console.log(Object.entries(uploadedInfo))}
-  {
-    Object.entries(uploadedInfo).map(([key,value])=>(
+const FileInfo = ({ uploadedInfo }) => (
+  <ul className="info-view-info">
+    {console.log(Object.entries(uploadedInfo))}
+    {Object.entries(uploadedInfo).map(([key, value]) => (
       <li key={key}>
-        <span className='info-key'>{key} : </span>
-        <span className='info-value'>{value}</span>
+        <span className="info-key">{key} : </span>
+        <span className="info-value">{value}</span>
       </li>
-    ))
-  }
-</ul>; ///////// FileInfo////
+    ))}
+  </ul>
+); ///////// FileInfo////
 
 // 업로드 효시 아이콘 SVG태그 컴포넌트 //
 // 화살표함수에 바로 중괄호 구역안쓰고 JSX태그를 바로 쓰면 리턴키워드 생략 가능 //
