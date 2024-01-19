@@ -1,15 +1,25 @@
 // 페이지 스크롤
 
 // 새로고침 초기 위치
-setTimeout(()=>{window.scrollTo(0,0)},500);
+setTimeout(() => {
+  window.scrollTo(0, 0);
+}, 500);
 
 // 모바일 모드
-const ham = document.querySelector('nav ul>li:last-child');
-
-ham.addEventListener('click',function(e){
-    e.preventDefault();
+const ham = document.querySelector("nav ul>li:last-child");
+// 햄버거 버튼 클릭 시 사이드 메뉴
+ham.addEventListener("click", function (e) {
+  e.preventDefault();
+  let parentHeaderNode = this.parentElement.parentElement;
+  parentHeaderNode.classList.toggle("on");
+});
+// 모바일 모드 사이드 닫기
+const sideMenu = document.querySelectorAll("nav .gnb>li");
+sideMenu.forEach((ele) => {
+  ele.addEventListener("click", function () {
     let parentHeaderNode = this.parentElement.parentElement;
-    parentHeaderNode.classList.toggle('on');
+    parentHeaderNode.classList.toggle("on");
+  });
 });
 
 // 1. 전역변수 설정하기
@@ -24,53 +34,54 @@ let ele_page;
 
 // 2. 이벤트 등록하기 /////////////////
 // 대상: window
-window.addEventListener('wheel',wheelFn);
-window.addEventListener('DOMContentLoaded',loadFn);
+window.addEventListener("wheel", wheelFn);
+window.addEventListener("DOMContentLoaded", loadFn);
 
 // 3. 이벤트 연결함수 /////////////////
 /*************************************** 
     함수명 : loadFn
     기능 : html로딩후 실행코드구역
 ***************************************/
-function loadFn(){
-    ele_page = document.querySelectorAll('.page');
-    // 전체페이지수 할당
-    total_pg = ele_page.length;
+function loadFn() {
+  ele_page = document.querySelectorAll(".page");
+  // 전체페이지수 할당
+  total_pg = ele_page.length;
 } ///////// loadFn 함수 ////////////////
 
 /*************************************** 
     함수명: wheelFn
     기능 : 마우스 휠 작동시 페이지이동
 ***************************************/
-function wheelFn(e){ // 이벤트전달변수(자동)
-    // 0. 광휠금지설정 //////
-    if(sts_wheel) return; // 여기서나감!
-    sts_wheel = 1; // 잠금!
-    setTimeout(()=>{sts_wheel=0},300);
-    console.log('이동');
+function wheelFn(e) {
+  // 이벤트전달변수(자동)
+  // 0. 광휠금지설정 //////
+  if (sts_wheel) return; // 여기서나감!
+  sts_wheel = 1; // 잠금!
+  setTimeout(() => {
+    sts_wheel = 0;
+  }, 300);
+  console.log("이동");
 
-    // 1. 휠방향에 따른 페이지변수 변경하기
-    // 휠방향은 wheelDelta 로 알아냄!
-    let delta = e.wheelDelta;
-    
-    // 음수(-)는 아랫방향, 양수(+)는 윗방향
-    if(delta<0) pg_num++;
-    else pg_num--;
+  // 1. 휠방향에 따른 페이지변수 변경하기
+  // 휠방향은 wheelDelta 로 알아냄!
+  let delta = e.wheelDelta;
 
-    // 한계수체크(양끝페이지고정!)
-    if(pg_num<0) pg_num=0;
-    if(pg_num==total_pg) pg_num = total_pg-1;
+  // 음수(-)는 아랫방향, 양수(+)는 윗방향
+  if (delta < 0) pg_num++;
+  else pg_num--;
 
-    if(pg_num==0){
-        window.scrollTo(0,0);    
-    }else{
+  // 한계수체크(양끝페이지고정!)
+  if (pg_num < 0) pg_num = 0;
+  if (pg_num == total_pg) pg_num = total_pg - 1;
 
-        window.scrollTo(0,window.innerHeight*pg_num + 90);
-    }
-    
-    // 3. 메뉴변경 함수 호출 : 페이지변수 변경 후!
-    chgMenu();
+  if (pg_num == 0) {
+    window.scrollTo(0, 0);
+  } else {
+    window.scrollTo(0, window.innerHeight * pg_num + 90);
+  }
 
+  // 3. 메뉴변경 함수 호출 : 페이지변수 변경 후!
+  chgMenu();
 } /////////// wheelFn 함수 ////////////////
 ///////////////////////////////////////////
 
@@ -79,31 +90,29 @@ function wheelFn(e){ // 이벤트전달변수(자동)
     기능 : 마우스휠 작동/메뉴클릭 시 메뉴변경
 ***************************************/
 // 메뉴변경 대상 : .gnb li
-const gnbList = document.querySelectorAll('nav ol>li');
+const gnbList = document.querySelectorAll("nav ol>li");
 // const indicList = domFn.qsa('.indic li');
 // 메뉴처리 대상요소 배열로 묶어주기
 // const menuGrp = [gnbList,indicList];
 
-function chgMenu(){
-    // 메뉴를 순화하며 on넣기
-    // 나머지는 on 빼기
+function chgMenu() {
+  // 메뉴를 순화하며 on넣기
+  // 나머지는 on 빼기
 
-    // 1. 내부함수 만들기 ////
-    const comFn = (target) =>{ //타겟은 순회할 대상
-        target.forEach((ele,idx)=>{
-            if(idx == pg_num)
-                ele.classList.add('on');
-            else
-                ele.classList.remove('on');
-        });
-    }; ////////익명 함수//////////////
-    // 순차적으로 생성
+  // 1. 내부함수 만들기 ////
+  const comFn = (target) => {
+    //타겟은 순회할 대상
+    target.forEach((ele, idx) => {
+      if (idx == pg_num) ele.classList.add("on");
+      else ele.classList.remove("on");
+    });
+  }; ////////익명 함수//////////////
+  // 순차적으로 생성
 
-    // 2. 처리할 요소 배열 불러오기
-    // menuGrp.forEach(val=>comFn(val));
-    // forEach()가 gnbList와 indicList를 각각 comFn()에 전달함!
-    comFn(gnbList);
-
+  // 2. 처리할 요소 배열 불러오기
+  // menuGrp.forEach(val=>comFn(val));
+  // forEach()가 gnbList와 indicList를 각각 comFn()에 전달함!
+  comFn(gnbList);
 } ////////////////chgMenu함수////////////////////
 
 // GNB li를 클릭 시 메뉴 변경하기
@@ -120,7 +129,6 @@ function chgMenu(){
 //         });
 //     }) /////////forEach///////////
 // } ///////////for of///////////////////
-
 
 /********************************************************************
 

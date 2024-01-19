@@ -188,14 +188,14 @@ nav ul > li:last-child {
   transform: translateY(14px);
 }
 /* 모바일 모드 버튼 클릭 시 */
-nav.on .moblie-btn>div:nth-child(2) {
+nav.on .moblie-btn > div:nth-child(2) {
   transform: translateX(7px) translateY(7px);
   width: 0;
 }
-nav.on .moblie-btn>div:nth-child(1) {
+nav.on .moblie-btn > div:nth-child(1) {
   transform: translateY(7px) rotate(45deg);
 }
-nav.on .moblie-btn>div:nth-child(3) {
+nav.on .moblie-btn > div:nth-child(3) {
   transform: translateY(7px) rotate(-45deg);
 }
 /* 상단 메뉴 겸 사이드 메뉴 */
@@ -210,18 +210,8 @@ nav ol {
   align-items: flex-end;
   gap: min(1vw, 20px);
 }
-nav.on ol{
-  position: fixed;
+nav.on ol {
   right: 0;
-  width: 30%;
-  background-color: #b721ff;
-  flex-direction: column;
-  color: #fff;
-  justify-content: flex-start;
-  align-items: flex-start;
-  padding: 6rem 2rem;
-  gap: 1rem;
-  transition: right .5s ease-in-out;
 }
 
 /* 메인영역 */
@@ -322,8 +312,8 @@ main li a {
   font-size: 1.6rem;
   white-space: nowrap;
   color: #222;
-  font-family: 'Kanit', sans-serif;
-/* font-family: 'Raleway', sans-serif; */
+  font-family: "Kanit", sans-serif;
+  /* font-family: 'Raleway', sans-serif; */
 }
 /* 서브그룹 정보 ul */
 .group-info ul {
@@ -361,9 +351,19 @@ main li a {
   }
   /* 모바일용 */
   nav ol {
+    position: fixed;
+    width: 30%;
+    background-color: #b721ff;
+    flex-direction: column;
+    color: #fff;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 6rem 2rem;
+    gap: 1rem;
     right: -70%;
+    transition: right 0.5s ease-in-out;
   }
-  nav.on ol{
+  nav.on ol {
     right: 0;
   }
   nav ul > li:last-child {
