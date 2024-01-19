@@ -3,29 +3,14 @@
 // 새로고침 초기 위치
 setTimeout(()=>{window.scrollTo(0,0)},500);
 
-// 모바일 적용대상
+// 모바일 모드
 const ham = document.querySelector('nav ul>li:last-child');
-const gnb = document.querySelectorAll('nav ol>li');
 
-// 모바일적용 여부코드 ////////////////////////////
-let isMobileSize=false; // true-moblie false-deskTop
-const checkMoblie = () =>{ 
-  if(window.innerWidth<=1024) isMobileSize=true;
-  else isMobileSize=false;
-  console.log(isMobileSize,'모바일여부');
-  // 부가기능: 모바일일때 서브메뉴 기본 스타일 지우기
-  if(isMobileSize) {
-    ham.style.display = 'block';
-    gnb.forEach(ele=>ele.style.display = 'none');
-  }else{
-    ham.style.display = 'none';
-    gnb.forEach(ele=>ele.style.display = 'block');
-  }
-} ////////////모바일검사 함수 ///////////
-checkMoblie();
-//화면 리사이즈 시 모바일 검사함수 호출
-window.addEventListener('resize',checkMoblie);
-///////////////////////////////////////////////
+ham.addEventListener('click',function(e){
+    e.preventDefault();
+    let parentHeaderNode = this.parentElement.parentElement;
+    parentHeaderNode.classList.toggle('on');
+});
 
 // 1. 전역변수 설정하기
 // 1-1. 페이지변수
