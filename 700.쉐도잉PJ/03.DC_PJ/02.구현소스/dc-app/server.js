@@ -17,6 +17,10 @@ app.use(express.static(path.join(__dirname,'/build')));
 // app.use(express.static(path.join('디렉토리명','루트경로')));
 // -> SPA에서 빌드하면 배포용 소스가 build폴더에 생성되므로
 // 이 배포용 폴더를 루트로 잡으면 편하다!
+// ->> SPA 앱 빌드시 유의사항 ************
+// package.json파일에
+// home:'http://localhost:8080'를 등록하여 사용함!!!!
+// localhost === 127.0.0.1
 
 // 첫 페이지 설정하기 -> url로 쳐서 들어가는 경로를 설정하기
 // ->get방식으로 연결하기 때문에 get()메서드 사용!!
