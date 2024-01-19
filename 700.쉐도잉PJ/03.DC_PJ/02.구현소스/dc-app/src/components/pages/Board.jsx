@@ -12,6 +12,8 @@ import $ from "jquery";
 // 컨텍스트
 import { dcCon } from "../modules/dcContext";
 import { useEffect } from "react";
+// 파일전송 요청을 위해 엑시오스 불러오기
+import axios from "axios";
 
 // baseData reverse sort
 baseData.sort((a, b) => {
@@ -917,7 +919,34 @@ const AttachBox = () => {
     const fileInfomation = e.dataTransfer.files[0];
 
     setFileInfomationView(fileInfomation);
+
+    // 원래는 form 태그로 싸여있어서 서버전송을 하지만,
+    // 없어도 form 전송을 서버쪽에 할 수 있도록 하는 객체가 있다.
+    // FormData() 클래스 객체를 사용
+    const formData = new FormData();
+    // 전송 데이터 추가하기
+    formData.append('file',fileInfomation);
+    // 폼데이터에는 키 값이 있음을 확인하자
+    for(const key of formData) console.log(key);
+    // 서버 전송하기 : 서버전송은 엑시오스로 하자!
+    // post 파라미터
+    // 1. 첫번째 셋팅값 전송 url에는 서버에 세팅 된 path값과 같은 .js파일에 app.post에 설정한 경로를 적어주기, 실제 업로드되는 물리적 경로와 다르다.
+    // 2. 두번째 세팅값은 서버로 전송 될 파일정보를 써준다.
+    axios
+    .post('http://localhost:8080/upload', formData)
+    // 전송 후
+    .then(res=>{
+      // 전송결과 res리턴값 변수
+      // 파일 전송 시 파일명이 중복되지 않도록 변경됨 -> 이를 다시 재 변경해서 출력해야함
+      const {fileName} = res.data;
+      console.log('전송성공',fileName);
+    })
+    // 오류 시
+    .catch(err=>{
+      console.log('전송오류',err);
+    });
   }; ///// controlDrop method /////
+
   // 드롭 된 파일정보를  화면에 뿌려주는 메서드
   const setFileInfomationView = (fileInfo) => {
     // 전달 된 객체값을 한 번에 할당하는 방법
@@ -944,20 +973,10 @@ const AttachBox = () => {
   return (
     <label
       className="info-view"
-      onDragEnter={() => {
-        // console.log('드래그하러옴');
-        controlDragEnter();
-      }}
-      onDragLeave={() => {
-        // console.log('드래그다함');
-        controlDragLeave();
-      }}
-      onDragOver={(e) => {
-        controlDragOver(e);
-      }}
-      onDrop={(e) => {
-        controlDrop(e);
-      }}
+      onDragEnter={() => controlDragEnter()}
+      onDragLeave={() => controlDragLeave()}
+      onDragOver={(e) => controlDragOver(e)}
+      onDrop={(e) => controlDrop(e)}
     >
       <input type="file" className="file" />
       {

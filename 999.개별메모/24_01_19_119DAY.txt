@@ -17,8 +17,26 @@ localhost 도메인만 있다면 서버의 위치를 특정 지어줌(localhost 
 
 서버의 역할 - 사용자의 요청(request)된 페이지를 찾아가서 db를 통신하고 응답(response)을 브라우저 화면에 다운로드 시켜줌
 서비스 : 사용자의 요청을 웹서버 - db서버 전달, 
+io기능이 (파일 옮기고 내리는 것) 서버가 꼭!!! 있어야함
 
 ((서버구현))
-1. npm i express 설치!!!
+1. 서버 구동을 위한 npm i express 설치!!!
 2. 루트폴더에 server.js 만들기(서버용 app.js 또는 server.js를 처음에 읽어줌)
-3. 파일 세팅!!
+3. js 세팅!!
+4. package.json home설정
+5. npm run build -> npm 빌드하기(서버배포와 같음)
+6. 서버 구동하기 node server =>>>> node server.js (server.js파일을 읽어주는 것임. 서버구동 명령어가 아님!!)
+6-1. 서버 종료하기 ctrl+c y
+((멀터미들웨어연결))
+7. 서버에 파일전송을 위한 multer설치 npm i multer
+8. js파일에 멀터 세팅!!
+9. jsx에 파일전송 axios로 연결하기
+10. js파일에 파일이름 그대로 전송되로록 multer 커스터마이징 하기
+11. public폴더 아레에 uploads 폴더 만들기
+12. npm run build(서버배포)
+
+board.jsx에서 이벤트를 타고 들어온 파일정보
+const fileInfomation = e.dataTransfer.files[0];
+
+form 태그를 쓰는 이유 폼은 서버에 데이터를 전송하기 위해 사용함
+const formData = new FormData(); <- 데이터 전송 객체 생성
