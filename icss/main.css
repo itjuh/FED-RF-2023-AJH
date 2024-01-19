@@ -397,4 +397,7 @@ main li a {
     padding-bottom: 0px;
     height: auto;
   }
+  .page+.page{
+    padding-top: 10px;
+  }
 }
