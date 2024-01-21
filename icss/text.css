@@ -1,0 +1,118 @@
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+/* 
+베이지 / 코랄 / 옐로우 / 살구
+8E7C68 / ED7458 / FFDC9F / DDC9BC
+자두 / 블베 / 퍼플 / 화이트
+ 934A5F / 57648C / C2B4D6 / E5E5E5
+
+$pink: #f26060
+$green: #0EB29A
+$lightblue: #9ab7c2
+$darkblue: #3e454d
+$orange: #ff8071
+$darkorange: #b6483d
+$primary-color: $pink
+$font: 'Raleway', sans-serif
+ */
+.portfolio {
+  padding: 50px 0;
+  min-height: 100vh;
+  margin: 0;  
+  background: #f26060;
+  color: #8b9095;
+  font-family: "Roboto";
+  font-weight: 800;
+  font-size: 3.5rem;
+  letter-spacing: 0.02em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+  
+@media (max-width: 400px) {
+    portfolio {
+        font-size: 50px;
+    }
+    
+  }
+
+.portfolio span {
+  cursor: pointer;
+  -webkit-text-stroke-color: #fff;
+  -webkit-text-stroke-width: 0.01em;
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+  background-repeat: no-repeat;
+  transition: background-size .5s cubic-bezier(0.67, 0.01, 0.15, 0.98);
+}
+
+.portfolio span.top {
+  background-image: linear-gradient(180deg, #fff 0%, #fff 50%, transparent 50.1%);
+  background-position: 100% 0%;
+  background-size: 100% 0%;
+}
+.portfolio span.top:hover {
+    background-size: 100% 200%;
+}
+.portfolio span.right {
+    background-image: linear-gradient(270deg, #fff 0%, #fff 50%, transparent 50.1%);
+    background-position: 100% 0%;
+    background-size: 0% 100%;
+}
+.portfolio span.right:hover {
+    background-size: 100% 200%;
+}
+
+.portfolio span.bottom {
+    background-image: linear-gradient(0deg, #fff 0%, #fff 50%, transparent 50.1%);
+    background-position: 100% 100%;
+    background-size: 100% 0%;
+}
+.portfolio span.bottom:hover {
+    background-size: 100% 200%;
+}
+
+.portfolio span.left {
+   background-image: linear-gradient(90deg, #fff 0%, #fff 50%, transparent 50.1%);
+   background-size: 0% 100%;
+}
+.portfolio span.left:hover{
+    background-size: 200% 100%;
+}
+
+.portfolio span.angle {
+   background-image: linear-gradient(135deg, #fff 0%, #fff 50%, transparent 50.1%);
+  background-size: 0% 100%;
+}
+.portfolio span.angle:hover{
+    background-size: 220% 100%;
+}
+
+.portfolio span.radial {
+  background-image: radial-gradient(circle farthest-corner at center center, #fff 0%, #fff 50%, transparent 50.1%);
+  background-position: 50% 50%;
+  background-size: 0% 0%;
+}
+/* Depends by text size */
+.portfolio span.radial:hover{
+    background-size: 200% 380%;
+}
+
+
+/* 효과박스 */
+/* .show-text-box{
+    position: relative;
+    font-size: 2rem;
+    transform: translateY(90%);
+    opacity: 0;
+    transition: .5s ease-in-out;
+  }
+  .show-text-box.on{
+    transform: translateY(0);
+    opacity: 1;
+  }
+   */
