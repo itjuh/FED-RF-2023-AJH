@@ -6,13 +6,21 @@
     <title>포트폴리오 사이트</title>
     <!-- 아이콘 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Kanit&family=Raleway:wght@800&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Kanit&family=Raleway:wght@800&display=swap" rel="stylesheet" />
+    <!-- 제이쿼리 라이브러리 CDN -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+
+    <!-- 제이쿼리 UI CDN -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.13.2/jquery-ui.min.js"></script>
+
     <!-- 외부 CSS 부르기 -->
     <link rel="stylesheet" href="./icss/main.css" />
+    <link rel="stylesheet" href="./icss/text.css" />
     <script src="./js/infomation.js" type="module"></script>
     <script src="./js/auto_scroll.js" defer></script>
+    <script src="./js/show_text.js" defer></script>
   </head>
   <body class="scbar">
     <header class="on">
@@ -25,10 +33,7 @@
         <ul>
           <!-- 메인 로고 -->
           <li>
-            <h1 class="header__logo">
-              안주현
-              <div class="portfolio"></div>
-            </h1>
+            <h1 class="header__logo">안주현</h1>
           </li>
           <!-- 모바일용 버튼 -->
           <li>
