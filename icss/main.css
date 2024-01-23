@@ -214,7 +214,6 @@ nav.on ol {
   right: 0;
 }
 
-<<<<<<< HEAD
 /*********** 메인영역 */
 #page-1{
   background-color: #FFDC9F;
@@ -225,9 +224,6 @@ nav.on ol {
 #page-3{
   background-color: #0EB29A;
 }
-=======
-/* 메인영역 */
->>>>>>> parent of 871de61 (수업끝!)
 .main {
   padding: 0 max(2rem, 2vw);
 }
