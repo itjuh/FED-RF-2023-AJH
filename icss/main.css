@@ -109,16 +109,16 @@ body * {
 /* 클래스명 scbar */
 .scbar::-webkit-scrollbar {
   /* 전체 스크롤바 크기변경 */
-  width: 7px;
+  width: 8px;
 }
 .scbar::-webkit-scrollbar-thumb {
   /* 스크롤바 */
-  background-color: rgb(153, 80, 153);
+  background-color: cornflowerblue;
   border-radius: 5px;
 }
 .scbar::-webkit-scrollbar-track {
   /* 스크롤바 트랙 */
-  background-color: #ddd;
+  background-color: #ccc;
   border-radius: 5px;
 }
 
@@ -213,16 +213,38 @@ nav ol {
 nav.on ol {
   right: 0;
 }
-
-/*********** 메인영역 */
-#page-1{
-  background-color: #FFDC9F;
+/* 마우스 오버 가상요소 */
+.gnb li a::after {
+  content: "";
+  display: block;
+  /* 변경요소 */
+  width: 0%;
+  margin-left: 100%;
+  /* 글자와의 간격 */
+  margin-top: 3px;
+  height: 2px;
+  background-color: cornflowerblue;
+  /* 트랜지션 */
+  transition: 0.4s;
 }
-#page-2{
+/* 메뉴 마우스 오버 */
+.gnb li:hover a {
+  color: cornflowerblue;
+}
+.gnb li:hover a::after {
+  width: 100%;
+  margin-left: 0%;
+  transition: width 0.4s;
+}
+/*********** 메인영역 */
+#page-1 {
+  background-color: #ffdc9f;
+}
+#page-2 {
   background-color: #f26060;
 }
-#page-3{
-  background-color: #0EB29A;
+#page-3 {
+  background-color: #0eb29a;
 }
 .main {
   padding: 0 max(2rem, 2vw);
@@ -268,7 +290,7 @@ nav.on ol {
   aspect-ratio: 1.3/1.5;
   border-radius: 50%;
   margin: 0 auto;
-  background-color: #ED7458;
+  background-color: #ed7458;
 }
 /* 프로필 하단 링크박스 */
 .link-box {
@@ -283,20 +305,29 @@ nav.on ol {
 }
 /* 프로필 하단 링크버튼 */
 .link-box button {
-  background-color: rgba(153, 80, 153, 0.158);
+  background-color: lightsalmon;
+  background-image: radial-gradient(circle farthest-corner at center center, coral 0%, coral 50%, transparent 50.1%);
+  background-position: 50% 50%;
+  background-size: 0% 0%;
+  background-repeat: no-repeat;
+  transition: background-size 0.5s cubic-bezier(0.67, 0.01, 0.15, 0.98);
   border-radius: 30px;
   width: 50%;
   height: 2rem;
   max-width: 10rem;
-  font-size: 1.1rem;
   cursor: pointer;
-  letter-spacing: 0.2rem;
 }
+.link-box button a {
+  font-size: 1.1rem;
+  letter-spacing: 0.2rem;
+  color: #fff;
+}
+
 .link-box button:focus {
   outline: none;
 }
 .link-box button:hover {
-  background-color: #ED7458;
+  background-size: 200% 380%;
 }
 /* 서브그룹 정보 공통*/
 .group-info {
@@ -335,20 +366,50 @@ nav.on ol {
   font-size: 1.1rem;
   color: #333;
 }
+
 .group-info ul:before {
   content: "";
   position: absolute;
   left: 0;
   top: 5%;
   width: 2px;
-  height: 90%;
-  background-color: #ED7458;
+  height: 0%;
+  background-color: #ed7458;
+}
+/* 서브그룹 등장이벤트 */
+.group-info.on ul:before {
+  animation: ele-line-ani .5s linear .1s forwards;
+}
+@keyframes ele-line-ani {
+  to{
+    height: 90%;
+  }
 }
 /* 서브그룹 정보 하위 설명 */
 .group-info ol li {
   text-indent: 1rem;
 }
+/**************포폴영역  */
+.pj-desc svg{
+  padding: 20px;
+  margin: 0 auto;
+}
+.pj-desc rect{
+  fill: none;
+  stroke: #fff;
+  stroke-width: 1;
+  stroke-dasharray: 393%;
+  stroke-dashoffset: 393%;
+}
+.pj-desc.on rect{
+  animation: rect-ani 2s linear .5s forwards;
+}
 
+@keyframes rect-ani {
+  to{
+    stroke-dashoffset: 0%;
+  }
+}
 
 @media screen and (max-width: 800px) {
   html,
@@ -359,15 +420,18 @@ nav.on ol {
   nav ol {
     position: fixed;
     width: 30%;
-    background-color: #b721ff;
+    background-color: cornflowerblue;
     flex-direction: column;
-    color: #fff;
     justify-content: flex-start;
     align-items: flex-start;
     padding: 6rem 2rem;
     gap: 1rem;
     right: -70%;
     transition: right 0.5s ease-in-out;
+  }
+  /* 메뉴들 */
+  nav a {
+    color: #fff;
   }
   nav.on ol {
     right: 0;
@@ -403,7 +467,7 @@ nav.on ol {
     padding-bottom: 0px;
     height: auto;
   }
-  .page+.page{
+  .page + .page {
     padding-top: 10px;
   }
 }

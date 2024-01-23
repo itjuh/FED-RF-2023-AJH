@@ -1,89 +1,100 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>포트폴리오 사이트</title>
-        <!-- 아이콘 -->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-        <link href="https://fonts.googleapis.com/css2?family=Kanit&family=Raleway:wght@800&display=swap" rel="stylesheet" />
-        <!-- 제이쿼리 라이브러리 CDN -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>포트폴리오 사이트</title>
+    <!-- 아이콘 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Kanit&family=Raleway:wght@800&display=swap" rel="stylesheet" />
+    <!-- 제이쿼리 라이브러리 CDN -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 
-        <!-- 제이쿼리 UI CDN -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.13.2/jquery-ui.min.js"></script>
+    <!-- 제이쿼리 UI CDN -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.13.2/jquery-ui.min.js"></script>
 
-        <!-- 외부 CSS 부르기 -->
-        <link rel="stylesheet" href="./icss/main.css" />
-        <link rel="stylesheet" href="./icss/text.css" />
-        <script src="./js/infomation.js" type="module"></script>
-        <script src="./js/auto_scroll.js" defer></script>
-        <script src="./js/show_text.js" defer></script>
-    </head>
-    <body class="scbar">
-        <header class="on">
-            <nav class="header in-box">
-                <ol class="gnb">
-                    <li><a href="#">소개</a></li>
-                    <li><a href="#page-2">프로젝트</a></li>
-                    <li><a href="#page-3">기술스택</a></li>
-                </ol>
-                <ul>
-                    <!-- 메인 로고 -->
-                    <li>
-                        <h1 class="header__logo">
-                            안주현
-                        </h1>
-                    </li>
-                    <!-- 모바일용 버튼 -->
-                    <li>
-                        <a href="" class="moblie-btn">
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                        </a>
-                    </li>
-                </ul>
-            </nav>
-        </header>
-        <main>
-            <div id="main">
-                <div class="in-box">
-                    <section class="page" id="page-1">
-                        <aside class="info-me">
-                            <!-- 프로필 사진영역 -->
-                            <div class="img-area">
-                                <figure class="img-box">
-                                    <img src="" alt="" />
-                                </figure>
-                                <div class="link-box">
-                                    <button>이력서</button>
-                                    <button>깃허브</button>
-                                </div>
-                            </div>
-                            <!-- 소개영역 -->
-                        </aside>
-                    </section>
-                    <section class="page portfolio" id="page-2">
-                        <ul>
-                            <li class="show-text-box">
-                                <a href="https://url.kr/a7ecof">
-                                    <span class="radial"> 주문제작 케이크 온고롱 웹사이트 </span>
-                                </a>
-                                <div class="desc"></div>
-                            </li>
-                            <li class="show-text-box">
-                                <a href="https://url.kr/ymgexl">
-                                    <span class="radial"> LEOPOLD 키보드 판매 사이트 </span>
-                                </a>
-                            </li>
-                        </ul>
-                    </section>
-                    <section class="page" id="page-3"></section>
-                </div>
+    <!-- 외부 CSS 부르기 -->
+    <link rel="stylesheet" href="./icss/main.css" />
+    <link rel="stylesheet" href="./icss/text.css" />
+    <script src="./js/infomation.js" type="module"></script>
+    <script src="./js/auto_scroll.js" defer></script>
+    <script src="./js/show_text.js" defer></script>
+  </head>
+  <body class="scbar">
+    <header class="on">
+      <nav class="header in-box">
+        <ol class="gnb">
+          <li><a href="#">소개</a></li>
+          <li><a href="#page-2">프로젝트</a></li>
+          <li><a href="#page-3">기술스택</a></li>
+        </ol>
+        <ul>
+          <!-- 메인 로고 -->
+          <li>
+            <h1 class="header__logo">안주현</h1>
+          </li>
+          <!-- 모바일용 버튼 -->
+          <li>
+            <a href="" class="moblie-btn">
+              <div></div>
+              <div></div>
+              <div></div>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </header>
+    <main>
+      <div id="main">
+        <section class="page" id="page-1">
+          <aside class="info-me in-box">
+            <!-- 프로필 사진영역 -->
+            <div class="img-area">
+              <figure class="img-box">
+                <img src="" alt="" />
+              </figure>
+              <div class="link-box">
+                <button>
+                  <a href="https://itjuh.github.io/FED-RF-2023-AJH/1000.personal/resume.pdf" target="_blank">이력서</a>
+                </button>
+                <button><a href="https://github.com/itjuh" target="_blank">깃허브</a></button>
+              </div>
             </div>
-        </main>
-    </body>
+            <!-- 소개영역 -->
+          </aside>
+        </section>
+        <section class="page portfolio" id="page-2">
+          <ul class="in-box">
+            <!-- <li class="show-text-box"> -->
+            <li class="">
+              <a href="https://url.kr/a7ecof">
+                <span class="radial"> 주문제작 케이크 온고롱 웹사이트 </span>
+              </a>
+              <div class="pj-desc">
+                <svg viewBox="0 0 300 200">
+                  <rect class="svg-rect" width="300" height="200" />
+                </svg>
+              </div>
+            </li>
+          </ul>
+        </section>
+        <section class="page portfolio" id="page-3">
+          <ul class="in-box">
+            <li class="">
+              <a href="https://url.kr/ymgexl">
+                <span class="radial"> LEOPOLD 키보드 판매 사이트 </span>
+              </a>
+              <div class="pj-desc">
+                <svg viewBox="0 0 300 200">
+                  <rect class="svg-rect" width="300" height="200" />
+                </svg>
+              </div>
+            </li>
+          </ul>
+        </section>
+      </div>
+    </main>
+  </body>
 </html>

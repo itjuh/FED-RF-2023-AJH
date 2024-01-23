@@ -115,6 +115,9 @@ function chgMenu() {
   comFn(gnbList);
 } ////////////////chgMenu함수////////////////////
 
+function returnPage(){
+  return pg_num;
+}
 // GNB li를 클릭 시 메뉴 변경하기
 // ->pg_num을 업데이트 후 chgMenu를 호출한다
 // 메뉴그룹 배열만큼 클릭 기능 만들기

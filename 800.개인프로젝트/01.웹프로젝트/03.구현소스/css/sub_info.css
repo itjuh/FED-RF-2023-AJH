@@ -13,6 +13,10 @@
     overflow: hidden;
     color: #fff;
 }
+/* 메인페이지 박스 초기화 */
+.main.inbox{
+    max-width: 100%;
+}
 /* 메인페이지 구분박스 첫박스 */
 .main .group-box:first-child {
     padding-top: min(3vw, 50px);
@@ -22,8 +26,7 @@
     position: absolute;
     top: 0;
     left: 0;
-    transform: translateX(-5%);
-    width: 130vw;
+    width: 100vw;
     height: 100vh;
     background: var(--co-onlightgreen) url(../images/images/info_main.jpg) no-repeat left top/100vw;
 }

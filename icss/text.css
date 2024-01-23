@@ -98,21 +98,6 @@ $font: 'Raleway', sans-serif
   background-size: 0% 0%;
 }
 /* Depends by text size */
-.portfolio span.radial:hover{
+.portfolio li:hover span.radial{
     background-size: 200% 380%;
 }
-
-
-/* 효과박스 */
-/* .show-text-box{
-    position: relative;
-    font-size: 2rem;
-    transform: translateY(90%);
-    opacity: 0;
-    transition: .5s ease-in-out;
-  }
-  .show-text-box.on{
-    transform: translateY(0);
-    opacity: 1;
-  }
-   */
