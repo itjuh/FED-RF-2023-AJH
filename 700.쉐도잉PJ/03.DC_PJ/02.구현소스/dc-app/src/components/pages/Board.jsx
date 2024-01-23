@@ -182,14 +182,14 @@ export function Board() {
         console.log("최대값 :", Math.max(...idxData));
         idxData = Math.max(...idxData);
         // 입력 된 업로드 파일정보
-        console.log('업로드 파일정보',uploadFile.current.name);
+        // console.log('업로드 파일정보',uploadFile.current.name);
         // 그외 방법
         // 2-3. 임시 변수에 입력할 객체 데이터 생성하기
         let temp = {
           idx: idxData + 1,
           tit: subVal,
           cont: contVal,
-          att: uploadFile.current.name,
+          att: uploadFile.current?uploadFile.current.name:'', //파일명 업데이트
           date: `${yy}-${addZero(mm)}-${addZero(dd)}`,
           uid: selData.current.uid,
           unm: selData.current.unm,
@@ -204,7 +204,7 @@ export function Board() {
         // FormData() 클래스 객체를 사용
         const formData = new FormData();
         // 전송 데이터 추가하기
-        formData.append("file", fileInfomation);
+        formData.append("file", uploadFile.current);
         // 폼데이터에는 키 값이 있음을 확인하자
         for (const key of formData) console.log(key);
         // 서버 전송하기 : 서버전송은 엑시오스로 하자!
@@ -224,8 +224,10 @@ export function Board() {
           .catch((err) => {
             console.log("전송오류", err);
           });
-        }
-        
+          // 전송 후 파일참조변수 초기화 필수
+          uploadFile.current = null;
+        } //// if //////
+      
 
         // 4. 원본 데이터 push
         originTemp.push(temp);
@@ -413,7 +415,7 @@ export function Board() {
         {/* 2. 타이틀 */}
         <td>
           <a href="#" data-idx={v.idx} onClick={chgMode2}>
-            {v.tit}
+            {v.tit}{v.att===''?'':' 📎'}
           </a>
         </td>
         {/* 3. 작성자 */}
@@ -814,6 +816,18 @@ export function Board() {
                   ></textarea>
                 </td>
               </tr>
+              <tr>
+                <td>File</td>
+                <td>
+                  <a href={'/uploads/'+selData.current.att} download={true}>{selData.current.att}</a>
+                  {
+                    (selData.current.att.split('.')[1] === 'jpeg' ||
+                    selData.current.att.split('.')[1] === 'png' ||
+                    selData.current.att.split('.')[1] === 'jpg' )&&
+                    <img src={'/uploads/'+selData.current.att} alt='이미지'/>
+                  }
+                </td>
+              </tr>
             </tbody>
           </table>
         )
@@ -840,6 +854,18 @@ export function Board() {
                 <td>Content</td>
                 <td>
                   <textarea className="content" cols="60" rows="10" defaultValue={selData.current.cont}></textarea>
+                </td>
+              </tr>
+              <tr>
+                <td>File</td>
+                <td>
+                  <b>{selData.current.att}</b>
+                  {
+                    (selData.current.att.split('.')[1] === 'jpeg' ||
+                    selData.current.att.split('.')[1] === 'png' ||
+                    selData.current.att.split('.')[1] === 'jpg' )&&
+                    <img src={'/uploads/'+selData.current.att} alt='이미지'/>
+                  }
                 </td>
               </tr>
             </tbody>
@@ -959,7 +985,7 @@ const AttachBox = ({saveFile}) => {
     // 1. 파일정보 읽어오기
     // 드롭 된 파일정보부터 전송 된 파일정보는 아래와 같이 읽어온다.
     const fileInfomation = e.dataTransfer.files[0];
-
+    // 파일 보여주기 상태 업데이트
     setFileInfomationView(fileInfomation);
 
     // 서버전송은 submit 이동 후 실행
