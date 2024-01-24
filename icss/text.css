@@ -18,27 +18,23 @@ $primary-color: $pink
 $font: 'Raleway', sans-serif
  */
 .portfolio {
-  padding: 50px 0;
+  padding: 11rem 0;
   min-height: 100vh;
   margin: 0;  
   background: #f26060;
   color: #8b9095;
   font-family: "Roboto";
   font-weight: 800;
-  font-size: 3.5rem;
+  font-size: 3.2rem;
   letter-spacing: 0.02em;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
+  overflow: hidden;
 }
-  
-@media (max-width: 400px) {
-    portfolio {
-        font-size: 50px;
-    }
-    
-  }
+.portfolio a{
+  display: inline-block;
+  width: 100%;
+  text-align: center;
+}
+
 
 .portfolio span {
   cursor: pointer;
@@ -100,4 +96,11 @@ $font: 'Raleway', sans-serif
 /* Depends by text size */
 .portfolio li:hover span.radial{
     background-size: 200% 380%;
+}
+
+@media (max-width: 400px) {
+  .portfolio {
+    font-size: 3rem;
+    padding: 3rem 0;
+  }
 }

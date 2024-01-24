@@ -130,7 +130,7 @@ header {
   font-size: 20px;
   font-weight: 800;
   color: #222;
-  padding: 20px;
+  padding: 1.5rem;
   box-sizing: border-box;
   /* background: rgb(74, 24, 121) url("../imgs/top_img.jpeg") no-repeat top center/100% 200%; */
   background: #fff;
@@ -378,7 +378,7 @@ nav.on ol {
 }
 /* 서브그룹 등장이벤트 */
 .group-info.on ul:before {
-  animation: ele-line-ani .5s linear .1s forwards;
+  animation: ele-line-ani .7s ease-in .5s forwards;
 }
 @keyframes ele-line-ani {
   to{
@@ -391,7 +391,7 @@ nav.on ol {
 }
 /**************포폴영역  */
 .pj-desc svg{
-  padding: 20px;
+  padding: 1rem;
   margin: 0 auto;
 }
 .pj-desc rect{
@@ -401,10 +401,13 @@ nav.on ol {
   stroke-dasharray: 393%;
   stroke-dashoffset: 393%;
 }
-.pj-desc.on rect{
-  animation: rect-ani 2s linear .5s forwards;
+.pj-desc svg:last-child{
+  display: none;
 }
-
+.pj-desc.on rect{
+  animation: rect-ani 1.4s linear .3s forwards;
+}
+/* svg 애니 */
 @keyframes rect-ani {
   to{
     stroke-dashoffset: 0%;
@@ -414,7 +417,7 @@ nav.on ol {
 @media screen and (max-width: 800px) {
   html,
   body {
-    font-size: 15px;
+    font-size: 14px;
   }
   /* 모바일용 */
   nav ol {
@@ -469,5 +472,12 @@ nav.on ol {
   }
   .page + .page {
     padding-top: 10px;
+  }
+  /* 모바일 */
+  .pj-desc svg:first-child{
+    display: none;
+  }
+  .pj-desc svg:last-child{
+    display: block;
   }
 }
