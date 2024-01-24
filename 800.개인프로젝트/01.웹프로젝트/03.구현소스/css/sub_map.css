@@ -280,6 +280,10 @@
   .map iframe {
     width: 90vw;
   }
+  /* 로딩구역 박스 */
+.map .loading-area {
+  width: 100%;
+}
   /* 오시는법 가상요소 공통 */
   .contact-way::after {
     width: 95vw;
