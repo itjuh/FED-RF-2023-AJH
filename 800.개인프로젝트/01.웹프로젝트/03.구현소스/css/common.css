@@ -389,6 +389,9 @@
         height: 100%;
         width: auto;
     }
+    .header .partbox>.logo a {
+        width: 100%;
+    }
     /* 검색창 input박스 */
     #search {
         padding: 8px 0px min(0.5vw, 6px) 10px;
