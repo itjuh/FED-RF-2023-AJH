@@ -1,4 +1,4 @@
-import { infoData, skillStack, edu } from "./infoData.js";
+import { infoData, skillStack, edu, siteData } from "./infoData.js";
 
 console.log(infoData, skillStack, edu);
 
@@ -28,3 +28,17 @@ for (let x in infoData) {
 }
 
 document.querySelector(".info-me").innerHTML += htmlCode;
+
+let siteCode = '';
+siteData.forEach((x,i)=>{
+  siteCode = `
+    <ul>
+      <li>${x['tit']}</li>
+      <li>${x['content']}</li>
+      <li>${x['period']}</li>
+      <li>${x['tech']}</li>
+    </ul>
+  `;
+  document.querySelector(`.box-${i+1}`).innerHTML += siteCode;
+});
+

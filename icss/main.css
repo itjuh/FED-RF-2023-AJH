@@ -398,8 +398,8 @@ nav.on ol {
   fill: none;
   stroke: #fff;
   stroke-width: 1;
-  stroke-dasharray: 393%;
-  stroke-dashoffset: 393%;
+  stroke-dasharray: 400%;
+  stroke-dashoffset: 400%;
 }
 .pj-desc svg:last-child{
   display: none;
@@ -407,6 +407,10 @@ nav.on ol {
 .pj-desc.on rect{
   animation: rect-ani 1.4s linear .3s forwards;
 }
+.pj-desc {
+  position: relative;
+}
+
 /* svg 애니 */
 @keyframes rect-ani {
   to{

@@ -6,6 +6,7 @@ const groupInfobox = $(".group-info");
 const SHOWTIMEGAP = 1;
 const page1 = document.querySelector("#page-1");
 
+
 $(() => {
     if (pg_num == 0) {
         groupInfobox.addClass("on");
@@ -33,6 +34,7 @@ window.addEventListener("scroll", function () {
     if (page1.getBoundingClientRect().top > 0) {
         groupInfobox.addClass("on");
         descbox1.classList.remove("on");
+        
         descbox2.classList.remove("on");
     } else {
         groupInfobox.removeClass("on");
