@@ -132,10 +132,15 @@ header {
   color: #222;
   padding: 1.5rem;
   box-sizing: border-box;
-  /* background: rgb(74, 24, 121) url("../imgs/top_img.jpeg") no-repeat top center/100% 200%; */
   background: #fff;
   z-index: 999;
   box-shadow: 0 2px 10px #ccc;
+}
+.header__logo{
+  color: #444;
+}
+.header__logo i{
+  color: #222;
 }
 header.on {
   position: sticky;
@@ -440,6 +445,10 @@ nav.on ol {
     gap: 1rem;
     right: -70%;
     transition: right 0.5s ease-in-out;
+  }
+  /* 모바일 왼쪽로고 */
+  .header__logo>:not(i){
+    display: none;
   }
   /* 메뉴들 */
   nav a {

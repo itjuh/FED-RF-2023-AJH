@@ -14,7 +14,7 @@ $(() => {
 }); //로드구역
 // 휠 이벤트 - deskTop
 window.addEventListener("wheel", () => {
-    console.log(pg_num);
+    // console.log(pg_num);
     if (pg_num == 0) {
         groupInfobox.addClass("on");
         descbox1.classList.remove("on");

@@ -60,7 +60,7 @@ function wheelFn(e) {
   setTimeout(() => {
     sts_wheel = 0;
   }, 300);
-  console.log("이동");
+  // console.log("이동");
 
   // 1. 휠방향에 따른 페이지변수 변경하기
   // 휠방향은 wheelDelta 로 알아냄!
