@@ -34,7 +34,6 @@ window.addEventListener("scroll", function () {
     if (page1.getBoundingClientRect().top > 0) {
         groupInfobox.addClass("on");
         descbox1.classList.remove("on");
-        
         descbox2.classList.remove("on");
     } else {
         groupInfobox.removeClass("on");

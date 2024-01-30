@@ -28,15 +28,15 @@ const edu = {
 const siteData = [
   {
     'tit':'온고롱 케이크',
-    'content':'주문제작 케이크 소개 및 판매사이트 온고롱입니다. 메인, 소개, 고객센터, 주문하기 페이지로 구성되어 있습니다.',
+    'content':'주문제작 케이크 소개 및 판매사이트 온고롱입니다.^메인, 소개, 고객센터, 주문하기 페이지로 구성되어 있습니다.',
     'period':'2023.08 ~ 2023.10',
-    'tech':'HTML5 CSS3 JAVASCRIPT',
+    'tech':['HTML5', 'CSS3', 'JAVASCRIPT'],
   },
   {
     'tit':'레오폴드 키보드',
-    'content':'키보드 판매사이트 레오폴드입니다. 메인, 장바구니, 로그인, 회원가입, 상품소개 페이지로 구성되어 있습니다.',
+    'content':'키보드 판매사이트 레오폴드입니다.^메인, 장바구니, 로그인, 회원가입, 상품소개 페이지로 구성되어 있습니다.',
     'period':'2023.11 ~ 2024.01',
-    'tech':'REACT JQUERY HTML5 CSS3 JAVASCRIPT',
+    'tech':['REACT', 'JQUERY', 'HTML5', 'CSS3', 'JAVASCRIPT'],
   },
 ]
 export { infoData, skillStack, edu, siteData };

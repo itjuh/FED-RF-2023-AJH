@@ -33,10 +33,10 @@ let siteCode = '';
 siteData.forEach((x,i)=>{
   siteCode = `
     <ul>
-      <li>${x['tit']}</li>
-      <li>${x['content']}</li>
-      <li>${x['period']}</li>
-      <li>${x['tech']}</li>
+      <li><em>${x['tit']}</em></li>
+      <li><em>${x['content'].replace('^','<br>')}</em></li>
+      <li><em>${x['period']}</em></li>
+      <li>${x['tech'].map(v=>`<i>${v}</i>`).join('')}</li>
     </ul>
   `;
   document.querySelector(`.box-${i+1}`).innerHTML += siteCode;

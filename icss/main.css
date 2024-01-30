@@ -292,6 +292,11 @@ nav.on ol {
   margin: 0 auto;
   background-color: #ed7458;
 }
+.img-box img{
+  height: 100%;
+  object-fit: contain;
+  transform: translateX(-2%);
+}
 /* 프로필 하단 링크박스 */
 .link-box {
   max-width: 400px;
