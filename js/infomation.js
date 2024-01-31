@@ -37,6 +37,15 @@ siteData.forEach((x,i)=>{
       <li><em>${x['content'].replace('^','<br>')}</em></li>
       <li><em>${x['period']}</em></li>
       <li>${x['tech'].map(v=>`<i>${v}</i>`).join('')}</li>
+      <li>
+        <div>
+          <img src='${x['imgsrc']}' alt=${x['tit']}>
+        </div>
+        <div>
+          <i><a href="${x['link1']}">바로가기</a></i>
+          <i><a href="${x['link2']}">가이드문서</a></i>
+        </div>
+      </li>
     </ul>
   `;
   document.querySelector(`.box-${i+1}`).innerHTML += siteCode;

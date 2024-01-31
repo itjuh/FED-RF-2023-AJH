@@ -107,6 +107,7 @@ $font: 'Raleway', sans-serif
 }
 .pofol-box ul {
     height: 100%;
+    overflow: hidden;
 }
 .pj-desc .pofol-box li {
     padding: 0 3rem;
@@ -123,9 +124,11 @@ $font: 'Raleway', sans-serif
     top: 120%;
     opacity: 0;
 }
+.pj-desc .pofol-box li img {
+    opacity: 0;
+}
 .pofol-box li i{
     display: inline-block;
-    position: relative;
     font-size: 1.2rem;
     border-radius: 15px;
     border: 1px solid #ffffff;
@@ -146,6 +149,26 @@ $font: 'Raleway', sans-serif
     margin-top: 40px;
     margin-bottom: 40px;
 }
+/* 포폴 이미지+링크 */
+.pofol-box li:last-child{
+    position: relative;
+    transition: opacity .5 ease-in;
+    display: flex;
+    align-items: center;
+}
+.pofol-box li:last-child i {
+    display: inline-block;
+    min-width: 80px;
+    text-align: center;
+    border-radius: 15px;
+    border: 1px solid #ffffff;
+    padding: 3px 10px;
+}
+.pofol-box li:last-child i a{
+    font-size: .9rem;
+    color: #fff;
+}
+
 .pj-desc.on .pofol-box li em{
     top: 0;
     opacity: 1;
@@ -156,7 +179,17 @@ $font: 'Raleway', sans-serif
     opacity: 1;
     transition: .5s ease-out 2s;
 }
-
+.pj-desc.on .pofol-box li img{
+    opacity: 1;
+    transition: .5s ease-out 2s;
+}
+/* 포폴 사이트 이미지 */
+.pofol-box li img{
+    width: 95%;
+    aspect-ratio: 1.9/1;
+    margin: 0 auto;
+    object-fit: fill;
+}
 @media (max-width: 400px) {
     .portfolio {
         font-size: 3rem;
@@ -168,5 +201,8 @@ $font: 'Raleway', sans-serif
     }
     .pofol-box {
         aspect-ratio: 20/27;
+    }
+    .pofol-box li img{
+        display: none;
     }
 }
