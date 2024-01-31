@@ -18,7 +18,7 @@ $primary-color: $pink
 $font: 'Raleway', sans-serif
  */
 .portfolio {
-    padding: 11rem 0;
+    padding: 8rem 0;
     min-height: 100vh;
     margin: 0;
     background: #f26060;
@@ -192,17 +192,20 @@ $font: 'Raleway', sans-serif
 }
 @media (max-width: 400px) {
     .portfolio {
-        font-size: 3rem;
-        padding: 1rem 0;
-        min-height: auto;
+      font-size: 3rem;
+      padding: 1rem 0;
+      min-height: auto;
     }
     .portfolio span.radial {
-        padding: 0 5px;
+      padding: 0 5px;
     }
     .pofol-box {
-        aspect-ratio: 20/27;
+      aspect-ratio: 20/27;
     }
     .pofol-box li img{
-        display: none;
+      display: none;
+    }
+    .pofol-box li:last-child{
+      margin-top: 4rem;
     }
 }

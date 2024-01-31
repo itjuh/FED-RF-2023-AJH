@@ -402,6 +402,8 @@ nav.on ol {
 /**************포폴영역  */
 .pj-desc svg{
   padding: 1rem;
+  padding-top: 1rem;
+  padding-bottom: 4rem;
   margin: 0 auto;
 }
 .pj-desc rect{
@@ -411,7 +413,14 @@ nav.on ol {
   stroke-dasharray: 400%;
   stroke-dashoffset: 400%;
 }
+  /* 데스크탑 */
+.pj-desc svg:first-child{
+  display: block;
+}
 .pj-desc svg:last-child{
+  display: none;
+}
+.pj-desc.on svg:last-child{
   display: none;
 }
 .pj-desc.on rect{
@@ -497,5 +506,8 @@ nav.on ol {
   }
   .pj-desc svg:last-child{
     display: block;
+  }
+  .pj-desc svg{
+    padding-bottom: 1rem;
   }
 }
