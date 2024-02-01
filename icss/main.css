@@ -429,6 +429,9 @@ nav.on ol {
 .pj-desc {
   position: relative;
 }
+.svg-rect-mb{
+  display: none;
+}
 
 /* svg 애니 */
 @keyframes rect-ani {
@@ -510,4 +513,8 @@ nav.on ol {
   .pj-desc svg{
     padding-bottom: 1rem;
   }
+  .svg-rect-mb{
+    display: block;
+  }
+  
 }
