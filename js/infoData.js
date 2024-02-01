@@ -33,7 +33,7 @@ const siteData = [
     'tech':['HTML5', 'CSS3', 'JAVASCRIPT'],
     'imgsrc':'./imgs/on_main.jpg',
     'link1':'https://url.kr/a7ecof',
-    'link2':'https://github.com/itjuh/ajh-fed-react-pj/blob/main/guide/leopold.pdf',
+    'link2':'https://github.com/itjuh/FED-RF-2023-Project-AJH/blob/main/01.%EC%9B%B9%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8/04.%EA%B0%80%EC%9D%B4%EB%93%9C%EB%AC%B8%EC%84%9C/%EC%98%A8%EA%B3%A0%EB%A1%B1%20%EA%B0%80%EC%9D%B4%EB%93%9C%EB%AC%B8%EC%84%9C_01.pdf',
   },
   {
     'tit':'레오폴드 키보드',
@@ -42,7 +42,7 @@ const siteData = [
     'tech':['REACT', 'JQUERY', 'HTML5', 'CSS3', 'JAVASCRIPT'],
     'imgsrc':'./imgs/leo_main.jpg',
     'link1':'https://url.kr/ymgexl',
-    'link2':'https://github.com/itjuh/FED-RF-2023-Project-AJH/blob/main/01.%EC%9B%B9%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8/04.%EA%B0%80%EC%9D%B4%EB%93%9C%EB%AC%B8%EC%84%9C/%EC%98%A8%EA%B3%A0%EB%A1%B1%20%EA%B0%80%EC%9D%B4%EB%93%9C%EB%AC%B8%EC%84%9C_01.pdf',
+    'link2':'https://github.com/itjuh/ajh-fed-react-pj/blob/main/guide/leopold.pdf',
   },
 ]
 export { infoData, skillStack, edu, siteData };
