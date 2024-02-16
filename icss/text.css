@@ -151,6 +151,11 @@ $font: 'Raleway', sans-serif
     transition: opacity 0.5 ease-in;
     display: flex;
     align-items: center;
+    padding: 0 3rem;
+    justify-content: space-between;
+}
+.pofol-box li:last-child a {
+    width: 85%;
 }
 .pofol-box li:last-child i {
     display: inline-block;
@@ -181,10 +186,18 @@ $font: 'Raleway', sans-serif
 }
 /* 포폴 사이트 이미지 */
 .pofol-box li img {
-    width: 95%;
+    width: 100%;
     aspect-ratio: 1.9/1;
     margin: 0 auto;
     object-fit: fill;
+}
+/* 포폴 링크 버튼 */
+.link-btn {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
 }
 @media (max-width: 400px) {
     .portfolio {
@@ -194,16 +207,23 @@ $font: 'Raleway', sans-serif
     }
     /* 포폴 타이틀 */
     /* 타이틀 상하 나누기 */
-    span>span {
+    span > span {
         display: block;
     }
     .pofol-box {
         aspect-ratio: 20/23;
     }
+    .pofol-box li > a {
+        display: none;
+    }
     .pofol-box li img {
         display: none;
     }
     .pofol-box li:last-child {
-        margin-top: 4rem;
+        margin-top: 3rem;
+    }
+    /* 포폴 링크 버튼 */
+    .link-btn {
+        flex-direction: row;
     }
 }

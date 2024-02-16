@@ -38,14 +38,17 @@ siteData.forEach((x,i)=>{
       <li><em class='mini-font'>제작기간 : ${x['period']}</em></li>
       <li>${x['tech'].map(v=>`<i>${v}</i>`).join('')}</li>
       <li>
-        <div>
-          <a href="${x['link1']}">
-            <img src='${x['imgsrc']}' alt=${x['tit']}>
-          </a>
-        </div>
-        <div>
+        <a href="${x['link1']}">
+          <img src='${x['imgsrc']}' alt=${x['tit']}>
+        </a>
+        <div class='link-btn'>
           <i><a href="${x['link1']}">바로가기</a></i>
-          <i><a href="${x['link2']}">가이드문서</a></i>
+          ${
+            x['link2'] ?
+            `<i><a href='${x['link2']}'>가이드문서</a></i>`
+            :
+            ``
+          }
         </div>
       </li>
     </ul>

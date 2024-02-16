@@ -6,6 +6,9 @@ const descbox3 = document.querySelector("#page-4 .pj-desc");
 const groupInfobox = $(".group-info");
 const SHOWTIMEGAP = 1;
 const page1 = document.querySelector("#page-1");
+const page2 = document.querySelector("#page-2");
+const page3 = document.querySelector("#page-3");
+const page4 = document.querySelector("#page-4");
 
 // 새로고침 시 
 $(() => {
@@ -25,9 +28,21 @@ window.addEventListener("wheel", () => {
         descbox3.classList.add("on");
     }
 });
+// 스크롤 이벤트 - deskTop
+window.addEventListener("scroll", () => {
+    if (page1.getBoundingClientRect().top == 0) {
+        groupInfobox.addClass("on");
+    } else if(page2.getBoundingClientRect().top == 0){
+        descbox1.classList.add("on");
+    }else if(page3.getBoundingClientRect().top == 0){
+        descbox2.classList.add("on");
+    }else if(page4.getBoundingClientRect().top == 0){
+        descbox3.classList.add("on");
+    }
+});
 
 
-// 스크롤 이벤트 - mb
+// 터치 이벤트 - mb
 window.addEventListener("touchmove", function () {
     if (page1.getBoundingClientRect().top > 0) {
         groupInfobox.addClass("on");

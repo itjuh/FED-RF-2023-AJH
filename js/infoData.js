@@ -49,9 +49,8 @@ const siteData = [
     'content':'Vue.js로 제작한 반응형 웹페이지.^메인, 상품소개 페이지로 구성되어 있습니다.',
     'period':'2024.02 ~ 2024.02',
     'tech':['Vue.js', 'JQUERY', 'HTML5', 'CSS3', 'JAVASCRIPT'],
-    'imgsrc':'./imgs/leo_main.jpg',
-    'link1':'https://url.kr/ymgexl',
-    'link2':'https://itjuh.github.io/ajh-fed-react-pj/guide/leopold.pdf',
+    'imgsrc':'./imgs/the_main.jpg',
+    'link1':'https://itjuh.github.io/FED-VUE-2024/007.VueJS%ED%95%99%EC%8A%B5/06.%ED%86%A0%EC%9D%B4%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8/01.ThePJ/index.html',
   },
 ]
 export { infoData, skillStack, edu, siteData };
