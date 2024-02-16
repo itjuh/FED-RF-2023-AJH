@@ -448,6 +448,16 @@ nav.on ol {
     stroke-dashoffset: 0%;
   }
 }
+/* font설정용 */
+.mini-font {
+  font-size: 1.3rem;
+  font-weight: 400;
+}
+.big-font {
+  font-size: 1.6rem;
+  font-weight: 600;
+}
+
 
 @media screen and (max-width: 800px) {
   html,

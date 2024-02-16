@@ -2,6 +2,7 @@
 const textbox = document.querySelectorAll(".portfolio .show-text-box");
 const descbox1 = document.querySelector("#page-2 .pj-desc");
 const descbox2 = document.querySelector("#page-3 .pj-desc");
+const descbox3 = document.querySelector("#page-4 .pj-desc");
 const groupInfobox = $(".group-info");
 const SHOWTIMEGAP = 1;
 const page1 = document.querySelector("#page-1");
@@ -18,9 +19,10 @@ window.addEventListener("wheel", () => {
         groupInfobox.addClass("on");
     } else if (pg_num == 1) {
         descbox1.classList.add("on");
-        console.log('2페이지',descbox1);
     } else if (pg_num == 2) {
         descbox2.classList.add("on");
+    } else if (pg_num == 3) {
+        descbox3.classList.add("on");
     }
 });
 
@@ -32,5 +34,6 @@ window.addEventListener("touchmove", function () {
     } else {
         descbox1.classList.add("on");
         descbox2.classList.add("on");
+        descbox3.classList.add("on");
     }
 });

@@ -34,12 +34,14 @@ siteData.forEach((x,i)=>{
   siteCode = `
     <ul>
       <li><em>${x['tit']}</em></li>
-      <li><em>${x['content'].replace('^','<br>')}</em></li>
-      <li><em>제작기간 : ${x['period']}</em></li>
+      <li><em class='big-font'>${x['content'].replace('^','<br>')}</em></li>
+      <li><em class='mini-font'>제작기간 : ${x['period']}</em></li>
       <li>${x['tech'].map(v=>`<i>${v}</i>`).join('')}</li>
       <li>
         <div>
-          <img src='${x['imgsrc']}' alt=${x['tit']}>
+          <a href="${x['link1']}">
+            <img src='${x['imgsrc']}' alt=${x['tit']}>
+          </a>
         </div>
         <div>
           <i><a href="${x['link1']}">바로가기</a></i>
