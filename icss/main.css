@@ -97,6 +97,9 @@ html > * {
 .in-box {
   max-width: 1024px;
   margin: 0 auto;
+    position: relative;
+  top: 50%;
+  transform: translateY(-50%);
 }
 body * {
   /* 전체 글자체 */
@@ -204,6 +207,12 @@ nav.on .moblie-btn > div:nth-child(3) {
   transform: translateY(7px) rotate(-45deg);
 }
 /* 상단 메뉴 겸 사이드 메뉴 */
+/* 상단용 속박스 */
+header .in-box{
+  position: relative;
+  transform: none;
+}
+
 nav ol {
   position: absolute;
   top: 0;
@@ -256,9 +265,8 @@ nav.on ol {
 }
 .page {
   padding-top: 90px;
-  padding-bottom: 90px;
-  box-sizing: border-box;
-  height: 100vh;
+  height: calc(100vh - 90px);
+  overflow: hidden;
 }
 /* 첫페이지 상단 padding제거 */
 .page:nth-child(1) {
@@ -413,14 +421,15 @@ nav.on ol {
   stroke-dasharray: 400%;
   stroke-dashoffset: 400%;
 }
-  /* 데스크탑 */
-.pj-desc svg:first-child{
+/* 데스크탑 */
+.pj-desc .svg-dt{
   display: block;
 }
-.pj-desc svg:last-child{
+/* 모바일용 */
+.pj-desc .svg-mb{
   display: none;
 }
-.pj-desc.on svg:last-child{
+.pj-desc.on .svg-mb{
   display: none;
 }
 .pj-desc.on rect{
@@ -444,6 +453,11 @@ nav.on ol {
   html,
   body {
     font-size: 14px;
+  }
+  .in-box{
+    top: 0;
+    transform: translateY(0);
+    overflow: hidden;
   }
   /* 모바일용 */
   nav ol {
@@ -474,6 +488,8 @@ nav.on ol {
   }
   .group-info {
     flex-basis: 100%;
+    padding: 20px;
+    box-sizing: border-box;
   }
   /* 서브그룹 정보 ul */
   .group-info ul {
@@ -504,10 +520,13 @@ nav.on ol {
     padding-top: 10px;
   }
   /* 모바일 */
-  .pj-desc svg:first-child{
+  .pj-desc .svg-dt{
     display: none;
   }
-  .pj-desc svg:last-child{
+  .pj-desc .svg-mb{
+    display: block;
+  }
+  .pj-desc.on .svg-mb{
     display: block;
   }
   .pj-desc svg{

@@ -18,16 +18,12 @@ $primary-color: $pink
 $font: 'Raleway', sans-serif
  */
 .portfolio {
-    padding: 8rem 0;
-    min-height: 100vh;
-    margin: 0;
     background: #f26060;
     color: #8b9095;
     font-family: "Roboto";
     font-weight: 800;
     font-size: 3.2rem;
     letter-spacing: 0.02em;
-    overflow: hidden;
 }
 .portfolio a {
     display: inline-block;
@@ -127,7 +123,7 @@ $font: 'Raleway', sans-serif
 .pj-desc .pofol-box li img {
     opacity: 0;
 }
-.pofol-box li i{
+.pofol-box li i {
     display: inline-block;
     font-size: 1.2rem;
     border-radius: 15px;
@@ -150,9 +146,9 @@ $font: 'Raleway', sans-serif
     margin-bottom: 40px;
 }
 /* 포폴 이미지+링크 */
-.pofol-box li:last-child{
+.pofol-box li:last-child {
     position: relative;
-    transition: opacity .5 ease-in;
+    transition: opacity 0.5 ease-in;
     display: flex;
     align-items: center;
 }
@@ -164,27 +160,27 @@ $font: 'Raleway', sans-serif
     border: 1px solid #ffffff;
     padding: 3px 10px;
 }
-.pofol-box li:last-child i a{
-    font-size: .9rem;
+.pofol-box li:last-child i a {
+    font-size: 0.9rem;
     color: #fff;
 }
 
-.pj-desc.on .pofol-box li em{
+.pj-desc.on .pofol-box li em {
     top: 0;
     opacity: 1;
-    transition: .5s ease-out 2s;
+    transition: 0.5s ease-out 2s;
 }
-.pj-desc.on .pofol-box li i{
+.pj-desc.on .pofol-box li i {
     top: 0;
     opacity: 1;
-    transition: .5s ease-out 2s;
+    transition: 0.5s ease-out 2s;
 }
-.pj-desc.on .pofol-box li img{
+.pj-desc.on .pofol-box li img {
     opacity: 1;
-    transition: .5s ease-out 2s;
+    transition: 0.5s ease-out 2s;
 }
 /* 포폴 사이트 이미지 */
-.pofol-box li img{
+.pofol-box li img {
     width: 95%;
     aspect-ratio: 1.9/1;
     margin: 0 auto;
@@ -192,20 +188,22 @@ $font: 'Raleway', sans-serif
 }
 @media (max-width: 400px) {
     .portfolio {
-      font-size: 3rem;
-      padding: 1rem 0;
-      min-height: auto;
+        font-size: 3rem;
+        padding: 1rem 0;
+        min-height: auto;
     }
-    .portfolio span.radial {
-      padding: 0 5px;
+    /* 포폴 타이틀 */
+    /* 타이틀 상하 나누기 */
+    span>span {
+        display: block;
     }
     .pofol-box {
-      aspect-ratio: 20/27;
+        aspect-ratio: 20/23;
     }
-    .pofol-box li img{
-      display: none;
+    .pofol-box li img {
+        display: none;
     }
-    .pofol-box li:last-child{
-      margin-top: 4rem;
+    .pofol-box li:last-child {
+        margin-top: 4rem;
     }
 }

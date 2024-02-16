@@ -77,7 +77,7 @@ function wheelFn(e) {
   if (pg_num == 0) {
     window.scrollTo(0, 0);
   } else {
-    window.scrollTo(0, window.innerHeight * pg_num + 90);
+    window.scrollTo(0, window.innerHeight * pg_num);
   }
 
   // 3. 메뉴변경 함수 호출 : 페이지변수 변경 후!

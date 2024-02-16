@@ -35,7 +35,7 @@ siteData.forEach((x,i)=>{
     <ul>
       <li><em>${x['tit']}</em></li>
       <li><em>${x['content'].replace('^','<br>')}</em></li>
-      <li><em>${x['period']}</em></li>
+      <li><em>제작기간 : ${x['period']}</em></li>
       <li>${x['tech'].map(v=>`<i>${v}</i>`).join('')}</li>
       <li>
         <div>
