@@ -97,23 +97,24 @@ $font: 'Raleway', sans-serif
     position: absolute;
     top: 0.7%;
     left: 1.6%;
-    width: 97%;
-    aspect-ratio: 3/2;
-    /* background-image: url(); */
+    height: 92%;
+    /* width: 97%; */
+    /* aspect-ratio: 3/2; */
 }
 .pofol-box ul {
     height: 100%;
     overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
 }
 .pj-desc .pofol-box li {
-    padding: 0 3rem;
+    padding: 0 2rem;
     font-size: 1.4rem;
     font-family: "Pretendard";
     font-weight: 300;
     color: #fff;
-    overflow: hidden;
-    margin-bottom: 20px;
-    margin-top: 20px;
+    overflow-y: hidden;
 }
 .pj-desc .pofol-box li em {
     position: relative;
@@ -142,8 +143,6 @@ $font: 'Raleway', sans-serif
 /* 포폴 요약 */
 .pofol-box li:nth-child(2) {
     font-size: 400;
-    margin-top: 40px;
-    margin-bottom: 40px;
 }
 /* 포폴 이미지+링크 */
 .pofol-box li:last-child {
@@ -151,7 +150,7 @@ $font: 'Raleway', sans-serif
     transition: opacity 0.5 ease-in;
     display: flex;
     align-items: center;
-    padding: 0 3rem;
+    padding: 0 2rem;
     justify-content: space-between;
 }
 .pofol-box li:last-child a {
@@ -199,7 +198,24 @@ $font: 'Raleway', sans-serif
     align-items: center;
     gap: 2rem;
 }
+@media (max-width: 800px) {
+    .pofol-box li:last-child {
+        flex-direction: column;
+        align-items: start;
+        gap: 2rem 0;
+    }
+    /* 포폴 링크 버튼 */
+    .link-btn {
+        flex-direction: row;
+        justify-content: space-evenly;
+        width: 85%;
+        align-items: center;
+    }
+}
 @media (max-width: 400px) {
+    .big-font {
+        font-size: 1.5rem;
+    }
     .portfolio {
         font-size: 3rem;
         padding: 1rem 0;
@@ -211,7 +227,13 @@ $font: 'Raleway', sans-serif
         display: block;
     }
     .pofol-box {
+        margin-top: .5rem;
         aspect-ratio: 20/23;
+        top: 2.7%;
+        left: 4.6%;
+    }
+    .pj-desc .pofol-box li {
+        padding: 0 1.5rem;
     }
     .pofol-box li > a {
         display: none;
@@ -219,11 +241,13 @@ $font: 'Raleway', sans-serif
     .pofol-box li img {
         display: none;
     }
-    .pofol-box li:last-child {
-        margin-top: 3rem;
+    .pofol-box li i {
+        font-size: 1rem;
     }
     /* 포폴 링크 버튼 */
     .link-btn {
-        flex-direction: row;
+        width: 100%;
+        gap: 0;
+        justify-content: space-between;
     }
 }
