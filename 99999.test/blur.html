@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <style>
+            .wrapper{
+                width: 100%;
+            }
+            .cont {
+                display: flex;
+                justify-content: center;
+            }
+            .cont .ebook {
+                position: relative;
+                width: 600px;
+                height: 847px;
+               
+            }
+            .cont .ebook img {
+                width: 600px;
+                height: 847px;
+                transition: 0.5s;
+            }
+            .cont .ebook span {
+                /* 글자 위치 맞추기 */
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 100%;
+                height: 100%;
+                font-size: 40px;
+                font-weight: bold;
+                color: skyblue;
+                text-align: center;
+                text-shadow: 1px 1px 3px #000;
+                /* 투명하게 함(처음에 안보이게) */
+                opacity: 0;
+                transition: opacity 0.5s;
+                transform: translateY(-100%);
+            }
+            .cont .ebook:hover img{
+                filter: blur(3px);
+                transition: 1s;
+            }
+            .cont .ebook:hover span {
+                opacity: 1;
+                transition: opacity 1s 0.5s;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="wrapper">
+            <div class="cont" style="text-align: center">
+                <div class="ebook">
+                    <a id="ebookLink" href="#" class="">
+                        <img src="../001.HTML학습/01.Info_PJ/images/img_the_scream.jpg" />
+                    </a>
+                    <span
+                        >글자가 <br />뜨게하고<br />
+                        싶은데<br
+                    /></span>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
+<!--             div {
+                /* span 100%을 위한 부모자격 */
+                position: relative;
+                width: 400px;
+                height: 400px;
+            }
+            img {
+                width: 400px;
+                height: 400px;
+                transition: 0.5s;
+            }
+            span {
+                /* 글자 위치 */
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 40px;
+                font-weight: bold;
+                color: skyblue;
+                text-align: center;
+                text-shadow: 1px 1px 3px #000;
+                /* 투명하게 함(처음에 안보이게) */
+                opacity: 0;
+                transition: opacity 0.5s;
+                transform: translateY(-100%);
+            }
+            /* 박스에 마우스 올리면 이미지 바꾸기 */
+            div:hover a {
+                /* 블러처리 */
+                filter: blur(20px);
+                /* 여기에 transition 줘야 마우스 떠날때 바로 바뀜 */
+                /* 위에 img에 주면 마우스 떨어질때도 서서히 풀림 */
+                transition: 1s;
+            }
+            /* 글자 나오기 처리 */
+            div:hover span {
+                opacity: 1;
+                /* transition의 속성 */
+                /* 어떤옵션(안쓰면 전부) 몇초바뀔지(필수속성) 어떤속도로(안쓰면자동ease-in) 딜레이(안쓰면자동0s)  */
+                transition: opacity 1s 0.5s;
+            } -->
