@@ -9,11 +9,11 @@
 /* 2. 메인영역 */
 
 /* 메인페이지 배경 */
+/* 메인페이지 배경 */
 #main {
-    background-color: #ffffff00;
-    background-image: linear-gradient(to bottom, var(--co-ongreen) , var(--co-onlightgreen));
-    overflow: hidden;
-    color: #fff;
+  background-color: #eeeeee;
+  overflow: hidden;
+  color: #1a1a1a;
 }
 /* 메인페이지 구분박스 첫박스 */
 .main .group-box:first-child {
@@ -29,7 +29,7 @@
   height: 100%;
   margin: 0 auto;
   padding-bottom: 10px;
-  border-bottom: 1px solid #fff;
+  border-bottom: 1px solid #1a1a1a;
   font-size: var(--fz-biger);
 }
 /* 2-2.맵링크 */
@@ -118,7 +118,7 @@
   height: 40px;
   font-family: "Font Awesome 5 Free";
   font-weight: 900;
-  color: #fff;
+  color: var(--co-ongreen);
   transform: translateY(-50%);
 }
 /* 2-3-1. 오시는법 */
@@ -158,6 +158,7 @@
   text-align: center;
   line-height: 52px;
   filter: drop-shadow(3px 4px 5px rgb(11 58 22 / 10%));
+  cursor: pointer;
 }
 .contact-way.on {
   background: #eee;
@@ -199,7 +200,7 @@
     height: 40px;
     font-family: "Font Awesome 5 Free";
     font-weight: 400;
-    color: #fff;
+    color: var(--co-ongreen);
     transform: translateY(-50%);
 }
 /* 2-3-1-2. 이용안내 */
@@ -234,16 +235,16 @@
 }
 /* 이용안내 아이콘 개별 */
 .use-info dl:nth-child(1) > dt {
-    background-position: -510px -353px;
+    background-position: -528px 3px;
   }
   .use-info dl:nth-child(2) > dt {
-    background-position: -593px -350px;
+    background-position: -613px 6px;
   }
   .use-info dl:nth-child(3) > dt {
-    background-position: -677px -353px;
+    background-position: -697px -3px;
   }
   .use-info dl:nth-child(4) > dt {
-    background-position: -762px -350px;
+    background-position: -782px -3px;
   }
 
 /*****************미디어쿼리*****************/
