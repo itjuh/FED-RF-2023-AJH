@@ -5,11 +5,15 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>온고롱 메인페이지</title>
         <!-- 아이콘 -->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" />
         <!-- 온고롱 메인페이지 CSS -->
         <link rel="stylesheet" href="./css/main.css" />
         <!-- 온고롱 데이터JS -->
         <script src="./js/data.js"></script>
+        <!-- 온고롱 반복데이터 넣기 -->
+        <script type="module" src="./js/insertDataCode.js"></script>
+        <!-- 온고롱 검색창 -->
+        <script src="./js/searchInput.js" defer></script>
         <!-- 온고롱 메인JS -->
         <script type="module" src="./js/main.js"></script>
     </head>
@@ -59,7 +63,7 @@
                         <div class="search-box">
                             <label for="search"></label>
                             <i class="fa-solid fa-magnifying-glass"></i>
-                            <input type="text" id="search" placeholder="제품을 검색하세요!" onkeypress="if(event.keyCode===13) search()"/>
+                            <input type="text" id="search" placeholder="제품을 검색하세요!" onkeypress="if(event.keyCode===13) search()" />
                         </div>
                     </div>
                 </div>
@@ -67,31 +71,28 @@
         </div>
         <!-- 2. 메인영역 -->
         <div id="main">
-            <main class="main inbox">
+            <main class="main">
                 <!-- 2-1. 이벤트배너 -->
                 <!-- 2-1-2. 배너박스 -->
-                <div class="main-banner group-box">
+                <div class="main-banner group-box inbox">
                     <section class="banner-area">
                         <!-- 배너이미지 -->
-                        <ul class="banner-ul">
-                        </ul>
+                        <ul class="banner-ul"></ul>
                     </section>
                     <!-- 배너설명 -->
                     <div class="banner-desc">
-                        <ol>
-                        </ol>
-                        <!-- 더보기버튼 -->
-                        <button class="move-view-btn">더보기</button>
+                        <ol></ol>
                     </div>
                     <!-- 왼쪽 배너로 이동 -->
-                    <button class="move-btn prev-btn"></button>
+                    <button class="move-btn prev-btn fa-solid fa-chevron-left"></button>
                     <!-- 오른쪽 배너로 이동 -->
-                    <button class="move-btn next-btn"></button>
+                    <button class="move-btn next-btn fa-solid fa-chevron-right"></button>
+                    <!-- 2-2. 메인테마 -->
                 </div>
-                <!-- 2-2. 메인테마 -->
+
                 <div class="main-thema group-box">
                     <div class="partbox">
-                        <img src="./images/images/main03.jpg" alt="메인테마 이미지">
+                        <img src="./images/images/main03.jpg" alt="메인테마 이미지" />
                     </div>
                 </div>
                 <!-- 2-3. 컨셉이미지 -->
@@ -99,27 +100,23 @@
                 <div class="main-scroll-banner group-box">
                     <div class="partbox">
                         <div class="scroll-banner-box">
-                            <ul>
-                            </ul>
+                            <ul></ul>
                             <div class="white-box"></div>
                             <div class="white-box"></div>
                         </div>
                     </div>
                 </div>
                 <!-- 2-4. 인기상품 -->
-                <div class="list-type main-hot-item group-box">
+                <div class="list-type main-hot-item group-box inbox">
                     <!-- 인기상품 타이틀 -->
-                    <div class="partbox">
-                        <h1 class="tit">인기상품</h1>
-                    </div>
+                    <h1 class="tit">인기상품</h1>
                     <!-- 인기상품 리스트 -->
-                    <div class="hot-item-list list">
-                        <ol>
-                        </ol>
+                    <div class="hot-item-list">
+                        <ol></ol>
                     </div>
                     <!-- 인기상품 더보기 -->
                     <div class="partbox">
-                        <button class="move-view-btn">더보기</button>
+                        <button class="move-view-btn">주문하기</button>
                     </div>
                 </div>
                 <!-- 2-5. 추천검색 -->
@@ -148,8 +145,7 @@
                             </div> -->
                             <!-- 리스트 -->
                             <div class="list">
-                                <ol>
-                                </ol>
+                                <ol></ol>
                             </div>
                         </div>
                     </div>
@@ -159,20 +155,17 @@
                     <div class="partbox"></div>
                 </div> -->
                 <!-- 2-7. 리뷰 -->
-                <div class="list-type main-review group-box">
+                <div class="list-type main-review group-box inbox">
                     <!-- 리뷰 타이틀 -->
-                    <div class="partbox">
-                        <h1 class="tit">후기</h1>
-                    </div>
+                    <h1 class="tit">후기</h1>
                     <!-- 리뷰 리스트 -->
-                    <div class="review-list list">
-                        <ol>
-                        </ol>
+                    <div class="review-list">
+                        <ol></ol>
                     </div>
                     <!-- 리뷰 더보기 -->
                     <div class="partbox">
                         <div class="partbox">
-                            <button class="move-view-btn">더보기</button>
+                            <button class="move-view-btn">주문하기</button>
                         </div>
                     </div>
                 </div>
@@ -199,7 +192,7 @@
                             <li>전화 : 0507-1358-0638</li>
                             <li>메일 : ongorongcake@naver.com</li>
                             <li>사업자번호 : 665-13-33017</li>
-                            <li>통신판매번호 : 신고면제 </li>
+                            <li>통신판매번호 : 신고면제</li>
                             <!-- <i class="fa-solid fa-magnifying-glass"></i> -->
                         </ul>
                     </div>
