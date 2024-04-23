@@ -54,7 +54,7 @@
 /* 상단영역 공통 */
 /* 1000px까지만 그 아래로는 메뉴 줄이기 필요 */
 .header.inbox{
-    max-width: 1650px;
+    max-width: 1450px;
     margin: 0 auto;
 }
 .top-box{
@@ -180,26 +180,27 @@
     transform: translate(calc(-50% + min(15vw,249px)),66%);
     font-size: 20px;
     cursor: pointer;
+    color:#1a1a1a;
 }
 /********* 2. 메인영역 **********/
 #main{
     background-color: var(--co-onbeige);
     font-family: 'GangwonEdu_OTFBoldA';
+    color: #1a1a1a;
 }
-.main.inbox{
-    position: relative;
-    max-width: 1650px;
-    min-height: 650px;
-    margin: 0 auto;
+.main {
     margin-top: 100px;
+}
+.main .inbox{
+    position: relative;
+    max-width: 1450px;
+    /* min-height: 650px; */
+    margin: 0 auto;
 }
 /* 메인영역 이미지 오버 클래스 */
 .img-hover{
     transform:scale(1.2);
 }
-/* .main.inbox h2{
-    position: absolute;
-} */
 /* 메인영역 구분박스 */
 .main .group-box{
     margin-top: 50px;
@@ -285,10 +286,11 @@
     width: 45px;
     height: 45px;
     border-radius: 45px;
-    background-color: var(--co-onbeige);
+    background-color: #fff;
     box-shadow: 1px 1px 3px 1px #363636;
     /* 트랜지션 */
     transition: .2s ease-in;
+    cursor: pointer;
 }
 /* sns이름 공통 */
 .footer-sns span{
@@ -297,11 +299,11 @@
     /* 글자세팅 */
     padding-left: 7px;
     margin-left: 7px;
-    color: var(--co-onlightgreen);
+    color: #1a1a1a;
     font-size: var(--fz-top);
     font-family: 'GangwonEdu_OTFBoldA';
     text-align: left;
-    line-height: 47px;
+    line-height: 50px;
     /* 마우스 오버 전 글자숨기기 */
     overflow: hidden;
 }
@@ -312,7 +314,7 @@
     width: 45px;
     height: 45px;
     border-radius: 45px;
-    background: var(--co-onbeige) url(../images/images/sns_icon.png) no-repeat;
+    background: #fff url(../images/images/sns_icon.png) no-repeat;
 }
 /* 이미지 별도 위치조정*/
 .kakao{
