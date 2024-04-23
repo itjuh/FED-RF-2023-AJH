@@ -10,8 +10,7 @@
 
 /* 메인페이지 배경 */
 #main {
-    background-color: #ffffff00;
-    background-image: linear-gradient(to bottom, var(--co-ongreen), var(--co-onlightgreen));
+    background-color: #eeeeee;
     overflow: hidden;
 }
 /* 2-1.타이틀 */
@@ -24,10 +23,9 @@
     height: 100%;
     margin: 0 auto;
     padding-bottom: 10px;
-    border-bottom: 1px solid #fff;
     font-size: var(--fz-biger);
     text-indent: 2vw;
-    color: #fff;
+    color:#1a1a1a;
 }
 .main .partbox {
     max-width: 1400px;
@@ -116,6 +114,7 @@
     line-height: 56px;
     text-align: right;
     padding-right: 30px;
+    cursor: pointer;
 }
 /* 전체 박스공통 */
 .faq-sub-cate li:nth-child(1) {
@@ -161,9 +160,7 @@
 /* 마우스 클릭 시 on클래스 주기 */
 .faq-sub-cate li:hover,
 .faq-sub-cate li.on {
-    /* text-shadow: 1px 0px 0px; */
     border-radius: 20px 20px 0px 20px;
-    /* box-shadow: 0px 0px 5px 1px #6d6d6d; */
     background-color: var(--co-onlightgreen);
     color: white;
 }
@@ -311,6 +308,7 @@
     border-radius: 3px;
     line-height: 62px;
     text-align: center;
+    cursor: pointer;
 }
 /* 카카오톡 채널 아이콘 */
 .qna-link-two > ul > li:first-child::after {
@@ -341,7 +339,7 @@
     color: var(--co-ongreen);
 }
 .qna-link-two > ul > li:hover::after {
-    transform: rotateY(20deg);
+    transform: rotate(-10deg);
 }
 
 /*****************미디어쿼리*****************/
