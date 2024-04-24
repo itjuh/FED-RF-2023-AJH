@@ -126,17 +126,6 @@
   flex-basis: 65%;
 }
 
-/* 2-3-1. 오시는법 타이틀 밑줄 */
-/* .contact.sub-title::before {
-  content: "";
-  position: absolute;
-  top: 50%;
-  left: 0;
-  width: 100px;
-  height: 10px;
-  background-color: lightyellow;
-  transform: translateY(-50%);
-} */
 /* 2-3-1-2. 오시는법 */
 .contact-info {
   /* 타이틀 밑줄 아이콘 부모 */
@@ -291,20 +280,21 @@
   }
   /* 오시는법 상세 설명박스 */
   .contact-way {
-    width: min(17vw, 100px);
+    width: min(20vw, 100px);
   }
   .bus::after {
-    left: max(-17vw, -100px);
+    left: max(-20vw, -100px);
   }
   .car::after {
-    left: max(-34vw, -200px);
+    left: max(-40vw, -200px);
   }
 } /* 750px이하 미디어쿼리 종료 */
 /* 500px 이하 미디어쿼리 시작 */
 @media screen and (max-width: 500px) {
   /* 메인박스 */
   .main.inbox {
-    padding-left: 1.5vw;
+    padding-left: 10px;
+    padding-right: 10px;
   }
     /* 지도 크기 */
     .map iframe {

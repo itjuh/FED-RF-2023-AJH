@@ -9,9 +9,9 @@
 /* 2. 메인영역 */
 /* 메인페이지 배경 */
 #main {
-  background-image: linear-gradient(to bottom, var(--co-ongreen), var(--co-onlightgreen));
+  background-color: #eee;
   overflow: hidden;
-  color: #fff;
+  color: #1a1a1a;
 }
 /* 메인페이지 박스 초기화 */
 .main.inbox {
@@ -39,7 +39,7 @@
   background-image: linear-gradient(to bottom, #2f2f2f40, rgb(97 108 92));
 }
 
-/* 각 타이틀 공통 */
+/* 타이틀 공통 */
 .top-title {
   display: flex;
   width: 1400px;
@@ -54,6 +54,7 @@ main .partbox {
   /* 브랜드 소개 타이틀용 부모역할 */
   /* position: relative; */
   height: 100vh;
+  color: #fff;
 }
 /* 2-1-1. 브랜드소개타이틀 */
 /* 타이틀 배치관련 */
@@ -156,7 +157,7 @@ main .partbox {
   display: flex;
   justify-content: flex-start;
   gap: 0 50px;
-  animation: grad-ani 20s linear 9.5s infinite;
+  animation: grad-ani 20s linear 6.5s infinite;
   /* 변경할 애니요소를 미리지정하여 브라우저에 최적화를 주문함!
     애니버벅임에 아주 좋은 효과!!! */
   will-change: left;
@@ -240,8 +241,9 @@ main .partbox {
   left: 0;
   opacity: 0;
   transition: opacity 0.4s ease-in-out;
+  color: #fff;
 }
-.product.prev figcaption {
+.product:hover figcaption {
   opacity: 1;
 }
 .product figcaption span {
@@ -259,7 +261,7 @@ main .partbox {
   opacity: 1;
 }
 /* 제품소개 중 클릭한 대상 */
-.product.prev {
+.product:hover {
   transform: scale(1.1);
   z-index: 1;
 }
@@ -284,14 +286,17 @@ main .partbox {
   align-items: center;
   justify-content: space-around;
 }
+.bullet-box li {
+  cursor: pointer;
+}
 /* 주문절차 불릿 안내문구 */
 .bullet-box em {
   font-size: var(--fz-top);
-  color: #000;
+  color: var(--co-ongray);
 }
 /* 주문절차 불릿 클릭 시 안내문구*/
 .bullet-box li.on em {
-  color: #fff;
+  color: #000;
 }
 /* 주문절차 불릿 도형 */
 .bullet-box .circle {
@@ -325,6 +330,7 @@ main .partbox {
   transition: 0.3s ease-in;
   overflow: hidden;
   filter: blur(1px);
+  cursor: pointer;
 }
 .process img {
   width: 100%;
@@ -350,6 +356,7 @@ main .partbox {
 .cautions-info {
   /* .caution-box 부모자격 */
   position: relative;
+  color: #fff;
 }
 /* 주의사항 ol */
 .cautions-info ol {

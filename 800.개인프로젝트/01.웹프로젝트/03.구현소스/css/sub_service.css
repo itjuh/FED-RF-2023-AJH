@@ -25,7 +25,7 @@
     padding-bottom: 10px;
     font-size: var(--fz-biger);
     text-indent: 2vw;
-    color:#1a1a1a;
+    color: #1a1a1a;
 }
 .main .partbox {
     max-width: 1400px;
@@ -251,7 +251,7 @@
 .faq-content > ul > li.open .asked-box {
     height: 63px;
     /* 트랜지션 */
-    transition: height 0.3s ease-out .5s;
+    transition: height 0.3s ease-out 0.5s;
 }
 @keyframes arrow-updo-swing-ani {
     to {
@@ -474,45 +474,45 @@
     .qna-link-two > ul > li {
         text-align-last: center;
     }
-    
 } /* 750px이하 미디어쿼리 종료 */
 /* 500px 이하 미디어쿼리 시작 */
 @media screen and (max-width: 500px) {
-  .main .top-title {
-    height: auto;
-  }  
-  .top-title h1 {
+    .main .top-title {
+        height: auto;
+    }
+    .top-title h1 {
         line-height: 1.2;
         max-width: auto;
         padding-top: 15px;
-        padding-right: 20vw;
+        padding-right: 20px;
+        padding-left: 20px;
     }
     /* 아이콘 공통 */
     .faq-sub-cate li::before {
-      display: none;
+        display: none;
     }
     /* 서브카테고리 공통 */
     .faq-sub-cate li {
-    width: auto;
-    padding: 0 10px;
-    text-align: center;
+        width: auto;
+        padding: 0 10px;
+        text-align: center;
     }
     .faq-sub-cate li:nth-child(2) {
-      padding-left: 1.2vw;
-  }
+        padding-left: 1.2vw;
+    }
     .faq-sub-cate li:nth-child(1) {
-      width: auto;
+        width: auto;
     }
     /* 질문/응답박스 li */
     .faq-content > ul > li {
-    font-size: max(4.1vw,12px);
+        font-size: max(4.1vw, 12px);
     }
     /* 더궁금 박스 */
     .qna-link {
-      padding: 9px;
-  }
+        padding: 9px;
+    }
     /* 더궁금 박스내용 */
     .qna-link-two > ul > li {
-    text-align-last: left;
+        text-align-last: left;
     }
 } /* 500px이하 미디어쿼리 종료 */
