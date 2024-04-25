@@ -72,10 +72,21 @@
     </div>
     <!-- 2. 메인영역 -->
     <div id="main">
-      <main class="main inbox">
+      <main class="main">
         <!-- 2-1.타이틀 -->
-        <div class="partbox top-title">
+        <div class="partbox top-title inbox">
           <h1>상품 주문하기</h1>
+          <!-- 진행절차 -->
+          <div class="proceed-nav">
+            <ol>
+              <li class="on"><span>1.목적</span></li>
+              <li><span>2.일정</span></li>
+              <li><span>3.상품</span></li>
+              <li><span>4.옵션</span></li>
+              <li><span>5.추가</span></li>
+              <li><span>6.주문</span></li>
+            </ol>
+          </div>
         </div>
         <!-- 2-2. 주문 -->
         <div class="partbox order-box">
@@ -113,8 +124,9 @@
             <div class="prod-box">
               <div class="list-type">
                 <!-- 타이틀 -->
-                <div class="partbox">
+                <div class="title-box">
                   <h1 class="tit">숫자케이크</h1>
+                  <button class="fa-solid fa-xmark close-btn" title="닫기버튼"></button>
                 </div>
                 <!-- 리스트 -->
                 <div class="list">
@@ -123,7 +135,7 @@
               </div>
             </div>
             <!-- 제품옵션 박스 (절차내용 4.옵션)-->
-            <div class="prod-option">
+            <div class="prod-option scbar">
               <div class="option-box">
                 <!-- 고정옵션 왼쪽 -->
                 <div class="option-basic">
@@ -132,37 +144,17 @@
                 </div>
                 <!-- 선택옵션 오른쪽 -->
                 <aside class="option-select">
+                  <button class="fa-solid fa-xmark close-btn" title="닫기버튼"></button>
                   <dl></dl>
                   <dl></dl>
                   <dl></dl>
                   <dl></dl>
-                  <div class="proceed-btn-box aside-btn">
-                    <button class="btn prev">
-                      <i class="fa-solid fa-circle-play fa-rotate-180"></i>
-                      &nbsp;취소
-                    </button>
-                    <button class="btn next">
-                      다음&nbsp;
-                      <i class="fa-solid fa-circle-play"></i>
-                    </button>
-                  </div>
                 </aside>
               </div>
             </div>
           </section>
           <!-- 2-4. 주문진행 -->
           <section class="proceed-box">
-            <!-- 진행절차 -->
-            <div class="proceed-nav">
-              <ol>
-                <li class="on"><span>1.목적</span></li>
-                <li><span>2.일정</span></li>
-                <li><span>3.상품</span></li>
-                <li><span>4.옵션</span></li>
-                <li><span>5.추가</span></li>
-                <li><span>6.주문</span></li>
-              </ol>
-            </div>
             <!-- 절차 타이틀 -->
             <div class="proceed-title">
               <h2>어떤 목적으로 주문하세요?</h2>
@@ -188,8 +180,7 @@
                     <h3>어느 분이 찾으러 오시나요?</h3>
                     <ul>
                       <li>주문자 본인</li>
-                      <li>대리인 수령</li>
-                      <li>퀵 기사</li>
+                      <li>대리인</li>
                     </ul>
                     <input class="name" type="text" placeholder="성함" />
                     <input class="number" type="text" placeholder="연락처" />

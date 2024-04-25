@@ -109,7 +109,6 @@ function stepFn() {
         // 3. 단계 업데이트
 
         // 4. 주문서 박스 크기바꾸기, 제품선택 박스 끄기
-        formBox.classList.remove("view");
         prodBox.classList.remove("view");
         // 5. 옵션선택 박스 끄기
         prodOptionBox.classList.remove("view");
@@ -341,7 +340,6 @@ const subcate = domFn.qsa(".sub-menu span");
 // 바꿀대상 : .form-box, prod-box :view
 // 바꿀대상 : .prod-option :view제거
 const categoryParent = domFn.qs(".step-2>ul");
-const formBox = domFn.qs(".form-box");
 const prodBox = domFn.qs(".prod-box");
 const prodOptionBox = domFn.qs(".prod-option");
 // 이벤트 설정 : category li,
@@ -354,7 +352,7 @@ subcate.forEach((ele) => {
 // 데이터 가져오기변수
 let atxt = "";
 
-// 3. 누른 카테고리 읽기함수
+// 3. 누른 카테고리 읽기함수 - 상위목록
 function cataOpen() {
   let clickCode = this.innerHTML;
   if (this.innerHTML !== this.innerText) {
@@ -384,7 +382,6 @@ function cataOpen() {
     // li안쪽 text 가져오기
     atxt = clickCode;
     // 왼쪽 열기
-    formBox.classList.add("view");
     prodBox.classList.add("view");
     // 왼쪽 옵션박스가 열려있다면 닫기
     if (prodOptionBox.classList.contains("view")) {
@@ -395,7 +392,7 @@ function cataOpen() {
   }
 } ////////cateOpen함수//////////////
 
-// 4. 누른 서브메뉴 읽기 함수
+// 4. 누른 서브메뉴 읽기 함수 - 하위목록
 function subOpen() {
   let clickCode = this.innerText;
   // console.log(clickCode,this);
@@ -408,7 +405,6 @@ function subOpen() {
   // span안쪽 text 가져오기
   atxt = clickCode;
   // 왼쪽 열기
-  formBox.classList.add("view");
   prodBox.classList.add("view");
   // 왼쪽 옵션박스가 열려있다면 닫기
   if (prodOptionBox.classList.contains("view")) {
@@ -417,6 +413,18 @@ function subOpen() {
   // 코드 만들어서 뿌리기
   prodCodeMake(atxt);
 } ////////subOpen함수//////////////
+
+/////////////////////////////////////////////
+// 옵션 선택창 닫기
+/////////////////////////////////////////////
+// 클릭대상 : .list-type .title-box button
+/////////////////////////////////////////////
+// 변경대상 : prodBox.classList.remove("view");
+const prodboxCloseButton = document.querySelector('.list-type .title-box button');
+prodboxCloseButton.addEventListener('click',prodboxClose);
+function prodboxClose(){
+  prodBox.classList.remove("view");
+}
 
 // 상품 데이터 뿌리기
 // 대상: .list>ol
@@ -445,6 +453,9 @@ function prodCodeMake(atxt) {
     // 태그 저장배열
     let tagList = prod_info[x]["prod_tag"];
     // console.log('비교결과 :', x, tagList, sameTag(tagList,atxt));
+    function addCommas(x) {
+      return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    }
     // 태그 확인하기
     if (sameTag(tagList, atxt)) {
       limitCnt++;
@@ -455,12 +466,10 @@ function prodCodeMake(atxt) {
                 <div class="img-box">
                     <img src="${prod_info[x]["src"]}" alt="상품이미지1">
                 </div>
-                <div class="txt-box">
-                    <ul>
+                  <ul class="txt-box">
                         <li class="prod-name">${prod_info[x]["prod_name"]}</li>
-                        <li class="prod-price">${prod_info[x]["prod_price"]}</li>
-                    </ul>
-                </div>
+                        <li class="prod-price">${addCommas(prod_info[x]["prod_price"])}</li>
+                  </ul>
             </div>
             </li>
             `;
@@ -642,16 +651,14 @@ function chgReq() {
   reqSpan.innerText = this.value.length;
 } ///////// 요청사항창 함수////////////////////
 
-////////////////옵션박스 닫기/////////////////////
-// 1. 대상 : prodOptionBox  .aside-btn btn
+//////////////옵션박스 닫기/////////////////////
+// 1. 대상 : prodOptionBox .close-btn
 // 2. 이벤트 : click
 // 3. 변경사항 : view 제거
-const asideBtn = domFn.qsa(".aside-btn .btn");
-asideBtn.forEach((ele) => {
+const closeBtn = domFn.qsa(".option-select .close-btn");
+closeBtn.forEach((ele) => {
   // 열고 닫기 함수
   domFn.addEvt(ele, "click", optionClose);
-  // 단계변화 함수
-  domFn.addEvt(ele, "click", stepFn);
 });
 function optionClose() {
   prodOptionBox.classList.remove("view");
