@@ -14,8 +14,8 @@
 }
 /* 2-1.타이틀 */
 .main .top-title {
-    min-height: 140px;
-    height: 140px;
+    /* min-height: 140px;
+    height: 140px; */
     line-height: 120px;
     display: flex;
     justify-content: space-between;
@@ -87,7 +87,7 @@
     border-radius: 20px;
     background-color: #fff;
     box-sizing: border-box;
-    box-shadow: 0px 4px 4px 0 rgba(3, 15, 6, 0.404);
+    box-shadow: 2px 8px 16px 0 rgb(11 58 22 / 19%);
 }
 /* 2-3. 주문신청서 */
 /* 신청서 박스 개별 */
@@ -215,7 +215,6 @@
     border: 1px solid var(--co-ongreen);
     background-color: #fff;
     font-size: var(--fz-sign);
-    font-family: "GangwonEdu_OTFBoldA";
     cursor: pointer;
 }
 /* input 플레이스홀더 글자색상 */
@@ -492,7 +491,6 @@
     border: 1px solid var(--co-ongreen);
     background-color: #fff;
     font-size: var(--fz-sign);
-    font-family: "GangwonEdu_OTFBoldA";
 }
 .pick-up input:first-of-type {
     margin-top: 28px;
@@ -663,6 +661,39 @@
     font-size: var(--fz-nav);
 }
 /************ 상품 선택 시 ************/
+/* 오른쪽 옵션 내용 */
+.step-4 ol {
+    display: block;
+    padding: 10px 20px;
+    width: auto;
+}
+.step-4 ol li{
+    display: flex;
+    padding: 0 0 10px;
+    font-size: var(--fz-nav);
+    font-weight: 500;
+}
+.step-4 .option-title{
+    padding-top: 40px;
+}
+.step-4 li i {
+    color: var(--co-ongreen);
+    font-size: var(--fz-big);
+    line-height: 37px;
+    padding-right: 10px;
+}
+.step-4 li div{
+    width: calc(100% - 40px);
+    height: 40px;
+    line-height: 40px;
+    /* border: none; */
+    border-radius: 10px;
+    padding: 0px 20px;
+    color: #555;
+    border: 1px solid var(--co-ongreen);
+    background-color: #fff;
+    font-size: var(--fz-sub);
+}
 /* 제품 옵션 박스 */
 /* 옵션 겉박스 */
 .form-area .prod-option {
@@ -863,7 +894,6 @@ input[type="radio"] {
     box-shadow: 1px 3px 5px 0 rgb(11 58 22 / 19%);
     background-color: #eee;
     font-size: var(--fz-sub);
-    font-family: "GangwonEdu_OTFBoldA";
 }
 /* 요청사항 박스 */
 #request {
@@ -877,7 +907,6 @@ input[type="radio"] {
     box-shadow: 1px 3px 5px 0 rgb(11 58 22 / 19%);
     background-color: #eee;
     font-size: var(--fz-sub);
-    font-family: "GangwonEdu_OTFBoldA";
 }
 /* *********절차5.추가******** */
 .proceed-content span {
@@ -911,7 +940,6 @@ input[type="radio"] {
     box-shadow: 0px 0px 5px 1px var(--co-onlightgreen);
     /* 글자세팅 */
     font-size: var(--fz-nav);
-    font-family: "GangwonEdu_OTFBoldA";
     color: var(--co-onlightgreen);
     text-align: center;
     letter-spacing: 4px;

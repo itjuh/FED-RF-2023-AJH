@@ -378,7 +378,6 @@
     font-size: var(--fz-sign);
     color: white;
     line-height: 65px;
-    font-family: "GangwonEdu_OTFBoldA";
     /* box-shadow대신 filter:drop-shadow를 써야 클립패쓰까지 그림자 적용됨!!! */
     filter: drop-shadow(-1px 6px 3px rgba(50, 50, 0, 0.5));
     cursor: pointer;
