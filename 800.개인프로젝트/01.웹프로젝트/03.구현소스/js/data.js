@@ -191,7 +191,7 @@ const option_list = {
    "맛 선택":[
       {"name":"꿀설기","price":0,"img":"./images/images/fla1.png","alt":"기본 꿀설기"},
       {"name":"단호박","price":5000,"img":"./images/images/fla2.png","alt":"단호박 맛"},
-      {"name":"무화과","price":5000,"img":"./images/images/fla4.png","alt":"무화과 맛"},
+      {"name":"흑임자","price":5000,"img":"./images/images/fla4.png","alt":"흑임자 맛"},
    ],
    "사이즈":[
       {"name":"1호(15cm)","price":0},
@@ -206,8 +206,8 @@ const option_list = {
 const step_title = [
    "어떤 목적으로 주문하세요?",
    "언제 필요하세요?",
-   "상품을 골라주세요",
-   "옵션을 선택해주세요",
+   "상품을 선택하세요",
+   "옵션을 선택하세요",
    "추가하실 상품이 있으신가요?",
    "주문신청서 작성이 완료 되었습니다.",
 ];

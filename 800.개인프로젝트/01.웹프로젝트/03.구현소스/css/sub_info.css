@@ -368,8 +368,7 @@ main .partbox {
   /* 위치이동을 위한 */
   position: relative;
   width: 300px;
-  /* height: 400px; */
-  background: rgba(0, 0, 0, 0.575);
+  background: var(--co-onlightgreen);
   border: 1px solid #ffffff;
   border-radius: 10px;
   /* 초기: 아래위치, 투명하게 */

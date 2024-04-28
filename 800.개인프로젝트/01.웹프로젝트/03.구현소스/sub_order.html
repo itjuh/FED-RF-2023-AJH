@@ -59,12 +59,7 @@
             <div class="search-box">
               <label for="search"></label>
               <i class="fa-solid fa-magnifying-glass"></i>
-              <input
-                type="text"
-                id="search"
-                placeholder="제품을 검색하세요!"
-                onkeypress="if(event.keyCode===13) search()"
-              />
+              <input type="text" id="search" placeholder="제품을 검색하세요!" onkeypress="if(event.keyCode===13) search()" />
             </div>
           </div>
         </div>
@@ -204,7 +199,24 @@
                   </ul>
                 </li>
                 <!-- 절차 내용(4. 옵션) li -->
-                <li class="proceed-list step-4"></li>
+                <li class="proceed-list step-4">
+                  <ol>
+                    <li>
+                      <i class="fa-solid fa-clipboard-check"></i>
+                      <span>선택 상품</span>
+                    </li>
+                    <li>
+                      <div class="selected-product-view"></div>
+                    </li>
+                    <li class="option-title">
+                      <i class="fa-solid fa-clipboard-check"></i>
+                      <span>선택 옵션</span>
+                    </li>
+                    <li>
+                      <div class="selected-option-view"></div>
+                    </li>
+                  </ol>
+                </li>
                 <!-- 절차 내용(5. 추가) li -->
                 <li class="proceed-list step-5">
                   <ul></ul>
@@ -321,20 +333,31 @@
           <div class="partbox">
             <ol>
               <li>
-                <div class="sns-img kakao"></div>
-                <span>카카오채널</span>
+                <a href="https://pf.kakao.com/_xlCweb" target="_blank">
+                  <div class="sns-img kakao"></div>
+                  <span>카카오채널</span>
+                </a>
               </li>
               <li>
-                <div class="sns-img insta"></div>
-                <span>인스타그램</span>
+                <a href="https://www.instagram.com/ongorong_cake/" target="_blank">
+                  <div class="sns-img insta"></div>
+                  <span>인스타그램</span>
+                </a>
               </li>
               <li>
-                <div class="sns-img naver"></div>
-                <span>네이버블로그</span>
+                <a href="https://blog.naver.com/ongorongcake" target="_blank">
+                  <div class="sns-img naver"></div>
+                  <span>네이버블로그</span>
+                </a>
               </li>
               <li>
-                <div class="sns-img dang"></div>
-                <span>당근마켓</span>
+                <a
+                  href="https://www.daangn.com/kr/business-profiles/%EC%98%A8%EA%B3%A0%EB%A1%B1-baf92b785a0e41939524b8f3368e0794/"
+                  target="_blank"
+                >
+                  <div class="sns-img dang"></div>
+                  <span>당근마켓</span>
+                </a>
               </li>
             </ol>
           </div>
