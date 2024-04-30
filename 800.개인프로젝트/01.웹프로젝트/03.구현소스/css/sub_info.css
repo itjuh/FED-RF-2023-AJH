@@ -52,7 +52,6 @@ main .partbox {
 /* 2-1. 온고롱소개 */
 .intro-brand {
   /* 브랜드 소개 타이틀용 부모역할 */
-  /* position: relative; */
   height: 100vh;
   color: #fff;
 }
@@ -62,6 +61,7 @@ main .partbox {
   height: 400px;
   flex-direction: row-reverse;
   align-items: end;
+  font-family: 'GangwonEdu_OTFBoldA', 'pretendard', serif;
 }
 /* 우측코멘트 */
 .right-box {
@@ -99,12 +99,12 @@ main .partbox {
 /* 2-1-2. 안내타이틀 */
 .info-box {
   /* 재료소개용 부모자격 */
-  /* position: relative; */
   justify-content: flex-start;
   flex-direction: row;
   height: 400px;
   gap: 100px;
   align-items: end;
+  font-family: 'GangwonEdu_OTFBoldA', 'pretendard', serif;
 }
 /* 안내 타이틀 후방 배경박스 */
 .background-box {
@@ -126,7 +126,7 @@ main .partbox {
   width: 600px;
   opacity: 0;
   /* 트랜지션 */
-  transition: 3s ease-in;
+  transition: 2s ease-in;
 }
 .info-box h1 {
   font-size: var(--fz-big);
@@ -194,14 +194,10 @@ main .partbox {
   /* 부모는 grad-box */
   bottom: 0px;
   display: block;
-  /* width: 100%; */
   height: 70px;
-  /* box-sizing: border-box; */
-  /* padding-left: 20px; */
   text-indent: 20px;
   background-color: #45454580;
   /* 내부 글자세팅 */
-  /* text-align: left; */
   line-height: 73px;
   color: white;
 }
@@ -217,7 +213,6 @@ main .partbox {
 .prod-info ol {
   height: 500px;
   display: flex;
-  /* gap: 0 30px; */
   justify-content: center;
   align-items: center;
   gap: 20px;
@@ -274,9 +269,9 @@ main .partbox {
 /* 주문절차 불릿 */
 .bullet-box {
   width: 1200px;
-  height: 80px;
+  height: 81px;
   margin: 0 auto;
-  background: url(../images/images/long_arrow_icon.png) no-repeat 0px 30px/1306px 276px;
+  background: url(../images/images/long_arrow_icon.png) no-repeat 0px 30px/1307px 274px;
 }
 /* 주문절차 불릿ul */
 .bullet-box ul {
@@ -311,7 +306,7 @@ main .partbox {
 }
 /* 주문절차 불릿 클릭 도형 */
 .bullet-box li.on .circle {
-  background-color: var(--co-ondgop);
+  background-color: var(--co-ongreen);
 }
 /* 주문절차 카드 */
 .process-info ol {
