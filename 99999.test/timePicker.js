@@ -9,11 +9,14 @@ const minList = document.querySelector(".minute-slider ol");
 
 const arrowBtns = document.querySelectorAll(".arrow-button");
 
-let initPos = moveDistance * 2;
+let ampmInitPos = moveDistance * 2;
+let initPos = -(moveDistance * 2);
 // console.log("am/pm위치",ampmPos,"hour크기",hourPos,"min위치",minPos,'initpos',initPos);
 
 function initPosSetting() {
-  ampmList.style.top = initPos + "px";
+  ampmList.style.top = ampmInitPos + "px";
+  hourList.style.top = initPos + "px";
+  minList.style.top = initPos + "px";
 }
 function setTransition(target, boolean) {
   if (boolean) target.style.transition = ".3s ease-in-out";
@@ -50,11 +53,11 @@ function ampmMove(direction) {
   // 2. 탭으로 이동 시 ol위치를 move만큼 이동
   // 3. 이동 후 pick-data의 값 변경
   if (direction == "up") {
-    ampmList.style.top = initPos - moveDistance + "px";
+    ampmList.style.top = ampmInitPos - moveDistance + "px";
     ampmList.querySelectorAll("li")[0].dataset.pick = -1;
     ampmList.querySelectorAll("li")[1].dataset.pick = 0;
   } else {
-    ampmList.style.top = initPos + "px";
+    ampmList.style.top = ampmInitPos + "px";
     ampmList.querySelectorAll("li")[0].dataset.pick = 0;
     ampmList.querySelectorAll("li")[1].dataset.pick = 1;
   }
@@ -68,32 +71,32 @@ function timeMove(target, direction) {
   let allList = target.querySelectorAll("li");
 
   if (direction == "up") {
-    let num = -3;
+    let num = -5;
     // 이동
     setTransition(target, true);
-    target.style.top = -moveDistance + "px";
+    target.style.top = initPos - moveDistance + "px";
     // transition없애기 => 잘라붙이기
     setTimeout(() => {
       setTransition(target, false);
       allList[0].dataset.pick = num; // num이 li를 다 돌아서 마지막 순번이 됨
       target.appendChild(allList[0]);
-      target.style.top = 0 + "px";
+      target.style.top = initPos + "px";
     }, 300);
     allList.forEach((li) => {
       li.dataset.pick = num;
       num++;
     });
   } else {
-    let num = -1;
+    let num = -3;
     // 미리 이동 후 뒤에서 앞으로 붙이기
     setTransition(target, false);
     target.prepend(allList[allList.length - 1], allList[0]);
-    target.style.top = -moveDistance + "px";
+    target.style.top = initPos - moveDistance + "px";
     // 이동 보여주기
     setTimeout(() => {
       setTransition(target, true);
       allList[allList.length - 1].dataset.pick = -2;
-      target.style.top = 0 + "px";
+      target.style.top = initPos + "px";
     }, 0);
     allList.forEach((li) => {
       li.dataset.pick = num;
@@ -114,23 +117,60 @@ function setTime(time) {
 }
 
 // 드래그 작업
-let clickStartPos;
-let clickEndPos;
-let clickStatus = false;
+// 움직일때 위치 값, 처음 값, 위치이동 차이, 마지막 위치
+// 
+let moveY = 0;
+let firstY = 0;
+let lastY;
 
-const timeSliderWraper = document.querySelectorAll(".time-slider-wraper");
-console.log("슬라이드랩퍼",timeSliderWraper);
+const timeSliderWraper = document.querySelectorAll(".time-slider-wraper ol");
+console.log("슬라이드랩퍼", timeSliderWraper);
+// timeSliderWraper.forEach(ele=>{
+//   console.log("옵셋Y",ele.offsetTop);
+//   // console.log("겟바운딩",ele.getBoundingClientRect(),"옵셋Y",ele.offsetTop);
+//   ele.addEventListener("mousemove",function(e){
+//     console.log(e.clientY);
+//   });
+// });
 // 드래그 시 이동
-document.addEventListener("mousedown",function go(e){
-    console.log("현재위치 client",e.clientY,e.target);
-    clickStartPos = e.clientY;
-    clickStatus = true;
-});
-document.addEventListener("mouseup",function go(e){
-    console.log("현재위치 client",e.clientY,e.target);
-    clickEndPos = e.clientY;
-    clickStatus = false;
-});
-if(clickStatus){
+const goDrag = (ele)=>{
+  let state = false;
+  let moveY = 0; // 움직일 때 위치값
+  let gapY = firstY - moveY; // 위치이동 차이
 
+  let lastY = ele.offsetTop;
+
+  const startDrag=()=>{state = true};
+  const endDrag=()=>{state = false};
+  const dragMove =(e)=>{
+    if(state){
+      ele.style.transition = "none";
+      gapY = firstY - e.clientY;
+      ele.style.top = initPos - gapY + "px";
+    }
+  };
+  const startSet=(e)=>{ 
+    firstY = e.clientY;
+    // console.log();
+  };
+  const endSet=(e)=>{
+    lastY += gapY;
+  };
+};
+
+// 방향 판별
+function gowhere(ele,idx){
+  let initPos = idx==0?ampmInitPos:initPos;
+  let center = pickerBody.offsetHeight / 2 - 11;
+  let targetPos = idx==0?ele.offsetTop:ele.offsetTop - initPos; //기본위치 ampm 64 나머지는 20
+  console.log(targetPos, center);
+  console.log(ele.parentNode.previousSibling.previousSibling);
+  if(targetPos > center + 11){
+    ele.parentNode.nextSibling.nextSibling.click();
+  }else if(targetPos < center - 11){
+    ele.parentNode.previousSibling.previousSibling.click();
+  }else{
+    ele.style.top = initPos;
+  }
 }
+gowhere(timeSliderWraper[1],1);

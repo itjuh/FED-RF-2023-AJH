@@ -300,7 +300,7 @@ function goDrag(ele) {
       mvx = e.pageX || e.touches[0].screenX;
     //   mvy = e.pageY || e.touches[0].screenY;
 
-      // 2. 움직일때 위치값 - 처음 위치값 : rx, ry
+      // 2. 움직일때 위치값 - 처음 위치값 = 위치차이 : rx, ry
       // x축 값은 left값
       // y축 값은 top값
       rx = mvx - fx;
