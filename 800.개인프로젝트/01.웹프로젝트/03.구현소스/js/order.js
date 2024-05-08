@@ -13,6 +13,8 @@ startFooterFn();
 import makeCalendar from "./calendar.js";
 // 달력 만들기
 makeCalendar(".calendar-box");
+// 시간선택 가져오기
+import { timePicker } from "./timePicker.js";
 
 ////////////// 저장 데이터 ///////////////////
 let orderPurpose = "";
@@ -271,11 +273,14 @@ function popOpen() {
     case "다음":
       calBox.style.display = "none";
       timeBox.style.display = "block";
+      timePicker();
       break;
     case "완료":
       hideBox.style.display = "none";
       timeBox.style.display = "none";
-      updateData2(1, "2023년 9월 30일 오후 1시 30분");
+      let time = document.querySelector(".time-picker-view").innerText;
+      let date = document.querySelector(".selected-date").value;
+      updateData2(1, date +" "+ time);
       break;
     case "닫기":
       hideBox.style.display = "none";

@@ -180,6 +180,7 @@ function makeDallyeok(selEl) {
         // (4) 요일셋팅하기
         let setDay = new Date(setDate).getDay();
         console.log(setDate+`(${week[setDay]})`);
+        document.querySelector(".selected-date").value = setDate+`(${week[setDay]})`;
         // 2. 날짜 체크하기
         // 기존 check클래스 삭제
         newDate.forEach(ele=>ele.classList.remove('check'));
@@ -241,6 +242,7 @@ function insertCalendarCode() {
       <div class="dates">
       </div>
     </section>
+    <input class="selected-date" type="text" style="display:none;"></input>
   </div>
   <!-- 취소/다음버튼 -->
   <div class="pop-footer">
