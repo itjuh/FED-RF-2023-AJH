@@ -6,8 +6,21 @@
     <title>타이머</title>
     <script src="./timePicker.js" defer></script>
     <style>
+      /* 초기화 */
       body * {
-        /* border: 0.3px solid coral; */
+        /* outline:0.3px solid coral; */
+      }
+      h1,
+      h2 {
+        padding: 0;
+        margin: 0;
+        font-weight: normal;
+      }
+      button {
+        padding: 0;
+        margin: 0;
+        background-color: #fff;
+        border: none;
       }
       ol,
       li {
@@ -26,6 +39,14 @@
         text-align: center;
         height: 80px;
       }
+      .time-picker-title {
+        font-weight: bold;
+        font-size: 22px;
+        margin-bottom: 10px;
+      }
+      .time-picker-view {
+        font-size: 20px;
+      }
       .time-picker-body {
         position: relative;
         display: flex;
@@ -33,7 +54,7 @@
       .time-picker-body .time-slider {
         flex: 1;
         user-select: none;
-        max-height: 150px;
+        max-height: 175px;
       }
       .time-slider {
         display: flex;
@@ -47,18 +68,50 @@
         overflow: hidden;
         flex: 1;
       }
-      .time-picker-body::before {
+      .time-pick-box::before {
         content: "";
+        position: absolute;
+        background-image: linear-gradient(to bottom, #fff, #ffffff80);
+        width: 100%;
+        height: 53px;
+        bottom: 35px;
+      }
+      .time-pick-box::after {
+        content: "";
+        position: absolute;
+        background-image: linear-gradient(to top, #fff, #ffffff80);
+        width: 100%;
+        height: 53px;
+        top: 35px;
+      }
+      .time-pick-box {
         position: absolute;
         left: -15px;
         top: 50%;
         transform: translateY(-50%);
         width: 357px;
-        height: 24px;
-        background-color: orange;
+        height: 35px;
+        font-weight: bold;
+        font-size: 20px;
+        background-color: transparent;
       }
-      .time-slider-wraper li{
-        height: 22px;
+      .blue-back {
+        background-color: #cfdfff;
+      }
+      .blue-back span {
+        display: block;
+        padding-top: 2px;
+        padding-left: 234px;
+      }
+      .time-slider-wraper li {
+        height: 27px;
+        font-weight: bold;
+        font-size: 20px;
+        color: #b7b7b7;
+        transition: .5s;
+      }
+      .time-slider-wraper li[data-pick="0"] {
+        color: #000;
       }
       /* 오전/오후 */
       .am-pm-slider ol {
@@ -71,16 +124,15 @@
       .hour-slider ol {
         position: relative;
         top: 0;
-        transition: .3s ease-in-out;
+        transition: 0.3s ease-in-out;
       }
       /* 분 */
       .minute-slider ol {
         position: relative;
         top: 0;
-        transition: .3s ease-in-out;
+        transition: 0.3s ease-in-out;
       }
-      
-      .arrow-button{
+      .arrow-button {
         position: relative;
         width: 20px;
         height: 20px;
@@ -89,7 +141,7 @@
         background-color: transparent;
         cursor: pointer;
       }
-      .arrow-button::before{
+      .arrow-button::before {
         content: "";
         position: absolute;
         top: 50%;
@@ -97,41 +149,56 @@
         transform: translate(-50%);
         width: 0;
         height: 0;
-        border-right: 6px solid transparent;
-        border-left: 6px solid transparent;
+        border-right: 7px solid transparent;
+        border-left: 7px solid transparent;
       }
-      .up-arrow::before{
+      .up-arrow::before {
         border-top: none;
-        border-bottom: 6px solid #ccc;
+        border-bottom: 7px solid #b7b7b7;
       }
       .down-arrow::before {
-        border-top: 6px solid #ccc;
+        border-top: 7px solid #b7b7b7;
         border-bottom: none;
       }
-      .notify-box{
+      .notify-box {
+        display: flex;
         margin: 10px;
         height: 50px;
         box-sizing: border-box;
         background-color: #ddd;
         border-radius: 10px;
+        justify-content: center;
+        align-items: center;
+        font-size: 15px;
       }
-      .button-box{
+      .button-box {
         display: flex;
         gap: 10px;
         padding: 0 10px;
       }
-      .button-box button{
+      .button-box button {
         flex: 1;
+        height: 44px;
+        border-radius: 10px;
+        font-size: 20px;
+        font-weight: bold;
+        color: #75a5ff;
+        cursor: pointer;
+      }
+      .button-box .confirm-button {
+        background-color: #9fc0ff;
+        color: #fff;
       }
     </style>
   </head>
   <body>
     <div class="time-picker-area">
       <section class="time-picker-header">
-        <h1 class="time-picker-title">타이틀</h1>
+        <h1 class="time-picker-title">방문예정 시간</h1>
         <h2 class="time-picker-view"></h2>
       </section>
       <section class="time-picker-body">
+        <div class="time-pick-box blue-back"><span>:</span></div>
         <div class="time-slider am-pm-slider">
           <button class="arrow-button up-arrow" aria-label="previous" data-type="am-pm"></button>
           <div class="time-slider-wraper">
@@ -142,55 +209,17 @@
           </div>
           <button class="arrow-button down-arrow" aria-label="next" data-type="am-pm"></button>
         </div>
-        <div class="time-slider hour-slider">
-          <button class="arrow-button up-arrow" aria-label="previous" data-type="hour"></button>
-          <div class="time-slider-wraper">
-            <ol>
-              <li data-pick="-4" data-type="am">09</li>
-              <li data-pick="-3" data-type="am">10</li>
-              <li data-pick="-2" data-type="am">11</li>
-              <li data-pick="-1" data-type="am">12</li>
-              <li data-pick="0" data-type="pm">01</li>
-              <li data-pick="1" data-type="pm">02</li>
-              <li data-pick="2" data-type="pm">03</li>
-              <li data-pick="3" data-type="pm">04</li>
-              <li data-pick="4" data-type="pm">05</li>
-              <li data-pick="5" data-type="pm">06</li>
-              <li data-pick="6" data-type="pm">07</li>
-            </ol>
-          </div>
-          <button class="arrow-button down-arrow" aria-label="next" data-type="hour"></button>
-        </div>
-        <div class="time-slider minute-slider">
-          <button class="arrow-button up-arrow" aria-label="previous" data-type="min"></button>
-          <div class="time-slider-wraper">
-            <ol>
-              <li data-pick="-4">20</li>
-              <li data-pick="-3">30</li>
-              <li data-pick="-2">40</li>
-              <li data-pick="-1">50</li>
-              <li data-pick="0">00</li>
-              <li data-pick="1">10</li>
-              <li data-pick="2">20</li>
-              <li data-pick="3">30</li>
-              <li data-pick="4">40</li>
-              <li data-pick="5">50</li>
-              <li data-pick="6">00</li>
-              <li data-pick="7">10</li>
-            </ol>
-          </div>
-          <button class="arrow-button down-arrow" aria-label="next" data-type="min"></button>
-        </div>
+        <div class="time-slider hour-slider"></div>
+        <div class="time-slider minute-slider"></div>
+        <!-- <div class="time-pick-box"></div> -->
       </section>
       <section class="time-picker-footer">
-        <div class="notify-box"></div>
+        <div class="notify-box"><span>💡영업시간💡 오전 9:00 ~ 오후 7:00</span></div>
         <div class="button-box">
-          <button aria-label="previous">이전</button>
-          <button aria-label="confirm">완료</button>
+          <button class="blue-back" aria-label="previous">이전</button>
+          <button class="confirm-button" aria-label="confirm">완료</button>
         </div>
       </section>
-    </div>
-    <div class="test">
     </div>
   </body>
 </html>
