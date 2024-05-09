@@ -65,7 +65,7 @@ const timePickerSetting = () => {
     setTransition(ampmList, true);
     setTransition(hourList, true);
     setTransition(minList, true);
-    timeList.forEach(ele=>ele.style.transition = ".3s"); // 글자색상
+    timeList.forEach((ele) => (ele.style.transition = ".3s")); // 글자색상
   }, 250);
   // 초기 시간 설정
   timeRead(readData());
@@ -247,19 +247,19 @@ const pickedView = document.querySelector(".time-picker-view");
 async function makeList() {
   let data = liMaker();
   let hour = `<button class="arrow-button up-arrow" aria-label="previous" data-type="hour"></button>
-  <div class="time-slider-wraper">
-    <ol>
-      ${data[0]}
-    </ol>
-  </div>
-  <button class="arrow-button down-arrow" aria-label="next" data-type="hour"></button>`;
+    <div class="time-slider-wraper">
+      <ol>
+        ${data[0]}
+      </ol>
+    </div>
+    <button class="arrow-button down-arrow" aria-label="next" data-type="hour"></button>`;
   let minute = `<button class="arrow-button up-arrow" aria-label="previous" data-type="min"></button>
-  <div class="time-slider-wraper">
-    <ol>
-    ${data[1]}
-    </ol>
-  </div>
-  <button class="arrow-button down-arrow" aria-label="next" data-type="min"></button>`;
+    <div class="time-slider-wraper">
+      <ol>
+      ${data[1]}
+      </ol>
+    </div>
+    <button class="arrow-button down-arrow" aria-label="next" data-type="min"></button>`;
 
   pickerBody.querySelector(".hour-slider").innerHTML = hour;
   pickerBody.querySelector(".minute-slider").innerHTML = minute;
@@ -302,10 +302,7 @@ function liMaker() {
   return [hourList, minuteList];
 }
 
-function timePicker() {
-  // 시간선택 만들기
-  makeList();
-  // 이벤트 세팅
-  timePickerSetting();
-}
-export { timePicker };
+// 시간선택 만들기
+makeList();
+// 이벤트 세팅
+timePickerSetting();

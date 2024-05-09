@@ -29,7 +29,7 @@ let orderTaste = "";
 let orderSize = "";
 let orderMessage = "";
 let orderRequest = "";
-let orderAdd = "";
+let orderAdd = [];
 let nextPass = true;
 
 ////////////////////단계이동//////////////////////
@@ -96,14 +96,21 @@ function stepFn() {
     switch (pageNum) {
       case 1: //목적선택완료
         updateData(0, stepBox1);
-        
+        orderPurpose = upArea[0][1].innerText;
         break;
       case 2: //픽업선택완료
         updateData(2, pickUpLi);
+        pickUp = upArea[2][1].innerText;
         nameTxt = inputName.value;
         numberTxt = inputNumber.value;
-        if (!nameTxt == "") updateData2(3, nameTxt);
-        if (!numberTxt == "") updateData2(4, numberTxt);
+        if (!nameTxt == "") {
+          updateData2(3, nameTxt);
+          pickUpName = nameTxt;
+        }
+        if (!numberTxt == "") {
+          updateData2(4, numberTxt);
+          pickUpPhone = numberTxt;
+        }
         break;
       case 3: //상품선택완료
         break;
@@ -128,6 +135,11 @@ function stepFn() {
         // console.log(optionTxt);
         // 2. 주문서 업데이트
         updateData2(6, optionTxt);
+        // 데이터 업데이트
+        orderTaste = flaVal;
+        orderSize = sizeVal;
+        orderMessage = msgVal;
+        orderRequest = reqVal;
         // 3. 단계 업데이트
 
         // 4. 주문서 박스 크기바꾸기, 제품선택 박스 끄기
@@ -136,7 +148,12 @@ function stepFn() {
         prodOptionBox.classList.remove("view");
         break;
       case 5: //추가 선택완료
-        updateData(7, stepBox5);
+        // 다중선택 결과
+        orderAdd = multyVerifFn(stepBox5);
+        updateData2(7, orderAdd.map((v) => v).join(", "));
+
+        // 주문완료 페이지 업데이트하기
+        orderFinalPage();
         break;
       case 6:
         break;
@@ -227,6 +244,17 @@ function verifFn(coll) {
   return bool;
 } /////////// 검증함수 verifFn //////////
 
+// 다중선택 on 검증 함수
+function multyVerifFn(coll) {
+  let boolList = [];
+  coll.forEach((ele) => {
+    if (ele.classList.contains("on")) {
+      boolList.push(ele.innerText.split("\n+")[0]);
+    }
+  });
+  return boolList;
+}
+
 //////////////////일정선택/////////////////////////
 // 일정 클릭하면 달력창 열리기
 // 달력창 다음 > 시간창 열리기 이전 > 닫기
@@ -278,9 +306,9 @@ function popOpen() {
     case "완료":
       hideBox.style.display = "none";
       timeBox.style.display = "none";
-      let time = document.querySelector(".time-picker-view").innerText;
-      let date = document.querySelector(".selected-date").value;
-      updateData2(1, date +" "+ time);
+      orderTime = document.querySelector(".time-picker-view").innerText;
+      orderDate = document.querySelector(".selected-date").value;
+      updateData2(1, orderDate + " " + orderTime);
       break;
     case "닫기":
       hideBox.style.display = "none";
@@ -464,6 +492,9 @@ function prodboxClose() {
 // 숫자가공 함수
 function addCommas(x) {
   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+function removeCommas(x) {
+  return x.toString().replace(/,/g, "");
 }
 //////////////////////////////////////////////////
 // 상품 데이터 뿌리기 /////////////////////////////
@@ -772,3 +803,82 @@ stepBox5.forEach((ele) => {
     } ///////////if else//////////////
   });
 }); /////////stepBox5 click이벤트 설정////////
+
+function orderFinalPage() {
+  // 주문완료 페이지
+  const searchProductPrice = (name) => {
+    let prodPrice = "";
+    for (let x in prod_info) {
+      if (prod_info[x]["prod_name"] == name) {
+        prodPrice = prod_info[x]["prod_price"];
+      }
+    }
+    return addCommas(prodPrice);
+  }
+  const searchOptionPrice = (name) => {
+    let optionPrice = "";
+    for (let x in option_list) {
+      if (Array.isArray(option_list[x])) {
+        // 맛선택과 사이즈만 해당
+        option_list[x].forEach((item) => {
+          if (item["name"] == name) {
+            optionPrice = item["price"];
+          }
+        });
+      }
+    }
+    return addCommas(optionPrice);
+  }
+  const searchAddPrice = (name) => {
+    for (let x in add_option) {
+      if (x == name) {
+        return addCommas(add_option[x]);
+      }
+    }
+  }
+  const addPriceList = (orderAddList) => {
+    let codeData = ``;
+    orderAddList.forEach((item) => {
+      codeData += `<li>
+      <span>${item}</span>
+      <span class="bill-price">${searchAddPrice(item)}</span>
+    </li>`;
+    });
+    return codeData;
+  }
+  const totalPrice = ()=>{
+    let total = 0;
+    let target = document.querySelectorAll(".bill-price");
+    console.log(target);
+    target.forEach((item) => {
+      total += parseInt(removeCommas(item.innerText));
+    });
+    document.querySelector(".total-cost > span").innerText = addCommas(total);
+  }
+
+  let orderFinalBill = `<div class="total-title">
+  <i class="fa-solid fa-won-sign"></i>
+  <h3>결제금액</h3>
+  </div>
+  <ol class="total-content scbar">
+  <li>
+    <span>${orderProduct}</span>
+    <span class="bill-price">${searchProductPrice(orderProduct)}</span>
+  </li>
+  <li>
+    <span>${orderTaste}</span>
+    <span class="bill-price">${searchOptionPrice(orderTaste)}</span>
+  </li>
+  <li>
+    <span>${orderSize}</span>
+    <span class="bill-price">${searchOptionPrice(orderSize)}</span>
+  </li>
+  ${addPriceList(orderAdd)}
+  </ol>
+  <div class="total-cost">
+  <h3>합계액</h3>
+  <span></span>
+  </div>`;
+  document.querySelector(".step-6 > div").innerHTML = orderFinalBill;
+  totalPrice();
+}
