@@ -1,0 +1,51 @@
+p.small {
+//소문자를 작은 대문자로 바꾸는 속성
+  font-variant: small-caps;
+
+}
+font-variant: normal | small-caps | initial | inherit
+
+vertical-align:
+ baseline | text-top | text-bottom | sub | super
+
+//이미지를 항목의 리스트스타일로 표시
+ul {
+  list-style-image: url('sqpurple.gif');
+}
+
+// 리스트 들여쓰기
+ul.a {
+  list-style-position: outside; //기본값
+  list-style-position: inside; // 들여쓰기
+}
+
+// 테이블 이중나눔선 삭제
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+// 테이블 캡션위치
+caption {
+  caption-side: bottom;
+}
+
+//+인접 선택자(div 바로 뒤에 p 하나만 선택됨)
+div + p {
+  background-color: yellow;
+}
+//~형제 선택자 (div 뒤에 모든 p가 선택됨)
+div ~ p {
+  background-color: yellow;
+}
+
+
+
+https://www.w3schools.com/css/css_examples.asp
+CSS Pseudo-classes 부터 읽어야함!!!!
+
+
+1. 한줄로 반응형 나타내기
+https://1linelayouts.glitch.me/
+2. 로드맵 =>반응형 읽고있음
+https://roadmap.sh/frontend
