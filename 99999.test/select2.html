@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+            font-size: 16px;
+        }
+        .sel{
+            position: absolute;
+            top: 0;
+            background-color: cornflowerblue;
+            width: 100px;
+            height: 20px;
+            border: 1px solid #000;
+        }
+        select{
+            border: 1px solid #000;
+            height: 20px;
+            width: 100px;
+        }
+    </style>
+    <script>
+      window.addEventListener("load", () => {
+        const option = document.querySelectorAll("select>option");
+        const select = document.querySelector("select");
+        const topSel = document.querySelector(".sel");
+        option.forEach((v) => {
+          v.addEventListener("click", () =>{
+            event.stopPropagation();
+            console.log(select.value);
+            const selectedOption = document.querySelectorAll("select option:checked");
+            console.log(selectedOption.length);
+            console.log(select.value,"외 ",-1);
+            if(selectedOption.length > 1){
+                topSel.innerHTML = select.value+"외 "+(selectedOption.length -1);
+            }else{
+                topSel.innerHTML = select.value;
+            }
+            });
+        });
+        window.addEventListener("click",()=>{
+            if(topSel.getAttribute('data-sts')==="o"){
+                close();
+                topSel.setAttribute('data-sts',"c");
+            }
+        })
+        topSel.addEventListener("click",()=>{
+            if(topSel.getAttribute('data-sts')==="o"){
+                close();
+                topSel.setAttribute('data-sts',"c");
+            }else{
+                open();
+                topSel.setAttribute('data-sts',"o");
+            }
+        })
+        function close(){
+            event.stopPropagation();
+            topSel.style.display = "block";
+            select.style.height = "20px";
+        }
+        function open(){
+            event.stopPropagation();
+            topSel.style.display = "none";
+            select.style.height = "auto";
+        }
+      });
+    </script>
+  </head>
+  <body>
+      <select name="test" id="test" multiple>
+          <option value="[00]취소">[00]취소</option>
+          <option value="[11]요청">[11]요청</option>
+          <option value="[22]승인">[22]승인</option>
+          <option value="[33]대기">[33]대기</option>
+        </select>
+        <div class="sel" data-sts="c">[00]취소</div>
+  </body>
+</html>

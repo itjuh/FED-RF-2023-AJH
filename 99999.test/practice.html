@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+      window.addEventListener("DOMContentLoaded", () => {
+        document.querySelector("span").innerHTML=howLongDate("3 1 5");
+        document.querySelector(".span").innerHTML=method1("3 1 5");
+      });
+      function howLongDate(input) {
+        let result;
+        const moveUp = parseInt(input.split(" ")[0]);
+        const moveDown = parseInt(input.split(" ")[1]);
+        const treeHeight = parseInt(input.split(" ")[2]);
+        let tempHeight = treeHeight - moveUp;
+        let dailyMove = moveUp - moveDown;
+        let fullDate = tempHeight / dailyMove;
+        if (fullDate % 1 === 0) {
+          result = Math.floor(fullDate) + 1;
+        } else {
+          result = Math.floor(fullDate) + 2;
+        }
+        return result;
+      }
+      function method1(input){
+        const moveUp = parseInt(input.split(" ")[0]);
+        const moveDown = parseInt(input.split(" ")[1]);
+        const treeHeight = parseInt(input.split(" ")[2]);
+        let day = 0;
+        let moveDistance = 0;
+        while(moveDistance < treeHeight){
+            moveDistance += moveUp;
+            day++;
+            if(moveDistance < treeHeight){
+                moveDistance -=moveDown;
+            }
+        }
+        return day;
+      }
+    </script>
+  </head>
+  <body>
+    <span>
+
+    </span><div class="span"></div>
+  </body>
+</html>

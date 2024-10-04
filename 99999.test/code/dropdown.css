@@ -1,0 +1,43 @@
+@charset "uft-8";
+
+/* 초기화 */
+ul, li{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+main{
+    display: flex;
+    padding: 100px;
+    gap: 25px;
+}
+nav{
+    width: 300px;
+    font-size: 16px;
+    padding: 8px 16px;
+    border: 1px solid #000;
+    box-sizing: border-box;
+    cursor: context-menu;
+}
+/* nav:focus{
+    outline: 1px solid #2d4dff;
+} */
+ul{
+    margin-top:  8px;
+    width: 300px;
+    border: 1px solid #000;
+    box-sizing: border-box;
+    display: none;
+}
+ul.on{
+    display: block;
+}
+li{
+    font-size: 16px;
+    padding: 8px 16px;
+    cursor: context-menu;
+}
+li:hover{
+    background-color:  #2d4dff;
+    color: #fff;
+}
